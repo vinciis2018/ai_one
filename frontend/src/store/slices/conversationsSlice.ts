@@ -6,10 +6,22 @@ const BASE_URL = "http://127.0.0.1:8000"; // FastAPI backend
 export interface Conversation {
   id: number;
   query: string;
+  query_by: string;
   answer: string;
+  answer_by: string;
+  sources_used: number;
+
+  previous_conversation: string;
+  parent_conversation: string;
+  chat_id: string;
   created_at: string;
 }
 
+export interface ChatResponse {
+  id: number;
+  created_at: string;
+  conversations: Conversation[];
+}
 interface ConversationState {
   items: Conversation[];
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
@@ -19,6 +31,7 @@ interface ConversationState {
   limit: number;
   hasMore: boolean;
   selectedConversation: Conversation | null;
+  chat: ChatResponse | null;
 }
 
 const initialState: ConversationState = {
@@ -30,6 +43,7 @@ const initialState: ConversationState = {
   limit: 10,
   hasMore: true,
   selectedConversation: null,
+  chat: null,
 };
 
 export const fetchConversations = createAsyncThunk<
@@ -49,6 +63,20 @@ export const fetchConversations = createAsyncThunk<
     } catch (error: unknown) {
       const axiosError = error as unknown as { response?: { data?: { detail?: string } } };
       return rejectWithValue(axiosError.response?.data?.detail || 'Failed to load conversations');
+    }
+  }
+);
+
+export const fetchChatById = createAsyncThunk<ChatResponse, string, { rejectValue: string }>(
+  'conversations/fetchChatById',
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await axios.get<ChatResponse>(`${BASE_URL}/conversations/chat/${id}`);
+      console.log(response.data)
+      return response.data;
+    } catch (error: unknown) {
+      const axiosError = error as unknown as { response?: { data?: { detail?: string } } };
+      return rejectWithValue(axiosError.response?.data?.detail || 'Failed to load conversation');
     }
   }
 );
@@ -87,6 +115,17 @@ const conversationSlice = createSlice({
       .addCase(fetchConversations.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload || 'Error loading conversations';
+      })
+      .addCase(fetchChatById.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchChatById.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.chat = action.payload;
+      })
+      .addCase(fetchChatById.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload || 'Error loading conversation';
       });
   },
 });

@@ -51,6 +51,7 @@ class ConversationModel(BaseModel):
 
 class PseudoConversationModel(BaseModel):
     id: Optional[PyObjectId] = Field(default=None, alias="_id")
+    conversation_id: Optional[str] = None
     prev_conversation: Optional[str] = None
     parent_conversation: Optional[str] = None
     created_at: datetime = Field(default_factory=datetime.utcnow)

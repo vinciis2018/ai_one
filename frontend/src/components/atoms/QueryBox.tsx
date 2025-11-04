@@ -4,25 +4,36 @@
 // Connected to Redux (assistantSlice)
 // ============================================
 
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import type { AppDispatch, RootState } from "../../store";
+import React, { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../store";
 import { askQuery } from "../../store/slices/assistantSlice";
 import { ResponseCard } from "./ResponseCard";
+import { fetchChatById } from "../../store/slices/conversationsSlice";
 
 export const QueryBox: React.FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const {user} = useSelector((state: RootState) => state.auth);
-  const { queryStatus, response, error } = useSelector(
-    (state: RootState) => state.assistant
+  const dispatch = useAppDispatch();
+
+
+  const {user} = useAppSelector((state) => state.auth);
+  const { queryStatus, response, error } = useAppSelector(
+    (state) => state.assistant
   );
+
+
+  const {chat: chatConversation} = useAppSelector((state) => state.conversations); 
 
   const [question, setQuestion] = useState("");
 
   const handleAsk = async () => {
     if (!question.trim()) return alert("Please enter a question!");
-    await dispatch(askQuery({text: question, userId: user?._id || ''}));
+    await dispatch(askQuery({text: question, userId: user?._id || '', chatId: response?.chat_id || "", previousConversation: response?.conversation_id || ""}));
   };
+
+  useEffect(() => {
+    if (response) {
+      dispatch(fetchChatById(response.chat_id)).unwrap();
+    }
+  },[dispatch, response]);
 
   return (
     <div className="bg-white rounded-2xl shadow-md p-6 border border-gray-200 max-w-xl mx-auto mt-8">
@@ -53,7 +64,22 @@ export const QueryBox: React.FC = () => {
         <p className="text-red-500 text-sm mt-3 text-center">❌ {error}</p>
       )}
 
-      {response && <ResponseCard response={response} />}
+      {response && (
+        <div>
+          <ResponseCard response={response} />
+          <div className="mt-4 text-sm text-gray-500">
+            🆔 Chat ID: <span className="italic">{response?.chat_id}</span><br/>
+            🗂️ Conversation ID: <span className="italic">{response?.conversation_id}</span>
+            {chatConversation && chatConversation.conversations.length > 0 && chatConversation.conversations.map((conversation) => (
+              <div key={conversation.id} className="mt-2">
+                📄 {conversation.query_by}: <span className="font-medium">{conversation.query}</span><br/>
+                🗂️ {conversation.answer_by}: <span className="font-medium">{conversation.answer}</span>
+
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

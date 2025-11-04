@@ -24,6 +24,8 @@ export interface QueryResponse {
   query: string;
   answer: string;
   sources_used?: number;
+  chat_id: string;
+  conversation_id: string;
 }
 
 export interface UploadResponse {
@@ -79,13 +81,15 @@ export const uploadMaterial = createAsyncThunk<
 
 export const askQuery = createAsyncThunk<
   QueryResponse,
-  {text: string; userId: string},
+  {text: string; userId: string, chatId: string; previousConversation: string},
   { rejectValue: string }
->("assistant/askQuery", async ({text, userId}, { rejectWithValue }) => {
+>("assistant/askQuery", async ({text, userId, chatId, previousConversation}, { rejectWithValue }) => {
   try {
     const response = await axios.post<QueryResponse>(`${BASE_URL}/query/`, {
       text,
-      userId
+      userId,
+      chatId,
+      previousConversation,
     });
     console.log(response);
     return response.data;

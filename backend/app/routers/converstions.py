@@ -54,6 +54,48 @@ async def list_conversations(skip: int = 0, limit: int = 20, search: str = Query
         raise HTTPException(status_code=500, detail=f"Error fetching conversations: {str(e)}")
 
 
+
+# ====================================================
+# Get Single Chat
+# ====================================================
+
+@router.get("/chat/{chat_id}")
+async def get_conversation(chat_id: str):
+    """Fetch a specific conversation by ID."""
+    try:
+        from bson import ObjectId
+        collection = get_collection("chats")
+        chat = await collection.find_one({"_id": ObjectId(chat_id)})
+        print(chat)
+        conversations = []
+        for doc in chat["conversations"]:
+            conversation = await get_collection("conversations").find_one({"_id": ObjectId(doc["conversation_id"])})
+            conversations.append({
+                "id": str(conversation["_id"]),
+                "query_by": conversation["query_by"],
+                "answer_by": conversation["answer_by"],
+                "query": conversation["query"],
+                "answer": conversation["answer"],
+                "prev_conversation": doc["prev_conversation"],
+                "parent_conversation": doc["parent_conversation"],
+                "created_at": conversation["created_at"]
+            })
+
+        if not chat:
+            raise HTTPException(status_code=404, detail="Chat not found")
+
+        return {
+            "id": str(chat["_id"]),
+            "title": chat["title"],
+            "user_id": chat["user_id"],
+            "conversations": conversations,
+            "created_at": chat["created_at"]
+        }
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error retrieving conversation: {str(e)}")
+
+
 # ====================================================
 # Get Single Conversation
 # ====================================================
