@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-
+import { BASE_URL } from '../../constants/helperConstants';
 // const BASE_URL = "http://127.0.0.1:8000"; // FastAPI backend
-const BASE_URL = "https://ai.vinciis.in"; // FastAPI backend
+// const BASE_URL = "https://ai.vinciis.in"; // FastAPI backend
 
 // -----------------------------
 // Types

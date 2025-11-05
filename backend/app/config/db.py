@@ -3,6 +3,10 @@ from pymongo import MongoClient, TEXT
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 
+import torch
+import gc
+
+
 MONGO_URI = os.getenv("MONGO_URI", "mongodb+srv://vinciis2018:212Matpu6na@clusterai.0fzws.mongodb.net/")
 MONGO_DB = os.getenv("MONGO_DB", "professor")
 
@@ -15,6 +19,13 @@ db = client.get_database(os.getenv("MONGODB_DB", "professor"))
 # Create a sync client for index operations
 sync_client = None
 sync_db = None
+
+
+def clear_memory():
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
+    gc.collect()
+
 
 def get_sync_db():
     """Get a synchronous database client for admin operations"""

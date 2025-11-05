@@ -55,11 +55,11 @@ export function Header({ onMenuClick, isMobile, setIsSidebarOpen, isSidebarOpen 
         <div className="flex items-center gap-4 cursor-pointer" onClick={() => isAuthenticated ? navigate('/') : navigate('/')}>
           {isMobile ? (
             <div className="border-2 border-violet rounded-full">
-              <h1 className="text-[var(--text)] text-xl font-semibold px-1.5">O</h1>
+              <h1 className="text-[var(--text)] text-xl font-semibold px-1.5">M</h1>
             </div>
           ) : (
             <div className="h-8 flex items-center gap-1">
-              <h1 className="text-[var(--text)] text-xl font-semibold">DISHA</h1>
+              <h1 className="text-[var(--text)] text-xl font-semibold">MyndTwin</h1>
             </div>
           )}
         </div>

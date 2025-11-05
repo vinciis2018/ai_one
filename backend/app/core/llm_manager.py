@@ -9,7 +9,7 @@ import torch
 import subprocess
 from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM
 from dotenv import load_dotenv
-import openai
+from openai import OpenAI
 import logging
 
 # ------------------------------------------------
@@ -19,11 +19,14 @@ load_dotenv()
 logger = logging.getLogger("assistant-llm")
 
 # Global configs
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+# OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+OPENAI_API_KEY="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"
 LLM_MODE = os.getenv("LLM_MODE", "auto").lower()  # auto | huggingface | ollama | openai
 HF_MODEL = os.getenv("HF_MODEL", "TinyLlama/TinyLlama-1.1B-Chat-v1.0")
 FALLBACK_MODEL = "distilgpt2"
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "mistral")
+
+open_ai_client = OpenAI(api_key=OPENAI_API_KEY)
 
 # ------------------------------------------------
 # Device detection
@@ -139,8 +142,7 @@ def call_llm(prompt: str, domain: str) -> str:
     # =======================
     if LLM_MODE in ["auto", "openai"] and OPENAI_API_KEY:
         try:
-            openai.api_key = OPENAI_API_KEY
-            response = openai.ChatCompletion.create(
+            response = open_ai_client.chat.completions.create(
                 model="gpt-4o-mini",
                 messages=[
                     {"role": "system", "content": f"You are {f"{domain} expert" or 'an educational'} AI assistant that answers based on provided context."},

@@ -70,8 +70,6 @@ def verify_password(plain_password, hashed_password):
     password_bytes = plain_password.encode('utf-8')
     if len(password_bytes) > 72:
         password_bytes = password_bytes[:72]
-    print("password_bytes", password_bytes)
-    print("hashed_password", hashed_password.encode('utf-8'))
     return bcrypt.checkpw(password_bytes, hashed_password.encode('utf-8'))
 
 
@@ -95,7 +93,6 @@ async def get_user(email: str):
 
 async def authenticate_user(email: str, password: str):
     user = await get_user(email)
-    print(user)
     if not user or not verify_password(password, user.password):
         return False
     return user
@@ -176,8 +173,7 @@ async def signup(user_data: UserCreate):
             data={"sub": user_data.email}, 
             expires_delta=access_token_expires
         )
-        print(expires_at)
-        print(expires_at_timestamp)
+
         # Prepare user data for response
         user_dict = created_user
         user_data_response = {
@@ -212,7 +208,6 @@ async def signup(user_data: UserCreate):
 async def login(
     login_data: LoginRequest
 ):
-    print(login_data)
     email = login_data.email
     password = login_data.password
     user = await authenticate_user(email, password)
@@ -251,7 +246,6 @@ async def login(
         "is_active": user_dict.get("is_active", True),
         "full_name": user_dict.get("full_name"),
     }
-    print(expires_at_timestamp)
 
     result = {
          "access_token": access_token,

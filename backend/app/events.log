@@ -12073,3 +12073,151 @@ NameError: name 'db' is not defined
 2025-11-05 12:27:57,480 [INFO] GET /upload/list - 200 - 31.84ms
 2025-11-05 13:34:11,020 [INFO] GET / - 200 - 3.87ms
 2025-11-05 13:34:11,203 [INFO] GET /favicon.ico - 404 - 0.72ms
+2025-11-05 15:57:30,956 [INFO] Use pytorch device_name: mps
+2025-11-05 15:57:30,957 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-05 15:57:35,636 [INFO] 🧠 Using device: MPS
+2025-11-05 16:00:23,084 [INFO] Use pytorch device_name: mps
+2025-11-05 16:00:23,085 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-05 16:00:28,152 [INFO] 🧠 Using device: MPS
+2025-11-05 16:00:28,183 [INFO] Use pytorch device_name: mps
+2025-11-05 16:00:28,183 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-05 16:00:31,756 [INFO] Loading faiss.
+2025-11-05 16:00:31,819 [INFO] Successfully loaded faiss.
+2025-11-05 16:00:39,695 [INFO] Use pytorch device_name: mps
+2025-11-05 16:00:39,695 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-05 16:00:43,661 [INFO] 🧠 Using device: MPS
+2025-11-05 16:00:43,693 [INFO] Use pytorch device_name: mps
+2025-11-05 16:00:43,693 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-05 16:00:51,825 [INFO] Use pytorch device_name: mps
+2025-11-05 16:00:51,825 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-05 16:00:55,692 [INFO] 🧠 Using device: MPS
+2025-11-05 16:00:55,721 [INFO] Use pytorch device_name: mps
+2025-11-05 16:00:55,721 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-05 16:00:58,834 [INFO] Loading faiss.
+2025-11-05 16:00:58,874 [INFO] Successfully loaded faiss.
+2025-11-05 16:01:59,096 [INFO] OPTIONS /auth/login - 200 - 7.23ms
+2025-11-05 16:01:59,901 [INFO] POST /auth/login - 200 - 796.64ms
+2025-11-05 16:01:59,962 [INFO] OPTIONS /auth/me - 200 - 6.63ms
+2025-11-05 16:01:59,965 [INFO] OPTIONS /auth/me - 200 - 5.15ms
+2025-11-05 16:02:00,014 [INFO] GET /auth/me - 200 - 39.0ms
+2025-11-05 16:02:00,205 [INFO] GET /auth/me - 200 - 225.93ms
+2025-11-05 16:02:03,369 [INFO] OPTIONS /auth/me - 200 - 0.99ms
+2025-11-05 16:02:03,370 [INFO] OPTIONS /auth/me - 200 - 1.36ms
+2025-11-05 16:02:03,373 [INFO] OPTIONS /auth/me - 200 - 1.19ms
+2025-11-05 16:02:03,373 [INFO] OPTIONS /auth/me - 200 - 1.38ms
+2025-11-05 16:02:03,405 [INFO] GET /auth/me - 200 - 32.92ms
+2025-11-05 16:02:03,405 [INFO] GET /auth/me - 200 - 32.36ms
+2025-11-05 16:02:03,599 [INFO] GET /auth/me - 200 - 222.37ms
+2025-11-05 16:02:03,654 [INFO] GET /auth/me - 200 - 275.84ms
+2025-11-05 16:02:22,010 [INFO] OPTIONS /query/ - 200 - 0.98ms
+2025-11-05 16:02:23,277 [WARNING] ⚠️ OpenAI failed: 
+
+You tried to access openai.ChatCompletion, but this is no longer supported in openai>=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+
+2025-11-05 16:02:23,278 [INFO] ⚙️ Loading Hugging Face model: TinyLlama/TinyLlama-1.1B-Chat-v1.0
+2025-11-05 16:02:23,563 [WARNING] ⚠️ Hugging Face failed: Could not load model TinyLlama/TinyLlama-1.1B-Chat-v1.0 with any of the following classes: (<class 'transformers.models.auto.modeling_auto.AutoModelForCausalLM'>, <class 'transformers.models.llama.modeling_llama.LlamaForCausalLM'>). See the original errors:
+
+while loading with AutoModelForCausalLM, an error is thrown:
+Traceback (most recent call last):
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/pipelines/base.py", line 293, in infer_framework_load_model
+    model = model_class.from_pretrained(model, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/models/auto/auto_factory.py", line 604, in from_pretrained
+    return model_class.from_pretrained(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        pretrained_model_name_or_path, *model_args, config=config, **hub_kwargs, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 4806, in from_pretrained
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Using a `device_map`, `tp_plan`, `torch.device` context manager or setting `torch.set_default_device(device)` requires `accelerate`. You can install it with `pip install accelerate`
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/pipelines/base.py", line 311, in infer_framework_load_model
+    model = model_class.from_pretrained(model, **fp32_kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/models/auto/auto_factory.py", line 604, in from_pretrained
+    return model_class.from_pretrained(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        pretrained_model_name_or_path, *model_args, config=config, **hub_kwargs, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 4806, in from_pretrained
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Using a `device_map`, `tp_plan`, `torch.device` context manager or setting `torch.set_default_device(device)` requires `accelerate`. You can install it with `pip install accelerate`
+
+while loading with LlamaForCausalLM, an error is thrown:
+Traceback (most recent call last):
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/pipelines/base.py", line 293, in infer_framework_load_model
+    model = model_class.from_pretrained(model, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 4806, in from_pretrained
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Using a `device_map`, `tp_plan`, `torch.device` context manager or setting `torch.set_default_device(device)` requires `accelerate`. You can install it with `pip install accelerate`
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/pipelines/base.py", line 311, in infer_framework_load_model
+    model = model_class.from_pretrained(model, **fp32_kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 4806, in from_pretrained
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Using a `device_map`, `tp_plan`, `torch.device` context manager or setting `torch.set_default_device(device)` requires `accelerate`. You can install it with `pip install accelerate`
+
+
+
+2025-11-05 16:02:23,715 [INFO] 🦙 Running Ollama model: mistral
+2025-11-05 16:02:42,603 [INFO] [SUCCESS] Query: What is the dimensions of force? | Answer: The dimensions of force are given in the provided context as [MLT-2]/[L^2] or al
+2025-11-05 16:02:42,738 [INFO] POST /query/ - 200 - 20724.57ms
+2025-11-05 16:02:42,859 [INFO] GET /conversations/chat/690b27ca21d1ecc80e3fa1cc - 200 - 66.49ms
+2025-11-05 16:04:15,181 [INFO] Use pytorch device_name: mps
+2025-11-05 16:04:15,181 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-05 16:04:28,319 [INFO] Use pytorch device_name: mps
+2025-11-05 16:04:28,319 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-05 16:04:32,079 [INFO] 🧠 Using device: MPS
+2025-11-05 16:04:32,110 [INFO] Use pytorch device_name: mps
+2025-11-05 16:04:32,110 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-05 16:04:35,256 [INFO] Loading faiss.
+2025-11-05 16:04:35,287 [INFO] Successfully loaded faiss.
+2025-11-05 16:04:54,304 [INFO] Use pytorch device_name: mps
+2025-11-05 16:04:54,304 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-05 16:05:01,736 [INFO] Use pytorch device_name: mps
+2025-11-05 16:05:01,737 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-05 16:05:05,508 [INFO] 🧠 Using device: MPS
+2025-11-05 16:05:05,539 [INFO] Use pytorch device_name: mps
+2025-11-05 16:05:05,539 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-05 16:05:08,817 [INFO] Loading faiss.
+2025-11-05 16:05:08,851 [INFO] Successfully loaded faiss.
+2025-11-05 16:05:38,840 [INFO] OPTIONS /query/ - 200 - 0.83ms
+2025-11-05 16:05:44,942 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-05 16:05:44,953 [INFO] [SUCCESS] Query: What is the dimensions of pressure? | Answer: The dimensions of pressure can be derived from the formula for pressure, which i
+2025-11-05 16:05:45,049 [INFO] POST /query/ - 200 - 6205.04ms
+2025-11-05 16:05:45,154 [INFO] GET /conversations/chat/690b27ca21d1ecc80e3fa1cc - 200 - 90.93ms
+2025-11-05 16:06:09,588 [INFO] OPTIONS /query/ - 200 - 0.42ms
+2025-11-05 16:06:15,447 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-05 16:06:15,448 [INFO] [SUCCESS] Query: What is the dimensions of flux? | Answer: The provided context does not explicitly mention the dimensions of flux. However
+2025-11-05 16:06:15,543 [INFO] POST /query/ - 200 - 5952.12ms
+2025-11-05 16:06:15,676 [INFO] GET /conversations/chat/690b27ca21d1ecc80e3fa1cc - 200 - 118.95ms

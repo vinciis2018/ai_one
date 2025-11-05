@@ -1,6 +1,6 @@
 // Helper function to clean and format URLs
 const cleanUrl = (path: string) => {
-  const baseUrl = import.meta.env.VITE_SERVER_NODE?.replace(
+  const baseUrl = import.meta.env.VITE_SERVER?.replace(
     /[\\"\\']/g,
     ""
   ).replace(/\/$/, "");
@@ -19,7 +19,7 @@ const cleanWebsocketUrl = (path: string) => {
 };
 
 
-export const nodeurl = cleanUrl("/api/v1");
+export const BASE_URL = cleanUrl("");
 
 export const websocketurl = cleanWebsocketUrl("");
 

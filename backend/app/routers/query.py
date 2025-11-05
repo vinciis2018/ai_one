@@ -29,7 +29,6 @@ CONFIG_FILE = BASE_DIR / "config.yaml"
 with open(CONFIG_FILE, "r") as f:
     CONFIG = yaml.safe_load(f)
 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 MODEL_NAME = CONFIG["model"]["name"]
 TEMP = CONFIG["model"]["temperature"]
 MAX_TOKENS = CONFIG["model"]["max_tokens"]
