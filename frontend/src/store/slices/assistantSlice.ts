@@ -18,6 +18,11 @@ export interface UploadRequestPayload {
   s3Url: string;
   source_type: string;
   user_id: string;
+  domain: string;
+  subject?: string;
+  type: string;
+  file_type: string;
+  file_size?: number;
 }
 
 export interface QueryResponse {
@@ -81,15 +86,16 @@ export const uploadMaterial = createAsyncThunk<
 
 export const askQuery = createAsyncThunk<
   QueryResponse,
-  {text: string; userId: string, chatId: string; previousConversation: string},
+  {text: string; userId: string, chatId: string; previousConversation: string, domain_expertise: string},
   { rejectValue: string }
->("assistant/askQuery", async ({text, userId, chatId, previousConversation}, { rejectWithValue }) => {
+>("assistant/askQuery", async ({text, userId, chatId, previousConversation, domain_expertise}, { rejectWithValue }) => {
   try {
     const response = await axios.post<QueryResponse>(`${BASE_URL}/query/`, {
       text,
       userId,
       chatId,
       previousConversation,
+      domain_expertise,
     });
     console.log(response);
     return response.data;

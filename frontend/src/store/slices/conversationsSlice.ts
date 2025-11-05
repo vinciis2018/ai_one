@@ -18,7 +18,9 @@ export interface Conversation {
 }
 
 export interface ChatResponse {
-  id: number;
+  id: string;
+  _id?: string;
+  title: string;
   created_at: string;
   conversations: Conversation[];
 }
@@ -30,8 +32,9 @@ interface ConversationState {
   page: number;
   limit: number;
   hasMore: boolean;
-  selectedConversation: Conversation | null;
+  selectedChat: ChatResponse | null;
   chat: ChatResponse | null;
+  chats: ChatResponse[];
 }
 
 const initialState: ConversationState = {
@@ -42,22 +45,44 @@ const initialState: ConversationState = {
   page: 1,
   limit: 10,
   hasMore: true,
-  selectedConversation: null,
+  selectedChat: null,
   chat: null,
+  chats: [],
 };
 
 export const fetchConversations = createAsyncThunk<
   { conversations: Conversation[]; count: number },
-  { page?: number; limit?: number; search?: string } | undefined,
+  { page?: number; limit?: number; search?: string, chat_id?: string } | undefined,
   { rejectValue: string }
 >(
-  'conversations/fetchAll',
+  'conversations/fetchAllConversations',
   async (params = {}, { rejectWithValue }) => {
     try {
-      const { page = 1, limit = 10, search = '' } = params;
+      const { page = 1, limit = 10, search = '', chat_id } = params;
       const skip = (page - 1) * limit;
       const response = await axios.get<{ conversations: Conversation[]; count: number }>(`${BASE_URL}/conversations`, {
-        params: { skip, limit, search },
+        params: { skip, limit, search, chat_id },
+      });
+      return response.data;
+    } catch (error: unknown) {
+      const axiosError = error as unknown as { response?: { data?: { detail?: string } } };
+      return rejectWithValue(axiosError.response?.data?.detail || 'Failed to load conversations');
+    }
+  }
+);
+
+export const fetchChats = createAsyncThunk<
+  { chats: ChatResponse[]; count: number },
+  { page?: number; limit?: number; search?: string, user_id?: string } | undefined,
+  { rejectValue: string }
+>(
+  'conversations/fetchAllChats',
+  async (params = {}, { rejectWithValue }) => {
+    try {
+      const { page = 1, limit = 10, search = '', user_id } = params;
+      const skip = (page - 1) * limit;
+      const response = await axios.get<{ chats: ChatResponse[]; count: number }>(`${BASE_URL}/conversations/chats`, {
+        params: { skip, limit, search, user_id },
       });
       return response.data;
     } catch (error: unknown) {
@@ -93,8 +118,8 @@ const conversationSlice = createSlice({
       state.page = 1;
       state.hasMore = true;
     },
-    setSelectedConversation: (state, action) => {
-      state.selectedConversation = action.payload;
+    setSelectedChat: (state, action) => {
+      state.selectedChat = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -116,6 +141,23 @@ const conversationSlice = createSlice({
         state.status = 'failed';
         state.error = action.payload || 'Error loading conversations';
       })
+      .addCase(fetchChats.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchChats.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        const newChats = action.payload.chats || [];
+        if (state.page === 1) {
+          state.chats = newChats;
+        } else {
+          state.chats = [...state.chats, ...newChats];
+        }
+        state.hasMore = newChats.length >= state.limit;
+      })
+      .addCase(fetchChats.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload || 'Error loading conversations';
+      })
       .addCase(fetchChatById.pending, (state) => {
         state.status = 'loading';
       })
@@ -130,5 +172,5 @@ const conversationSlice = createSlice({
   },
 });
 
-export const { setSearch, clearConversations, setSelectedConversation } = conversationSlice.actions;
+export const { setSearch, clearConversations, setSelectedChat } = conversationSlice.actions;
 export default conversationSlice.reducer;

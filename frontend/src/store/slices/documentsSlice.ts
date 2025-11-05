@@ -9,7 +9,7 @@ import axios from "axios";
 const BASE_URL = "http://127.0.0.1:8000"; // FastAPI backend
 
 export interface DocumentItem {
-  id: number;
+  id: string;
   filename: string;
   source_type: string;
   created_at: string;
@@ -36,11 +36,13 @@ const initialState: DocumentsState = {
 // ------------------------------------------------
 // Fetch all documents
 // ------------------------------------------------
-export const fetchDocuments = createAsyncThunk<DocumentItem[], {user_id: string}, { rejectValue: string }>(
+export const fetchDocuments = createAsyncThunk<DocumentItem[], {user_ids: string[]}, { rejectValue: string }>(
   "documents/fetchDocuments",
-  async ({user_id}, { rejectWithValue }) => {
+  async ({user_ids}, { rejectWithValue }) => {
     try {
-      const response = await axios.get<{ documents: DocumentItem[] }>(`${BASE_URL}/upload/list?user_id=${user_id}`);
+      const userIdsParam = user_ids.join(',');
+
+      const response = await axios.get<{ documents: DocumentItem[] }>(`${BASE_URL}/upload/list?user_ids=${encodeURIComponent(userIdsParam)}`);
       return response.data.documents;
     } catch (error: unknown) {
       const axiosError = error as unknown as { response?: { data?: { message?: string } } };
@@ -56,7 +58,7 @@ interface DocumentResponse {
   document: DocumentItem;
 }
 
-export const fetchDocumentById = createAsyncThunk<DocumentItem, number, { rejectValue: string }>(
+export const fetchDocumentById = createAsyncThunk<DocumentItem, string, { rejectValue: string }>(
   "documents/fetchDocumentById",
   async (id, { rejectWithValue }) => {
     try {

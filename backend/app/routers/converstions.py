@@ -7,6 +7,7 @@
 from fastapi import APIRouter, HTTPException, Query
 from pymongo import DESCENDING
 from app.config.db import get_collection
+from bson import ObjectId
 
 router = APIRouter()
 
@@ -16,19 +17,28 @@ router = APIRouter()
 # ====================================================
 
 @router.get("/")
-async def list_conversations(skip: int = 0, limit: int = 20, search: str = Query(None)):
+async def list_conversations(skip: int = 0, limit: int = 20, search: str = Query(None), chat_id: str = Query(None)):
     """List all saved conversations with optional search and pagination."""
     try:
-        collection = get_collection("conversations" )
+        conversation_ids = []
+        if chat_id:
+            chats_collection = get_collection("chats")
+            chat = await chats_collection.find_one({"_id": ObjectId(chat_id)})
+            chat_conversations = chat["conversations"]
+            conversation_ids = [ObjectId(conv["conversation_id"]) for conv in chat_conversations]
 
+
+        collection = get_collection("conversations" )
         query = {}
         if search:
             query = {
                 "$or": [
                     {"query": {"$regex": search, "$options": "i"}},
-                    {"answer": {"$regex": search, "$options": "i"}}
+                    {"answer": {"$regex": search, "$options": "i"}},
                 ]
             }
+        if conversation_ids:
+            query["_id"] = {"$in": conversation_ids}
 
         cursor = (
             collection.find(query)
@@ -52,6 +62,50 @@ async def list_conversations(skip: int = 0, limit: int = 20, search: str = Query
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error fetching conversations: {str(e)}")
+
+
+
+# ====================================================
+# List Chats (with pagination + search)
+# ====================================================
+
+@router.get("/chats")
+async def list_chats(skip: int = 0, limit: int = 20, search: str = Query(None), user_id: str = Query(None)):
+    """List all saved chats with optional search and pagination."""
+    try:
+
+        collection = get_collection("chats" )
+        query = {}
+        if search:
+            query = {
+                "$or": [
+                    {"title": {"$regex": search, "$options": "i"}},
+                    {"user_id": {"$regex": user_id, "$options": "i"}}
+                ]
+            }
+
+        cursor = (
+            collection.find(query)
+            .sort("created_at", DESCENDING)
+            .skip(skip)
+            .limit(limit)
+        )
+
+        cursor = await cursor.to_list()
+
+        chats = []
+        for doc in cursor:
+            chats.append({
+                "id": str(doc.get("_id")),
+                "title": doc.get("title", ""),
+                "conversations": doc.get("conversations", []),
+                "created_at": doc.get("created_at", None)
+            })
+
+        return {"chats": chats, "count": len(chats)}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error fetching chats: {str(e)}")
 
 
 

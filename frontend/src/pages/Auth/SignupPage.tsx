@@ -146,10 +146,10 @@ export function SignupPage() {
                   onChange={(e) => setFormData({ ...formData, role: e.target.value })}
                   className="w-full px-3 py-2 border border-[var(--border)] rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent bg-[var(--background-alt)] text-[var(--text)]"
                 >
-                  <option value="default">Select a role</option>
+                  <option value="student">Select a role</option>
                   <option value="student">Student</option>
                   <option value="teacher">Teacher</option>
-                  <option value="organisation">Organisation</option>
+                  {/* <option value="organisation">Organisation</option> */}
                 </select>
               </div>
             </div>

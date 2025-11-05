@@ -18,6 +18,8 @@ export const UploadBox: React.FC = () => {
   const { user, isAuthenticated } = useAppSelector((state) => state.auth);
 
   const [file, setFile] = useState<File | null>(null);
+  const [subject, setSubject] = useState<string>("");
+  const [domain, setDomain] = useState<string>("");
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -40,8 +42,13 @@ export const UploadBox: React.FC = () => {
     const payload: UploadRequestPayload = {
       fileName: file.name,
       s3Url,
-      source_type: 'student',
+      subject: subject.toLowerCase(),
+      domain: domain.toLowerCase(),
+      type: "study_material",
+      file_type: file.type,
+      source_type: user?.role || 'default',
       user_id: user?._id || '',
+      file_size: file.size,
     };
     console.log(payload);
     await dispatch(uploadMaterial(payload));
@@ -58,6 +65,32 @@ export const UploadBox: React.FC = () => {
         📤 Upload Study Material
       </h2>
 
+
+      <div className="grid grid-cols-3 gap-2">
+        <input
+          type="text"
+          placeholder="CBSE 11 Physic"
+          value={subject}
+          onChange={(e) => setSubject(e.target.value)}
+          className="col-span-2 w-full p-2 mb-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+        />
+
+        <select
+          title={domain.toUpperCase()}
+          id="domain"
+          name="role"
+          value={domain}
+          onChange={(e) => setDomain(e.target.value)}
+          className="col-span-1 w-full p-2 mb-3 border border-gray-300 border border-[var(--border)] rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent bg-[var(--background-alt)] text-[var(--text)]"
+        >
+          <option value="general">Select a Domain</option>
+          <option value="physics">Physics</option>
+          <option value="chemistry">Chemistry</option>
+          <option value="maths">Maths</option>
+          <option value="biology">Biology</option>
+        </select>
+      </div>
+      
       <input
         title="Select file to upload"
         type="file"

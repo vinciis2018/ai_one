@@ -23,7 +23,7 @@ import requests
 from datetime import datetime
 from bson import ObjectId
 import logging
-from app.config.db import get_collection
+from app.config.db import db, get_collection
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
@@ -122,6 +122,11 @@ async def upload_file(payload: dict = Body(...)):
                 doc = {
                     "_id": doc_id,  # Use the generated ObjectId
                     "filename": file_name,
+                    "subject": payload.get("subject"),
+                    "domain": payload.get("domain"),
+                    "type": payload.get("type"),
+                    "file_type": payload.get("file_type"),
+                    "file_size": payload.get("file_size"),
                     "chunk_text": text,  # Store the full text
                     "source_type": source_type,
                     "s3_url": s3_url,
@@ -132,6 +137,50 @@ async def upload_file(payload: dict = Body(...)):
 
                 col.insert_one(doc)
                 logger.info(f"✅ Successfully saved document to MongoDB")
+
+                try:
+                    # Get the user's role
+                    user = await db["users"].find_one({"_id": ObjectId(payload.get("user_id"))})
+                    if not user:
+                        logger.warning(f"User {payload.get('user_id')} not found")
+                        return
+                    
+                    user_role = user.get("role")
+                    doc_access = {
+                        "document_id": doc_id,
+                        "access_granted_at": datetime.utcnow(),
+                        "can_edit": True  # Users can edit their own documents
+                    }
+                    
+                    if user_role == "student":
+                        # Add to student's documents
+                        await db["students"].update_one(
+                            {"user_id": ObjectId(payload.get("user_id"))},
+                            {"$push": {"documents": doc_access}},
+                            upsert=True
+                        )
+                        logger.info(f"✅ Added document to student's documents")
+                        
+                    elif user_role == "teacher":
+                        # Add to teacher's documents
+                        await db["teachers"].update_one(
+                            {"user_id": ObjectId(payload.get("user_id"))},
+                            {"$push": {"documents": doc_access}},
+                            upsert=True
+                        )
+                        logger.info(f"✅ Added document to teacher's documents")
+                    
+                    # Add to coaching documents if coaching_id is provided
+                    if payload.get("coaching_id"):
+                        await db["organisations"].update_one(
+                            {"_id": ObjectId(payload.get("coaching_id"))},
+                            {"$addToSet": {"documents": doc_id}},
+                            upsert=True
+                        )
+                        logger.info(f"✅ Added document to coaching {payload.get('coaching_id')}")
+
+                except Exception as e:
+                    logger.error(f"Error updating user/coaching document references: {str(e)}", exc_info=True)
 
             except Exception as e:
                 logger.error(f"Error saving to MongoDB: {str(e)}", exc_info=True)
@@ -163,48 +212,55 @@ async def upload_file(payload: dict = Body(...)):
 # List Uploaded Documents
 # ====================================================
 @router.get("/list")
-async def list_uploaded_documents(user_id: str = None):
+async def list_uploaded_documents(user_ids: str = None):
     """
-    Return all uploaded document metadata from MongoDB collections (kb_student, kb_coaching, kb_general).
-    Safely serializes ObjectId fields and supports filtering by source_type.
+    Return all uploaded document metadata from MongoDB for multiple user_ids.
+    Accepts comma-separated user_ids and returns documents for all specified users.
     """
-    print(user_id)
     try:
-        # Determine collection dynamically
+        if not user_ids:
+            return {"documents": []}
+            
+        # Convert comma-separated string to list of ObjectIds
+        user_id_list = [uid.strip() for uid in user_ids.split(',') if uid.strip()]
+        print(user_id_list)
+
+        # Get the collection
         collection_name = "documents"
         col = get_collection(collection_name)
-        print("col", col)
-        # Fetch limited fields only
-        docs = col.find(
-            {"user_id": user_id},
-            {"_id": 1, "filename": 1, "source_type": 1, "created_at": 1, "s3_url": 1}
+        
+        # Find documents for all user_ids
+        cursor = col.find(
+            {"user_id": {"$in": user_id_list}},
+            {"_id": 1, "filename": 1, "source_type": 1, "created_at": 1, "s3_url": 1, "user_id": 1}
         ).sort("created_at", -1)
-        print("docs", docs)
-        docs = await docs.to_list()
+        
+        # Convert cursor to list and format results
+        docs = await cursor.to_list(length=1000)  # Limit to 1000 documents to prevent memory issues
         print(docs)
-        # Safely format results
+        
+        # Format the response
         documents = []
-        for d in docs:
-            documents.append({
-                "id": str(d.get("_id", "")),  # Convert ObjectId safely
-                "filename": d.get("filename", "N/A"),
-                "source_type": d.get("source_type", "unknown"),
-                "s3_url": d.get("s3_url", None),
-                "created_at": (
-                    d["created_at"].isoformat() if hasattr(d.get("created_at"), "isoformat")
-                    else str(d.get("created_at", "unknown"))
-                ),
-            })
-
-        return {
-            "documents": documents,
-            "count": len(documents),
-            "collection": collection_name,
-        }
-
+        for doc in docs:
+            doc_dict = {
+                "id": str(doc["_id"]),
+                "user_id": str(doc["user_id"]),
+                "filename": doc.get("filename", ""),
+                "source_type": doc.get("source_type", "general"),
+                "created_at": doc.get("created_at", ""),
+                "s3_url": doc.get("s3_url", "")
+            }
+            documents.append(doc_dict)
+        
+        return {"documents": documents}
+        
     except Exception as e:
-        print(f"❌ Error loading documents: {e}")
-        raise HTTPException(status_code=500, detail=f"Failed to load documents: {str(e)}")
+        logger.error(f"Error listing documents: {str(e)}", exc_info=True)
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Failed to retrieve documents"
+        )
+
 
 
 # ====================================================

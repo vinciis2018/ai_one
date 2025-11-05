@@ -7,6 +7,11 @@ from datetime import datetime
 class DocumentModel(BaseModel):
     id: Optional[PyObjectId] = Field(default=None, alias="_id")
     filename: Optional[str] = None
+    subject: Optional[str] = None
+    domain: Optional[str] = None
+    type: Optional[str] = None
+    file_type: Optional[str] = None
+    file_size: Optional[int] = None
     chunk_text: str
     chunk_docs_ids: List[PyObjectId]
     embedding: Optional[List[float]] = None

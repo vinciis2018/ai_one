@@ -4,7 +4,7 @@ import { clearSelectedDocument, fetchDocumentById } from "../../store/slices/doc
 
 
 interface Props {
-  documentId: number | null;
+  documentId: string | null;
   onClose: () => void;
 }
 

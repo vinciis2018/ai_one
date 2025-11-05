@@ -17,6 +17,7 @@ from app.core.llm_manager import call_llm
 from app.config.db import db, get_collection
 from app.config.settings import BASE_DIR
 from typing import Optional
+from app.core.conversation_memory import retrieve_from_conversation_memory
 
 # ====================================================
 # Load config and environment
@@ -45,6 +46,7 @@ class QueryRequest(BaseModel):
     userId: str
     chatId: str
     previousConversation: str
+    domain_expertise: str
 
 # ====================================================
 # Main RAG Query Endpoint
@@ -62,18 +64,31 @@ async def query(req: QueryRequest):
         chat_id = req.chatId or None
         previous_conversation = req.previousConversation or None
         user_id = req.userId or None
+        domain_expertise = req.domain_expertise or None
         if not user_query:
             raise HTTPException(status_code=400, detail="Query text cannot be empty.")
 
-        # Step 1: Retrieve relevant chunks
+        # Step 1: Retrieve from knowledge bases
         context_chunks, user_docs = await retrieve_similar(user_query, user_id)
-        
+
+        # Step 2: Retrieve from user’s conversation history
+        memory_chunks = await retrieve_from_conversation_memory(user_id, user_query, top_k=3)
+
+        # Combine results
+        all_contexts = context_chunks + memory_chunks
+
         # Convert any ObjectIds in user_docs to strings
         user_docs = _sanitize_sources(user_docs)
         
-        if not context_chunks:
+        if not all_contexts:
             print("⚠️ No relevant chunks found. Returning fallback.")
-            answer = "No relevant notes found. Please switch to global search or upload your notes first."
+            augmented_prompt = (
+                f"No relevant notes found. Please respond politely to upload relevant docs for reference and respond from available information\n\n"
+                # f"Context:\n{context_text}\n\n"
+                f"Question: {user_query}"
+            )
+
+            answer = call_llm(augmented_prompt, domain_expertise)
             log_query_event(user_query, answer, success=False)
             res = await _save_conversation(user_query, answer, chat_id, previous_conversation, user_id)
             
@@ -90,12 +105,12 @@ async def query(req: QueryRequest):
                 "sources_used": len(user_docs), 
                 "sources": user_docs
             }
-        print("context_chunks", context_chunks)
+        print("all_contexts", all_contexts)
 
         # Step 2: Build augmented prompt
         # Extract text from each chunk and join them
-        context_text = "\n\n".join(chunk['text'] for chunk in context_chunks)
-        print("context_chunks", context_text)
+        context_text = "\n\n".join(chunk['text'] for chunk in all_contexts)
+        print("all_contexts", context_text)
 
         augmented_prompt = (
             f"Answer the following question using ONLY the context below.\n\n"
@@ -105,7 +120,7 @@ async def query(req: QueryRequest):
         print("augmented_prompt", augmented_prompt)
 
         # Step 3: Get answer (OpenAI or local fallback)
-        answer = call_llm(augmented_prompt)
+        answer = call_llm(augmented_prompt, domain_expertise)
         print("answer", answer)
 
         # Step 4: Log + save
@@ -214,7 +229,7 @@ async def _save_conversation(
                         "$push": {"conversations": pseudo_conversation},
                         "$set": {
                             "updated_at": now,
-                            "title": query[:100]  # Update title with latest query (truncated)
+                            # "title": query[:100]  # Update title with latest query (truncated)
                         }
                     }
                 )

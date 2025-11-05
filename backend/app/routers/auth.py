@@ -70,7 +70,8 @@ def verify_password(plain_password, hashed_password):
     password_bytes = plain_password.encode('utf-8')
     if len(password_bytes) > 72:
         password_bytes = password_bytes[:72]
-    
+    print("password_bytes", password_bytes)
+    print("hashed_password", hashed_password.encode('utf-8'))
     return bcrypt.checkpw(password_bytes, hashed_password.encode('utf-8'))
 
 
@@ -87,13 +88,14 @@ def get_password_hash(password: str) -> str:
     return hashed.decode('utf-8')
 
 async def get_user(email: str):
-    user = await users_collection.find_one({"email": email, "is_deleted": False})
+    user = await users_collection.find_one({"email": email})
     if user:
         return UserModel(**user)
     return None
 
 async def authenticate_user(email: str, password: str):
     user = await get_user(email)
+    print(user)
     if not user or not verify_password(password, user.password):
         return False
     return user
@@ -185,7 +187,8 @@ async def signup(user_data: UserCreate):
             "firstName": user_dict.get("firstName"),
             "lastName": user_dict.get("lastName"),
             "role": user_dict.get("role", "student"),
-            "is_active": user_dict.get("is_active", True)
+            "is_active": user_dict.get("is_active", True),
+            "full_name": user_dict.get("full_name"),
         }
         
         return {
@@ -245,7 +248,8 @@ async def login(
         "firstName": user_dict.get("firstName"),
         "lastName": user_dict.get("lastName"),
         "role": user_dict.get("role", "student"),
-        "is_active": user_dict.get("is_active", True)
+        "is_active": user_dict.get("is_active", True),
+        "full_name": user_dict.get("full_name"),
     }
     print(expires_at_timestamp)
 

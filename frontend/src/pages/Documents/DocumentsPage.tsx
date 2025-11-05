@@ -7,13 +7,11 @@ export const DocumentsPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const {user} = useAppSelector((state) => state.auth);
   const { documents, status } = useAppSelector((state) => state.documents);
-  const [selectedId, setSelectedId] = useState<number | null>(null);
-    console.log('Fetching documents for user:', user);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
 
   useEffect(() => {
     if (user) {
-      console.log('Fetching documents for user:', user._id);
-      dispatch(fetchDocuments({ user_id: user?._id || '' }));
+      dispatch(fetchDocuments({ user_ids: [user?._id || ''] }));
     }
   }, [dispatch, user]);
 

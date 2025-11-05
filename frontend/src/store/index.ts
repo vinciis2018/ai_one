@@ -6,6 +6,7 @@ import usersReducer from './slices/usersSlice';
 import assistantReducer from './slices/assistantSlice';
 import documentsReducer from './slices/documentsSlice';
 import conversationsReducer from './slices/conversationsSlice';
+import coachingReducer from './slices/coachingSlice';
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
     assistant: assistantReducer,
     documents: documentsReducer,
     conversations: conversationsReducer,
+    coaching: coachingReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -27,14 +29,9 @@ export const store = configureStore({
 export const userInfoFromLocalStorage = () => {
   const userToken = localStorage.getItem('token');
   const tokenExpiresAt = localStorage.getItem('expires_at');
-  console.log('User token from localStorage:', userToken);
-  console.log('Token expiry from localStorage:', tokenExpiresAt);
   if (!userToken || (tokenExpiresAt && parseInt(tokenExpiresAt) < new Date().getTime())) {
-    console.log('Token expiry from localStorage:', new Date().getTime());
-
     store.dispatch(logout());
     // window.location.reload();
-
   }
 }
 

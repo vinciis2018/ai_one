@@ -15,12 +15,14 @@ class MessageModel(BaseModel):
     content: str
     timestamp: datetime = Field(default_factory=datetime.utcnow)
 
+
 class ConversationModel(BaseModel):
     id: Optional[PyObjectId] = Field(default=None, alias="_id")
     query: Optional[str] = None
     answer: Optional[str] = None
     query_by: Optional[str] = None
     answer_by: Optional[str] = None
+    domain: Optional[str] = None
     prev_conversation: Optional[str] = None
     parent_conversation: Optional[str] = None
     created_at: datetime = Field(default_factory=datetime.utcnow)

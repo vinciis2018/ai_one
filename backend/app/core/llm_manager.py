@@ -87,10 +87,41 @@ def call_ollama(prompt: str, model: str = OLLAMA_MODEL) -> str:
         logger.error(f"Ollama inference failed: {e}")
         raise
 
+
+# ------------------------------------------------
+# Domain-aware prompt builder
+# ------------------------------------------------
+def build_domain_prompt(prompt: str, domain: str | None = None) -> str:
+    """
+    Add domain expertise and structured guidance.
+    """
+    domain_map = {
+        "physics": "a Physics expert tutor for competitive exams",
+        "chemistry": "a Chemistry instructor specializing in NEET/CBSE topics",
+        "math": "a Mathematics problem-solving coach",
+        "biology": "a NEET Biology mentor with deep conceptual clarity",
+        "programming": "a Software Engineering mentor specializing in Python and AI",
+        "general": "an educational AI assistant helping students learn any subject",
+        "science": "a Science tutor for competitive exams",
+        "coaching": "a Coaching tutor for competitive exams",
+    }
+
+    role = domain_map.get(domain.lower() if domain else "general", domain_map["general"])
+
+    system_prompt = (
+        f"You are {role}. "
+        "Answer only using the provided context, ensuring conceptual accuracy. "
+        "Explain clearly and concisely, as if teaching a student."
+    )
+
+    full_prompt = f"{system_prompt}\n\nUser question:\n{prompt}"
+    return full_prompt
+
+
 # ------------------------------------------------
 # Core LLM handler
 # ------------------------------------------------
-def call_llm(prompt: str) -> str:
+def call_llm(prompt: str, domain: str) -> str:
     """
     Unified function to route query based on availability:
     1️⃣ OpenAI (if API key exists)
@@ -98,6 +129,11 @@ def call_llm(prompt: str) -> str:
     3️⃣ Ollama (local)
     4️⃣ Offline Fallback
     """
+
+        # Build domain-conditioned prompt
+    domain_prompt = build_domain_prompt(prompt, domain)
+
+
     # =======================
     # 1️⃣ OpenAI
     # =======================
@@ -107,8 +143,8 @@ def call_llm(prompt: str) -> str:
             response = openai.ChatCompletion.create(
                 model="gpt-4o-mini",
                 messages=[
-                    {"role": "system", "content": "You are an educational AI assistant that answers based on provided context."},
-                    {"role": "user", "content": prompt},
+                    {"role": "system", "content": f"You are {f"{domain} expert" or 'an educational'} AI assistant that answers based on provided context."},
+                    {"role": "user", "content": domain_prompt},
                 ],
                 temperature=0.5,
                 max_tokens=300,
@@ -123,7 +159,7 @@ def call_llm(prompt: str) -> str:
     if LLM_MODE in ["auto", "huggingface"]:
         try:
             pipe = get_hf_pipeline()
-            outputs = pipe(prompt, num_return_sequences=1, do_sample=True)
+            outputs = pipe(domain_prompt, num_return_sequences=1, do_sample=True)
             return outputs[0]["generated_text"].strip()
         except Exception as e:
             logger.warning(f"⚠️ Hugging Face failed: {e}")
@@ -133,7 +169,7 @@ def call_llm(prompt: str) -> str:
     # =======================
     if LLM_MODE in ["auto", "ollama"]:
         try:
-            return call_ollama(prompt)
+            return call_ollama(domain_prompt)
         except Exception as e:
             logger.warning(f"⚠️ Ollama failed: {e}")
 
@@ -144,7 +180,7 @@ def call_llm(prompt: str) -> str:
         logger.info("⚙️ Using offline fallback model.")
         tokenizer = AutoTokenizer.from_pretrained(FALLBACK_MODEL)
         model = AutoModelForCausalLM.from_pretrained(FALLBACK_MODEL)
-        inputs = tokenizer(prompt, return_tensors="pt")
+        inputs = tokenizer(domain_prompt, return_tensors="pt")
         outputs = model.generate(**inputs, max_new_tokens=128)
         return tokenizer.decode(outputs[0], skip_special_tokens=True)
     except Exception as e:

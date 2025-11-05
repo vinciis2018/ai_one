@@ -26,7 +26,13 @@ export const QueryBox: React.FC = () => {
 
   const handleAsk = async () => {
     if (!question.trim()) return alert("Please enter a question!");
-    await dispatch(askQuery({text: question, userId: user?._id || '', chatId: response?.chat_id || "", previousConversation: response?.conversation_id || ""}));
+    await dispatch(askQuery({
+      text: question,
+      userId: user?._id || '',
+      chatId: response?.chat_id || "",
+      previousConversation: response?.conversation_id || "",
+      domain_expertise: 'science',
+    }));
   };
 
   useEffect(() => {
@@ -67,12 +73,10 @@ export const QueryBox: React.FC = () => {
       {response && (
         <div>
           <ResponseCard response={response} />
-          <div className="mt-4 text-sm text-gray-500">
-            🆔 Chat ID: <span className="italic">{response?.chat_id}</span><br/>
-            🗂️ Conversation ID: <span className="italic">{response?.conversation_id}</span>
+          <div className="border-t mt-4 text-sm text-gray-500">
             {chatConversation && chatConversation.conversations.length > 0 && chatConversation.conversations.map((conversation) => (
-              <div key={conversation.id} className="mt-2">
-                📄 {conversation.query_by}: <span className="font-medium">{conversation.query}</span><br/>
+              <div key={conversation.id} className="mt-4">
+                📄 {conversation.query_by}: <span className="font-semibold">{conversation.query}</span><br/>
                 🗂️ {conversation.answer_by}: <span className="font-medium">{conversation.answer}</span>
 
               </div>

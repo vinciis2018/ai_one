@@ -21,33 +21,8 @@ export interface User {
   _id?: string;
   username: string;
   email: string;
+  full_name: string;
   role: 'student' | 'teacher' | 'admin' | 'default' | 'organisation';
-  retailerDetails?: {
-    _id: string;
-    name: string;
-    email?: string;
-    phone?: string;
-    address?: string;
-    gstNumber?: string;
-    pincode?: string;
-    state?: string;
-    city?: string;
-    status: 'active' | 'inactive' | 'pending';
-  };
-  distributorDetails?: {
-    _id: string;
-    name: string;
-    address: string;
-    latitude: string;
-    longitude: string;
-    contactNumber: string;
-    email: string;
-    pincode: string;
-    state: string;
-    city: string;
-    gstNumber: string;
-    status: 'active' | 'inactive' | 'pending';
-  };
   firstName: string;
   lastName: string;
   avatar?: string;
