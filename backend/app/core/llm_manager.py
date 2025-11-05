@@ -19,8 +19,7 @@ load_dotenv()
 logger = logging.getLogger("assistant-llm")
 
 # Global configs
-# OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-OPENAI_API_KEY="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"
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 LLM_MODE = os.getenv("LLM_MODE", "auto").lower()  # auto | huggingface | ollama | openai
 HF_MODEL = os.getenv("HF_MODEL", "TinyLlama/TinyLlama-1.1B-Chat-v1.0")
 FALLBACK_MODEL = "distilgpt2"
