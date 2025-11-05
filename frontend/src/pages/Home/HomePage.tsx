@@ -15,7 +15,7 @@ export function HomePage() {
   // GSAP Animations
   useEffect(() => {
     // Typing animation for hero text
-    const heroText = 'DOOH Auditing & Monitoring Platform';
+    const heroText = 'Coming Soon...';
     const heroElement = document.querySelector('.hero-text');
     
     if (!heroElement) return;
@@ -125,7 +125,7 @@ export function HomePage() {
             <span className="hero-text"></span>
           </h1>
           <p className="hero-subtitle text-xl md:text-2xl text-[var(--text-muted)] mb-10 max-w-3xl mx-auto opacity-0">
-            Advanced AI-powered verification, real-time monitoring, and actionable insights at a fraction of enterprise costs.
+            Coming Soon
           </p>
           <div className="hero-buttons flex flex-col sm:flex-row gap-4 justify-center opacity-0">
             <button
@@ -144,15 +144,15 @@ export function HomePage() {
             </button>
           </div>
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="rounded-lg border border-[var(--border)] bg-[var(--background)] px-4 py-3 text-[var(--text)]">1–2 weeks to launch</div>
-            <div className="rounded-lg border border-[var(--border)] bg-[var(--background)] px-4 py-3 text-[var(--text)]">80% features at 30% cost</div>
-            <div className="rounded-lg border border-[var(--border)] bg-[var(--background)] px-4 py-3 text-[var(--text)]">AI-powered verification</div>
+            <div className="rounded-lg border border-[var(--border)] bg-[var(--background)] px-4 py-3 text-[var(--text)]">Coming Soon</div>
+            <div className="rounded-lg border border-[var(--border)] bg-[var(--background)] px-4 py-3 text-[var(--text)]">Coming Soon</div>
+            <div className="rounded-lg border border-[var(--border)] bg-[var(--background)] px-4 py-3 text-[var(--text)]">Coming Soon</div>
           </div>
         </div>
       </section>
 
       {/* Competitive Positioning & Executive Summary */}
-      <section className="py-16 px-4 bg-[var(--background-alt)]">
+      {/* <section className="py-16 px-4 bg-[var(--background-alt)]">
         <div className="max-w-7xl mx-auto space-y-12">
           <div className="space-y-4">
             <h2 className="text-3xl md:text-4xl font-bold text-center text-[var(--text)]">
@@ -184,10 +184,10 @@ export function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Competitive Landscape Overview */}
-      <section className="py-16 px-4">
+      {/* <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <h3 className="text-2xl md:text-3xl font-bold mb-6 text-[var(--text)]">Competitive Landscape Overview</h3>
           <div className="overflow-hidden rounded-lg border border-[var(--border)]">
@@ -220,12 +220,12 @@ export function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Detailed Competitor Analysis removed to keep landing concise */}
 
       {/* Feature Comparison Matrix */}
-      <section className="py-16 px-4">
+      {/* <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <h3 className="text-2xl md:text-3xl font-bold mb-6 text-[var(--text)]">Feature Comparison Matrix</h3>
           <div className="bg-[var(--background)] border border-[var(--border)] rounded-lg overflow-hidden">
@@ -314,10 +314,10 @@ export function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Pricing & ROI */}
-      <section className="py-16 px-4 bg-[var(--background-alt)]">
+      {/* <section className="py-16 px-4 bg-[var(--background-alt)]">
         <div className="max-w-7xl mx-auto space-y-8">
           <h3 className="text-2xl md:text-3xl font-bold text-[var(--text)]">Pricing Model & ROI</h3>
           <div className="grid md:grid-cols-3 gap-6">
@@ -345,10 +345,10 @@ export function HomePage() {
             <p className="text-[var(--text-muted)]">Our platform pays for itself by preventing just 1–2% campaign waste or compliance issues.</p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Unique Value Propositions */}
-      <section className="py-16 px-4">
+      {/* <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-6">
           <div className="bg-[var(--background-alt)] p-6 rounded-lg">
             <h4 className="text-lg font-semibold text-[var(--text)] mb-2">For Advertising Agencies</h4>
@@ -378,10 +378,10 @@ export function HomePage() {
             </ul>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Technology Differentiators */}
-      <section className="py-16 px-4 bg-[var(--background-alt)]">
+      {/* <section className="py-16 px-4 bg-[var(--background-alt)]">
         <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-6">
           <div className="bg-[var(--background)] p-6 rounded-lg border border-[var(--border)]">
             <h4 className="text-lg font-semibold text-[var(--text)] mb-2">Advanced AI Image Analysis</h4>
@@ -411,7 +411,7 @@ export function HomePage() {
             </ul>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Market Entry Strategy removed to focus on value now */}
 
@@ -423,7 +423,7 @@ export function HomePage() {
 
       {/* Closing Recommendations removed */}
       {/* CTA Section */}
-      <section className="py-24 px-4">
+      {/* <section className="py-24 px-4">
         <div
           ref={ctaRef}
           className="max-w-5xl mx-auto text-center bg-gradient-to-r from-[var(--color-primary)] to-[var(--accent)] p-12 rounded-2xl text-[var(--background)]"
@@ -447,7 +447,7 @@ export function HomePage() {
             </button>
           </div>
         </div>
-      </section>
+      </section> */}
     </FullLayout>
   );
 }

@@ -8,98 +8,12 @@ import type { User } from '../../types';
 const UserTypeDetails = ({ user }: { user: User | null }) => {
   if (!user) return null;
 
-  if (user.role === 'retailer' && user.retailerDetails) {
-    const details = user.retailerDetails;
-    return (
-      <div className="mt-6">
-        <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Retailer Details</h4>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <p className="text-sm text-gray-500">Business Name</p>
-            <p className="text-gray-900 dark:text-white">{details.name}</p>
-          </div>
-          {details.phone && (
-            <div>
-              <p className="text-sm text-gray-500">Phone</p>
-              <p className="text-gray-900 dark:text-white">{details.phone}</p>
-            </div>
-          )}
-          {details.gstNumber && (
-            <div>
-              <p className="text-sm text-gray-500">GST Number</p>
-              <p className="text-gray-900 dark:text-white">{details.gstNumber}</p>
-            </div>
-          )}
-          <div>
-            <p className="text-sm text-gray-500">Status</p>
-            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-              details.status === 'active' ? 'bg-green-100 text-green-800' :
-              details.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-              'bg-red-100 text-red-800'
-            }`}>
-              {details.status.charAt(0).toUpperCase() + details.status.slice(1)}
-            </span>
-          </div>
-        </div>
-        {(details.address || details.city || details.state || details.pincode) && (
-          <div className="mt-4">
-            <p className="text-sm text-gray-500">Address</p>
-            <p className="text-gray-900 dark:text-white">
-              {[details.address, details.city, details.state, details.pincode].filter(Boolean).join(', ')}
-            </p>
-          </div>
-        )}
-      </div>
-    );
+  if (user.role === 'student') {
+    return     <div>{user.role}</div>;
   }
 
-  if (user.role === 'distributor' && user.distributorDetails) {
-    const details = user.distributorDetails;
-    return (
-      <div className="mt-6">
-        <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Distributor Details</h4>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <p className="text-sm text-gray-500">Business Name</p>
-            <p className="text-gray-900 dark:text-white">{details.name}</p>
-          </div>
-          <div>
-            <p className="text-sm text-gray-500">Contact Number</p>
-            <p className="text-gray-900 dark:text-white">{details.contactNumber}</p>
-          </div>
-          <div>
-            <p className="text-sm text-gray-500">Email</p>
-            <p className="text-gray-900 dark:text-white">{details.email}</p>
-          </div>
-          <div>
-            <p className="text-sm text-gray-500">GST Number</p>
-            <p className="text-gray-900 dark:text-white">{details.gstNumber}</p>
-          </div>
-          <div>
-            <p className="text-sm text-gray-500">Status</p>
-            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-              details.status === 'active' ? 'bg-green-100 text-green-800' :
-              details.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-              'bg-red-100 text-red-800'
-            }`}>
-              {details.status.charAt(0).toUpperCase() + details.status.slice(1)}
-            </span>
-          </div>
-        </div>
-        <div className="mt-4">
-          <p className="text-sm text-gray-500">Address</p>
-          <p className="text-gray-900 dark:text-white">
-            {[details.address, details.city, details.state, details.pincode].filter(Boolean).join(', ')}
-          </p>
-        </div>
-        <div className="mt-2">
-          <p className="text-sm text-gray-500">Location</p>
-          <p className="text-gray-900 dark:text-white">
-            Lat: {details.latitude}, Lng: {details.longitude}
-          </p>
-        </div>
-      </div>
-    );
+  if (user.role === 'teacher') {
+    return <div>{user.role}</div>;
   }
 
   return null;

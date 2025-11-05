@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useTheme } from '../hooks/useTheme';
 import { useEffect, useState } from 'react';
-import { useAppSelector } from '../store';
+// import { useAppSelector } from '../store';
 interface SidebarProps {
   isMobile: boolean;
   isOpen: boolean;
@@ -14,7 +14,7 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
 
   const [view, setView] = useState(true);
   
-  const { user } = useAppSelector((state) => state.auth);
+  // const { user } = useAppSelector((state) => state.auth);
 
   // Determine the width class based on isOpen and device type
   const getWidthClass = () => {
@@ -53,7 +53,7 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
             <ul className="ml-1 space-y-1">
               <li className="">
                 <NavLink
-                  to="/products"
+                  to="/"
                   className={({ isActive }) => 
                     `flex items-center gap-3 p-3 transition-colors ${
                       isActive 
@@ -64,31 +64,28 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
                   onClick={onClose}
                 >
                   <i className="fi fi-sr-home h-5 w-5 text-text flex items-center justify-center" />
-                  {shouldShowText && <span className="truncate">Home</span>}
+                  {shouldShowText && <span className="truncate">Chat</span>}
                 </NavLink>
               </li>
-              {user && user?.role === "admin" && (
-                <li>
-                  <NavLink
-                    to="/"
-                    className={({ isActive }) => 
-                      `flex items-center gap-3 p-3 transition-colors ${
-                        isActive 
-                          ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold ${theme === 'dark' ? 'text-white' : 'text-text'}`
-                          : `rounded-lg ${theme === 'dark' ? 'text-gray-300 hover:bg-gray-800' : 'text-text hover:bg-gray-100'}`
-                      }`
-                    }
-                    onClick={onClose}
-                  >
-                    <i className="fi fi-sr-dashboard h-5 w-5 text-text flex items-center justify-center" />
-                    {shouldShowText && <span className="truncate">Dashboard</span>}
-                  </NavLink>
-                </li>
-              )}
-              
               <li>
                 <NavLink
-                  to="/products"
+                  to="/conversations"
+                  className={({ isActive }) => 
+                    `flex items-center gap-3 p-3 transition-colors ${
+                      isActive 
+                        ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold ${theme === 'dark' ? 'text-white' : 'text-text'}`
+                        : `rounded-lg ${theme === 'dark' ? 'text-gray-300 hover:bg-gray-800' : 'text-text hover:bg-gray-100'}`
+                    }`
+                  }
+                  onClick={onClose}
+                >
+                  <i className="fi fi-sr-dashboard h-5 w-5 text-text flex items-center justify-center" />
+                  {shouldShowText && <span className="truncate">Conversations</span>}
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/documents"
                   className={({ isActive }) => 
                     `flex items-center gap-3 p-3 transition-colors ${
                       isActive 
@@ -99,51 +96,13 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
                   onClick={onClose}
                 >
                   <i className="fi fi-br-computer h-5 w-5 text-text flex items-center justify-center" />
-                  {shouldShowText && <span className="truncate">Products</span>}
+                  {shouldShowText && <span className="truncate">Notes</span>}
                 </NavLink>
               </li>
 
-              {user && user?.role === "admin" && (
-                <li>
-                  <NavLink
-                    to="/distributors"
-                    className={({ isActive }) => 
-                      `flex items-center gap-3 p-3 transition-colors ${
-                        isActive 
-                          ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold ${theme === 'dark' ? 'text-white' : 'text-text'}`
-                          : `rounded-lg ${theme === 'dark' ? 'text-gray-300 hover:bg-gray-800' : 'text-text hover:bg-gray-100'}`
-                      }`
-                    }
-                    onClick={onClose}
-                  >
-                    <i className="fi fi-br-computer h-5 w-5 text-text flex items-center justify-center" />
-                    {shouldShowText && <span className="truncate">Distributors</span>}
-                  </NavLink>
-                </li>
-              )}
-
-              {user && ["admin", "rte"].includes(user?.role) && (
-                <li>
-                  <NavLink
-                    to="/Retailers"
-                    className={({ isActive }) => 
-                      `flex items-center gap-3 p-3 transition-colors ${
-                        isActive 
-                          ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold ${theme === 'dark' ? 'text-white' : 'text-text'}`
-                          : `rounded-lg ${theme === 'dark' ? 'text-gray-300 hover:bg-gray-800' : 'text-text hover:bg-gray-100'}`
-                      }`
-                    }
-                    onClick={onClose}
-                  >
-                    <i className="fi fi-br-computer h-5 w-5 text-text flex items-center justify-center" />
-                    {shouldShowText && <span className="truncate">Retailers</span>}
-                  </NavLink>
-                </li>
-              )}
-
               <li>
                 <NavLink
-                  to="/orders"
+                  to="/coachings"
                   className={({ isActive }) => 
                     `flex items-center gap-3 p-3 transition-colors ${
                       isActive 
@@ -154,7 +113,7 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
                   onClick={onClose}
                 >
                   <i className="fi fi-br-computer h-5 w-5 text-text flex items-center justify-center" />
-                  {shouldShowText && <span className="truncate">Orders</span>}
+                  {shouldShowText && <span className="truncate">Coachings</span>}
                 </NavLink>
               </li>
               

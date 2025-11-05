@@ -12071,3 +12071,5 @@ NameError: name 'db' is not defined
 2025-11-05 12:27:57,441 [INFO] GET /auth/me - 200 - 30.81ms
 2025-11-05 12:27:57,478 [INFO] GET /upload/list - 200 - 33.19ms
 2025-11-05 12:27:57,480 [INFO] GET /upload/list - 200 - 31.84ms
+2025-11-05 13:34:11,020 [INFO] GET / - 200 - 3.87ms
+2025-11-05 13:34:11,203 [INFO] GET /favicon.ico - 404 - 0.72ms

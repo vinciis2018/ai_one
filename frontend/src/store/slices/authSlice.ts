@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { User, UserLoginFormData, UserRegistrationFormData } from '../../types';
 import axios from 'axios';
-const BASE_URL = "http://127.0.0.1:8000"; // FastAPI backend
+// const BASE_URL = "http://127.0.0.1:8000"; // FastAPI backend
+const BASE_URL = "https://ai.vinciis.in"; // FastAPI backend
 
 
 
