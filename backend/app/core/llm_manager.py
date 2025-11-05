@@ -26,7 +26,7 @@ FALLBACK_MODEL = "distilgpt2"
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "mistral")
 
 open_ai_client = OpenAI(api_key=OPENAI_API_KEY)
-
+print(open_ai_client)
 # ------------------------------------------------
 # Device detection
 # ------------------------------------------------

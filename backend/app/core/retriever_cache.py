@@ -5,6 +5,7 @@
 # ============================================
 
 import os
+from app.config.db import db
 import numpy as np
 from sentence_transformers import SentenceTransformer
 from pymongo import MongoClient
@@ -16,14 +17,6 @@ from dotenv import load_dotenv
 # ====================================================
 
 load_dotenv()
-
-# MongoDB connection (primary)
-MONGO_URI = os.getenv("MONGO_URI", "mongodb+srv://vinciis2018:212Matpu6na@clusterai.0fzws.mongodb.net/")
-MONGO_DB = os.getenv("MONGO_DB", "professor")
-
-# Initialize Mongo client (lazy)
-client = MongoClient(MONGO_URI)
-db = client[MONGO_DB]
 
 # ====================================================
 # Embedding Model (shared)
