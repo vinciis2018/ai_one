@@ -7,15 +7,13 @@ import { FullLayout } from "../../layouts/AppLayout";
 
 export const CoachingsPage: React.FC = () => {
   const dispatch = useAppDispatch();
-  const {user} = useAppSelector((state) => state.auth);
+  // const {user} = useAppSelector((state) => state.auth);
   const { coachings, loading, error } = useAppSelector((state) => state.coaching);
   const [selectedId, setSelectedId] = useState<string | null | undefined>(null);
 
   useEffect(() => {
-    if (user) {
-      dispatch(getAllCoachings());
-    }
-  }, [dispatch, user]);
+    dispatch(getAllCoachings());
+  }, [dispatch]);
 
   return (
     <FullLayout>

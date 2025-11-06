@@ -9,14 +9,17 @@ class DocumentModel(BaseModel):
     filename: Optional[str] = None
     subject: Optional[str] = None
     domain: Optional[str] = None
+    level: Optional[str] = None
     type: Optional[str] = None
     file_type: Optional[str] = None
     file_size: Optional[int] = None
     chunk_text: str
     chunk_docs_ids: List[PyObjectId]
     embedding: Optional[List[float]] = None
-    source_type: str = Field(..., description="Type of knowledge base: general | coaching | student")
+    source_type: str = Field(..., description="Type of knowledge base: general | coaching | student | teacher")
     s3_url: Optional[str] = Field(None, description="S3 file location if uploaded via AWS")
+    user_id: str = Field(..., description="User ID of the user who uploaded the document")
+    shared_with: List[str] = Field(default_factory=list)
     created_at: datetime = Field(default_factory=datetime.utcnow)
 
     model_config = {

@@ -13,7 +13,7 @@ import {
 } from "../../store/slices/coachingSlice";
 import { UploadBox } from "../../components/atoms/UploadBox";
 import type { User } from "../../types";
-import { fetchDocuments } from "../../store/slices/documentsSlice";
+import { clearAllDocuments, fetchDocuments } from "../../store/slices/documentsSlice";
 import { DocumentDetailsModal } from "./DocumentDetailsModal";
 
 
@@ -36,6 +36,8 @@ export const CoachingDetailsModal: React.FC<Props> = ({ coachingId, onClose }) =
   const { documents } = useAppSelector(
     (state) => state.documents
   );
+  const { uploadStatus } = useAppSelector((state) => state.assistant);
+  
 
   useEffect(() => {
     if (coachingDetails && Object.keys(coachingDetails).length > 0) {
@@ -55,15 +57,17 @@ export const CoachingDetailsModal: React.FC<Props> = ({ coachingId, onClose }) =
   },[dispatch, teachers, students, coachingDetails]);
 
   useEffect(() => {
-    if (coachingId) {
+    if (coachingId || (coachingId && uploadStatus === "succeeded")) {
       dispatch(getCoachingDetails(coachingId));
       dispatch(listInstituteTeachers(coachingId));
       dispatch(listInstituteStudents(coachingId));
     }
+   
     return () => {
       dispatch(resetCoachingState());
+      dispatch(clearAllDocuments());
     };
-  }, [coachingId, dispatch]);
+  }, [coachingId, dispatch, uploadStatus]);
 
   if (!coachingId) return null;
 
@@ -108,15 +112,18 @@ export const CoachingDetailsModal: React.FC<Props> = ({ coachingId, onClose }) =
 
           <div className="flex items-center space-x-2">
             {/* Upload Button */}
-            <button
-              type="button"
-              onClick={() => setShowUploadBox(!showUploadBox)}
-              className="p-2 rounded-md hover:bg-[var(--background-alt)]"
-              title="Upload documents"
-              aria-label="Upload documents"
-            >
-              <span className="text-xl">📄</span>
-            </button>
+            {user && (
+              <button
+                type="button"
+                onClick={() => setShowUploadBox(!showUploadBox)}
+                className="p-2 rounded-md hover:bg-[var(--background-alt)]"
+                title="Upload documents"
+                aria-label="Upload documents"
+              >
+                <span className="text-xl">📄</span>
+              </button>
+            )}
+            
 
             {/* Add self as Teacher (no popup) */}
             {user?.role === "teacher" && !teachers?.map((teacher: TeacherModel) => teacher?.user_id).includes(user?._id as string) && (

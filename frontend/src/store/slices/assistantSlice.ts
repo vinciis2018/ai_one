@@ -22,6 +22,7 @@ export interface UploadRequestPayload {
   user_id: string;
   domain: string;
   subject?: string;
+  level: string;
   type: string;
   file_type: string;
   file_size?: number;
@@ -34,6 +35,23 @@ export interface QueryResponse {
   chat_id: string;
   conversation_id: string;
 }
+
+export interface ImageQueryPayload {
+  fileName: string;
+  s3Url: string;
+  userId: string;
+  chatId: string;
+  previousConversation: string;
+  domain_expertise: string;
+  file_type: string;
+  file_size?: number;
+  source_type: string;
+  subject?: string;
+  domain?: string;
+  level?: string;
+  type?: string;
+}
+
 
 export interface UploadResponse {
   message: string;
@@ -110,6 +128,28 @@ export const askQuery = createAsyncThunk<
   }
 });
 
+
+export const askImageQuery = createAsyncThunk<
+  QueryResponse,
+  ImageQueryPayload,
+  { rejectValue: string }
+>("assistant/askImageQuery", async (payload, { rejectWithValue }) => {
+  try {
+    const response = await axios.post<QueryResponse>(
+      `${BASE_URL}/queryimage/query-image`,
+      payload,
+    );
+    return response.data;
+  } catch (error: unknown) {
+    const axiosError = error as unknown as { response?: { data?: { message?: string } } };
+    return rejectWithValue(
+      axiosError.response?.data?.message || "Failed to process image query"
+    );
+  }
+});
+
+
+
 // -----------------------------
 // Slice
 // -----------------------------
@@ -151,6 +191,19 @@ const assistantSlice = createSlice({
       .addCase(askQuery.rejected, (state, action) => {
         state.queryStatus = "failed";
         state.error = action.payload || "Query failed";
+      })
+
+      // Ask Image Query:
+      .addCase(askImageQuery.pending, (state) => {
+        state.queryStatus = "loading";
+      })
+      .addCase(askImageQuery.fulfilled, (state, action) => {
+        state.queryStatus = "succeeded";
+        state.response = action.payload;
+      })
+      .addCase(askImageQuery.rejected, (state, action) => {
+        state.queryStatus = "failed";
+        state.error = action.payload || "Image query failed";
       });
   },
 });

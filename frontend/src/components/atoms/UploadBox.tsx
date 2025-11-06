@@ -6,9 +6,9 @@
 
 import React, { useEffect, useState } from "react";
 import {  useAppDispatch, useAppSelector } from "../../store";
-import { uploadMaterial, type UploadRequestPayload } from "../../store/slices/assistantSlice";
+import { resetStatus, uploadMaterial, type UploadRequestPayload } from "../../store/slices/assistantSlice";
 import { useNavigate } from "react-router-dom";
-// import { getS3Url } from "../../utilities/awsUtils";
+import { getS3Url } from "../../utilities/awsUtils";
 
 export const UploadBox: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -20,6 +20,7 @@ export const UploadBox: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
   const [subject, setSubject] = useState<string>("");
   const [domain, setDomain] = useState<string>("");
+  const [level, setLevel] = useState<string>("");
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -29,14 +30,14 @@ export const UploadBox: React.FC = () => {
 
   const handleUpload = async () => {
     if (!file) return alert("Please select a file first!");
-    // // Step 1: Upload to S3
-    // console.log('📤 Uploading to S3...');
-    // const s3Url = await getS3Url(file);
-    // console.log('✅ File uploaded to S3:', s3Url);
+    // Step 1: Upload to S3
+    console.log('📤 Uploading to S3...');
+    const s3Url = await getS3Url(file);
+    console.log('✅ File uploaded to S3:', s3Url);
 // {
 //     "filename": "HC VERMA Solutions for Class 11 Physics Chapter 1.pdf",
 //     "upload_url": "https://usethisbucketforupload.s3.amazonaws.com/uploads/HC_VERMA_Solutions_for_Class_11_Physics_Chapter_1.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4U5FOV25LU6VRNO3%2F20251103%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20251103T100044Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=content-type%3Bhost&X-Amz-Signature=473bbc21c8df6cbe3136e115990386bc1b3d91f19cc112960659e2dac15e98f2",
-    const s3Url = "https://usethisbucketforupload.s3.ap-south-1.amazonaws.com/uploads/HC_VERMA_Solutions_for_Class_11_Physics_Chapter_1.pdf"
+    // const s3Url = "https://usethisbucketforupload.s3.ap-south-1.amazonaws.com/uploads/HC_VERMA_Solutions_for_Class_11_Physics_Chapter_1.pdf"
 // }
     // Step 2: Send the S3 URL to backend for processing
     const payload: UploadRequestPayload = {
@@ -44,6 +45,7 @@ export const UploadBox: React.FC = () => {
       s3Url,
       subject: subject.toLowerCase(),
       domain: domain.toLowerCase(),
+      level: level.toLowerCase(),
       type: "study_material",
       file_type: file.type,
       source_type: user?.role || 'default',
@@ -58,7 +60,16 @@ export const UploadBox: React.FC = () => {
     if (!isAuthenticated) {
       navigate("/login");
     }
-  },[isAuthenticated, navigate]);
+
+    if (uploadStatus === "succeeded") {
+      // Reset form
+      setFile(null);
+      setSubject("");
+      setDomain("");
+      setLevel("");
+      dispatch(resetStatus())
+    }
+  },[isAuthenticated, dispatch, navigate, uploadStatus]);
   return (
     <div className="flex flex-col items-center justify-center bg-white rounded-2xl shadow-md p-6 border border-gray-200 max-w-md mx-auto mt-8">
       <h2 className="text-xl font-semibold mb-4 text-gray-700">
@@ -66,19 +77,18 @@ export const UploadBox: React.FC = () => {
       </h2>
 
 
-      <div className="grid grid-cols-3 gap-2">
-        <input
-          type="text"
-          placeholder="CBSE 11 Physic"
-          value={subject}
-          onChange={(e) => setSubject(e.target.value)}
-          className="col-span-2 w-full p-2 mb-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-        />
-
+      <input
+        type="text"
+        placeholder="CBSE 11 Physic"
+        value={subject}
+        onChange={(e) => setSubject(e.target.value)}
+        className="col-span-2 w-full p-2 mb-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+      />
+      <div className="grid grid-cols-2 gap-2">
         <select
           title={domain.toUpperCase()}
           id="domain"
-          name="role"
+          name="domain"
           value={domain}
           onChange={(e) => setDomain(e.target.value)}
           className="col-span-1 w-full p-2 mb-3 border border-gray-300 border border-[var(--border)] rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent bg-[var(--background-alt)] text-[var(--text)]"
@@ -88,6 +98,20 @@ export const UploadBox: React.FC = () => {
           <option value="chemistry">Chemistry</option>
           <option value="maths">Maths</option>
           <option value="biology">Biology</option>
+        </select>
+        <select
+          title={level.toUpperCase()}
+          id="standard"
+          name="standard"
+          value={level}
+          onChange={(e) => setLevel(e.target.value)}
+          className="col-span-1 w-full p-2 mb-3 border border-gray-300 border border-[var(--border)] rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent bg-[var(--background-alt)] text-[var(--text)]"
+        >
+          <option value="general">Select Standard</option>
+          <option value="highschool">High School(10th)</option>
+          <option value="intermediate">Intermediate(12th)</option>
+          <option value="graduation">Graduation</option>
+          <option value="postgraduation">Post Graduation</option>
         </select>
       </div>
       

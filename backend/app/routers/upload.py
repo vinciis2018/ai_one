@@ -54,6 +54,134 @@ def extract_text_from_image(contents: bytes) -> str:
 
 
 # ====================================================
+# Save document to knowledge base and db
+# ====================================================
+async def save_to_kb_db(
+    file_name: str,
+    text: str,
+    source_type: str,
+    s3_url: str,
+    subject: str,
+    domain: str,
+    level: str,
+    doc_type: str,
+    file_type: str,
+    file_size: int,
+    user_id: str,
+    shared_with: list,
+    coaching_id: str
+):
+    chunks = chunk_text(text)
+    if not chunks:
+        raise HTTPException(status_code=400, detail="No valid chunks found after text processing.")
+
+    # Step 3: Generate embeddings
+    print(f"⚙️ Generating embeddings for {len(chunks)} chunks...")
+    embeddings = []
+    for chunk in tqdm(chunks, desc="Embedding Batches"):
+        emb = generate_embeddings(chunk)
+        embeddings.append(emb)
+
+    # Step 4: Store embeddings in FAISS
+    print("💾 Storing embeddings in FAISS...")
+    chunk_docs = store_embeddings(chunks, embeddings, source_type=source_type)
+
+    # Step 5: Reload relevant knowledge base
+    if source_type in knowledge_bases:
+        knowledge_bases[source_type].load_data(force=True)
+        print(f"⚡ {source_type.capitalize()} knowledge base reloaded after upload.")
+
+    # Step 6: Save to MongoDB in the background
+    async def save_to_mongodb():
+        try:
+            print("Saving to MongoDB...")
+            col = get_collection("documents")
+            doc_id = ObjectId()  # Generate a new ObjectId for the main document
+            print(col)
+            print(doc_id)
+            # Save document with full text
+            doc = {
+                "_id": doc_id,  # Use the generated ObjectId
+                "filename": file_name,
+                "subject": subject,
+                "domain": domain,
+                "type": doc_type,
+                "level": level,
+                "file_type": file_type,
+                "file_size": file_size,
+                "chunk_text": text,  # Store the full text
+                "source_type": source_type,
+                "s3_url": s3_url,
+                "chunk_docs_ids": [doc["_id"] for doc in chunk_docs],
+                "user_id": user_id,
+                "shared_with": shared_with,
+                "created_at": datetime.utcnow()
+            }
+
+            col.insert_one(doc)
+            logger.info(f"✅ Successfully saved document to MongoDB")
+
+            try:
+                # Get the user's role
+                user = await db["users"].find_one({"_id": ObjectId(user_id)})
+                if not user:
+                    logger.warning(f"User {user_id} not found")
+                    return
+                
+                user_role = user.get("role")
+                doc_access = {
+                    "document_id": doc_id,
+                    "access_granted_at": datetime.utcnow(),
+                    "can_edit": True  # Users can edit their own documents
+                }
+                
+                if user_role == "student":
+                    # Add to student's documents
+                    await db["students"].update_one(
+                        {"user_id": ObjectId(user_id)},
+                        {"$push": {"documents": doc_access}},
+                        upsert=True
+                    )
+                    logger.info(f"✅ Added document to student's documents")
+                    
+                elif user_role == "teacher":
+                    # Add to teacher's documents
+                    await db["teachers"].update_one(
+                        {"user_id": ObjectId(user_id)},
+                        {"$push": {"documents": doc_access}},
+                        upsert=True
+                    )
+                    logger.info(f"✅ Added document to teacher's documents")
+                
+                # Add to coaching documents if coaching_id is provided
+                if coaching_id:
+                    await db["organisations"].update_one(
+                        {"_id": ObjectId(coaching_id)},
+                        {"$addToSet": {"documents": doc_id}},
+                        upsert=True
+                    )
+                    logger.info(f"✅ Added document to coaching {coaching_id}")
+
+            except Exception as e:
+                logger.error(f"Error updating user/coaching document references: {str(e)}", exc_info=True)
+
+        except Exception as e:
+            logger.error(f"Error saving to MongoDB: {str(e)}", exc_info=True)
+            # Consider implementing a retry mechanism here
+
+    # Start the background task
+    asyncio.create_task(save_to_mongodb())
+
+    # Return response
+    return {
+        "filename": file_name,
+        "text_preview": text[:500],
+        "chunks": len(chunks),
+        "embedding_dim": len(embeddings[0]) if embeddings else 0,
+        "status": "✅ Processed successfully",
+    }
+
+# ====================================================
 # Upload Endpoint
 # ====================================================
 @router.post("/")
@@ -66,6 +194,16 @@ async def upload_file(payload: dict = Body(...)):
         file_name = payload.get("fileName")
         s3_url = payload.get("s3Url")
         source_type = payload.get("source_type", "student")
+        user_id = payload.get("user_id")
+        coaching_id = payload.get("coaching_id")
+        subject = payload.get("subject")
+        domain = payload.get("domain")
+        level = payload.get("level")
+        doc_type = payload.get("type")
+        file_type = payload.get("file_type")
+        file_size = payload.get("file_size")
+        shared_with = payload.get("shared_with", [])
+        text = ""
 
         if not file_name or not s3_url:
             raise HTTPException(status_code=400, detail="Missing fileName or s3Url in request.")
@@ -89,114 +227,133 @@ async def upload_file(payload: dict = Body(...)):
         if not text.strip():
             raise HTTPException(status_code=400, detail="No readable text found in file.")
 
-        # Step 2: Chunk text
-        chunks = chunk_text(text)
-        if not chunks:
-            raise HTTPException(status_code=400, detail="No valid chunks found after text processing.")
+        result = await save_to_kb_db(
+            text,
+            file_name,
+            source_type,
+            user_id,
+            coaching_id,
+            subject,
+            domain,
+            level,
+            doc_type,
+            file_type,
+            file_size,
+            shared_with,
+            s3_url
+        )
 
-        # Step 3: Generate embeddings
-        print(f"⚙️ Generating embeddings for {len(chunks)} chunks...")
-        embeddings = []
-        for chunk in tqdm(chunks, desc="Embedding Batches"):
-            emb = generate_embeddings(chunk)
-            embeddings.append(emb)
+        return result
+        # # Step 2: Chunk text
+        # chunks = chunk_text(text)
+        # if not chunks:
+        #     raise HTTPException(status_code=400, detail="No valid chunks found after text processing.")
 
-        # Step 4: Store embeddings in FAISS
-        print("💾 Storing embeddings in FAISS...")
-        chunk_docs = store_embeddings(chunks, embeddings, source_type=source_type)
+        # # Step 3: Generate embeddings
+        # print(f"⚙️ Generating embeddings for {len(chunks)} chunks...")
+        # embeddings = []
+        # for chunk in tqdm(chunks, desc="Embedding Batches"):
+        #     emb = generate_embeddings(chunk)
+        #     embeddings.append(emb)
 
-        # Step 5: Reload relevant knowledge base
-        if source_type in knowledge_bases:
-            knowledge_bases[source_type].load_data(force=True)
-            print(f"⚡ {source_type.capitalize()} knowledge base reloaded after upload.")
+        # # Step 4: Store embeddings in FAISS
+        # print("💾 Storing embeddings in FAISS...")
+        # chunk_docs = store_embeddings(chunks, embeddings, source_type=source_type)
 
-        # Step 6: Save to MongoDB in the background
-        async def save_to_mongodb():
-            try:
-                print("Saving to MongoDB...")
-                col = get_collection("documents")
-                doc_id = ObjectId()  # Generate a new ObjectId for the main document
-                print(col)
-                print(doc_id)
-                # Save document with full text
-                doc = {
-                    "_id": doc_id,  # Use the generated ObjectId
-                    "filename": file_name,
-                    "subject": payload.get("subject"),
-                    "domain": payload.get("domain"),
-                    "type": payload.get("type"),
-                    "file_type": payload.get("file_type"),
-                    "file_size": payload.get("file_size"),
-                    "chunk_text": text,  # Store the full text
-                    "source_type": source_type,
-                    "s3_url": s3_url,
-                    "chunk_docs_ids": [doc["_id"] for doc in chunk_docs],
-                    "user_id": payload.get("user_id"),
-                    "created_at": datetime.utcnow()
-                }
+        # # Step 5: Reload relevant knowledge base
+        # if source_type in knowledge_bases:
+        #     knowledge_bases[source_type].load_data(force=True)
+        #     print(f"⚡ {source_type.capitalize()} knowledge base reloaded after upload.")
 
-                col.insert_one(doc)
-                logger.info(f"✅ Successfully saved document to MongoDB")
+        # # Step 6: Save to MongoDB in the background
+        # async def save_to_mongodb():
+        #     try:
+        #         print("Saving to MongoDB...")
+        #         col = get_collection("documents")
+        #         doc_id = ObjectId()  # Generate a new ObjectId for the main document
+        #         print(col)
+        #         print(doc_id)
+        #         # Save document with full text
+        #         doc = {
+        #             "_id": doc_id,  # Use the generated ObjectId
+        #             "filename": file_name,
+        #             "subject": subject,
+        #             "domain": domain,
+        #             "type": doc_type,
+        #             "level": level,
+        #             "file_type": file_type,
+        #             "file_size": file_size,
+        #             "chunk_text": text,  # Store the full text
+        #             "source_type": source_type,
+        #             "s3_url": s3_url,
+        #             "chunk_docs_ids": [doc["_id"] for doc in chunk_docs],
+        #             "user_id": user_id,
+        #             "shared_with": shared_with,
+        #             "created_at": datetime.utcnow()
+        #         }
 
-                try:
-                    # Get the user's role
-                    user = await db["users"].find_one({"_id": ObjectId(payload.get("user_id"))})
-                    if not user:
-                        logger.warning(f"User {payload.get('user_id')} not found")
-                        return
+        #         col.insert_one(doc)
+        #         logger.info(f"✅ Successfully saved document to MongoDB")
+
+        #         try:
+        #             # Get the user's role
+        #             user = await db["users"].find_one({"_id": ObjectId(user_id)})
+        #             if not user:
+        #                 logger.warning(f"User {user_id} not found")
+        #                 return
                     
-                    user_role = user.get("role")
-                    doc_access = {
-                        "document_id": doc_id,
-                        "access_granted_at": datetime.utcnow(),
-                        "can_edit": True  # Users can edit their own documents
-                    }
+        #             user_role = user.get("role")
+        #             doc_access = {
+        #                 "document_id": doc_id,
+        #                 "access_granted_at": datetime.utcnow(),
+        #                 "can_edit": True  # Users can edit their own documents
+        #             }
                     
-                    if user_role == "student":
-                        # Add to student's documents
-                        await db["students"].update_one(
-                            {"user_id": ObjectId(payload.get("user_id"))},
-                            {"$push": {"documents": doc_access}},
-                            upsert=True
-                        )
-                        logger.info(f"✅ Added document to student's documents")
+        #             if user_role == "student":
+        #                 # Add to student's documents
+        #                 await db["students"].update_one(
+        #                     {"user_id": ObjectId(user_id)},
+        #                     {"$push": {"documents": doc_access}},
+        #                     upsert=True
+        #                 )
+        #                 logger.info(f"✅ Added document to student's documents")
                         
-                    elif user_role == "teacher":
-                        # Add to teacher's documents
-                        await db["teachers"].update_one(
-                            {"user_id": ObjectId(payload.get("user_id"))},
-                            {"$push": {"documents": doc_access}},
-                            upsert=True
-                        )
-                        logger.info(f"✅ Added document to teacher's documents")
+        #             elif user_role == "teacher":
+        #                 # Add to teacher's documents
+        #                 await db["teachers"].update_one(
+        #                     {"user_id": ObjectId(user_id)},
+        #                     {"$push": {"documents": doc_access}},
+        #                     upsert=True
+        #                 )
+        #                 logger.info(f"✅ Added document to teacher's documents")
                     
-                    # Add to coaching documents if coaching_id is provided
-                    if payload.get("coaching_id"):
-                        await db["organisations"].update_one(
-                            {"_id": ObjectId(payload.get("coaching_id"))},
-                            {"$addToSet": {"documents": doc_id}},
-                            upsert=True
-                        )
-                        logger.info(f"✅ Added document to coaching {payload.get('coaching_id')}")
+        #             # Add to coaching documents if coaching_id is provided
+        #             if coaching_id:
+        #                 await db["organisations"].update_one(
+        #                     {"_id": ObjectId(coaching_id)},
+        #                     {"$addToSet": {"documents": doc_id}},
+        #                     upsert=True
+        #                 )
+        #                 logger.info(f"✅ Added document to coaching {coaching_id}")
 
-                except Exception as e:
-                    logger.error(f"Error updating user/coaching document references: {str(e)}", exc_info=True)
+        #         except Exception as e:
+        #             logger.error(f"Error updating user/coaching document references: {str(e)}", exc_info=True)
 
-            except Exception as e:
-                logger.error(f"Error saving to MongoDB: {str(e)}", exc_info=True)
-                # Consider implementing a retry mechanism here
+        #     except Exception as e:
+        #         logger.error(f"Error saving to MongoDB: {str(e)}", exc_info=True)
+        #         # Consider implementing a retry mechanism here
  
-        # Start the background task
-        asyncio.create_task(save_to_mongodb())
+        # # Start the background task
+        # asyncio.create_task(save_to_mongodb())
 
-        # Return response
-        return {
-            "filename": file_name,
-            "text_preview": text[:500],
-            "chunks": len(chunks),
-            "embedding_dim": len(embeddings[0]) if embeddings else 0,
-            "status": "✅ Processed successfully",
-        }
+        # # Return response
+        # return {
+        #     "filename": file_name,
+        #     "text_preview": text[:500],
+        #     "chunks": len(chunks),
+        #     "embedding_dim": len(embeddings[0]) if embeddings else 0,
+        #     "status": "✅ Processed successfully",
+        # }
 
     except HTTPException:
         raise

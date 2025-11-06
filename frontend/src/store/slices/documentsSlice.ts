@@ -83,6 +83,10 @@ const documentsSlice = createSlice({
       state.selectedDocument = null;
       state.selectedStatus = "idle";
     },
+    clearAllDocuments: (state) => {
+      state.documents = [];
+      state.status = "idle";
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -113,5 +117,5 @@ const documentsSlice = createSlice({
   },
 });
 
-export const { clearSelectedDocument } = documentsSlice.actions;
+export const { clearSelectedDocument, clearAllDocuments } = documentsSlice.actions;
 export default documentsSlice.reducer;

@@ -2,7 +2,7 @@ from app.core.logger_middleware import LoggerMiddleware
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routers import auth, aws, query, status, upload, converstions, coaching
+from app.routers import auth, aws, query_image, query, status, upload, converstions, coaching
 
 app = FastAPI(title="AI Assistant MVP")
 
@@ -23,6 +23,7 @@ app.include_router(query.router, prefix="/query", tags=["Query"])  # This is cor
 app.include_router(status.router, prefix="/status", tags=["System Health"])
 app.include_router(converstions.router, prefix="/conversations", tags=["Conversations"])
 app.include_router(coaching.router, prefix="/coachings", tags=["Coaching"])
+app.include_router(query_image.router, prefix="/queryimage", tags=["Query Image"])
 
 @app.get("/")
 def root():

@@ -15,10 +15,11 @@ export const ConversationsPage: React.FC = () => {
 
   useEffect(() => {
     if (selectedChat) {
-      console.log(selectedChat)
       dispatch(fetchConversations({ chat_id: selectedChat?.id }));
     }
-    dispatch(fetchChats({ page: 1, limit: 10, search, user_id: user?._id || '' }));
+    if (user) {
+      dispatch(fetchChats({ page: 1, limit: 10, search, user_id: user?._id || '' }));
+    }
   }, [dispatch, search, user, selectedChat]);
 
   const handleLoadMore = () => {
@@ -31,7 +32,6 @@ export const ConversationsPage: React.FC = () => {
     dispatch(setSearch(e.target.value));
     dispatch(clearConversations());
   };
-  console.log(items.length)
   return (
     <FullLayout>
       <div className="p-6 space-y-4 ">

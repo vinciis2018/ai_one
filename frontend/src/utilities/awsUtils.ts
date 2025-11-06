@@ -23,7 +23,7 @@ export const getS3UploadUrl = async (
   try {
     const { data } = await Axios.post<AwsUrlResponse>(
       `${BASE_URL}/aws/get-s3-upload-url`,
-      { contentType, filename: fileName }
+      { content_type: contentType, filename: fileName }
     );
     return data;
   } catch (error) {
@@ -40,7 +40,7 @@ export const getS3UploadUrl = async (
  */
 export const uploadOnS3 = async (url: string, file: File): Promise<void> => {
   try {
-    console.log(url);
+    console.log(url, file, file.type);
     const res = await Axios.put(url, file, {
       headers: {
         'Content-Type': file.type,
@@ -60,7 +60,14 @@ export const uploadOnS3 = async (url: string, file: File): Promise<void> => {
  */
 export const getS3Url = async (file: File): Promise<string> => {
   try {
-    const awsData = await getS3UploadUrl(file.type, file.name);
+    // Sanitize filename: remove special chars and all periods except last
+    const fileName = file.name
+      .replace(/\.(?=.*\.)/g, '') // Remove all periods except last
+      .replace(/[^a-zA-Z0-9.]/g, ''); // Remove all special chars except periods
+    
+    const fileType = file.type;
+
+    const awsData = await getS3UploadUrl(fileType, fileName);
     // If backend indicates file already exists (no upload needed), return existing URL
     if (!awsData.upload_url) {
       return awsData.url;
@@ -68,7 +75,8 @@ export const getS3Url = async (file: File): Promise<string> => {
     // Otherwise upload and return the final URL
     await uploadOnS3(awsData.upload_url, file);
     return awsData.url;
-  } catch (error) {
+  } catch (error: unknown) {
+
     console.error('Error in AWS file upload process:', error);
     throw new Error('Failed to process file upload. Please try again.');
   }
