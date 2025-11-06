@@ -14383,3 +14383,11 @@ The density is given as \( D = \frac{4 \, g}
 2025-11-07 01:30:59,960 [INFO] Use pytorch device_name: mps
 2025-11-07 01:30:59,960 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
 2025-11-07 01:31:03,633 [INFO] 🧠 Using device: MPS
+2025-11-07 01:31:53,767 [INFO] Use pytorch device_name: mps
+2025-11-07 01:31:53,767 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-07 01:31:57,398 [INFO] Loading faiss.
+2025-11-07 01:31:57,423 [INFO] Successfully loaded faiss.
+2025-11-07 01:31:57,430 [INFO] Use pytorch device_name: mps
+2025-11-07 01:31:57,430 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-07 01:32:01,765 [INFO] 🧠 Using device: MPS
+2025-11-07 01:32:01,925 [WARNING] Using CPU. Note: This module is much faster with a GPU.
