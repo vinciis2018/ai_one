@@ -14364,3 +14364,22 @@ density = \(\fr | Answer: **For Q8 (Density Calculation)**:
 The density is given as \( D = \frac{4 \, g}
 2025-11-07 01:28:16,179 [INFO] POST /queryimage/query-image - 200 - 25402.75ms
 2025-11-07 01:28:16,265 [INFO] GET /conversations/chat/690cfdd86f8f90b4758bb1ae - 200 - 64.95ms
+2025-11-07 01:30:25,355 [INFO] Use pytorch device_name: mps
+2025-11-07 01:30:25,355 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-07 01:30:29,783 [INFO] Loading faiss.
+2025-11-07 01:30:29,839 [INFO] Successfully loaded faiss.
+2025-11-07 01:30:29,848 [INFO] Use pytorch device_name: mps
+2025-11-07 01:30:29,848 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-07 01:30:33,801 [INFO] 🧠 Using device: MPS
+2025-11-07 01:30:33,970 [WARNING] Using CPU. Note: This module is much faster with a GPU.
+2025-11-07 01:30:33,972 [WARNING] Downloading detection model, please wait. This may take several minutes depending upon your network connection.
+2025-11-07 01:30:40,940 [INFO] Download complete
+2025-11-07 01:30:40,941 [WARNING] Downloading recognition model, please wait. This may take several minutes depending upon your network connection.
+2025-11-07 01:30:42,636 [INFO] Download complete.
+2025-11-07 01:30:56,307 [INFO] Use pytorch device_name: mps
+2025-11-07 01:30:56,307 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-07 01:30:59,917 [INFO] Loading faiss.
+2025-11-07 01:30:59,953 [INFO] Successfully loaded faiss.
+2025-11-07 01:30:59,960 [INFO] Use pytorch device_name: mps
+2025-11-07 01:30:59,960 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-07 01:31:03,633 [INFO] 🧠 Using device: MPS
