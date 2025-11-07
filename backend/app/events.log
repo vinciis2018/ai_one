@@ -16336,3 +16336,11 @@ h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role
 2025-11-08 01:13:11,027 [INFO] OPTIONS /auth/me - 200 - 1.3ms
 2025-11-08 01:13:11,087 [INFO] GET /auth/me - 200 - 57.53ms
 2025-11-08 01:13:11,088 [INFO] GET /auth/me - 200 - 59.1ms
+2025-11-08 01:41:30,797 [INFO] OPTIONS /auth/me - 200 - 19.99ms
+2025-11-08 01:41:30,803 [INFO] OPTIONS /auth/me - 200 - 17.3ms
+2025-11-08 01:41:30,803 [INFO] OPTIONS /auth/me - 200 - 17.06ms
+2025-11-08 01:41:30,804 [INFO] OPTIONS /auth/me - 200 - 17.17ms
+2025-11-08 01:41:30,922 [INFO] GET /auth/me - 200 - 104.0ms
+2025-11-08 01:41:30,922 [INFO] GET /auth/me - 200 - 104.72ms
+2025-11-08 01:41:30,923 [INFO] GET /auth/me - 200 - 105.63ms
+2025-11-08 01:41:30,925 [INFO] GET /auth/me - 200 - 107.57ms

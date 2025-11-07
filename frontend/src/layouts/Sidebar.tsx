@@ -79,7 +79,7 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
                   }
                   onClick={onClose}
                 >
-                  <i className="fi fi-sr-dashboard h-5 w-5 flex items-center justify-center" />
+                  <i className="fi fi-sr-messages h-5 w-5 flex items-center justify-center" />
                   {shouldShowText && <span className="truncate">Chats</span>}
                 </NavLink>
               </li>
@@ -95,7 +95,7 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
                   }
                   onClick={onClose}
                 >
-                  <i className="fi fi-br-computer h-5 w-5 flex items-center justify-center" />
+                  <i className="fi fi-sr-journal-alt h-5 w-5 flex items-center justify-center" />
                   {shouldShowText && <span className="truncate">Notes</span>}
                 </NavLink>
               </li>
@@ -111,7 +111,7 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
                   }
                   onClick={onClose}
                 >
-                  <i className="fi fi-br-computer h-5 w-5 flex items-center justify-center" />
+                  <i className="fi fi-sr-chalkboard-user h-5 w-5 flex items-center justify-center" />
                   {shouldShowText && <span className="truncate">Teachers</span>}
                 </NavLink>
               </li>
@@ -127,7 +127,7 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
                   }
                   onClick={onClose}
                 >
-                  <i className="fi fi-br-computer h-5 w-5 flex items-center justify-center" />
+                  <i className="fi fi-sr-graduation-cap h-5 w-5 flex items-center justify-center" />
                   {shouldShowText && <span className="truncate">Coachings</span>}
                 </NavLink>
               </li>

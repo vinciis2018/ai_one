@@ -234,7 +234,7 @@ export const QueryBox: React.FC = () => {
 
 
   return (
-    <div className="max-w-xl mx-auto">
+    <div className="max-w-3xl mx-auto">
       {/* Image Upload Section */}
       <div className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-100 rounded-2xl hover:shadow-lg transition-shadow focus:ring-1 focus:ring-green focus:outline p-2">
         <div className={`grid ${selectedImage ? "grid-cols-4" : "grid-cols-3"}`}>
