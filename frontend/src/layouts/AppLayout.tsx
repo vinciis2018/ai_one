@@ -23,28 +23,29 @@ export function FullLayout({ children, footer = null }: FullLayoutProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 text-[var(--text)] flex flex-col">
+    <div className="bg-white text-[var(--text)] flex flex-col">
       {/* Fixed Header */}
       <Header onMenuClick={toggleSidebar} isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} isMobile={isMobile} />
       
-      <div className="flex flex-1 overflow-hidden py-8">
+      <div className="h-full flex flex-1 overflow-hidden py-8">
         {/* Sidebar - Fixed on mobile, sticky on desktop */}
         <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} isMobile={isMobile} setIsOpen={setIsSidebarOpen} />
         {/* Main Content */}
-        <div className="flex-1 flex flex-col overflow-hidden">
+        <div className="min-h-screen flex-1 flex flex-col overflow-hidden">
           {/* Scrollable Content */}
           <main className="flex-1 overflow-y-auto">
             <div className="min-h-* pt-8">
               {children}
             </div>
           </main>
+
         </div>
       </div>
-
       {/* Footer */}
-      <Footer className="">
+      <Footer className="border-red">
         {footer}
       </Footer>
+  
     </div>
   );
 }

@@ -37,7 +37,7 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
 
   return (
     <div className={`
-      fixed lg:sticky top-16 bottom-0 left-0 h-[calc(100vh-1rem)]
+      fixed lg:sticky top-16 bottom-0 left-0 
       bg-[var(--background-alt)] z-10
       ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
       transition-transform duration-300 ease-in-out
@@ -46,7 +46,7 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
       {view && (
         <aside onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)} className="overflow-y-auto h-full">
           <nav 
-            className={`py-2 pl-2 fixed inset-y-0 left-0 border-r ${getWidthClass()} 
+            className={`py-2 pl-2 fixed inset-y-0 left-0 ${getWidthClass()} 
             ${theme === "dark" ? "bg-black" : "bg-white"}
             transition-all duration-300 ease-in-out mt-16 mb-8 z-40 flex flex-col justify-between`}
           >
