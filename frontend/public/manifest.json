@@ -1,7 +1,7 @@
 {
-  "name": "DISHA",
-  "short_name": "disha",
-  "description": "Pharma Logistics",
+  "name": "MYIND",
+  "short_name": "myind",
+  "description": "Customised Augmented Intelligence",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

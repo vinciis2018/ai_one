@@ -28,8 +28,8 @@ export default defineConfig({
         ]
       },
       manifest: {
-        name: 'DISA',
-        short_name: 'disa',
+        name: 'MYIND',
+        short_name: 'myind',
         description: 'pharma logistics',
         theme_color: '#ffffff',
         icons: [
