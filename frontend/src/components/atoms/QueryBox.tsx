@@ -4,7 +4,7 @@
 // Now with S3 image upload before processing
 // ============================================
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useMemo } from "react";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { askQuery, askImageQuery } from "../../store/slices/assistantSlice";
 import { ResponseCard } from "./ResponseCard";
@@ -148,144 +148,229 @@ export const QueryBox: React.FC = () => {
     }
   }, [dispatch, response]);
 
+
+  const domains = [{
+    key: 1,
+    label: "Science",
+    value: "science",
+    icon: "fi-br-physics",
+  },{
+    key: 2,
+    label: "Physics",
+    value: "physics",
+    icon: "fi-br-magnet",
+  },{
+    key: 3,
+    label: "Chemistry",
+    value: "chemistry",
+    icon: "fi-br-flask-gear",
+  },{
+    key: 4,
+    label: "Maths",
+    value: "maths",
+    icon: "fi-br-square-root",
+  },{
+    key: 5,
+    label: "Biology",
+    value: "biology",
+    icon: "fi-br-dna",
+  },{
+    key: 6,
+    label: "General",
+    value: "general",
+    icon: "fi-br-messages-question",
+  }];
+
+
+  // Add this inside the QueryBox component, before the return statement
+  const [placeholderText, setPlaceholderText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const placeholders = useMemo(() => [
+    "Ask your queries and get answers based on your uploaded notes...",
+    "How to find out the dimension of magnetic flux?",
+    "What is the bi-product in redox reaction?",
+    "What is the formula of photosynthesis?",
+    imagePreview ? "Is the solution correct in the uploaded image?" : "Upload and image of your notes and ask your query from it..." 
+  ], [imagePreview]);
+
+  // Update the typing effect
+  useEffect(() => {
+    const currentText = placeholders[currentIndex % placeholders.length];
+    
+    if (!isDeleting) {
+      // Typing animation
+      if (charIndex < currentText.length) {
+        const timeout = setTimeout(() => {
+          setPlaceholderText(currentText.substring(0, charIndex + 1));
+          setCharIndex(charIndex + 1);
+        }, 50); // Typing speed
+        return () => clearTimeout(timeout);
+      } else {
+        // Show full text for 2 seconds
+        const timeout = setTimeout(() => {
+          setIsDeleting(true);
+        }, 2000);
+        return () => clearTimeout(timeout);
+      }
+    } else {
+      // Deleting animation
+      if (charIndex > 0) {
+        const timeout = setTimeout(() => {
+          setPlaceholderText(currentText.substring(0, charIndex - 1));
+          setCharIndex(charIndex - 1);
+        }, 30); // Deleting speed
+        return () => clearTimeout(timeout);
+      } else {
+        // Move to next placeholder
+        setIsDeleting(false);
+        setCurrentIndex((currentIndex + 1) % placeholders.length);
+        setCharIndex(0);
+      }
+    }
+  }, [charIndex, currentIndex, isDeleting, placeholders]);
+
+
   return (
-    <div className="bg-white rounded-2xl shadow-md p-6 border border-gray-200 max-w-xl mx-auto mt-8">
-      <h2 className="text-xl font-semibold mb-4 text-gray-700">
-        💭 Ask a Question
-      </h2>
-
-      {/* Text Input */}
-      <textarea
-        value={question}
-        onChange={(e) => setQuestion(e.target.value)}
-        placeholder="Ask something based on your uploaded materials..."
-        className="w-full h-24 border border-gray-300 rounded-lg p-3 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
-        disabled={isLoading}
-      />
-
+    <div className="max-w-xl mx-auto">
       {/* Image Upload Section */}
-      <div className="mt-4">
-        <input
-          title="im"
-          type="file"
-          ref={fileInputRef}
-          onChange={handleImageSelect}
-          accept="image/*"
-          className="hidden"
-          disabled={isLoading}
-        />
+      <div className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-100 rounded-2xl hover:shadow-lg transition-shadow focus:ring-1 focus:ring-green focus:outline p-2">
+        <div className={`grid ${selectedImage ? "grid-cols-4" : "grid-cols-3"}`}>
+          {/* Image Preview */}
+          {selectedImage && (
+            <div className="col-span-1">
+              {imagePreview && (
+                <div className="mb-3">
+                  <div className="relative inline-block">
+                    <button
+                      type="button"
+                      onClick={handleRemoveImage}
+                      disabled={isLoading}
+                      className={`absolute -top-2 -right-2 flex items-center px-2 py-1 rounded-full font-medium transition ${
+                        isLoading
+                          ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                          : "bg-red-100 text-red-700 hover:bg-red-200"
+                      }`}
+                    >
+                      <span>❌</span>
+                    </button>
+                    <img 
+                      src={imagePreview} 
+                      alt="Preview" 
+                      className="max-h-32 rounded-lg border border-gray-300"
+                    />
+                  </div>
+                  <p className="text-xs text-gray-500 mt-1 truncate">
+                    {selectedImage?.name} ({(selectedImage?.size || 0 / 1024).toFixed(1)} KB)
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+    
+          {/* Text Input */}
+          <div className="col-span-3">
+            <textarea
+              value={question}
+              onChange={(e) => setQuestion(e.target.value)}
+              placeholder={placeholderText}
+              className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 w-full h-24 rounded-lg p-3 text-gray-700 border-none focus:outline-none focus:ring-0 resize-none"
+              disabled={isLoading}
+            />
+          </div>
+        </div>
         
-        <div className="flex gap-2 mb-3">
-          {/* Domain select button */}
-          <div className="relative">
+        
+        <div className="flex justify-between items-center">
+          <div className="flex gap-2">
             <button
               type="button"
-              onClick={() => setShowDomainDropdown((s) => !s)}
+              onClick={handleUploadButtonClick}
               disabled={isLoading}
-              className={`flex items-center gap-2 px-3 py-2 rounded-lg font-medium transition ${
-                isLoading ? "bg-gray-300 text-gray-500 cursor-not-allowed" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              className={`flex items-center gap-2 p-3 rounded-full font-medium transition border border-gray-100 ${
+                isLoading
+                  ? "bg-baigeLight cursor-not-allowed"
+                  : "bg-baigeLight hover:bg-gray-200"
               }`}
-              title="Select domain"
-              aria-label="Select domain"
             >
-              <span>🔬</span>
-              <span className="capitalize">{domain}</span>
+              <i className="fi fi fi-br-camera-viewfinder flex items-center justify-center text-orange2" />
+              <input
+                title="im"
+                type="file"
+                ref={fileInputRef}
+                onChange={handleImageSelect}
+                accept="image/*"
+                className="hidden"
+                disabled={isLoading}
+              />
             </button>
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setShowDomainDropdown((s) => !s)}
+                disabled={isLoading}
+                className={`flex items-center gap-2 p-3 rounded-full font-medium transition border border-gray-100 ${
+                  isLoading ? "bg-baigeLight cursor-not-allowed" : "bg-baigeLight hover:bg-gray-200"
+                }`}
+                title="Select domain"
+                aria-label="Select domain"
+              >
+                <i className={`fi ${domains.find((d) => d.value === domain)?.icon} flex items-center justify-center text-violet`} />
+              </button>
 
-            {showDomainDropdown && (
-              <div className="absolute z-40 mt-2 w-40 bg-white border rounded shadow-sm">
-                {["science","physics","chemistry","maths","biology","general"].map((d) => (
-                  <button
-                    key={d}
-                    onClick={() => { setDomain(d); setShowDomainDropdown(false); }}
-                    className="w-full text-left px-3 py-2 hover:bg-gray-100 text-sm capitalize"
-                    type="button"
-                  >
-                    {d}
-                  </button>
-                ))}
-              </div>
+              {showDomainDropdown && (
+                <div className="absolute z-40 mt-2 w-40 bg-white border rounded shadow-sm">
+                  {domains.map((d) => (
+                    <button
+                      key={d.key}
+                      onClick={() => { setDomain(d.value); setShowDomainDropdown(false); }}
+                      className="w-full text-left px-3 py-2 hover:bg-gray-100 text-sm capitalize"
+                      type="button"
+                    >
+                      {d.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="flex gap-3">
+            {selectedImage ? (
+              <button
+                onClick={handleImageQuery}
+                disabled={isLoading}
+                type="button"
+                className={`flex-1 px-5 py-2 rounded-full font-medium text-white transition ${
+                  isLoading
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-green hover:bg-green2"
+                }`}
+              >
+                {isUploadingToS3 ? "Uploading to S3..." : 
+                queryStatus === "loading" ? "analysing..." : "Ask"}
+              </button>
+            ) : (
+              <button
+                onClick={handleAsk}
+                disabled={isLoading}
+                type="button"
+                className={`flex-1 px-5 py-2 rounded-full font-medium text-white transition ${
+                  isLoading
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-green hover:bg-green2"
+                }`}
+              >
+                {queryStatus === "loading" ? "Thinking..." : "Ask"}
+              </button>
             )}
           </div>
-
-          <button
-            type="button"
-            onClick={handleUploadButtonClick}
-            disabled={isLoading}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition ${
-              isLoading
-                ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-            }`}
-          >
-            <span>📷</span>
-            Upload Image
-          </button>
-
-          {selectedImage && (
-            <button
-              type="button"
-              onClick={handleRemoveImage}
-              disabled={isLoading}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition ${
-                isLoading
-                  ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                  : "bg-red-100 text-red-700 hover:bg-red-200"
-              }`}
-            >
-              <span>❌</span>
-              Remove
-            </button>
-          )}
         </div>
-
-        {/* Image Preview */}
-        {imagePreview && (
-          <div className="mb-3">
-            <p className="text-sm text-gray-600 mb-2">Image Preview:</p>
-            <div className="relative inline-block">
-              <img 
-                src={imagePreview} 
-                alt="Preview" 
-                className="max-h-32 rounded-lg border border-gray-300"
-              />
-            </div>
-            <p className="text-xs text-gray-500 mt-1">
-              File: {selectedImage?.name} ({(selectedImage?.size || 0 / 1024).toFixed(1)} KB)
-            </p>
-          </div>
-        )}
       </div>
 
       {/* Action Buttons */}
-      <div className="flex gap-3">
-        <button
-          onClick={handleAsk}
-          disabled={isLoading}
-          className={`flex-1 px-5 py-2 rounded-lg font-medium text-white transition ${
-            isLoading
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-blue-600 hover:bg-blue-700"
-          }`}
-        >
-          {queryStatus === "loading" ? "Thinking..." : "Ask Text Question"}
-        </button>
 
-        {selectedImage && (
-          <button
-            onClick={handleImageQuery}
-            disabled={isLoading}
-            className={`flex-1 px-5 py-2 rounded-lg font-medium text-white transition ${
-              isLoading
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-green-600 hover:bg-green-700"
-            }`}
-          >
-            {isUploadingToS3 ? "Uploading to S3..." : 
-             queryStatus === "loading" ? "Processing Image..." : "Ask from Image"}
-          </button>
-        )}
-      </div>
 
       {error && (
         <p className="text-red-500 text-sm mt-3 text-center">❌ {error}</p>

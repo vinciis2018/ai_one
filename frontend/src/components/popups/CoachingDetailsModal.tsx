@@ -8,13 +8,13 @@ import {
   addTeacherToInstitute,
   addStudentToInstitute,
   type OrganisationModel,
-  type TeacherModel,
   type StudentModel,
 } from "../../store/slices/coachingSlice";
 import { UploadBox } from "../../components/atoms/UploadBox";
 import type { User } from "../../types";
 import { clearAllDocuments, fetchDocuments } from "../../store/slices/documentsSlice";
 import { DocumentDetailsModal } from "./DocumentDetailsModal";
+import type { TeacherModel } from "../../store/slices/teachersSlice";
 
 
 interface Props {
@@ -31,7 +31,7 @@ export const CoachingDetailsModal: React.FC<Props> = ({ coachingId, onClose }) =
   const { user } = useAppSelector((state) => state.auth);
   // Coaching slice selectors
   const { coachingDetails, loading: coachingLoading, teachers, students } = useAppSelector(
-    (state) => state.coaching
+    (state) => state.coachings
   );
   const { documents } = useAppSelector(
     (state) => state.documents
@@ -79,6 +79,7 @@ export const CoachingDetailsModal: React.FC<Props> = ({ coachingId, onClose }) =
       name: (user as User).full_name || "Unknown",
       email: (user as User).email || "Unknown",
       subjects: undefined,
+      avatar: (user as User).avatar || "",
     };
     await dispatch(addTeacherToInstitute({ id: coachingId, teacher: payload }));
     dispatch(listInstituteTeachers(coachingId));
@@ -91,6 +92,7 @@ export const CoachingDetailsModal: React.FC<Props> = ({ coachingId, onClose }) =
       user_id: String((user as User)._id ?? ""),
       name: (user as User).full_name || "Unknown",
       email: (user as User).email || "Unknown",
+      avatar: (user as User).avatar || "",
     };
     await dispatch(addStudentToInstitute({ id: coachingId, student: payload }));
     dispatch(listInstituteStudents(coachingId));

@@ -16,6 +16,7 @@ from pydantic.json_schema import JsonSchemaMode
 class UserModel(BaseModel):
     id: Optional[PyObjectId] = Field(alias="_id", default=None)
     username: Optional[str] = None
+    avatar: Optional[str] = "https://imgs.search.brave.com/z3fePv7Epr5rm8IuE1MQi-WfbaUfFbKpMFnY4q6ORZM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMjcv/OTUxLzEzNS9zbWFs/bC9zdHlsaXNoLWF1/bnR5LTNkLWF2YXRh/ci1jaGFyYWN0ZXIt/aWxsdXN0cmF0aW9u/cy1wbmcucG5n"
     firstName: Optional[str] = None
     lastName: Optional[str] = None
     full_name: Optional[str] = None

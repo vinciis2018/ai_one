@@ -17,7 +17,7 @@ router = APIRouter()
 # ====================================================
 
 @router.get("/")
-async def list_conversations(skip: int = 0, limit: int = 20, search: str = Query(None), chat_id: str = Query(None)):
+async def list_conversations(skip: int = 0, limit: int = 100, search: str = Query(None), chat_id: str = Query(None)):
     """List all saved conversations with optional search and pagination."""
     try:
         conversation_ids = []

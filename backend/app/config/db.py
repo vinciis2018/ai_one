@@ -52,6 +52,7 @@ async def ensure_indexes():
         # Create text indexes
         collections = {
             "kb_student": ["chunk_text"],
+            "kb_teacher": ["chunk_text"],
             "kb_coaching": ["chunk_text"],
             "kb_general": ["chunk_text"]
         }

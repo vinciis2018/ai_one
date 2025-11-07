@@ -24,12 +24,12 @@ class TeacherModel(BaseModel):
     id: Optional[PyObjectId] = Field(default=None, alias="_id")
     user_id: PyObjectId
     name: str
+    avatar: Optional[str] = None
     email: EmailStr
     subjects: List[str] = []
     documents: List[DocumentAccess] = []
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
-
     model_config = {
         "json_encoders": {ObjectId: str},
         "arbitrary_types_allowed": True,
@@ -55,13 +55,13 @@ class TeacherModel(BaseModel):
 class StudentModel(BaseModel):
     id: Optional[PyObjectId] = Field(default=None, alias="_id")
     user_id: PyObjectId
+    avatar: Optional[str] = None
     name: str
     email: EmailStr
     subjects: List[str] = []
     documents: List[DocumentAccess] = []
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
-
     model_config = {
         "json_encoders": {ObjectId: str},
         "arbitrary_types_allowed": True,
@@ -84,9 +84,22 @@ class StudentModel(BaseModel):
         }
     }
 
+
+class TeacherStudent(BaseModel):
+    id: Optional[PyObjectId] = Field(default=None, alias="_id")
+    teacher_id: PyObjectId
+    teacher_name: str
+    students: List[PyObjectId] = []
+
+class SubjectDomains(BaseModel):
+    id: Optional[PyObjectId] = Field(default=None, alias="_id")
+    name: str
+    teachers: List[TeacherStudent] = []
+
 class OrganisationModel(BaseModel):
     id: Optional[PyObjectId] = Field(default=None, alias="_id")
     name: str
+    avatar: Optional[str] = None
     description: Optional[str] = None
     address: Optional[str] = None
     contact_email: EmailStr
@@ -94,7 +107,9 @@ class OrganisationModel(BaseModel):
     website: Optional[str] = None
     teachers: List[PyObjectId] = []
     students: List[PyObjectId] = []
-    documents: List[PyObjectId] = []
+    documents: List[DocumentAccess] = []
+    subjects: List[str] = []
+    domains: List[SubjectDomains] = []
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
 
@@ -111,7 +126,9 @@ class OrganisationModel(BaseModel):
                 "website": "https://excelcoaching.com",
                 "teachers": ["507f1f77bcf86cd799439011"],
                 "students": ["507f1f77bcf86cd799439013"],
+                "subjects": ["maths", "physics"],
                 "documents": ["607f1f77bcf86cd799439012"],
+                "domains": [],
                 "created_at": "2025-11-04T10:00:00Z",
                 "updated_at": "2025-11-04T10:00:00Z"
             }

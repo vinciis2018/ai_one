@@ -54,12 +54,12 @@ export function Header({ onMenuClick, isMobile, setIsSidebarOpen, isSidebarOpen 
       <div className="h-full mx-auto px-4 flex items-center justify-between">
         <div className="flex items-center gap-4 cursor-pointer" onClick={() => isAuthenticated ? navigate('/') : navigate('/')}>
           {isMobile ? (
-            <div className="border-2 border-violet rounded-full">
-              <h1 className="text-[var(--text)] text-xl font-semibold px-1.5">M</h1>
+            <div className="border-2 border-green rounded-full">
+              <h1 className="text-green text-xl font-semibold px-1.5">M</h1>
             </div>
           ) : (
             <div className="h-8 flex items-center gap-1">
-              <h1 className="text-[var(--text)] text-xl font-semibold">MyndTwin</h1>
+              <h1 className="text-green text-xl font-semibold">MyndTwin</h1>
             </div>
           )}
         </div>
@@ -67,17 +67,17 @@ export function Header({ onMenuClick, isMobile, setIsSidebarOpen, isSidebarOpen 
         <div className="flex items-center gap-4">
           {/* Avatar with Dropdown */}
           {user ? (
-            <div className="relative pr-2" ref={dropdownRef}>
+            <div className="relative" ref={dropdownRef}>
               <button 
                 title="User menu"
                 type="button"
                 onClick={toggleDropdown}
-                className="flex items-center justify-center bg-[var(--primary)] text-[var(--text)] font-medium text-sm cursor-pointer hover:opacity-90 transition-opacity rounded-full border border-[var(--border)]"
+                className="h-10 w-10 flex items-center justify-center bg-[var(--primary)] text-[var(--text)] font-medium text-sm cursor-pointer hover:opacity-90 transition-opacity rounded-full border border-[var(--border)]"
                 aria-haspopup="menu"
                 // aria-expanded={isDropdownOpen}
                 aria-label="User menu"
               >
-                <i className="fi fi-rr-user p-2 flex items-center justify-center text-[var(--text)]"></i>
+                <img src={user.avatar} alt={user.firstName} className="p-2 flex items-center justify-center rounded-full" />
               </button>
               
               {/* Dropdown Menu */}
@@ -91,28 +91,13 @@ export function Header({ onMenuClick, isMobile, setIsSidebarOpen, isSidebarOpen 
                     <a
                       href=""
                       onClick={() => navigate('/profile')}
-                      className="flex items-center px-4 py-2 text-sm text-[var(--text)] hover:bg-[var(--background-alt)]"
+                      className="flex items-center px-4 py-2 text-sm text-green hover:bg-[var(--background-alt)]"
                       role="menuitem"
                     >
-                      <i className="fi fi-sr-user mr-3 h-5 w-5 text-[var(--text-muted)] flex items-center justify-center"></i>
+                      <i className="fi fi-sr-user mr-3 h-5 w-5 flex items-center justify-center"></i>
                       Your Profile
                     </a>
-                    <a
-                      href="/cart"
-                      className="flex items-center px-4 py-2 text-sm text-[var(--text)] hover:bg-[var(--background-alt)]"
-                      role="menuitem"
-                    >
-                      <i className="fi fi-sr-settings mr-3 h-5 w-5 text-[var(--text-muted)] flex items-center justify-center"></i>
-                      Cart
-                    </a>
-                    <a
-                      href="/settings"
-                      className="flex items-center px-4 py-2 text-sm text-[var(--text)] hover:bg-[var(--background-alt)]"
-                      role="menuitem"
-                    >
-                      <i className="fi fi-sr-settings mr-3 h-5 w-5 text-[var(--text-muted)] flex items-center justify-center"></i>
-                      Settings
-                    </a>
+
                     <div className="border-t border-[var(--border)] my-1"></div>
                     <button
                       type="button"
@@ -137,7 +122,7 @@ export function Header({ onMenuClick, isMobile, setIsSidebarOpen, isSidebarOpen 
                 title="User menu"
                 type="button"
                 onClick={() => navigate('/login')}
-                className="flex items-center justify-center bg-violet text-white font-medium text-sm cursor-pointer hover:opacity-90 transition-opacity rounded-full border border-[var(--border)] px-4 py-2 gap-2"
+                className="flex items-center justify-center bg-green text-white font-medium text-sm cursor-pointer hover:opacity-90 transition-opacity rounded-full border border-[var(--border)] px-4 py-2 gap-2"
                 aria-haspopup="menu"
                 aria-label="User menu"
               >

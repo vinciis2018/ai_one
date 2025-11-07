@@ -1,0 +1,92 @@
+# ============================================
+# teachers.py
+# Exposes endpoints for listing and managing conversation history
+# (MongoDB version with search + pagination)
+# ============================================
+
+from fastapi import APIRouter, HTTPException, Query
+from pymongo import DESCENDING
+from app.config.db import db, get_collection
+from bson import ObjectId
+
+router = APIRouter()
+
+@router.get("/")
+async def list_teachers(
+    skip: int = 0, 
+    limit: int = 20, 
+    user_id: str = Query(..., description="ID of the student user"),
+    search: str = Query(None, description="Optional search term for teacher name or email")
+):
+    """
+    List all teachers from the organization where the student is enrolled.
+    """
+    try:
+        # Convert string ID to ObjectId
+        user_oid = ObjectId(user_id)
+        student_collection = get_collection("students")
+        student = await student_collection.find_one({"user_id": user_oid})
+
+        if user_oid == None or student == None:
+          raise HTTPException(status_code=400, detail="Invalid user ID format")
+        # Find the organization that has this student
+        coaching_collection = get_collection("organisations")
+        coaching = await coaching_collection.find_one({"students": {"$in": [student.get("_id")]}})
+
+        if not coaching:
+            return {"teachers": [], "count": 0}
+
+        # Build the query for teachers
+        query = {
+            "_id": {"$in": coaching.get("teachers", [])}
+        }
+
+        # Add search filter if provided
+        if search:
+            query["$or"] = [
+                {"name": {"$regex": search, "$options": "i"}},
+                {"email": {"$regex": search, "$options": "i"}}
+            ]
+
+        # Get teacher details
+        cursor = db["teachers"].find(query).skip(skip).limit(limit)
+        teachers = await cursor.to_list(length=limit)
+
+        # Get total count for pagination
+        total = await db["teachers"].count_documents(query)
+
+        # Format the response
+        result = []
+        for teacher in teachers:
+            # Get user details
+            user = await db["users"].find_one(
+                {"_id": teacher["user_id"]},
+                {"password": 0}  # Exclude password
+            )
+            
+            if user:
+                result.append({
+                    "id": str(teacher["_id"]),
+                    "user_id": str(teacher["user_id"]),
+                    "name": teacher.get("name", ""),
+                    "email": teacher.get("email", ""),
+                    "subjects": teacher.get("subjects", []),
+                    "documents": [str(doc_id) for doc_id in teacher.get("documents", [])],
+                    "avatar": teacher.get("avatar", ""),
+                    "created_at": str(teacher.get("created_at", ""))
+                })
+        print("sfasfs")
+        return {
+            "teachers": result,
+            "count": len(result),
+            "total": total,
+            "has_more": (skip + len(result)) < total
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, 
+            detail=f"Error fetching teachers: {str(e)}"
+        )

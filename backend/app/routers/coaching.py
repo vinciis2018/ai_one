@@ -40,13 +40,15 @@ async def create_institute(
 @router.get("/", response_model=List[OrganisationModel])
 async def list_institutes(
     skip: int = 0,
-    limit: int = 10,
+    limit: int = 100,
 ):
     """
     List all coaching institutes with pagination.
     """
     cursor = db["organisations"].find().skip(skip).limit(limit)
+    print(cursor)
     return await cursor.to_list(length=limit)
+
 
 @router.get("/{coaching_id}", response_model=OrganisationModel)
 async def get_coaching(

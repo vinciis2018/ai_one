@@ -60,7 +60,7 @@ export const fetchConversations = createAsyncThunk<
   'conversations/fetchAllConversations',
   async (params = {}, { rejectWithValue }) => {
     try {
-      const { page = 1, limit = 10, search = '', chat_id } = params;
+      const { page = 1, limit = 100, search = '', chat_id } = params;
       const skip = (page - 1) * limit;
       const response = await axios.get<{ conversations: Conversation[]; count: number }>(`${BASE_URL}/conversations`, {
         params: { skip, limit, search, chat_id },
@@ -81,7 +81,7 @@ export const fetchChats = createAsyncThunk<
   'conversations/fetchAllChats',
   async (params = {}, { rejectWithValue }) => {
     try {
-      const { page = 1, limit = 10, search = '', user_id } = params;
+      const { page = 1, limit = 100, search = '', user_id } = params;
       const skip = (page - 1) * limit;
       const response = await axios.get<{ chats: ChatResponse[]; count: number }>(`${BASE_URL}/conversations/chats`, {
         params: { skip, limit, search, user_id },

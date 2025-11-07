@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store, useAppDispatch } from './store';
 import { ThemeProvider } from './context/ContextProvider/ThemeProvider';
-import { HomePage, LoginPage, SignupPage, NotFoundPage, UserProfilePage, LandingPage, DocumentsPage, ConversationsPage, CoachingsPage } from './pages';
+import { HomePage, LoginPage, SignupPage, NotFoundPage, UserProfilePage, LandingPage, DocumentsPage, ConversationsPage, CoachingsPage, TeachersPage, NotesPage, ChatsPage } from './pages';
 import { getMe } from './store/slices/authSlice';
 import { useEffect } from 'react';
 
@@ -29,6 +29,10 @@ function AppContent() {
           <Route path="/documents" element={<DocumentsPage />} />
           <Route path="/conversations" element={<ConversationsPage />} />
           <Route path="/coachings" element={<CoachingsPage />} />
+          <Route path="/teachers" element={<TeachersPage />} />
+          <Route path="/notes" element={<NotesPage />} />
+          <Route path="/chats" element={<ChatsPage />} />
+
          
           {/* No Route */}
           <Route path="*" element={<NotFoundPage />} />

@@ -7,6 +7,7 @@ import assistantReducer from './slices/assistantSlice';
 import documentsReducer from './slices/documentsSlice';
 import conversationsReducer from './slices/conversationsSlice';
 import coachingReducer from './slices/coachingSlice';
+import teachersReducer from './slices/teachersSlice';
 
 export const store = configureStore({
   reducer: {
@@ -16,7 +17,8 @@ export const store = configureStore({
     assistant: assistantReducer,
     documents: documentsReducer,
     conversations: conversationsReducer,
-    coaching: coachingReducer,
+    coachings: coachingReducer,
+    teachers: teachersReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

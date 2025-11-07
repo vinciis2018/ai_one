@@ -44,9 +44,9 @@ export function SignupPage() {
 
   return (
     <SimpleLayout>
-      <div className="w-full max-w-sm mx-auto py-16 space-y-4">
+      <div className="w-full max-w-sm mx-auto py-16 px-8 space-y-4">
         <div>
-          <h2 className="text-3xl font-bold text-center text-violet">
+          <h2 className="text-3xl font-bold text-center text-green">
             Create a new account
           </h2>
         </div>
@@ -63,7 +63,7 @@ export function SignupPage() {
                   name="firstName"
                   type="text"
                   required
-                  className="appearance-none rounded-md relative block w-full px-3 py-2 border border-[var(--text-muted)] bg-[var(--background)] placeholder-[var(--text-muted)] text-[var(--text)] focus:outline-none focus:ring-[var(--primary)] focus:border-[var(--primary)]"
+                  className="appearance-none rounded-md relative block w-full px-3 py-2 border border-[var(--text-muted)] bg-[var(--background)] placeholder-[var(--text-muted)] text-[var(--text)] focus:outline-none focus:ring-[var(--green)] focus:border-[var(--green)]"
                   placeholder="First Name"
                   value={formData.firstName}
                   onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
@@ -78,7 +78,7 @@ export function SignupPage() {
                   name="lastName"
                   type="text"
                   required
-                  className="appearance-none rounded-md relative block w-full px-3 py-2 border border-[var(--text-muted)] bg-[var(--background)] placeholder-[var(--text-muted)] text-[var(--text)] focus:outline-none focus:ring-[var(--primary)] focus:border-[var(--primary)]"
+                  className="appearance-none rounded-md relative block w-full px-3 py-2 border border-[var(--text-muted)] bg-[var(--background)] placeholder-[var(--text-muted)] text-[var(--text)] focus:outline-none focus:ring-[var(--green)] focus:border-[var(--green)]"
                   placeholder="Last Name"
                   value={formData.lastName}
                   onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
@@ -95,7 +95,7 @@ export function SignupPage() {
                 type="email"
                 autoComplete="email"
                 required
-                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-[var(--text-muted)] bg-[var(--background)] placeholder-[var(--text-muted)] text-[var(--text)] focus:outline-none focus:ring-[var(--primary)] focus:border-[var(--primary)]"
+                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-[var(--text-muted)] bg-[var(--background)] placeholder-[var(--text-muted)] text-[var(--text)] focus:outline-none focus:ring-[var(--green)] focus:border-[var(--green)]"
                 placeholder="Email address"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value, username: e.target.value.split("@")[0] })}
@@ -111,7 +111,7 @@ export function SignupPage() {
                 type="password"
                 autoComplete="new-password"
                 required
-                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-[var(--text-muted)] bg-[var(--background)] placeholder-[var(--text-muted)] text-[var(--text)] focus:outline-none focus:ring-[var(--primary)] focus:border-[var(--primary)]"
+                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-[var(--text-muted)] bg-[var(--background)] placeholder-[var(--text-muted)] text-[var(--text)] focus:outline-none focus:ring-[var(--green)] focus:border-[var(--green)]"
                 placeholder="Password"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
@@ -127,7 +127,7 @@ export function SignupPage() {
                 type="password"
                 autoComplete="new-password"
                 required
-                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-[var(--text-muted)] bg-[var(--background)] placeholder-[var(--text-muted)] text-[var(--text)] focus:outline-none focus:ring-[var(--primary)] focus:border-[var(--primary)]"
+                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-[var(--text-muted)] bg-[var(--background)] placeholder-[var(--text-muted)] text-[var(--text)] focus:outline-none focus:ring-[var(--green)] focus:border-[var(--green)]"
                 placeholder="Confirm Password"
                 value={formData.confirmPassword}
                 onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
@@ -144,7 +144,7 @@ export function SignupPage() {
                   name="role"
                   value={formData.role}
                   onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                  className="w-full px-3 py-2 border border-[var(--border)] rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent bg-[var(--background-alt)] text-[var(--text)]"
+                  className="w-full px-3 py-2 border border-[var(--border)] rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--green)] focus:border-transparent bg-[var(--background-alt)] text-[var(--text)]"
                 >
                   <option value="student">Select a role</option>
                   <option value="student">Student</option>
@@ -161,17 +161,17 @@ export function SignupPage() {
               name="terms"
               type="checkbox"
               required
-              className="h-4 w-4 text-[var(--primary)] focus:ring-[var(--primary)] border-[var(--text-muted)] rounded"
+              className="h-4 w-4 text-[var(--green)] focus:ring-[var(--green)] border-[var(--text-muted)] rounded"
             />
             <label htmlFor="terms" className="ml-2 block text-sm text-[var(--text-muted)]">
-              I agree to the <a href="#" className="text-violet hover:text-[var(--primary-hover)]">Terms and Conditions</a>
+              I agree to the <a href="#" className="text-green hover:text-[var(--green-hover)]">Terms and Conditions</a>
             </label>
           </div>
 
           <div>
             <button
               type="submit"
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-violet hover:border-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary)]"
+              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green hover:border-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--green)]"
             >
               Create Account
             </button>
@@ -180,7 +180,7 @@ export function SignupPage() {
 
         <div className="text-center text-sm">
           <span className="text-[var(--text-muted)]">Already have an account? </span>
-          <a href="/login" className="font-medium text-black dark:text-white hover:border-primary">
+          <a href="/login" className="font-medium text-black dark:text-white hover:border-green">
             Sign in
           </a>
         </div>

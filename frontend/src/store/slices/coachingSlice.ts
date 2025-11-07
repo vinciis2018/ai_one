@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { BASE_URL } from '../../constants/helperConstants';
+import type { TeacherModel } from './teachersSlice';
 // const BASE_URL = "http://127.0.0.1:8000"; // FastAPI backend
 // const BASE_URL = "https://ai.vinciis.in"; // FastAPI backend
 
@@ -13,22 +14,12 @@ export interface OrganisationModel {
   name: string;
   description?: string;
   source_type: string;
-
   admin_id: string;
   teachers?: string[]; // array of teacher IDs
   students?: string[]; // array of student IDs
-  created_at?: string;
-  updated_at?: string;
-}
-
-export interface TeacherModel {
-  _id?: string;
-  id?: string;
-  user_id: string;
-  name: string;
-  email: string;
   subjects?: string[];
-  documents?: string[];
+  avatar?: string;
+  documents?: string[]; // array of document IDs
   created_at?: string;
   updated_at?: string;
 }
@@ -38,6 +29,7 @@ export interface StudentModel {
   id?: string;
   user_id: string;
   email: string;
+  avatar?: string;
   name: string;
   subjects?: string[];
   documents?: string[];
