@@ -99,6 +99,7 @@ class KnowledgeBaseCache:
 
 knowledge_bases = {
     "student": KnowledgeBaseCache("student", "kb_student"),
+    "teacher": KnowledgeBaseCache("teacher", "kb_teacher"),
     "coaching": KnowledgeBaseCache("coaching", "kb_coaching"),
     "general": KnowledgeBaseCache("general", "kb_general"),
 }

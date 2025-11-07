@@ -14391,3 +14391,33 @@ The density is given as \( D = \frac{4 \, g}
 2025-11-07 01:31:57,430 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
 2025-11-07 01:32:01,765 [INFO] 🧠 Using device: MPS
 2025-11-07 01:32:01,925 [WARNING] Using CPU. Note: This module is much faster with a GPU.
+2025-11-07 01:52:21,652 [INFO] Use pytorch device_name: mps
+2025-11-07 01:52:21,652 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-07 01:52:25,681 [INFO] Loading faiss.
+2025-11-07 01:52:25,730 [INFO] Successfully loaded faiss.
+2025-11-07 01:52:25,739 [INFO] Use pytorch device_name: mps
+2025-11-07 01:52:25,739 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-07 01:52:29,710 [INFO] 🧠 Using device: MPS
+2025-11-07 02:17:46,481 [INFO] Use pytorch device_name: mps
+2025-11-07 02:17:46,481 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-07 02:17:49,934 [INFO] Loading faiss.
+2025-11-07 02:17:49,975 [INFO] Successfully loaded faiss.
+2025-11-07 02:17:49,984 [INFO] Use pytorch device_name: mps
+2025-11-07 02:17:49,984 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-07 02:17:54,351 [INFO] 🧠 Using device: MPS
+2025-11-07 02:19:11,314 [INFO] Use pytorch device_name: mps
+2025-11-07 02:19:11,314 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-07 02:19:17,631 [INFO] Use pytorch device_name: mps
+2025-11-07 02:19:17,631 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-07 02:19:21,583 [INFO] Loading faiss.
+2025-11-07 02:19:21,652 [INFO] Successfully loaded faiss.
+2025-11-07 02:19:21,661 [INFO] Use pytorch device_name: mps
+2025-11-07 02:19:21,661 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-07 02:19:25,211 [INFO] 🧠 Using device: MPS
+2025-11-07 10:19:46,381 [INFO] Use pytorch device_name: mps
+2025-11-07 10:19:46,381 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-07 10:19:49,804 [INFO] Loading faiss.
+2025-11-07 10:19:49,989 [INFO] Successfully loaded faiss.
+2025-11-07 10:19:49,996 [INFO] Use pytorch device_name: mps
+2025-11-07 10:19:49,996 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-07 10:19:53,980 [INFO] 🧠 Using device: MPS

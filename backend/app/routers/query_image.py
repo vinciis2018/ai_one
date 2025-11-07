@@ -65,7 +65,7 @@ def initialize_ocr():
         print(f"❌ EasyOCR initialization failed: {e}")
         return None
 
-ocr_reader = initialize_ocr()
+# ocr_reader = initialize_ocr()
 
 
 # ====================================================
@@ -101,40 +101,40 @@ class ImageQueryRequest(BaseModel):
 # Image Processing & OCR Functions
 # ====================================================
 
-def preprocess_image_for_ocr(image_bytes: bytes) -> np.ndarray:
-    """Preprocess image for better OCR accuracy"""
-    try:
-        # Convert bytes to numpy array
-        image = Image.open(io.BytesIO(image_bytes))
-        img_array = np.array(image)
+# def preprocess_image_for_ocr(image_bytes: bytes) -> np.ndarray:
+#     """Preprocess image for better OCR accuracy"""
+#     try:
+#         # Convert bytes to numpy array
+#         image = Image.open(io.BytesIO(image_bytes))
+#         img_array = np.array(image)
         
-        # Convert to RGB if needed
-        if len(img_array.shape) == 3 and img_array.shape[2] == 3:
-            img_array = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
+#         # Convert to RGB if needed
+#         if len(img_array.shape) == 3 and img_array.shape[2] == 3:
+#             img_array = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
         
-        # Resize if image is too large (memory optimization)
-        height, width = img_array.shape[:2]
-        if height > 1200 or width > 1200:
-            scale = min(1200/height, 1200/width)
-            new_width = int(width * scale)
-            new_height = int(height * scale)
-            img_array = cv2.resize(img_array, (new_width, new_height))
+#         # Resize if image is too large (memory optimization)
+#         height, width = img_array.shape[:2]
+#         if height > 1200 or width > 1200:
+#             scale = min(1200/height, 1200/width)
+#             new_width = int(width * scale)
+#             new_height = int(height * scale)
+#             img_array = cv2.resize(img_array, (new_width, new_height))
         
-        # Convert to grayscale
-        if len(img_array.shape) == 3:
-            gray = cv2.cvtColor(img_array, cv2.COLOR_BGR2GRAY)
-        else:
-            gray = img_array
+#         # Convert to grayscale
+#         if len(img_array.shape) == 3:
+#             gray = cv2.cvtColor(img_array, cv2.COLOR_BGR2GRAY)
+#         else:
+#             gray = img_array
         
-        # Apply simple thresholding
-        _, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+#         # Apply simple thresholding
+#         _, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
         
-        return thresh
+#         return thresh
         
-    except Exception as e:
-        print(f"Error in image preprocessing: {e}")
-        # Return original image if preprocessing fails
-        return np.array(Image.open(io.BytesIO(image_bytes)))
+#     except Exception as e:
+#         print(f"Error in image preprocessing: {e}")
+#         # Return original image if preprocessing fails
+#         return np.array(Image.open(io.BytesIO(image_bytes)))
 
 
 
@@ -192,68 +192,68 @@ def analyze_image_with_openai(
         print(f"❌ OpenAI Vision API error: {str(e)}")
         # Fall back to OCR if Vision API fails
         print("Falling back to OCR... (work in progress, don't expect correct response)")
-        return extract_text_from_image(image_bytes)
+        # return extract_text_from_image(image_bytes)
+        return e
 
-
-def extract_text_from_image(image_bytes: bytes) -> str:
-    """Extract text from image using EasyOCR with robust error handling"""
-    if ocr_reader is None:
-        raise HTTPException(status_code=500, detail="OCR engine not available")
+# def extract_text_from_image(image_bytes: bytes) -> str:
+#     """Extract text from image using EasyOCR with robust error handling"""
+#     if ocr_reader is None:
+#         raise HTTPException(status_code=500, detail="OCR engine not available")
     
-    try:
-        # Convert bytes to PIL Image
-        image = Image.open(io.BytesIO(image_bytes))
+#     try:
+#         # Convert bytes to PIL Image
+#         image = Image.open(io.BytesIO(image_bytes))
         
-        # Convert to numpy array
-        img_array = np.array(image)
+#         # Convert to numpy array
+#         img_array = np.array(image)
         
-        # Handle different image formats
-        if len(img_array.shape) == 3:
-            if img_array.shape[2] == 4:  # RGBA
-                # Convert RGBA to RGB
-                img_array = cv2.cvtColor(img_array, cv2.COLOR_RGBA2RGB)
-            # Convert RGB to BGR for OpenCV
-            img_array = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
-        else:
-            # Grayscale image
-            img_array = cv2.cvtColor(img_array, cv2.COLOR_GRAY2BGR)
+#         # Handle different image formats
+#         if len(img_array.shape) == 3:
+#             if img_array.shape[2] == 4:  # RGBA
+#                 # Convert RGBA to RGB
+#                 img_array = cv2.cvtColor(img_array, cv2.COLOR_RGBA2RGB)
+#             # Convert RGB to BGR for OpenCV
+#             img_array = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
+#         else:
+#             # Grayscale image
+#             img_array = cv2.cvtColor(img_array, cv2.COLOR_GRAY2BGR)
         
-        # Resize if too large (memory optimization)
-        height, width = img_array.shape[:2]
-        max_dimension = 1600
-        if height > max_dimension or width > max_dimension:
-            scale = min(max_dimension/height, max_dimension/width)
-            new_width = int(width * scale)
-            new_height = int(height * scale)
-            img_array = cv2.resize(img_array, (new_width, new_height))
-            print(f"🔄 Resized image from {width}x{height} to {new_width}x{new_height}")
+#         # Resize if too large (memory optimization)
+#         height, width = img_array.shape[:2]
+#         max_dimension = 1600
+#         if height > max_dimension or width > max_dimension:
+#             scale = min(max_dimension/height, max_dimension/width)
+#             new_width = int(width * scale)
+#             new_height = int(height * scale)
+#             img_array = cv2.resize(img_array, (new_width, new_height))
+#             print(f"🔄 Resized image from {width}x{height} to {new_width}x{new_height}")
         
-        # Perform OCR with error handling
-        results = ocr_reader.readtext(
-            img_array,
-            batch_size=1,
-            paragraph=True,
-            min_size=20,
-            text_threshold=0.5,
-            link_threshold=0.4,
-            width_ths=0.5
-        )
+#         # Perform OCR with error handling
+#         results = ocr_reader.readtext(
+#             img_array,
+#             batch_size=1,
+#             paragraph=True,
+#             min_size=20,
+#             text_threshold=0.5,
+#             link_threshold=0.4,
+#             width_ths=0.5
+#         )
         
-        # Extract and combine text
-        extracted_text = []
-        for (bbox, text, confidence) in results:
-            if confidence > 0.4:
-                extracted_text.append(text)
-                print(f"📝 Detected: '{text}' (confidence: {confidence:.2f})")
+#         # Extract and combine text
+#         extracted_text = []
+#         for (bbox, text, confidence) in results:
+#             if confidence > 0.4:
+#                 extracted_text.append(text)
+#                 print(f"📝 Detected: '{text}' (confidence: {confidence:.2f})")
         
-        combined_text = " ".join(extracted_text).strip()
+#         combined_text = " ".join(extracted_text).strip()
         
-        print(f"✅ Extracted {len(extracted_text)} text blocks from image")
-        return combined_text
+#         print(f"✅ Extracted {len(extracted_text)} text blocks from image")
+#         return combined_text
         
-    except Exception as e:
-        print(f"❌ OCR extraction failed: {e}")
-        raise HTTPException(status_code=500, detail="Failed to extract text from image")
+#     except Exception as e:
+#         print(f"❌ OCR extraction failed: {e}")
+#         raise HTTPException(status_code=500, detail="Failed to extract text from image")
 
 
 # ====================================================
