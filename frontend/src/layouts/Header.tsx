@@ -52,10 +52,29 @@ export function Header({ onMenuClick, isMobile, setIsSidebarOpen, isSidebarOpen 
   return (
     <header className={`fixed top-0 left-0 right-0 h-16 z-50 shadow-xs bg-gradient-to-tr from-white to-blue-50 transition-colors duration-300 ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
       <div className="h-full mx-auto px-4 flex items-center justify-between">
-        <div className="flex items-center gap-4 cursor-pointer" onClick={() => isAuthenticated ? navigate('/') : navigate('/')}>
+        {/* Mobile menu button */}
+        {isMobile && (
+          <button 
+            type="button"
+            onClick={handleMenuClick}
+            className="p-1 rounded-md text-[var(--text)] hover:bg-[var(--background)] focus:outline-none"
+            aria-label="Toggle menu"
+          >
+            {isSidebarOpen ? (
+              <i className="fi fi-sr-x w-6 h-6 text-[var(--text)] flex items-center justify-center" />
+            ) : (
+              <i className="fi fi-br-menu-burger w-6 h-6 text-[var(--text)] flex items-center justify-center" />
+            )}
+          </button>
+        )}
+        <div className="flex items-center cursor-pointer" onClick={() => isAuthenticated ? navigate('/') : navigate('/')}>
           {isMobile ? (
-            <div className="border-2 border-green rounded-full">
-              <h1 className="text-green text-xl font-semibold px-1.5">M</h1>
+            <div className="flex items-center">
+              {/* <div className="border-2 border-green rounded-full flex items-center">
+                <h1 className="text-green text-xl font-semibold px-1.5 py-0.5">m</h1>
+              </div> */}
+              <h1 className="text-green text-xl font-semibold">maiind</h1>
+
             </div>
           ) : (
             <div className="h-8 flex items-center gap-1">
@@ -144,22 +163,6 @@ export function Header({ onMenuClick, isMobile, setIsSidebarOpen, isSidebarOpen 
               {theme === 'dark' ? '🌞' : '🌙'}
             </button>
           )} */}
-
-          {/* Mobile menu button */}
-          {isMobile && (
-            <button 
-              type="button"
-              onClick={handleMenuClick}
-              className="p-1 rounded-md text-[var(--text)] hover:bg-[var(--background)] focus:outline-none"
-              aria-label="Toggle menu"
-            >
-              {isSidebarOpen ? (
-                <i className="fi fi-sr-x w-6 h-6 text-[var(--text)] flex items-center justify-center" />
-              ) : (
-                <i className="fi fi-br-menu-burger w-6 h-6 text-[var(--text)] flex items-center justify-center" />
-              )}
-            </button>
-          )}
           
         </div>
       </div>
