@@ -25,6 +25,7 @@ class ConversationModel(BaseModel):
     domain: Optional[str] = None
     prev_conversation: Optional[str] = None
     parent_conversation: Optional[str] = None
+    sources_used: Optional[str] = None
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
     edit_history: Optional[List[Dict[str, Any]]] = None
@@ -77,6 +78,7 @@ class ChatModel(BaseModel):
     id: Optional[PyObjectId] = Field(default=None, alias="_id")
     title: Optional[str] = None
     user_id: str
+    teacher_id: str
     conversations: List[PseudoConversationModel] = []
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)

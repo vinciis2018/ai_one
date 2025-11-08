@@ -59,7 +59,6 @@ async def query(req: QueryRequest):
     Retrieves context from uploaded docs and generates response.
     """
     try:
-        print("req", req)
         user_query = req.text.strip()
         chat_id = req.chatId or None
         previous_conversation = req.previousConversation or None
@@ -72,10 +71,8 @@ async def query(req: QueryRequest):
         user_ids = [user_id]
         if teacher_id:
             teacher_user_id = db["teachers"].find_one({"_id": ObjectId(teacher_id)})["user_id"]
-            print("teacher", teacher_user_id)
             user_ids.append(teacher_user_id)
 
-        print("user_ids", user_ids)
 
         # Step 1: Retrieve from knowledge bases
         context_chunks, user_docs = await retrieve_similar(user_query, user_ids)
@@ -99,11 +96,7 @@ async def query(req: QueryRequest):
 
             answer = call_llm(augmented_prompt, domain_expertise)
             log_query_event(user_query, answer, success=False)
-            res = await _save_conversation(user_query, answer, chat_id, previous_conversation, user_id)
-            
-            print("chat_id", res["chat_id"])
-            print("conversation_id", res["conversation_id"])
-            print("previous_conversation", previous_conversation)
+            res = await _save_conversation(user_query, answer, chat_id, previous_conversation, user_id, teacher_id)
         
             return {
                 "chat_id": res["chat_id"],
@@ -114,30 +107,35 @@ async def query(req: QueryRequest):
                 "sources_used": len(user_docs), 
                 "sources": user_docs
             }
-        print("all_contexts", all_contexts)
 
         # Step 2: Build augmented prompt
         # Extract text from each chunk and join them
-        context_text = "\n\n".join(chunk['text'] for chunk in all_contexts)
-        print("all_contexts", context_text)
 
-        augmented_prompt = (
-            f"Answer the following question using the context below.\n\n"
-            f"Context:\n{context_text}\n\n"
-            f"Question: {user_query}"
-        )
-        print("augmented_prompt", augmented_prompt)
+        doc_context = "\n\n".join(f"📘 {chunk['source'].capitalize()} Context:\n{chunk['text']}" 
+                          for chunk in context_chunks)
+        conversation_context = "\n\n".join(f"💬 Past Conversation ({chunk['created_at']}):\n{chunk['text']}" 
+                                        for chunk in memory_chunks)
+
+        context_text = f"{doc_context}\n\n{conversation_context}"
+
+        # context_text = "\n\n".join(chunk['text'] for chunk in all_contexts)
+
+        augmented_prompt = f"""
+            Use the following **knowledge and previous conversation history** to answer clearly.\n\n"
+            
+            If part of the answer relates to something we discussed earlier, mention it naturally 
+            (e.g., "As we talked about before..." or "Building on your earlier question about...").\n\n
+
+            Context:\n{context_text}\n\n
+            Question: {user_query}
+        """
 
         # Step 3: Get answer (OpenAI or local fallback)
         answer = call_llm(augmented_prompt, domain_expertise)
-        print("answer", answer)
 
         # Step 4: Log + save
         log_query_event(user_query, answer)
-        res = await _save_conversation(user_query, answer, chat_id, previous_conversation, user_id)
-        print("chat_id", res["chat_id"])
-        print("conversation_id", res["conversation_id"])
-        print("previous_conversation", previous_conversation)
+        res = await _save_conversation(user_query, answer, chat_id, previous_conversation, user_id, teacher_id, user_docs)
         
         return {
             "chat_id": res["chat_id"],
@@ -183,7 +181,9 @@ async def _save_conversation(
     answer: str,
     chat_id: Optional[str] = None,
     previous_conversation: Optional[str] = None,
-    user_id: Optional[str] = None
+    user_id: Optional[str] = None,
+    teacher_id: Optional[str] = None,
+    user_docs: Optional[list] = None
 ) -> dict:
     """
     Save or update chat and conversation in MongoDB.
@@ -203,6 +203,7 @@ async def _save_conversation(
             "query_by": "user",
             "answer_by": "assistant",
             "prev_conversation": previous_conversation,
+            "sources_used": [str(doc['_id']) for doc in user_docs],
             "created_at": now,
             "updated_at": now,
             "edit_history": []
@@ -250,6 +251,7 @@ async def _save_conversation(
             chat_doc = {
                 "title": query[:100],
                 "user_id": user_id,
+                "teacher_id": teacher_id,
                 "conversations": [{
                     "conversation_id": conversation_id,
                     "prev_conversation": previous_conversation,
@@ -270,6 +272,16 @@ async def _save_conversation(
                 {"_id": result.inserted_id, "conversations.conversation_id": conversation_id},
                 {"$set": {"conversations.$.parent_conversation": chat_id}}
             )
+
+        
+        from sentence_transformers import SentenceTransformer
+        embedder = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+
+        embedding = embedder.encode(f"{query} {answer}").astype("float32").tolist()
+        await conversation_collection.update_one(
+            {"_id": conversation_result.inserted_id},
+            {"$set": {"embedding": embedding, "user_id": user_id}}
+        )
         
         return {
             "chat_id": chat_id,

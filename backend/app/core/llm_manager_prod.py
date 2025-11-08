@@ -54,7 +54,7 @@ def get_hf_pipeline():
         _hf_pipeline = pipeline(
             "text-generation",
             model=HF_MODEL,
-            torch_dtype=torch.float16 if DEVICE != "cpu" else torch.float32,
+            dtype=torch.float16 if DEVICE != "cpu" else torch.float32,
             device_map="auto" if DEVICE != "cpu" else None,
             batch_size=4,
             max_new_tokens=256,

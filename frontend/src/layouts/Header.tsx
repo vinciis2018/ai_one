@@ -50,7 +50,7 @@ export function Header({ onMenuClick, isMobile, setIsSidebarOpen, isSidebarOpen 
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 h-16 z-50 shadow-sm transition-colors duration-300 ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
+    <header className={`fixed top-0 left-0 right-0 h-16 z-50 shadow-xs bg-gradient-to-tr from-white to-blue-50 transition-colors duration-300 ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
       <div className="h-full mx-auto px-4 flex items-center justify-between">
         <div className="flex items-center gap-4 cursor-pointer" onClick={() => isAuthenticated ? navigate('/') : navigate('/')}>
           {isMobile ? (
@@ -59,7 +59,7 @@ export function Header({ onMenuClick, isMobile, setIsSidebarOpen, isSidebarOpen 
             </div>
           ) : (
             <div className="h-8 flex items-center gap-1">
-              <h1 className="text-green text-xl font-semibold">myInd</h1>
+              <h1 className="text-green text-xl font-semibold">maiind</h1>
             </div>
           )}
         </div>

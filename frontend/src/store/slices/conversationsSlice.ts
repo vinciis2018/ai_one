@@ -6,16 +6,14 @@ import { BASE_URL } from '../../constants/helperConstants';
 
 
 export interface Conversation {
-  id: number;
+  id: string;
   query: string;
   query_by: string;
   answer: string;
   answer_by: string;
-  sources_used: number;
-
-  previous_conversation: string;
+  sources_used?: string[];
+  prev_conversation: string | null;
   parent_conversation: string;
-  chat_id: string;
   created_at: string;
 }
 

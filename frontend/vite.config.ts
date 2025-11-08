@@ -28,8 +28,8 @@ export default defineConfig({
         ]
       },
       manifest: {
-        name: 'MYIND',
-        short_name: 'myind',
+        name: 'MAIIND',
+        short_name: 'maiind',
         description: 'pharma logistics',
         theme_color: '#ffffff',
         icons: [

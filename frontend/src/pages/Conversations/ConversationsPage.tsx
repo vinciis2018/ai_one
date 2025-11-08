@@ -78,7 +78,10 @@ export const ConversationsPage: React.FC = () => {
           <div className="h-screen fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 py-4">
             <div className="h-screen bg-white dark:bg-black border rounded-lg shadow-xl w-full max-w-2xl mx-4 flex flex-col">
               <div className="flex justify-between items-center border-b border-[var(--border)] p-4">
-                <h3 className="text-lg font-semibold text-[var(--text)]">Conversation Detail</h3>
+                <div className="flex items-center px-8 py-4 gap-4 border-b border-[var(--border)]">
+                  <h4 className="font-semibold">Chat Title:</h4>
+                  <p className="text-[var(--text)]">{selectedChat.title}</p>
+                </div>
                 <button
                   onClick={() => dispatch(setSelectedChat(null))}
                   className="text-gray-500 hover:text-gray-700"
@@ -86,10 +89,7 @@ export const ConversationsPage: React.FC = () => {
                   ✖
                 </button>
               </div>
-              <div className="flex items-center px-8 py-4 gap-4 border-b border-[var(--border)]">
-                <h4 className="font-semibold">Title:</h4>
-                <p className="text-[var(--text)]">{selectedChat.title}</p>
-              </div>
+
               <div className="overflow-y-auto max-h-[40vh]">
                 {items.length > 0 && items?.map((conversation) => (
                   <div key={conversation?.id} className="p-4 space-y-2 border-b mx-4">

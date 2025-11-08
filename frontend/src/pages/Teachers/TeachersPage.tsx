@@ -42,10 +42,10 @@ console.log(selectedId)
   return (
     <FullLayout>
       <div className="bg-white max-w-4xl mx-auto py-2 px-4">
-        <div className="rounded-lg overflow-hidden">
-          <div className="py-2 flex items-center gap-2 border-b border-gray-100" onClick={() => navigate(-1)}>
+        <div className="w-full rounded-lg overflow-hidden">
+          <div className="max-w-4xl mx-auto py-2 flex items-center gap-2 border-b border-gray-100" onClick={() => navigate(-1)}>
             <i className="fi fi-sr-arrow-small-left flex items-center rounded-full bg-baigeLight p-1" />
-            <h1 className="text-sm font-semibold">
+            <h1 className="w-full text-sm font-semibold">
               Teachers
             </h1>
           </div>
@@ -72,7 +72,7 @@ console.log(selectedId)
             </select>
           </div>
 
-          <div className="py-2">
+          <div className="py-2 w-full">
             <h2 className="text-xs">found {all_teachers.length} teachers</h2>
             <div className="py-4 space-y-2">
               {Array.isArray(all_teachers) ? all_teachers.map((teacher: TeacherModel) => (

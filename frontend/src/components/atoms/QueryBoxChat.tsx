@@ -4,24 +4,59 @@
 // Now with S3 image upload before processing
 // ============================================
 
-import React, { useEffect, useState, useRef, useMemo } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { askQuery, askImageQuery } from "../../store/slices/assistantSlice";
-import { ResponseCard } from "./ResponseCard";
-import { fetchChatById } from "../../store/slices/conversationsSlice";
+// import { ResponseCard } from "./ResponseCard";
+import { fetchChatById, type ChatResponse } from "../../store/slices/conversationsSlice";
 import { getS3Url } from "../../utilities/awsUtils";
+import { AnimatedTextAreaInput } from "./AnimatedTextAreaInput";
 
-export const QueryBoxChat: React.FC<{domain: string, teacher_id?: string}> = ({domain, teacher_id = null}) => {
+
+export const QueryBoxChat: React.FC<{
+  domain: string,
+  teacher_id?: string | null,
+  setConversation?: (conversation: ChatResponse) => void
+}> = ({domain, teacher_id = null, setConversation}) => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
   const { queryStatus, response, error } = useAppSelector(
     (state) => state.assistant
   );
   const { chat: chatConversation } = useAppSelector((state) => state.conversations); 
-
+// const chatConversation: ChatResponse = useMemo(() => {
+//   return {
+//     "id": "690f797cb469fa12d256d4f5",
+//     "title": "What is the dimension of electric capacitance?",
+//     "user_id": "690860e3489b114c676d005d",
+//     "conversations": [
+//         {
+//             "id": "690f797cb469fa12d256d4f4",
+//             "query_by": "user",
+//             "answer_by": "assistant",
+//             "query": "What is the dimension of electric capacitance?",
+//             "answer": "In the context provided, electric capacitance is not explicitly mentioned as a physical quantity with its dimensions listed. However, we can infer the dimension of electric capacitance from the fundamental physical quantities given in the notes. Electric capacitance (C) is a quantitative measure of a structure's ability to store an electric charge. It has a direct relationship with charge (Q) and voltage (V), as described by the equation: C = Q/V.\n\nFrom the table in the context, we can see that Charge (Q) has dimensions [M^0 L^0 T^0 A^1] or simply [A]. Similarly, Voltage (V) has dimensions [ML^2 T^-3 A^-1], which can be simplified as [LT^-3 A^-1]. Therefore, the dimension of electric capacitance will be the product of the dimensions of charge and inverse voltage:\n\nC = Q/V  =>  Dim(C) = Dim(Q) x Dim(V)^-1\n                = [A] x [LT^-3 A^-1]^-1\n                = [ML^2 T^-3]^-1 or [C] in the SI system.",
+//             "prev_conversation": null,
+//             "parent_conversation": "690f797cb469fa12d256d4f5",
+//             "created_at": "2025-11-08T17:10:20.326000"
+//         },
+//         {
+//             "id": "690f79bcb469fa12d256d4f6",
+//             "query_by": "user",
+//             "answer_by": "assistant",
+//             "query": "What is the dimension of resistance?",
+//             "answer": "In the context provided, to find the dimension of resistance, we first need to identify the fundamental quantity related to resistance. Resistance is a measure of how much a material opposes the flow of electric current. It is related to Ohm's Law, which describes the relationship between voltage (V), current (I), and resistance (R).\n\nOhm's Law states that V = IR, where V is voltage, I is current, and R is resistance. To find the dimensions of resistance, we can see that resistance has the same dimension as ohms (Ω), which are units of electrical resistance.\n\nNow, let's consider the fundamental quantities listed in the notes:\n- M for Mass\n- L for Length\n- T for Time\n- K for Temperature\n- mol for Amount of substance\n- cd for Luminous intensity\n\nSince electric current (I) is related to charge (Q) and time (T), we can represent it as I = Q/T. However, resistance (R) does not have a direct relation with any of these fundamental quantities. Instead, it has a relationship with the voltage (V) and current (I).\n\nIn the table provided, the dimension of current is given as I = M(LT⁻³)A⁻². Now we can find the dimension of resistance by multiplying the dimensions of voltage and current:\n\n- The dimension of voltage (V) is [M(L T⁻²)] because it has the same dimension as work (W), which can be derived from F = ma, where F has the dimension [MLT⁻². Acceleration (a) has the dimension [LT⁻². Thus, work (W) has the dimension M(L T⁻²).]\n- Multiplying the dimensions of voltage and current gives us the dimension of resistance: [M(L T⁻²)] × [M(LT⁻³)A⁻²] = [ML²T⁻³A⁻²].\n\nSince this resulting dimension does not match with the given dimension of ohms (Ω), there seems to be a mistake in the table. The correct dimension of resistance should be [M(LT⁻³)⁻². This error might occur due to a typo or miscalculation, but it does not affect the conceptual understanding that resistance has the same dimension as ohms (Ω).",
+//             "prev_conversation": "690f797cb469fa12d256d4f4",
+//             "parent_conversation": "690f797cb469fa12d256d4f5",
+//             "created_at": "2025-11-08T17:11:24.837000"
+//         }
+//     ],
+//     "created_at": "2025-11-08T17:10:20.326000"
+// }
+// }, []);
   const [question, setQuestion] = useState("");
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null | undefined>(null);
   const [isUploadingToS3, setIsUploadingToS3] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -143,67 +178,23 @@ export const QueryBoxChat: React.FC<{domain: string, teacher_id?: string}> = ({d
   useEffect(() => {
     if (response) {
       dispatch(fetchChatById(response.chat_id));
+      setQuestion("");
     }
+
+  
   }, [dispatch, response]);
 
+  useEffect(() => {
+    if (chatConversation && setConversation) {
+      setConversation(chatConversation);
+    }
+  }, [chatConversation, setConversation]);
+
+  console.log(chatConversation)
 
  
-  // Add this inside the QueryBox component, before the return statement
-  const [placeholderText, setPlaceholderText] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  const placeholders = useMemo(() => [
-    "Ask your queries and get answers based on your collective notes...",
-    domain === "physics" 
-      ? "How to find out the dimension of magnetic flux?" : domain === "chemistry"
-      ? "What is the bi-product in redox reaction?" : domain === "biology" 
-      ? "What is the formula of photosynthesis?" : domain === "maths" 
-      ? "What is the probability of getting 3 sixes on rolling 11 dices?" : 
-      "Do you have any doubts?",
-    imagePreview ? "Is the solution correct in the uploaded image?" : "Upload and image of your notes and ask your query from it..." 
-  ], [imagePreview, domain]);
-
-  // Update the typing effect
-  useEffect(() => {
-    const currentText = placeholders[currentIndex % placeholders.length] as string;
-    
-    if (!isDeleting) {
-      // Typing animation
-      if (charIndex < currentText.length) {
-        const timeout = setTimeout(() => {
-          setPlaceholderText(currentText.substring(0, charIndex + 1));
-          setCharIndex(charIndex + 1);
-        }, 50); // Typing speed
-        return () => clearTimeout(timeout);
-      } else {
-        // Show full text for 2 seconds
-        const timeout = setTimeout(() => {
-          setIsDeleting(true);
-        }, 2000);
-        return () => clearTimeout(timeout);
-      }
-    } else {
-      // Deleting animation
-      if (charIndex > 0) {
-        const timeout = setTimeout(() => {
-          setPlaceholderText(currentText.substring(0, charIndex - 1));
-          setCharIndex(charIndex - 1);
-        }, 30); // Deleting speed
-        return () => clearTimeout(timeout);
-      } else {
-        // Move to next placeholder
-        setIsDeleting(false);
-        setCurrentIndex((currentIndex + 1) % placeholders.length);
-        setCharIndex(0);
-      }
-    }
-  }, [charIndex, currentIndex, isDeleting, placeholders]);
-
-
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="max-w-4xl mx-auto">
       {/* Image Upload Section */}
       <div className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-100 rounded-2xl hover:shadow-lg transition-shadow focus:ring-1 focus:ring-green focus:outline p-2">
         <div className={`grid ${selectedImage ? "grid-cols-4" : "grid-cols-3"}`}>
@@ -241,12 +232,12 @@ export const QueryBoxChat: React.FC<{domain: string, teacher_id?: string}> = ({d
     
           {/* Text Input */}
           <div className="col-span-3">
-            <textarea
-              value={question}
-              onChange={(e) => setQuestion(e.target.value)}
-              placeholder={placeholderText}
-              className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 w-full h-24 rounded-lg p-3 text-gray-700 border-none focus:outline-none focus:ring-0 resize-none"
-              disabled={isLoading}
+            <AnimatedTextAreaInput
+              domain={domain}
+              imagePreview={imagePreview}
+              isLoading={isLoading}
+              question={question}
+              setQuestion={setQuestion}
             />
           </div>
         </div>
@@ -317,7 +308,7 @@ export const QueryBoxChat: React.FC<{domain: string, teacher_id?: string}> = ({d
         <p className="text-red-500 text-sm mt-3 text-center">❌ {error}</p>
       )}
 
-      {response && (
+      {/* {response && (
         <div>
           <ResponseCard response={response} />
           <div className="border-t mt-4 text-sm text-gray-500">
@@ -329,7 +320,7 @@ export const QueryBoxChat: React.FC<{domain: string, teacher_id?: string}> = ({d
             ))}
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

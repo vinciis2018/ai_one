@@ -1,18 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { FullLayout } from "../../layouts/AppLayout";
 import { getTeacherDetails } from "../../store/slices/teachersSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import { QueryBoxChat } from "../../components/atoms/QueryBoxChat";
+import type { ChatResponse } from "../../store/slices/conversationsSlice";
 
 export const TeacherChatPage: React.FC = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const chatContainerRef = useRef<HTMLDivElement>(null);
   
   // New: domain selection state
   const [domain, setDomain] = useState<string>("science");
   const [showDomainDropdown, setShowDomainDropdown] = useState<boolean>(false);
+  const [conversation, setConversation] = useState<ChatResponse>();
+
+  // Auto-scroll to bottom when conversation updates
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [conversation]);
   console.log(domain, showDomainDropdown)
   const {user} = useAppSelector((state) => state.auth);
   const { teacher_details, loading, error } = useAppSelector((state) => state.teachers);
@@ -51,9 +61,9 @@ export const TeacherChatPage: React.FC = () => {
 
   return (
     <FullLayout>
-      <div className="relative bg-white max-w-4xl mx-auto py-2 px-4">
-        <div className="fixed w-full left-0 rounded-lg overflow-hidden px-4">
-          <div className="sticky top-0 z-10 bg-white py-2 flex items-center justify-between gap-2 border-b border-gray-100">
+      <div className="relative w-full h-screen bg-white max-w-4xl mx-auto px-4">
+        <div className="fixed left-0 right-0 w-full h-full rounded-lg overflow-hidden px-4">
+          <div className="sticky max-w-4xl mx-auto z-10 bg-white py-2 flex items-center justify-between gap-2 border-b border-gray-100">
             <div className="flex items-center gap-2">
               <img className="h-8 w-8 rounded-full" src={teacher_details?.avatar} alt={teacher_details?.name} />
               <div>
@@ -101,13 +111,49 @@ export const TeacherChatPage: React.FC = () => {
           {error && <p className="text-red-500">Failed to load teachers.</p>}
           
 
-          <div className="pb-24">
+          <div ref={chatContainerRef} className="pb-80 overflow-y-auto h-screen">
             {/* Chat messages will go here */}
+            <div className="max-w-4xl mx-auto">
+              {conversation && conversation?.conversations.length > 0 && conversation?.conversations?.map((conv) => (
+                <div key={conv?.id} className="space-y-4 p-2 border-b border-gray-100 mx-2">
+                  {/* User message - aligned to right */}
+                  {conv.query && (
+                    <div className="flex justify-end">
+                      <div className="bg-baigeLight p-4 rounded-xl max-w-xl">
+                        <h4 className="text-xs font-semibold text-blue-700">You</h4>
+                        <p className="text-gray-800 text-sm whitespace-pre-line">{conv.query}</p>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Assistant message - aligned to left */}
+                  {conv.answer && (
+                    <div className="flex flex-col">
+                      <div className="bg-gray-50 p-4 rounded-xl max-w-xl">
+                        <div className="flex items-center gap-1 pb-2">
+                          <h4 className="text-xs font-semibold text-gray-700 capitalize">{teacher_details?.name}</h4>
+                          <i className="fi fi-rr-microchip-ai flex items-center text-xs"></i>
+                        </div>
+                        <p className="text-gray-800 text-sm whitespace-pre-line">{conv.answer}</p>
+
+                      </div>
+                      <div className="p-2">
+                        <p className="text-gray-800 text-xs whitespace-pre-line">{conv.sources_used && conv.sources_used?.length} sources referenced</p>
+                      </div>
+                    </div>
+                  )}
+                  
+                  <div className="text-xs text-gray-500 text-center">
+                    {new Date(conversation.created_at).toLocaleString()}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
           
-          <div className="fixed bottom-0 left-0 right-0 bg-white p-2">
-            <div className="max-w-4xl mx-auto">
-              <QueryBoxChat domain={domain} teacher_id={teacher_details?._id as string} />
+          <div className="fixed bottom-0 left-0 right-0 p-2">
+            <div className="max-w-4xl mx-auto bg-white">
+              <QueryBoxChat domain={domain} teacher_id={teacher_details?._id as string} setConversation={setConversation} />
             </div>
           </div>
  

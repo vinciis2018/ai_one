@@ -303,7 +303,7 @@ async def process_query_common(
 
             answer = call_llm(augmented_prompt, domain_expertise)
             log_query_event(user_query, answer, success=False)
-            res = await _save_conversation(user_query, answer, chat_id, previous_conversation, user_id)
+            res = await _save_conversation(user_query, answer, chat_id, previous_conversation, user_id, teacher_id)
             
             return {
                 "chat_id": res["chat_id"],
@@ -330,7 +330,7 @@ async def process_query_common(
 
         # Step 4: Log + save
         log_query_event(user_query, answer)
-        res = await _save_conversation(user_query, answer, chat_id, previous_conversation, user_id)
+        res = await _save_conversation(user_query, answer, chat_id, previous_conversation, user_id, teacher_id)
         
         return {
             "chat_id": res["chat_id"],
@@ -506,7 +506,8 @@ async def _save_conversation(
     answer: str,
     chat_id: Optional[str] = None,
     previous_conversation: Optional[str] = None,
-    user_id: Optional[str] = None
+    user_id: Optional[str] = None,
+    teacher_id: Optional[str] = None
 ) -> dict:
     """
     Save or update chat and conversation in MongoDB.
@@ -569,6 +570,7 @@ async def _save_conversation(
             chat_doc = {
                 "title": query[:100],
                 "user_id": user_id,
+                "teacher_id": teacher_id,
                 "conversations": [{
                     "conversation_id": conversation_id,
                     "prev_conversation": previous_conversation,

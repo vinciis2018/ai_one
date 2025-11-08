@@ -31,10 +31,10 @@ export function FullLayout({ children, footer = null }: FullLayoutProps) {
         {/* Sidebar - Fixed on mobile, sticky on desktop */}
         <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} isMobile={isMobile} setIsOpen={setIsSidebarOpen} />
         {/* Main Content */}
-        <div className="min-h-screen flex-1 flex flex-col overflow-hidden">
+        <div className="min-h-screen flex-1 flex flex-col items-center justify-center overflow-hidden">
           {/* Scrollable Content */}
-          <main className="flex-1 overflow-y-auto">
-            <div className="min-h-* pt-8">
+          <main className="flex-1 overflow-y-auto w-full">
+            <div className="min-h-* pt-8 w-full flex items-center justify-center">
               {children}
             </div>
           </main>

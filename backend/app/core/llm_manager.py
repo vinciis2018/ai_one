@@ -26,7 +26,7 @@ FALLBACK_MODEL = "distilgpt2"
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "mistral")
 
 open_ai_client = OpenAI(api_key=OPENAI_API_KEY)
-print(open_ai_client)
+
 # ------------------------------------------------
 # Device detection
 # ------------------------------------------------
@@ -54,7 +54,7 @@ def get_hf_pipeline():
         _hf_pipeline = pipeline(
             "text-generation",
             model=HF_MODEL,
-            torch_dtype=torch.float16 if DEVICE != "cpu" else torch.float32,
+            dtype=torch.float16 if DEVICE != "cpu" else torch.float32,
             device_map="auto" if DEVICE != "cpu" else None,
             batch_size=4,
             max_new_tokens=256,
@@ -111,7 +111,9 @@ def build_domain_prompt(prompt: str, domain: str | None = None) -> str:
 
     system_prompt = (
         f"You are {role} teacher for competitive exams, having deep knowledge of the subject. "
-        "Answer only using the provided context, ensuring conceptual accuracy. Try not to share any external weblinks, untill specifically asked in the prompt by user."
+        "Answer only using the provided context, ensuring conceptual, mathematical and factual accuracy. Try not to share any external weblinks, untill specifically asked in the prompt by user."
+        "You may reference earlier conversation history if relevant (e.g., 'as discussed before'). "
+        "Ensure factual consistency and maintain continuity of tutoring tone."
         "Explain clearly and concisely, as if teaching a student for competitive exams like IIT JEE, NEET and CBSE."
     )
 
@@ -156,13 +158,13 @@ def call_llm(prompt: str, domain: str) -> str:
     # =======================
     # 2️⃣ Hugging Face
     # =======================
-    if LLM_MODE in ["auto", "huggingface"]:
-        try:
-            pipe = get_hf_pipeline()
-            outputs = pipe(domain_prompt, num_return_sequences=1, do_sample=True)
-            return outputs[0]["generated_text"].strip()
-        except Exception as e:
-            logger.warning(f"⚠️ Hugging Face failed: {e}")
+    # if LLM_MODE in ["auto", "huggingface"]:
+    #     try:
+    #         pipe = get_hf_pipeline()
+    #         outputs = pipe(domain_prompt, num_return_sequences=1, do_sample=True)
+    #         return outputs[0]["generated_text"].strip()
+    #     except Exception as e:
+    #         logger.warning(f"⚠️ Hugging Face failed: {e}")
 
     # =======================
     # 3️⃣ Ollama

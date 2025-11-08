@@ -18632,3 +18632,1781 @@ ValueError: Using a `device_map`, `tp_plan`, `torch.device` context manager or s
 2025-11-08 17:52:46,864 [INFO] GET /upload/list - 200 - 68.08ms
 2025-11-08 17:52:52,131 [INFO] GET /upload/690c5558e57af8cd04a75c44 - 200 - 187.04ms
 2025-11-08 17:52:52,137 [INFO] GET /upload/690c5558e57af8cd04a75c44 - 200 - 192.93ms
+2025-11-08 20:14:53,487 [INFO] Use pytorch device_name: mps
+2025-11-08 20:14:53,487 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-08 20:14:59,738 [INFO] Loading faiss.
+2025-11-08 20:14:59,804 [INFO] Successfully loaded faiss.
+2025-11-08 20:14:59,817 [INFO] Use pytorch device_name: mps
+2025-11-08 20:14:59,817 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-08 20:15:06,369 [INFO] 🧠 Using device: MPS
+2025-11-08 20:15:09,608 [INFO] OPTIONS /auth/me - 200 - 0.33ms
+2025-11-08 20:15:09,621 [INFO] OPTIONS /auth/login - 200 - 9.11ms
+2025-11-08 20:15:10,973 [INFO] POST /auth/login - 200 - 1349.87ms
+2025-11-08 20:15:11,206 [INFO] GET /auth/me - 200 - 1593.99ms
+2025-11-08 20:15:11,626 [INFO] GET /auth/me - 200 - 419.36ms
+2025-11-08 20:15:11,801 [INFO] GET /auth/me - 200 - 172.26ms
+2025-11-08 20:15:13,757 [INFO] GET /teachers - 307 - 0.34ms
+2025-11-08 20:15:13,758 [INFO] GET /teachers - 307 - 0.26ms
+2025-11-08 20:15:13,925 [INFO] GET /auth/me - 200 - 169.66ms
+2025-11-08 20:15:13,935 [INFO] GET /teachers - 307 - 0.22ms
+2025-11-08 20:15:14,125 [INFO] GET /teachers/ - 200 - 363.38ms
+2025-11-08 20:15:14,125 [INFO] GET /auth/me - 200 - 198.37ms
+2025-11-08 20:15:14,145 [INFO] GET /teachers - 307 - 0.5ms
+2025-11-08 20:15:14,511 [INFO] GET /teachers/ - 200 - 384.3ms
+2025-11-08 20:15:14,864 [INFO] GET /teachers/ - 200 - 349.13ms
+2025-11-08 20:15:16,964 [INFO] GET /teachers/ - 200 - 2097.28ms
+2025-11-08 20:15:16,964 [INFO] GET /auth/me - 200 - 650.49ms
+2025-11-08 20:15:17,146 [INFO] GET /auth/me - 200 - 179.97ms
+2025-11-08 20:15:17,325 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 1010.55ms
+2025-11-08 20:15:17,526 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 198.39ms
+2025-11-08 20:15:17,900 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 372.24ms
+2025-11-08 20:15:18,178 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 275.64ms
+2025-11-08 20:29:20,953 [INFO] OPTIONS /auth/me - 200 - 3.16ms
+2025-11-08 20:29:20,955 [INFO] OPTIONS /auth/me - 200 - 4.1ms
+2025-11-08 20:29:21,857 [INFO] GET /auth/me - 200 - 898.53ms
+2025-11-08 20:29:22,099 [INFO] GET /auth/me - 200 - 238.8ms
+2025-11-08 20:30:26,894 [INFO] GET /conversations/chats - 200 - 399.46ms
+2025-11-08 20:30:26,975 [INFO] GET /conversations/chats - 200 - 77.48ms
+2025-11-08 20:30:27,060 [INFO] GET /auth/me - 200 - 568.9ms
+2025-11-08 20:30:27,179 [INFO] GET /conversations/chats - 200 - 112.96ms
+2025-11-08 20:30:27,274 [INFO] GET /auth/me - 200 - 212.93ms
+2025-11-08 20:30:27,363 [INFO] GET /conversations/chats - 200 - 75.98ms
+2025-11-08 20:30:28,218 [INFO] GET /upload/list - 200 - 65.05ms
+2025-11-08 20:30:28,274 [INFO] GET /upload/list - 200 - 54.98ms
+2025-11-08 20:30:28,354 [INFO] GET /auth/me - 200 - 202.53ms
+2025-11-08 20:30:28,423 [INFO] GET /upload/list - 200 - 59.14ms
+2025-11-08 20:30:28,555 [INFO] GET /auth/me - 200 - 199.27ms
+2025-11-08 20:30:28,630 [INFO] GET /upload/list - 200 - 66.81ms
+2025-11-08 20:30:30,051 [INFO] GET /teachers - 307 - 0.57ms
+2025-11-08 20:30:30,053 [INFO] GET /teachers - 307 - 0.45ms
+2025-11-08 20:30:30,258 [INFO] GET /auth/me - 200 - 207.94ms
+2025-11-08 20:30:30,265 [INFO] GET /teachers - 307 - 0.22ms
+2025-11-08 20:30:30,473 [INFO] GET /teachers/ - 200 - 418.66ms
+2025-11-08 20:30:30,593 [INFO] GET /auth/me - 200 - 332.74ms
+2025-11-08 20:30:30,600 [INFO] GET /teachers - 307 - 0.27ms
+2025-11-08 20:30:30,818 [INFO] GET /teachers/ - 200 - 342.7ms
+2025-11-08 20:30:31,183 [INFO] GET /teachers/ - 200 - 362.58ms
+2025-11-08 20:30:31,427 [INFO] GET /coachings - 307 - 0.22ms
+2025-11-08 20:30:31,428 [INFO] GET /coachings - 307 - 0.28ms
+2025-11-08 20:30:31,509 [INFO] GET /coachings/ - 200 - 79.84ms
+2025-11-08 20:30:32,090 [INFO] GET /teachers/ - 200 - 904.07ms
+2025-11-08 20:30:32,092 [INFO] GET /coachings/ - 200 - 582.12ms
+2025-11-08 20:30:32,174 [INFO] GET /auth/me - 200 - 748.13ms
+2025-11-08 20:30:32,407 [INFO] GET /auth/me - 200 - 231.59ms
+2025-11-08 20:30:33,924 [INFO] GET /auth/me - 200 - 241.39ms
+2025-11-08 20:30:34,283 [INFO] GET /auth/me - 200 - 356.51ms
+2025-11-08 20:30:35,685 [INFO] GET /coachings - 307 - 0.39ms
+2025-11-08 20:30:35,686 [INFO] GET /coachings - 307 - 0.21ms
+2025-11-08 20:30:35,745 [INFO] GET /coachings/ - 200 - 57.89ms
+2025-11-08 20:30:35,804 [INFO] GET /coachings/ - 200 - 58.55ms
+2025-11-08 20:30:35,924 [INFO] GET /auth/me - 200 - 241.47ms
+2025-11-08 20:30:36,139 [INFO] GET /auth/me - 200 - 210.97ms
+2025-11-08 20:30:37,864 [INFO] GET /teachers - 307 - 0.32ms
+2025-11-08 20:30:37,865 [INFO] GET /teachers - 307 - 0.2ms
+2025-11-08 20:30:38,268 [INFO] GET /auth/me - 200 - 404.37ms
+2025-11-08 20:30:38,274 [INFO] GET /teachers - 307 - 0.28ms
+2025-11-08 20:30:38,434 [INFO] GET /teachers/ - 200 - 567.85ms
+2025-11-08 20:30:38,494 [INFO] GET /auth/me - 200 - 224.53ms
+2025-11-08 20:30:38,506 [INFO] GET /teachers - 307 - 0.21ms
+2025-11-08 20:30:38,810 [INFO] GET /teachers/ - 200 - 374.83ms
+2025-11-08 20:30:39,173 [INFO] GET /teachers/ - 200 - 359.63ms
+2025-11-08 20:30:39,624 [INFO] GET /teachers/ - 200 - 448.39ms
+2025-11-08 20:30:39,654 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 165.84ms
+2025-11-08 20:30:39,683 [INFO] GET /auth/me - 200 - 195.38ms
+2025-11-08 20:30:39,885 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 229.27ms
+2025-11-08 20:30:39,899 [INFO] GET /auth/me - 200 - 214.33ms
+2025-11-08 20:30:40,064 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 175.91ms
+2025-11-08 20:30:40,292 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 225.08ms
+2025-11-08 20:35:43,169 [INFO] GET /teachers - 307 - 1.28ms
+2025-11-08 20:35:43,171 [INFO] GET /teachers - 307 - 0.23ms
+2025-11-08 20:35:43,367 [INFO] GET /auth/me - 200 - 205.37ms
+2025-11-08 20:35:43,372 [INFO] GET /teachers - 307 - 0.21ms
+2025-11-08 20:35:43,589 [INFO] GET /auth/me - 200 - 220.42ms
+2025-11-08 20:35:43,597 [INFO] GET /teachers - 307 - 0.21ms
+2025-11-08 20:35:43,664 [INFO] GET /teachers/ - 200 - 492.23ms
+2025-11-08 20:35:44,296 [INFO] GET /teachers/ - 200 - 630.17ms
+2025-11-08 20:35:44,720 [INFO] GET /teachers/ - 200 - 421.11ms
+2025-11-08 20:35:45,211 [INFO] GET /teachers/ - 200 - 489.2ms
+2025-11-08 20:35:45,622 [INFO] GET /auth/me - 200 - 198.79ms
+2025-11-08 20:35:45,685 [INFO] GET /teachers/690c5691e57af8cd04a75c84 - 200 - 262.14ms
+2025-11-08 20:35:45,856 [INFO] GET /auth/me - 200 - 232.46ms
+2025-11-08 20:35:45,925 [INFO] GET /teachers/690c5691e57af8cd04a75c84 - 200 - 237.94ms
+2025-11-08 20:35:46,178 [INFO] GET /teachers/690c5691e57af8cd04a75c84 - 200 - 251.06ms
+2025-11-08 20:35:46,414 [INFO] GET /teachers/690c5691e57af8cd04a75c84 - 200 - 232.56ms
+2025-11-08 20:35:49,412 [INFO] GET /teachers - 307 - 0.61ms
+2025-11-08 20:35:49,413 [INFO] GET /teachers - 307 - 0.42ms
+2025-11-08 20:35:49,641 [INFO] GET /auth/me - 200 - 231.29ms
+2025-11-08 20:35:49,653 [INFO] GET /teachers - 307 - 0.19ms
+2025-11-08 20:35:49,829 [INFO] GET /teachers/ - 200 - 412.38ms
+2025-11-08 20:35:49,889 [INFO] GET /auth/me - 200 - 245.13ms
+2025-11-08 20:35:49,902 [INFO] GET /teachers - 307 - 0.27ms
+2025-11-08 20:35:50,190 [INFO] GET /teachers/ - 200 - 358.67ms
+2025-11-08 20:35:50,552 [INFO] GET /teachers/ - 200 - 359.73ms
+2025-11-08 20:35:50,942 [INFO] GET /teachers/ - 200 - 387.69ms
+2025-11-08 20:35:52,210 [INFO] GET /auth/me - 200 - 168.65ms
+2025-11-08 20:35:52,244 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 202.47ms
+2025-11-08 20:35:52,395 [INFO] GET /auth/me - 200 - 182.72ms
+2025-11-08 20:35:52,436 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 190.78ms
+2025-11-08 20:35:52,647 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 209.32ms
+2025-11-08 20:35:52,852 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 202.38ms
+2025-11-08 20:35:54,018 [INFO] GET /teachers - 307 - 0.61ms
+2025-11-08 20:35:54,021 [INFO] GET /teachers - 307 - 0.75ms
+2025-11-08 20:35:54,342 [INFO] GET /auth/me - 200 - 329.34ms
+2025-11-08 20:35:54,353 [INFO] GET /teachers - 307 - 0.2ms
+2025-11-08 20:35:54,526 [INFO] GET /auth/me - 200 - 181.93ms
+2025-11-08 20:35:54,534 [INFO] GET /teachers - 307 - 0.19ms
+2025-11-08 20:35:54,537 [INFO] GET /teachers/ - 200 - 514.78ms
+2025-11-08 20:35:54,953 [INFO] GET /teachers/ - 200 - 414.41ms
+2025-11-08 20:35:55,518 [INFO] GET /teachers/ - 200 - 562.49ms
+2025-11-08 20:35:55,948 [INFO] GET /teachers/ - 200 - 427.98ms
+2025-11-08 20:37:59,032 [INFO] GET /upload/list - 200 - 63.75ms
+2025-11-08 20:37:59,091 [INFO] GET /upload/list - 200 - 57.04ms
+2025-11-08 20:37:59,158 [INFO] GET /auth/me - 200 - 190.58ms
+2025-11-08 20:37:59,221 [INFO] GET /upload/list - 200 - 58.77ms
+2025-11-08 20:37:59,359 [INFO] GET /auth/me - 200 - 199.72ms
+2025-11-08 20:37:59,433 [INFO] GET /upload/list - 200 - 63.19ms
+2025-11-08 20:38:00,426 [INFO] GET /conversations/chats - 200 - 65.15ms
+2025-11-08 20:38:00,522 [INFO] GET /conversations/chats - 200 - 94.67ms
+2025-11-08 20:38:00,588 [INFO] GET /auth/me - 200 - 227.77ms
+2025-11-08 20:38:00,663 [INFO] GET /conversations/chats - 200 - 63.23ms
+2025-11-08 20:38:00,793 [INFO] GET /auth/me - 200 - 203.33ms
+2025-11-08 20:38:01,008 [INFO] GET /conversations/chats - 200 - 201.1ms
+2025-11-08 20:38:02,531 [INFO] GET /upload/list - 200 - 55.21ms
+2025-11-08 20:38:02,604 [INFO] GET /upload/list - 200 - 71.13ms
+2025-11-08 20:38:02,697 [INFO] GET /auth/me - 200 - 221.38ms
+2025-11-08 20:38:02,819 [INFO] GET /upload/list - 200 - 112.49ms
+2025-11-08 20:38:02,965 [INFO] GET /auth/me - 200 - 265.91ms
+2025-11-08 20:38:03,062 [INFO] GET /upload/list - 200 - 86.71ms
+2025-11-08 20:38:03,544 [INFO] GET /teachers - 307 - 0.67ms
+2025-11-08 20:38:03,545 [INFO] GET /teachers - 307 - 0.29ms
+2025-11-08 20:38:03,764 [INFO] GET /auth/me - 200 - 221.92ms
+2025-11-08 20:38:03,769 [INFO] GET /teachers - 307 - 0.19ms
+2025-11-08 20:38:03,965 [INFO] GET /auth/me - 200 - 199.21ms
+2025-11-08 20:38:03,970 [INFO] GET /teachers - 307 - 0.23ms
+2025-11-08 20:38:04,007 [INFO] GET /teachers/ - 200 - 459.86ms
+2025-11-08 20:38:04,254 [INFO] GET /coachings - 307 - 0.52ms
+2025-11-08 20:38:04,255 [INFO] GET /coachings - 307 - 0.2ms
+2025-11-08 20:38:04,326 [INFO] GET /coachings/ - 200 - 69.66ms
+2025-11-08 20:38:04,382 [INFO] GET /coachings/ - 200 - 53.85ms
+2025-11-08 20:38:04,445 [INFO] GET /auth/me - 200 - 192.68ms
+2025-11-08 20:38:04,469 [INFO] GET /teachers/ - 200 - 460.71ms
+2025-11-08 20:38:04,627 [INFO] GET /auth/me - 200 - 180.73ms
+2025-11-08 20:38:04,900 [INFO] GET /teachers/ - 200 - 429.42ms
+2025-11-08 20:38:05,256 [INFO] GET /teachers/ - 200 - 352.95ms
+2025-11-08 20:38:07,281 [INFO] GET /teachers - 307 - 0.55ms
+2025-11-08 20:38:07,283 [INFO] GET /teachers - 307 - 0.26ms
+2025-11-08 20:38:07,465 [INFO] GET /auth/me - 200 - 185.96ms
+2025-11-08 20:38:07,476 [INFO] GET /teachers - 307 - 0.74ms
+2025-11-08 20:38:07,645 [INFO] GET /auth/me - 200 - 176.67ms
+2025-11-08 20:38:07,654 [INFO] GET /teachers - 307 - 0.21ms
+2025-11-08 20:38:07,710 [INFO] GET /teachers/ - 200 - 425.88ms
+2025-11-08 20:38:07,864 [INFO] GET /upload/list - 200 - 69.27ms
+2025-11-08 20:38:07,920 [INFO] GET /upload/list - 200 - 55.01ms
+2025-11-08 20:38:07,980 [INFO] GET /auth/me - 200 - 186.44ms
+2025-11-08 20:38:08,041 [INFO] GET /upload/list - 200 - 55.39ms
+2025-11-08 20:38:08,118 [INFO] GET /teachers/ - 200 - 406.07ms
+2025-11-08 20:38:08,155 [INFO] GET /auth/me - 200 - 173.68ms
+2025-11-08 20:38:08,243 [INFO] GET /upload/list - 200 - 78.4ms
+2025-11-08 20:38:08,674 [INFO] GET /teachers/ - 200 - 555.03ms
+2025-11-08 20:38:08,958 [INFO] GET /conversations/chats - 200 - 74.92ms
+2025-11-08 20:38:09,019 [INFO] GET /conversations/chats - 200 - 58.97ms
+2025-11-08 20:38:09,073 [INFO] GET /auth/me - 200 - 189.58ms
+2025-11-08 20:38:09,075 [INFO] GET /teachers/ - 200 - 396.62ms
+2025-11-08 20:38:09,176 [INFO] GET /conversations/chats - 200 - 95.8ms
+2025-11-08 20:38:09,281 [INFO] GET /auth/me - 200 - 206.73ms
+2025-11-08 20:38:09,495 [INFO] GET /conversations/chats - 200 - 192.6ms
+2025-11-08 20:38:10,324 [INFO] GET /upload/list - 200 - 94.84ms
+2025-11-08 20:38:10,387 [INFO] GET /upload/list - 200 - 60.96ms
+2025-11-08 20:38:10,436 [INFO] GET /auth/me - 200 - 207.48ms
+2025-11-08 20:38:10,510 [INFO] GET /upload/list - 200 - 66.61ms
+2025-11-08 20:38:10,601 [INFO] GET /auth/me - 200 - 162.88ms
+2025-11-08 20:38:10,690 [INFO] GET /upload/list - 200 - 78.49ms
+2025-11-08 20:38:11,094 [INFO] GET /teachers - 307 - 0.56ms
+2025-11-08 20:38:11,096 [INFO] GET /teachers - 307 - 0.23ms
+2025-11-08 20:38:11,422 [INFO] GET /auth/me - 200 - 329.27ms
+2025-11-08 20:38:11,433 [INFO] GET /teachers - 307 - 0.18ms
+2025-11-08 20:38:11,589 [INFO] GET /auth/me - 200 - 164.94ms
+2025-11-08 20:38:11,599 [INFO] GET /teachers - 307 - 0.2ms
+2025-11-08 20:38:11,662 [INFO] GET /teachers/ - 200 - 565.45ms
+2025-11-08 20:38:12,079 [INFO] GET /teachers/ - 200 - 415.44ms
+2025-11-08 20:38:12,807 [INFO] GET /teachers/ - 200 - 725.56ms
+2025-11-08 20:38:13,219 [INFO] GET /teachers/ - 200 - 409.73ms
+2025-11-08 20:38:16,710 [INFO] GET /coachings - 307 - 0.8ms
+2025-11-08 20:38:16,711 [INFO] GET /coachings - 307 - 0.35ms
+2025-11-08 20:38:16,818 [INFO] GET /coachings/ - 200 - 105.51ms
+2025-11-08 20:38:16,906 [INFO] GET /coachings/ - 200 - 86.96ms
+2025-11-08 20:38:16,972 [INFO] GET /auth/me - 200 - 263.69ms
+2025-11-08 20:38:17,210 [INFO] GET /auth/me - 200 - 236.03ms
+2025-11-08 20:38:54,063 [INFO] GET /conversations/chats - 200 - 107.47ms
+2025-11-08 20:38:54,166 [INFO] GET /auth/me - 200 - 211.2ms
+2025-11-08 20:38:54,166 [INFO] GET /conversations/chats - 200 - 101.31ms
+2025-11-08 20:38:54,254 [INFO] GET /conversations/chats - 200 - 81.2ms
+2025-11-08 20:38:54,345 [INFO] GET /auth/me - 200 - 177.7ms
+2025-11-08 20:38:54,425 [INFO] GET /conversations/chats - 200 - 65.07ms
+2025-11-08 20:40:17,676 [INFO] OPTIONS /auth/me - 200 - 9.48ms
+2025-11-08 20:40:17,682 [INFO] OPTIONS /auth/me - 200 - 9.05ms
+2025-11-08 20:40:17,732 [INFO] GET /upload/list - 200 - 63.96ms
+2025-11-08 20:40:17,798 [INFO] GET /upload/list - 200 - 63.45ms
+2025-11-08 20:40:17,888 [INFO] GET /auth/me - 200 - 204.73ms
+2025-11-08 20:40:18,084 [INFO] GET /upload/list - 200 - 191.23ms
+2025-11-08 20:40:18,214 [INFO] GET /auth/me - 200 - 324.84ms
+2025-11-08 20:40:18,290 [INFO] GET /upload/list - 200 - 65.91ms
+2025-11-08 20:40:20,836 [INFO] GET /coachings - 307 - 0.53ms
+2025-11-08 20:40:20,837 [INFO] GET /coachings - 307 - 0.21ms
+2025-11-08 20:40:20,901 [INFO] GET /coachings/ - 200 - 62.4ms
+2025-11-08 20:40:21,066 [INFO] GET /coachings/ - 200 - 164.52ms
+2025-11-08 20:40:21,165 [INFO] GET /auth/me - 200 - 330.3ms
+2025-11-08 20:40:21,414 [INFO] GET /auth/me - 200 - 246.45ms
+2025-11-08 20:40:24,405 [INFO] GET /upload/list - 200 - 135.59ms
+2025-11-08 20:40:24,475 [INFO] GET /upload/list - 200 - 67.31ms
+2025-11-08 20:40:24,572 [INFO] GET /auth/me - 200 - 303.0ms
+2025-11-08 20:40:24,632 [INFO] GET /upload/list - 200 - 55.24ms
+2025-11-08 20:40:24,814 [INFO] GET /auth/me - 200 - 240.85ms
+2025-11-08 20:40:24,937 [INFO] GET /upload/list - 200 - 118.18ms
+2025-11-08 20:40:25,291 [INFO] GET /conversations/chats - 200 - 120.58ms
+2025-11-08 20:40:25,381 [INFO] GET /conversations/chats - 200 - 88.7ms
+2025-11-08 20:40:25,450 [INFO] GET /auth/me - 200 - 280.13ms
+2025-11-08 20:40:25,541 [INFO] GET /conversations/chats - 200 - 81.74ms
+2025-11-08 20:40:25,692 [INFO] GET /auth/me - 200 - 239.5ms
+2025-11-08 20:40:25,789 [INFO] GET /conversations/chats - 200 - 83.91ms
+2025-11-08 20:40:26,843 [INFO] GET /auth/me - 200 - 300.45ms
+2025-11-08 20:40:27,095 [INFO] GET /auth/me - 200 - 249.51ms
+2025-11-08 20:43:34,258 [INFO] GET /conversations/chats - 200 - 172.04ms
+2025-11-08 20:43:34,344 [INFO] GET /conversations/chats - 200 - 82.59ms
+2025-11-08 20:43:34,404 [INFO] GET /auth/me - 200 - 318.03ms
+2025-11-08 20:43:34,476 [INFO] GET /conversations/chats - 200 - 66.11ms
+2025-11-08 20:43:34,675 [INFO] GET /auth/me - 200 - 270.04ms
+2025-11-08 20:43:34,770 [INFO] GET /conversations/chats - 200 - 88.17ms
+2025-11-08 20:43:40,079 [INFO] GET /teachers - 307 - 1.75ms
+2025-11-08 20:43:40,082 [INFO] GET /teachers - 307 - 0.35ms
+2025-11-08 20:43:40,409 [INFO] GET /auth/me - 200 - 333.12ms
+2025-11-08 20:43:40,422 [INFO] GET /teachers - 307 - 0.25ms
+2025-11-08 20:43:40,651 [INFO] GET /teachers/ - 200 - 566.75ms
+2025-11-08 20:43:40,705 [INFO] GET /auth/me - 200 - 293.5ms
+2025-11-08 20:43:40,711 [INFO] GET /teachers - 307 - 0.21ms
+2025-11-08 20:43:41,125 [INFO] GET /teachers/ - 200 - 472.03ms
+2025-11-08 20:43:42,284 [INFO] GET /teachers/ - 200 - 1156.8ms
+2025-11-08 20:43:43,819 [INFO] GET /teachers/ - 200 - 1533.08ms
+2025-11-08 20:43:48,876 [INFO] GET /auth/me - 200 - 175.61ms
+2025-11-08 20:43:48,921 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 219.84ms
+2025-11-08 20:43:49,209 [INFO] GET /auth/me - 200 - 331.92ms
+2025-11-08 20:43:49,442 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 520.11ms
+2025-11-08 20:43:49,681 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 238.09ms
+2025-11-08 20:43:49,925 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 242.2ms
+2025-11-08 20:44:23,209 [INFO] OPTIONS /auth/me - 200 - 15.16ms
+2025-11-08 20:44:23,210 [INFO] OPTIONS /auth/me - 200 - 1.41ms
+2025-11-08 20:44:23,356 [INFO] GET /conversations/chats - 200 - 147.28ms
+2025-11-08 20:44:23,358 [INFO] GET /conversations/chats - 200 - 162.19ms
+2025-11-08 20:44:23,512 [INFO] GET /auth/me - 200 - 293.7ms
+2025-11-08 20:44:23,645 [INFO] GET /conversations/chats - 200 - 120.58ms
+2025-11-08 20:44:24,564 [INFO] GET /auth/me - 200 - 1345.79ms
+2025-11-08 20:44:24,654 [INFO] GET /conversations/chats - 200 - 75.97ms
+2025-11-08 20:48:24,242 [INFO] OPTIONS /auth/me - 200 - 3.37ms
+2025-11-08 20:48:24,244 [INFO] GET /teachers - 307 - 4.24ms
+2025-11-08 20:48:24,245 [INFO] OPTIONS /auth/me - 200 - 3.78ms
+2025-11-08 20:48:24,252 [INFO] GET /teachers - 307 - 4.75ms
+2025-11-08 20:48:24,470 [INFO] GET /auth/me - 200 - 222.38ms
+2025-11-08 20:48:24,475 [INFO] GET /teachers - 307 - 0.23ms
+2025-11-08 20:48:24,669 [INFO] GET /auth/me - 200 - 198.3ms
+2025-11-08 20:48:24,684 [INFO] GET /teachers - 307 - 0.67ms
+2025-11-08 20:48:24,686 [INFO] GET /teachers/ - 200 - 435.91ms
+2025-11-08 20:48:25,135 [INFO] GET /teachers/ - 200 - 447.8ms
+2025-11-08 20:48:25,597 [INFO] GET /teachers/ - 200 - 458.85ms
+2025-11-08 20:48:25,945 [INFO] GET /teachers/ - 200 - 344.59ms
+2025-11-08 20:48:26,246 [INFO] GET /conversations/chats - 200 - 74.72ms
+2025-11-08 20:48:26,331 [INFO] GET /conversations/chats - 200 - 82.69ms
+2025-11-08 20:48:26,404 [INFO] GET /auth/me - 200 - 232.93ms
+2025-11-08 20:48:26,492 [INFO] GET /conversations/chats - 200 - 84.29ms
+2025-11-08 20:48:26,604 [INFO] GET /auth/me - 200 - 198.66ms
+2025-11-08 20:48:26,705 [INFO] GET /conversations/chats - 200 - 89.87ms
+2025-11-08 20:53:44,460 [INFO] GET /auth/me - 200 - 239.86ms
+2025-11-08 20:53:44,692 [INFO] GET /auth/me - 200 - 229.0ms
+2025-11-08 20:53:54,246 [INFO] GET /conversations/chats - 200 - 261.06ms
+2025-11-08 20:53:54,686 [INFO] GET /auth/me - 200 - 702.99ms
+2025-11-08 20:53:54,688 [INFO] GET /conversations/chats - 200 - 439.86ms
+2025-11-08 20:53:54,869 [INFO] GET /conversations/chats - 200 - 172.02ms
+2025-11-08 20:53:55,086 [INFO] GET /auth/me - 200 - 395.93ms
+2025-11-08 20:53:55,290 [INFO] GET /conversations/chats - 200 - 189.13ms
+2025-11-08 20:54:02,471 [INFO] GET /conversations - 307 - 1.01ms
+2025-11-08 20:54:02,605 [INFO] GET /conversations/chats - 200 - 134.21ms
+2025-11-08 20:54:02,665 [INFO] GET /conversations/ - 200 - 161.51ms
+2025-11-08 20:54:06,132 [INFO] GET /conversations/chats - 200 - 213.47ms
+2025-11-08 20:56:22,087 [INFO] GET /teachers - 307 - 5.81ms
+2025-11-08 20:56:22,089 [INFO] GET /teachers - 307 - 0.35ms
+2025-11-08 20:56:22,299 [INFO] GET /auth/me - 200 - 218.98ms
+2025-11-08 20:56:22,305 [INFO] GET /teachers - 307 - 0.23ms
+2025-11-08 20:56:22,496 [INFO] GET /auth/me - 200 - 196.15ms
+2025-11-08 20:56:22,501 [INFO] GET /teachers/ - 200 - 406.64ms
+2025-11-08 20:56:22,506 [INFO] GET /teachers - 307 - 0.19ms
+2025-11-08 20:56:22,897 [INFO] GET /teachers/ - 200 - 394.4ms
+2025-11-08 20:56:23,310 [INFO] GET /teachers/ - 200 - 410.79ms
+2025-11-08 20:56:23,725 [INFO] GET /teachers/ - 200 - 411.86ms
+2025-11-08 20:56:26,197 [INFO] GET /conversations/chats - 200 - 102.82ms
+2025-11-08 20:56:26,273 [INFO] GET /conversations/chats - 200 - 74.69ms
+2025-11-08 20:56:26,333 [INFO] GET /auth/me - 200 - 240.37ms
+2025-11-08 20:56:26,453 [INFO] GET /conversations/chats - 200 - 109.91ms
+2025-11-08 20:56:26,509 [INFO] GET /auth/me - 200 - 174.41ms
+2025-11-08 20:56:26,644 [INFO] GET /conversations/chats - 200 - 122.6ms
+2025-11-08 20:56:58,739 [INFO] GET /teachers - 307 - 0.94ms
+2025-11-08 20:56:58,743 [INFO] GET /teachers - 307 - 0.62ms
+2025-11-08 20:56:59,439 [INFO] GET /auth/me - 200 - 705.4ms
+2025-11-08 20:56:59,450 [INFO] GET /teachers - 307 - 0.23ms
+2025-11-08 20:56:59,618 [INFO] GET /auth/me - 200 - 177.11ms
+2025-11-08 20:56:59,629 [INFO] GET /teachers - 307 - 0.22ms
+2025-11-08 20:56:59,668 [INFO] GET /teachers/ - 200 - 921.72ms
+2025-11-08 20:57:00,163 [INFO] GET /teachers/ - 200 - 493.84ms
+2025-11-08 20:57:00,631 [INFO] GET /teachers/ - 200 - 465.74ms
+2025-11-08 20:57:01,007 [INFO] GET /teachers/ - 200 - 372.94ms
+2025-11-08 20:57:04,408 [INFO] GET /conversations/chats - 200 - 76.02ms
+2025-11-08 20:57:04,477 [INFO] GET /conversations/chats - 200 - 66.97ms
+2025-11-08 20:57:04,500 [INFO] GET /auth/me - 200 - 168.72ms
+2025-11-08 20:57:04,578 [INFO] GET /conversations/chats - 200 - 69.15ms
+2025-11-08 20:57:04,710 [INFO] GET /auth/me - 200 - 209.15ms
+2025-11-08 20:57:04,788 [INFO] GET /conversations/chats - 200 - 70.14ms
+2025-11-08 20:57:50,010 [INFO] OPTIONS /auth/me - 200 - 3.34ms
+2025-11-08 20:57:50,011 [INFO] OPTIONS /auth/me - 200 - 2.36ms
+2025-11-08 20:57:50,012 [INFO] OPTIONS /auth/me - 200 - 1.99ms
+2025-11-08 20:57:50,013 [INFO] OPTIONS /auth/me - 200 - 2.14ms
+2025-11-08 20:57:50,196 [INFO] GET /auth/me - 200 - 172.88ms
+2025-11-08 20:57:50,208 [INFO] GET /auth/me - 200 - 185.18ms
+2025-11-08 20:57:50,209 [INFO] GET /auth/me - 200 - 192.65ms
+2025-11-08 20:57:50,210 [INFO] GET /auth/me - 200 - 187.71ms
+2025-11-08 20:57:50,268 [INFO] GET /conversations/chats - 200 - 61.31ms
+2025-11-08 20:57:50,276 [INFO] GET /conversations/chats - 200 - 58.28ms
+2025-11-08 20:57:50,298 [INFO] GET /conversations/chats - 200 - 72.87ms
+2025-11-08 20:57:50,317 [INFO] GET /conversations/chats - 200 - 95.72ms
+2025-11-08 20:59:56,185 [INFO] GET /conversations - 307 - 1.95ms
+2025-11-08 20:59:56,257 [INFO] GET /conversations/chats - 200 - 74.15ms
+2025-11-08 20:59:56,341 [INFO] GET /conversations/ - 200 - 143.75ms
+2025-11-08 21:00:10,730 [INFO] GET /conversations/chats - 200 - 489.63ms
+2025-11-08 21:00:35,906 [INFO] OPTIONS /auth/me - 200 - 7.4ms
+2025-11-08 21:00:35,909 [INFO] OPTIONS /auth/me - 200 - 7.47ms
+2025-11-08 21:00:35,909 [INFO] GET /teachers - 307 - 7.61ms
+2025-11-08 21:00:35,909 [INFO] GET /teachers - 307 - 7.77ms
+2025-11-08 21:00:36,165 [INFO] GET /auth/me - 200 - 190.41ms
+2025-11-08 21:00:36,171 [INFO] GET /auth/me - 200 - 195.7ms
+2025-11-08 21:00:36,175 [INFO] GET /teachers - 307 - 0.34ms
+2025-11-08 21:00:36,179 [INFO] GET /teachers - 307 - 0.8ms
+2025-11-08 21:00:36,361 [INFO] GET /teachers/ - 200 - 389.96ms
+2025-11-08 21:00:36,370 [INFO] GET /teachers/ - 200 - 395.33ms
+2025-11-08 21:00:36,646 [INFO] GET /teachers/ - 200 - 468.18ms
+2025-11-08 21:00:36,666 [INFO] GET /teachers/ - 200 - 483.64ms
+2025-11-08 21:00:38,065 [INFO] OPTIONS /auth/me - 200 - 0.62ms
+2025-11-08 21:00:38,075 [INFO] OPTIONS /auth/me - 200 - 7.86ms
+2025-11-08 21:00:38,249 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 178.66ms
+2025-11-08 21:00:38,254 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 183.76ms
+2025-11-08 21:00:38,256 [INFO] GET /auth/me - 200 - 168.13ms
+2025-11-08 21:00:38,260 [INFO] GET /auth/me - 200 - 175.94ms
+2025-11-08 21:00:38,476 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 195.22ms
+2025-11-08 21:00:38,480 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 210.44ms
+2025-11-08 21:05:06,089 [INFO] OPTIONS /auth/me - 200 - 3.33ms
+2025-11-08 21:05:06,120 [INFO] OPTIONS /auth/me - 200 - 29.33ms
+2025-11-08 21:05:06,197 [INFO] GET /conversations/chats - 200 - 106.24ms
+2025-11-08 21:05:06,230 [INFO] GET /conversations/chats - 200 - 138.96ms
+2025-11-08 21:05:06,322 [INFO] GET /auth/me - 200 - 201.24ms
+2025-11-08 21:05:06,346 [INFO] GET /auth/me - 200 - 222.07ms
+2025-11-08 21:05:06,407 [INFO] GET /conversations/chats - 200 - 67.15ms
+2025-11-08 21:05:06,582 [INFO] GET /conversations/chats - 200 - 220.94ms
+2025-11-08 21:05:08,002 [INFO] GET /conversations - 307 - 0.56ms
+2025-11-08 21:05:08,063 [INFO] GET /conversations/chats - 200 - 62.22ms
+2025-11-08 21:05:08,174 [INFO] GET /conversations/ - 200 - 157.09ms
+2025-11-08 21:17:26,620 [INFO] OPTIONS /auth/me - 200 - 2.61ms
+2025-11-08 21:17:26,623 [INFO] OPTIONS /auth/me - 200 - 5.66ms
+2025-11-08 21:17:26,627 [INFO] OPTIONS /auth/me - 200 - 3.3ms
+2025-11-08 21:17:26,628 [INFO] OPTIONS /auth/me - 200 - 3.32ms
+2025-11-08 21:17:26,858 [INFO] GET /auth/me - 200 - 213.14ms
+2025-11-08 21:17:26,858 [INFO] GET /auth/me - 200 - 223.15ms
+2025-11-08 21:17:26,859 [INFO] GET /auth/me - 200 - 214.31ms
+2025-11-08 21:17:26,868 [INFO] GET /auth/me - 200 - 232.53ms
+2025-11-08 21:17:26,933 [INFO] GET /conversations/chats - 200 - 62.63ms
+2025-11-08 21:17:26,949 [INFO] GET /conversations/chats - 200 - 74.34ms
+2025-11-08 21:17:26,972 [INFO] GET /conversations/chats - 200 - 90.21ms
+2025-11-08 21:17:26,972 [INFO] GET /conversations/chats - 200 - 106.4ms
+2025-11-08 21:17:28,817 [INFO] GET /conversations - 307 - 0.59ms
+2025-11-08 21:17:28,953 [INFO] GET /conversations/chats - 200 - 136.28ms
+2025-11-08 21:17:28,997 [INFO] GET /conversations/ - 200 - 165.59ms
+2025-11-08 21:17:32,082 [INFO] GET /conversations/chats - 200 - 67.39ms
+2025-11-08 21:18:03,207 [INFO] GET /conversations - 307 - 2.53ms
+2025-11-08 21:18:03,337 [INFO] GET /conversations/chats - 200 - 132.98ms
+2025-11-08 21:18:03,497 [INFO] GET /conversations/ - 200 - 277.26ms
+2025-11-08 21:31:18,896 [INFO] GET /conversations/chats - 200 - 791.25ms
+2025-11-08 21:31:19,970 [INFO] GET /conversations - 307 - 0.66ms
+2025-11-08 21:31:20,050 [INFO] GET /conversations/chats - 200 - 79.7ms
+2025-11-08 21:31:20,132 [INFO] GET /conversations/ - 200 - 151.65ms
+2025-11-08 21:31:23,050 [INFO] GET /conversations/chats - 200 - 61.61ms
+2025-11-08 21:31:25,338 [INFO] GET /conversations - 307 - 0.94ms
+2025-11-08 21:31:25,451 [INFO] GET /conversations/chats - 200 - 113.46ms
+2025-11-08 21:31:25,534 [INFO] GET /conversations/ - 200 - 188.26ms
+2025-11-08 21:31:32,003 [INFO] GET /conversations/chats - 200 - 74.62ms
+2025-11-08 21:31:33,389 [INFO] OPTIONS /auth/me - 200 - 1.01ms
+2025-11-08 21:31:33,394 [INFO] GET /teachers - 307 - 4.3ms
+2025-11-08 21:31:33,394 [INFO] OPTIONS /auth/me - 200 - 4.66ms
+2025-11-08 21:31:33,412 [INFO] GET /teachers - 307 - 0.37ms
+2025-11-08 21:31:33,607 [INFO] GET /auth/me - 200 - 208.78ms
+2025-11-08 21:31:33,612 [INFO] GET /teachers - 307 - 0.22ms
+2025-11-08 21:31:34,047 [INFO] GET /auth/me - 200 - 438.89ms
+2025-11-08 21:31:34,047 [INFO] GET /teachers/ - 200 - 636.16ms
+2025-11-08 21:31:34,066 [INFO] GET /teachers - 307 - 0.22ms
+2025-11-08 21:31:34,425 [INFO] GET /teachers/ - 200 - 375.59ms
+2025-11-08 21:31:34,769 [INFO] GET /teachers/ - 200 - 342.31ms
+2025-11-08 21:31:35,224 [INFO] GET /teachers/ - 200 - 452.11ms
+2025-11-08 21:31:35,789 [INFO] GET /auth/me - 200 - 175.03ms
+2025-11-08 21:31:35,791 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 175.57ms
+2025-11-08 21:31:35,960 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 167.94ms
+2025-11-08 21:31:35,961 [INFO] GET /auth/me - 200 - 170.03ms
+2025-11-08 21:31:36,143 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 180.67ms
+2025-11-08 21:31:36,448 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 302.15ms
+2025-11-08 21:32:09,014 [INFO] OPTIONS /query/ - 200 - 16.16ms
+2025-11-08 21:32:12,988 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-11-08 21:32:12,990 [WARNING] ⚠️ OpenAI failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-proj-********************************************************************************************************************************************************TioA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-11-08 21:32:12,992 [INFO] ⚙️ Loading Hugging Face model: TinyLlama/TinyLlama-1.1B-Chat-v1.0
+2025-11-08 21:32:13,597 [WARNING] ⚠️ Hugging Face failed: Could not load model TinyLlama/TinyLlama-1.1B-Chat-v1.0 with any of the following classes: (<class 'transformers.models.auto.modeling_auto.AutoModelForCausalLM'>, <class 'transformers.models.llama.modeling_llama.LlamaForCausalLM'>). See the original errors:
+
+while loading with AutoModelForCausalLM, an error is thrown:
+Traceback (most recent call last):
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/pipelines/base.py", line 293, in infer_framework_load_model
+    model = model_class.from_pretrained(model, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/models/auto/auto_factory.py", line 604, in from_pretrained
+    return model_class.from_pretrained(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        pretrained_model_name_or_path, *model_args, config=config, **hub_kwargs, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 4806, in from_pretrained
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Using a `device_map`, `tp_plan`, `torch.device` context manager or setting `torch.set_default_device(device)` requires `accelerate`. You can install it with `pip install accelerate`
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/pipelines/base.py", line 311, in infer_framework_load_model
+    model = model_class.from_pretrained(model, **fp32_kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/models/auto/auto_factory.py", line 604, in from_pretrained
+    return model_class.from_pretrained(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        pretrained_model_name_or_path, *model_args, config=config, **hub_kwargs, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 4806, in from_pretrained
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Using a `device_map`, `tp_plan`, `torch.device` context manager or setting `torch.set_default_device(device)` requires `accelerate`. You can install it with `pip install accelerate`
+
+while loading with LlamaForCausalLM, an error is thrown:
+Traceback (most recent call last):
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/pipelines/base.py", line 293, in infer_framework_load_model
+    model = model_class.from_pretrained(model, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 4806, in from_pretrained
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Using a `device_map`, `tp_plan`, `torch.device` context manager or setting `torch.set_default_device(device)` requires `accelerate`. You can install it with `pip install accelerate`
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/pipelines/base.py", line 311, in infer_framework_load_model
+    model = model_class.from_pretrained(model, **fp32_kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 4806, in from_pretrained
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Using a `device_map`, `tp_plan`, `torch.device` context manager or setting `torch.set_default_device(device)` requires `accelerate`. You can install it with `pip install accelerate`
+
+
+
+2025-11-08 21:32:13,681 [INFO] 🦙 Running Ollama model: mistral
+2025-11-08 21:32:32,664 [INFO] [SUCCESS] Query: what is the dimension of gravity? | Answer: The dimension of gravity can be determined by understanding its relationship wit
+2025-11-08 21:32:34,312 [INFO] POST /query/ - 200 - 25292.04ms
+2025-11-08 21:32:34,475 [INFO] GET /conversations/chat/690f699a8afaf7ce85d51bd4 - 200 - 142.83ms
+2025-11-08 21:35:19,780 [INFO] Use pytorch device_name: mps
+2025-11-08 21:35:19,780 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-08 21:35:24,803 [INFO] Loading faiss.
+2025-11-08 21:35:24,842 [INFO] Successfully loaded faiss.
+2025-11-08 21:35:24,849 [INFO] Use pytorch device_name: mps
+2025-11-08 21:35:24,849 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-08 21:35:29,709 [INFO] 🧠 Using device: MPS
+2025-11-08 22:03:45,571 [INFO] OPTIONS /auth/me - 200 - 2.98ms
+2025-11-08 22:03:45,572 [INFO] OPTIONS /auth/me - 200 - 3.22ms
+2025-11-08 22:03:45,572 [INFO] OPTIONS /auth/me - 200 - 3.23ms
+2025-11-08 22:03:45,572 [INFO] OPTIONS /auth/me - 200 - 3.26ms
+2025-11-08 22:03:53,281 [INFO] OPTIONS /auth/me - 200 - 2.67ms
+2025-11-08 22:03:53,283 [INFO] OPTIONS /auth/me - 200 - 3.89ms
+2025-11-08 22:03:53,285 [INFO] OPTIONS /auth/me - 200 - 5.19ms
+2025-11-08 22:03:53,285 [INFO] OPTIONS /auth/me - 200 - 5.48ms
+2025-11-08 22:03:56,083 [INFO] GET /auth/me - 200 - 10466.37ms
+2025-11-08 22:03:56,152 [INFO] GET /auth/me - 200 - 10575.39ms
+2025-11-08 22:03:56,217 [INFO] GET /auth/me - 200 - 2927.59ms
+2025-11-08 22:03:56,274 [INFO] GET /auth/me - 200 - 2978.82ms
+2025-11-08 22:03:56,299 [INFO] GET /auth/me - 200 - 10722.18ms
+2025-11-08 22:03:56,376 [INFO] GET /auth/me - 200 - 3085.67ms
+2025-11-08 22:03:56,399 [INFO] GET /auth/me - 200 - 3104.78ms
+2025-11-08 22:03:56,461 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 171.4ms
+2025-11-08 22:03:56,562 [INFO] GET /auth/me - 200 - 10947.93ms
+2025-11-08 22:03:56,582 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 193.87ms
+2025-11-08 22:03:56,588 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 173.29ms
+2025-11-08 22:03:56,955 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 715.06ms
+2025-11-08 22:11:14,290 [INFO] OPTIONS /auth/me - 200 - 1.83ms
+2025-11-08 22:11:14,295 [INFO] OPTIONS /auth/me - 200 - 5.45ms
+2025-11-08 22:11:14,296 [INFO] OPTIONS /auth/me - 200 - 3.26ms
+2025-11-08 22:11:14,298 [INFO] OPTIONS /auth/me - 200 - 5.14ms
+2025-11-08 22:11:14,586 [INFO] GET /auth/me - 200 - 282.59ms
+2025-11-08 22:11:14,586 [INFO] GET /auth/me - 200 - 269.47ms
+2025-11-08 22:11:14,587 [INFO] GET /auth/me - 200 - 272.19ms
+2025-11-08 22:11:14,588 [INFO] GET /auth/me - 200 - 278.58ms
+2025-11-08 22:11:14,878 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 278.52ms
+2025-11-08 22:11:15,029 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 396.38ms
+2025-11-08 22:11:15,030 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 406.14ms
+2025-11-08 22:11:15,033 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 416.41ms
+2025-11-08 22:11:20,493 [INFO] OPTIONS /auth/me - 200 - 2.94ms
+2025-11-08 22:11:20,496 [INFO] OPTIONS /auth/me - 200 - 4.09ms
+2025-11-08 22:11:20,497 [INFO] OPTIONS /auth/me - 200 - 2.9ms
+2025-11-08 22:11:20,497 [INFO] OPTIONS /auth/me - 200 - 2.97ms
+2025-11-08 22:11:22,603 [INFO] GET /auth/me - 200 - 2087.68ms
+2025-11-08 22:11:22,604 [INFO] GET /auth/me - 200 - 2090.67ms
+2025-11-08 22:11:22,619 [INFO] GET /auth/me - 200 - 2117.24ms
+2025-11-08 22:11:22,622 [INFO] GET /auth/me - 200 - 2106.53ms
+2025-11-08 22:11:23,923 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 1282.14ms
+2025-11-08 22:11:23,923 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 1297.12ms
+2025-11-08 22:11:23,930 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 1272.68ms
+2025-11-08 22:11:23,930 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 1279.48ms
+2025-11-08 22:11:28,555 [INFO] OPTIONS /auth/me - 200 - 2.61ms
+2025-11-08 22:11:28,557 [INFO] OPTIONS /auth/me - 200 - 2.96ms
+2025-11-08 22:11:28,558 [INFO] OPTIONS /auth/me - 200 - 2.1ms
+2025-11-08 22:11:28,559 [INFO] OPTIONS /auth/me - 200 - 2.3ms
+2025-11-08 22:11:29,194 [INFO] GET /auth/me - 200 - 626.77ms
+2025-11-08 22:11:29,195 [INFO] GET /auth/me - 200 - 629.55ms
+2025-11-08 22:11:29,195 [INFO] GET /auth/me - 200 - 625.89ms
+2025-11-08 22:11:29,195 [INFO] GET /auth/me - 200 - 634.81ms
+2025-11-08 22:11:29,393 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 182.29ms
+2025-11-08 22:11:29,398 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 174.1ms
+2025-11-08 22:11:29,402 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 167.79ms
+2025-11-08 22:11:29,407 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 164.01ms
+2025-11-08 22:21:32,427 [INFO] OPTIONS /auth/me - 200 - 2.27ms
+2025-11-08 22:21:33,141 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 703.1ms
+2025-11-08 22:21:33,218 [INFO] GET /auth/me - 200 - 722.44ms
+2025-11-08 22:21:34,108 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 863.32ms
+2025-11-08 22:25:45,669 [INFO] OPTIONS /query/ - 200 - 0.78ms
+2025-11-08 22:25:49,436 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-11-08 22:25:49,438 [WARNING] ⚠️ OpenAI failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-proj-********************************************************************************************************************************************************TioA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-11-08 22:25:49,438 [INFO] ⚙️ Loading Hugging Face model: TinyLlama/TinyLlama-1.1B-Chat-v1.0
+2025-11-08 22:25:49,891 [WARNING] ⚠️ Hugging Face failed: Could not load model TinyLlama/TinyLlama-1.1B-Chat-v1.0 with any of the following classes: (<class 'transformers.models.auto.modeling_auto.AutoModelForCausalLM'>, <class 'transformers.models.llama.modeling_llama.LlamaForCausalLM'>). See the original errors:
+
+while loading with AutoModelForCausalLM, an error is thrown:
+Traceback (most recent call last):
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/pipelines/base.py", line 293, in infer_framework_load_model
+    model = model_class.from_pretrained(model, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/models/auto/auto_factory.py", line 604, in from_pretrained
+    return model_class.from_pretrained(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        pretrained_model_name_or_path, *model_args, config=config, **hub_kwargs, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 4806, in from_pretrained
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Using a `device_map`, `tp_plan`, `torch.device` context manager or setting `torch.set_default_device(device)` requires `accelerate`. You can install it with `pip install accelerate`
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/pipelines/base.py", line 311, in infer_framework_load_model
+    model = model_class.from_pretrained(model, **fp32_kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/models/auto/auto_factory.py", line 604, in from_pretrained
+    return model_class.from_pretrained(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        pretrained_model_name_or_path, *model_args, config=config, **hub_kwargs, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 4806, in from_pretrained
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Using a `device_map`, `tp_plan`, `torch.device` context manager or setting `torch.set_default_device(device)` requires `accelerate`. You can install it with `pip install accelerate`
+
+while loading with LlamaForCausalLM, an error is thrown:
+Traceback (most recent call last):
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/pipelines/base.py", line 293, in infer_framework_load_model
+    model = model_class.from_pretrained(model, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 4806, in from_pretrained
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Using a `device_map`, `tp_plan`, `torch.device` context manager or setting `torch.set_default_device(device)` requires `accelerate`. You can install it with `pip install accelerate`
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/pipelines/base.py", line 311, in infer_framework_load_model
+    model = model_class.from_pretrained(model, **fp32_kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 4806, in from_pretrained
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Using a `device_map`, `tp_plan`, `torch.device` context manager or setting `torch.set_default_device(device)` requires `accelerate`. You can install it with `pip install accelerate`
+
+
+
+2025-11-08 22:25:49,971 [INFO] 🦙 Running Ollama model: mistral
+2025-11-08 22:26:10,155 [INFO] [SUCCESS] Query: What is the dimension of capacitance? | Answer: To find the dimension of a physical quantity like capacitance, we need to unders
+2025-11-08 22:26:10,376 [INFO] POST /query/ - 200 - 24704.38ms
+2025-11-08 22:26:10,674 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 246.37ms
+2025-11-08 22:28:14,449 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 484.11ms
+2025-11-08 22:28:14,450 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 486.69ms
+2025-11-08 22:28:14,578 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 121.7ms
+2025-11-08 22:28:14,622 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 165.29ms
+2025-11-08 22:28:14,652 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 183.56ms
+2025-11-08 22:28:14,675 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 208.02ms
+2025-11-08 22:28:14,754 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 163.69ms
+2025-11-08 22:28:14,764 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 135.57ms
+2025-11-08 22:28:14,768 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 107.33ms
+2025-11-08 22:28:14,780 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 196.58ms
+2025-11-08 22:28:14,781 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 150.67ms
+2025-11-08 22:28:14,814 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 136.75ms
+2025-11-08 22:28:14,872 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 103.44ms
+2025-11-08 22:28:14,876 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 120.47ms
+2025-11-08 22:28:14,882 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 115.55ms
+2025-11-08 22:28:14,884 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 100.01ms
+2025-11-08 22:28:14,885 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 98.55ms
+2025-11-08 22:28:14,929 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 111.51ms
+2025-11-08 22:28:14,991 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 115.62ms
+2025-11-08 22:28:15,057 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 168.78ms
+2025-11-08 22:28:15,058 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 175.37ms
+2025-11-08 22:28:15,059 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 168.58ms
+2025-11-08 22:28:15,060 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 174.56ms
+2025-11-08 22:28:15,067 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 136.77ms
+2025-11-08 22:28:15,162 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 169.93ms
+2025-11-08 22:28:15,215 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 152.82ms
+2025-11-08 22:28:15,285 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 220.51ms
+2025-11-08 22:28:15,285 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 222.05ms
+2025-11-08 22:28:15,335 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 274.37ms
+2025-11-08 22:28:15,336 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 266.65ms
+2025-11-08 22:28:15,397 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 180.88ms
+2025-11-08 22:28:15,411 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 245.39ms
+2025-11-08 22:28:15,414 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 126.27ms
+2025-11-08 22:28:15,426 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 138.88ms
+2025-11-08 22:28:15,473 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 135.64ms
+2025-11-08 22:28:15,475 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 137.91ms
+2025-11-08 22:28:15,529 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 131.08ms
+2025-11-08 22:28:15,532 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 120.22ms
+2025-11-08 22:28:15,536 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 119.64ms
+2025-11-08 22:28:15,539 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 111.22ms
+2025-11-08 22:28:15,611 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 133.48ms
+2025-11-08 22:28:15,613 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 137.9ms
+2025-11-08 22:28:15,661 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 131.02ms
+2025-11-08 22:28:15,666 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 132.24ms
+2025-11-08 22:28:15,670 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 131.99ms
+2025-11-08 22:28:15,674 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 134.25ms
+2025-11-08 22:28:15,733 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 117.95ms
+2025-11-08 22:28:15,753 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 140.28ms
+2025-11-08 22:28:15,783 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 114.86ms
+2025-11-08 22:28:15,793 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 130.68ms
+2025-11-08 22:28:15,798 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 125.96ms
+2025-11-08 22:28:15,824 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 148.27ms
+2025-11-08 22:28:15,856 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 121.85ms
+2025-11-08 22:28:16,033 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 248.72ms
+2025-11-08 22:28:16,035 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 280.91ms
+2025-11-08 22:28:16,112 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 311.67ms
+2025-11-08 22:28:16,114 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 313.03ms
+2025-11-08 22:28:16,134 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 308.11ms
+2025-11-08 22:28:16,359 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 499.61ms
+2025-11-08 22:28:16,361 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 323.28ms
+2025-11-08 22:28:16,455 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 419.22ms
+2025-11-08 22:28:16,696 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 579.6ms
+2025-11-08 22:28:16,712 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 598.81ms
+2025-11-08 22:28:16,729 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 592.12ms
+2025-11-08 22:28:16,758 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 397.68ms
+2025-11-08 22:28:16,760 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 398.05ms
+2025-11-08 22:28:16,803 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 346.81ms
+2025-11-08 22:28:16,836 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 138.49ms
+2025-11-08 22:28:16,855 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 140.82ms
+2025-11-08 22:28:16,873 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 142.72ms
+2025-11-08 22:28:16,898 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 135.17ms
+2025-11-08 22:28:16,913 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 153.1ms
+2025-11-08 22:28:16,927 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 120.95ms
+2025-11-08 22:28:16,986 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 148.3ms
+2025-11-08 22:28:16,986 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 126.47ms
+2025-11-08 22:28:16,996 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 121.06ms
+2025-11-08 22:28:17,003 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 100.1ms
+2025-11-08 22:28:17,056 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 137.25ms
+2025-11-08 22:28:17,077 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 145.73ms
+2025-11-08 22:28:17,502 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 511.52ms
+2025-11-08 22:28:17,503 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 514.82ms
+2025-11-08 22:28:17,513 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 514.9ms
+2025-11-08 22:28:17,513 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 507.78ms
+2025-11-08 22:28:17,677 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 619.31ms
+2025-11-08 22:28:17,682 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 602.3ms
+2025-11-08 22:28:17,742 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 236.89ms
+2025-11-08 22:28:17,743 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 238.24ms
+2025-11-08 22:28:17,748 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 233.18ms
+2025-11-08 22:28:17,750 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 234.0ms
+2025-11-08 22:28:17,823 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 144.34ms
+2025-11-08 22:28:17,826 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 142.36ms
+2025-11-08 22:28:17,873 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 121.51ms
+2025-11-08 22:28:17,876 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 132.02ms
+2025-11-08 22:28:17,878 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 133.4ms
+2025-11-08 22:28:17,883 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 132.43ms
+2025-11-08 22:28:17,945 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 119.49ms
+2025-11-08 22:28:17,949 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 121.93ms
+2025-11-08 22:28:18,054 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 178.94ms
+2025-11-08 22:28:18,055 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 174.09ms
+2025-11-08 22:28:18,056 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 172.7ms
+2025-11-08 22:28:18,060 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 175.56ms
+2025-11-08 22:28:18,129 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 182.2ms
+2025-11-08 22:28:18,129 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 178.21ms
+2025-11-08 22:28:18,299 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 237.39ms
+2025-11-08 22:28:18,299 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 239.85ms
+2025-11-08 22:28:18,302 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 244.57ms
+2025-11-08 22:28:18,314 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 256.46ms
+2025-11-08 22:28:18,392 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 260.73ms
+2025-11-08 22:28:18,400 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 270.12ms
+2025-11-08 22:28:18,458 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 157.06ms
+2025-11-08 22:28:18,467 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 166.87ms
+2025-11-08 22:28:18,484 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 181.17ms
+2025-11-08 22:28:19,043 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 726.57ms
+2025-11-08 22:28:19,394 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 997.78ms
+2025-11-08 22:28:19,394 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 992.13ms
+2025-11-08 22:28:19,414 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 955.05ms
+2025-11-08 22:28:19,415 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 945.39ms
+2025-11-08 22:28:19,418 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 932.55ms
+2025-11-08 22:28:19,519 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 474.01ms
+2025-11-08 22:28:19,583 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 187.57ms
+2025-11-08 22:28:19,584 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 188.11ms
+2025-11-08 22:28:19,603 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 185.78ms
+2025-11-08 22:28:19,619 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 200.08ms
+2025-11-08 22:28:19,625 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 207.38ms
+2025-11-08 22:28:19,635 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 114.67ms
+2025-11-08 22:28:19,694 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 108.32ms
+2025-11-08 22:28:19,767 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 181.14ms
+2025-11-08 22:28:19,931 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 326.79ms
+2025-11-08 22:28:20,038 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 417.17ms
+2025-11-08 22:28:20,038 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 401.48ms
+2025-11-08 22:28:20,039 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 411.91ms
+2025-11-08 22:28:20,114 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 181.99ms
+2025-11-08 22:28:20,115 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 419.6ms
+2025-11-08 22:28:20,117 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 348.33ms
+2025-11-08 22:28:20,193 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 152.23ms
+2025-11-08 22:28:20,193 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 151.51ms
+2025-11-08 22:28:20,196 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 154.8ms
+2025-11-08 22:28:20,237 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 120.98ms
+2025-11-08 22:28:20,238 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 121.38ms
+2025-11-08 22:28:20,243 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 124.67ms
+2025-11-08 22:28:20,323 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 125.43ms
+2025-11-08 22:28:20,419 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 222.94ms
+2025-11-08 22:28:20,419 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 180.02ms
+2025-11-08 22:28:20,420 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 226.09ms
+2025-11-08 22:28:20,458 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 213.43ms
+2025-11-08 22:28:20,458 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 219.89ms
+2025-11-08 22:28:20,513 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 188.75ms
+2025-11-08 22:28:20,706 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 283.91ms
+2025-11-08 22:28:20,709 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 283.14ms
+2025-11-08 22:28:20,725 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 301.89ms
+2025-11-08 22:28:20,726 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 265.43ms
+2025-11-08 22:28:20,728 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 266.75ms
+2025-11-08 22:28:20,759 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 243.52ms
+2025-11-08 22:28:20,852 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 143.6ms
+2025-11-08 22:28:20,945 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 211.99ms
+2025-11-08 22:28:20,963 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 200.37ms
+2025-11-08 22:28:20,964 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 251.92ms
+2025-11-08 22:28:20,964 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 232.05ms
+2025-11-08 22:28:20,965 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 230.11ms
+2025-11-08 22:28:21,035 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 180.45ms
+2025-11-08 22:28:21,290 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 343.38ms
+2025-11-08 22:28:21,290 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 320.67ms
+2025-11-08 22:28:21,290 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 323.83ms
+2025-11-08 22:28:21,294 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 324.68ms
+2025-11-08 22:28:21,294 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 324.9ms
+2025-11-08 22:28:21,356 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 313.53ms
+2025-11-08 22:28:21,415 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 119.27ms
+2025-11-08 22:28:21,415 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 119.67ms
+2025-11-08 22:28:21,432 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 133.91ms
+2025-11-08 22:28:21,433 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 134.1ms
+2025-11-08 22:28:21,483 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 186.45ms
+2025-11-08 22:28:21,485 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 127.65ms
+2025-11-08 22:28:21,549 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 131.2ms
+2025-11-08 22:28:21,549 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 132.12ms
+2025-11-08 22:28:21,553 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 115.86ms
+2025-11-08 22:28:21,553 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 116.2ms
+2025-11-08 22:28:21,618 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 131.21ms
+2025-11-08 22:28:21,621 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 136.65ms
+2025-11-08 22:28:21,676 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 124.35ms
+2025-11-08 22:28:21,683 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 131.66ms
+2025-11-08 22:28:21,686 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 129.8ms
+2025-11-08 22:28:21,688 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 131.57ms
+2025-11-08 22:28:21,733 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 113.75ms
+2025-11-08 22:28:21,754 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 130.37ms
+2025-11-08 22:28:21,866 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 180.5ms
+2025-11-08 22:28:21,871 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 179.44ms
+2025-11-08 22:28:21,879 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 178.41ms
+2025-11-08 22:28:21,888 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 151.86ms
+2025-11-08 22:28:21,892 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 190.09ms
+2025-11-08 22:28:21,936 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 176.86ms
+2025-11-08 22:28:21,975 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 108.17ms
+2025-11-08 22:28:22,003 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 129.62ms
+2025-11-08 22:28:22,003 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 107.47ms
+2025-11-08 22:28:22,017 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 137.0ms
+2025-11-08 22:28:22,021 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 130.68ms
+2025-11-08 22:28:22,147 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 208.74ms
+2025-11-08 22:28:22,158 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 180.58ms
+2025-11-08 22:28:22,208 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 202.18ms
+2025-11-08 22:28:22,218 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 212.46ms
+2025-11-08 22:28:22,219 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 199.75ms
+2025-11-08 22:28:22,285 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 262.31ms
+2025-11-08 22:28:22,387 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 238.83ms
+2025-11-08 22:28:22,429 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 268.72ms
+2025-11-08 22:28:22,482 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 188.45ms
+2025-11-08 22:28:22,484 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 187.77ms
+2025-11-08 22:28:22,546 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 155.98ms
+2025-11-08 22:28:22,547 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 329.15ms
+2025-11-08 22:28:22,547 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 243.94ms
+2025-11-08 22:28:22,613 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 182.59ms
+2025-11-08 22:28:22,616 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 129.71ms
+2025-11-08 22:28:22,621 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 136.34ms
+2025-11-08 22:28:22,678 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 128.8ms
+2025-11-08 22:28:22,679 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 128.98ms
+2025-11-08 22:28:22,695 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 145.39ms
+2025-11-08 22:28:22,739 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 124.97ms
+2025-11-08 22:28:22,768 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 145.08ms
+2025-11-08 22:28:22,775 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 156.24ms
+2025-11-08 22:28:22,817 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 137.45ms
+2025-11-08 22:28:22,914 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 145.28ms
+2025-11-08 22:28:22,914 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 137.45ms
+2025-11-08 22:28:22,915 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 233.92ms
+2025-11-08 22:28:22,917 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 220.58ms
+2025-11-08 22:28:22,917 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 175.71ms
+2025-11-08 22:28:22,968 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 148.67ms
+2025-11-08 22:28:23,092 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 172.8ms
+2025-11-08 22:28:23,092 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 173.19ms
+2025-11-08 22:28:23,093 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 169.48ms
+2025-11-08 22:28:23,094 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 172.89ms
+2025-11-08 22:28:23,094 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 170.84ms
+2025-11-08 22:28:23,095 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 126.47ms
+2025-11-08 22:28:23,229 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 131.9ms
+2025-11-08 22:28:23,258 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 160.76ms
+2025-11-08 22:28:23,274 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 176.1ms
+2025-11-08 22:28:23,293 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 193.26ms
+2025-11-08 22:28:23,379 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 278.51ms
+2025-11-08 22:28:23,525 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 422.92ms
+2025-11-08 22:28:23,587 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 356.75ms
+2025-11-08 22:28:23,607 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 347.57ms
+2025-11-08 22:28:23,728 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 450.92ms
+2025-11-08 22:28:23,733 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 353.18ms
+2025-11-08 22:28:23,737 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 441.47ms
+2025-11-08 22:28:23,901 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 312.24ms
+2025-11-08 22:28:23,902 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 293.99ms
+2025-11-08 22:28:23,987 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 461.32ms
+2025-11-08 22:28:24,043 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 313.67ms
+2025-11-08 22:28:24,044 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 308.84ms
+2025-11-08 22:28:24,082 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 344.02ms
+2025-11-08 22:28:24,104 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 200.54ms
+2025-11-08 22:28:24,122 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 217.68ms
+2025-11-08 22:28:24,169 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 180.57ms
+2025-11-08 22:28:24,183 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 138.84ms
+2025-11-08 22:28:24,201 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 155.84ms
+2025-11-08 22:28:24,213 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 129.28ms
+2025-11-08 22:28:24,284 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 178.85ms
+2025-11-08 22:28:24,292 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 167.99ms
+2025-11-08 22:28:24,395 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 224.42ms
+2025-11-08 22:28:24,395 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 209.78ms
+2025-11-08 22:28:24,439 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 235.41ms
+2025-11-08 22:28:24,439 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 223.53ms
+2025-11-08 22:28:24,454 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 168.66ms
+2025-11-08 22:28:24,457 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 162.26ms
+2025-11-08 22:28:24,593 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 161.63ms
+2025-11-08 22:28:24,597 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 165.95ms
+2025-11-08 22:28:24,604 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 150.88ms
+2025-11-08 22:28:24,605 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 151.91ms
+2025-11-08 22:28:24,643 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 163.6ms
+2025-11-08 22:28:24,660 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 166.11ms
+2025-11-08 22:28:24,805 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 197.21ms
+2025-11-08 22:28:24,809 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 207.13ms
+2025-11-08 22:28:24,841 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 238.75ms
+2025-11-08 22:28:24,844 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 233.98ms
+2025-11-08 22:28:24,847 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 191.49ms
+2025-11-08 22:28:24,974 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 310.53ms
+2025-11-08 22:28:25,057 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 208.97ms
+2025-11-08 22:28:25,058 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 250.48ms
+2025-11-08 22:28:25,058 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 247.98ms
+2025-11-08 22:28:25,060 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 215.02ms
+2025-11-08 22:28:25,061 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 218.35ms
+2025-11-08 22:28:25,145 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 168.8ms
+2025-11-08 22:28:25,336 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 273.82ms
+2025-11-08 22:28:25,402 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 338.71ms
+2025-11-08 22:28:25,410 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 343.58ms
+2025-11-08 22:28:25,423 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 358.29ms
+2025-11-08 22:28:25,424 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 277.78ms
+2025-11-08 22:28:25,442 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 379.84ms
+2025-11-08 22:28:25,522 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 184.78ms
+2025-11-08 22:28:25,541 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 138.08ms
+2025-11-08 22:28:25,563 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 151.47ms
+2025-11-08 22:28:25,572 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 143.55ms
+2025-11-08 22:28:25,575 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 148.96ms
+2025-11-08 22:28:25,602 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 158.65ms
+2025-11-08 22:28:25,682 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 157.92ms
+2025-11-08 22:28:25,682 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 139.71ms
+2025-11-08 22:28:25,726 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 159.5ms
+2025-11-08 22:28:25,728 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 148.99ms
+2025-11-08 22:28:25,731 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 145.8ms
+2025-11-08 22:28:25,767 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 163.53ms
+2025-11-08 22:28:25,818 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 133.99ms
+2025-11-08 22:28:25,826 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 141.93ms
+2025-11-08 22:28:25,828 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 98.78ms
+2025-11-08 22:28:25,857 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 124.5ms
+2025-11-08 22:28:25,859 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 124.23ms
+2025-11-08 22:28:25,928 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 158.67ms
+2025-11-08 22:28:26,086 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 255.14ms
+2025-11-08 22:28:26,207 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 386.84ms
+2025-11-08 22:28:26,243 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 382.93ms
+2025-11-08 22:28:26,244 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 415.63ms
+2025-11-08 22:28:26,244 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 382.72ms
+2025-11-08 22:28:26,324 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 394.33ms
+2025-11-08 22:28:26,388 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 301.01ms
+2025-11-08 22:28:26,392 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 145.94ms
+2025-11-08 22:28:26,395 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 147.57ms
+2025-11-08 22:28:26,397 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 149.62ms
+2025-11-08 22:28:26,399 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 190.93ms
+2025-11-08 22:28:26,453 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 128.21ms
+2025-11-08 22:28:26,508 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 117.79ms
+2025-11-08 22:28:26,511 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 111.75ms
+2025-11-08 22:28:26,517 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 120.75ms
+2025-11-08 22:28:26,533 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 126.85ms
+2025-11-08 22:28:26,533 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 129.74ms
+2025-11-08 22:28:26,647 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 191.53ms
+2025-11-08 22:28:26,649 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 139.23ms
+2025-11-08 22:28:26,722 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 186.17ms
+2025-11-08 22:28:26,722 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 207.98ms
+2025-11-08 22:28:26,725 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 205.37ms
+2025-11-08 22:28:26,727 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 191.68ms
+2025-11-08 22:28:26,789 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 136.98ms
+2025-11-08 22:28:26,814 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 153.49ms
+2025-11-08 22:28:26,926 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 196.41ms
+2025-11-08 22:28:26,927 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 196.8ms
+2025-11-08 22:28:26,928 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 195.2ms
+2025-11-08 22:28:26,929 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 194.22ms
+2025-11-08 22:28:27,068 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 250.11ms
+2025-11-08 22:28:27,079 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 287.58ms
+2025-11-08 22:28:27,191 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 257.41ms
+2025-11-08 22:28:27,191 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 261.06ms
+2025-11-08 22:28:27,191 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 261.32ms
+2025-11-08 22:28:27,192 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 259.85ms
+2025-11-08 22:28:27,648 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 558.42ms
+2025-11-08 22:28:27,650 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 558.5ms
+2025-11-08 22:28:27,737 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 542.1ms
+2025-11-08 22:28:27,738 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 543.08ms
+2025-11-08 22:28:27,740 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 544.42ms
+2025-11-08 22:28:27,740 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 541.94ms
+2025-11-08 22:28:27,799 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 146.55ms
+2025-11-08 22:28:27,801 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 150.03ms
+2025-11-08 22:28:27,859 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 115.38ms
+2025-11-08 22:28:27,864 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 122.36ms
+2025-11-08 22:28:27,867 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 127.45ms
+2025-11-08 22:28:27,869 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 125.76ms
+2025-11-08 22:28:27,917 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 115.11ms
+2025-11-08 22:28:27,936 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 136.12ms
+2025-11-08 22:28:27,988 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 120.27ms
+2025-11-08 22:28:28,040 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 169.89ms
+2025-11-08 22:28:28,040 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 115.09ms
+2025-11-08 22:28:28,040 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 167.64ms
+2025-11-08 22:28:28,041 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 180.5ms
+2025-11-08 22:28:28,106 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 168.48ms
+2025-11-08 22:28:28,120 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 129.64ms
+2025-11-08 22:28:28,236 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 192.93ms
+2025-11-08 22:28:28,237 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 193.3ms
+2025-11-08 22:28:28,293 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 250.17ms
+2025-11-08 22:28:28,294 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 250.05ms
+2025-11-08 22:28:28,355 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 231.31ms
+2025-11-08 22:28:28,355 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 246.07ms
+2025-11-08 22:28:28,374 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 135.49ms
+2025-11-08 22:28:28,379 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 141.15ms
+2025-11-08 22:28:28,427 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 131.85ms
+2025-11-08 22:28:28,433 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 138.16ms
+2025-11-08 22:28:28,510 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 153.45ms
+2025-11-08 22:28:28,511 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 153.28ms
+2025-11-08 22:28:28,512 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 136.89ms
+2025-11-08 22:28:28,514 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 133.13ms
+2025-11-08 22:28:28,551 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 122.16ms
+2025-11-08 22:28:28,581 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 140.1ms
+2025-11-08 22:28:28,651 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 133.45ms
+2025-11-08 22:28:28,652 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 134.85ms
+2025-11-08 22:28:28,657 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 137.87ms
+2025-11-08 22:28:28,660 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 138.16ms
+2025-11-08 22:28:28,660 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 107.04ms
+2025-11-08 22:28:28,794 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 206.95ms
+2025-11-08 22:28:28,872 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 217.17ms
+2025-11-08 22:28:28,895 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 236.88ms
+2025-11-08 22:28:28,909 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 245.89ms
+2025-11-08 22:28:28,913 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 239.03ms
+2025-11-08 22:28:28,960 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 297.7ms
+2025-11-08 22:28:29,045 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 198.71ms
+2025-11-08 22:28:29,102 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 222.86ms
+2025-11-08 22:28:29,115 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 144.88ms
+2025-11-08 22:28:29,155 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 179.39ms
+2025-11-08 22:28:29,157 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 182.7ms
+2025-11-08 22:28:29,167 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 193.39ms
+2025-11-08 22:28:29,189 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 134.69ms
+2025-11-08 22:28:29,294 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 189.55ms
+2025-11-08 22:28:29,296 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 178.65ms
+2025-11-08 22:28:29,297 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 138.2ms
+2025-11-08 22:28:29,356 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 196.52ms
+2025-11-08 22:28:29,366 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 173.84ms
+2025-11-08 22:28:29,368 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 196.89ms
+2025-11-08 22:28:29,460 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 161.97ms
+2025-11-08 22:28:29,526 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 226.32ms
+2025-11-08 22:28:29,596 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 227.54ms
+2025-11-08 22:28:29,598 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 239.75ms
+2025-11-08 22:28:29,598 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 297.09ms
+2025-11-08 22:28:29,603 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 233.24ms
+2025-11-08 22:28:30,114 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 651.4ms
+2025-11-08 22:28:30,143 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 611.84ms
+2025-11-08 22:28:30,146 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 527.34ms
+2025-11-08 22:28:30,154 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 540.57ms
+2025-11-08 22:28:30,173 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 554.15ms
+2025-11-08 22:28:30,173 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 551.61ms
+2025-11-08 22:28:30,399 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 282.47ms
+2025-11-08 22:28:30,413 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 266.05ms
+2025-11-08 22:28:30,416 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 267.43ms
+2025-11-08 22:28:30,454 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 251.99ms
+2025-11-08 22:28:30,532 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 315.03ms
+2025-11-08 22:28:30,929 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 711.73ms
+2025-11-08 22:28:30,997 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 591.94ms
+2025-11-08 22:28:30,997 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 538.4ms
+2025-11-08 22:28:31,001 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 572.66ms
+2025-11-08 22:28:31,045 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 618.42ms
+2025-11-08 22:28:31,201 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 665.71ms
+2025-11-08 22:28:31,403 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 467.47ms
+2025-11-08 22:28:31,560 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 545.77ms
+2025-11-08 22:28:31,560 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 548.06ms
+2025-11-08 22:28:31,587 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 574.07ms
+2025-11-08 22:28:31,587 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 502.48ms
+2025-11-08 22:28:31,603 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 399.51ms
+2025-11-08 22:28:31,698 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 287.77ms
+2025-11-08 22:28:31,753 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 160.28ms
+2025-11-08 22:28:31,756 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 189.88ms
+2025-11-08 22:28:31,756 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 190.28ms
+2025-11-08 22:28:31,756 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 148.61ms
+2025-11-08 22:28:31,758 [INFO] GET /conversations/chat/690f762ab469fa12d256d4f3 - 200 - 164.64ms
+2025-11-08 22:31:37,490 [INFO] OPTIONS /auth/me - 200 - 1.92ms
+2025-11-08 22:31:37,492 [INFO] OPTIONS /auth/me - 200 - 2.47ms
+2025-11-08 22:31:37,492 [INFO] OPTIONS /auth/me - 200 - 2.62ms
+2025-11-08 22:31:37,492 [INFO] OPTIONS /auth/me - 200 - 2.74ms
+2025-11-08 22:31:37,836 [INFO] GET /auth/me - 200 - 340.95ms
+2025-11-08 22:31:37,837 [INFO] GET /auth/me - 200 - 337.72ms
+2025-11-08 22:31:37,851 [INFO] GET /auth/me - 200 - 343.02ms
+2025-11-08 22:31:37,852 [INFO] GET /auth/me - 200 - 348.2ms
+2025-11-08 22:31:38,047 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 190.7ms
+2025-11-08 22:31:38,201 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 307.39ms
+2025-11-08 22:31:38,201 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 295.6ms
+2025-11-08 22:31:38,202 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 323.26ms
+2025-11-08 22:31:59,417 [INFO] OPTIONS /auth/me - 200 - 3.0ms
+2025-11-08 22:31:59,418 [INFO] OPTIONS /auth/me - 200 - 2.38ms
+2025-11-08 22:31:59,419 [INFO] OPTIONS /auth/me - 200 - 2.25ms
+2025-11-08 22:31:59,419 [INFO] OPTIONS /auth/me - 200 - 2.35ms
+2025-11-08 22:31:59,634 [INFO] GET /auth/me - 200 - 208.34ms
+2025-11-08 22:31:59,634 [INFO] GET /auth/me - 200 - 212.39ms
+2025-11-08 22:31:59,654 [INFO] GET /auth/me - 200 - 232.31ms
+2025-11-08 22:31:59,657 [INFO] GET /auth/me - 200 - 222.51ms
+2025-11-08 22:31:59,843 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 180.62ms
+2025-11-08 22:31:59,870 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 193.61ms
+2025-11-08 22:31:59,870 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 223.07ms
+2025-11-08 22:31:59,873 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 187.33ms
+2025-11-08 22:32:13,320 [INFO] OPTIONS /auth/me - 200 - 1.36ms
+2025-11-08 22:32:13,320 [INFO] OPTIONS /auth/me - 200 - 1.58ms
+2025-11-08 22:32:13,322 [INFO] OPTIONS /auth/me - 200 - 1.44ms
+2025-11-08 22:32:13,322 [INFO] OPTIONS /auth/me - 200 - 1.6ms
+2025-11-08 22:32:13,592 [INFO] GET /auth/me - 200 - 268.13ms
+2025-11-08 22:32:13,597 [INFO] GET /auth/me - 200 - 268.63ms
+2025-11-08 22:32:13,600 [INFO] GET /auth/me - 200 - 275.6ms
+2025-11-08 22:32:13,615 [INFO] GET /auth/me - 200 - 286.04ms
+2025-11-08 22:32:13,787 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 179.11ms
+2025-11-08 22:32:13,789 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 163.53ms
+2025-11-08 22:32:13,821 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 169.48ms
+2025-11-08 22:32:13,823 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 187.64ms
+2025-11-08 22:38:40,491 [INFO] OPTIONS /auth/me - 200 - 2.04ms
+2025-11-08 22:38:40,492 [INFO] OPTIONS /auth/me - 200 - 2.56ms
+2025-11-08 22:38:40,493 [INFO] OPTIONS /auth/me - 200 - 1.46ms
+2025-11-08 22:38:40,493 [INFO] OPTIONS /auth/me - 200 - 1.6ms
+2025-11-08 22:38:40,712 [INFO] GET /auth/me - 200 - 211.58ms
+2025-11-08 22:38:40,723 [INFO] GET /auth/me - 200 - 228.34ms
+2025-11-08 22:38:40,733 [INFO] GET /auth/me - 200 - 231.65ms
+2025-11-08 22:38:40,733 [INFO] GET /auth/me - 200 - 231.77ms
+2025-11-08 22:38:40,980 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 219.63ms
+2025-11-08 22:38:40,980 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 238.4ms
+2025-11-08 22:38:40,981 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 256.23ms
+2025-11-08 22:38:40,981 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 229.09ms
+2025-11-08 22:39:32,617 [INFO] OPTIONS /auth/me - 200 - 1.69ms
+2025-11-08 22:39:32,619 [INFO] OPTIONS /auth/me - 200 - 1.84ms
+2025-11-08 22:39:32,619 [INFO] OPTIONS /auth/me - 200 - 1.06ms
+2025-11-08 22:39:32,619 [INFO] OPTIONS /auth/me - 200 - 1.09ms
+2025-11-08 22:39:33,203 [INFO] GET /auth/me - 200 - 581.94ms
+2025-11-08 22:39:33,204 [INFO] GET /auth/me - 200 - 576.61ms
+2025-11-08 22:39:33,219 [INFO] GET /auth/me - 200 - 591.75ms
+2025-11-08 22:39:33,220 [INFO] GET /auth/me - 200 - 594.15ms
+2025-11-08 22:39:33,422 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 202.52ms
+2025-11-08 22:39:33,422 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 191.29ms
+2025-11-08 22:39:33,425 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 180.97ms
+2025-11-08 22:39:33,427 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 174.49ms
+2025-11-08 22:40:02,390 [INFO] OPTIONS /query/ - 200 - 0.18ms
+2025-11-08 22:40:04,562 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-11-08 22:40:04,563 [WARNING] ⚠️ OpenAI failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-proj-********************************************************************************************************************************************************TioA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-11-08 22:40:04,563 [INFO] ⚙️ Loading Hugging Face model: TinyLlama/TinyLlama-1.1B-Chat-v1.0
+2025-11-08 22:40:05,110 [WARNING] ⚠️ Hugging Face failed: Could not load model TinyLlama/TinyLlama-1.1B-Chat-v1.0 with any of the following classes: (<class 'transformers.models.auto.modeling_auto.AutoModelForCausalLM'>, <class 'transformers.models.llama.modeling_llama.LlamaForCausalLM'>). See the original errors:
+
+while loading with AutoModelForCausalLM, an error is thrown:
+Traceback (most recent call last):
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/pipelines/base.py", line 293, in infer_framework_load_model
+    model = model_class.from_pretrained(model, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/models/auto/auto_factory.py", line 604, in from_pretrained
+    return model_class.from_pretrained(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        pretrained_model_name_or_path, *model_args, config=config, **hub_kwargs, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 4806, in from_pretrained
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Using a `device_map`, `tp_plan`, `torch.device` context manager or setting `torch.set_default_device(device)` requires `accelerate`. You can install it with `pip install accelerate`
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/pipelines/base.py", line 311, in infer_framework_load_model
+    model = model_class.from_pretrained(model, **fp32_kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/models/auto/auto_factory.py", line 604, in from_pretrained
+    return model_class.from_pretrained(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        pretrained_model_name_or_path, *model_args, config=config, **hub_kwargs, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 4806, in from_pretrained
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Using a `device_map`, `tp_plan`, `torch.device` context manager or setting `torch.set_default_device(device)` requires `accelerate`. You can install it with `pip install accelerate`
+
+while loading with LlamaForCausalLM, an error is thrown:
+Traceback (most recent call last):
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/pipelines/base.py", line 293, in infer_framework_load_model
+    model = model_class.from_pretrained(model, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 4806, in from_pretrained
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Using a `device_map`, `tp_plan`, `torch.device` context manager or setting `torch.set_default_device(device)` requires `accelerate`. You can install it with `pip install accelerate`
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/pipelines/base.py", line 311, in infer_framework_load_model
+    model = model_class.from_pretrained(model, **fp32_kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 4806, in from_pretrained
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Using a `device_map`, `tp_plan`, `torch.device` context manager or setting `torch.set_default_device(device)` requires `accelerate`. You can install it with `pip install accelerate`
+
+
+
+2025-11-08 22:40:05,259 [INFO] 🦙 Running Ollama model: mistral
+2025-11-08 22:40:20,324 [INFO] [SUCCESS] Query: What is the dimension of electric capacitance? | Answer: In the context provided, electric capacitance is not explicitly mentioned as a p
+2025-11-08 22:40:20,579 [INFO] POST /query/ - 200 - 18185.74ms
+2025-11-08 22:40:20,756 [INFO] GET /conversations/chat/690f797cb469fa12d256d4f5 - 200 - 146.84ms
+2025-11-08 22:41:01,627 [INFO] OPTIONS /query/ - 200 - 0.71ms
+2025-11-08 22:41:03,353 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-11-08 22:41:03,354 [WARNING] ⚠️ OpenAI failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-proj-********************************************************************************************************************************************************TioA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-11-08 22:41:03,354 [INFO] ⚙️ Loading Hugging Face model: TinyLlama/TinyLlama-1.1B-Chat-v1.0
+2025-11-08 22:41:03,665 [WARNING] ⚠️ Hugging Face failed: Could not load model TinyLlama/TinyLlama-1.1B-Chat-v1.0 with any of the following classes: (<class 'transformers.models.auto.modeling_auto.AutoModelForCausalLM'>, <class 'transformers.models.llama.modeling_llama.LlamaForCausalLM'>). See the original errors:
+
+while loading with AutoModelForCausalLM, an error is thrown:
+Traceback (most recent call last):
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/pipelines/base.py", line 293, in infer_framework_load_model
+    model = model_class.from_pretrained(model, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/models/auto/auto_factory.py", line 604, in from_pretrained
+    return model_class.from_pretrained(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        pretrained_model_name_or_path, *model_args, config=config, **hub_kwargs, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 4806, in from_pretrained
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Using a `device_map`, `tp_plan`, `torch.device` context manager or setting `torch.set_default_device(device)` requires `accelerate`. You can install it with `pip install accelerate`
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/pipelines/base.py", line 311, in infer_framework_load_model
+    model = model_class.from_pretrained(model, **fp32_kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/models/auto/auto_factory.py", line 604, in from_pretrained
+    return model_class.from_pretrained(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        pretrained_model_name_or_path, *model_args, config=config, **hub_kwargs, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 4806, in from_pretrained
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Using a `device_map`, `tp_plan`, `torch.device` context manager or setting `torch.set_default_device(device)` requires `accelerate`. You can install it with `pip install accelerate`
+
+while loading with LlamaForCausalLM, an error is thrown:
+Traceback (most recent call last):
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/pipelines/base.py", line 293, in infer_framework_load_model
+    model = model_class.from_pretrained(model, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 4806, in from_pretrained
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Using a `device_map`, `tp_plan`, `torch.device` context manager or setting `torch.set_default_device(device)` requires `accelerate`. You can install it with `pip install accelerate`
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/pipelines/base.py", line 311, in infer_framework_load_model
+    model = model_class.from_pretrained(model, **fp32_kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/transformers/modeling_utils.py", line 4806, in from_pretrained
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Using a `device_map`, `tp_plan`, `torch.device` context manager or setting `torch.set_default_device(device)` requires `accelerate`. You can install it with `pip install accelerate`
+
+
+
+2025-11-08 22:41:03,818 [INFO] 🦙 Running Ollama model: mistral
+2025-11-08 22:41:24,836 [INFO] [SUCCESS] Query: What is the dimension of resistance? | Answer: In the context provided, to find the dimension of resistance, we first need to i
+2025-11-08 22:41:25,056 [INFO] POST /query/ - 200 - 23424.88ms
+2025-11-08 22:41:25,293 [INFO] GET /conversations/chat/690f797cb469fa12d256d4f5 - 200 - 202.18ms
+2025-11-08 22:45:48,499 [INFO] OPTIONS /auth/me - 200 - 1.46ms
+2025-11-08 22:45:48,501 [INFO] OPTIONS /auth/me - 200 - 2.03ms
+2025-11-08 22:45:48,502 [INFO] OPTIONS /auth/me - 200 - 1.75ms
+2025-11-08 22:45:48,502 [INFO] OPTIONS /auth/me - 200 - 2.12ms
+2025-11-08 22:45:48,746 [INFO] GET /auth/me - 200 - 242.18ms
+2025-11-08 22:45:48,747 [INFO] GET /auth/me - 200 - 168.76ms
+2025-11-08 22:45:48,754 [INFO] GET /auth/me - 200 - 181.48ms
+2025-11-08 22:45:48,759 [INFO] GET /auth/me - 200 - 181.16ms
+2025-11-08 22:45:48,957 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 187.97ms
+2025-11-08 22:45:48,959 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 194.81ms
+2025-11-08 22:45:48,960 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 172.89ms
+2025-11-08 22:45:48,961 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 180.49ms
+2025-11-08 22:46:23,830 [INFO] OPTIONS /auth/me - 200 - 2.29ms
+2025-11-08 22:46:23,833 [INFO] OPTIONS /auth/me - 200 - 1.48ms
+2025-11-08 22:46:23,834 [INFO] OPTIONS /auth/me - 200 - 1.58ms
+2025-11-08 22:46:23,834 [INFO] OPTIONS /auth/me - 200 - 1.49ms
+2025-11-08 22:46:24,129 [INFO] GET /auth/me - 200 - 293.04ms
+2025-11-08 22:46:24,132 [INFO] GET /auth/me - 200 - 284.18ms
+2025-11-08 22:46:24,134 [INFO] GET /auth/me - 200 - 285.23ms
+2025-11-08 22:46:24,138 [INFO] GET /auth/me - 200 - 289.74ms
+2025-11-08 22:46:24,340 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 186.25ms
+2025-11-08 22:46:24,341 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 201.87ms
+2025-11-08 22:46:24,352 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 204.25ms
+2025-11-08 22:46:24,353 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 191.98ms
+2025-11-08 22:46:49,257 [INFO] OPTIONS /auth/me - 200 - 0.74ms
+2025-11-08 22:46:49,260 [INFO] OPTIONS /auth/me - 200 - 1.31ms
+2025-11-08 22:46:49,261 [INFO] OPTIONS /auth/me - 200 - 1.04ms
+2025-11-08 22:46:49,261 [INFO] OPTIONS /auth/me - 200 - 1.12ms
+2025-11-08 22:46:49,612 [INFO] GET /auth/me - 200 - 351.03ms
+2025-11-08 22:46:49,615 [INFO] GET /auth/me - 200 - 350.0ms
+2025-11-08 22:46:49,617 [INFO] GET /auth/me - 200 - 350.08ms
+2025-11-08 22:46:49,622 [INFO] GET /auth/me - 200 - 353.5ms
+2025-11-08 22:46:49,835 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 210.07ms
+2025-11-08 22:46:49,858 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 197.81ms
+2025-11-08 22:46:49,860 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 203.36ms
+2025-11-08 22:46:49,860 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 200.68ms
+2025-11-08 22:48:56,719 [INFO] OPTIONS /auth/me - 200 - 3.53ms
+2025-11-08 22:48:56,721 [INFO] OPTIONS /auth/me - 200 - 4.79ms
+2025-11-08 22:48:56,722 [INFO] OPTIONS /auth/me - 200 - 4.82ms
+2025-11-08 22:48:56,722 [INFO] OPTIONS /auth/me - 200 - 4.86ms
+2025-11-08 22:48:57,042 [INFO] GET /auth/me - 200 - 289.76ms
+2025-11-08 22:48:57,044 [INFO] GET /auth/me - 200 - 307.62ms
+2025-11-08 22:48:57,047 [INFO] GET /auth/me - 200 - 310.45ms
+2025-11-08 22:48:57,050 [INFO] GET /auth/me - 200 - 313.74ms
+2025-11-08 22:48:57,242 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 175.92ms
+2025-11-08 22:48:57,243 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 187.66ms
+2025-11-08 22:48:57,258 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 184.41ms
+2025-11-08 22:48:57,282 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 200.32ms
+2025-11-08 22:49:14,652 [INFO] OPTIONS /auth/me - 200 - 0.8ms
+2025-11-08 22:49:14,653 [INFO] OPTIONS /auth/me - 200 - 0.74ms
+2025-11-08 22:49:14,653 [INFO] OPTIONS /auth/me - 200 - 0.85ms
+2025-11-08 22:49:14,653 [INFO] OPTIONS /auth/me - 200 - 1.1ms
+2025-11-08 22:49:15,103 [INFO] GET /auth/me - 200 - 442.66ms
+2025-11-08 22:49:15,128 [INFO] GET /auth/me - 200 - 468.23ms
+2025-11-08 22:49:15,129 [INFO] GET /auth/me - 200 - 473.0ms
+2025-11-08 22:49:15,129 [INFO] GET /auth/me - 200 - 468.23ms
+2025-11-08 22:49:15,337 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 224.51ms
+2025-11-08 22:49:15,371 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 228.51ms
+2025-11-08 22:49:15,372 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 224.03ms
+2025-11-08 22:49:15,373 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 236.26ms
+2025-11-08 22:49:35,643 [INFO] OPTIONS /auth/me - 200 - 0.28ms
+2025-11-08 22:49:35,652 [INFO] OPTIONS /auth/me - 200 - 0.51ms
+2025-11-08 22:49:35,653 [INFO] OPTIONS /auth/me - 200 - 0.81ms
+2025-11-08 22:49:35,653 [INFO] OPTIONS /auth/me - 200 - 0.99ms
+2025-11-08 22:49:35,972 [INFO] GET /auth/me - 200 - 289.97ms
+2025-11-08 22:49:35,978 [INFO] GET /auth/me - 200 - 333.31ms
+2025-11-08 22:49:35,983 [INFO] GET /auth/me - 200 - 299.45ms
+2025-11-08 22:49:35,984 [INFO] GET /auth/me - 200 - 286.75ms
+2025-11-08 22:49:36,186 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 184.66ms
+2025-11-08 22:49:36,187 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 199.79ms
+2025-11-08 22:49:36,202 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 183.23ms
+2025-11-08 22:49:36,205 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 193.77ms
+2025-11-08 22:56:52,019 [INFO] OPTIONS /auth/me - 200 - 3.63ms
+2025-11-08 22:56:52,291 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 270.48ms
+2025-11-08 22:56:52,292 [INFO] GET /auth/me - 200 - 260.09ms
+2025-11-08 22:56:52,741 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 429.2ms
+2025-11-08 22:56:59,802 [INFO] OPTIONS /auth/me - 200 - 3.74ms
+2025-11-08 22:57:00,357 [INFO] GET /auth/me - 200 - 548.99ms
+2025-11-08 22:57:00,380 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 572.58ms
+2025-11-08 22:57:00,542 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 175.59ms
+2025-11-08 23:06:21,890 [INFO] Use pytorch device_name: mps
+2025-11-08 23:06:21,890 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-08 23:06:32,226 [INFO] Use pytorch device_name: mps
+2025-11-08 23:06:32,226 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-08 23:06:38,354 [INFO] Loading faiss.
+2025-11-08 23:06:38,397 [INFO] Successfully loaded faiss.
+2025-11-08 23:06:38,406 [INFO] Use pytorch device_name: mps
+2025-11-08 23:06:38,406 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-08 23:06:43,588 [INFO] 🧠 Using device: MPS
+2025-11-08 23:06:53,299 [INFO] Use pytorch device_name: mps
+2025-11-08 23:06:53,299 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-08 23:06:59,164 [INFO] Use pytorch device_name: mps
+2025-11-08 23:06:59,164 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-08 23:07:03,877 [INFO] Loading faiss.
+2025-11-08 23:07:04,019 [INFO] Successfully loaded faiss.
+2025-11-08 23:07:04,035 [INFO] Use pytorch device_name: mps
+2025-11-08 23:07:04,035 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-08 23:07:08,323 [INFO] 🧠 Using device: MPS
+2025-11-08 23:07:20,009 [INFO] Use pytorch device_name: mps
+2025-11-08 23:07:20,009 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-08 23:07:26,688 [INFO] Use pytorch device_name: mps
+2025-11-08 23:07:26,688 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-08 23:07:32,821 [INFO] Use pytorch device_name: mps
+2025-11-08 23:07:32,821 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-08 23:07:37,688 [INFO] Loading faiss.
+2025-11-08 23:07:37,761 [INFO] Successfully loaded faiss.
+2025-11-08 23:07:37,778 [INFO] Use pytorch device_name: mps
+2025-11-08 23:07:37,778 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-08 23:07:42,734 [INFO] 🧠 Using device: MPS
+2025-11-08 23:14:59,765 [INFO] Use pytorch device_name: mps
+2025-11-08 23:14:59,765 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-08 23:15:06,659 [INFO] Loading faiss.
+2025-11-08 23:15:06,703 [INFO] Successfully loaded faiss.
+2025-11-08 23:15:06,713 [INFO] Use pytorch device_name: mps
+2025-11-08 23:15:06,713 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-08 23:15:13,014 [INFO] 🧠 Using device: MPS
+2025-11-08 23:15:25,963 [INFO] OPTIONS /auth/me - 200 - 2.86ms
+2025-11-08 23:15:25,964 [INFO] OPTIONS /auth/me - 200 - 3.09ms
+2025-11-08 23:15:25,965 [INFO] OPTIONS /auth/me - 200 - 2.73ms
+2025-11-08 23:15:25,966 [INFO] OPTIONS /auth/me - 200 - 2.9ms
+2025-11-08 23:15:27,854 [INFO] GET /auth/me - 200 - 1885.35ms
+2025-11-08 23:15:27,885 [INFO] GET /auth/me - 200 - 1881.55ms
+2025-11-08 23:15:28,148 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 247.13ms
+2025-11-08 23:15:28,159 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 286.39ms
+2025-11-08 23:15:28,205 [INFO] GET /auth/me - 200 - 2201.46ms
+2025-11-08 23:15:28,259 [INFO] GET /auth/me - 200 - 2252.68ms
+2025-11-08 23:15:28,390 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 174.57ms
+2025-11-08 23:15:28,447 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 177.96ms
+2025-11-08 23:15:50,531 [INFO] OPTIONS /query/ - 200 - 0.43ms
+2025-11-08 23:15:52,466 [INFO] ⚙️ Loading Hugging Face model: TinyLlama/TinyLlama-1.1B-Chat-v1.0
+2025-11-08 23:17:25,142 [INFO] Use pytorch device_name: mps
+2025-11-08 23:17:25,142 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-08 23:17:30,749 [INFO] Loading faiss.
+2025-11-08 23:17:30,808 [INFO] Successfully loaded faiss.
+2025-11-08 23:17:30,821 [INFO] Use pytorch device_name: mps
+2025-11-08 23:17:30,821 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-08 23:17:37,019 [INFO] 🧠 Using device: MPS
+2025-11-08 23:17:43,447 [INFO] OPTIONS /auth/me - 200 - 1.47ms
+2025-11-08 23:17:43,449 [INFO] OPTIONS /auth/me - 200 - 1.75ms
+2025-11-08 23:17:43,449 [INFO] OPTIONS /auth/me - 200 - 2.0ms
+2025-11-08 23:17:43,449 [INFO] OPTIONS /auth/me - 200 - 2.19ms
+2025-11-08 23:17:44,696 [INFO] GET /auth/me - 200 - 1226.99ms
+2025-11-08 23:17:44,717 [INFO] GET /auth/me - 200 - 1248.91ms
+2025-11-08 23:17:44,942 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 228.31ms
+2025-11-08 23:17:45,057 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 322.27ms
+2025-11-08 23:17:45,120 [INFO] GET /auth/me - 200 - 1668.06ms
+2025-11-08 23:17:45,169 [INFO] GET /auth/me - 200 - 1717.13ms
+2025-11-08 23:17:45,295 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 164.41ms
+2025-11-08 23:17:45,349 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 169.44ms
+2025-11-08 23:21:30,551 [INFO] OPTIONS /query/ - 200 - 1.79ms
+2025-11-08 23:21:32,078 [INFO] 🦙 Running Ollama model: mistral
+2025-11-08 23:21:47,560 [INFO] [SUCCESS] Query: What is the dimension of viscosity? | Answer: In the given context, the dimensions of various physical quantities are provided
+2025-11-08 23:21:47,771 [INFO] POST /query/ - 200 - 17215.95ms
+2025-11-08 23:21:47,920 [INFO] GET /conversations/chat/690f83338aaa97fc50bd5b2e - 200 - 121.83ms
+2025-11-08 23:27:11,693 [INFO] OPTIONS /query/ - 200 - 0.59ms
+2025-11-08 23:27:13,254 [INFO] 🦙 Running Ollama model: mistral
+2025-11-08 23:27:26,964 [INFO] [SUCCESS] Query: What is the dimension of friction? | Answer: In the provided context, the dimensions of a physical quantity are based on fund
+2025-11-08 23:27:27,159 [INFO] POST /query/ - 200 - 15461.52ms
+2025-11-08 23:27:27,371 [INFO] GET /conversations/chat/690f83338aaa97fc50bd5b2e - 200 - 187.14ms
+2025-11-08 23:30:12,446 [INFO] Use pytorch device_name: mps
+2025-11-08 23:30:12,446 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-08 23:30:18,674 [INFO] Loading faiss.
+2025-11-08 23:30:18,709 [INFO] Successfully loaded faiss.
+2025-11-08 23:30:18,716 [INFO] Use pytorch device_name: mps
+2025-11-08 23:30:18,717 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-08 23:30:23,826 [INFO] 🧠 Using device: MPS
+2025-11-08 23:31:30,544 [INFO] OPTIONS /query/ - 200 - 0.85ms
+2025-11-08 23:31:34,344 [INFO] 🦙 Running Ollama model: mistral
+2025-11-08 23:31:44,064 [INFO] [SUCCESS] Query: but the dimension of frictional force is given [M 1L 1T −2], which one is correc | Answer: In the provided context, the dimension of Frictional Force (F) should be M*LT^-2
+2025-11-08 23:31:44,297 [INFO] POST /query/ - 200 - 13748.95ms
+2025-11-08 23:31:44,612 [INFO] GET /conversations/chat/690f83338aaa97fc50bd5b2e - 200 - 289.87ms
+2025-11-08 23:32:57,412 [INFO] OPTIONS /query/ - 200 - 0.66ms
+2025-11-08 23:33:36,275 [INFO] 🦙 Running Ollama model: mistral
+2025-11-08 23:33:52,504 [INFO] [SUCCESS] Query: do you remember your previous answer? | Answer: Yes, I will clarify the answers to the questions provided in the handwritten not
+2025-11-08 23:33:52,732 [INFO] POST /query/ - 200 - 55317.52ms
+2025-11-08 23:33:53,165 [INFO] GET /conversations/chat/690f83338aaa97fc50bd5b2e - 200 - 408.84ms
+2025-11-08 23:36:28,825 [INFO] Use pytorch device_name: mps
+2025-11-08 23:36:28,825 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-08 23:36:33,934 [INFO] Loading faiss.
+2025-11-08 23:36:33,977 [INFO] Successfully loaded faiss.
+2025-11-08 23:36:33,985 [INFO] Use pytorch device_name: mps
+2025-11-08 23:36:33,985 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-08 23:36:39,164 [INFO] 🧠 Using device: MPS
+2025-11-08 23:49:00,093 [INFO] Use pytorch device_name: mps
+2025-11-08 23:49:00,093 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-08 23:49:12,578 [INFO] Use pytorch device_name: mps
+2025-11-08 23:49:12,578 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-08 23:49:19,139 [INFO] Use pytorch device_name: mps
+2025-11-08 23:49:19,139 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-08 23:49:25,925 [INFO] Loading faiss.
+2025-11-08 23:49:26,054 [INFO] Successfully loaded faiss.
+2025-11-08 23:49:26,063 [INFO] Use pytorch device_name: mps
+2025-11-08 23:49:26,063 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-08 23:49:31,624 [INFO] 🧠 Using device: MPS
+2025-11-08 23:52:46,075 [INFO] Use pytorch device_name: mps
+2025-11-08 23:52:46,075 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-08 23:52:50,259 [INFO] Use pytorch device_name: mps
+2025-11-08 23:52:50,259 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-08 23:52:54,588 [INFO] Loading faiss.
+2025-11-08 23:52:54,633 [INFO] Successfully loaded faiss.
+2025-11-08 23:52:54,642 [INFO] Use pytorch device_name: mps
+2025-11-08 23:52:54,642 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-08 23:52:59,853 [INFO] 🧠 Using device: MPS
+2025-11-08 23:53:24,048 [INFO] Use pytorch device_name: mps
+2025-11-08 23:53:24,048 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-08 23:53:31,034 [INFO] Loading faiss.
+2025-11-08 23:53:31,088 [INFO] Successfully loaded faiss.
+2025-11-08 23:53:31,097 [INFO] Use pytorch device_name: mps
+2025-11-08 23:53:31,098 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-08 23:53:37,651 [INFO] 🧠 Using device: MPS
+2025-11-08 23:54:59,498 [INFO] Use pytorch device_name: mps
+2025-11-08 23:54:59,498 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-08 23:55:06,105 [INFO] Loading faiss.
+2025-11-08 23:55:06,150 [INFO] Successfully loaded faiss.
+2025-11-08 23:55:06,159 [INFO] Use pytorch device_name: mps
+2025-11-08 23:55:06,159 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-08 23:55:11,564 [INFO] 🧠 Using device: MPS
+2025-11-08 23:55:51,119 [INFO] Use pytorch device_name: mps
+2025-11-08 23:55:51,120 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-08 23:55:56,445 [INFO] Loading faiss.
+2025-11-08 23:55:56,511 [INFO] Successfully loaded faiss.
+2025-11-08 23:55:56,521 [INFO] Use pytorch device_name: mps
+2025-11-08 23:55:56,521 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-08 23:56:01,687 [INFO] 🧠 Using device: MPS
+2025-11-08 23:56:11,412 [INFO] Use pytorch device_name: mps
+2025-11-08 23:56:11,412 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-08 23:56:16,691 [INFO] Loading faiss.
+2025-11-08 23:56:16,733 [INFO] Successfully loaded faiss.
+2025-11-08 23:56:16,740 [INFO] Use pytorch device_name: mps
+2025-11-08 23:56:16,740 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-08 23:56:23,376 [INFO] 🧠 Using device: MPS
+2025-11-08 23:56:54,965 [INFO] Use pytorch device_name: mps
+2025-11-08 23:56:54,966 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-08 23:57:02,449 [INFO] Use pytorch device_name: mps
+2025-11-08 23:57:02,449 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-08 23:57:10,969 [INFO] Use pytorch device_name: mps
+2025-11-08 23:57:10,969 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-08 23:57:17,383 [INFO] Loading faiss.
+2025-11-08 23:57:17,471 [INFO] Successfully loaded faiss.
+2025-11-08 23:57:17,481 [INFO] Use pytorch device_name: mps
+2025-11-08 23:57:17,481 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-08 23:57:22,130 [INFO] 🧠 Using device: MPS
+2025-11-08 23:57:50,786 [INFO] OPTIONS /auth/me - 200 - 2.18ms
+2025-11-08 23:57:50,788 [INFO] OPTIONS /auth/me - 200 - 2.4ms
+2025-11-08 23:57:50,789 [INFO] OPTIONS /auth/me - 200 - 1.85ms
+2025-11-08 23:57:50,789 [INFO] OPTIONS /auth/me - 200 - 1.91ms
+2025-11-08 23:57:52,479 [INFO] GET /auth/me - 200 - 1635.62ms
+2025-11-08 23:57:52,744 [INFO] GET /auth/me - 200 - 1898.26ms
+2025-11-08 23:57:52,746 [INFO] GET /auth/me - 200 - 1954.44ms
+2025-11-08 23:57:52,762 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 269.89ms
+2025-11-08 23:57:53,030 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 272.94ms
+2025-11-08 23:57:53,034 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 268.24ms
+2025-11-08 23:57:53,082 [INFO] GET /auth/me - 200 - 2236.43ms
+2025-11-08 23:57:53,302 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 206.28ms
+2025-11-08 23:58:21,626 [INFO] OPTIONS /query/ - 200 - 0.2ms
+2025-11-08 23:58:23,778 [INFO] 🦙 Running Ollama model: mistral
+2025-11-08 23:58:37,361 [INFO] [SUCCESS] Query: What is the dimension of electric current? | Answer: As we discussed earlier, the dimensions of a physical quantity are based on fund
+2025-11-08 23:58:37,626 [INFO] Use pytorch device_name: mps
+2025-11-08 23:58:37,626 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-08 23:58:41,817 [INFO] POST /query/ - 200 - 20188.15ms
+2025-11-08 23:58:42,106 [INFO] GET /conversations/chat/690f8bd53ba7507a754e1532 - 200 - 253.89ms
+2025-11-08 23:58:59,763 [INFO] OPTIONS /query/ - 200 - 0.19ms
+2025-11-08 23:59:00,801 [INFO] 🦙 Running Ollama model: mistral
+2025-11-08 23:59:12,022 [INFO] [SUCCESS] Query: What is the dimension of electric flux? | Answer: To find the dimension of electric flux, we first need to understand that it is a
+2025-11-08 23:59:12,274 [INFO] Use pytorch device_name: mps
+2025-11-08 23:59:12,274 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-08 23:59:16,866 [INFO] POST /query/ - 200 - 17098.12ms
+2025-11-08 23:59:17,201 [INFO] GET /conversations/chat/690f8bd53ba7507a754e1532 - 200 - 271.95ms
+2025-11-08 23:59:33,175 [INFO] OPTIONS /query/ - 200 - 0.55ms
+2025-11-08 23:59:34,857 [INFO] 🦙 Running Ollama model: mistral
+2025-11-08 23:59:48,440 [INFO] [SUCCESS] Query: What is the dimension of capacitance? | Answer: The dimension of capacitance can be found by understanding its definition and re
+2025-11-08 23:59:48,823 [INFO] Use pytorch device_name: mps
+2025-11-08 23:59:48,823 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-08 23:59:54,362 [INFO] POST /query/ - 200 - 21178.69ms
+2025-11-08 23:59:54,803 [INFO] GET /conversations/chat/690f8bd53ba7507a754e1532 - 200 - 421.54ms
+2025-11-09 00:00:57,070 [INFO] Use pytorch device_name: mps
+2025-11-09 00:00:57,070 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 00:01:01,703 [INFO] Loading faiss.
+2025-11-09 00:01:01,746 [INFO] Successfully loaded faiss.
+2025-11-09 00:01:01,757 [INFO] Use pytorch device_name: mps
+2025-11-09 00:01:01,757 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 00:01:06,410 [INFO] 🧠 Using device: MPS
+2025-11-09 00:02:01,984 [INFO] OPTIONS /query/ - 200 - 0.85ms
+2025-11-09 00:02:04,649 [INFO] 🦙 Running Ollama model: mistral
+2025-11-09 00:02:22,351 [INFO] [SUCCESS] Query: What is the dimension of electric flux is [M 
+1
+ L 
+3
+ T 
+−3
+ A 
+−1
+ ], you gave | Answer: Apologies for any confusion. The correct formula for the dimension of electric f
+2025-11-09 00:02:22,574 [INFO] Use pytorch device_name: mps
+2025-11-09 00:02:22,574 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 00:02:27,379 [INFO] POST /query/ - 200 - 25391.26ms
+2025-11-09 00:02:27,791 [INFO] GET /conversations/chat/690f8bd53ba7507a754e1532 - 200 - 323.86ms
+2025-11-09 00:04:27,388 [INFO] OPTIONS /query/ - 200 - 1.86ms
+2025-11-09 00:04:28,675 [INFO] 🦙 Running Ollama model: mistral
+2025-11-09 00:04:41,541 [INFO] [SUCCESS] Query: Dimensions of Electric Flux (Φ) = M L¹ T⁻³ A⁻¹ * L² = ML²T⁻³A⁻¹ 
+step in earlier | Answer: You're correct! In the previous conversation, I made an error by not considering
+2025-11-09 00:04:41,787 [INFO] Use pytorch device_name: mps
+2025-11-09 00:04:41,787 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 00:04:46,973 [INFO] POST /query/ - 200 - 19581.82ms
+2025-11-09 00:04:47,651 [INFO] GET /conversations/chat/690f8bd53ba7507a754e1532 - 200 - 659.52ms
+2025-11-09 00:05:21,716 [INFO] OPTIONS /query/ - 200 - 0.36ms
+2025-11-09 00:05:22,993 [INFO] 🦙 Running Ollama model: mistral
+2025-11-09 00:05:31,516 [INFO] [SUCCESS] Query: What is the final dimensions of electric flux then? | Answer: The final dimension for electric flux, as derived from the fundamental quantitie
+2025-11-09 00:05:31,737 [INFO] Use pytorch device_name: mps
+2025-11-09 00:05:31,738 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 00:05:36,234 [INFO] POST /query/ - 200 - 14516.0ms
+2025-11-09 00:05:37,216 [INFO] GET /conversations/chat/690f8bd53ba7507a754e1532 - 200 - 947.78ms
+2025-11-09 00:06:01,047 [INFO] OPTIONS /auth/me - 200 - 0.59ms
+2025-11-09 00:06:01,070 [INFO] OPTIONS /auth/me - 200 - 1.96ms
+2025-11-09 00:06:02,259 [INFO] GET /auth/me - 200 - 1207.62ms
+2025-11-09 00:06:02,491 [INFO] GET /auth/me - 200 - 1419.12ms
+2025-11-09 00:06:02,669 [INFO] GET /conversations/chats - 200 - 392.79ms
+2025-11-09 00:06:02,902 [INFO] GET /conversations/chats - 200 - 393.86ms
+2025-11-09 00:06:02,948 [INFO] GET /conversations/chats - 200 - 1880.05ms
+2025-11-09 00:06:03,028 [INFO] GET /conversations/chats - 200 - 1959.65ms
+2025-11-09 00:06:06,746 [INFO] GET /conversations - 307 - 0.34ms
+2025-11-09 00:06:06,999 [INFO] GET /conversations/chats - 200 - 254.02ms
+2025-11-09 00:06:07,533 [INFO] GET /conversations/ - 200 - 759.03ms
+2025-11-09 00:06:21,322 [INFO] GET /conversations/chats - 200 - 91.95ms
+2025-11-09 00:06:23,353 [INFO] OPTIONS /auth/me - 200 - 2.16ms
+2025-11-09 00:06:23,356 [INFO] OPTIONS /auth/me - 200 - 2.87ms
+2025-11-09 00:06:23,357 [INFO] GET /teachers - 307 - 3.13ms
+2025-11-09 00:06:23,357 [INFO] GET /teachers - 307 - 2.9ms
+2025-11-09 00:06:23,581 [INFO] GET /auth/me - 200 - 211.63ms
+2025-11-09 00:06:23,581 [INFO] GET /auth/me - 200 - 221.49ms
+2025-11-09 00:06:23,595 [INFO] GET /teachers - 307 - 0.33ms
+2025-11-09 00:06:23,610 [INFO] GET /teachers - 307 - 4.06ms
+2025-11-09 00:06:23,801 [INFO] GET /teachers/ - 200 - 429.2ms
+2025-11-09 00:06:24,053 [INFO] GET /teachers/ - 200 - 440.34ms
+2025-11-09 00:06:24,054 [INFO] GET /teachers/ - 200 - 444.29ms
+2025-11-09 00:06:24,287 [INFO] GET /teachers/ - 200 - 915.31ms
+2025-11-09 00:06:25,454 [INFO] OPTIONS /auth/me - 200 - 0.22ms
+2025-11-09 00:06:25,460 [INFO] OPTIONS /auth/me - 200 - 1.17ms
+2025-11-09 00:06:25,873 [INFO] GET /auth/me - 200 - 416.41ms
+2025-11-09 00:06:25,888 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 429.79ms
+2025-11-09 00:06:26,495 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 604.31ms
+2025-11-09 00:06:26,496 [INFO] GET /conversations/chat/690f8bd53ba7507a754e1532 - 200 - 1040.27ms
+2025-11-09 00:06:26,497 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 1037.68ms
+2025-11-09 00:06:26,578 [INFO] GET /conversations/chat/690f8bd53ba7507a754e1532 - 200 - 1118.69ms
+2025-11-09 00:06:26,579 [INFO] GET /auth/me - 200 - 1117.45ms
+2025-11-09 00:06:26,933 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 333.68ms
+2025-11-09 00:08:42,440 [INFO] OPTIONS /auth/me - 200 - 14.61ms
+2025-11-09 00:08:42,835 [INFO] GET /auth/me - 200 - 368.15ms
+2025-11-09 00:08:42,837 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 400.56ms
+2025-11-09 00:08:43,609 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 745.29ms
+2025-11-09 00:08:44,171 [INFO] GET /conversations/chat/690f8bd53ba7507a754e1532 - 200 - 1734.35ms
+2025-11-09 00:09:51,296 [INFO] OPTIONS /query/ - 200 - 0.9ms
+2025-11-09 00:09:52,809 [INFO] 🦙 Running Ollama model: mistral
+2025-11-09 00:10:07,747 [INFO] [SUCCESS] Query: what is the dimension of potential difference? | Answer: To find the dimension of potential difference, also known as voltage or electrom
+2025-11-09 00:10:08,028 [INFO] Use pytorch device_name: mps
+2025-11-09 00:10:08,028 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 00:10:13,983 [INFO] POST /query/ - 200 - 22684.17ms
+2025-11-09 00:10:14,846 [INFO] GET /conversations/chat/690f8bd53ba7507a754e1532 - 200 - 841.34ms
+2025-11-09 00:11:48,318 [INFO] OPTIONS /auth/me - 200 - 21.48ms
+2025-11-09 00:11:48,327 [INFO] OPTIONS /auth/me - 200 - 26.3ms
+2025-11-09 00:11:48,339 [INFO] OPTIONS /auth/me - 200 - 17.64ms
+2025-11-09 00:11:48,443 [INFO] OPTIONS /auth/me - 200 - 85.86ms
+2025-11-09 00:11:48,936 [INFO] GET /auth/me - 200 - 569.97ms
+2025-11-09 00:11:48,936 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 635.4ms
+2025-11-09 00:11:48,999 [INFO] GET /auth/me - 200 - 550.27ms
+2025-11-09 00:11:49,005 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 651.66ms
+2025-11-09 00:11:49,370 [INFO] GET /auth/me - 200 - 427.28ms
+2025-11-09 00:11:49,372 [INFO] GET /auth/me - 200 - 429.69ms
+2025-11-09 00:11:49,639 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 543.88ms
+2025-11-09 00:11:49,654 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 628.41ms
+2025-11-09 00:11:49,667 [INFO] GET /conversations/chat/690f8bd53ba7507a754e1532 - 200 - 1366.35ms
+2025-11-09 00:11:50,449 [INFO] GET /conversations/chat/690f8bd53ba7507a754e1532 - 200 - 2127.54ms
+2025-11-09 00:11:50,617 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 1214.22ms
+2025-11-09 00:11:50,685 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 1207.25ms
+2025-11-09 00:17:05,695 [INFO] Use pytorch device_name: mps
+2025-11-09 00:17:05,695 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 00:17:11,268 [INFO] Use pytorch device_name: mps
+2025-11-09 00:17:11,268 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 00:17:15,444 [INFO] Loading faiss.
+2025-11-09 00:17:15,488 [INFO] Successfully loaded faiss.
+2025-11-09 00:17:15,496 [INFO] Use pytorch device_name: mps
+2025-11-09 00:17:15,496 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 00:17:20,932 [INFO] 🧠 Using device: MPS
+2025-11-09 00:17:33,592 [INFO] Use pytorch device_name: mps
+2025-11-09 00:17:33,592 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 00:17:38,483 [INFO] Use pytorch device_name: mps
+2025-11-09 00:17:38,484 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 00:17:45,915 [INFO] Use pytorch device_name: mps
+2025-11-09 00:17:45,915 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 00:17:50,976 [INFO] Loading faiss.
+2025-11-09 00:17:51,015 [INFO] Successfully loaded faiss.
+2025-11-09 00:17:51,022 [INFO] Use pytorch device_name: mps
+2025-11-09 00:17:51,022 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 00:17:57,041 [INFO] 🧠 Using device: MPS
+2025-11-09 00:18:36,320 [INFO] Use pytorch device_name: mps
+2025-11-09 00:18:36,320 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 00:18:44,898 [INFO] Loading faiss.
+2025-11-09 00:18:44,939 [INFO] Successfully loaded faiss.
+2025-11-09 00:18:44,947 [INFO] Use pytorch device_name: mps
+2025-11-09 00:18:44,947 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 00:18:53,391 [INFO] Use pytorch device_name: mps
+2025-11-09 00:18:53,391 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 00:19:02,463 [INFO] Use pytorch device_name: mps
+2025-11-09 00:19:02,463 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 00:19:08,064 [INFO] Use pytorch device_name: mps
+2025-11-09 00:19:08,064 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 00:19:13,745 [INFO] Loading faiss.
+2025-11-09 00:19:13,783 [INFO] Successfully loaded faiss.
+2025-11-09 00:19:13,790 [INFO] Use pytorch device_name: mps
+2025-11-09 00:19:13,790 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 00:19:19,729 [INFO] 🧠 Using device: MPS
+2025-11-09 00:19:29,330 [INFO] OPTIONS /query/ - 200 - 0.67ms
+2025-11-09 00:19:31,820 [INFO] 🦙 Running Ollama model: mistral
+2025-11-09 00:19:48,857 [INFO] [SUCCESS] Query: What is the dimension of phase difference? | Answer: To find the dimension of phase difference, we first need to understand its relat
+2025-11-09 00:19:49,176 [INFO] Use pytorch device_name: mps
+2025-11-09 00:19:49,176 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 00:19:54,537 [INFO] POST /query/ - 200 - 25203.98ms
+2025-11-09 00:19:55,647 [INFO] GET /conversations/chat/690f8bd53ba7507a754e1532 - 200 - 1060.71ms
+2025-11-09 00:22:10,883 [INFO] Use pytorch device_name: mps
+2025-11-09 00:22:10,884 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 00:22:32,305 [INFO] Use pytorch device_name: mps
+2025-11-09 00:22:32,305 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 00:22:37,111 [INFO] Loading faiss.
+2025-11-09 00:22:37,149 [INFO] Successfully loaded faiss.
+2025-11-09 00:22:37,156 [INFO] Use pytorch device_name: mps
+2025-11-09 00:22:37,156 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 00:22:41,591 [INFO] 🧠 Using device: MPS
+2025-11-09 00:23:07,709 [INFO] OPTIONS /auth/me - 200 - 1.27ms
+2025-11-09 00:23:07,709 [INFO] OPTIONS /auth/me - 200 - 1.47ms
+2025-11-09 00:23:07,711 [INFO] OPTIONS /auth/me - 200 - 2.76ms
+2025-11-09 00:23:07,712 [INFO] OPTIONS /auth/me - 200 - 3.31ms
+2025-11-09 00:23:10,251 [INFO] GET /auth/me - 200 - 2496.33ms
+2025-11-09 00:23:10,477 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 203.87ms
+2025-11-09 00:23:10,587 [INFO] GET /auth/me - 200 - 2871.9ms
+2025-11-09 00:23:10,606 [INFO] GET /auth/me - 200 - 2845.73ms
+2025-11-09 00:23:10,772 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 175.29ms
+2025-11-09 00:23:10,818 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 200.87ms
+2025-11-09 00:23:10,932 [INFO] GET /auth/me - 200 - 3216.59ms
+2025-11-09 00:23:11,121 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 177.19ms
+2025-11-09 00:23:58,180 [INFO] OPTIONS /query/ - 200 - 0.74ms
+2025-11-09 00:23:59,704 [INFO] 🦙 Running Ollama model: mistral
+2025-11-09 00:24:21,257 [INFO] [SUCCESS] Query: What is the dimension of elasticity? | Answer: To find the dimension of elasticity, also known as Young's modulus, we first nee
+2025-11-09 00:24:21,562 [INFO] Use pytorch device_name: mps
+2025-11-09 00:24:21,562 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 00:24:26,548 [INFO] POST /query/ - 200 - 28365.01ms
+2025-11-09 00:24:26,719 [INFO] GET /conversations/chat/690f91dda9e5ab40e6477887 - 200 - 131.74ms
+2025-11-09 00:25:44,903 [INFO] OPTIONS /auth/me - 200 - 5.57ms
+2025-11-09 00:25:44,905 [INFO] OPTIONS /auth/me - 200 - 2.94ms
+2025-11-09 00:25:44,908 [INFO] OPTIONS /auth/me - 200 - 5.22ms
+2025-11-09 00:25:44,909 [INFO] OPTIONS /auth/me - 200 - 4.64ms
+2025-11-09 00:25:49,457 [INFO] OPTIONS /auth/me - 200 - 3.9ms
+2025-11-09 00:25:49,462 [INFO] OPTIONS /auth/me - 200 - 3.79ms
+2025-11-09 00:25:49,462 [INFO] OPTIONS /auth/me - 200 - 4.19ms
+2025-11-09 00:25:49,462 [INFO] OPTIONS /auth/me - 200 - 4.41ms
+2025-11-09 00:25:49,703 [INFO] GET /auth/me - 200 - 4781.1ms
+2025-11-09 00:25:49,703 [INFO] GET /auth/me - 200 - 4783.18ms
+2025-11-09 00:25:49,703 [INFO] GET /auth/me - 200 - 4779.39ms
+2025-11-09 00:25:49,703 [INFO] GET /auth/me - 200 - 4791.93ms
+2025-11-09 00:25:49,917 [INFO] GET /auth/me - 200 - 439.67ms
+2025-11-09 00:25:49,921 [INFO] GET /auth/me - 200 - 443.84ms
+2025-11-09 00:25:50,261 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 330.64ms
+2025-11-09 00:25:50,281 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 337.39ms
+2025-11-09 00:25:50,846 [INFO] GET /auth/me - 200 - 1378.77ms
+2025-11-09 00:25:50,846 [INFO] GET /auth/me - 200 - 1371.2ms
+2025-11-09 00:25:51,046 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 182.98ms
+2025-11-09 00:25:51,095 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 220.3ms
+2025-11-09 00:26:16,915 [INFO] OPTIONS /query/ - 200 - 5.29ms
+2025-11-09 00:26:18,609 [INFO] 🦙 Running Ollama model: mistral
+2025-11-09 00:26:32,492 [INFO] [SUCCESS] Query: What is the dimension of young's modulus? | Answer: To find the dimension of Young's modulus (Y), we first need to recall our previo
+2025-11-09 00:26:32,708 [INFO] Use pytorch device_name: mps
+2025-11-09 00:26:32,709 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 00:26:37,107 [INFO] POST /query/ - 200 - 20183.22ms
+2025-11-09 00:26:37,452 [INFO] GET /conversations/chat/690f9260a9e5ab40e6477889 - 200 - 311.47ms
+2025-11-09 00:28:53,399 [INFO] Use pytorch device_name: mps
+2025-11-09 00:28:53,399 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 00:29:01,980 [INFO] Use pytorch device_name: mps
+2025-11-09 00:29:01,980 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 00:29:12,227 [INFO] Use pytorch device_name: mps
+2025-11-09 00:29:12,227 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 00:29:16,383 [INFO] Use pytorch device_name: mps
+2025-11-09 00:29:16,384 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 00:29:26,048 [INFO] Use pytorch device_name: mps
+2025-11-09 00:29:26,049 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 00:29:31,081 [INFO] Loading faiss.
+2025-11-09 00:29:31,125 [INFO] Successfully loaded faiss.
+2025-11-09 00:29:31,133 [INFO] Use pytorch device_name: mps
+2025-11-09 00:29:31,133 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 00:29:42,954 [INFO] Use pytorch device_name: mps
+2025-11-09 00:29:42,954 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2

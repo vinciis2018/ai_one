@@ -42,7 +42,7 @@ export const LandingPage: React.FC = () => {
   }]
   return (
     <FullLayout>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 flex flex-col items-center">
+      <div className="min-h-screen w-full bg-gradient-to-br from-gray-50 to-blue-50 flex flex-col items-center">
         {/* Main Content */}
         <main className="w-full max-w-3xl">
           <div className="p-4">

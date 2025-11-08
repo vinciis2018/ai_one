@@ -85,8 +85,6 @@ async def list_chats(skip: int = 0, limit: int = 20, search: str = Query(None), 
         if user_id:
             query["user_id"] = user_id
 
-        print(user_id)
-        print(query)
         cursor = (
             collection.find(query)
             .sort("created_at", DESCENDING)
@@ -123,7 +121,6 @@ async def get_conversation(chat_id: str):
         from bson import ObjectId
         collection = get_collection("chats")
         chat = await collection.find_one({"_id": ObjectId(chat_id)})
-        print(chat)
         conversations = []
         for doc in chat["conversations"]:
             conversation = await get_collection("conversations").find_one({"_id": ObjectId(doc["conversation_id"])})
@@ -133,6 +130,7 @@ async def get_conversation(chat_id: str):
                 "answer_by": conversation["answer_by"],
                 "query": conversation["query"],
                 "answer": conversation["answer"],
+                "sources_used": conversation["sources_used"],
                 "prev_conversation": doc["prev_conversation"],
                 "parent_conversation": doc["parent_conversation"],
                 "created_at": conversation["created_at"]
