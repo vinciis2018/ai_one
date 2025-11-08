@@ -72,6 +72,7 @@ async def list_teachers(
                     "email": teacher.get("email", ""),
                     "subjects": teacher.get("subjects", []),
                     "documents": [str(doc_id) for doc_id in teacher.get("documents", [])],
+                    "students": [str(student_id) for student_id in teacher.get("students", [])],
                     "avatar": teacher.get("avatar", ""),
                     "created_at": str(teacher.get("created_at", ""))
                 })
@@ -89,4 +90,67 @@ async def list_teachers(
         raise HTTPException(
             status_code=500, 
             detail=f"Error fetching teachers: {str(e)}"
+        )
+
+
+
+@router.get("/{teacher_id}")
+async def get_teacher_details(
+    teacher_id: str
+):
+    """
+    Get detailed information about a specific teacher by their ID.
+    """
+    try:
+        # Validate teacher_id format
+        try:
+            teacher_oid = ObjectId(teacher_id)
+        except:
+            raise HTTPException(status_code=400, detail="Invalid teacher ID format")
+
+        # Get teacher details
+        teacher = await db["teachers"].find_one({"_id": teacher_oid})
+        if not teacher:
+            raise HTTPException(status_code=404, detail="Teacher not found")
+
+        # Get user details
+        user = await db["users"].find_one(
+            {"_id": teacher["user_id"]},
+            {"password": 0}  # Exclude password
+        )
+
+        if not user:
+            raise HTTPException(status_code=404, detail="User details not found")
+
+        # Get organization details
+        org = await db["organisations"].find_one(
+            {"teachers": teacher_oid},
+            {"name": 1, "_id": 1}  # Only get necessary fields
+        )
+
+        # Prepare response
+        response = {
+            "id": str(teacher["_id"]),
+            "user_id": str(teacher["user_id"]),
+            "name": teacher.get("name", ""),
+            "email": teacher.get("email", ""),
+            "subjects": teacher.get("subjects", []),
+            "documents": [str(doc_id) for doc_id in teacher.get("documents", [])],
+            "avatar": teacher.get("avatar", user.get("avatar", "")),
+            "created_at": str(teacher.get("created_at", "")),
+            "organization": {
+                "id": str(org["_id"]) if org else None,
+                "name": org.get("name") if org else None
+            } if org else None
+        }
+
+        return response
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"Error in get_teacher_details: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error fetching teacher details: {str(e)}"
         )

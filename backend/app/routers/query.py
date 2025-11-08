@@ -43,6 +43,7 @@ router = APIRouter()
 class QueryRequest(BaseModel):
     text: str
     userId: str
+    teacherId: Optional[str] = None
     chatId: str
     previousConversation: str
     domain_expertise: str
@@ -63,12 +64,21 @@ async def query(req: QueryRequest):
         chat_id = req.chatId or None
         previous_conversation = req.previousConversation or None
         user_id = req.userId or None
+        teacher_id = req.teacherId or None
         domain_expertise = req.domain_expertise or None
         if not user_query:
             raise HTTPException(status_code=400, detail="Query text cannot be empty.")
+        
+        user_ids = [user_id]
+        if teacher_id:
+            teacher_user_id = db["teachers"].find_one({"_id": ObjectId(teacher_id)})["user_id"]
+            print("teacher", teacher_user_id)
+            user_ids.append(teacher_user_id)
+
+        print("user_ids", user_ids)
 
         # Step 1: Retrieve from knowledge bases
-        context_chunks, user_docs = await retrieve_similar(user_query, user_id)
+        context_chunks, user_docs = await retrieve_similar(user_query, user_ids)
 
         # Step 2: Retrieve from user’s conversation history
         memory_chunks = await retrieve_from_conversation_memory(user_id, user_query, top_k=3)
@@ -82,7 +92,7 @@ async def query(req: QueryRequest):
         if not all_contexts:
             print("⚠️ No relevant chunks found. Returning fallback.")
             augmented_prompt = (
-                f"No relevant notes found. Please respond politely to upload relevant docs for reference and respond from available information\n\n"
+                f"Please respond politely to upload relevant docs for reference as no relevant notes found. Respond from general information\n\n"
                 # f"Context:\n{context_text}\n\n"
                 f"Question: {user_query}"
             )
@@ -112,7 +122,7 @@ async def query(req: QueryRequest):
         print("all_contexts", context_text)
 
         augmented_prompt = (
-            f"Answer the following question using ONLY the context below.\n\n"
+            f"Answer the following question using the context below.\n\n"
             f"Context:\n{context_text}\n\n"
             f"Question: {user_query}"
         )

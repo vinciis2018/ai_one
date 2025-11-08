@@ -58,7 +58,7 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
                     `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${
                       isActive 
                         ? `border-l-2 rounded-l-lg bg-[var(--primary)] text-green hover:text-green font-bold`
-                        : `rounded-lg text-gray-500 hover:text-green`
+                        : `rounded-l-lg text-gray-500 hover:text-green`
                     }`
                   }
                   onClick={onClose}
@@ -74,7 +74,7 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
                     `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${
                       isActive 
                         ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
-                        : `rounded-lg text-gray-500 hover:text-green`
+                        : `rounded-l-lg text-gray-500 hover:text-green`
                     }`
                   }
                   onClick={onClose}
@@ -90,7 +90,7 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
                     `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${
                       isActive 
                         ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
-                        : `rounded-lg text-gray-500 hover:text-green`
+                        : `rounded-l-lg text-gray-500 hover:text-green`
                     }`
                   }
                   onClick={onClose}
@@ -106,7 +106,7 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
                     `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${
                       isActive 
                         ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
-                        : `rounded-lg text-gray-500 hover:text-green`
+                        : `rounded-l-lg text-gray-500 hover:text-green`
                     }`
                   }
                   onClick={onClose}
@@ -122,7 +122,7 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
                     `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${
                       isActive 
                         ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
-                        : `rounded-lg text-gray-500 hover:text-green`
+                        : `rounded-l-lg text-gray-500 hover:text-green`
                     }`
                   }
                   onClick={onClose}
@@ -139,7 +139,7 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
                     `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${
                       isActive 
                         ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
-                        : `rounded-lg text-gray-500 hover:text-green`
+                        : `rounded-l-lg text-gray-500 hover:text-green`
                     }`
                   }
                   onClick={onClose}

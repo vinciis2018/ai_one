@@ -40,6 +40,7 @@ export interface ImageQueryPayload {
   fileName: string;
   s3Url: string;
   userId: string;
+  teacher_id?: string | null;
   chatId: string;
   previousConversation: string;
   domain_expertise: string;
@@ -106,9 +107,9 @@ export const uploadMaterial = createAsyncThunk<
 
 export const askQuery = createAsyncThunk<
   QueryResponse,
-  {text: string; userId: string, chatId: string; previousConversation: string, domain_expertise: string},
+  {text: string; userId: string, chatId: string; previousConversation: string, domain_expertise: string, teacher_id?: string | null},
   { rejectValue: string }
->("assistant/askQuery", async ({text, userId, chatId, previousConversation, domain_expertise}, { rejectWithValue }) => {
+>("assistant/askQuery", async ({text, userId, chatId, previousConversation, domain_expertise, teacher_id}, { rejectWithValue }) => {
   try {
     const response = await axios.post<QueryResponse>(`${BASE_URL}/query/`, {
       text,
@@ -116,6 +117,7 @@ export const askQuery = createAsyncThunk<
       chatId,
       previousConversation,
       domain_expertise,
+      teacher_id,
     });
     console.log(response);
     return response.data;

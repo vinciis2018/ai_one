@@ -240,7 +240,6 @@ const authSlice = createSlice({
       state.error = null;
     });
     builder.addCase(getMe.fulfilled, (state, { payload }) => {
-      console.log(payload)
       state.loading = false;
       state.isAuthenticated = true;
       state.user = payload || null;

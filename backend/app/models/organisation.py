@@ -28,6 +28,7 @@ class TeacherModel(BaseModel):
     email: EmailStr
     subjects: List[str] = []
     documents: List[DocumentAccess] = []
+    students: List[str] = []
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
     model_config = {
@@ -60,6 +61,7 @@ class StudentModel(BaseModel):
     email: EmailStr
     subjects: List[str] = []
     documents: List[DocumentAccess] = []
+    teachers: List[str] = []
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
     model_config = {

@@ -24,6 +24,9 @@ class UserModel(BaseModel):
     password: Optional[str] = None
     role: Optional[str] = None
     organisation_id: Optional[str] = None
+    student_id: Optional[str] = None
+    teacher_id: Optional[str] = None
+    coaching_id: Optional[str] = None
     is_active: Optional[bool] = None
     is_deleted: Optional[bool] = None
     last_login: Optional[datetime] = None

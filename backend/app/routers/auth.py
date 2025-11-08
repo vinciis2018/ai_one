@@ -9,7 +9,7 @@ from bson import ObjectId
 import bcrypt
 from app.models.user import UserModel, PyObjectId
 from app.config import settings
-from app.config.db import get_collection
+from app.config.db import db, get_collection
 from pydantic import BaseModel, Field, ConfigDict, field_validator, ValidationInfo, EmailStr
 # Get the users collection
 users_collection = get_collection("users")
@@ -270,5 +270,12 @@ async def get_current_user_details(current_user: UserModel = Depends(get_current
     # Remove sensitive data before returning
     user_data = current_user.model_dump()
     user_data.pop("password", None)
-    user_data.pop("_id", None)
+
+    student = await db["students"].find_one({"user_id": ObjectId(user_data["id"])})
+    teacher = await db["teachers"].find_one({"user_id": ObjectId(user_data["id"])})
+    if student:
+        user_data["student_id"] = str(student["_id"])
+    if teacher:
+        user_data["teacher_id"] = str(teacher["_id"])
+
     return UserModel(**user_data)

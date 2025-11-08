@@ -59,7 +59,7 @@ export function Header({ onMenuClick, isMobile, setIsSidebarOpen, isSidebarOpen 
             </div>
           ) : (
             <div className="h-8 flex items-center gap-1">
-              <h1 className="text-green text-xl font-semibold">MyndTwin</h1>
+              <h1 className="text-green text-xl font-semibold">myInd</h1>
             </div>
           )}
         </div>

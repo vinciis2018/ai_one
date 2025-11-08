@@ -75,6 +75,7 @@ def initialize_ocr():
 class QueryRequest(BaseModel):
     text: str
     userId: str
+    teacherId: Optional[str] = None
     chatId: str
     previousConversation: str
     domain_expertise: str
@@ -84,6 +85,7 @@ class ImageQueryRequest(BaseModel):
     fileName: str
     s3Url: str
     userId: str
+    teacherId: Optional[str] = None
     chatId: str
     previousConversation: str
     domain_expertise: str
@@ -264,16 +266,24 @@ async def process_query_common(
     user_query: str,
     user_id: str,
     chat_id: str,
+    teacher_id: Optional[str],
     previous_conversation: str,
     domain_expertise: str
 ):
     """Common processing logic for both text and image queries"""
     try:
+        user_ids = [user_id]
+
+        if teacher_id:
+            teacher_user_id = db["teachers"].find_one({"_id": ObjectId(teacher_id)})["user_id"]
+            print("teacher", teacher_user_id)
+            user_ids.append(teacher_user_id)
+
         if not user_query:
             raise HTTPException(status_code=400, detail="Query text cannot be empty.")
 
         # Step 1: Retrieve from knowledge bases
-        context_chunks, user_docs = await retrieve_similar(user_query, user_id)
+        context_chunks, user_docs = await retrieve_similar(user_query, user_ids)
 
         # Step 2: Retrieve from user's conversation history
         memory_chunks = await retrieve_from_conversation_memory(user_id, user_query, top_k=3)
@@ -360,6 +370,7 @@ async def query(req: QueryRequest):
         user_query=req.text.strip(),
         user_id=req.userId,
         chat_id=req.chatId,
+        teacher_id= req.teacherId,
         previous_conversation=req.previousConversation,
         domain_expertise=req.domain_expertise
     )
@@ -436,6 +447,7 @@ async def image_query(req: ImageQueryRequest):
         result = await process_query_common(
             user_query=analysis,
             user_id=req.userId,
+            teacher_id=req.teacherId,
             chat_id=req.chatId,
             previous_conversation=req.previousConversation,
             domain_expertise=req.domain_expertise

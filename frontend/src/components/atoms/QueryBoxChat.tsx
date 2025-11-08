@@ -11,7 +11,7 @@ import { ResponseCard } from "./ResponseCard";
 import { fetchChatById } from "../../store/slices/conversationsSlice";
 import { getS3Url } from "../../utilities/awsUtils";
 
-export const QueryBox: React.FC = () => {
+export const QueryBoxChat: React.FC<{domain: string, teacher_id?: string}> = ({domain, teacher_id = null}) => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
   const { queryStatus, response, error } = useAppSelector(
@@ -25,10 +25,6 @@ export const QueryBox: React.FC = () => {
   const [isUploadingToS3, setIsUploadingToS3] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // New: domain selection state
-  const [domain, setDomain] = useState<string>("science");
-  const [showDomainDropdown, setShowDomainDropdown] = useState<boolean>(false);
-
   // Handle text query
   const handleAsk = async () => {
     if (!question.trim()) return alert("Please enter a question!");
@@ -38,6 +34,7 @@ export const QueryBox: React.FC = () => {
       chatId: response?.chat_id || "",
       previousConversation: response?.conversation_id || "",
       domain_expertise: domain,
+      teacher_id: teacher_id,
     }));
   };
 
@@ -89,6 +86,7 @@ export const QueryBox: React.FC = () => {
         fileName: selectedImage.name,
         s3Url: s3Url,
         userId: user._id,
+        teacher_id: teacher_id || null,
         chatId: response?.chat_id || "",
         previousConversation: response?.conversation_id || "",
         domain_expertise: domain,
@@ -149,39 +147,7 @@ export const QueryBox: React.FC = () => {
   }, [dispatch, response]);
 
 
-  const domains = [{
-    key: 1,
-    label: "Science",
-    value: "science",
-    icon: "fi-br-physics",
-  },{
-    key: 2,
-    label: "Physics",
-    value: "physics",
-    icon: "fi-br-magnet",
-  },{
-    key: 3,
-    label: "Chemistry",
-    value: "chemistry",
-    icon: "fi-br-flask-gear",
-  },{
-    key: 4,
-    label: "Maths",
-    value: "maths",
-    icon: "fi-br-square-root",
-  },{
-    key: 5,
-    label: "Biology",
-    value: "biology",
-    icon: "fi-br-dna",
-  },{
-    key: 6,
-    label: "General",
-    value: "general",
-    icon: "fi-br-messages-question",
-  }];
-
-
+ 
   // Add this inside the QueryBox component, before the return statement
   const [placeholderText, setPlaceholderText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -190,16 +156,18 @@ export const QueryBox: React.FC = () => {
 
   const placeholders = useMemo(() => [
     "Ask your queries and get answers based on your collective notes...",
-    "How to find out the dimension of magnetic flux?",
-    "What is the bi-product in redox reaction?",
-    "What is the probability of getting 3 sixes on rolling 11 dices?",
-    "What is the formula of photosynthesis?",
+    domain === "physics" 
+      ? "How to find out the dimension of magnetic flux?" : domain === "chemistry"
+      ? "What is the bi-product in redox reaction?" : domain === "biology" 
+      ? "What is the formula of photosynthesis?" : domain === "maths" 
+      ? "What is the probability of getting 3 sixes on rolling 11 dices?" : 
+      "Do you have any doubts?",
     imagePreview ? "Is the solution correct in the uploaded image?" : "Upload and image of your notes and ask your query from it..." 
-  ], [imagePreview]);
+  ], [imagePreview, domain]);
 
   // Update the typing effect
   useEffect(() => {
-    const currentText = placeholders[currentIndex % placeholders.length];
+    const currentText = placeholders[currentIndex % placeholders.length] as string;
     
     if (!isDeleting) {
       // Typing animation
@@ -307,35 +275,7 @@ export const QueryBox: React.FC = () => {
                 disabled={isLoading}
               />
             </button>
-            <div className="relative">
-              <button
-                type="button"
-                onClick={() => setShowDomainDropdown((s) => !s)}
-                disabled={isLoading}
-                className={`flex items-center gap-2 p-3 rounded-full font-medium transition border border-gray-100 ${
-                  isLoading ? "bg-baigeLight cursor-not-allowed" : "bg-baigeLight hover:bg-gray-200"
-                }`}
-                title="Select domain"
-                aria-label="Select domain"
-              >
-                <i className={`fi ${domains.find((d) => d.value === domain)?.icon} flex items-center justify-center text-violet`} />
-              </button>
-
-              {showDomainDropdown && (
-                <div className="absolute z-40 mt-2 w-40 bg-white border rounded shadow-sm">
-                  {domains.map((d) => (
-                    <button
-                      key={d.key}
-                      onClick={() => { setDomain(d.value); setShowDomainDropdown(false); }}
-                      className="w-full text-left px-3 py-2 hover:bg-gray-100 text-sm capitalize"
-                      type="button"
-                    >
-                      {d.label}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
+            
           </div>
           <div className="flex gap-3">
             {selectedImage ? (

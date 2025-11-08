@@ -26,6 +26,8 @@ export interface User {
   firstName: string;
   lastName: string;
   avatar?: string;
+  student_id?: string;
+  teacher_id?: string;
 }
 
 

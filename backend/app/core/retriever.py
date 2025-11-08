@@ -25,12 +25,12 @@ async def _recency_score(created_at: datetime) -> float:
     age_days = (datetime.utcnow() - created_at).days
     return max(0, 1 - (age_days / 365))
 
-async def retrieve_similar(query_text: str, user_id: str = None, top_k: int = 5) -> List[Dict[str, Any]]:
+async def retrieve_similar(query_text: str, user_ids: List[str] = None, top_k: int = 5) -> List[Dict[str, Any]]:
     """
     Retrieve top-K document chunks relevant to the query from all KBs.
     Args:
         query_text: The search query
-        user_id: Optional user ID for filtering
+        user_ids: Optional list of user IDs for filtering
         top_k: Number of results to return
     Returns:
         List of dictionaries containing document chunks and metadata
@@ -43,7 +43,7 @@ async def retrieve_similar(query_text: str, user_id: str = None, top_k: int = 5)
         user_doc_ids = []
 
         document_collection = get_collection("documents")
-        user_documents = document_collection.find({"user_id": user_id})
+        user_documents = document_collection.find({"user_id": {"$in": user_ids}})
         user_docs = await user_documents.to_list(length=100)  # Adjust limit as needed
         
         # Extract all chunk document IDs
@@ -51,10 +51,10 @@ async def retrieve_similar(query_text: str, user_id: str = None, top_k: int = 5)
             if "chunk_docs_ids" in doc:
                 user_doc_ids.extend(doc["chunk_docs_ids"])
         
-        print(f"🔑 Found {len(user_doc_ids)} document chunks for user {user_id}")
+        print(f"🔑 Found {len(user_doc_ids)} document chunks for {len(user_ids)} users")
         
         # Search across all knowledge bases
-        for kb_name in ["student", "coaching", "general"]:
+        for kb_name in ["student", "coaching", "general", "teacher"]:
             print(f"\n🔎 Searching in {kb_name} collection...")
             collection = get_collection(f"kb_{kb_name}")
             

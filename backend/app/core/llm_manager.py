@@ -98,22 +98,21 @@ def build_domain_prompt(prompt: str, domain: str | None = None) -> str:
     Add domain expertise and structured guidance.
     """
     domain_map = {
-        "physics": "a Physics expert tutor for competitive exams",
-        "chemistry": "a Chemistry instructor specializing in NEET/CBSE topics",
-        "math": "a Mathematics problem-solving coach",
-        "biology": "a NEET Biology mentor with deep conceptual clarity",
+        "physics": "a Physics expert tutor for competitive exams like IIT JEE and NEET",
+        "chemistry": "a Chemistry instructor specializing in IIT JEE, NEET and CBSE topics",
+        "math": "a Mathematics problem-solving coach for IIT JEE and CBSE topics",
+        "biology": "a Biology mentor with deep conceptual clarity for CBSE and NEET topics",
         "programming": "a Software Engineering mentor specializing in Python and AI",
         "general": "an educational AI assistant helping students learn any subject",
         "science": "a Science tutor for competitive exams",
-        "coaching": "a Coaching tutor for competitive exams",
     }
 
     role = domain_map.get(domain.lower() if domain else "general", domain_map["general"])
 
     system_prompt = (
-        f"You are {role}. "
-        "Answer only using the provided context, ensuring conceptual accuracy. "
-        "Explain clearly and concisely, as if teaching a student."
+        f"You are {role} teacher for competitive exams, having deep knowledge of the subject. "
+        "Answer only using the provided context, ensuring conceptual accuracy. Try not to share any external weblinks, untill specifically asked in the prompt by user."
+        "Explain clearly and concisely, as if teaching a student for competitive exams like IIT JEE, NEET and CBSE."
     )
 
     full_prompt = f"{system_prompt}\n\nUser question:\n{prompt}"

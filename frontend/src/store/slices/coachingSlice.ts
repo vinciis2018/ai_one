@@ -33,6 +33,7 @@ export interface StudentModel {
   name: string;
   subjects?: string[];
   documents?: string[];
+  teachers?: string[];
   created_at?: string;
   updated_at?: string;
 }
@@ -167,9 +168,9 @@ export const listInstituteStudents = createAsyncThunk(
 // New: add student to institute
 export const addStudentToInstitute = createAsyncThunk(
   'coaching/addStudentToInstitute',
-  async ({ id, student }: { id: string; student: StudentModel }, { rejectWithValue }) => {
+  async ({ coaching_id, student }: { coaching_id: string; student: StudentModel }, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${BASE_URL}/coachings/${id}/students/`, student);
+      const response = await axios.post(`${BASE_URL}/coachings/${coaching_id}/students/`, {coaching_id, ...student});
       return response.data; // backend returns { message, student_id }
     } catch (error: unknown) {
       const axiosError = error as unknown as { response?: { data?: { message?: string } } };

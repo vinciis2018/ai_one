@@ -77,16 +77,16 @@ console.log(selectedId)
             <div className="py-4 space-y-2">
               {Array.isArray(all_teachers) ? all_teachers.map((teacher: TeacherModel) => (
                 <div
-                  key={teacher._id}
+                  key={teacher.id}
                   className="border border-gray-100 bg-baigeLight rounded-xl p-4 hover:shadow cursor-pointer flex items-center justify-between"
-                  onClick={() => setSelectedId(teacher?._id)}
+                  onClick={() => setSelectedId(teacher?.id)}
                 >
                   <div className="flex items-center gap-2">
                     <img src={teacher.avatar} alt={teacher.name} className="h-12 w-12 rounded-full" />
                     <div>
                       <p className="font-semibold">{teacher.name}</p>
                       <p className="text-xs text-gray-400">({teacher.subjects?.[0]})</p>
-                      <p className="text-xs text-gray-400">{teacher.documents?.length} students</p>
+                      <p className="text-xs text-gray-400">{teacher.students?.length || 0} students</p>
                       {/* <p className="text-xs text-gray-400">{teacher.documents?.length} study materials</p> */}
                     </div>
                   </div>
@@ -94,7 +94,9 @@ console.log(selectedId)
                     className="px-4 py-2 bg-white border border-green text-green font-semibold rounded-full text-xs"
                     onClick={(e) => {
                       e.stopPropagation();
+                      console.log(teacher);
                       // Handle assign action here
+                      navigate(`/teacher/chats/${teacher?.id}`);
                     }}
                   >
                     Chat

@@ -12,3 +12,5 @@ export { CoachingsPage } from './Institutes/CoachingsPage';
 export { TeachersPage } from './Teachers/TeachersPage';
 export { NotesPage } from './Notes/NotesPage';
 export { ChatsPage } from './Chats/ChatsPage';
+export { TeacherChatPage } from './Chats/TeacherChatPage';
+

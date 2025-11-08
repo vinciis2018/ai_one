@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store";
-import { getAllCoachings } from "../../store/slices/coachingSlice";
+import { addStudentToInstitute, getAllCoachings, resetCoachingState } from "../../store/slices/coachingSlice";
 import { FullLayout } from "../../layouts/AppLayout";
 import { useNavigate } from "react-router-dom";
 import { CoachingDetailsModal } from "../../components/popups/CoachingDetailsModal";
+import type { User } from "../../types";
+import { getMe } from "../../store/slices/authSlice";
 
 export const CoachingsPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  // const {user} = useAppSelector((state) => state.auth);
-  const { coachings, loading, error } = useAppSelector((state) => state.coachings);
+  const {user} = useAppSelector((state) => state.auth);
+  const { coachings, loading, error, success } = useAppSelector((state) => state.coachings);
   const [selectedId, setSelectedId] = useState<string | null | undefined>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDomain, setSelectedDomain] = useState("all");
@@ -19,6 +21,12 @@ export const CoachingsPage: React.FC = () => {
     dispatch(getAllCoachings());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (success) {
+      dispatch(resetCoachingState());
+      dispatch(getMe());
+    }
+  }, [success, dispatch]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
@@ -28,6 +36,19 @@ export const CoachingsPage: React.FC = () => {
   const handleDomainChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedDomain(e.target.value);
   };
+
+    // New: add current user as student
+    const handleAddSelfAsStudent = async (coachingId: string) => {
+      if (!user) return;
+      const payload = {
+        user_id: String((user as User)._id ?? ""),
+        name: (user as User).full_name || "Unknown",
+        email: (user as User).email || "Unknown",
+        avatar: (user as User).avatar || "",
+      };
+      await dispatch(addStudentToInstitute({ coaching_id: coachingId as string, student: payload }));
+      dispatch(getAllCoachings());
+    };
 
   return (
     <FullLayout>
@@ -85,9 +106,14 @@ export const CoachingsPage: React.FC = () => {
                     onClick={(e) => {
                       e.stopPropagation();
                       // Handle assign action here
+                      if (!coaching.students.includes(user?.student_id)) {
+                        handleAddSelfAsStudent(coaching?._id)
+                      } else {
+                        navigate(`/institute/coachings/${coaching?._id}`)
+                      }
                     }}
                   >
-                    Chat
+                    {coaching.students.includes(user?.student_id) ? "View" : "Join"}
                   </button>
                 </div>
               )) : null}

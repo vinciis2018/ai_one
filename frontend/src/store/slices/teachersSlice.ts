@@ -15,6 +15,7 @@ export interface TeacherModel {
   email: string;
   subjects?: string[];
   documents?: string[];
+  students?: string[];
   created_at?: string;
   updated_at?: string;
 }
