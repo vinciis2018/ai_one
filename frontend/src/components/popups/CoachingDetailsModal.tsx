@@ -94,7 +94,7 @@ export const CoachingDetailsModal: React.FC<Props> = ({ coachingId, onClose }) =
       email: (user as User).email || "Unknown",
       avatar: (user as User).avatar || "",
     };
-    await dispatch(addStudentToInstitute({ id: coachingId, student: payload }));
+    await dispatch(addStudentToInstitute({ coaching_id: coachingId, student: payload }));
     dispatch(listInstituteStudents(coachingId));
   };
 
