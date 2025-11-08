@@ -36,9 +36,9 @@ export const ChatsPage: React.FC = () => {
   };
   return (
     <FullLayout>
-      <div className="bg-white max-w-4xl mx-auto py-2 px-4">
-        <div className="w-full rounded-lg overflow-hidden">
-          <div className="max-w-4xl mx-auto py-2 flex items-center gap-2 border-b border-gray-100" onClick={() => navigate(-1)}>
+      <div className="bg-white max-w-4xl mx-auto py-2 px-4 border">
+        <div className="rounded-lg overflow-hidden">
+          <div className="py-2 flex items-center gap-2 border-b border-gray-100" onClick={() => navigate(-1)}>
             <i className="fi fi-sr-arrow-small-left flex items-center rounded-full bg-baigeLight p-1" />
             <h1 className="w-full text-sm font-semibold">
               Chats

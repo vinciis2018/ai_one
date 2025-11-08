@@ -119,7 +119,6 @@ export const askQuery = createAsyncThunk<
       domain_expertise,
       teacher_id,
     });
-    console.log(response);
     return response.data;
   } catch (error: unknown) {
     const axiosError = error as unknown as { response?: { data?: { message?: string } } };
