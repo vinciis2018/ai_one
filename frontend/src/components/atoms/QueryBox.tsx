@@ -32,6 +32,8 @@ export const QueryBox: React.FC = () => {
   // Handle text query
   const handleAsk = async () => {
     if (!question.trim()) return alert("Please enter a question!");
+    if (!user?._id) return alert("Please login first!");
+
     await dispatch(askQuery({
       text: question,
       userId: user?._id || '',
@@ -72,7 +74,7 @@ export const QueryBox: React.FC = () => {
   // Handle image query with S3 upload first
   const handleImageQuery = async () => {
     if (!selectedImage) return alert("Please select an image first!");
-    if (!user?._id) return alert("User not found!");
+    if (!user?._id) return alert("Please login first!");
 
     setIsUploadingToS3(true);
     
