@@ -96,7 +96,7 @@ console.log(selectedId)
                       e.stopPropagation();
                       console.log(teacher);
                       // Handle assign action here
-                      navigate(`/teacher/chats/${user?._id}`);
+                      navigate(`/teacher/chats/${teacher?.user_id}`);
                     }}
                   >
                     Chat
