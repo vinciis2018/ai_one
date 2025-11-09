@@ -129,7 +129,7 @@ export const ChatsPage: React.FC = () => {
                     {conversation.query && (
                       <div className="flex justify-end">
                         <div className="bg-baigeLight p-4 rounded-xl max-w-xl">
-                          <h4 className="text-xs font-semibold text-blue-700">You</h4>
+                          <h4 className="text-xs font-semibold text-blue-700">Query</h4>
                           <p className="text-gray-800 text-sm whitespace-pre-line">{conversation.query}</p>
                         </div>
                       </div>
@@ -139,7 +139,7 @@ export const ChatsPage: React.FC = () => {
                     {conversation.answer && (
                       <div className="flex">
                         <div className="bg-gray-50 p-4 rounded-xl max-w-xl">
-                          <h4 className="text-xs font-semibold text-gray-700">Assistant</h4>
+                          <h4 className="text-xs font-semibold text-gray-700">Answer</h4>
                           <p className="text-gray-800 text-sm whitespace-pre-line">{conversation.answer}</p>
                         </div>
                       </div>

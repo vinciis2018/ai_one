@@ -17,7 +17,7 @@ export const QueryBoxChat: React.FC<{
   domain: string,
   teacher_id?: string | null,
   setConversation?: (conversation: ChatResponse) => void
-}> = ({domain, teacher_id = null, setConversation}) => {
+}> = ({domain, teacher_id, setConversation}) => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
   const { queryStatus, response, error } = useAppSelector(
@@ -91,7 +91,7 @@ export const QueryBoxChat: React.FC<{
         fileName: selectedImage.name,
         s3Url: s3Url,
         userId: user._id,
-        teacher_id: teacher_id || null,
+        teacher_id: teacher_id,
         chatId: response?.chat_id || "",
         previousConversation: response?.conversation_id || "",
         domain_expertise: domain,

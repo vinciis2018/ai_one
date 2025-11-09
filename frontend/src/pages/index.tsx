@@ -10,6 +10,7 @@ export { DocumentsPage } from './Documents/DocumentsPage';
 export { ConversationsPage } from './Conversations/ConversationsPage';
 export { CoachingsPage } from './Institutes/CoachingsPage';
 export { TeachersPage } from './Teachers/TeachersPage';
+export { StudentsPage } from './Students/StudentsPage';
 export { NotesPage } from './Notes/NotesPage';
 export { ChatsPage } from './Chats/ChatsPage';
 export { TeacherChatPage } from './Chats/TeacherChatPage';

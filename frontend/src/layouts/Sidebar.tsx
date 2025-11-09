@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useTheme } from '../hooks/useTheme';
 import { useEffect, useState } from 'react';
+import { useAppSelector } from '../store';
 // import { useAppSelector } from '../store';
 interface SidebarProps {
   isMobile: boolean;
@@ -11,10 +12,9 @@ interface SidebarProps {
 
 export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }: SidebarProps) {
   const { theme } = useTheme();
-
   const [view, setView] = useState(true);
-  
-  // const { user } = useAppSelector((state) => state.auth);
+
+  const { user } = useAppSelector((state) => state.auth);
 
   // Determine the width class based on isOpen and device type
   const getWidthClass = () => {
@@ -33,6 +33,7 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
     } else {
       setView(true)
     }
+
   },[isOpen,isMobile]);
 
   return (
@@ -99,22 +100,43 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
                   {shouldShowText && <span className="truncate">Notes</span>}
                 </NavLink>
               </li>
-              <li>
-                <NavLink
-                  to="/teachers"
-                  className={({ isActive }) => 
-                    `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${
-                      isActive 
-                        ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
-                        : `rounded-l-lg text-gray-500 hover:text-green`
-                    }`
-                  }
-                  onClick={onClose}
-                >
-                  <i className="fi fi-sr-chalkboard-user h-5 w-5 flex items-center justify-center" />
-                  {shouldShowText && <span className="truncate">Teachers</span>}
-                </NavLink>
-              </li>
+              {user && user?.role == "student" && (
+                <li>
+                  <NavLink
+                    to="/teachers"
+                    className={({ isActive }) => 
+                      `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${
+                        isActive 
+                          ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
+                          : `rounded-l-lg text-gray-500 hover:text-green`
+                      }`
+                    }
+                    onClick={onClose}
+                  >
+                    <i className="fi fi-sr-chalkboard-user h-5 w-5 flex items-center justify-center" />
+                    {shouldShowText && <span className="truncate">Teachers</span>}
+                  </NavLink>
+                </li>
+              )}
+              {user?.role == "teacher" && (
+                <li>
+                  <NavLink
+                    to="/students"
+                    className={({ isActive }) => 
+                      `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${
+                        isActive 
+                          ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
+                          : `rounded-l-lg text-gray-500 hover:text-green`
+                      }`
+                    }
+                    onClick={onClose}
+                  >
+                    <i className="fi fi-sr-student h-5 w-5 flex items-center justify-center" />
+                    {shouldShowText && <span className="truncate">Students</span>}
+                  </NavLink>
+                </li>
+              )}
+              
               <li>
                 <NavLink
                   to="/coachings"
@@ -128,7 +150,7 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
                   onClick={onClose}
                 >
                   <i className="fi fi-sr-graduation-cap h-5 w-5 flex items-center justify-center" />
-                  {shouldShowText && <span className="truncate">Coachings</span>}
+                  {shouldShowText && <span className="truncate">Coaching</span>}
                 </NavLink>
               </li>
               

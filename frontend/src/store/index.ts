@@ -8,6 +8,7 @@ import documentsReducer from './slices/documentsSlice';
 import conversationsReducer from './slices/conversationsSlice';
 import coachingReducer from './slices/coachingSlice';
 import teachersReducer from './slices/teachersSlice';
+import studentsReducer from './slices/studentsSlice';
 
 export const store = configureStore({
   reducer: {
@@ -19,6 +20,7 @@ export const store = configureStore({
     conversations: conversationsReducer,
     coachings: coachingReducer,
     teachers: teachersReducer,
+    students: studentsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

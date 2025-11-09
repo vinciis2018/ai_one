@@ -20605,3 +20605,1362 @@ step in earlier | Answer: You're correct! In the previous conversation, I made a
 2025-11-09 00:37:38,624 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 272.89ms
 2025-11-09 00:37:38,625 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 267.69ms
 2025-11-09 00:37:38,688 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 268.54ms
+2025-11-09 00:43:35,262 [INFO] OPTIONS /auth/me - 200 - 8.69ms
+2025-11-09 00:43:35,263 [INFO] OPTIONS /auth/me - 200 - 9.22ms
+2025-11-09 00:43:35,266 [INFO] OPTIONS /auth/me - 200 - 4.91ms
+2025-11-09 00:43:35,267 [INFO] OPTIONS /auth/me - 200 - 3.35ms
+2025-11-09 00:43:35,732 [INFO] GET /auth/me - 200 - 455.44ms
+2025-11-09 00:43:35,732 [INFO] GET /auth/me - 200 - 462.82ms
+2025-11-09 00:43:35,732 [INFO] GET /auth/me - 200 - 459.06ms
+2025-11-09 00:43:35,732 [INFO] GET /auth/me - 200 - 459.53ms
+2025-11-09 00:43:36,205 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 463.8ms
+2025-11-09 00:43:36,207 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 454.76ms
+2025-11-09 00:43:36,417 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 658.89ms
+2025-11-09 00:43:36,417 [INFO] GET /teachers/690ae6667119fcc9ec6d6d01 - 200 - 652.78ms
+2025-11-09 10:12:38,069 [INFO] Use pytorch device_name: mps
+2025-11-09 10:12:38,069 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:12:43,287 [INFO] Loading faiss.
+2025-11-09 10:12:43,330 [INFO] Successfully loaded faiss.
+2025-11-09 10:12:43,339 [INFO] Use pytorch device_name: mps
+2025-11-09 10:12:43,339 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 10:12:47,944 [INFO] 🧠 Using device: MPS
+2025-11-09 10:13:03,845 [INFO] OPTIONS /auth/login - 200 - 0.81ms
+2025-11-09 10:13:04,825 [INFO] POST /auth/login - 401 - 974.05ms
+2025-11-09 10:13:21,792 [INFO] OPTIONS /auth/login - 200 - 0.2ms
+2025-11-09 10:13:22,321 [INFO] POST /auth/login - 200 - 525.96ms
+2025-11-09 10:13:22,385 [INFO] OPTIONS /auth/me - 200 - 2.76ms
+2025-11-09 10:13:22,386 [INFO] OPTIONS /auth/me - 200 - 1.07ms
+2025-11-09 10:13:22,586 [INFO] GET /auth/me - 200 - 195.99ms
+2025-11-09 10:13:22,908 [INFO] GET /auth/me - 200 - 518.03ms
+2025-11-09 10:13:41,611 [INFO] OPTIONS /auth/me - 200 - 0.62ms
+2025-11-09 10:13:41,613 [INFO] OPTIONS /auth/me - 200 - 0.63ms
+2025-11-09 10:13:41,691 [INFO] GET /upload/list - 200 - 76.9ms
+2025-11-09 10:13:41,697 [INFO] GET /upload/list - 200 - 79.82ms
+2025-11-09 10:13:42,253 [INFO] GET /auth/me - 200 - 634.44ms
+2025-11-09 10:13:42,254 [INFO] GET /auth/me - 200 - 636.2ms
+2025-11-09 10:13:42,329 [INFO] GET /upload/list - 200 - 60.6ms
+2025-11-09 10:13:42,334 [INFO] GET /upload/list - 200 - 53.82ms
+2025-11-09 10:13:46,048 [INFO] OPTIONS /auth/me - 200 - 0.3ms
+2025-11-09 10:13:46,052 [INFO] OPTIONS /auth/me - 200 - 2.5ms
+2025-11-09 10:13:46,114 [INFO] GET /conversations/chats - 200 - 63.33ms
+2025-11-09 10:13:46,115 [INFO] GET /conversations/chats - 200 - 64.33ms
+2025-11-09 10:13:46,225 [INFO] GET /auth/me - 200 - 171.62ms
+2025-11-09 10:13:46,227 [INFO] GET /auth/me - 200 - 176.69ms
+2025-11-09 10:13:46,293 [INFO] GET /conversations/chats - 200 - 57.36ms
+2025-11-09 10:13:46,297 [INFO] GET /conversations/chats - 200 - 54.43ms
+2025-11-09 10:13:49,012 [INFO] OPTIONS /auth/me - 200 - 0.34ms
+2025-11-09 10:13:49,021 [INFO] OPTIONS /auth/me - 200 - 1.82ms
+2025-11-09 10:13:49,074 [INFO] GET /upload/list - 200 - 57.05ms
+2025-11-09 10:13:49,076 [INFO] GET /upload/list - 200 - 57.14ms
+2025-11-09 10:13:49,187 [INFO] GET /auth/me - 200 - 171.3ms
+2025-11-09 10:13:49,188 [INFO] GET /auth/me - 200 - 164.57ms
+2025-11-09 10:13:49,262 [INFO] GET /upload/list - 200 - 67.04ms
+2025-11-09 10:13:49,267 [INFO] GET /upload/list - 200 - 62.59ms
+2025-11-09 10:13:53,626 [INFO] OPTIONS /auth/me - 200 - 0.79ms
+2025-11-09 10:13:53,627 [INFO] OPTIONS /auth/me - 200 - 1.08ms
+2025-11-09 10:13:53,908 [INFO] GET /auth/me - 200 - 279.72ms
+2025-11-09 10:13:53,908 [INFO] GET /auth/me - 200 - 279.77ms
+2025-11-09 10:13:56,994 [INFO] OPTIONS /auth/me - 200 - 0.66ms
+2025-11-09 10:13:56,997 [INFO] OPTIONS /auth/me - 200 - 1.02ms
+2025-11-09 10:13:57,004 [INFO] GET /teachers - 307 - 7.21ms
+2025-11-09 10:13:57,005 [INFO] GET /teachers - 307 - 7.51ms
+2025-11-09 10:13:57,145 [INFO] GET /teachers/ - 400 - 69.66ms
+2025-11-09 10:13:57,145 [INFO] GET /teachers/ - 400 - 69.96ms
+2025-11-09 10:13:57,252 [INFO] GET /auth/me - 200 - 252.94ms
+2025-11-09 10:13:57,253 [INFO] GET /auth/me - 200 - 247.12ms
+2025-11-09 10:13:57,260 [INFO] GET /teachers - 307 - 0.68ms
+2025-11-09 10:13:57,269 [INFO] GET /teachers - 307 - 1.48ms
+2025-11-09 10:13:57,322 [INFO] GET /teachers/ - 400 - 54.78ms
+2025-11-09 10:13:57,327 [INFO] GET /teachers/ - 400 - 55.21ms
+2025-11-09 10:14:01,400 [INFO] OPTIONS /auth/me - 200 - 0.25ms
+2025-11-09 10:14:01,402 [INFO] OPTIONS /auth/me - 200 - 0.32ms
+2025-11-09 10:14:01,618 [INFO] GET /auth/me - 200 - 215.18ms
+2025-11-09 10:14:01,619 [INFO] GET /auth/me - 200 - 214.93ms
+2025-11-09 10:14:04,677 [INFO] OPTIONS /auth/me - 200 - 0.23ms
+2025-11-09 10:14:04,681 [INFO] GET /coachings - 307 - 0.72ms
+2025-11-09 10:14:04,681 [INFO] OPTIONS /auth/me - 200 - 0.6ms
+2025-11-09 10:14:04,682 [INFO] GET /coachings - 307 - 0.55ms
+2025-11-09 10:14:04,762 [INFO] GET /coachings/ - 200 - 72.74ms
+2025-11-09 10:14:04,763 [INFO] GET /coachings/ - 200 - 73.29ms
+2025-11-09 10:14:04,865 [INFO] GET /auth/me - 200 - 185.91ms
+2025-11-09 10:14:04,865 [INFO] GET /auth/me - 200 - 183.0ms
+2025-11-09 10:14:19,355 [INFO] OPTIONS /auth/me - 200 - 0.19ms
+2025-11-09 10:14:19,360 [INFO] OPTIONS /auth/me - 200 - 0.16ms
+2025-11-09 10:14:19,577 [INFO] GET /auth/me - 200 - 219.86ms
+2025-11-09 10:14:19,602 [INFO] GET /auth/me - 200 - 240.44ms
+2025-11-09 10:15:08,507 [INFO] OPTIONS /auth/me - 200 - 1.5ms
+2025-11-09 10:15:08,513 [INFO] OPTIONS /auth/me - 200 - 5.01ms
+2025-11-09 10:15:08,607 [INFO] GET /conversations/chats - 200 - 95.93ms
+2025-11-09 10:15:08,607 [INFO] GET /conversations/chats - 200 - 92.49ms
+2025-11-09 10:15:08,763 [INFO] GET /auth/me - 200 - 245.36ms
+2025-11-09 10:15:08,763 [INFO] GET /auth/me - 200 - 228.86ms
+2025-11-09 10:15:08,822 [INFO] GET /conversations/chats - 200 - 52.86ms
+2025-11-09 10:15:08,824 [INFO] GET /conversations/chats - 200 - 47.21ms
+2025-11-09 10:15:10,234 [INFO] OPTIONS /auth/me - 200 - 0.29ms
+2025-11-09 10:15:10,237 [INFO] OPTIONS /auth/me - 200 - 1.15ms
+2025-11-09 10:15:10,428 [INFO] GET /auth/me - 200 - 189.54ms
+2025-11-09 10:15:10,434 [INFO] GET /auth/me - 200 - 197.44ms
+2025-11-09 10:18:45,911 [INFO] OPTIONS /auth/me - 200 - 1.18ms
+2025-11-09 10:18:45,913 [INFO] OPTIONS /auth/me - 200 - 0.84ms
+2025-11-09 10:18:45,913 [INFO] OPTIONS /auth/me - 200 - 1.06ms
+2025-11-09 10:18:45,913 [INFO] OPTIONS /auth/me - 200 - 1.14ms
+2025-11-09 10:18:46,159 [INFO] GET /auth/me - 200 - 233.03ms
+2025-11-09 10:18:46,173 [INFO] GET /auth/me - 200 - 246.85ms
+2025-11-09 10:18:46,174 [INFO] GET /auth/me - 200 - 247.33ms
+2025-11-09 10:18:46,182 [INFO] GET /auth/me - 200 - 265.47ms
+2025-11-09 10:23:44,206 [INFO] OPTIONS /auth/me - 200 - 118.95ms
+2025-11-09 10:23:44,209 [INFO] OPTIONS /auth/me - 200 - 57.67ms
+2025-11-09 10:23:44,209 [INFO] OPTIONS /auth/me - 200 - 11.07ms
+2025-11-09 10:23:44,214 [INFO] OPTIONS /auth/me - 200 - 8.89ms
+2025-11-09 10:23:44,422 [INFO] GET /auth/me - 200 - 198.66ms
+2025-11-09 10:23:44,422 [INFO] GET /auth/me - 200 - 199.34ms
+2025-11-09 10:23:44,423 [INFO] GET /auth/me - 200 - 184.57ms
+2025-11-09 10:23:44,423 [INFO] GET /auth/me - 200 - 184.4ms
+2025-11-09 10:24:55,207 [INFO] OPTIONS /auth/me - 200 - 1.93ms
+2025-11-09 10:24:55,208 [INFO] OPTIONS /auth/me - 200 - 2.23ms
+2025-11-09 10:24:55,442 [INFO] GET /auth/me - 200 - 227.4ms
+2025-11-09 10:24:55,443 [INFO] GET /auth/me - 200 - 228.05ms
+2025-11-09 10:26:52,684 [INFO] OPTIONS /auth/me - 200 - 0.64ms
+2025-11-09 10:27:05,433 [INFO] GET /auth/me - 200 - 12745.58ms
+2025-11-09 10:31:26,788 [INFO] OPTIONS /auth/me - 200 - 6.26ms
+2025-11-09 10:31:26,790 [INFO] OPTIONS /auth/me - 200 - 7.6ms
+2025-11-09 10:31:26,820 [INFO] OPTIONS /auth/me - 200 - 33.28ms
+2025-11-09 10:31:26,820 [INFO] OPTIONS /auth/me - 200 - 33.59ms
+2025-11-09 10:31:27,197 [INFO] GET /auth/me - 200 - 351.82ms
+2025-11-09 10:31:27,200 [INFO] GET /auth/me - 200 - 371.62ms
+2025-11-09 10:31:27,219 [INFO] GET /auth/me - 200 - 373.98ms
+2025-11-09 10:31:27,222 [INFO] GET /auth/me - 200 - 376.45ms
+2025-11-09 10:31:32,245 [INFO] OPTIONS /auth/me - 200 - 0.6ms
+2025-11-09 10:31:32,826 [INFO] GET /auth/me - 200 - 574.04ms
+2025-11-09 10:32:40,789 [INFO] Use pytorch device_name: mps
+2025-11-09 10:32:40,789 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:32:45,676 [INFO] Loading faiss.
+2025-11-09 10:32:45,711 [INFO] Successfully loaded faiss.
+2025-11-09 10:32:45,727 [INFO] Use pytorch device_name: mps
+2025-11-09 10:32:45,727 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 10:32:51,707 [INFO] 🧠 Using device: MPS
+2025-11-09 10:33:06,201 [INFO] Use pytorch device_name: mps
+2025-11-09 10:33:06,201 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:33:11,353 [INFO] Loading faiss.
+2025-11-09 10:33:11,442 [INFO] Successfully loaded faiss.
+2025-11-09 10:33:11,457 [INFO] Use pytorch device_name: mps
+2025-11-09 10:33:11,457 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 10:33:16,050 [INFO] 🧠 Using device: MPS
+2025-11-09 10:35:34,883 [INFO] OPTIONS /auth/me - 200 - 3.05ms
+2025-11-09 10:35:54,827 [INFO] OPTIONS /auth/me - 200 - 1.36ms
+2025-11-09 10:35:54,829 [INFO] OPTIONS /auth/me - 200 - 2.11ms
+2025-11-09 10:35:54,830 [INFO] OPTIONS /auth/me - 200 - 1.47ms
+2025-11-09 10:35:54,830 [INFO] OPTIONS /auth/me - 200 - 1.66ms
+2025-11-09 10:35:59,832 [ERROR] Exception in callback H11Protocol.timeout_keep_alive_handler()
+handle: <TimerHandle when=1237473.82828075 H11Protocol.timeout_keep_alive_handler()>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 363, in timeout_keep_alive_handler
+    self.conn.send(event)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 538, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 563, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 284, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 291, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 309, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+    ...<3 lines>...
+    ) from None
+h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role=SERVER and state=SEND_RESPONSE
+2025-11-09 10:35:59,835 [ERROR] Exception in callback H11Protocol.timeout_keep_alive_handler()
+handle: <TimerHandle when=1237473.8318295 H11Protocol.timeout_keep_alive_handler()>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 363, in timeout_keep_alive_handler
+    self.conn.send(event)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 538, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 563, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 284, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 291, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 309, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+    ...<3 lines>...
+    ) from None
+h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role=SERVER and state=SEND_RESPONSE
+2025-11-09 10:35:59,836 [ERROR] Exception in callback H11Protocol.timeout_keep_alive_handler()
+handle: <TimerHandle when=1237473.833325166 H11Protocol.timeout_keep_alive_handler()>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 363, in timeout_keep_alive_handler
+    self.conn.send(event)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 538, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 563, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 284, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 291, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 309, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+    ...<3 lines>...
+    ) from None
+h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role=SERVER and state=SEND_RESPONSE
+2025-11-09 10:36:00,730 [INFO] GET /auth/me - 200 - 5898.67ms
+2025-11-09 10:36:00,746 [INFO] GET /auth/me - 200 - 25842.14ms
+2025-11-09 10:36:00,854 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 25964.97ms
+2025-11-09 10:36:00,921 [INFO] GET /auth/me - 200 - 6083.97ms
+2025-11-09 10:36:01,215 [INFO] GET /auth/me - 200 - 6379.55ms
+2025-11-09 10:36:01,217 [INFO] GET /auth/me - 200 - 6381.58ms
+2025-11-09 10:36:01,270 [INFO] GET /auth/me - 200 - 346.56ms
+2025-11-09 10:36:01,424 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 189.17ms
+2025-11-09 10:36:01,426 [INFO] GET /auth/me - 200 - 207.06ms
+2025-11-09 10:36:01,466 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 184.9ms
+2025-11-09 10:36:01,545 [INFO] GET /auth/me - 200 - 807.09ms
+2025-11-09 10:36:01,631 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 190.98ms
+2025-11-09 10:36:01,726 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 170.12ms
+2025-11-09 10:37:30,081 [INFO] Use pytorch device_name: mps
+2025-11-09 10:37:30,081 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:37:39,607 [INFO] Use pytorch device_name: mps
+2025-11-09 10:37:39,607 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:37:52,116 [INFO] Loading faiss.
+2025-11-09 10:37:52,174 [INFO] Successfully loaded faiss.
+2025-11-09 10:37:52,187 [INFO] Use pytorch device_name: mps
+2025-11-09 10:37:52,188 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 10:37:58,559 [INFO] 🧠 Using device: MPS
+2025-11-09 10:40:39,351 [INFO] Use pytorch device_name: mps
+2025-11-09 10:40:39,352 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:40:43,410 [INFO] Use pytorch device_name: mps
+2025-11-09 10:40:43,410 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:40:54,365 [INFO] Use pytorch device_name: mps
+2025-11-09 10:40:54,365 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:41:00,949 [INFO] Use pytorch device_name: mps
+2025-11-09 10:41:00,949 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:41:08,730 [INFO] Loading faiss.
+2025-11-09 10:41:08,788 [INFO] Successfully loaded faiss.
+2025-11-09 10:41:08,801 [INFO] Use pytorch device_name: mps
+2025-11-09 10:41:08,801 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 10:41:14,552 [INFO] 🧠 Using device: MPS
+2025-11-09 10:41:16,157 [INFO] OPTIONS /auth/me - 200 - 0.45ms
+2025-11-09 10:41:16,157 [INFO] OPTIONS /auth/me - 200 - 0.49ms
+2025-11-09 10:41:16,157 [INFO] OPTIONS /auth/me - 200 - 0.52ms
+2025-11-09 10:41:16,158 [INFO] OPTIONS /auth/me - 200 - 0.54ms
+2025-11-09 10:41:17,685 [INFO] GET /auth/me - 200 - 1523.13ms
+2025-11-09 10:41:17,740 [INFO] GET /auth/me - 200 - 1572.93ms
+2025-11-09 10:41:17,874 [INFO] GET /auth/me - 200 - 1707.38ms
+2025-11-09 10:41:17,893 [INFO] GET /auth/me - 200 - 1726.97ms
+2025-11-09 10:41:18,054 [INFO] GET /teachers/690ae55877962a1c28aded95 - 500 - 301.12ms
+2025-11-09 10:41:18,214 [INFO] GET /teachers/690ae55877962a1c28aded95 - 500 - 324.5ms
+2025-11-09 10:41:18,214 [INFO] GET /teachers/690ae55877962a1c28aded95 - 500 - 311.16ms
+2025-11-09 10:41:18,434 [INFO] GET /teachers/690ae55877962a1c28aded95 - 500 - 726.43ms
+2025-11-09 10:41:46,449 [INFO] Use pytorch device_name: mps
+2025-11-09 10:41:46,449 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:41:54,817 [INFO] Use pytorch device_name: mps
+2025-11-09 10:41:54,817 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:41:59,263 [INFO] Loading faiss.
+2025-11-09 10:41:59,300 [INFO] Successfully loaded faiss.
+2025-11-09 10:41:59,307 [INFO] Use pytorch device_name: mps
+2025-11-09 10:41:59,307 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 10:42:05,190 [INFO] 🧠 Using device: MPS
+2025-11-09 10:42:34,802 [INFO] Use pytorch device_name: mps
+2025-11-09 10:42:34,802 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:42:41,962 [INFO] Use pytorch device_name: mps
+2025-11-09 10:42:41,962 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:42:49,824 [INFO] Loading faiss.
+2025-11-09 10:42:49,870 [INFO] Successfully loaded faiss.
+2025-11-09 10:42:49,879 [INFO] Use pytorch device_name: mps
+2025-11-09 10:42:49,879 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 10:42:54,988 [INFO] 🧠 Using device: MPS
+2025-11-09 10:43:20,897 [INFO] Use pytorch device_name: mps
+2025-11-09 10:43:20,897 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:43:31,056 [INFO] Use pytorch device_name: mps
+2025-11-09 10:43:31,056 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:43:38,438 [INFO] Loading faiss.
+2025-11-09 10:43:38,474 [INFO] Successfully loaded faiss.
+2025-11-09 10:43:38,489 [INFO] Use pytorch device_name: mps
+2025-11-09 10:43:38,489 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 10:43:54,624 [INFO] Use pytorch device_name: mps
+2025-11-09 10:43:54,624 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:44:00,093 [INFO] Loading faiss.
+2025-11-09 10:44:00,126 [INFO] Successfully loaded faiss.
+2025-11-09 10:44:00,134 [INFO] Use pytorch device_name: mps
+2025-11-09 10:44:00,134 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 10:44:04,247 [INFO] Use pytorch device_name: mps
+2025-11-09 10:44:04,248 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:44:20,496 [INFO] Use pytorch device_name: mps
+2025-11-09 10:44:20,496 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:44:30,237 [INFO] Use pytorch device_name: mps
+2025-11-09 10:44:30,238 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:44:34,662 [INFO] Use pytorch device_name: mps
+2025-11-09 10:44:34,662 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:44:39,179 [INFO] Loading faiss.
+2025-11-09 10:44:39,213 [INFO] Successfully loaded faiss.
+2025-11-09 10:44:39,220 [INFO] Use pytorch device_name: mps
+2025-11-09 10:44:39,220 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 10:44:44,155 [INFO] 🧠 Using device: MPS
+2025-11-09 10:44:57,604 [INFO] OPTIONS /auth/me - 200 - 1.9ms
+2025-11-09 10:44:57,604 [INFO] OPTIONS /auth/me - 200 - 1.94ms
+2025-11-09 10:44:57,606 [INFO] OPTIONS /auth/me - 200 - 2.96ms
+2025-11-09 10:44:57,608 [INFO] OPTIONS /auth/me - 200 - 3.17ms
+2025-11-09 10:44:58,954 [INFO] GET /auth/me - 200 - 1341.96ms
+2025-11-09 10:44:58,968 [INFO] GET /auth/me - 200 - 1258.06ms
+2025-11-09 10:44:59,154 [INFO] GET /teachers/690ae55877962a1c28aded95 - 500 - 172.36ms
+2025-11-09 10:44:59,164 [INFO] GET /teachers/690ae55877962a1c28aded95 - 500 - 169.88ms
+2025-11-09 10:44:59,233 [INFO] GET /auth/me - 200 - 1620.6ms
+2025-11-09 10:44:59,253 [INFO] GET /auth/me - 200 - 1542.0ms
+2025-11-09 10:44:59,414 [INFO] GET /teachers/690ae55877962a1c28aded95 - 500 - 169.88ms
+2025-11-09 10:44:59,443 [INFO] GET /teachers/690ae55877962a1c28aded95 - 500 - 177.47ms
+2025-11-09 10:45:54,521 [INFO] Use pytorch device_name: mps
+2025-11-09 10:45:54,524 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:46:01,700 [INFO] Use pytorch device_name: mps
+2025-11-09 10:46:01,700 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:46:05,556 [INFO] Use pytorch device_name: mps
+2025-11-09 10:46:05,556 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:46:10,058 [INFO] Loading faiss.
+2025-11-09 10:46:10,138 [INFO] Successfully loaded faiss.
+2025-11-09 10:46:10,156 [INFO] Use pytorch device_name: mps
+2025-11-09 10:46:10,157 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 10:46:15,238 [INFO] 🧠 Using device: MPS
+2025-11-09 10:46:35,820 [INFO] Use pytorch device_name: mps
+2025-11-09 10:46:35,821 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:46:40,071 [INFO] Loading faiss.
+2025-11-09 10:46:40,111 [INFO] Successfully loaded faiss.
+2025-11-09 10:46:40,118 [INFO] Use pytorch device_name: mps
+2025-11-09 10:46:40,118 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 10:46:45,183 [INFO] 🧠 Using device: MPS
+2025-11-09 10:46:50,587 [INFO] OPTIONS /auth/me - 200 - 2.2ms
+2025-11-09 10:46:50,588 [INFO] OPTIONS /auth/me - 200 - 2.32ms
+2025-11-09 10:46:50,590 [INFO] OPTIONS /auth/me - 200 - 3.91ms
+2025-11-09 10:46:50,591 [INFO] OPTIONS /auth/me - 200 - 3.19ms
+2025-11-09 10:46:51,586 [INFO] GET /auth/me - 200 - 964.51ms
+2025-11-09 10:46:51,849 [INFO] GET /auth/me - 200 - 1250.37ms
+2025-11-09 10:46:51,864 [INFO] GET /auth/me - 200 - 1239.55ms
+2025-11-09 10:46:51,864 [INFO] GET /auth/me - 200 - 1264.97ms
+2025-11-09 10:46:52,156 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 281.53ms
+2025-11-09 10:46:52,184 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 303.46ms
+2025-11-09 10:46:52,185 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 324.89ms
+2025-11-09 10:46:52,294 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 688.17ms
+2025-11-09 10:47:30,775 [INFO] Use pytorch device_name: mps
+2025-11-09 10:47:30,775 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:47:35,475 [INFO] Loading faiss.
+2025-11-09 10:47:35,514 [INFO] Successfully loaded faiss.
+2025-11-09 10:47:35,545 [INFO] Use pytorch device_name: mps
+2025-11-09 10:47:35,546 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 10:47:40,751 [INFO] 🧠 Using device: MPS
+2025-11-09 10:47:51,988 [INFO] OPTIONS /auth/me - 200 - 1.24ms
+2025-11-09 10:47:51,990 [INFO] OPTIONS /auth/me - 200 - 2.3ms
+2025-11-09 10:47:51,990 [INFO] OPTIONS /auth/me - 200 - 2.46ms
+2025-11-09 10:47:51,991 [INFO] OPTIONS /auth/me - 200 - 2.61ms
+2025-11-09 10:47:53,243 [INFO] GET /auth/me - 200 - 1201.8ms
+2025-11-09 10:47:53,248 [INFO] GET /auth/me - 200 - 1251.89ms
+2025-11-09 10:47:53,424 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 158.73ms
+2025-11-09 10:47:53,427 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 150.3ms
+2025-11-09 10:47:53,674 [INFO] GET /auth/me - 200 - 1632.63ms
+2025-11-09 10:47:53,685 [INFO] GET /auth/me - 200 - 1638.73ms
+2025-11-09 10:47:53,875 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 181.66ms
+2025-11-09 10:47:53,875 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 168.29ms
+2025-11-09 10:49:08,101 [INFO] Use pytorch device_name: mps
+2025-11-09 10:49:08,101 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:49:12,449 [INFO] Loading faiss.
+2025-11-09 10:49:12,482 [INFO] Successfully loaded faiss.
+2025-11-09 10:49:12,490 [INFO] Use pytorch device_name: mps
+2025-11-09 10:49:12,490 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 10:49:17,990 [INFO] 🧠 Using device: MPS
+2025-11-09 10:49:54,499 [INFO] Use pytorch device_name: mps
+2025-11-09 10:49:54,499 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:50:00,000 [INFO] Loading faiss.
+2025-11-09 10:50:00,040 [INFO] Successfully loaded faiss.
+2025-11-09 10:50:00,048 [INFO] Use pytorch device_name: mps
+2025-11-09 10:50:00,048 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 10:50:05,666 [INFO] 🧠 Using device: MPS
+2025-11-09 10:50:46,456 [INFO] OPTIONS /auth/me - 200 - 1.66ms
+2025-11-09 10:50:46,457 [INFO] OPTIONS /auth/me - 200 - 1.78ms
+2025-11-09 10:50:46,457 [INFO] OPTIONS /auth/me - 200 - 1.85ms
+2025-11-09 10:50:46,459 [INFO] OPTIONS /auth/me - 200 - 3.18ms
+2025-11-09 10:50:47,936 [INFO] GET /auth/me - 200 - 1431.82ms
+2025-11-09 10:50:47,995 [INFO] GET /auth/me - 200 - 1527.26ms
+2025-11-09 10:50:48,153 [INFO] GET /auth/me - 200 - 1684.7ms
+2025-11-09 10:50:48,173 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 216.83ms
+2025-11-09 10:50:48,175 [INFO] GET /auth/me - 200 - 1672.4ms
+2025-11-09 10:50:48,348 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 184.9ms
+2025-11-09 10:50:48,359 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 169.54ms
+2025-11-09 10:50:48,534 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 529.57ms
+2025-11-09 10:51:07,914 [INFO] Use pytorch device_name: mps
+2025-11-09 10:51:07,914 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:51:13,036 [INFO] Loading faiss.
+2025-11-09 10:51:13,098 [INFO] Successfully loaded faiss.
+2025-11-09 10:51:13,115 [INFO] Use pytorch device_name: mps
+2025-11-09 10:51:13,115 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 10:51:19,588 [INFO] 🧠 Using device: MPS
+2025-11-09 10:51:44,897 [INFO] Use pytorch device_name: mps
+2025-11-09 10:51:44,897 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:51:50,925 [INFO] Loading faiss.
+2025-11-09 10:51:50,988 [INFO] Successfully loaded faiss.
+2025-11-09 10:51:50,996 [INFO] Use pytorch device_name: mps
+2025-11-09 10:51:50,997 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 10:52:00,596 [INFO] Use pytorch device_name: mps
+2025-11-09 10:52:00,596 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:52:04,966 [INFO] Loading faiss.
+2025-11-09 10:52:04,997 [INFO] Successfully loaded faiss.
+2025-11-09 10:52:05,012 [INFO] Use pytorch device_name: mps
+2025-11-09 10:52:05,012 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 10:52:10,214 [INFO] 🧠 Using device: MPS
+2025-11-09 10:52:30,348 [INFO] OPTIONS /auth/me - 200 - 6.61ms
+2025-11-09 10:52:30,348 [INFO] OPTIONS /auth/me - 200 - 3.6ms
+2025-11-09 10:52:30,349 [INFO] OPTIONS /auth/me - 200 - 2.57ms
+2025-11-09 10:52:30,368 [INFO] OPTIONS /auth/me - 200 - 20.59ms
+2025-11-09 10:52:31,739 [INFO] GET /auth/me - 200 - 1359.31ms
+2025-11-09 10:52:31,938 [INFO] GET /auth/me - 200 - 1558.98ms
+2025-11-09 10:52:31,994 [INFO] GET /teachers/690ae55877962a1c28aded95 - 500 - 236.44ms
+2025-11-09 10:52:32,057 [INFO] GET /auth/me - 200 - 1676.97ms
+2025-11-09 10:52:32,117 [INFO] GET /teachers/690ae55877962a1c28aded95 - 500 - 164.11ms
+2025-11-09 10:52:32,249 [INFO] GET /teachers/690ae55877962a1c28aded95 - 500 - 182.98ms
+2025-11-09 10:52:32,258 [INFO] GET /auth/me - 200 - 1879.12ms
+2025-11-09 10:52:32,442 [INFO] GET /teachers/690ae55877962a1c28aded95 - 500 - 174.05ms
+2025-11-09 10:52:53,316 [INFO] Use pytorch device_name: mps
+2025-11-09 10:52:53,316 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:53:01,072 [INFO] Loading faiss.
+2025-11-09 10:53:01,161 [INFO] Successfully loaded faiss.
+2025-11-09 10:53:01,173 [INFO] Use pytorch device_name: mps
+2025-11-09 10:53:01,173 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 10:53:06,120 [INFO] 🧠 Using device: MPS
+2025-11-09 10:53:16,056 [INFO] Use pytorch device_name: mps
+2025-11-09 10:53:16,056 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:53:21,353 [INFO] Loading faiss.
+2025-11-09 10:53:21,423 [INFO] Successfully loaded faiss.
+2025-11-09 10:53:21,437 [INFO] Use pytorch device_name: mps
+2025-11-09 10:53:21,438 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 10:53:26,522 [INFO] 🧠 Using device: MPS
+2025-11-09 10:54:49,933 [INFO] Use pytorch device_name: mps
+2025-11-09 10:54:49,933 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:54:56,537 [INFO] Use pytorch device_name: mps
+2025-11-09 10:54:56,537 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:55:03,493 [INFO] Loading faiss.
+2025-11-09 10:55:03,545 [INFO] Successfully loaded faiss.
+2025-11-09 10:55:03,554 [INFO] Use pytorch device_name: mps
+2025-11-09 10:55:03,554 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 10:55:08,928 [INFO] 🧠 Using device: MPS
+2025-11-09 10:55:26,394 [INFO] OPTIONS /auth/me - 200 - 4.45ms
+2025-11-09 10:55:26,397 [INFO] OPTIONS /auth/me - 200 - 4.54ms
+2025-11-09 10:55:26,398 [INFO] OPTIONS /auth/me - 200 - 4.65ms
+2025-11-09 10:55:26,398 [INFO] OPTIONS /auth/me - 200 - 4.73ms
+2025-11-09 10:55:27,588 [INFO] GET /auth/me - 200 - 1164.25ms
+2025-11-09 10:55:27,672 [INFO] GET /auth/me - 200 - 1269.09ms
+2025-11-09 10:55:27,879 [INFO] GET /auth/me - 200 - 1458.86ms
+2025-11-09 10:55:27,935 [INFO] GET /auth/me - 200 - 1510.77ms
+2025-11-09 10:55:27,937 [INFO] GET /teachers/690ae55877962a1c28aded95 - 500 - 323.57ms
+2025-11-09 10:55:28,164 [INFO] GET /teachers/690ae55877962a1c28aded95 - 500 - 267.36ms
+2025-11-09 10:55:28,212 [INFO] GET /teachers/690ae55877962a1c28aded95 - 500 - 267.75ms
+2025-11-09 10:55:28,585 [INFO] GET /teachers/690ae55877962a1c28aded95 - 500 - 902.56ms
+2025-11-09 10:57:06,504 [INFO] Use pytorch device_name: mps
+2025-11-09 10:57:06,504 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:57:16,685 [INFO] Use pytorch device_name: mps
+2025-11-09 10:57:16,685 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:57:22,984 [INFO] Use pytorch device_name: mps
+2025-11-09 10:57:22,984 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:57:28,388 [INFO] Loading faiss.
+2025-11-09 10:57:28,435 [INFO] Successfully loaded faiss.
+2025-11-09 10:57:28,443 [INFO] Use pytorch device_name: mps
+2025-11-09 10:57:28,443 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 10:57:39,247 [INFO] Use pytorch device_name: mps
+2025-11-09 10:57:39,247 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:57:43,422 [INFO] Loading faiss.
+2025-11-09 10:57:43,496 [INFO] Successfully loaded faiss.
+2025-11-09 10:57:43,544 [INFO] Use pytorch device_name: mps
+2025-11-09 10:57:43,544 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 10:57:48,031 [INFO] 🧠 Using device: MPS
+2025-11-09 10:57:59,671 [INFO] Use pytorch device_name: mps
+2025-11-09 10:57:59,671 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:58:05,171 [INFO] Loading faiss.
+2025-11-09 10:58:05,216 [INFO] Successfully loaded faiss.
+2025-11-09 10:58:05,223 [INFO] Use pytorch device_name: mps
+2025-11-09 10:58:05,223 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 10:58:10,675 [INFO] 🧠 Using device: MPS
+2025-11-09 10:58:16,711 [INFO] OPTIONS /auth/me - 200 - 1.35ms
+2025-11-09 10:58:16,719 [INFO] OPTIONS /auth/me - 200 - 8.07ms
+2025-11-09 10:58:16,722 [INFO] OPTIONS /auth/me - 200 - 7.33ms
+2025-11-09 10:58:16,722 [INFO] OPTIONS /auth/me - 200 - 7.5ms
+2025-11-09 10:58:18,063 [INFO] GET /auth/me - 200 - 1330.96ms
+2025-11-09 10:58:18,063 [INFO] GET /auth/me - 200 - 1302.97ms
+2025-11-09 10:58:18,398 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 311.96ms
+2025-11-09 10:58:18,432 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 334.71ms
+2025-11-09 10:58:18,450 [INFO] GET /auth/me - 200 - 1679.01ms
+2025-11-09 10:58:18,548 [INFO] GET /auth/me - 200 - 1777.27ms
+2025-11-09 10:58:18,630 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 169.82ms
+2025-11-09 10:58:18,742 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 184.7ms
+2025-11-09 10:58:40,591 [INFO] Use pytorch device_name: mps
+2025-11-09 10:58:40,591 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:58:54,663 [INFO] Use pytorch device_name: mps
+2025-11-09 10:58:54,663 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 10:58:59,779 [INFO] Loading faiss.
+2025-11-09 10:58:59,817 [INFO] Successfully loaded faiss.
+2025-11-09 10:58:59,824 [INFO] Use pytorch device_name: mps
+2025-11-09 10:58:59,824 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 10:59:04,315 [INFO] 🧠 Using device: MPS
+2025-11-09 11:01:49,782 [INFO] OPTIONS /auth/me - 200 - 8.07ms
+2025-11-09 11:01:49,785 [INFO] OPTIONS /auth/me - 200 - 6.02ms
+2025-11-09 11:01:50,804 [INFO] GET /auth/me - 200 - 995.91ms
+2025-11-09 11:01:51,259 [INFO] GET /auth/me - 200 - 1468.16ms
+2025-11-09 11:01:51,930 [INFO] OPTIONS /auth/me - 200 - 0.58ms
+2025-11-09 11:01:51,932 [INFO] OPTIONS /auth/me - 200 - 1.79ms
+2025-11-09 11:01:52,103 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 170.18ms
+2025-11-09 11:01:52,103 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 170.85ms
+2025-11-09 11:01:52,472 [INFO] GET /auth/me - 200 - 536.25ms
+2025-11-09 11:01:52,473 [INFO] GET /auth/me - 200 - 534.19ms
+2025-11-09 11:01:52,662 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 176.34ms
+2025-11-09 11:01:52,672 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 171.01ms
+2025-11-09 11:01:53,279 [INFO] OPTIONS /auth/me - 200 - 0.18ms
+2025-11-09 11:01:53,283 [INFO] OPTIONS /auth/me - 200 - 0.16ms
+2025-11-09 11:01:53,457 [INFO] GET /auth/me - 200 - 175.4ms
+2025-11-09 11:01:53,487 [INFO] GET /auth/me - 200 - 202.12ms
+2025-11-09 11:01:55,052 [INFO] OPTIONS /auth/me - 200 - 0.36ms
+2025-11-09 11:01:55,059 [INFO] OPTIONS /auth/me - 200 - 1.81ms
+2025-11-09 11:01:55,472 [INFO] GET /auth/me - 200 - 417.58ms
+2025-11-09 11:01:55,472 [INFO] GET /auth/me - 200 - 408.91ms
+2025-11-09 11:01:55,473 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 413.21ms
+2025-11-09 11:01:55,473 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 417.26ms
+2025-11-09 11:01:55,659 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 172.0ms
+2025-11-09 11:01:55,693 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 201.15ms
+2025-11-09 11:05:23,789 [INFO] OPTIONS /auth/me - 200 - 0.68ms
+2025-11-09 11:05:23,981 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 187.84ms
+2025-11-09 11:05:23,983 [INFO] GET /auth/me - 200 - 185.86ms
+2025-11-09 11:05:24,173 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 177.66ms
+2025-11-09 11:15:10,927 [INFO] OPTIONS /auth/me - 200 - 0.86ms
+2025-11-09 11:15:10,930 [INFO] OPTIONS /auth/me - 200 - 0.81ms
+2025-11-09 11:15:10,931 [INFO] OPTIONS /auth/me - 200 - 1.41ms
+2025-11-09 11:15:10,940 [INFO] OPTIONS /auth/me - 200 - 8.92ms
+2025-11-09 11:15:15,941 [ERROR] Exception in callback H11Protocol.timeout_keep_alive_handler()
+handle: <TimerHandle when=1239829.925658583 H11Protocol.timeout_keep_alive_handler()>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 363, in timeout_keep_alive_handler
+    self.conn.send(event)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 538, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 563, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 284, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 291, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 309, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+    ...<3 lines>...
+    ) from None
+h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role=SERVER and state=SEND_RESPONSE
+2025-11-09 11:15:48,887 [INFO] GET /auth/me - 200 - 37944.0ms
+2025-11-09 11:15:48,907 [INFO] GET /auth/me - 200 - 37963.26ms
+2025-11-09 11:15:52,943 [INFO] GET /auth/me - 200 - 41997.97ms
+2025-11-09 11:15:52,945 [INFO] GET /auth/me - 200 - 42012.86ms
+2025-11-09 11:16:01,921 [INFO] Use pytorch device_name: mps
+2025-11-09 11:16:01,922 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:16:06,510 [INFO] Loading faiss.
+2025-11-09 11:16:06,579 [INFO] Successfully loaded faiss.
+2025-11-09 11:16:06,592 [INFO] Use pytorch device_name: mps
+2025-11-09 11:16:06,592 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 11:16:11,650 [INFO] 🧠 Using device: MPS
+2025-11-09 11:16:14,090 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 986.75ms
+2025-11-09 11:16:14,137 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 1033.42ms
+2025-11-09 11:16:14,380 [INFO] GET /auth/me - 200 - 1276.7ms
+2025-11-09 11:16:14,387 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 1283.35ms
+2025-11-09 11:16:14,602 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 206.23ms
+2025-11-09 11:18:10,739 [INFO] OPTIONS /auth/me - 200 - 69.03ms
+2025-11-09 11:18:10,780 [INFO] OPTIONS /auth/me - 200 - 4.05ms
+2025-11-09 11:18:11,097 [INFO] GET /auth/me - 200 - 308.37ms
+2025-11-09 11:18:11,150 [INFO] GET /auth/me - 200 - 293.59ms
+2025-11-09 11:18:14,492 [INFO] OPTIONS /auth/me - 200 - 0.99ms
+2025-11-09 11:18:14,493 [INFO] OPTIONS /auth/me - 200 - 1.54ms
+2025-11-09 11:18:17,619 [INFO] GET /upload/list - 200 - 3126.18ms
+2025-11-09 11:18:17,740 [INFO] GET /upload/list - 200 - 3246.88ms
+2025-11-09 11:18:17,758 [INFO] GET /auth/me - 200 - 3260.0ms
+2025-11-09 11:18:17,819 [INFO] GET /auth/me - 200 - 3320.49ms
+2025-11-09 11:18:17,832 [INFO] GET /upload/list - 200 - 63.53ms
+2025-11-09 11:18:17,900 [INFO] GET /upload/list - 200 - 72.45ms
+2025-11-09 11:23:07,057 [INFO] OPTIONS /auth/me - 200 - 1.04ms
+2025-11-09 11:23:07,060 [INFO] OPTIONS /auth/me - 200 - 0.43ms
+2025-11-09 11:23:07,262 [INFO] GET /auth/me - 200 - 201.41ms
+2025-11-09 11:23:07,262 [INFO] GET /auth/me - 200 - 196.41ms
+2025-11-09 11:23:08,969 [INFO] OPTIONS /auth/me - 200 - 0.22ms
+2025-11-09 11:23:08,977 [INFO] OPTIONS /auth/me - 200 - 0.78ms
+2025-11-09 11:23:09,031 [INFO] GET /conversations/chats - 200 - 56.62ms
+2025-11-09 11:23:09,033 [INFO] GET /conversations/chats - 200 - 54.55ms
+2025-11-09 11:23:09,175 [INFO] GET /auth/me - 200 - 204.04ms
+2025-11-09 11:23:09,212 [INFO] GET /auth/me - 200 - 230.32ms
+2025-11-09 11:23:09,306 [INFO] GET /conversations/chats - 200 - 56.2ms
+2025-11-09 11:23:09,310 [INFO] GET /conversations/chats - 200 - 54.21ms
+2025-11-09 11:23:45,551 [INFO] Use pytorch device_name: mps
+2025-11-09 11:23:45,551 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:23:52,953 [INFO] Use pytorch device_name: mps
+2025-11-09 11:23:52,953 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:23:56,996 [INFO] Use pytorch device_name: mps
+2025-11-09 11:23:56,996 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:24:01,563 [INFO] Loading faiss.
+2025-11-09 11:24:01,617 [INFO] Successfully loaded faiss.
+2025-11-09 11:24:01,624 [INFO] Use pytorch device_name: mps
+2025-11-09 11:24:01,624 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 11:24:06,535 [INFO] 🧠 Using device: MPS
+2025-11-09 11:24:16,926 [INFO] OPTIONS /auth/me - 200 - 2.13ms
+2025-11-09 11:24:16,929 [INFO] OPTIONS /auth/me - 200 - 3.3ms
+2025-11-09 11:24:16,931 [INFO] OPTIONS /auth/me - 200 - 3.85ms
+2025-11-09 11:24:16,931 [INFO] OPTIONS /auth/me - 200 - 3.98ms
+2025-11-09 11:24:18,121 [INFO] GET /auth/me - 200 - 1152.52ms
+2025-11-09 11:24:18,206 [INFO] GET /conversations/chats - 200 - 69.13ms
+2025-11-09 11:24:18,206 [INFO] GET /auth/me - 200 - 1241.74ms
+2025-11-09 11:24:18,309 [INFO] GET /conversations/chats - 200 - 78.97ms
+2025-11-09 11:24:18,546 [INFO] GET /auth/me - 200 - 1581.3ms
+2025-11-09 11:24:18,547 [INFO] GET /auth/me - 200 - 1612.6ms
+2025-11-09 11:24:18,616 [INFO] GET /conversations/chats - 200 - 58.22ms
+2025-11-09 11:24:18,619 [INFO] GET /conversations/chats - 200 - 53.02ms
+2025-11-09 11:30:39,228 [INFO] OPTIONS /auth/me - 200 - 14.54ms
+2025-11-09 11:30:39,230 [INFO] OPTIONS /auth/me - 200 - 12.04ms
+2025-11-09 11:30:39,234 [INFO] OPTIONS /auth/me - 200 - 7.07ms
+2025-11-09 11:30:39,236 [INFO] OPTIONS /auth/me - 200 - 5.31ms
+2025-11-09 11:30:39,924 [INFO] GET /auth/me - 200 - 682.86ms
+2025-11-09 11:30:39,925 [INFO] GET /auth/me - 200 - 683.28ms
+2025-11-09 11:30:40,015 [INFO] GET /conversations/chats - 200 - 73.97ms
+2025-11-09 11:30:40,015 [INFO] GET /conversations/chats - 200 - 68.34ms
+2025-11-09 11:30:40,244 [INFO] GET /auth/me - 200 - 987.62ms
+2025-11-09 11:30:40,311 [INFO] GET /conversations/chats - 200 - 57.69ms
+2025-11-09 11:30:40,322 [INFO] GET /auth/me - 200 - 1052.55ms
+2025-11-09 11:30:40,406 [INFO] GET /conversations/chats - 200 - 69.7ms
+2025-11-09 11:32:23,507 [INFO] Use pytorch device_name: mps
+2025-11-09 11:32:23,508 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:32:27,487 [INFO] Use pytorch device_name: mps
+2025-11-09 11:32:27,487 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:32:40,866 [INFO] Loading faiss.
+2025-11-09 11:32:40,943 [INFO] Successfully loaded faiss.
+2025-11-09 11:32:40,952 [INFO] Use pytorch device_name: mps
+2025-11-09 11:32:40,952 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 11:32:45,185 [INFO] 🧠 Using device: MPS
+2025-11-09 11:33:05,414 [INFO] OPTIONS /auth/me - 200 - 7.29ms
+2025-11-09 11:33:05,420 [INFO] OPTIONS /auth/me - 200 - 15.02ms
+2025-11-09 11:33:05,426 [INFO] OPTIONS /auth/me - 200 - 18.48ms
+2025-11-09 11:33:05,427 [INFO] OPTIONS /auth/me - 200 - 19.59ms
+2025-11-09 11:33:10,441 [ERROR] Exception in callback H11Protocol.timeout_keep_alive_handler()
+handle: <TimerHandle when=1240904.419430958 H11Protocol.timeout_keep_alive_handler()>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 363, in timeout_keep_alive_handler
+    self.conn.send(event)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 538, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 563, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 284, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 291, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 309, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+    ...<3 lines>...
+    ) from None
+h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role=SERVER and state=SEND_RESPONSE
+2025-11-09 11:33:10,444 [ERROR] Exception in callback H11Protocol.timeout_keep_alive_handler()
+handle: <TimerHandle when=1240904.421024541 H11Protocol.timeout_keep_alive_handler()>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 363, in timeout_keep_alive_handler
+    self.conn.send(event)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 538, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 563, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 284, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 291, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 309, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+    ...<3 lines>...
+    ) from None
+h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role=SERVER and state=SEND_RESPONSE
+2025-11-09 11:33:10,477 [ERROR] Exception in callback H11Protocol.timeout_keep_alive_handler()
+handle: <TimerHandle when=1240904.455692 H11Protocol.timeout_keep_alive_handler()>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 363, in timeout_keep_alive_handler
+    self.conn.send(event)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 538, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 563, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 284, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 291, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 309, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+    ...<3 lines>...
+    ) from None
+h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role=SERVER and state=SEND_RESPONSE
+2025-11-09 11:33:10,478 [ERROR] Exception in callback H11Protocol.timeout_keep_alive_handler()
+handle: <TimerHandle when=1240904.455954791 H11Protocol.timeout_keep_alive_handler()>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 363, in timeout_keep_alive_handler
+    self.conn.send(event)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 538, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 563, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 284, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 291, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 309, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+    ...<3 lines>...
+    ) from None
+h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role=SERVER and state=SEND_RESPONSE
+2025-11-09 11:33:12,099 [INFO] GET /auth/me - 200 - 6622.09ms
+2025-11-09 11:33:12,334 [INFO] GET /auth/me - 200 - 226.01ms
+2025-11-09 11:33:12,409 [INFO] GET /conversations/chats - 200 - 55.36ms
+2025-11-09 11:33:12,527 [INFO] GET /auth/me - 200 - 7075.26ms
+2025-11-09 11:33:12,764 [INFO] GET /auth/me - 200 - 234.07ms
+2025-11-09 11:33:12,874 [INFO] GET /auth/me - 200 - 7423.37ms
+2025-11-09 11:33:12,876 [INFO] GET /conversations/chats - 200 - 102.27ms
+2025-11-09 11:33:18,880 [INFO] GET /auth/me - 200 - 6001.74ms
+2025-11-09 11:33:20,079 [INFO] GET /conversations/chats - 200 - 1189.06ms
+2025-11-09 11:33:20,304 [INFO] GET /auth/me - 200 - 14826.87ms
+2025-11-09 11:33:20,521 [INFO] GET /auth/me - 200 - 213.9ms
+2025-11-09 11:33:20,592 [INFO] GET /conversations/chats - 200 - 62.32ms
+2025-11-09 11:33:52,725 [INFO] Use pytorch device_name: mps
+2025-11-09 11:33:52,725 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:34:09,274 [INFO] Use pytorch device_name: mps
+2025-11-09 11:34:09,274 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:34:16,490 [INFO] Use pytorch device_name: mps
+2025-11-09 11:34:16,490 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:34:21,082 [INFO] Use pytorch device_name: mps
+2025-11-09 11:34:21,083 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:34:27,394 [INFO] Use pytorch device_name: mps
+2025-11-09 11:34:27,395 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:34:33,566 [INFO] Use pytorch device_name: mps
+2025-11-09 11:34:33,567 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:34:46,441 [INFO] Use pytorch device_name: mps
+2025-11-09 11:34:46,441 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:34:55,055 [INFO] Use pytorch device_name: mps
+2025-11-09 11:34:55,056 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:35:05,452 [INFO] Use pytorch device_name: mps
+2025-11-09 11:35:05,452 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:35:17,648 [INFO] Loading faiss.
+2025-11-09 11:35:17,707 [INFO] Successfully loaded faiss.
+2025-11-09 11:35:17,719 [INFO] Use pytorch device_name: mps
+2025-11-09 11:35:17,719 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 11:35:22,921 [INFO] 🧠 Using device: MPS
+2025-11-09 11:35:43,918 [INFO] OPTIONS /auth/me - 200 - 2.07ms
+2025-11-09 11:35:43,919 [INFO] OPTIONS /auth/me - 200 - 3.2ms
+2025-11-09 11:35:43,924 [INFO] OPTIONS /auth/me - 200 - 7.22ms
+2025-11-09 11:35:43,925 [INFO] OPTIONS /auth/me - 200 - 7.85ms
+2025-11-09 11:35:45,163 [INFO] GET /auth/me - 200 - 1215.72ms
+2025-11-09 11:35:45,220 [INFO] GET /auth/me - 200 - 1223.37ms
+2025-11-09 11:35:45,340 [INFO] GET /conversations/chats - 200 - 159.44ms
+2025-11-09 11:35:45,368 [INFO] GET /auth/me - 200 - 1420.41ms
+2025-11-09 11:35:45,444 [INFO] GET /auth/me - 200 - 1447.81ms
+2025-11-09 11:35:45,529 [INFO] GET /conversations/chats - 200 - 144.64ms
+2025-11-09 11:35:45,573 [INFO] GET /conversations/chats - 200 - 110.9ms
+2025-11-09 11:35:45,745 [INFO] GET /conversations/chats - 200 - 516.13ms
+2025-11-09 11:36:20,990 [INFO] Use pytorch device_name: mps
+2025-11-09 11:36:20,990 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:36:26,937 [INFO] Use pytorch device_name: mps
+2025-11-09 11:36:26,937 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:36:48,617 [INFO] Loading faiss.
+2025-11-09 11:36:48,665 [INFO] Successfully loaded faiss.
+2025-11-09 11:36:48,678 [INFO] Use pytorch device_name: mps
+2025-11-09 11:36:48,679 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 11:36:53,568 [INFO] 🧠 Using device: MPS
+2025-11-09 11:38:42,896 [INFO] Use pytorch device_name: mps
+2025-11-09 11:38:42,896 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:38:49,591 [INFO] Loading faiss.
+2025-11-09 11:38:49,655 [INFO] Successfully loaded faiss.
+2025-11-09 11:38:49,665 [INFO] Use pytorch device_name: mps
+2025-11-09 11:38:49,665 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 11:38:57,801 [INFO] 🧠 Using device: MPS
+2025-11-09 11:39:14,038 [INFO] OPTIONS /auth/me - 200 - 1.18ms
+2025-11-09 11:39:14,039 [INFO] OPTIONS /auth/me - 200 - 1.41ms
+2025-11-09 11:39:14,039 [INFO] OPTIONS /auth/me - 200 - 1.48ms
+2025-11-09 11:39:14,039 [INFO] OPTIONS /auth/me - 200 - 1.51ms
+2025-11-09 11:39:16,520 [INFO] GET /auth/me - 200 - 2459.69ms
+2025-11-09 11:39:16,580 [INFO] GET /auth/me - 200 - 2535.7ms
+2025-11-09 11:39:16,647 [INFO] GET /conversations/chats - 200 - 96.27ms
+2025-11-09 11:39:16,799 [INFO] GET /auth/me - 200 - 2737.16ms
+2025-11-09 11:39:16,843 [INFO] GET /auth/me - 200 - 2779.7ms
+2025-11-09 11:39:16,884 [INFO] GET /conversations/chats - 200 - 70.67ms
+2025-11-09 11:39:16,924 [INFO] GET /conversations/chats - 200 - 69.12ms
+2025-11-09 11:39:17,100 [INFO] GET /conversations/chats - 200 - 510.96ms
+2025-11-09 11:39:22,847 [INFO] GET /conversations - 307 - 0.97ms
+2025-11-09 11:39:22,951 [INFO] GET /conversations/chats - 200 - 105.21ms
+2025-11-09 11:39:23,141 [INFO] GET /conversations/ - 200 - 279.21ms
+2025-11-09 11:41:51,540 [INFO] GET /conversations/chats - 200 - 5442.74ms
+2025-11-09 11:41:56,735 [INFO] OPTIONS /auth/me - 200 - 1.58ms
+2025-11-09 11:41:56,845 [INFO] OPTIONS /auth/me - 200 - 2.11ms
+2025-11-09 11:41:57,008 [INFO] GET /auth/me - 200 - 267.54ms
+2025-11-09 11:41:57,053 [INFO] GET /auth/me - 200 - 200.94ms
+2025-11-09 11:42:08,162 [INFO] OPTIONS /auth/login - 200 - 0.98ms
+2025-11-09 11:42:08,660 [INFO] POST /auth/login - 200 - 491.91ms
+2025-11-09 11:42:08,700 [INFO] OPTIONS /auth/me - 200 - 0.7ms
+2025-11-09 11:42:08,701 [INFO] OPTIONS /auth/me - 200 - 1.34ms
+2025-11-09 11:42:08,914 [INFO] GET /auth/me - 200 - 211.28ms
+2025-11-09 11:42:08,916 [INFO] GET /auth/me - 200 - 210.85ms
+2025-11-09 11:42:10,321 [INFO] OPTIONS /auth/me - 200 - 3.69ms
+2025-11-09 11:42:10,322 [INFO] OPTIONS /auth/me - 200 - 2.63ms
+2025-11-09 11:42:13,282 [INFO] GET /auth/me - 200 - 2958.16ms
+2025-11-09 11:42:13,282 [INFO] GET /auth/me - 200 - 2959.13ms
+2025-11-09 11:42:13,476 [INFO] GET /conversations/chats - 200 - 185.02ms
+2025-11-09 11:42:13,503 [INFO] GET /conversations/chats - 200 - 207.61ms
+2025-11-09 11:42:14,880 [INFO] GET /conversations/chats - 200 - 4559.0ms
+2025-11-09 11:42:16,472 [INFO] GET /conversations/chats - 200 - 6153.18ms
+2025-11-09 11:42:19,069 [INFO] OPTIONS /auth/me - 200 - 0.57ms
+2025-11-09 11:42:19,070 [INFO] OPTIONS /auth/me - 200 - 0.53ms
+2025-11-09 11:42:19,242 [INFO] GET /auth/me - 200 - 170.08ms
+2025-11-09 11:42:19,243 [INFO] GET /auth/me - 200 - 170.28ms
+2025-11-09 11:42:20,737 [INFO] OPTIONS /auth/me - 200 - 0.77ms
+2025-11-09 11:42:20,740 [INFO] OPTIONS /auth/me - 200 - 1.09ms
+2025-11-09 11:42:20,746 [INFO] GET /teachers - 307 - 4.36ms
+2025-11-09 11:42:20,747 [INFO] GET /teachers - 307 - 3.46ms
+2025-11-09 11:42:20,916 [INFO] GET /auth/me - 200 - 172.54ms
+2025-11-09 11:42:20,922 [INFO] GET /teachers - 307 - 0.47ms
+2025-11-09 11:42:20,933 [INFO] GET /auth/me - 200 - 185.05ms
+2025-11-09 11:42:20,941 [INFO] GET /teachers - 307 - 0.42ms
+2025-11-09 11:42:21,105 [INFO] GET /teachers/ - 200 - 354.94ms
+2025-11-09 11:42:21,106 [INFO] GET /teachers/ - 200 - 355.21ms
+2025-11-09 11:42:21,276 [INFO] GET /teachers/ - 200 - 350.84ms
+2025-11-09 11:42:21,277 [INFO] GET /teachers/ - 200 - 333.32ms
+2025-11-09 11:42:24,205 [INFO] OPTIONS /auth/me - 200 - 0.32ms
+2025-11-09 11:42:24,210 [INFO] OPTIONS /auth/me - 200 - 0.33ms
+2025-11-09 11:42:24,411 [INFO] GET /auth/me - 200 - 196.8ms
+2025-11-09 11:42:24,417 [INFO] GET /auth/me - 200 - 208.97ms
+2025-11-09 11:43:45,217 [INFO] OPTIONS /auth/me - 200 - 7.28ms
+2025-11-09 11:43:45,218 [INFO] OPTIONS /auth/me - 200 - 8.67ms
+2025-11-09 11:43:45,219 [INFO] OPTIONS /auth/me - 200 - 8.79ms
+2025-11-09 11:43:45,219 [INFO] OPTIONS /auth/me - 200 - 8.77ms
+2025-11-09 11:43:45,533 [INFO] GET /auth/me - 200 - 255.81ms
+2025-11-09 11:43:45,549 [INFO] GET /auth/me - 200 - 300.98ms
+2025-11-09 11:43:45,550 [INFO] GET /auth/me - 200 - 308.32ms
+2025-11-09 11:43:45,551 [INFO] GET /auth/me - 200 - 302.43ms
+2025-11-09 11:45:44,776 [INFO] Use pytorch device_name: mps
+2025-11-09 11:45:44,776 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:45:48,924 [INFO] Use pytorch device_name: mps
+2025-11-09 11:45:48,925 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:45:53,500 [INFO] Loading faiss.
+2025-11-09 11:45:53,542 [INFO] Successfully loaded faiss.
+2025-11-09 11:45:53,551 [INFO] Use pytorch device_name: mps
+2025-11-09 11:45:53,551 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 11:45:58,199 [INFO] Use pytorch device_name: mps
+2025-11-09 11:45:58,199 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:46:02,585 [INFO] Loading faiss.
+2025-11-09 11:46:02,616 [INFO] Successfully loaded faiss.
+2025-11-09 11:46:02,625 [INFO] Use pytorch device_name: mps
+2025-11-09 11:46:02,625 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 11:46:07,962 [INFO] 🧠 Using device: MPS
+2025-11-09 11:46:18,030 [INFO] Use pytorch device_name: mps
+2025-11-09 11:46:18,030 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:46:24,714 [INFO] Loading faiss.
+2025-11-09 11:46:24,773 [INFO] Successfully loaded faiss.
+2025-11-09 11:46:24,792 [INFO] Use pytorch device_name: mps
+2025-11-09 11:46:24,792 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 11:46:32,723 [INFO] Use pytorch device_name: mps
+2025-11-09 11:46:32,724 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:46:36,775 [INFO] Loading faiss.
+2025-11-09 11:46:36,825 [INFO] Successfully loaded faiss.
+2025-11-09 11:46:36,833 [INFO] Use pytorch device_name: mps
+2025-11-09 11:46:36,833 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 11:46:41,934 [INFO] Use pytorch device_name: mps
+2025-11-09 11:46:41,934 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:46:53,443 [INFO] Loading faiss.
+2025-11-09 11:46:53,484 [INFO] Successfully loaded faiss.
+2025-11-09 11:46:53,492 [INFO] Use pytorch device_name: mps
+2025-11-09 11:46:53,492 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 11:47:08,646 [INFO] Use pytorch device_name: mps
+2025-11-09 11:47:08,646 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:47:15,654 [INFO] Loading faiss.
+2025-11-09 11:47:15,711 [INFO] Successfully loaded faiss.
+2025-11-09 11:47:15,720 [INFO] Use pytorch device_name: mps
+2025-11-09 11:47:15,720 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 11:47:19,966 [INFO] 🧠 Using device: MPS
+2025-11-09 11:47:42,989 [INFO] OPTIONS /auth/me - 200 - 6.47ms
+2025-11-09 11:47:45,311 [INFO] GET /auth/me - 200 - 2315.57ms
+2025-11-09 11:48:10,198 [INFO] OPTIONS /auth/me - 200 - 6.9ms
+2025-11-09 11:48:10,203 [INFO] OPTIONS /auth/me - 200 - 6.67ms
+2025-11-09 11:48:10,203 [INFO] OPTIONS /auth/me - 200 - 6.87ms
+2025-11-09 11:48:10,203 [INFO] OPTIONS /auth/me - 200 - 6.94ms
+2025-11-09 11:48:11,195 [INFO] GET /auth/me - 200 - 988.7ms
+2025-11-09 11:48:11,617 [INFO] GET /auth/me - 200 - 1380.36ms
+2025-11-09 11:48:11,753 [INFO] GET /auth/me - 200 - 1516.79ms
+2025-11-09 11:48:11,858 [INFO] GET /auth/me - 200 - 1621.41ms
+2025-11-09 11:48:21,078 [INFO] OPTIONS /auth/me - 200 - 2.11ms
+2025-11-09 11:48:21,079 [INFO] OPTIONS /auth/me - 200 - 2.76ms
+2025-11-09 11:48:21,079 [INFO] OPTIONS /auth/me - 200 - 2.85ms
+2025-11-09 11:48:21,080 [INFO] OPTIONS /auth/me - 200 - 3.3ms
+2025-11-09 11:48:21,583 [INFO] GET /auth/me - 200 - 487.72ms
+2025-11-09 11:48:21,594 [INFO] GET /auth/me - 200 - 498.1ms
+2025-11-09 11:48:21,628 [INFO] GET /auth/me - 200 - 424.11ms
+2025-11-09 11:48:22,037 [INFO] GET /auth/me - 200 - 833.52ms
+2025-11-09 11:49:31,874 [INFO] OPTIONS /auth/me - 200 - 1.76ms
+2025-11-09 11:49:31,877 [INFO] OPTIONS /auth/me - 200 - 1.32ms
+2025-11-09 11:49:31,877 [INFO] OPTIONS /auth/me - 200 - 1.54ms
+2025-11-09 11:49:31,877 [INFO] OPTIONS /auth/me - 200 - 1.61ms
+2025-11-09 11:49:36,880 [ERROR] Exception in callback H11Protocol.timeout_keep_alive_handler()
+handle: <TimerHandle when=1241890.85242525 H11Protocol.timeout_keep_alive_handler()>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 363, in timeout_keep_alive_handler
+    self.conn.send(event)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 538, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 563, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 284, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 291, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 309, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+    ...<3 lines>...
+    ) from None
+h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role=SERVER and state=SEND_RESPONSE
+2025-11-09 11:49:42,233 [INFO] GET /auth/me - 200 - 10345.31ms
+2025-11-09 11:49:42,236 [INFO] GET /auth/me - 200 - 10357.4ms
+2025-11-09 11:49:42,451 [INFO] GET /students/690860e3489b114c676d005d - 200 - 180.38ms
+2025-11-09 11:49:42,457 [INFO] GET /students/690860e3489b114c676d005d - 200 - 166.63ms
+2025-11-09 11:49:42,586 [INFO] GET /auth/me - 200 - 10699.65ms
+2025-11-09 11:49:42,588 [INFO] GET /auth/me - 200 - 10699.06ms
+2025-11-09 11:49:42,766 [INFO] GET /auth/me - 200 - 164.33ms
+2025-11-09 11:49:42,787 [INFO] GET /students/690860e3489b114c676d005d - 200 - 178.04ms
+2025-11-09 11:49:42,999 [INFO] GET /students/690860e3489b114c676d005d - 200 - 223.69ms
+2025-11-09 11:50:46,126 [INFO] Use pytorch device_name: mps
+2025-11-09 11:50:46,126 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:51:08,731 [INFO] Use pytorch device_name: mps
+2025-11-09 11:51:08,731 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:51:13,067 [INFO] Loading faiss.
+2025-11-09 11:51:13,148 [INFO] Successfully loaded faiss.
+2025-11-09 11:51:13,158 [INFO] Use pytorch device_name: mps
+2025-11-09 11:51:13,158 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 11:51:17,384 [INFO] 🧠 Using device: MPS
+2025-11-09 11:51:39,590 [INFO] Use pytorch device_name: mps
+2025-11-09 11:51:39,590 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 11:51:45,610 [INFO] Loading faiss.
+2025-11-09 11:51:45,696 [INFO] Successfully loaded faiss.
+2025-11-09 11:51:45,727 [INFO] Use pytorch device_name: mps
+2025-11-09 11:51:45,727 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 11:51:50,515 [INFO] 🧠 Using device: MPS
+2025-11-09 11:53:03,776 [INFO] OPTIONS /auth/me - 200 - 4.93ms
+2025-11-09 11:53:03,778 [INFO] OPTIONS /auth/me - 200 - 0.7ms
+2025-11-09 11:53:03,778 [INFO] OPTIONS /auth/me - 200 - 0.69ms
+2025-11-09 11:53:03,778 [INFO] OPTIONS /auth/me - 200 - 0.61ms
+2025-11-09 11:53:05,426 [INFO] GET /auth/me - 200 - 1635.37ms
+2025-11-09 11:53:05,665 [INFO] GET /auth/me - 200 - 1875.04ms
+2025-11-09 11:53:05,816 [INFO] GET /students/690860e3489b114c676d005d - 200 - 379.29ms
+2025-11-09 11:53:05,884 [INFO] GET /auth/me - 200 - 2093.48ms
+2025-11-09 11:53:06,285 [INFO] GET /auth/me - 200 - 2505.33ms
+2025-11-09 11:53:07,416 [INFO] GET /students/690860e3489b114c676d005d - 200 - 1502.18ms
+2025-11-09 11:53:07,839 [INFO] GET /students/690860e3489b114c676d005d - 200 - 1543.43ms
+2025-11-09 11:53:08,699 [INFO] GET /students/690860e3489b114c676d005d - 200 - 3024.04ms
+2025-11-09 12:00:07,344 [INFO] OPTIONS /auth/me - 200 - 2.03ms
+2025-11-09 12:00:07,351 [INFO] OPTIONS /auth/me - 200 - 1.02ms
+2025-11-09 12:00:07,364 [INFO] GET /teachers - 307 - 10.95ms
+2025-11-09 12:00:07,365 [INFO] GET /teachers - 307 - 11.79ms
+2025-11-09 12:00:10,310 [INFO] GET /auth/me - 200 - 2957.27ms
+2025-11-09 12:00:10,328 [INFO] GET /teachers - 307 - 0.24ms
+2025-11-09 12:00:10,334 [INFO] GET /auth/me - 200 - 2964.4ms
+2025-11-09 12:00:10,346 [INFO] GET /teachers - 307 - 0.27ms
+2025-11-09 12:00:12,383 [ERROR] Exception in callback H11Protocol.timeout_keep_alive_handler()
+handle: <TimerHandle when=1242526.35191725 H11Protocol.timeout_keep_alive_handler()>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 363, in timeout_keep_alive_handler
+    self.conn.send(event)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 538, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 563, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 284, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 291, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 309, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+    ...<3 lines>...
+    ) from None
+h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role=SERVER and state=SEND_RESPONSE
+2025-11-09 12:00:12,405 [ERROR] Exception in callback H11Protocol.timeout_keep_alive_handler()
+handle: <TimerHandle when=1242526.352983833 H11Protocol.timeout_keep_alive_handler()>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 363, in timeout_keep_alive_handler
+    self.conn.send(event)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 538, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 563, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 284, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 291, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 309, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+    ...<3 lines>...
+    ) from None
+h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role=SERVER and state=SEND_RESPONSE
+2025-11-09 12:00:13,205 [INFO] GET /teachers/ - 200 - 5824.49ms
+2025-11-09 12:00:13,214 [INFO] GET /teachers/ - 200 - 5833.61ms
+2025-11-09 12:00:15,540 [INFO] GET /teachers/ - 200 - 5192.12ms
+2025-11-09 12:00:15,543 [INFO] GET /teachers/ - 200 - 5211.63ms
+2025-11-09 12:00:16,801 [INFO] GET /teachers/ - 200 - 3583.53ms
+2025-11-09 12:00:16,802 [INFO] GET /teachers/ - 200 - 3585.31ms
+2025-11-09 12:00:33,419 [INFO] OPTIONS /auth/login - 200 - 0.19ms
+2025-11-09 12:00:35,601 [INFO] POST /auth/login - 200 - 2180.2ms
+2025-11-09 12:00:35,651 [INFO] OPTIONS /auth/me - 200 - 0.68ms
+2025-11-09 12:00:35,652 [INFO] OPTIONS /auth/me - 200 - 1.03ms
+2025-11-09 12:00:37,138 [INFO] OPTIONS /auth/me - 200 - 0.16ms
+2025-11-09 12:00:37,143 [INFO] OPTIONS /auth/me - 200 - 0.61ms
+2025-11-09 12:00:39,234 [INFO] GET /auth/me - 200 - 2094.12ms
+2025-11-09 12:00:39,237 [INFO] GET /auth/me - 200 - 3583.21ms
+2025-11-09 12:00:39,269 [INFO] GET /auth/me - 200 - 2111.05ms
+2025-11-09 12:00:39,426 [INFO] GET /auth/me - 200 - 3772.81ms
+2025-11-09 12:02:51,793 [INFO] OPTIONS /auth/me - 200 - 1.27ms
+2025-11-09 12:02:51,809 [INFO] OPTIONS /auth/me - 200 - 2.2ms
+2025-11-09 12:02:51,810 [INFO] GET /students - 307 - 3.34ms
+2025-11-09 12:02:51,836 [INFO] GET /students - 307 - 27.78ms
+2025-11-09 12:02:52,166 [INFO] GET /students/ - 400 - 318.41ms
+2025-11-09 12:02:52,169 [INFO] GET /students/ - 400 - 322.33ms
+2025-11-09 12:02:52,236 [INFO] GET /auth/me - 200 - 427.05ms
+2025-11-09 12:02:52,236 [INFO] GET /auth/me - 200 - 397.54ms
+2025-11-09 12:02:52,245 [INFO] GET /students - 307 - 0.44ms
+2025-11-09 12:02:52,259 [INFO] GET /students - 307 - 1.04ms
+2025-11-09 12:02:52,318 [INFO] GET /students/ - 400 - 59.75ms
+2025-11-09 12:02:52,322 [INFO] GET /students/ - 400 - 60.03ms
+2025-11-09 12:04:34,578 [INFO] Use pytorch device_name: mps
+2025-11-09 12:04:34,578 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 12:04:42,956 [INFO] Use pytorch device_name: mps
+2025-11-09 12:04:42,957 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 12:04:50,647 [INFO] Use pytorch device_name: mps
+2025-11-09 12:04:50,647 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 12:05:03,043 [INFO] Use pytorch device_name: mps
+2025-11-09 12:05:03,043 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 12:05:31,849 [INFO] Use pytorch device_name: mps
+2025-11-09 12:05:31,849 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 12:05:50,462 [WARNING] '(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: b2bd45b3-e4c9-41d9-accd-ecd775f6cfd4)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+2025-11-09 12:05:50,463 [WARNING] Retrying in 1s [Retry 1/5].
+2025-11-09 12:06:00,016 [INFO] Use pytorch device_name: mps
+2025-11-09 12:06:00,016 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-09 12:06:20,345 [WARNING] '(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: 4b0ec1f2-40ee-4c3e-8227-17c35f66ef34)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+2025-11-09 12:06:20,347 [WARNING] Retrying in 1s [Retry 1/5].
+2025-11-09 12:06:34,987 [INFO] Loading faiss.
+2025-11-09 12:06:35,045 [INFO] Successfully loaded faiss.
+2025-11-09 12:06:35,055 [INFO] Use pytorch device_name: mps
+2025-11-09 12:06:35,055 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-09 12:06:40,200 [INFO] 🧠 Using device: MPS
+2025-11-09 12:07:18,170 [INFO] OPTIONS /auth/me - 200 - 5.21ms
+2025-11-09 12:07:18,172 [INFO] OPTIONS /auth/me - 200 - 5.02ms
+2025-11-09 12:07:18,173 [INFO] OPTIONS /auth/me - 200 - 5.59ms
+2025-11-09 12:07:18,173 [INFO] OPTIONS /auth/me - 200 - 5.8ms
+2025-11-09 12:07:23,186 [ERROR] Exception in callback H11Protocol.timeout_keep_alive_handler()
+handle: <TimerHandle when=1242957.157297916 H11Protocol.timeout_keep_alive_handler()>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 363, in timeout_keep_alive_handler
+    self.conn.send(event)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 538, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 563, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 284, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 291, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 309, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+    ...<3 lines>...
+    ) from None
+h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role=SERVER and state=SEND_RESPONSE
+2025-11-09 12:07:23,191 [ERROR] Exception in callback H11Protocol.timeout_keep_alive_handler()
+handle: <TimerHandle when=1242957.162103375 H11Protocol.timeout_keep_alive_handler()>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 363, in timeout_keep_alive_handler
+    self.conn.send(event)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 538, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 563, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 284, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 291, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 309, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+    ...<3 lines>...
+    ) from None
+h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role=SERVER and state=SEND_RESPONSE
+2025-11-09 12:07:31,222 [INFO] GET /auth/me - 200 - 12950.77ms
+2025-11-09 12:07:31,263 [INFO] GET /students - 307 - 2.56ms
+2025-11-09 12:07:31,428 [INFO] GET /auth/me - 200 - 13229.57ms
+2025-11-09 12:07:31,622 [INFO] GET /auth/me - 200 - 187.11ms
+2025-11-09 12:07:31,636 [INFO] GET /students - 307 - 0.55ms
+2025-11-09 12:07:31,681 [INFO] GET /auth/me - 200 - 13482.31ms
+2025-11-09 12:07:31,693 [INFO] GET /students - 307 - 0.47ms
+2025-11-09 12:07:31,982 [INFO] GET /students/ - 200 - 713.4ms
+2025-11-09 12:07:31,982 [INFO] GET /students/ - 200 - 330.69ms
+2025-11-09 12:07:32,067 [INFO] GET /students/ - 200 - 370.49ms
+2025-11-09 12:07:35,948 [INFO] GET /auth/me - 200 - 17754.18ms
+2025-11-09 12:07:36,196 [INFO] GET /auth/me - 200 - 245.37ms
+2025-11-09 12:07:36,216 [INFO] GET /students - 307 - 2.31ms
+2025-11-09 12:07:36,566 [INFO] GET /students/ - 200 - 343.41ms
+2025-11-09 12:08:00,610 [INFO] OPTIONS /auth/me - 200 - 0.97ms
+2025-11-09 12:08:00,618 [INFO] OPTIONS /auth/me - 200 - 0.4ms
+2025-11-09 12:08:06,642 [INFO] GET /auth/me - 200 - 6021.63ms
+2025-11-09 12:08:08,471 [INFO] GET /auth/me - 200 - 7858.43ms
+2025-11-09 12:08:37,415 [INFO] OPTIONS /auth/me - 200 - 3.91ms
+2025-11-09 12:08:37,422 [INFO] OPTIONS /auth/me - 200 - 4.16ms
+2025-11-09 12:08:37,423 [INFO] GET /students - 307 - 4.3ms
+2025-11-09 12:08:37,423 [INFO] GET /students - 307 - 4.18ms
+2025-11-09 12:08:39,874 [INFO] OPTIONS /auth/me - 200 - 0.32ms
+2025-11-09 12:08:39,878 [INFO] OPTIONS /auth/me - 200 - 0.55ms
+2025-11-09 12:08:42,424 [ERROR] Exception in callback H11Protocol.timeout_keep_alive_handler()
+handle: <TimerHandle when=1243036.3942385 H11Protocol.timeout_keep_alive_handler()>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 363, in timeout_keep_alive_handler
+    self.conn.send(event)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 538, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 563, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 284, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 291, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 309, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+    ...<3 lines>...
+    ) from None
+h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role=SERVER and state=SEND_RESPONSE
+2025-11-09 12:08:42,432 [ERROR] Exception in callback H11Protocol.timeout_keep_alive_handler()
+handle: <TimerHandle when=1243036.402257166 H11Protocol.timeout_keep_alive_handler()>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 363, in timeout_keep_alive_handler
+    self.conn.send(event)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 538, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 563, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 284, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 291, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 309, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+    ...<3 lines>...
+    ) from None
+h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role=SERVER and state=SEND_RESPONSE
+2025-11-09 12:08:48,863 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 8982.23ms
+2025-11-09 12:08:49,218 [INFO] GET /auth/me - 200 - 11793.61ms
+2025-11-09 12:08:49,257 [INFO] GET /auth/me - 200 - 11824.8ms
+2025-11-09 12:08:57,836 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 8972.21ms
+2025-11-09 12:08:58,141 [INFO] GET /auth/me - 200 - 8881.76ms
+2025-11-09 12:08:58,217 [INFO] GET /students/ - 200 - 20759.03ms
+2025-11-09 12:08:58,217 [INFO] GET /auth/me - 200 - 18340.76ms
+2025-11-09 12:08:58,278 [INFO] GET /auth/me - 200 - 439.73ms
+2025-11-09 12:08:58,385 [INFO] GET /students/ - 200 - 20927.54ms
+2025-11-09 12:08:58,422 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 262.12ms
+2025-11-09 12:08:58,424 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 198.59ms
+2025-11-09 12:08:58,512 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 226.56ms
+2025-11-09 12:08:58,513 [INFO] GET /auth/me - 200 - 9291.58ms
+2025-11-09 12:08:58,736 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 209.32ms
+2025-11-09 12:09:29,749 [INFO] OPTIONS /auth/me - 200 - 1.87ms
+2025-11-09 12:09:29,752 [INFO] OPTIONS /auth/me - 200 - 3.21ms
+2025-11-09 12:09:29,753 [INFO] GET /students - 307 - 2.79ms
+2025-11-09 12:09:29,753 [INFO] GET /students - 307 - 3.17ms
+2025-11-09 12:09:31,321 [INFO] GET /auth/me - 200 - 1449.8ms
+2025-11-09 12:09:31,321 [INFO] GET /auth/me - 200 - 1564.74ms
+2025-11-09 12:09:31,331 [INFO] GET /students - 307 - 0.26ms
+2025-11-09 12:09:31,339 [INFO] GET /students - 307 - 0.8ms
+2025-11-09 12:09:32,605 [INFO] GET /students/ - 200 - 2728.38ms
+2025-11-09 12:09:32,606 [INFO] GET /students/ - 200 - 2728.87ms
+2025-11-09 12:09:32,786 [INFO] GET /students/ - 200 - 1438.36ms
+2025-11-09 12:09:32,842 [INFO] GET /students/ - 200 - 1504.91ms
+2025-11-09 12:11:40,957 [INFO] OPTIONS /auth/me - 200 - 5.73ms
+2025-11-09 12:11:40,965 [INFO] OPTIONS /auth/me - 200 - 5.98ms
+2025-11-09 12:11:43,266 [INFO] GET /auth/me - 200 - 2299.28ms
+2025-11-09 12:11:43,267 [INFO] GET /auth/me - 200 - 2291.57ms
+2025-11-09 12:11:43,301 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 2342.3ms
+2025-11-09 12:11:43,302 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 2343.37ms
+2025-11-09 12:11:43,470 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 188.4ms
+2025-11-09 12:11:43,471 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 180.76ms
+2025-11-09 12:11:44,452 [INFO] OPTIONS /auth/me - 200 - 0.46ms
+2025-11-09 12:11:44,459 [INFO] OPTIONS /auth/me - 200 - 1.66ms
+2025-11-09 12:11:44,537 [INFO] GET /upload/list - 200 - 83.69ms
+2025-11-09 12:11:44,538 [INFO] GET /upload/list - 200 - 80.2ms
+2025-11-09 12:11:44,656 [INFO] GET /auth/me - 200 - 194.2ms
+2025-11-09 12:11:44,656 [INFO] GET /auth/me - 200 - 199.85ms
+2025-11-09 12:11:44,736 [INFO] GET /upload/list - 200 - 70.87ms
+2025-11-09 12:11:44,742 [INFO] GET /upload/list - 200 - 65.34ms
+2025-11-09 12:11:45,398 [INFO] OPTIONS /auth/me - 200 - 0.19ms
+2025-11-09 12:11:45,402 [INFO] OPTIONS /auth/me - 200 - 1.2ms
+2025-11-09 12:11:45,598 [INFO] GET /auth/me - 200 - 194.96ms
+2025-11-09 12:11:45,607 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 204.71ms
+2025-11-09 12:11:45,610 [INFO] GET /auth/me - 200 - 210.15ms
+2025-11-09 12:11:45,610 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 209.42ms
+2025-11-09 12:11:45,792 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 186.33ms
+2025-11-09 12:11:45,876 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 257.62ms
+2025-11-09 12:11:47,233 [INFO] OPTIONS /auth/me - 200 - 0.42ms
+2025-11-09 12:11:47,241 [INFO] OPTIONS /auth/me - 200 - 2.98ms
+2025-11-09 12:11:47,297 [INFO] GET /conversations/chats - 200 - 58.16ms
+2025-11-09 12:11:47,300 [INFO] GET /conversations/chats - 200 - 60.9ms
+2025-11-09 12:11:47,417 [INFO] GET /auth/me - 200 - 173.23ms
+2025-11-09 12:11:47,418 [INFO] GET /auth/me - 200 - 182.09ms
+2025-11-09 12:11:47,488 [INFO] GET /conversations/chats - 200 - 56.71ms
+2025-11-09 12:11:47,490 [INFO] GET /conversations/chats - 200 - 66.45ms
+2025-11-09 12:11:49,912 [INFO] OPTIONS /auth/me - 200 - 0.51ms
+2025-11-09 12:11:49,916 [INFO] OPTIONS /auth/me - 200 - 0.52ms
+2025-11-09 12:11:49,924 [INFO] GET /coachings - 307 - 2.58ms
+2025-11-09 12:11:49,929 [INFO] GET /coachings - 307 - 5.22ms
+2025-11-09 12:11:50,013 [INFO] GET /coachings/ - 200 - 81.3ms
+2025-11-09 12:11:50,014 [INFO] GET /coachings/ - 200 - 80.25ms
+2025-11-09 12:11:50,142 [INFO] GET /auth/me - 200 - 216.05ms
+2025-11-09 12:11:50,146 [INFO] GET /auth/me - 200 - 217.31ms
+2025-11-09 12:11:50,696 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 81.49ms
+2025-11-09 12:11:50,708 [INFO] GET /upload/list - 200 - 0.33ms
+2025-11-09 12:11:50,766 [INFO] GET /coachings/6909ff5877962a1c28aded91/teachers/ - 200 - 150.65ms
+2025-11-09 12:11:50,767 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 151.21ms
+2025-11-09 12:11:50,832 [INFO] GET /upload/list - 200 - 55.13ms
+2025-11-09 12:11:50,847 [INFO] GET /upload/list - 200 - 57.65ms
+2025-11-09 12:11:53,861 [INFO] OPTIONS /coachings/6909ff5877962a1c28aded91/students/ - 200 - 0.2ms
+2025-11-09 12:11:54,771 [INFO] POST /coachings/6909ff5877962a1c28aded91/students/ - 200 - 907.68ms
+2025-11-09 12:11:54,787 [INFO] OPTIONS /auth/me - 200 - 0.15ms
+2025-11-09 12:11:54,791 [INFO] GET /coachings - 307 - 0.24ms
+2025-11-09 12:11:54,857 [INFO] GET /coachings/ - 200 - 59.44ms
+2025-11-09 12:11:54,967 [INFO] GET /auth/me - 200 - 177.87ms
+2025-11-09 12:11:55,076 [INFO] OPTIONS /auth/me - 200 - 0.72ms
+2025-11-09 12:11:55,079 [INFO] OPTIONS /auth/me - 200 - 1.07ms
+2025-11-09 12:11:55,252 [INFO] GET /auth/me - 200 - 171.88ms
+2025-11-09 12:11:55,258 [INFO] GET /auth/me - 200 - 175.13ms
+2025-11-09 12:11:59,243 [INFO] OPTIONS /auth/me - 200 - 0.28ms
+2025-11-09 12:11:59,247 [INFO] GET /coachings - 307 - 1.07ms
+2025-11-09 12:11:59,250 [INFO] OPTIONS /auth/me - 200 - 2.38ms
+2025-11-09 12:11:59,251 [INFO] GET /coachings - 307 - 2.1ms
+2025-11-09 12:11:59,810 [INFO] GET /coachings/ - 200 - 554.61ms
+2025-11-09 12:11:59,816 [INFO] GET /coachings/ - 200 - 559.96ms
+2025-11-09 12:12:00,881 [INFO] GET /auth/me - 200 - 1629.5ms
+2025-11-09 12:12:00,894 [INFO] GET /auth/me - 200 - 1645.82ms
+2025-11-09 12:17:47,702 [INFO] OPTIONS /auth/me - 200 - 6.89ms
+2025-11-09 12:17:47,706 [INFO] OPTIONS /auth/me - 200 - 10.7ms
+2025-11-09 12:17:47,706 [INFO] GET /coachings - 307 - 10.72ms
+2025-11-09 12:17:47,707 [INFO] OPTIONS /auth/me - 200 - 10.8ms
+2025-11-09 12:17:47,707 [INFO] GET /coachings - 307 - 10.67ms
+2025-11-09 12:17:47,724 [INFO] OPTIONS /auth/me - 200 - 24.49ms
+2025-11-09 12:17:47,946 [INFO] GET /auth/me - 200 - 210.1ms
+2025-11-09 12:17:47,950 [INFO] GET /auth/me - 200 - 214.57ms
+2025-11-09 12:17:47,957 [INFO] GET /auth/me - 200 - 221.81ms
+2025-11-09 12:17:47,958 [INFO] GET /coachings/ - 200 - 79.54ms
+2025-11-09 12:17:47,962 [INFO] GET /coachings/ - 200 - 77.76ms
+2025-11-09 12:17:48,547 [INFO] GET /auth/me - 200 - 811.24ms
+2025-11-09 12:17:52,094 [INFO] OPTIONS /auth/me - 200 - 2.56ms
+2025-11-09 12:17:52,096 [INFO] OPTIONS /auth/me - 200 - 2.86ms
+2025-11-09 12:17:52,159 [INFO] GET /conversations/chats - 200 - 64.71ms
+2025-11-09 12:17:52,180 [INFO] GET /conversations/chats - 200 - 85.4ms
+2025-11-09 12:17:52,310 [INFO] GET /auth/me - 200 - 204.57ms
+2025-11-09 12:17:52,312 [INFO] GET /auth/me - 200 - 201.72ms
+2025-11-09 12:17:52,395 [INFO] GET /conversations/chats - 200 - 74.32ms
+2025-11-09 12:17:52,400 [INFO] GET /conversations/chats - 200 - 66.57ms
+2025-11-09 12:17:56,799 [INFO] OPTIONS /auth/me - 200 - 0.97ms
+2025-11-09 12:17:56,802 [INFO] OPTIONS /auth/me - 200 - 1.21ms
+2025-11-09 12:17:56,985 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 182.92ms
+2025-11-09 12:17:56,987 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 184.96ms
+2025-11-09 12:17:56,994 [INFO] GET /auth/me - 200 - 185.06ms
+2025-11-09 12:17:57,002 [INFO] GET /auth/me - 200 - 195.45ms
+2025-11-09 12:17:57,205 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 192.75ms
+2025-11-09 12:17:57,216 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 212.03ms

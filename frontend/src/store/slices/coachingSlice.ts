@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { BASE_URL } from '../../constants/helperConstants';
 import type { TeacherModel } from './teachersSlice';
+import type { StudentModel } from './studentsSlice';
 // const BASE_URL = "http://127.0.0.1:8000"; // FastAPI backend
 // const BASE_URL = "https://ai.vinciis.in"; // FastAPI backend
 
@@ -23,21 +24,6 @@ export interface OrganisationModel {
   created_at?: string;
   updated_at?: string;
 }
-
-export interface StudentModel {
-  _id?: string;
-  id?: string;
-  user_id: string;
-  email: string;
-  avatar?: string;
-  name: string;
-  subjects?: string[];
-  documents?: string[];
-  teachers?: string[];
-  created_at?: string;
-  updated_at?: string;
-}
-
 export interface UploadRequestPayload {
   fileName: string;
   s3Url: string;

@@ -17,7 +17,7 @@ export const QueryBox: React.FC = () => {
   const { queryStatus, response, error } = useAppSelector(
     (state) => state.assistant
   );
-  const { chat: chatConversation } = useAppSelector((state) => state.conversations); 
+  // const { chat: chatConversation } = useAppSelector((state) => state.conversations); 
 
   const [question, setQuestion] = useState("");
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
@@ -382,14 +382,14 @@ export const QueryBox: React.FC = () => {
       {response && (
         <div>
           <ResponseCard response={response} />
-          <div className="border-t mt-4 text-sm text-gray-500">
+          {/* <div className="border-t mt-4 text-sm text-gray-500">
             {chatConversation && chatConversation.conversations.length > 0 && chatConversation.conversations.map((conversation) => (
               <div key={conversation.id} className="mt-4">
                 📄 {conversation.query_by}: <span className="font-semibold">{conversation.query}</span><br/>
                 🗂️ {conversation.answer_by}: <span className="font-medium">{conversation.answer}</span>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       )}
     </div>

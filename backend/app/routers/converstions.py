@@ -82,9 +82,13 @@ async def list_chats(skip: int = 0, limit: int = 20, search: str = Query(None), 
                     {"title": {"$regex": search, "$options": "i"}},
                 ]
             }
+        # Add user_id search for both user_id and teacher_id fields
         if user_id:
-            query["user_id"] = user_id
-
+            query["$or"] = query.get("$or", []) + [
+                {"user_id": user_id},
+                {"teacher_id": user_id}
+            ]
+        print("query", query)
         cursor = (
             collection.find(query)
             .sort("created_at", DESCENDING)

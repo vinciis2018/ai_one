@@ -107,6 +107,7 @@ class OrganisationModel(BaseModel):
     contact_email: EmailStr
     phone: Optional[str] = None
     website: Optional[str] = None
+    org_type: Optional[str] = "coaching"
     teachers: List[PyObjectId] = []
     students: List[PyObjectId] = []
     documents: List[DocumentAccess] = []

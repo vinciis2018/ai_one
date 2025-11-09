@@ -28,7 +28,7 @@ async def list_teachers(
         student = await student_collection.find_one({"user_id": user_oid})
 
         if user_oid == None or student == None:
-          raise HTTPException(status_code=400, detail="Invalid user ID format")
+          raise HTTPException(status_code=400, detail="Invalid student user ID format")
         # Find the organization that has this student
         coaching_collection = get_collection("organisations")
         coaching = await coaching_collection.find_one({"students": {"$in": [student.get("_id")]}})
@@ -76,7 +76,6 @@ async def list_teachers(
                     "avatar": teacher.get("avatar", ""),
                     "created_at": str(teacher.get("created_at", ""))
                 })
-        print("sfasfs")
         return {
             "teachers": result,
             "count": len(result),
@@ -94,9 +93,9 @@ async def list_teachers(
 
 
 
-@router.get("/{teacher_id}")
+@router.get("/{id}")
 async def get_teacher_details(
-    teacher_id: str
+    id: str
 ):
     """
     Get detailed information about a specific teacher by their ID.
@@ -104,27 +103,31 @@ async def get_teacher_details(
     try:
         # Validate teacher_id format
         try:
-            teacher_oid = ObjectId(teacher_id)
+            user_oid = ObjectId(id)
         except:
             raise HTTPException(status_code=400, detail="Invalid teacher ID format")
-
-        # Get teacher details
-        teacher = await db["teachers"].find_one({"_id": teacher_oid})
-        if not teacher:
-            raise HTTPException(status_code=404, detail="Teacher not found")
-
         # Get user details
         user = await db["users"].find_one(
-            {"_id": teacher["user_id"]},
+            {"_id": user_oid},
             {"password": 0}  # Exclude password
         )
 
         if not user:
-            raise HTTPException(status_code=404, detail="User details not found")
+            raise HTTPException(status_code=404, detail="User not found")
 
+        # Get teacher details
+        teacher = await db["teachers"].find_one({"user_id": user_oid})
+        if not teacher:
+            raise HTTPException(status_code=404, detail="Teacher not found")
+
+        teacher_id = teacher["_id"]
+
+        if not teacher_id:
+            raise HTTPException(status_code=404, detail="Teacher details not found")
+        
         # Get organization details
         org = await db["organisations"].find_one(
-            {"teachers": teacher_oid},
+            {"teachers": teacher_id},
             {"name": 1, "_id": 1}  # Only get necessary fields
         )
 
@@ -135,7 +138,8 @@ async def get_teacher_details(
             "name": teacher.get("name", ""),
             "email": teacher.get("email", ""),
             "subjects": teacher.get("subjects", []),
-            "documents": [str(doc_id) for doc_id in teacher.get("documents", [])],
+            "documents": [str(doc["document_id"]) for doc in teacher.get("documents", [])],
+            "students": [str(student_id) for student_id in teacher.get("students", [])],
             "avatar": teacher.get("avatar", user.get("avatar", "")),
             "created_at": str(teacher.get("created_at", "")),
             "organization": {

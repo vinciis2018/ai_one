@@ -153,7 +153,7 @@ export const TeacherChatPage: React.FC = () => {
           
           <div className="fixed bottom-0 left-0 right-0 p-2">
             <div className="max-w-4xl mx-auto bg-white">
-              <QueryBoxChat domain={domain} teacher_id={teacher_details?._id as string} setConversation={setConversation} />
+              <QueryBoxChat domain={domain} teacher_id={user?._id as string} setConversation={setConversation} />
             </div>
           </div>
  

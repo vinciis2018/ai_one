@@ -106,14 +106,20 @@ export const CoachingsPage: React.FC = () => {
                     onClick={(e) => {
                       e.stopPropagation();
                       // Handle assign action here
-                      if (!coaching.students.includes(user?.student_id)) {
-                        handleAddSelfAsStudent(coaching?._id)
-                      } else {
-                        navigate(`/institute/coachings/${coaching?._id}`)
+
+                      if (user?.role === "student") {
+                        if (!coaching.students.includes(user?.student_id)) {
+                          handleAddSelfAsStudent(coaching?._id)
+                        } else {
+                          navigate(`/institute/coachings/${coaching?._id}`)
+                        }
                       }
                     }}
                   >
-                    {coaching.students.includes(user?.student_id) ? "View" : "Join"}
+                    {
+                      user?.role == "student" && !coaching.students.includes(user?.student_id) 
+                        ? "Join" : "View"
+                    }
                   </button>
                 </div>
               )) : null}

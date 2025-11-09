@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { FullLayout } from "../../layouts/AppLayout";
-import { getAllTeachers, type TeacherModel } from "../../store/slices/teachersSlice";
+import { getAllStudents, type StudentModel } from "../../store/slices/studentsSlice";
 import { useNavigate } from "react-router-dom";
 
-export const TeachersPage: React.FC = () => {
+export const StudentsPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const {user} = useAppSelector((state) => state.auth);
-  const { all_teachers, loading, error } = useAppSelector((state) => state.teachers);
+  const { all_students, loading, error } = useAppSelector((state) => state.students);
   const [selectedId, setSelectedId] = useState<string | null | undefined>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDomain, setSelectedDomain] = useState("all");
@@ -16,7 +16,7 @@ console.log(selectedId)
   useEffect(() => {
     if (user) {
 
-      dispatch(getAllTeachers({
+      dispatch(getAllStudents({
         user_id: user?._id || '',
         page: 1,
         limit: 1000,
@@ -27,7 +27,7 @@ console.log(selectedId)
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
-    dispatch(getAllTeachers({
+    dispatch(getAllStudents({
       user_id: user?._id || '',
       page: 1,
       limit: 1000,
@@ -46,15 +46,15 @@ console.log(selectedId)
           <div className="max-w-4xl mx-auto py-2 flex items-center gap-2 border-b border-gray-100" onClick={() => navigate(-1)}>
             <i className="fi fi-sr-arrow-small-left flex items-center rounded-full bg-baigeLight p-1" />
             <h1 className="w-full text-sm font-semibold">
-              Teachers
+              Students
             </h1>
           </div>
-          {loading && <p>Loading teachers...</p>}
-          {error && <p className="text-red-500">Failed to load teachers.</p>}
+          {loading && <p>Loading students...</p>}
+          {error && <p className="text-red-500">Failed to load students.</p>}
           <div className="grid grid-cols-3 gap-2 py-2">
             <input
               type="text"
-              placeholder="Search teachers..."
+              placeholder="Search students..."
               value={searchQuery}
               onChange={handleSearch}
               className="col-span-2 text-sm px-4 py-2 rounded-full border border-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-baigeLight"
@@ -73,30 +73,29 @@ console.log(selectedId)
           </div>
 
           <div className="py-2 w-full">
-            <h2 className="text-xs">found {all_teachers.length} teachers</h2>
+            <h2 className="text-xs">found {all_students.length} students</h2>
             <div className="py-4 space-y-2">
-              {Array.isArray(all_teachers) ? all_teachers.map((teacher: TeacherModel) => (
+              {Array.isArray(all_students) ? all_students.map((student: StudentModel) => (
                 <div
-                  key={teacher.id}
+                  key={student.id}
                   className="border border-gray-100 bg-baigeLight rounded-xl p-4 hover:shadow cursor-pointer flex items-center justify-between"
-                  onClick={() => setSelectedId(teacher?.id)}
+                  onClick={() => setSelectedId(student?.id)}
                 >
                   <div className="flex items-center gap-2">
-                    <img src={teacher.avatar} alt={teacher.name} className="h-12 w-12 rounded-full" />
+                    <img src={student.avatar} alt={student.name} className="h-12 w-12 rounded-full" />
                     <div>
-                      <p className="font-semibold">{teacher.name}</p>
-                      <p className="text-xs text-gray-400 capitalize">({teacher.subjects?.join(", ")})</p>
-                      <p className="text-xs text-gray-400">{teacher.students?.length || 0} students</p>
-                      {/* <p className="text-xs text-gray-400">{teacher.documents?.length} study materials</p> */}
+                      <p className="font-semibold">{student.name}</p>
+                      <p className="text-xs text-gray-400 capitalize">{student.subjects?.join(", ")}</p>
+                      {/* <p className="text-xs text-gray-400">{student.documents?.length} study materials</p> */}
                     </div>
                   </div>
                   <button
                     className="px-4 py-2 bg-white border border-green text-green font-semibold rounded-full text-xs"
                     onClick={(e) => {
                       e.stopPropagation();
-                      console.log(teacher);
+                      console.log(student);
                       // Handle assign action here
-                      navigate(`/teacher/chats/${user?._id}`);
+                      // navigate(`/teacher/chats/${user?._id}`);
                     }}
                   >
                     Chat
