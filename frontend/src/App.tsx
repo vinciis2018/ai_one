@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store, useAppDispatch } from './store';
 import { ThemeProvider } from './context/ContextProvider/ThemeProvider';
-import { HomePage, LoginPage, SignupPage, NotFoundPage, UserProfilePage, LandingPage, DocumentsPage, ConversationsPage, CoachingsPage, TeachersPage, NotesPage, ChatsPage, TeacherChatPage, StudentsPage } from './pages';
+import { HomePage, LoginPage, SignupPage, NotFoundPage, UserProfilePage, LandingPage, DocumentsPage, ConversationsPage, CoachingsPage, TeachersForStudentPage, NotesPage, ChatsPage, TeacherChatPage, StudentsForTeacherPage } from './pages';
 import { getMe } from './store/slices/authSlice';
 import { useEffect } from 'react';
 
@@ -24,16 +24,16 @@ function AppContent() {
           <Route path="/profile" element={<UserProfilePage />} />
           
           {/* Public Route */}
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/landing" element={<LandingPage />} />
           <Route path="/documents" element={<DocumentsPage />} />
           <Route path="/conversations" element={<ConversationsPage />} />
           <Route path="/coachings" element={<CoachingsPage />} />
-          <Route path="/teachers" element={<TeachersPage />} />
-          <Route path="/students" element={<StudentsPage />} />
+          <Route path="/teachers" element={<TeachersForStudentPage />} />
+          <Route path="/students" element={<StudentsForTeacherPage />} />
           <Route path="/notes" element={<NotesPage />} />
           <Route path="/chats" element={<ChatsPage />} />
-          <Route path="/teacher/chats/:id" element={<TeacherChatPage />} />
+          <Route path="/teacher/chats/:teacher_user_id/:student_user_id" element={<TeacherChatPage />} />
          
           {/* No Route */}
           <Route path="*" element={<NotFoundPage />} />

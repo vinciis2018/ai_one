@@ -79,6 +79,7 @@ class ChatModel(BaseModel):
     title: Optional[str] = None
     user_id: str
     teacher_id: str
+    student_id: Optional[str]
     conversations: List[PseudoConversationModel] = []
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)

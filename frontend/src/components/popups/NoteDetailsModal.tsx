@@ -26,7 +26,7 @@ export const NoteDetailsModal: React.FC<Props> = ({ documentId, onClose }) => {
   const renderContent = () => {
     if (!selectedDocument) return null;
 
-    const fileUrl = selectedDocument.fileUrl;
+    const fileUrl = selectedDocument.s3_url;
     const fileName = selectedDocument.filename || "";
     const fileExt = fileName.split(".").pop()?.toLowerCase();
 
@@ -35,7 +35,7 @@ export const NoteDetailsModal: React.FC<Props> = ({ documentId, onClose }) => {
         <iframe
           src={fileUrl}
           title={fileName}
-          className="w-full h-[60vh] rounded-md border border-[var(--border)]"
+          className="w-full h-screen rounded-md border border-[var(--border)] no-scrollbar"
         />
       );
     }
@@ -77,32 +77,13 @@ export const NoteDetailsModal: React.FC<Props> = ({ documentId, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 overflow-y-auto py-4">
-      <div className="bg-white dark:bg-black rounded-lg shadow-xl w-full max-w-2xl my-auto mx-4 max-h-[80vh] flex flex-col border border-[var(--border)]">
+      <div className="bg-white dark:bg-black rounded-lg shadow-xl w-full max-w-2xl my-auto mx-4 max-h-screen flex flex-col border border-[var(--border)]">
         {/* Header */}
-        <div className="flex-shrink-0 flex items-center justify-between p-4 border-b border-[var(--border)]">
+        <div className="relative flex-shrink-0 flex items-center justify-between p-4 border-b border-[var(--border)]">
           <h3 className="text-lg font-semibold text-[var(--text)]">
             {selectedDocument?.filename || "Document Viewer"}
           </h3>
-          <button
-            type="button"
-            onClick={onClose}
-            className="text-gray-500 hover:text-gray-700"
-            aria-label="Close modal"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
+          <i className="absolute top-4 right-4 fi fi-br-x cursor-pointer" onClick={onClose} />
         </div>
 
         {/* Content */}
@@ -121,9 +102,9 @@ export const NoteDetailsModal: React.FC<Props> = ({ documentId, onClose }) => {
 
           {selectedStatus === "succeeded" && selectedDocument && (
             <div className="space-y-4">
-              <div className="text-sm text-[var(--text-muted)]">
+              <div className="flex items-center justify-between text-sm text-[var(--text-muted)] capitalize">
                 <p>
-                  <strong>📁 Source:</strong> {selectedDocument.source_type}
+                  <strong>📁 Source:</strong> {selectedDocument.subject}
                 </p>
                 <p>
                   <strong>🕓 Uploaded:</strong>{" "}
@@ -133,16 +114,6 @@ export const NoteDetailsModal: React.FC<Props> = ({ documentId, onClose }) => {
               {renderContent()}
             </div>
           )}
-        </div>
-
-        {/* Footer */}
-        <div className="sticky bottom-0 bg-[var(--background)] border-t border-[var(--border)] px-6 py-4 flex justify-end">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
-          >
-            Close
-          </button>
         </div>
       </div>
     </div>

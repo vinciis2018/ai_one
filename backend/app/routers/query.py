@@ -43,7 +43,8 @@ router = APIRouter()
 class QueryRequest(BaseModel):
     text: str
     userId: str
-    teacherId: Optional[str] = None
+    teacher_id: Optional[str] = None
+    student_id: Optional[str] = None
     chatId: str
     previousConversation: str
     domain_expertise: str
@@ -63,16 +64,18 @@ async def query(req: QueryRequest):
         chat_id = req.chatId or None
         previous_conversation = req.previousConversation or None
         user_id = req.userId or None
-        teacher_id = req.teacherId or None
+        teacher_id = req.teacher_id or None
+        student_id = req.student_id or None
         domain_expertise = req.domain_expertise or None
         if not user_query:
             raise HTTPException(status_code=400, detail="Query text cannot be empty.")
         
         user_ids = [user_id]
         if teacher_id:
-            teacher_user_id = db["teachers"].find_one({"_id": ObjectId(teacher_id)})["user_id"]
-            user_ids.append(teacher_user_id)
-
+            teacher = await db["teachers"].find_one({"_id": ObjectId(teacher_id)})
+            if teacher and "user_id" in teacher:
+                teacher_user_id = teacher["user_id"]
+                user_ids.append(teacher_user_id)
 
         # Step 1: Retrieve from knowledge bases
         context_chunks, user_docs = await retrieve_similar(user_query, user_ids)
@@ -96,7 +99,7 @@ async def query(req: QueryRequest):
 
             answer = call_llm(augmented_prompt, domain_expertise)
             log_query_event(user_query, answer, success=False)
-            res = await _save_conversation(user_query, answer, chat_id, previous_conversation, user_id, teacher_id)
+            res = await _save_conversation(user_query, answer, chat_id, previous_conversation, user_id, teacher_id, student_id, user_docs)
         
             return {
                 "chat_id": res["chat_id"],
@@ -135,7 +138,7 @@ async def query(req: QueryRequest):
 
         # Step 4: Log + save
         log_query_event(user_query, answer)
-        res = await _save_conversation(user_query, answer, chat_id, previous_conversation, user_id, teacher_id, user_docs)
+        res = await _save_conversation(user_query, answer, chat_id, previous_conversation, user_id, teacher_id, student_id, user_docs)
         
         return {
             "chat_id": res["chat_id"],
@@ -183,6 +186,7 @@ async def _save_conversation(
     previous_conversation: Optional[str] = None,
     user_id: Optional[str] = None,
     teacher_id: Optional[str] = None,
+    student_id: Optional[str] = None,
     user_docs: Optional[list] = None
 ) -> dict:
     """
@@ -252,6 +256,7 @@ async def _save_conversation(
                 "title": query[:100],
                 "user_id": user_id,
                 "teacher_id": teacher_id,
+                "student_id": student_id,
                 "conversations": [{
                     "conversation_id": conversation_id,
                     "prev_conversation": previous_conversation,

@@ -30,7 +30,7 @@ export const AnimatedTextAreaInput: React.FC<{
       ? "What is the formula of photosynthesis?" : domain === "maths" 
       ? "What is the probability of getting 3 sixes on rolling 11 dices?" : 
       "Do you have any doubts?",
-    imagePreview ? "Is the solution correct in the uploaded image?" : "Upload and image of your notes and ask your query from it..." 
+    imagePreview ? "Is the solution correct in the uploaded image?" : "Upload an image of your notes and ask your query from it..." 
   ], [imagePreview, domain]);
 
   // Update the typing effect

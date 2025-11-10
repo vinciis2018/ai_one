@@ -71,12 +71,7 @@ export const UploadBox: React.FC = () => {
     }
   },[isAuthenticated, dispatch, navigate, uploadStatus]);
   return (
-    <div className="flex flex-col items-center justify-center bg-white rounded-2xl shadow-md p-6 border border-gray-200 max-w-md mx-auto mt-8">
-      <h2 className="text-xl font-semibold mb-4 text-gray-700">
-        📤 Upload Study Material
-      </h2>
-
-
+    <div className="flex flex-col items-center justify-center rounded-2xl p-6 max-w-md mx-auto">
       <input
         type="text"
         placeholder="CBSE 11 Physic"

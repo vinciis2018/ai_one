@@ -75,7 +75,8 @@ def initialize_ocr():
 class QueryRequest(BaseModel):
     text: str
     userId: str
-    teacherId: Optional[str] = None
+    teacher_id: Optional[str] = None
+    student_id: Optional[str] = None
     chatId: str
     previousConversation: str
     domain_expertise: str
@@ -85,7 +86,8 @@ class ImageQueryRequest(BaseModel):
     fileName: str
     s3Url: str
     userId: str
-    teacherId: Optional[str] = None
+    teacher_id: Optional[str] = None
+    student_id: Optional[str] = None
     chatId: str
     previousConversation: str
     domain_expertise: str
@@ -267,6 +269,7 @@ async def process_query_common(
     user_id: str,
     chat_id: str,
     teacher_id: Optional[str],
+    student_id: Optional[str],
     previous_conversation: str,
     domain_expertise: str
 ):
@@ -275,9 +278,11 @@ async def process_query_common(
         user_ids = [user_id]
 
         if teacher_id:
-            teacher_user_id = db["teachers"].find_one({"_id": ObjectId(teacher_id)})["user_id"]
-            print("teacher", teacher_user_id)
-            user_ids.append(teacher_user_id)
+            teacher = await db["teachers"].find_one({"_id": ObjectId(teacher_id)})
+            if teacher and "user_id" in teacher:
+                teacher_user_id = teacher["user_id"]
+                print("teacher", teacher_user_id)
+                user_ids.append(teacher_user_id)
 
         if not user_query:
             raise HTTPException(status_code=400, detail="Query text cannot be empty.")
@@ -302,8 +307,9 @@ async def process_query_common(
             )
 
             answer = call_llm(augmented_prompt, domain_expertise)
+            print("answer: ", answer)
             log_query_event(user_query, answer, success=False)
-            res = await _save_conversation(user_query, answer, chat_id, previous_conversation, user_id, teacher_id)
+            res = await _save_conversation(user_query, answer, chat_id, previous_conversation, user_id, teacher_id, student_id, user_docs)
             
             return {
                 "chat_id": res["chat_id"],
@@ -330,7 +336,7 @@ async def process_query_common(
 
         # Step 4: Log + save
         log_query_event(user_query, answer)
-        res = await _save_conversation(user_query, answer, chat_id, previous_conversation, user_id, teacher_id)
+        res = await _save_conversation(user_query, answer, chat_id, previous_conversation, user_id, teacher_id, student_id, user_docs)
         
         return {
             "chat_id": res["chat_id"],
@@ -353,11 +359,6 @@ async def process_query_common(
 
 
 # ====================================================
-# Save image as document to knowledge base
-# ====================================================
-
-
-# ====================================================
 # Main RAG Query Endpoints
 # ====================================================
 
@@ -370,7 +371,8 @@ async def query(req: QueryRequest):
         user_query=req.text.strip(),
         user_id=req.userId,
         chat_id=req.chatId,
-        teacher_id= req.teacherId,
+        teacher_id= req.teacher_id,
+        student_id= req.student_id,
         previous_conversation=req.previousConversation,
         domain_expertise=req.domain_expertise
     )
@@ -447,7 +449,8 @@ async def image_query(req: ImageQueryRequest):
         result = await process_query_common(
             user_query=analysis,
             user_id=req.userId,
-            teacher_id=req.teacherId,
+            teacher_id=req.teacher_id,
+            student_id=req.student_id,
             chat_id=req.chatId,
             previous_conversation=req.previousConversation,
             domain_expertise=req.domain_expertise
@@ -507,8 +510,119 @@ async def _save_conversation(
     chat_id: Optional[str] = None,
     previous_conversation: Optional[str] = None,
     user_id: Optional[str] = None,
-    teacher_id: Optional[str] = None
+    teacher_id: Optional[str] = None,
+    student_id: Optional[str] = None,
+    user_docs: Optional[list] = None
 ) -> dict:
+    """
+    Save or update chat and conversation in MongoDB.
+    - If chat_id is provided, adds the new conversation to the existing chat
+    - If no chat_id, creates a new chat with the conversation
+    Returns only the essential IDs, not the full documents.
+    """
+    try:
+        chat_collection = get_collection("chats")
+        conversation_collection = get_collection("conversations")
+        
+        # Create conversation document
+        now = datetime.utcnow()
+        conversation = {
+            "query": query,
+            "answer": answer,
+            "query_by": "user",
+            "answer_by": "assistant",
+            "prev_conversation": previous_conversation,
+            "sources_used": [str(doc['_id']) for doc in user_docs],
+            "created_at": now,
+            "updated_at": now,
+            "edit_history": []
+        }
+        
+        # Insert conversation
+        conversation_result = await conversation_collection.insert_one(conversation.copy())
+        conversation_id = str(conversation_result.inserted_id)
+        
+        if chat_id:
+            # For existing chat, just add the new conversation reference
+            chat_id_obj = ObjectId(chat_id)
+            
+            # Check if this conversation already exists in the chat
+            existing_conv = await chat_collection.find_one({
+                "_id": chat_id_obj,
+                "conversations.conversation_id": conversation_id
+            })
+            
+            if not existing_conv:
+                # Only add the conversation if it doesn't already exist
+                pseudo_conversation = {
+                    "conversation_id": conversation_id,
+                    "prev_conversation": previous_conversation,
+                    "parent_conversation": chat_id,
+                    "created_at": now,
+                    "updated_at": now
+                }
+                
+                await chat_collection.update_one(
+                    {"_id": chat_id_obj},
+                    {
+                        "$push": {"conversations": pseudo_conversation},
+                        "$set": {
+                            "updated_at": now,
+                            # "title": query[:100]  # Update title with latest query (truncated)
+                        }
+                    }
+                )
+        else:
+            # Create new chat with the conversation
+            if not user_id:
+                raise ValueError("user_id is required when creating a new chat")
+                
+            chat_doc = {
+                "title": query[:100],
+                "user_id": user_id,
+                "teacher_id": teacher_id,
+                "student_id": student_id,
+                "conversations": [{
+                    "conversation_id": conversation_id,
+                    "prev_conversation": previous_conversation,
+                    "parent_conversation": None,  # Will be updated after insert
+                    "created_at": now,
+                    "updated_at": now
+                }],
+                "created_at": now,
+                "updated_at": now
+            }
+            
+            # Insert new chat
+            result = await chat_collection.insert_one(chat_doc)
+            chat_id = str(result.inserted_id)
+            
+            # Update the parent_conversation reference
+            await chat_collection.update_one(
+                {"_id": result.inserted_id, "conversations.conversation_id": conversation_id},
+                {"$set": {"conversations.$.parent_conversation": chat_id}}
+            )
+
+        
+        from sentence_transformers import SentenceTransformer
+        embedder = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+
+        embedding = embedder.encode(f"{query} {answer}").astype("float32").tolist()
+        await conversation_collection.update_one(
+            {"_id": conversation_result.inserted_id},
+            {"$set": {"embedding": embedding, "user_id": user_id}}
+        )
+        
+        return {
+            "chat_id": chat_id,
+            "conversation_id": conversation_id
+        }
+        
+    except Exception as e:
+        print(f"⚠️ Failed to save conversation: {e}")
+        raise
+
+
     """
     Save or update chat and conversation in MongoDB.
     """
@@ -571,6 +685,7 @@ async def _save_conversation(
                 "title": query[:100],
                 "user_id": user_id,
                 "teacher_id": teacher_id,
+                "student_id": student_id,
                 "conversations": [{
                     "conversation_id": conversation_id,
                     "prev_conversation": previous_conversation,

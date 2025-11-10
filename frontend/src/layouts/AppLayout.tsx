@@ -91,8 +91,11 @@ interface NoLayoutProps {
 
 export function NoLayout({ children }: NoLayoutProps) {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[var(--background)] text-[var(--text)]">
-      <main className="w-full max-w-4xl p-4">
+    <div className="min-h-screen">
+      <div className="z-50 fixed top-4 left-8 right-0 h-8 flex items-center gap-1">
+        <h1 className="text-green text-xl font-semibold">maiind</h1>
+      </div>
+      <main className="relative w-full">
         {children}
       </main>
     </div>

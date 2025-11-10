@@ -4,7 +4,7 @@ import { FullLayout } from "../../layouts/AppLayout";
 import { getAllStudents, type StudentModel } from "../../store/slices/studentsSlice";
 import { useNavigate } from "react-router-dom";
 
-export const StudentsPage: React.FC = () => {
+export const StudentsForTeacherPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const {user} = useAppSelector((state) => state.auth);
@@ -95,7 +95,7 @@ console.log(selectedId)
                       e.stopPropagation();
                       console.log(student);
                       // Handle assign action here
-                      // navigate(`/teacher/chats/${user?._id}`);
+                      navigate(`/teacher/chats/${user?._id}/${student?.user_id}`);
                     }}
                   >
                     Chat

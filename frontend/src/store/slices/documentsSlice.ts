@@ -15,7 +15,9 @@ export interface DocumentItem {
   source_type: string;
   created_at: string;
   content?: string; // Optional text content from backend (for preview)
-  fileUrl: string; // URL to access the file from backend
+  s3_url: string; // URL to access the file from backend
+  subject?: string;
+  domain?: string;
 }
 
 interface DocumentsState {
@@ -44,6 +46,25 @@ export const fetchDocuments = createAsyncThunk<DocumentItem[], {user_ids: string
       const userIdsParam = user_ids.join(',');
 
       const response = await axios.get<{ documents: DocumentItem[] }>(`${BASE_URL}/upload/list?user_ids=${encodeURIComponent(userIdsParam)}`);
+      return response.data.documents;
+    } catch (error: unknown) {
+      const axiosError = error as unknown as { response?: { data?: { message?: string } } };
+      return rejectWithValue(axiosError.response?.data?.message || "Failed to load documents");
+    }
+  }
+);
+
+
+// ------------------------------------------------
+// Fetch all documents
+// ------------------------------------------------
+export const fetchSelectedDocuments = createAsyncThunk<DocumentItem[], {doc_ids: string[]}, { rejectValue: string }>(
+  "documents/fetchSelectedDocuments",
+  async ({doc_ids}, { rejectWithValue }) => {
+    try {
+      const documentIdsParams = doc_ids.join(',');
+
+      const response = await axios.get<{ documents: DocumentItem[] }>(`${BASE_URL}/upload/list/selected?doc_ids=${encodeURIComponent(documentIdsParams)}`);
       return response.data.documents;
     } catch (error: unknown) {
       const axiosError = error as unknown as { response?: { data?: { message?: string } } };
@@ -102,6 +123,20 @@ const documentsSlice = createSlice({
         state.status = "failed";
         state.error = action.payload || "Failed to fetch documents";
       })
+
+        // ===== Fetch Selected Document =====
+      .addCase(fetchSelectedDocuments.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchSelectedDocuments.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.documents = action.payload;
+      })
+      .addCase(fetchSelectedDocuments.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload || "Failed to fetch documents";
+      })
+
       // ===== Fetch One =====
       .addCase(fetchDocumentById.pending, (state) => {
         state.selectedStatus = "loading";

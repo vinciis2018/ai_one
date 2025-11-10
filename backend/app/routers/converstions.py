@@ -86,7 +86,7 @@ async def list_chats(skip: int = 0, limit: int = 20, search: str = Query(None), 
         if user_id:
             query["$or"] = query.get("$or", []) + [
                 {"user_id": user_id},
-                {"teacher_id": user_id}
+                # {"teacher_id": user_id}
             ]
         print("query", query)
         cursor = (
@@ -115,6 +115,63 @@ async def list_chats(skip: int = 0, limit: int = 20, search: str = Query(None), 
 
 
 # ====================================================
+# List Chats (with pagination + search)
+# ====================================================
+
+@router.get("/chats/teacher/student")
+async def list_teacher_student_chats(
+    skip: int = 0,
+    limit: int = 20,
+    search: str = Query(None),
+    user_id: str = Query(None),
+    student_id: str = Query(None),
+    teacher_id: str = Query(None)
+    ):
+    """List all saved chats with optional search and pagination."""
+    try:
+
+        collection = get_collection("chats" )
+        query = {}
+        if search:
+            query = {
+                "$or": [
+                    {"title": {"$regex": search, "$options": "i"}},
+                ]
+            }
+        # Add user_id search for both user_id and teacher_id fields
+        if teacher_id and student_id:
+            query["$and"] = query.get("$and", []) + [
+                {"teacher_id": teacher_id},
+                {"student_id": student_id}
+            ]
+        print("query", query)
+        cursor = (
+            collection.find(query)
+            .sort("created_at", DESCENDING)
+            .skip(skip)
+            .limit(limit)
+        )
+
+        cursor = await cursor.to_list()
+
+        chats = []
+        for doc in cursor:
+            chats.append({
+                "id": str(doc.get("_id")),
+                "title": doc.get("title", ""),
+                "conversations": doc.get("conversations", []),
+                "created_at": doc.get("created_at", None)
+            })
+
+        return {"chats": chats, "count": len(chats)}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error fetching chats: {str(e)}")
+
+
+
+
+# ====================================================
 # Get Single Chat
 # ====================================================
 
@@ -137,7 +194,8 @@ async def get_conversation(chat_id: str):
                 "sources_used": conversation["sources_used"],
                 "prev_conversation": doc["prev_conversation"],
                 "parent_conversation": doc["parent_conversation"],
-                "created_at": conversation["created_at"]
+                "created_at": conversation["created_at"],
+                "user_id": conversation["user_id"],
             })
 
         if not chat:

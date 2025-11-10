@@ -41,6 +41,7 @@ export interface ImageQueryPayload {
   s3Url: string;
   userId: string;
   teacher_id?: string | null;
+  student_id?: string | null;
   chatId: string;
   previousConversation: string;
   domain_expertise: string;
@@ -48,7 +49,6 @@ export interface ImageQueryPayload {
   file_size?: number;
   source_type: string;
   subject?: string;
-  domain?: string;
   level?: string;
   type?: string;
 }
@@ -107,17 +107,20 @@ export const uploadMaterial = createAsyncThunk<
 
 export const askQuery = createAsyncThunk<
   QueryResponse,
-  {text: string; userId: string, chatId: string; previousConversation: string, domain_expertise: string, teacher_id?: string | null},
+  {text: string; userId: string, chatId: string; previousConversation: string, domain_expertise: string, teacher_id?: string | null, student_id?: string | null, subject?: string, level?: string},
   { rejectValue: string }
->("assistant/askQuery", async ({text, userId, chatId, previousConversation, domain_expertise, teacher_id}, { rejectWithValue }) => {
+>("assistant/askQuery", async ({text, userId, chatId, previousConversation, domain_expertise, teacher_id, student_id, subject, level}, { rejectWithValue }) => {
   try {
-    const response = await axios.post<QueryResponse>(`${BASE_URL}/query/`, {
+    const response = await axios.post<QueryResponse>(`${BASE_URL}/queryimage/query/`, {
       text,
       userId,
       chatId,
       previousConversation,
       domain_expertise,
       teacher_id,
+      student_id,
+      subject,
+      level,
     });
     return response.data;
   } catch (error: unknown) {

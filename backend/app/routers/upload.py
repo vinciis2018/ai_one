@@ -451,9 +451,66 @@ async def get_document_details(doc_id: str):
         "document": {
             "id": str(doc["_id"]),
             "filename": doc.get("filename", "Untitled"),
-            "fileUrl": doc.get("s3_url", ""),
+            "s3_url": doc.get("s3_url", ""),
             "source_type": doc.get("source_type", "student"),
             "created_at": doc.get("created_at"),
+            "subject": doc.get("subject", ""),
+            "domain": doc.get("domain", "")
         }
     }
 
+
+
+
+# ====================================================
+# List Selected Uploaded Documents
+# ====================================================
+@router.get("/list/selected")
+async def list_uploaded_documents(doc_ids: str = None):
+    """
+    Return all uploaded document metadata from MongoDB for multiple user_ids.
+    Accepts comma-separated user_ids and returns documents for all specified users.
+    """
+    try:
+        if not doc_ids:
+            return {"documents": []}
+            
+        # Convert comma-separated string to list of ObjectIds
+        doc_id_list = [ObjectId(uid.strip()) for uid in doc_ids.split(',') if uid.strip()]
+        print(doc_id_list)
+
+        # Get the collection
+        collection_name = "documents"
+        col = get_collection(collection_name)
+        
+        # Find documents for all user_ids
+        cursor = col.find(
+            {"_id": {"$in": doc_id_list}},
+            {"_id": 1, "filename": 1, "source_type": 1, "created_at": 1, "s3_url": 1, "user_id": 1}
+        ).sort("created_at", -1)
+        
+        # Convert cursor to list and format results
+        docs = await cursor.to_list(length=1000)  # Limit to 1000 documents to prevent memory issues
+        print(docs)
+        
+        # Format the response
+        documents = []
+        for doc in docs:
+            doc_dict = {
+                "id": str(doc["_id"]),
+                "user_id": str(doc["user_id"]),
+                "filename": doc.get("filename", ""),
+                "source_type": doc.get("source_type", "general"),
+                "created_at": doc.get("created_at", ""),
+                "s3_url": doc.get("s3_url", "")
+            }
+            documents.append(doc_dict)
+        
+        return {"documents": documents}
+        
+    except Exception as e:
+        logger.error(f"Error listing documents: {str(e)}", exc_info=True)
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Failed to retrieve documents"
+        )

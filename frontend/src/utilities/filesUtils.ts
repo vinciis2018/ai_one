@@ -18,3 +18,14 @@ export function pdfBuffersToUrl(buffers: Array<{ data: number[] } | Buffer>): st
   const blob = new Blob([merged], { type: "application/pdf" });
   return URL.createObjectURL(blob);
 }
+
+
+export const cleanFilename = (filename: string): string => {
+  // Remove leading numbers and dots (e.g., "1. " or "3. ")
+  let cleaned = filename.replace(/^\d+\.\s*/, '');
+  
+  // Remove file extensions
+  cleaned = cleaned.replace(/\.(pdf|jpe?g|png)$/i, '');
+  
+  return cleaned.trim();
+};

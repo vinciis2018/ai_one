@@ -4,16 +4,21 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchDocuments } from "../../store/slices/documentsSlice";
 import { NoteDetailsModal } from "../../components/popups/NoteDetailsModal";
+import { UploadBox } from "../../components/atoms/UploadBox";
 
 export const NotesPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+
   const {user} = useAppSelector((state) => state.auth);
   const { documents, status, error } = useAppSelector((state) => state.documents);
   
   const [selectedId, setSelectedId] = useState<string | null | undefined>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDomain, setSelectedDomain] = useState("all");
+  const [showUploadBox, setShowUploadBox] = useState(false);
+  
 console.log(selectedId)
   useEffect(() => {
     if (user) {
@@ -33,16 +38,28 @@ console.log(selectedId)
     setSelectedDomain(e.target.value);
   };
 
+
   return (
     <FullLayout>
       <div className="bg-white max-w-4xl mx-auto py-2 px-4">
         <div className="rounded-lg overflow-hidden">
-          <div className="py-2 flex items-center gap-2 border-b border-gray-100" onClick={() => navigate(-1)}>
-            <i className="fi fi-sr-arrow-small-left flex items-center rounded-full bg-baigeLight p-1" />
-            <h1 className="text-sm font-semibold">
-              Notes
-            </h1>
+          <div className="flex items-center justify-between">
+            <div className="py-2 flex items-center gap-2 border-b border-gray-100" onClick={() => navigate(-1)}>
+              <i className="fi fi-sr-arrow-small-left flex items-center rounded-full bg-baigeLight p-1" />
+              <h1 className="text-sm font-semibold">
+                Notes
+              </h1>
+            </div>
+            <button
+              title="upload notes"
+              type="button"
+              onClick={() => setShowUploadBox(!showUploadBox)}
+              className="flex items-center gap-2 p-3 rounded-full font-medium transition border border-gray-100 bg-baigeLight hover:bg-gray-200"
+            >
+              <i className="fi fi-br-upload flex items-center justify-center text-violet" />
+            </button>
           </div>
+          
           {status == "loading" && <p>Loading notes...</p>}
           {error && <p className="text-red-500">Failed to load notes.</p>}
           <div className="grid grid-cols-3 gap-2 py-2">
@@ -98,8 +115,20 @@ console.log(selectedId)
               )) : null}
             </div>
           </div>
-         <NoteDetailsModal documentId={selectedId as string} onClose={() => setSelectedId(null)} />
- 
+          <NoteDetailsModal documentId={selectedId as string} onClose={() => setSelectedId(null)} />
+          {/* Upload Box - Show only when showUploadBox is true */}
+          {showUploadBox && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 overflow-y-auto py-4">
+              <div className="relative bg-white dark:bg-black rounded-lg shadow-xl w-full max-w-2xl my-auto mx-4 max-h-[80vh] flex flex-col items-center justify-center border border-[var(--border)]">
+                <i className="absolute top-4 right-4 fi fi-br-x cursor-pointer" onClick={() => setShowUploadBox(false)} />
+                <h2 className="text-xl font-semibold text-gray-700 mt-8">
+                  📤 Upload Study Material
+                </h2>
+
+                <UploadBox />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </FullLayout>

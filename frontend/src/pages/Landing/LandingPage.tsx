@@ -40,6 +40,7 @@ export const LandingPage: React.FC = () => {
     description: "Check your chat history for any previous recalls",
     onClick: () => navigate("/chats")
   }]
+
   return (
     <FullLayout>
       <div className="min-h-screen w-full bg-gradient-to-br from-gray-50 to-blue-50 flex flex-col items-center">

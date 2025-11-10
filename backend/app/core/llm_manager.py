@@ -115,6 +115,7 @@ def build_domain_prompt(prompt: str, domain: str | None = None) -> str:
         "You may reference earlier conversation history if relevant (e.g., 'as discussed before'). "
         "Ensure factual consistency and maintain continuity of tutoring tone."
         "Explain clearly and concisely, as if teaching a student for competitive exams like IIT JEE, NEET and CBSE."
+        "Check for Maths equations and ensure they are correct and encode them so that they can be identified easily in the texts."
     )
 
     full_prompt = f"{system_prompt}\n\nUser question:\n{prompt}"

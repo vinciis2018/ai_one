@@ -8,22 +8,24 @@ import React, { useEffect, useState, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { askQuery, askImageQuery, resetStatus } from "../../store/slices/assistantSlice";
 // import { ResponseCard } from "./ResponseCard";
-import { fetchChatById, type ChatResponse } from "../../store/slices/conversationsSlice";
+import { fetchChatById } from "../../store/slices/conversationsSlice";
 import { getS3Url } from "../../utilities/awsUtils";
 import { AnimatedTextAreaInput } from "./AnimatedTextAreaInput";
 
 
 export const QueryBoxChat: React.FC<{
   domain: string,
-  teacher_id?: string | null,
-  setConversation?: (conversation: ChatResponse) => void
-}> = ({domain, teacher_id, setConversation}) => {
+  teacher_user_id?: string | null,
+  student_user_id?: string | null,
+  chatId?: string | null,
+  previousConversationId?: string | null
+}> = ({domain, teacher_user_id, student_user_id, chatId, previousConversationId}) => {
+  console.log(previousConversationId, chatId)
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
   const { queryStatus, response, error } = useAppSelector(
     (state) => state.assistant
   );
-  const { chat: chatConversation } = useAppSelector((state) => state.conversations); 
   const [question, setQuestion] = useState("");
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null | undefined>(null);
@@ -36,10 +38,13 @@ export const QueryBoxChat: React.FC<{
     await dispatch(askQuery({
       text: question,
       userId: user?._id || '',
-      chatId: response?.chat_id || "",
-      previousConversation: response?.conversation_id || "",
+      chatId: chatId || response?.chat_id || "",
+      previousConversation: previousConversationId || response?.conversation_id || "",
       domain_expertise: domain,
-      teacher_id: teacher_id,
+      teacher_id: teacher_user_id,
+      student_id: student_user_id,
+      subject: `general ${domain}`, // You can make this dynamic if needed
+      level: "intermediate",   // You can make this dynamic if needed
     }));
   };
 
@@ -91,17 +96,17 @@ export const QueryBoxChat: React.FC<{
         fileName: selectedImage.name,
         s3Url: s3Url,
         userId: user._id,
-        teacher_id: teacher_id,
-        chatId: response?.chat_id || "",
-        previousConversation: response?.conversation_id || "",
+        teacher_id: teacher_user_id,
+        student_id: student_user_id,
+        chatId: chatId || response?.chat_id || "",
+        previousConversation: previousConversationId || response?.conversation_id || "",
         domain_expertise: domain,
         file_type: selectedImage.type,
         file_size: selectedImage.size,
         source_type: user?.role || 'user',
         // Add any additional fields your backend expects
-        subject: "general", // You can make this dynamic if needed
-        domain: domain,  // use selected domain
-        level: "general",   // You can make this dynamic if needed
+        subject: `general ${domain}`, // You can make this dynamic if needed
+        level: "intermediate",   // You can make this dynamic if needed
         type: "image_query" // Different from study_material
       };
 
@@ -155,13 +160,6 @@ export const QueryBoxChat: React.FC<{
   
   }, [dispatch, response]);
 
-  useEffect(() => {
-    if (chatConversation && setConversation) {
-      setConversation(chatConversation);
-    }
-  }, [chatConversation, setConversation]);
-
-  console.log(chatConversation)
 
  
   return (

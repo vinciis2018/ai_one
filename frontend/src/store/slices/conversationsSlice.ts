@@ -13,8 +13,10 @@ export interface Conversation {
   answer_by: string;
   sources_used?: string[];
   prev_conversation: string | null;
+  conversation_id: string;
   parent_conversation: string;
   created_at: string;
+  user_id?: string;
 }
 
 export interface ChatResponse {
@@ -23,6 +25,9 @@ export interface ChatResponse {
   title: string;
   created_at: string;
   conversations: Conversation[];
+  student_id?: string;
+  teacher_id?: string;
+  user_id?: string;
 }
 interface ConversationState {
   items: Conversation[];
@@ -92,6 +97,29 @@ export const fetchChats = createAsyncThunk<
   }
 );
 
+
+export const fetchTeacherStudentChats = createAsyncThunk<
+  { chats: ChatResponse[]; count: number },
+  { page?: number; limit?: number; search?: string, user_id?: string, student_id?: string, teacher_id?: string } | undefined,
+  { rejectValue: string }
+>(
+  'conversations/fetchAllTeacherStudentChats',
+  async (params = {}, { rejectWithValue }) => {
+    try {
+      const { page = 1, limit = 100, search = '', user_id, student_id, teacher_id } = params;
+      const skip = (page - 1) * limit;
+      const response = await axios.get<{ chats: ChatResponse[]; count: number }>(`${BASE_URL}/conversations/chats/teacher/student`, {
+        params: { skip, limit, search, user_id, student_id, teacher_id },
+      });
+      return response.data;
+    } catch (error: unknown) {
+      const axiosError = error as unknown as { response?: { data?: { detail?: string } } };
+      return rejectWithValue(axiosError.response?.data?.detail || 'Failed to load conversations');
+    }
+  }
+);
+
+
 export const fetchChatById = createAsyncThunk<ChatResponse, string, { rejectValue: string }>(
   'conversations/fetchChatById',
   async (id, { rejectWithValue }) => {
@@ -115,6 +143,7 @@ const conversationSlice = createSlice({
     },
     clearConversations: (state) => {
       state.items = [];
+      state.chat = null;
       state.page = 1;
       state.hasMore = true;
     },
@@ -158,6 +187,25 @@ const conversationSlice = createSlice({
         state.status = 'failed';
         state.error = action.payload || 'Error loading conversations';
       })
+
+      .addCase(fetchTeacherStudentChats.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchTeacherStudentChats.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        const newChats = action.payload.chats || [];
+        if (state.page === 1) {
+          state.chats = newChats;
+        } else {
+          state.chats = [...state.chats, ...newChats];
+        }
+        state.hasMore = newChats.length >= state.limit;
+      })
+      .addCase(fetchTeacherStudentChats.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload || 'Error loading conversations';
+      })
+
       .addCase(fetchChatById.pending, (state) => {
         state.status = 'loading';
       })

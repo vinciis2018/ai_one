@@ -26,7 +26,7 @@ export const DocumentDetailsModal: React.FC<Props> = ({ documentId, onClose }) =
   const renderContent = () => {
     if (!selectedDocument) return null;
 
-    const fileUrl = selectedDocument.fileUrl;
+    const fileUrl = selectedDocument.s3_url;
     const fileName = selectedDocument.filename || "";
     const fileExt = fileName.split(".").pop()?.toLowerCase();
 

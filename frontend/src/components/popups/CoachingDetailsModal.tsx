@@ -8,13 +8,13 @@ import {
   addTeacherToInstitute,
   addStudentToInstitute,
   type OrganisationModel,
-  type StudentModel,
 } from "../../store/slices/coachingSlice";
 import { UploadBox } from "../../components/atoms/UploadBox";
 import type { User } from "../../types";
 import { clearAllDocuments, fetchDocuments } from "../../store/slices/documentsSlice";
 import { DocumentDetailsModal } from "./DocumentDetailsModal";
 import type { TeacherModel } from "../../store/slices/teachersSlice";
+import type { StudentModel } from "../../store/slices/studentsSlice";
 
 
 interface Props {

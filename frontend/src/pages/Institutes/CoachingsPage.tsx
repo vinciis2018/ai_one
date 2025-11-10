@@ -54,12 +54,23 @@ export const CoachingsPage: React.FC = () => {
     <FullLayout>
       <div className="bg-white max-w-4xl mx-auto py-2 px-4">
         <div className="rounded-lg overflow-hidden">
-          <div className="py-2 flex items-center gap-2 border-b border-gray-100" onClick={() => navigate(-1)}>
-            <i className="fi fi-sr-arrow-small-left flex items-center rounded-full bg-baigeLight p-1" />
-            <h1 className="text-sm font-semibold">
-              Coachings
-            </h1>
+          <div className="flex items-center justify-between">
+            <div className="py-2 flex items-center gap-2 border-b border-gray-100" onClick={() => navigate(-1)}>
+              <i className="fi fi-sr-arrow-small-left flex items-center rounded-full bg-baigeLight p-1" />
+              <h1 className="text-sm font-semibold">
+                Coachings
+              </h1>
+            </div>
+            <button
+              title="create coaching"
+              type="button"
+              // onClick={() => setShowUploadBox(!showUploadBox)}
+              className="flex items-center gap-2 p-3 rounded-full font-medium transition border border-gray-100 bg-baigeLight hover:bg-gray-200"
+            >
+              <i className="fi fi-br-add flex items-center justify-center text-violet" />
+            </button>
           </div>
+          
           {loading && <p>Loading coachings...</p>}
           {error && <p className="text-red-500">Failed to load coachings.</p>}
           <div className="grid grid-cols-3 gap-2 py-2">

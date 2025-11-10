@@ -52,11 +52,49 @@ module.exports = {
   
       animation: {
         marquee: 'marquee 5s linear infinite',
+        'float-particle': 'float-particle 20s infinite',
+        'twinkle': 'twinkle 3s infinite',
+        'scroll': 'scroll 30s linear infinite',
+        'blink': 'blink 1s step-end infinite',
+        'scale-in': 'scale-in 0.3s ease-out forwards',
+        pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
       keyframes: {
         marquee: {
           '0%': { transform: 'translateX(0%)' },
           '100%': { transform: 'translateX(-50%)' },
+        },
+        'float-particle': {
+          '0%, 100%': { transform: 'translateY(0) translateX(0)', opacity: '0' },
+          '10%': { opacity: '0.5' },
+          '90%': { opacity: '0.5' },
+          '100%': { transform: 'translateY(-100vh) translateX(100px)', opacity: '0' },
+        },
+        'twinkle': {
+          '0%, 100%': { opacity: '0.3' },
+          '50%': { opacity: '1' },
+        },
+        'scroll': {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        'blink': {
+          'from, to': { opacity: '1' },
+          '50%': { opacity: '0' },
+        },
+        'scale-in': {
+          'from': { transform: 'scale(0.8)', opacity: '0' },
+          'to': { transform: 'scale(1)', opacity: '1' },
+        },
+        pulse: {
+          '0%, 100%': { 
+            opacity: '0.3',
+            transform: 'scale(1)',
+          },
+          '50%': { 
+            opacity: '0.8',
+            transform: 'scale(1.5)',
+          },
         },
       }
     },
@@ -67,5 +105,7 @@ module.exports = {
       textColor: ['dark'],
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }
