@@ -25,7 +25,7 @@ HF_MODEL = os.getenv("HF_MODEL", "TinyLlama/TinyLlama-1.1B-Chat-v1.0")
 FALLBACK_MODEL = "distilgpt2"
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "mistral")
 
-print(OPENAI_API_KEY)
+
 open_ai_client = OpenAI(api_key=OPENAI_API_KEY)
 
 # ------------------------------------------------

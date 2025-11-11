@@ -28672,3 +28672,18 @@ h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role
 2025-11-12 00:22:03,434 [INFO] OPTIONS /auth/me - 200 - 0.56ms
 2025-11-12 00:22:03,802 [INFO] GET /auth/me - 200 - 184.43ms
 2025-11-12 00:22:03,804 [INFO] GET /auth/me - 200 - 366.48ms
+2025-11-12 00:26:00,768 [INFO] OPTIONS /auth/me - 200 - 11.91ms
+2025-11-12 00:26:00,775 [INFO] OPTIONS /auth/me - 200 - 1.69ms
+2025-11-12 00:26:00,775 [INFO] OPTIONS /auth/me - 200 - 1.76ms
+2025-11-12 00:26:00,775 [INFO] OPTIONS /auth/me - 200 - 1.81ms
+2025-11-12 00:26:01,342 [INFO] GET /auth/me - 200 - 546.32ms
+2025-11-12 00:26:01,428 [INFO] GET /auth/me - 200 - 650.13ms
+2025-11-12 00:26:01,433 [INFO] GET /auth/me - 200 - 639.04ms
+2025-11-12 00:26:01,444 [INFO] GET /auth/me - 200 - 649.38ms
+2025-11-12 00:34:50,173 [INFO] Use pytorch device_name: mps
+2025-11-12 00:34:50,174 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 00:34:55,085 [INFO] Loading faiss.
+2025-11-12 00:34:55,139 [INFO] Successfully loaded faiss.
+2025-11-12 00:34:55,152 [INFO] Use pytorch device_name: mps
+2025-11-12 00:34:55,153 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-12 00:34:59,867 [INFO] 🧠 Using device: MPS
