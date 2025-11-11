@@ -271,7 +271,10 @@ async def process_query_common(
     teacher_id: Optional[str],
     student_id: Optional[str],
     previous_conversation: str,
-    domain_expertise: str
+    domain_expertise: str,
+    attached_media: Optional[str] = None,
+    media_transcript: Optional[str] = None,
+    user_text: Optional[str] = None
 ):
     """Common processing logic for both text and image queries"""
     try:
@@ -309,7 +312,19 @@ async def process_query_common(
             answer = call_llm(augmented_prompt, domain_expertise)
             print("answer: ", answer)
             log_query_event(user_query, answer, success=False)
-            res = await _save_conversation(user_query, answer, chat_id, previous_conversation, user_id, teacher_id, student_id, user_docs)
+            res = await _save_conversation(
+                user_query,
+                answer,
+                chat_id,
+                previous_conversation,
+                user_id,
+                teacher_id,
+                student_id,
+                user_docs,
+                attached_media,
+                media_transcript,
+                user_text
+            )
             
             return {
                 "chat_id": res["chat_id"],
@@ -319,7 +334,7 @@ async def process_query_common(
                 "answer": answer,
                 "sources_used": len(user_docs), 
                 "sources": user_docs,
-                "is_ocr_query": False
+                "is_ocr_query": False,
             }
 
         # Step 2: Build augmented prompt
@@ -336,7 +351,19 @@ async def process_query_common(
 
         # Step 4: Log + save
         log_query_event(user_query, answer)
-        res = await _save_conversation(user_query, answer, chat_id, previous_conversation, user_id, teacher_id, student_id, user_docs)
+        res = await _save_conversation(
+            user_query,
+            answer,
+            chat_id,
+            previous_conversation,
+            user_id,
+            teacher_id,
+            student_id,
+            user_docs,
+            attached_media,
+            media_transcript,
+            user_text
+        )
         
         return {
             "chat_id": res["chat_id"],
@@ -374,7 +401,8 @@ async def query(req: QueryRequest):
         teacher_id= req.teacher_id,
         student_id= req.student_id,
         previous_conversation=req.previousConversation,
-        domain_expertise=req.domain_expertise
+        domain_expertise=req.domain_expertise,
+        user_text=req.text.strip()
     )
 
 
@@ -385,6 +413,7 @@ async def image_query(req: ImageQueryRequest):
     Extracts text from image and processes it as a query.
     """
     try:
+
         print(f"📸 Processing image query from S3: {req.fileName}")
         print(f"🔗 S3 URL: {req.s3Url}")
         
@@ -398,7 +427,7 @@ async def image_query(req: ImageQueryRequest):
                 status_code=400, 
                 detail=f"Failed to download image from S3. Status: {response.status_code}"
             )
-        
+
         # Get the image content
         image_bytes = response.content
         
@@ -418,14 +447,22 @@ async def image_query(req: ImageQueryRequest):
               context += f"\n\nAnswer the following query after analysing the content of the image: {req.text.strip()} "
 
             context += f"\n\nAdditional context: This is related to {req.domain_expertise}. "
-            context += "Please find any question that is present in the image that would be helpful for someone who is seeking helps from his hand written notes."
+            context += "Please find any question that is present in the image that would be helpful for someone who is seeking help for his competitive exams preparation from his hand written notes."
+            context += "Keep it short and precise."
         
         # Analyze the image using OpenAI Vision API
-        analysis = analyze_image_with_openai(
+        image_analysis_text = analyze_image_with_openai(
             image_bytes=image_bytes,
             prompt=context,
             max_tokens=250
         )
+
+        analysis = (
+            f"\n\n{req.text.strip()} \n\n"
+            "The above query in reference to an uploaded image, whose transcription is provided below. Answer the query with respect to the image using the below provided transcription . "
+            f"\n\n{image_analysis_text} \n\n"
+        )
+
 
         print("analysis: ", analysis)
         resr = await save_to_kb_db(
@@ -453,7 +490,10 @@ async def image_query(req: ImageQueryRequest):
             student_id=req.student_id,
             chat_id=req.chatId,
             previous_conversation=req.previousConversation,
-            domain_expertise=req.domain_expertise
+            domain_expertise=req.domain_expertise,
+            attached_media=req.s3Url,
+            media_transcript=image_analysis_text,
+            user_text=req.text.strip()
         )
         
         # Add image analysis metadata to the response
@@ -512,7 +552,10 @@ async def _save_conversation(
     user_id: Optional[str] = None,
     teacher_id: Optional[str] = None,
     student_id: Optional[str] = None,
-    user_docs: Optional[list] = None
+    user_docs: Optional[list] = None,
+    attached_media: Optional[str] = None,
+    media_transcript: Optional[str] = None,
+    user_text: Optional[str] = None
 ) -> dict:
     """
     Save or update chat and conversation in MongoDB.
@@ -527,7 +570,7 @@ async def _save_conversation(
         # Create conversation document
         now = datetime.utcnow()
         conversation = {
-            "query": query,
+            "query": user_text if user_text else query,
             "answer": answer,
             "query_by": "user",
             "answer_by": "assistant",
@@ -535,7 +578,9 @@ async def _save_conversation(
             "sources_used": [str(doc['_id']) for doc in user_docs],
             "created_at": now,
             "updated_at": now,
-            "edit_history": []
+            "edit_history": [],
+            "attached_media": attached_media,
+            "media_transcript": media_transcript
         }
         
         # Insert conversation
@@ -622,96 +667,3 @@ async def _save_conversation(
         print(f"⚠️ Failed to save conversation: {e}")
         raise
 
-
-    """
-    Save or update chat and conversation in MongoDB.
-    """
-    try:
-        chat_collection = get_collection("chats")
-        conversation_collection = get_collection("conversations")
-        
-        # Create conversation document
-        now = datetime.utcnow()
-        conversation = {
-            "query": query,
-            "answer": answer,
-            "query_by": "user",
-            "answer_by": "assistant",
-            "prev_conversation": previous_conversation,
-            "created_at": now,
-            "updated_at": now,
-            "edit_history": []
-        }
-        
-        # Insert conversation
-        conversation_result = await conversation_collection.insert_one(conversation.copy())
-        conversation_id = str(conversation_result.inserted_id)
-        
-        if chat_id:
-            # For existing chat, just add the new conversation reference
-            chat_id_obj = ObjectId(chat_id)
-            
-            # Check if this conversation already exists in the chat
-            existing_conv = await chat_collection.find_one({
-                "_id": chat_id_obj,
-                "conversations.conversation_id": conversation_id
-            })
-            
-            if not existing_conv:
-                # Only add the conversation if it doesn't already exist
-                pseudo_conversation = {
-                    "conversation_id": conversation_id,
-                    "prev_conversation": previous_conversation,
-                    "parent_conversation": chat_id,
-                    "created_at": now,
-                    "updated_at": now
-                }
-                
-                await chat_collection.update_one(
-                    {"_id": chat_id_obj},
-                    {
-                        "$push": {"conversations": pseudo_conversation},
-                        "$set": {
-                            "updated_at": now,
-                        }
-                    }
-                )
-        else:
-            # Create new chat with the conversation
-            if not user_id:
-                raise ValueError("user_id is required when creating a new chat")
-                
-            chat_doc = {
-                "title": query[:100],
-                "user_id": user_id,
-                "teacher_id": teacher_id,
-                "student_id": student_id,
-                "conversations": [{
-                    "conversation_id": conversation_id,
-                    "prev_conversation": previous_conversation,
-                    "parent_conversation": None,  # Will be updated after insert
-                    "created_at": now,
-                    "updated_at": now
-                }],
-                "created_at": now,
-                "updated_at": now
-            }
-            
-            # Insert new chat
-            result = await chat_collection.insert_one(chat_doc)
-            chat_id = str(result.inserted_id)
-            
-            # Update the parent_conversation reference
-            await chat_collection.update_one(
-                {"_id": result.inserted_id, "conversations.conversation_id": conversation_id},
-                {"$set": {"conversations.$.parent_conversation": chat_id}}
-            )
-        
-        return {
-            "chat_id": chat_id,
-            "conversation_id": conversation_id
-        }
-        
-    except Exception as e:
-        print(f"⚠️ Failed to save conversation: {e}")
-        raise

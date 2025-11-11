@@ -196,6 +196,8 @@ async def get_conversation(chat_id: str):
                 "parent_conversation": doc["parent_conversation"],
                 "created_at": conversation["created_at"],
                 "user_id": conversation["user_id"],
+                "attached_media": conversation.get("attached_media", None),
+                "media_transcript": conversation.get("media_transcript", None)
             })
 
         if not chat:

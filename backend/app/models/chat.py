@@ -23,6 +23,8 @@ class ConversationModel(BaseModel):
     query_by: Optional[str] = None
     answer_by: Optional[str] = None
     domain: Optional[str] = None
+    attached_media: Optional[str] = None
+    media_transcript: Optional[str] = None
     prev_conversation: Optional[str] = None
     parent_conversation: Optional[str] = None
     sources_used: Optional[str] = None

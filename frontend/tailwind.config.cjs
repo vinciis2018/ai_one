@@ -48,6 +48,7 @@ module.exports = {
         blue1: 'var(--blue)',
         navyBlue: 'var(--navy-blue)',
         baigeLight: 'var(--baige-light)',
+        greenLight: 'var(--green-light)'
       },
   
       animation: {

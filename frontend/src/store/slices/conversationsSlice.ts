@@ -17,6 +17,8 @@ export interface Conversation {
   parent_conversation: string;
   created_at: string;
   user_id?: string;
+  attached_media?: string;
+  media_transcript?: string;
 }
 
 export interface ChatResponse {
@@ -165,6 +167,7 @@ const conversationSlice = createSlice({
           state.items = [...state.items, ...newItems];
         }
         state.hasMore = newItems.length >= state.limit;
+        state.error = null;
       })
       .addCase(fetchConversations.rejected, (state, action) => {
         state.status = 'failed';
@@ -182,6 +185,8 @@ const conversationSlice = createSlice({
           state.chats = [...state.chats, ...newChats];
         }
         state.hasMore = newChats.length >= state.limit;
+        state.error = null;
+
       })
       .addCase(fetchChats.rejected, (state, action) => {
         state.status = 'failed';
@@ -200,6 +205,7 @@ const conversationSlice = createSlice({
           state.chats = [...state.chats, ...newChats];
         }
         state.hasMore = newChats.length >= state.limit;
+        state.error = null;
       })
       .addCase(fetchTeacherStudentChats.rejected, (state, action) => {
         state.status = 'failed';
@@ -212,6 +218,7 @@ const conversationSlice = createSlice({
       .addCase(fetchChatById.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.chat = action.payload;
+        state.error = null;
       })
       .addCase(fetchChatById.rejected, (state, action) => {
         state.status = 'failed';

@@ -25,6 +25,7 @@ HF_MODEL = os.getenv("HF_MODEL", "TinyLlama/TinyLlama-1.1B-Chat-v1.0")
 FALLBACK_MODEL = "distilgpt2"
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "mistral")
 
+print(OPENAI_API_KEY)
 open_ai_client = OpenAI(api_key=OPENAI_API_KEY)
 
 # ------------------------------------------------
@@ -114,6 +115,7 @@ def build_domain_prompt(prompt: str, domain: str | None = None) -> str:
         "Answer only using the provided context, ensuring conceptual, mathematical and factual accuracy. Try not to share any external weblinks, untill specifically asked in the prompt by user."
         "You may reference earlier conversation history if relevant (e.g., 'as discussed before'). "
         "Ensure factual consistency and maintain continuity of tutoring tone."
+        "Don't add anything extra, that is not being asked in the query."
         "Explain clearly and concisely, as if teaching a student for competitive exams like IIT JEE, NEET and CBSE."
         "Check for Maths equations and ensure they are correct and encode them so that they can be identified easily in the texts."
     )

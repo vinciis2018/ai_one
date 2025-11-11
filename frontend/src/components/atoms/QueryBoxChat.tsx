@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from "../../store";
 import { askQuery, askImageQuery, resetStatus } from "../../store/slices/assistantSlice";
 // import { ResponseCard } from "./ResponseCard";
 import { fetchChatById } from "../../store/slices/conversationsSlice";
-import { getS3Url } from "../../utilities/awsUtils";
+// import { getS3Url } from "../../utilities/awsUtils";
 import { AnimatedTextAreaInput } from "./AnimatedTextAreaInput";
 
 
@@ -87,7 +87,8 @@ export const QueryBoxChat: React.FC<{
       console.log('📤 Uploading image to S3...');
       
       // Step 1: Upload to S3
-      const s3Url = await getS3Url(selectedImage);
+      // const s3Url = await getS3Url(selectedImage);
+      const s3Url = "https://usethisbucketforupload.s3.ap-south-1.amazonaws.com/uploads/WhatsAppImage20251106at084945.jpeg"
       console.log('✅ Image uploaded to S3:', s3Url);
 
       // Step 2: Prepare payload for backend

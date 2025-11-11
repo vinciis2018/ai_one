@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../store';
 import { clearConversations, fetchChats, fetchConversations, setSearch, setSelectedChat } from '../../store/slices/conversationsSlice';
 import { FullLayout } from '../../layouts/AppLayout';
 import { useNavigate } from 'react-router-dom';
-import { EnhancedMathDisplay } from '../../components/atoms/EnhancedTextDisplay';
+import { EnhancedTextDisplay } from '../../components/atoms/EnhancedTextDisplay';
 
 
 export const ChatsPage: React.FC = () => {
@@ -144,7 +144,7 @@ export const ChatsPage: React.FC = () => {
                       <div className="flex">
                         <div className="bg-gray-50 p-4 rounded-xl max-w-xl">
                           <h4 className="text-xs font-semibold text-gray-700">Answer</h4>
-                          <EnhancedMathDisplay className="text-gray-800 text-sm whitespace-pre-line" content={conversation.answer}/>
+                          <EnhancedTextDisplay className="text-gray-800 text-sm whitespace-pre-line" content={conversation.answer}/>
                         </div>
                       </div>
                     )}
