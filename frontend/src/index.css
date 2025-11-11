@@ -45,6 +45,7 @@
     --navy-blue: #253858;
     --baige-light: #F8F6F0;
     --green-light: #F0F8F1;
+    --red-light: #ffc4c4;
 
   }
 
@@ -71,7 +72,7 @@
     --blue: #C8FAFF;
     --navy-blue: #253858;
     --baige-light: #F8F6F0;
-
+    --red-light: #ffc4c4;
   }
 
   body {

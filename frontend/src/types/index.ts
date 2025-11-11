@@ -28,6 +28,7 @@ export interface User {
   avatar?: string;
   student_id?: string;
   teacher_id?: string;
+  subjects?: string[];
 }
 
 

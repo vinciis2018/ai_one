@@ -275,7 +275,9 @@ async def get_current_user_details(current_user: UserModel = Depends(get_current
     teacher = await db["teachers"].find_one({"user_id": ObjectId(user_data["id"])})
     if student:
         user_data["student_id"] = str(student["_id"])
+        user_data["subjects"] = student["subjects"]
     if teacher:
         user_data["teacher_id"] = str(teacher["_id"])
+        user_data["subjects"] = teacher["subjects"]
 
     return UserModel(**user_data)

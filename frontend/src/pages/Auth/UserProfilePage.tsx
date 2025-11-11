@@ -150,22 +150,21 @@ export function UserProfilePage() {
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Profile Information */}
                 <div className="lg:col-span-2 space-y-4">
-                  <div>
-                    <h1 className="text-lg font-medium text-black dark:text-white capitalize">{user?.role} profile</h1>
+                  <div className="flex items-center gap-4">
+                    <i className={`fi ${user?.role !== "student" ? "fi-sr-chalkboard-user" : "fi-ss-student"} flex items-center text-violet opacity-70`} />
+                    <p className="text-sm text-black dark:text-white capitalize">{teacher_details?.subjects?.join(", ") || student_details?.subjects?.join(", ")} {user?.role}</p>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <i className={`fi fi-sr-graduation-cap flex items-center text-orange2 opacity-70`} />
                     <p className="text-sm text-black dark:text-white capitalize">{teacher_details?.organization?.name || student_details?.organization?.name}</p>
-                  
                   </div>
-                  <div>
-                    <h1 className="text-sm text-black dark:text-white">Subjects</h1>
-                    <p className="text-sm font-medium text-black dark:text-white capitalize">{teacher_details?.subjects?.join(", ") || student_details?.subjects?.join(", ")}</p>
+                  <div className="flex items-center gap-4">
+                    <i className="fi fi-sr-journal-alt flex items-center text-sun opacity-70" />
+                    <p className="mt-1 text-sm text-black dark:text-white">{teacher_details?.documents?.length || student_details?.documents?.length} Notes</p>
                   </div>
-                  <div>
-                    <p className="text-sm font-medium text-black dark:text-white">Notes</p>
-                    <p className="mt-1 text-sm text-black dark:text-white">{teacher_details?.documents?.length || student_details?.documents?.length}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-black dark:text-white">{user?.role === "teacher" ? "Students" : "Teachers"}</p>
-                    <p className="mt-1 text-sm text-black dark:text-white">{teacher_details?.students?.length || student_details?.teachers?.length}</p>
+                  <div className="flex items-center gap-4">
+                    <i className={`fi ${user?.role !== "teacher" ? "fi-sr-chalkboard-user" : "fi-ss-student"} flex items-center text-violet opacity-70`} />
+                    <p className="mt-1 text-sm text-black dark:text-white">{teacher_details?.students?.length || student_details?.teachers?.length} Students</p>
                   </div>
                 </div>
               </div>

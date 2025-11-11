@@ -9,6 +9,7 @@ import { getStudentDetails } from "../../store/slices/studentsSlice";
 import { EnhancedTextDisplay } from "../../components/atoms/EnhancedTextDisplay";
 import { fetchSelectedDocuments } from "../../store/slices/documentsSlice";
 import { StudentAnalyticsModal } from "../../components/popups/StudentAnalytics";
+import { allDomains } from "../../constants/helperConstants";
 
 export const TeacherChatPage: React.FC = () => {
   const { teacher_user_id, student_user_id } = useParams();
@@ -53,14 +54,6 @@ export const TeacherChatPage: React.FC = () => {
     }
   }, [dispatch, user, teacher_user_id, student_user_id]);
 
-    const allDomains = [
-    { key: 1, label: "Science", value: "science", icon: "fi-br-physics" },
-    { key: 2, label: "Physics", value: "physics", icon: "fi-br-magnet" },
-    { key: 3, label: "Chemistry", value: "chemistry", icon: "fi-br-flask-gear" },
-    { key: 4, label: "Maths", value: "maths", icon: "fi-br-square-root" },
-    { key: 5, label: "Biology", value: "biology", icon: "fi-br-dna" },
-    { key: 6, label: "General", value: "general", icon: "fi-br-messages-question" },
-  ];
 
   // Filter domains based on teacher's subjects
   const domains = allDomains.filter(domain => 
@@ -266,15 +259,13 @@ export const TeacherChatPage: React.FC = () => {
               ))}
             </div>
           </div>
-          <div className="p-6 space-y-4">
-            {showAnalysis && (
-              <StudentAnalyticsModal
-                conversation={conversation}
-                student_details={student_details}
-                onClose={() => setShowAnalysis(false)}
-              />
-            )}
-          </div>
+          {showAnalysis && (
+            <StudentAnalyticsModal
+              conversation={conversation}
+              student_details={student_details}
+              onClose={() => setShowAnalysis(false)}
+            />
+          )}
           
           <div className="fixed bottom-0 left-0 right-0 p-2">
             <div className="max-w-4xl mx-auto bg-white">

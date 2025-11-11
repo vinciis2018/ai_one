@@ -18,6 +18,7 @@ export interface DocumentItem {
   s3_url: string; // URL to access the file from backend
   subject?: string;
   domain?: string;
+  user_id?: string;
 }
 
 interface DocumentsState {

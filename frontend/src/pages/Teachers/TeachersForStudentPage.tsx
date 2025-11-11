@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { FullLayout } from "../../layouts/AppLayout";
-import { getAllTeachers, type TeacherModel } from "../../store/slices/teachersSlice";
+import { getAllTeachers, resetTeacherState, type TeacherModel } from "../../store/slices/teachersSlice";
 import { useNavigate } from "react-router-dom";
+import type { User } from "../../types";
+import { addStudentToTeacher } from "../../store/slices/coachingSlice";
 
 export const TeachersForStudentPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const {user} = useAppSelector((state) => state.auth);
   const { all_teachers, loading, error } = useAppSelector((state) => state.teachers);
-  const [selectedId, setSelectedId] = useState<string | null | undefined>(null);
+  const { success } = useAppSelector((state) => state.coachings);
+
+  const [selectedTeacher, setSelectedTeacher] = useState<TeacherModel | null >(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDomain, setSelectedDomain] = useState("all");
-console.log(selectedId)
+
   useEffect(() => {
     if (user) {
 
@@ -24,6 +28,13 @@ console.log(selectedId)
       }));
     }
   }, [dispatch, user, searchQuery]);
+
+  useEffect(() => {
+    if (success) {
+      navigate(`/teacher/chats/${selectedTeacher?.user_id}/${user?._id}`);
+      dispatch(resetTeacherState());
+    }
+  },[success, navigate, selectedTeacher, user, dispatch]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
@@ -39,6 +50,18 @@ console.log(selectedId)
     setSelectedDomain(e.target.value);
   };
 
+
+  const handleAddSelfAsStudentToTeacher = async (teacherId: string) => {
+    if (!user) return;
+    const payload = {
+      user_id: String((user as User)._id ?? ""),
+      name: (user as User).full_name || "Unknown",
+      email: (user as User).email || "Unknown",
+      avatar: (user as User).avatar || "",
+      subjects: (user as User).subjects || [],
+    };
+    await dispatch(addStudentToTeacher({ teacher_id: teacherId as string, student: payload }));
+  };
   return (
     <FullLayout>
       <div className="bg-white max-w-4xl mx-auto py-2 px-4">
@@ -79,13 +102,13 @@ console.log(selectedId)
                 <div
                   key={teacher.id}
                   className="border border-gray-100 bg-baigeLight rounded-xl p-4 hover:shadow cursor-pointer flex items-center justify-between"
-                  onClick={() => setSelectedId(teacher?.id)}
+                  onClick={() => setSelectedTeacher(teacher)}
                 >
                   <div className="flex items-center gap-2">
                     <img src={teacher.avatar} alt={teacher.name} className="h-12 w-12 rounded-full" />
                     <div>
                       <p className="font-semibold">{teacher.name}</p>
-                      <p className="text-xs text-gray-400 capitalize">({teacher.subjects?.join(", ")})</p>
+                      <p className="text-xs text-gray-400 font-semibold capitalize">{teacher.subjects?.join(", ")}</p>
                       <p className="text-xs text-gray-400">{teacher.students?.length || 0} students</p>
                       {/* <p className="text-xs text-gray-400">{teacher.documents?.length} study materials</p> */}
                     </div>
@@ -93,13 +116,16 @@ console.log(selectedId)
                   <button
                     className="px-4 py-2 bg-white border border-green text-green font-semibold rounded-full text-xs"
                     onClick={(e) => {
-                      e.stopPropagation();
-                      console.log(teacher);
                       // Handle assign action here
-                      navigate(`/teacher/chats/${teacher?.user_id}/${user?._id}`);
+                      if (teacher.students?.includes(user?.student_id as string)) {
+                        e.stopPropagation();
+                        navigate(`/teacher/chats/${teacher?.user_id}/${user?._id}`);
+                      } else {
+                        handleAddSelfAsStudentToTeacher(teacher?.id as string);
+                      }
                     }}
                   >
-                    Chat
+                    {teacher?.students?.includes(user?.student_id as string) ? "Chat" : "Join"}
                   </button>
                 </div>
               )) : null}

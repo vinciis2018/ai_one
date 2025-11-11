@@ -214,7 +214,7 @@ export const TeacherSection = () => {
             Join our waitlist to be the first to know when we launch.
           </p>
           <a
-            href="#"
+            href="/login"
             className="inline-block bg-green hover:bg-[#4a8252] text-white font-bold py-4 px-10 md:px-12 rounded-full text-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-green-500/30"
           >
             Join the Waitlist →

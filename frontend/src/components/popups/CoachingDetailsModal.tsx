@@ -81,7 +81,7 @@ export const CoachingDetailsModal: React.FC<Props> = ({ coachingId, onClose }) =
       subjects: undefined,
       avatar: (user as User).avatar || "",
     };
-    await dispatch(addTeacherToInstitute({ id: coachingId, teacher: payload }));
+    await dispatch(addTeacherToInstitute({ coaching_id: coachingId, teacher: payload }));
     dispatch(listInstituteTeachers(coachingId));
   };
 
@@ -155,26 +155,7 @@ export const CoachingDetailsModal: React.FC<Props> = ({ coachingId, onClose }) =
                 <span className="text-xl">🎓</span>
               </button>
             )}
-            <button
-              type="button"
-              onClick={onClose}
-              className="text-gray-500 hover:text-gray-700"
-              aria-label="Close modal"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
+            <i className="fi fi-br-x flex items-center" onClick={onClose} />
           </div>
         </div>
 
@@ -194,13 +175,13 @@ export const CoachingDetailsModal: React.FC<Props> = ({ coachingId, onClose }) =
             <div className="mt-2 flex space-x-4">
               <div>
                 <p className="text-xs text-[var(--text-muted)]">Teachers</p>
-                <ul className="text-sm list-disc list-inside max-h-28 overflow-y-auto">
+                <ul className="text-sm list-disc list-inside max-h-28 overflow-y-auto capitalize">
                   {teachers?.length ? (teachers as TeacherModel[]).map((t: TeacherModel) => <li key={t.id || t.user_id}>{t.name} {t.subjects ? `(${t.documents?.length || 0}/${t.subjects.length})` : ""}</li>) : <li className="text-[var(--text-muted)]">No teachers</li>}
                 </ul>
               </div>
               <div>
                 <p className="text-xs text-[var(--text-muted)]">Students</p>
-                <ul className="text-sm list-disc list-inside max-h-28 overflow-y-auto">
+                <ul className="text-sm list-disc list-inside max-h-28 overflow-y-auto capitalize">
                   {students?.length ? (students as StudentModel[]).map((s: StudentModel) => <li key={s.id || s.user_id}>{s.name} {s.subjects ? `(${s.documents?.length || 0}/${s.subjects.length})` : ""}</li>) : <li className="text-[var(--text-muted)]">No students</li>}
                 </ul>
               </div>
@@ -231,15 +212,6 @@ export const CoachingDetailsModal: React.FC<Props> = ({ coachingId, onClose }) =
           </div>
         </div>
 
-        {/* Footer */}
-        <div className="sticky bottom-0 bg-[var(--background)] border-t border-[var(--border)] px-6 py-4 flex justify-end">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
-          >
-            Close
-          </button>
-        </div>
       </div>
 
       {/* Document Details Modal */}

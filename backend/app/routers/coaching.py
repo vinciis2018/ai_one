@@ -66,6 +66,94 @@ async def get_coaching(
     )
 
 
+
+@router.get("/{coaching_id}/teachers/", response_model=List[TeacherModel])
+async def list_institute_teachers(
+    coaching_id: str,
+):
+    """
+    List all teachers in a specific coaching.
+    """
+    try:
+        # Verify institute exists
+        coaching = await db["organisations"].find_one({"_id": ObjectId(coaching_id)})
+        if not coaching:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=f"Coaching with ID {coaching_id} not found"
+            )
+        
+        # Get all teachers for this coaching
+        teacher_ids = [ObjectId(tid) for tid in coaching.get("teachers", [])]
+        cursor = db["teachers"].find({"_id": {"$in": teacher_ids}})
+        teachers = await cursor.to_list(None)
+        
+        # Convert ObjectId to string for response
+        for teacher in teachers:
+            teacher["_id"] = str(teacher["_id"])
+            if "user_id" in teacher:
+                teacher["user_id"] = str(teacher["user_id"])
+            if "students" in teacher:
+                teacher["students"] = [str(sid) for sid in teacher["students"]] if teacher["students"] else []
+            if "subjects" in teacher and not teacher["subjects"]:
+                teacher["subjects"] = []
+            if "documents" in teacher and not teacher["documents"]:
+                teacher["documents"] = []
+        
+        return teachers
+
+    except Exception as e:
+        print(f"Error listing teachers: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error fetching teachers: {str(e)}"
+        )
+
+
+@router.get("/{coaching_id}/students/", response_model=List[StudentModel])
+async def list_institute_students(
+    coaching_id: str,
+):
+    """
+    List all students in a specific coaching.
+    """
+    try:
+        # Verify institute exists
+        coaching = await db["organisations"].find_one({"_id": ObjectId(coaching_id)})
+        if not coaching:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=f"Coaching with ID {coaching_id} not found"
+            )
+        
+        # Get all students for this coaching
+        student_ids = [ObjectId(sid) for sid in coaching.get("students", [])]
+        cursor = db["students"].find({"_id": {"$in": student_ids}})
+        students = await cursor.to_list(None)
+        
+        # Convert ObjectId to string for response
+        for student in students:
+            student["_id"] = str(student["_id"])
+            if "user_id" in student:
+                student["user_id"] = str(student["user_id"])
+            if "teachers" in student:
+                student["teachers"] = [str(tid) for tid in student["teachers"]] if student["teachers"] else []
+            if "subjects" in student and not student["subjects"]:
+                student["subjects"] = []
+            if "documents" in student and not student["documents"]:
+                student["documents"] = []
+
+        return students
+
+    except Exception as e:
+        print(f"Error listing students: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error fetching students: {str(e)}"
+        )
+
+
+
 @router.post("/{coaching_id}/teachers/", status_code=status.HTTP_201_CREATED)
 async def add_teacher_to_coaching(
     coaching_id: str,
@@ -111,7 +199,9 @@ async def add_teacher_to_coaching(
     if teacher_id not in coaching.get("teachers", []):
         await db["organisations"].update_one(
             {"_id": ObjectId(coaching_id)},
-            {"$addToSet": {"teachers": teacher_id}},
+            {"$addToSet": {
+                "teachers": teacher_id,
+            }},
             upsert=True
         )
     
@@ -122,54 +212,12 @@ async def add_teacher_to_coaching(
 
 
 
-@router.get("/{coaching_id}/teachers/", response_model=List[TeacherModel])
-async def list_institute_teachers(
-    coaching_id: str,
-):
-    """
-    List all teachers in a specific coaching.
-    """
-    try:
-        # Verify institute exists
-        coaching = await db["organisations"].find_one({"_id": ObjectId(coaching_id)})
-        if not coaching:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"Coaching with ID {coaching_id} not found"
-            )
-        
-        # Get all teachers for this coaching
-        teacher_ids = [ObjectId(tid) for tid in coaching.get("teachers", [])]
-        cursor = db["teachers"].find({"_id": {"$in": teacher_ids}})
-        teachers = await cursor.to_list(None)
-        
-        # Convert ObjectId to string for response
-        for teacher in teachers:
-            teacher["_id"] = str(teacher["_id"])
-            if "user_id" in teacher:
-                teacher["user_id"] = str(teacher["user_id"])
-            if "students" in teacher:
-                teacher["students"] = [str(sid) for sid in teacher["students"]] if teacher["students"] else []
-            if "subjects" in teacher and not teacher["subjects"]:
-                teacher["subjects"] = []
-            if "documents" in teacher and not teacher["documents"]:
-                teacher["documents"] = []
-        
-        return teachers
 
-    except Exception as e:
-        print(f"Error listing teachers: {str(e)}")
-        raise HTTPException(
-            status_code=500,
-            detail=f"Error fetching teachers: {str(e)}"
-        )
-
-
-@router.post("/{coaching_id}/students/", response_model=OrganisationModel)
+@router.post("/{coaching_id}/students/", status_code=status.HTTP_201_CREATED)
 async def add_student_to_coaching(
     coaching_id: str,
     student: StudentModel,
-    # current_user: UserModel = Depends(get_current_active_user)
+    subjects: List[str],
 ):
     """
     Add a student to a coaching institute and update related models.
@@ -226,6 +274,7 @@ async def add_student_to_coaching(
             {"_id": student_id},
             {"$addToSet": {
                 "teachers": {"$each": teacher_ids},
+                "subjects": {"$each": subjects}
             }},
             upsert=True
         )
@@ -250,6 +299,79 @@ async def add_student_to_coaching(
             status_code=500,
             detail=f"Error adding student to coaching: {str(e)}"
         )
+
+
+
+
+@router.post("/add/student/{teacher_id}/", status_code=status.HTTP_201_CREATED)
+async def add_student_to_teacher(
+    teacher_id: str,
+    student: StudentModel,
+):
+    """
+    Add a student to a teacher and update related models.
+    - Adds student to teacher's students list
+    - Updates student's teachers list
+    - Adds student to coaching if not already present
+    - Updates domains in the organization
+    """
+    try:
+        # Check if student already exists
+        existing_student = await db["students"].find_one({"email": student.email, "user_id": student.user_id})
+        
+        # Find the coaching that has this teacher
+        coaching = await db["organisations"].find_one(
+            {"teachers": ObjectId(teacher_id)}
+        )
+        if not coaching:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Teacher not found in any coaching or invalid teacher ID"
+            )
+
+        coaching_oid = coaching["_id"]
+        print(coaching_oid)
+        
+        # Add student to teacher's students list
+        await db["teachers"].update_one(
+            {"_id": ObjectId(teacher_id)},
+            {"$addToSet": {"students": existing_student.get("_id")}},
+            upsert=True
+        )
+
+        # Add teacher to student's teacher list
+        await db["students"].update_one(
+            {"_id": ObjectId(existing_student.get("_id"))},
+            {"$addToSet": {"teachers": ObjectId(teacher_id)}},
+            upsert=True
+        )
+
+        # Add student to coaching if not already present
+        if existing_student.get("_id") not in coaching.get("students", []):
+            await db["organisations"].update_one(
+                {"_id": coaching_oid},
+                {"$addToSet": {"students": existing_student.get("_id")}},
+                upsert=True
+            )
+
+        # Update domains in organization
+        await update_organization_domains(coaching_oid, existing_student.get("_id"))
+
+        # Return success response instead of the document
+        return {
+            "message": "Student added to teacher successfully",
+            "student_id": str(existing_student.get("_id")),
+            "teacher_id": teacher_id,
+            "coaching_id": str(coaching_oid)
+        }
+
+    except Exception as e:
+        logger.error(f"Error in add_student_to_teacher: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error adding student to teacher: {str(e)}"
+        )
+
 
 async def update_organization_domains(coaching_oid: ObjectId, student_id: ObjectId):
     """Update domains in organization based on subjects from teachers and students"""
@@ -324,7 +446,7 @@ async def update_organization_domains(coaching_oid: ObjectId, student_id: Object
                     # Add student to existing teacher if not already in the list
                     if student_id not in existing_teachers[teacher_id].get("students", []):
                         existing_teachers[teacher_id].setdefault("students", []).append(student_id)
-                
+
                 # Convert back to list and update domain
                 domain_data["teachers"] = list(existing_teachers.values())
                 updated_domains.append(domain_data)
@@ -339,43 +461,3 @@ async def update_organization_domains(coaching_oid: ObjectId, student_id: Object
         print(f"Error updating organization domains: {str(e)}")
         raise
 
-
-@router.get("/{coaching_id}/students/", response_model=List[StudentModel])
-async def list_institute_students(
-    coaching_id: str,
-):
-    """
-    List all students in a specific coaching.
-    """
-    try:
-        # Verify institute exists
-        coaching = await db["organisations"].find_one({"_id": ObjectId(coaching_id)})
-        if not coaching:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"Coaching with ID {coaching_id} not found"
-            )
-        
-        # Get all students for this coaching
-        student_ids = [ObjectId(sid) for sid in coaching.get("students", [])]
-        cursor = db["students"].find({"_id": {"$in": student_ids}})
-        students = await cursor.to_list(None)
-        
-        # Convert ObjectId to string for response
-        for student in students:
-            student["_id"] = str(student["_id"])
-            if "user_id" in student:
-                student["user_id"] = str(student["user_id"])
-            if "teachers" in student:
-                student["teachers"] = [str(tid) for tid in student["teachers"]] if student["teachers"] else []
-            if "documents" in student:
-                student["documents"] = [str(doc) for doc in student["documents"]] if student["documents"] else []
-        
-        return students
-
-    except Exception as e:
-        print(f"Error listing students: {str(e)}")
-        raise HTTPException(
-            status_code=500,
-            detail=f"Error fetching students: {str(e)}"
-        )

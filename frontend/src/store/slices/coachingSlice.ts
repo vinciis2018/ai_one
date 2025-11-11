@@ -126,9 +126,9 @@ export const listInstituteTeachers = createAsyncThunk(
 // New: add teacher to institute
 export const addTeacherToInstitute = createAsyncThunk(
   'coaching/addTeacherToInstitute',
-  async ({ id, teacher }: { id: string; teacher: TeacherModel }, { rejectWithValue }) => {
+  async ({ coaching_id, teacher }: { coaching_id: string; teacher: TeacherModel }, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${BASE_URL}/coachings/${id}/teachers/`, teacher);
+      const response = await axios.post(`${BASE_URL}/coachings/${coaching_id}/teachers/`, teacher);
       return response.data; // backend returns { message, teacher_id }
     } catch (error: unknown) {
       const axiosError = error as unknown as { response?: { data?: { message?: string } } };
@@ -156,7 +156,7 @@ export const addStudentToInstitute = createAsyncThunk(
   'coaching/addStudentToInstitute',
   async ({ coaching_id, student }: { coaching_id: string; student: StudentModel }, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${BASE_URL}/coachings/${coaching_id}/students/`, {coaching_id, ...student});
+      const response = await axios.post(`${BASE_URL}/coachings/${coaching_id}/students/`, {coaching_id, student});
       return response.data; // backend returns { message, student_id }
     } catch (error: unknown) {
       const axiosError = error as unknown as { response?: { data?: { message?: string } } };
@@ -164,6 +164,23 @@ export const addStudentToInstitute = createAsyncThunk(
     }
   }
 );
+
+
+
+// New: add student to institute
+export const addStudentToTeacher = createAsyncThunk(
+  'coaching/addStudentToTeacher',
+  async ({ teacher_id, student }: { teacher_id: string; student: StudentModel }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(`${BASE_URL}/coachings/add/student/${teacher_id}/`, student);
+      return response.data; // backend returns { message, student_id }
+    } catch (error: unknown) {
+      const axiosError = error as unknown as { response?: { data?: { message?: string } } };
+      return rejectWithValue(axiosError.response?.data?.message || "Failed to add student");
+    }
+  }
+);
+
 
 // Slice
 const coachingSlice = createSlice({
@@ -286,6 +303,20 @@ const coachingSlice = createSlice({
         state.success = true;
       })
       .addCase(addStudentToInstitute.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      })
+
+      .addCase(addStudentToTeacher.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.success = false;
+      })
+      .addCase(addStudentToTeacher.fulfilled, (state) => {
+        state.loading = false;
+        state.success = true;
+      })
+      .addCase(addStudentToTeacher.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       });

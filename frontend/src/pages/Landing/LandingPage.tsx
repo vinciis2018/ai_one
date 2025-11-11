@@ -13,13 +13,13 @@ import { useAppSelector } from "../../store";
 
 export const LandingPage: React.FC = () => {
   const navigate = useNavigate();
-  const {isAuthenticated} = useAppSelector((state) => state.auth);
+  const {isAuthenticated, user} = useAppSelector((state) => state.auth);
   const sectionOptions = [{
     key: 1,
-    label: "Teachers",
-    icon: "fi-sr-chalkboard-user text-violet",
-    description: "Pick your teacher's mind and resolve your doubts",
-    onClick: () => navigate("/teachers")
+    label: user?.role === "student" ? "Teachers" : "Students",
+    icon: user?.role === "student" ? "fi-sr-chalkboard-user text-violet" : "fi-ss-student text-violet",
+    description: user?.role === "student" ? "Pick your teacher's mind and resolve your doubts" : "Find students and see what they are talking about",
+    onClick: () => user?.role === "student" ? navigate("/teachers") : navigate("/students")
   }, {
     key: 2,
     label: "Notes",
