@@ -2,7 +2,7 @@ from app.core.logger_middleware import LoggerMiddleware
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routers import auth, aws, query_image, query, status, upload, converstions, coaching, teachers, students
+from app.routers import auth, aws, query_image, query, status, upload, converstions, coaching, teachers, students, query_lang
 
 app = FastAPI(title="AI Assistant MVP")
 
@@ -19,13 +19,15 @@ app.add_middleware(LoggerMiddleware)
 app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
 app.include_router(aws.router, prefix="/aws", tags=["AWS"])
 app.include_router(upload.router, prefix="/upload", tags=["Upload"])
-app.include_router(query.router, prefix="/query", tags=["Query"])  # This is correct
 app.include_router(status.router, prefix="/status", tags=["System Health"])
 app.include_router(converstions.router, prefix="/conversations", tags=["Conversations"])
 app.include_router(coaching.router, prefix="/coachings", tags=["Coaching"])
-app.include_router(query_image.router, prefix="/queryimage", tags=["Query Image"])
 app.include_router(teachers.router, prefix="/teachers", tags=["Teachers"])
 app.include_router(students.router, prefix="/students", tags=["Teachers"])
+
+app.include_router(query.router, prefix="/query", tags=["Query"])  # This is correct
+app.include_router(query_image.router, prefix="/queryimage", tags=["Query Image"])
+app.include_router(query_lang.router, prefix="/querylang", tags=["Query Lang"])
 
 
 

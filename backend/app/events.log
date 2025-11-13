@@ -28687,3 +28687,599 @@ h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role
 2025-11-12 00:34:55,152 [INFO] Use pytorch device_name: mps
 2025-11-12 00:34:55,153 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
 2025-11-12 00:34:59,867 [INFO] 🧠 Using device: MPS
+2025-11-12 22:19:45,433 [INFO] Use pytorch device_name: mps
+2025-11-12 22:19:45,433 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:19:55,774 [INFO] Loading faiss.
+2025-11-12 22:19:55,826 [INFO] Successfully loaded faiss.
+2025-11-12 22:19:55,840 [INFO] Use pytorch device_name: mps
+2025-11-12 22:19:55,840 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-12 22:20:16,492 [INFO] 🧠 Using device: MPS
+2025-11-12 22:20:48,548 [INFO] Use pytorch device_name: mps
+2025-11-12 22:20:48,549 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:20:55,185 [INFO] Loading faiss.
+2025-11-12 22:20:55,233 [INFO] Successfully loaded faiss.
+2025-11-12 22:20:55,243 [INFO] Use pytorch device_name: mps
+2025-11-12 22:20:55,243 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-12 22:21:01,860 [INFO] 🧠 Using device: MPS
+2025-11-12 22:22:01,355 [INFO] Use pytorch device_name: mps
+2025-11-12 22:22:01,355 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:22:08,112 [INFO] Use pytorch device_name: mps
+2025-11-12 22:22:08,112 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:22:24,466 [INFO] Use pytorch device_name: mps
+2025-11-12 22:22:24,467 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:22:39,326 [INFO] Use pytorch device_name: mps
+2025-11-12 22:22:39,327 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:22:46,364 [INFO] Use pytorch device_name: mps
+2025-11-12 22:22:46,364 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:22:50,504 [INFO] Use pytorch device_name: mps
+2025-11-12 22:22:50,504 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:23:04,382 [INFO] Use pytorch device_name: mps
+2025-11-12 22:23:04,382 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:23:21,605 [INFO] Use pytorch device_name: mps
+2025-11-12 22:23:21,605 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:23:30,851 [INFO] Use pytorch device_name: mps
+2025-11-12 22:23:30,852 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:23:41,446 [INFO] Use pytorch device_name: mps
+2025-11-12 22:23:41,446 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:23:56,016 [INFO] Use pytorch device_name: mps
+2025-11-12 22:23:56,016 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:24:07,270 [INFO] Use pytorch device_name: mps
+2025-11-12 22:24:07,271 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:24:16,105 [INFO] Use pytorch device_name: mps
+2025-11-12 22:24:16,105 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:24:39,111 [INFO] Loading faiss.
+2025-11-12 22:24:39,163 [INFO] Successfully loaded faiss.
+2025-11-12 22:24:39,184 [INFO] Use pytorch device_name: mps
+2025-11-12 22:24:39,184 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-12 22:24:53,204 [INFO] Use pytorch device_name: mps
+2025-11-12 22:24:53,205 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:25:10,092 [INFO] Use pytorch device_name: mps
+2025-11-12 22:25:10,093 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:25:14,734 [INFO] Use pytorch device_name: mps
+2025-11-12 22:25:14,734 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:25:22,715 [INFO] Loading faiss.
+2025-11-12 22:25:22,749 [INFO] Successfully loaded faiss.
+2025-11-12 22:25:22,756 [INFO] Use pytorch device_name: mps
+2025-11-12 22:25:22,756 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-12 22:25:31,943 [INFO] 🧠 Using device: MPS
+2025-11-12 22:26:29,586 [INFO] Use pytorch device_name: mps
+2025-11-12 22:26:29,587 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:26:35,453 [INFO] Loading faiss.
+2025-11-12 22:26:35,504 [INFO] Successfully loaded faiss.
+2025-11-12 22:26:35,513 [INFO] Use pytorch device_name: mps
+2025-11-12 22:26:35,513 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-12 22:26:41,405 [INFO] 🧠 Using device: MPS
+2025-11-12 22:27:14,489 [INFO] Use pytorch device_name: mps
+2025-11-12 22:27:14,490 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:27:20,224 [INFO] Loading faiss.
+2025-11-12 22:27:20,268 [INFO] Successfully loaded faiss.
+2025-11-12 22:27:20,276 [INFO] Use pytorch device_name: mps
+2025-11-12 22:27:20,276 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-12 22:27:26,069 [INFO] 🧠 Using device: MPS
+2025-11-12 22:27:45,537 [INFO] Use pytorch device_name: mps
+2025-11-12 22:27:45,537 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:27:54,156 [INFO] Loading faiss.
+2025-11-12 22:27:54,211 [INFO] Successfully loaded faiss.
+2025-11-12 22:27:54,219 [INFO] Use pytorch device_name: mps
+2025-11-12 22:27:54,220 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-12 22:27:59,827 [INFO] 🧠 Using device: MPS
+2025-11-12 22:28:16,726 [INFO] Use pytorch device_name: mps
+2025-11-12 22:28:16,726 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:28:28,042 [INFO] Use pytorch device_name: mps
+2025-11-12 22:28:28,043 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:28:35,577 [INFO] Use pytorch device_name: mps
+2025-11-12 22:28:35,577 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:28:40,932 [INFO] Use pytorch device_name: mps
+2025-11-12 22:28:40,932 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:28:47,853 [INFO] Loading faiss.
+2025-11-12 22:28:47,901 [INFO] Successfully loaded faiss.
+2025-11-12 22:28:47,909 [INFO] Use pytorch device_name: mps
+2025-11-12 22:28:47,909 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-12 22:28:55,907 [INFO] 🧠 Using device: MPS
+2025-11-12 22:29:09,987 [INFO] OPTIONS /auth/me - 200 - 2.92ms
+2025-11-12 22:29:09,987 [INFO] OPTIONS /auth/me - 200 - 2.98ms
+2025-11-12 22:29:09,987 [INFO] OPTIONS /auth/me - 200 - 1.89ms
+2025-11-12 22:29:09,987 [INFO] OPTIONS /auth/me - 200 - 1.9ms
+2025-11-12 22:29:11,326 [INFO] GET /auth/me - 200 - 1336.18ms
+2025-11-12 22:29:11,342 [INFO] GET /teachers - 307 - 0.35ms
+2025-11-12 22:29:11,610 [INFO] GET /auth/me - 200 - 281.13ms
+2025-11-12 22:29:11,620 [INFO] GET /teachers - 307 - 0.39ms
+2025-11-12 22:29:11,949 [INFO] GET /auth/me - 200 - 337.22ms
+2025-11-12 22:29:11,954 [INFO] GET /teachers - 307 - 0.21ms
+2025-11-12 22:29:12,385 [INFO] GET /auth/me - 200 - 434.59ms
+2025-11-12 22:29:12,398 [INFO] GET /teachers - 307 - 0.29ms
+2025-11-12 22:29:12,815 [INFO] GET /teachers/ - 200 - 1469.39ms
+2025-11-12 22:29:13,491 [INFO] GET /teachers/ - 200 - 674.45ms
+2025-11-12 22:29:14,334 [INFO] GET /teachers/ - 200 - 838.24ms
+2025-11-12 22:29:15,080 [INFO] GET /teachers/ - 200 - 743.37ms
+2025-11-12 22:29:15,534 [INFO] GET /conversations/chats/teacher/student - 200 - 97.82ms
+2025-11-12 22:29:15,686 [INFO] GET /conversations/chats/teacher/student - 200 - 150.17ms
+2025-11-12 22:29:15,726 [INFO] GET /auth/me - 200 - 292.33ms
+2025-11-12 22:29:15,872 [INFO] GET /conversations/chats/teacher/student - 200 - 138.1ms
+2025-11-12 22:29:16,070 [INFO] GET /auth/me - 200 - 342.16ms
+2025-11-12 22:29:16,271 [INFO] GET /conversations/chats/teacher/student - 200 - 193.97ms
+2025-11-12 22:29:16,332 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 891.64ms
+2025-11-12 22:29:16,431 [INFO] GET /students/690860e3489b114c676d005d - 200 - 991.29ms
+2025-11-12 22:29:16,757 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 424.25ms
+2025-11-12 22:29:16,849 [INFO] GET /students/690860e3489b114c676d005d - 200 - 416.67ms
+2025-11-12 22:29:17,047 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 288.23ms
+2025-11-12 22:29:17,104 [INFO] GET /students/690860e3489b114c676d005d - 200 - 252.87ms
+2025-11-12 22:29:17,506 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 456.43ms
+2025-11-12 22:29:17,532 [INFO] GET /students/690860e3489b114c676d005d - 200 - 425.82ms
+2025-11-12 22:29:18,417 [INFO] GET /conversations/chat/691177673842d26bbf7a093d - 200 - 826.0ms
+2025-11-12 22:29:18,662 [INFO] GET /upload/list/selected - 200 - 132.4ms
+2025-11-12 22:33:10,947 [INFO] OPTIONS /queryimage/query/ - 200 - 1.55ms
+2025-11-12 22:33:10,951 [INFO] POST /queryimage/query/ - 307 - 0.81ms
+2025-11-12 22:33:10,954 [INFO] OPTIONS /queryimage/query - 200 - 0.32ms
+2025-11-12 22:33:15,498 [INFO] 🦙 Running Ollama model: mistral
+2025-11-12 22:33:34,707 [INFO] [SUCCESS] Query: What is dimensions of specific heat? | Answer: The dimension of specific heat is [ML^(-1)T^(-2)K^-1]. In SI units, it's usually
+2025-11-12 22:33:35,232 [INFO] Use pytorch device_name: mps
+2025-11-12 22:33:35,233 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-12 22:33:44,024 [INFO] POST /queryimage/query - 200 - 33068.98ms
+2025-11-12 22:33:45,610 [INFO] GET /conversations/chat/691177673842d26bbf7a093d - 200 - 1547.6ms
+2025-11-12 22:33:46,343 [INFO] GET /upload/list/selected - 200 - 519.77ms
+2025-11-12 22:34:19,674 [INFO] OPTIONS /auth/me - 200 - 1.37ms
+2025-11-12 22:34:19,680 [INFO] OPTIONS /auth/me - 200 - 1.36ms
+2025-11-12 22:34:19,680 [INFO] OPTIONS /auth/me - 200 - 1.47ms
+2025-11-12 22:34:19,681 [INFO] OPTIONS /auth/me - 200 - 1.87ms
+2025-11-12 22:34:27,584 [INFO] GET /auth/me - 200 - 7885.59ms
+2025-11-12 22:34:28,611 [INFO] GET /auth/me - 200 - 8911.81ms
+2025-11-12 22:34:28,612 [INFO] GET /auth/me - 200 - 8905.69ms
+2025-11-12 22:34:30,712 [INFO] GET /auth/me - 200 - 11030.85ms
+2025-11-12 22:34:34,000 [INFO] OPTIONS /auth/me - 200 - 0.29ms
+2025-11-12 22:34:34,008 [INFO] OPTIONS /auth/me - 200 - 0.69ms
+2025-11-12 22:34:34,009 [INFO] OPTIONS /auth/me - 200 - 0.64ms
+2025-11-12 22:34:34,012 [INFO] OPTIONS /auth/me - 200 - 1.37ms
+2025-11-12 22:34:39,013 [ERROR] Exception in callback H11Protocol.timeout_keep_alive_handler()
+handle: <TimerHandle when=1465290.5804685 H11Protocol.timeout_keep_alive_handler()>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 363, in timeout_keep_alive_handler
+    self.conn.send(event)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 538, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 563, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 284, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 291, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 309, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+    ...<3 lines>...
+    ) from None
+h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role=SERVER and state=SEND_RESPONSE
+2025-11-12 22:34:39,308 [INFO] GET /auth/me - 200 - 5297.06ms
+2025-11-12 22:34:39,369 [INFO] GET /auth/me - 200 - 5356.29ms
+2025-11-12 22:35:00,358 [INFO] GET /conversations/chats/teacher/student - 200 - 20962.85ms
+2025-11-12 22:35:01,594 [INFO] GET /auth/me - 200 - 27590.95ms
+2025-11-12 22:35:02,642 [INFO] GET /auth/me - 200 - 28630.85ms
+2025-11-12 22:35:04,186 [INFO] GET /students/690860e3489b114c676d005d - 200 - 24790.41ms
+2025-11-12 22:35:05,435 [INFO] OPTIONS /auth/me - 200 - 1.55ms
+2025-11-12 22:35:05,436 [INFO] OPTIONS /auth/me - 200 - 1.26ms
+2025-11-12 22:35:05,436 [INFO] OPTIONS /auth/me - 200 - 1.48ms
+2025-11-12 22:35:05,506 [INFO] OPTIONS /auth/me - 200 - 0.22ms
+2025-11-12 22:35:06,466 [INFO] GET /auth/me - 200 - 27151.03ms
+2025-11-12 22:35:06,467 [INFO] GET /auth/me - 200 - 1029.29ms
+2025-11-12 22:35:06,540 [INFO] GET /auth/me - 200 - 1099.49ms
+2025-11-12 22:35:06,541 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 27147.18ms
+2025-11-12 22:35:06,742 [INFO] GET /conversations/chats/teacher/student - 200 - 253.97ms
+2025-11-12 22:35:06,863 [INFO] GET /conversations/chats/teacher/student - 200 - 303.28ms
+2025-11-12 22:35:07,332 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 842.09ms
+2025-11-12 22:35:07,989 [INFO] GET /students/690860e3489b114c676d005d - 200 - 1498.61ms
+2025-11-12 22:35:08,041 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 1297.51ms
+2025-11-12 22:35:08,340 [INFO] GET /students/690860e3489b114c676d005d - 200 - 1475.69ms
+2025-11-12 22:35:08,672 [INFO] GET /auth/me - 200 - 3233.9ms
+2025-11-12 22:35:08,672 [INFO] GET /auth/me - 200 - 3164.36ms
+2025-11-12 22:35:09,347 [INFO] GET /conversations/chats/teacher/student - 200 - 661.84ms
+2025-11-12 22:35:09,349 [INFO] GET /conversations/chats/teacher/student - 200 - 643.54ms
+2025-11-12 22:35:12,540 [INFO] GET /students/690860e3489b114c676d005d - 200 - 3852.42ms
+2025-11-12 22:35:12,541 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 3834.71ms
+2025-11-12 22:35:12,541 [INFO] GET /students/690860e3489b114c676d005d - 200 - 3834.33ms
+2025-11-12 22:35:14,300 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 5614.17ms
+2025-11-12 22:35:18,304 [INFO] GET /conversations/chat/691177673842d26bbf7a093d - 200 - 3809.54ms
+2025-11-12 22:35:19,058 [INFO] GET /upload/list/selected - 200 - 359.87ms
+2025-11-12 22:35:26,257 [INFO] GET /conversations/chat/691177673842d26bbf7a093d - 200 - 9319.35ms
+2025-11-12 22:35:28,003 [INFO] GET /upload/list/selected - 200 - 1530.82ms
+2025-11-12 22:35:50,304 [INFO] OPTIONS /querylang/query/ - 200 - 3.52ms
+2025-11-12 22:35:50,309 [INFO] POST /querylang/query/ - 307 - 1.25ms
+2025-11-12 22:35:50,319 [INFO] OPTIONS /querylang/query - 200 - 0.41ms
+2025-11-12 22:35:50,327 [ERROR] POST /querylang/query - ERROR - 6.93ms - process_query_with_lang_graph() got an unexpected keyword argument 'student_id'
+2025-11-12 22:37:07,199 [INFO] Use pytorch device_name: mps
+2025-11-12 22:37:07,199 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:37:25,443 [INFO] Use pytorch device_name: mps
+2025-11-12 22:37:25,443 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:37:42,182 [WARNING] '(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: 619cf3ec-60d4-4e0a-9fa2-118360237474)')' thrown while requesting HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json
+2025-11-12 22:37:42,183 [WARNING] Retrying in 1s [Retry 1/5].
+2025-11-12 22:37:55,093 [INFO] Loading faiss.
+2025-11-12 22:37:55,145 [INFO] Successfully loaded faiss.
+2025-11-12 22:37:55,153 [INFO] Use pytorch device_name: mps
+2025-11-12 22:37:55,153 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-12 22:38:04,186 [INFO] 🧠 Using device: MPS
+2025-11-12 22:39:18,175 [INFO] OPTIONS /querylang/query/ - 200 - 60.1ms
+2025-11-12 22:39:18,180 [INFO] POST /querylang/query/ - 307 - 0.61ms
+2025-11-12 22:39:18,184 [INFO] OPTIONS /querylang/query - 200 - 0.3ms
+2025-11-12 22:39:24,089 [INFO] 🦙 Running Ollama model: mistral
+2025-11-12 22:39:49,200 [INFO] Use pytorch device_name: mps
+2025-11-12 22:39:49,202 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-12 22:39:57,530 [INFO] POST /querylang/query - 200 - 39344.6ms
+2025-11-12 22:39:57,582 [INFO] GET /conversations/chat/undefined - 500 - 2.5ms
+2025-11-12 22:41:02,103 [INFO] Use pytorch device_name: mps
+2025-11-12 22:41:02,103 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-12 22:41:07,982 [INFO] Loading faiss.
+2025-11-12 22:41:08,021 [INFO] Successfully loaded faiss.
+2025-11-12 22:41:08,029 [INFO] Use pytorch device_name: mps
+2025-11-12 22:41:08,030 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-12 22:41:15,116 [INFO] 🧠 Using device: MPS
+2025-11-12 22:41:21,550 [INFO] OPTIONS /auth/me - 200 - 3.5ms
+2025-11-12 22:41:21,550 [INFO] OPTIONS /auth/me - 200 - 3.83ms
+2025-11-12 22:41:21,551 [INFO] OPTIONS /auth/me - 200 - 1.91ms
+2025-11-12 22:41:21,551 [INFO] OPTIONS /auth/me - 200 - 1.98ms
+2025-11-12 22:41:24,326 [INFO] GET /auth/me - 200 - 2745.22ms
+2025-11-12 22:41:24,423 [INFO] GET /auth/me - 200 - 2868.82ms
+2025-11-12 22:41:24,865 [INFO] GET /conversations/chats/teacher/student - 200 - 323.03ms
+2025-11-12 22:41:24,895 [INFO] GET /conversations/chats/teacher/student - 200 - 353.82ms
+2025-11-12 22:41:25,139 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 528.01ms
+2025-11-12 22:41:25,145 [INFO] GET /auth/me - 200 - 3561.46ms
+2025-11-12 22:41:25,186 [INFO] GET /students/690860e3489b114c676d005d - 200 - 319.06ms
+2025-11-12 22:41:25,340 [INFO] GET /auth/me - 200 - 3786.02ms
+2025-11-12 22:41:25,505 [INFO] GET /conversations/chats/teacher/student - 200 - 292.2ms
+2025-11-12 22:41:25,506 [INFO] GET /conversations/chats/teacher/student - 200 - 129.48ms
+2025-11-12 22:41:25,669 [INFO] GET /students/690860e3489b114c676d005d - 200 - 456.51ms
+2025-11-12 22:41:25,670 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 457.38ms
+2025-11-12 22:41:25,893 [INFO] GET /students/690860e3489b114c676d005d - 200 - 382.5ms
+2025-11-12 22:41:25,893 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 384.64ms
+2025-11-12 22:41:26,171 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 1560.13ms
+2025-11-12 22:41:26,209 [INFO] GET /students/690860e3489b114c676d005d - 200 - 1251.78ms
+2025-11-12 22:41:29,222 [INFO] GET /conversations/chat/691177673842d26bbf7a093d - 200 - 1636.59ms
+2025-11-12 22:41:29,552 [INFO] GET /upload/list/selected - 200 - 165.23ms
+2025-11-13 00:16:54,578 [INFO] OPTIONS /auth/me - 200 - 28.67ms
+2025-11-13 00:16:54,675 [INFO] OPTIONS /auth/me - 200 - 67.03ms
+2025-11-13 00:16:54,675 [INFO] OPTIONS /auth/me - 200 - 65.88ms
+2025-11-13 00:16:55,325 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 716.23ms
+2025-11-13 00:16:55,329 [INFO] OPTIONS /auth/me - 200 - 0.14ms
+2025-11-13 00:16:55,363 [INFO] GET /students/690860e3489b114c676d005d - 200 - 754.57ms
+2025-11-13 00:16:55,380 [INFO] GET /students/690860e3489b114c676d005d - 200 - 699.52ms
+2025-11-13 00:16:55,380 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 700.05ms
+2025-11-13 00:16:55,420 [INFO] GET /conversations/chats/teacher/student - 200 - 741.8ms
+2025-11-13 00:16:55,437 [INFO] GET /conversations/chats/teacher/student - 200 - 829.04ms
+2025-11-13 00:16:55,551 [INFO] GET /auth/me - 200 - 185.78ms
+2025-11-13 00:16:55,571 [INFO] GET /auth/me - 200 - 187.33ms
+2025-11-13 00:16:55,837 [INFO] GET /auth/me - 200 - 452.93ms
+2025-11-13 00:16:55,837 [INFO] GET /auth/me - 200 - 506.06ms
+2025-11-13 00:17:17,900 [INFO] OPTIONS /auth/me - 200 - 10.54ms
+2025-11-13 00:17:17,916 [INFO] OPTIONS /auth/me - 200 - 14.63ms
+2025-11-13 00:17:17,918 [INFO] OPTIONS /auth/me - 200 - 15.81ms
+2025-11-13 00:17:18,014 [INFO] GET /conversations/chats/teacher/student - 200 - 112.15ms
+2025-11-13 00:17:18,015 [INFO] GET /conversations/chats/teacher/student - 200 - 93.61ms
+2025-11-13 00:17:18,021 [INFO] OPTIONS /auth/me - 200 - 3.22ms
+2025-11-13 00:17:18,104 [INFO] GET /students/690860e3489b114c676d005d - 200 - 201.87ms
+2025-11-13 00:17:18,134 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 208.9ms
+2025-11-13 00:17:18,134 [INFO] GET /students/690860e3489b114c676d005d - 200 - 208.67ms
+2025-11-13 00:17:18,134 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 232.87ms
+2025-11-13 00:17:18,188 [INFO] GET /auth/me - 200 - 170.16ms
+2025-11-13 00:17:18,196 [INFO] GET /auth/me - 200 - 172.12ms
+2025-11-13 00:17:18,297 [INFO] GET /auth/me - 200 - 192.47ms
+2025-11-13 00:17:18,343 [INFO] GET /auth/me - 200 - 204.86ms
+2025-11-13 00:17:18,780 [INFO] OPTIONS /auth/me - 200 - 0.28ms
+2025-11-13 00:17:18,793 [INFO] OPTIONS /auth/me - 200 - 3.75ms
+2025-11-13 00:17:18,793 [INFO] OPTIONS /auth/me - 200 - 3.75ms
+2025-11-13 00:17:18,854 [INFO] GET /conversations/chats/teacher/student - 200 - 65.04ms
+2025-11-13 00:17:18,871 [INFO] GET /conversations/chats/teacher/student - 200 - 75.51ms
+2025-11-13 00:17:18,873 [INFO] OPTIONS /auth/me - 200 - 0.31ms
+2025-11-13 00:17:18,961 [INFO] GET /auth/me - 200 - 176.75ms
+2025-11-13 00:17:18,971 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 181.44ms
+2025-11-13 00:17:18,972 [INFO] GET /students/690860e3489b114c676d005d - 200 - 182.48ms
+2025-11-13 00:17:18,980 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 184.2ms
+2025-11-13 00:17:19,027 [INFO] GET /auth/me - 200 - 152.68ms
+2025-11-13 00:17:19,035 [INFO] GET /students/690860e3489b114c676d005d - 200 - 179.45ms
+2025-11-13 00:17:19,142 [INFO] GET /auth/me - 200 - 178.81ms
+2025-11-13 00:17:19,146 [INFO] GET /auth/me - 200 - 172.19ms
+2025-11-13 00:17:38,362 [INFO] OPTIONS /auth/me - 200 - 22.54ms
+2025-11-13 00:17:38,394 [INFO] OPTIONS /auth/me - 200 - 3.14ms
+2025-11-13 00:17:38,395 [INFO] OPTIONS /auth/me - 200 - 3.28ms
+2025-11-13 00:17:38,458 [INFO] GET /conversations/chats/teacher/student - 200 - 65.26ms
+2025-11-13 00:17:38,461 [INFO] GET /conversations/chats/teacher/student - 200 - 76.89ms
+2025-11-13 00:17:38,463 [INFO] OPTIONS /auth/me - 200 - 1.07ms
+2025-11-13 00:17:38,558 [INFO] GET /students/690860e3489b114c676d005d - 200 - 161.03ms
+2025-11-13 00:17:38,561 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 170.09ms
+2025-11-13 00:17:38,572 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 175.48ms
+2025-11-13 00:17:38,574 [INFO] GET /students/690860e3489b114c676d005d - 200 - 183.2ms
+2025-11-13 00:17:38,651 [INFO] GET /auth/me - 200 - 185.69ms
+2025-11-13 00:17:38,661 [INFO] GET /auth/me - 200 - 197.26ms
+2025-11-13 00:17:38,746 [INFO] GET /auth/me - 200 - 187.25ms
+2025-11-13 00:17:38,748 [INFO] GET /auth/me - 200 - 185.97ms
+2025-11-13 00:17:42,137 [INFO] OPTIONS /auth/me - 200 - 23.91ms
+2025-11-13 00:17:42,153 [INFO] OPTIONS /auth/me - 200 - 9.05ms
+2025-11-13 00:17:42,153 [INFO] OPTIONS /auth/me - 200 - 8.5ms
+2025-11-13 00:17:42,261 [INFO] GET /conversations/chats/teacher/student - 200 - 107.26ms
+2025-11-13 00:17:42,263 [INFO] GET /conversations/chats/teacher/student - 200 - 120.05ms
+2025-11-13 00:17:42,265 [INFO] OPTIONS /auth/me - 200 - 0.67ms
+2025-11-13 00:17:42,362 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 218.14ms
+2025-11-13 00:17:42,373 [INFO] GET /students/690860e3489b114c676d005d - 200 - 228.88ms
+2025-11-13 00:17:42,376 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 220.0ms
+2025-11-13 00:17:42,391 [INFO] GET /students/690860e3489b114c676d005d - 200 - 235.01ms
+2025-11-13 00:17:42,438 [INFO] GET /auth/me - 200 - 167.87ms
+2025-11-13 00:17:42,451 [INFO] GET /auth/me - 200 - 185.58ms
+2025-11-13 00:17:42,533 [INFO] GET /auth/me - 200 - 170.49ms
+2025-11-13 00:17:42,563 [INFO] GET /auth/me - 200 - 188.84ms
+2025-11-13 00:17:55,455 [INFO] OPTIONS /auth/me - 200 - 18.5ms
+2025-11-13 00:17:55,458 [INFO] OPTIONS /auth/me - 200 - 10.95ms
+2025-11-13 00:17:55,459 [INFO] OPTIONS /auth/me - 200 - 10.99ms
+2025-11-13 00:17:55,459 [INFO] OPTIONS /auth/me - 200 - 10.58ms
+2025-11-13 00:17:55,707 [INFO] GET /auth/me - 200 - 216.0ms
+2025-11-13 00:17:55,707 [INFO] GET /auth/me - 200 - 180.7ms
+2025-11-13 00:17:55,710 [INFO] GET /auth/me - 200 - 183.37ms
+2025-11-13 00:17:55,714 [INFO] GET /auth/me - 200 - 187.83ms
+2025-11-13 00:17:55,783 [INFO] GET /conversations/chats/teacher/student - 200 - 57.45ms
+2025-11-13 00:17:55,798 [INFO] GET /conversations/chats/teacher/student - 200 - 55.81ms
+2025-11-13 00:17:55,860 [INFO] GET /conversations/chats/teacher/student - 200 - 75.01ms
+2025-11-13 00:17:55,904 [INFO] GET /students/690860e3489b114c676d005d - 200 - 175.84ms
+2025-11-13 00:17:55,925 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 196.94ms
+2025-11-13 00:17:55,928 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 183.77ms
+2025-11-13 00:17:56,013 [INFO] GET /students/690860e3489b114c676d005d - 200 - 267.67ms
+2025-11-13 00:17:56,016 [INFO] GET /conversations/chats/teacher/student - 200 - 109.93ms
+2025-11-13 00:17:56,072 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 267.66ms
+2025-11-13 00:17:56,130 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 201.25ms
+2025-11-13 00:17:56,130 [INFO] GET /students/690860e3489b114c676d005d - 200 - 251.43ms
+2025-11-13 00:17:56,130 [INFO] GET /students/690860e3489b114c676d005d - 200 - 200.43ms
+2025-11-13 00:17:57,925 [INFO] GET /conversations/chat/691177673842d26bbf7a093d - 200 - 505.61ms
+2025-11-13 00:18:58,932 [INFO] OPTIONS /auth/me - 200 - 5.25ms
+2025-11-13 00:18:58,939 [INFO] OPTIONS /auth/me - 200 - 0.68ms
+2025-11-13 00:18:58,939 [INFO] OPTIONS /auth/me - 200 - 0.83ms
+2025-11-13 00:18:58,947 [INFO] OPTIONS /auth/me - 200 - 2.3ms
+2025-11-13 00:18:59,090 [INFO] GET /conversations/chats/teacher/student - 200 - 123.23ms
+2025-11-13 00:18:59,095 [INFO] GET /conversations/chats/teacher/student - 200 - 131.08ms
+2025-11-13 00:18:59,188 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 227.99ms
+2025-11-13 00:18:59,245 [INFO] GET /auth/me - 200 - 274.78ms
+2025-11-13 00:18:59,285 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 324.78ms
+2025-11-13 00:18:59,287 [INFO] GET /auth/me - 200 - 316.51ms
+2025-11-13 00:18:59,288 [INFO] GET /students/690860e3489b114c676d005d - 200 - 195.64ms
+2025-11-13 00:18:59,334 [INFO] GET /students/690860e3489b114c676d005d - 200 - 235.49ms
+2025-11-13 00:18:59,459 [INFO] GET /auth/me - 200 - 171.6ms
+2025-11-13 00:18:59,460 [INFO] GET /auth/me - 200 - 236.53ms
+2025-11-13 00:19:04,367 [INFO] OPTIONS /auth/me - 200 - 8.11ms
+2025-11-13 00:19:04,369 [INFO] OPTIONS /auth/me - 200 - 9.25ms
+2025-11-13 00:19:04,375 [INFO] OPTIONS /auth/me - 200 - 10.8ms
+2025-11-13 00:19:04,379 [INFO] OPTIONS /auth/me - 200 - 5.82ms
+2025-11-13 00:19:04,548 [INFO] GET /auth/me - 200 - 163.99ms
+2025-11-13 00:19:04,562 [INFO] GET /auth/me - 200 - 177.61ms
+2025-11-13 00:19:04,563 [INFO] GET /auth/me - 200 - 179.06ms
+2025-11-13 00:19:04,578 [INFO] GET /auth/me - 200 - 181.67ms
+2025-11-13 00:19:04,787 [INFO] GET /conversations/chats/teacher/student - 200 - 188.5ms
+2025-11-13 00:19:04,788 [INFO] GET /conversations/chats/teacher/student - 200 - 215.22ms
+2025-11-13 00:19:04,844 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 271.62ms
+2025-11-13 00:19:04,846 [INFO] GET /students/690860e3489b114c676d005d - 200 - 271.83ms
+2025-11-13 00:19:04,852 [INFO] GET /students/690860e3489b114c676d005d - 200 - 248.17ms
+2025-11-13 00:19:04,853 [INFO] GET /conversations/chats/teacher/student - 200 - 60.52ms
+2025-11-13 00:19:04,855 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 252.13ms
+2025-11-13 00:19:04,904 [INFO] GET /conversations/chats/teacher/student - 200 - 53.56ms
+2025-11-13 00:19:04,961 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 167.95ms
+2025-11-13 00:19:05,015 [INFO] GET /students/690860e3489b114c676d005d - 200 - 166.48ms
+2025-11-13 00:19:05,015 [INFO] GET /students/690860e3489b114c676d005d - 200 - 160.49ms
+2025-11-13 00:19:05,021 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 166.26ms
+2025-11-13 00:19:06,451 [INFO] GET /conversations/chat/691177673842d26bbf7a093d - 200 - 586.28ms
+2025-11-13 00:19:22,782 [INFO] OPTIONS /auth/me - 200 - 6.63ms
+2025-11-13 00:19:22,830 [INFO] OPTIONS /auth/me - 200 - 11.69ms
+2025-11-13 00:19:22,831 [INFO] OPTIONS /auth/me - 200 - 11.17ms
+2025-11-13 00:19:22,914 [INFO] GET /conversations/chats/teacher/student - 200 - 85.88ms
+2025-11-13 00:19:22,917 [INFO] GET /conversations/chats/teacher/student - 200 - 99.6ms
+2025-11-13 00:19:22,919 [INFO] OPTIONS /auth/me - 200 - 0.69ms
+2025-11-13 00:19:23,046 [INFO] GET /students/690860e3489b114c676d005d - 200 - 226.76ms
+2025-11-13 00:19:23,060 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 241.2ms
+2025-11-13 00:19:23,060 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 223.69ms
+2025-11-13 00:19:23,060 [INFO] GET /students/690860e3489b114c676d005d - 200 - 222.59ms
+2025-11-13 00:19:23,131 [INFO] GET /auth/me - 200 - 207.71ms
+2025-11-13 00:19:23,132 [INFO] GET /auth/me - 200 - 212.0ms
+2025-11-13 00:19:23,251 [INFO] GET /auth/me - 200 - 172.43ms
+2025-11-13 00:19:23,304 [INFO] GET /auth/me - 200 - 223.05ms
+2025-11-13 00:19:24,820 [INFO] OPTIONS /auth/me - 200 - 1.73ms
+2025-11-13 00:19:24,831 [INFO] OPTIONS /auth/me - 200 - 3.95ms
+2025-11-13 00:19:24,833 [INFO] OPTIONS /auth/me - 200 - 4.77ms
+2025-11-13 00:19:24,900 [INFO] GET /conversations/chats/teacher/student - 200 - 78.13ms
+2025-11-13 00:19:24,913 [INFO] GET /conversations/chats/teacher/student - 200 - 76.8ms
+2025-11-13 00:19:24,915 [INFO] OPTIONS /auth/me - 200 - 0.18ms
+2025-11-13 00:19:25,016 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 180.25ms
+2025-11-13 00:19:25,017 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 190.77ms
+2025-11-13 00:19:25,022 [INFO] GET /auth/me - 200 - 197.81ms
+2025-11-13 00:19:25,025 [INFO] GET /students/690860e3489b114c676d005d - 200 - 196.64ms
+2025-11-13 00:19:25,028 [INFO] OPTIONS /auth/me - 200 - 0.98ms
+2025-11-13 00:19:25,073 [INFO] GET /auth/me - 200 - 156.93ms
+2025-11-13 00:19:25,080 [INFO] GET /students/690860e3489b114c676d005d - 200 - 178.04ms
+2025-11-13 00:19:25,081 [INFO] GET /conversations/chats/teacher/student - 200 - 51.59ms
+2025-11-13 00:19:25,082 [INFO] OPTIONS /auth/me - 200 - 0.49ms
+2025-11-13 00:19:25,083 [INFO] OPTIONS /auth/me - 200 - 0.39ms
+2025-11-13 00:19:25,133 [INFO] GET /conversations/chats/teacher/student - 200 - 49.16ms
+2025-11-13 00:19:25,197 [INFO] GET /auth/me - 200 - 178.53ms
+2025-11-13 00:19:25,198 [INFO] OPTIONS /auth/me - 200 - 0.16ms
+2025-11-13 00:19:25,214 [INFO] GET /auth/me - 200 - 193.21ms
+2025-11-13 00:19:25,214 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 186.25ms
+2025-11-13 00:19:25,217 [INFO] GET /students/690860e3489b114c676d005d - 200 - 142.96ms
+2025-11-13 00:19:25,266 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 181.93ms
+2025-11-13 00:19:25,324 [INFO] GET /students/690860e3489b114c676d005d - 200 - 188.56ms
+2025-11-13 00:19:25,371 [INFO] GET /auth/me - 200 - 152.76ms
+2025-11-13 00:19:25,372 [INFO] GET /auth/me - 200 - 172.39ms
+2025-11-13 00:19:25,387 [INFO] GET /auth/me - 200 - 170.2ms
+2025-11-13 00:19:25,387 [INFO] GET /auth/me - 200 - 171.19ms
+2025-11-13 00:19:49,166 [INFO] OPTIONS /auth/me - 200 - 7.62ms
+2025-11-13 00:19:49,640 [INFO] OPTIONS /auth/me - 200 - 446.36ms
+2025-11-13 00:19:49,647 [INFO] OPTIONS /auth/me - 200 - 452.61ms
+2025-11-13 00:19:49,706 [INFO] GET /conversations/chats/teacher/student - 200 - 544.2ms
+2025-11-13 00:19:49,714 [INFO] OPTIONS /auth/me - 200 - 1.36ms
+2025-11-13 00:19:49,716 [INFO] GET /conversations/chats/teacher/student - 200 - 63.88ms
+2025-11-13 00:19:49,821 [INFO] GET /students/690860e3489b114c676d005d - 200 - 659.33ms
+2025-11-13 00:19:49,865 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 201.53ms
+2025-11-13 00:19:49,870 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 707.95ms
+2025-11-13 00:19:49,875 [INFO] GET /students/690860e3489b114c676d005d - 200 - 210.17ms
+2025-11-13 00:19:49,911 [INFO] GET /auth/me - 200 - 188.77ms
+2025-11-13 00:19:49,918 [INFO] GET /auth/me - 200 - 195.93ms
+2025-11-13 00:19:50,002 [INFO] GET /auth/me - 200 - 176.83ms
+2025-11-13 00:19:50,017 [INFO] GET /auth/me - 200 - 149.8ms
+2025-11-13 00:19:50,830 [INFO] OPTIONS /auth/me - 200 - 1.21ms
+2025-11-13 00:19:50,846 [INFO] OPTIONS /auth/me - 200 - 1.18ms
+2025-11-13 00:19:50,846 [INFO] OPTIONS /auth/me - 200 - 1.31ms
+2025-11-13 00:19:50,908 [INFO] GET /conversations/chats/teacher/student - 200 - 70.33ms
+2025-11-13 00:19:50,919 [INFO] GET /conversations/chats/teacher/student - 200 - 69.74ms
+2025-11-13 00:19:50,922 [INFO] OPTIONS /auth/me - 200 - 0.28ms
+2025-11-13 00:19:50,992 [INFO] GET /auth/me - 200 - 157.99ms
+2025-11-13 00:19:51,011 [INFO] GET /students/690860e3489b114c676d005d - 200 - 166.55ms
+2025-11-13 00:19:51,026 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 182.32ms
+2025-11-13 00:19:51,033 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 182.41ms
+2025-11-13 00:19:51,093 [INFO] GET /auth/me - 200 - 169.4ms
+2025-11-13 00:19:51,102 [INFO] GET /students/690860e3489b114c676d005d - 200 - 191.85ms
+2025-11-13 00:19:51,158 [INFO] GET /auth/me - 200 - 164.29ms
+2025-11-13 00:19:51,161 [INFO] GET /auth/me - 200 - 148.51ms
+2025-11-13 00:19:57,111 [INFO] OPTIONS /auth/me - 200 - 2.58ms
+2025-11-13 00:19:57,112 [INFO] OPTIONS /auth/me - 200 - 3.21ms
+2025-11-13 00:19:57,114 [INFO] OPTIONS /auth/me - 200 - 3.94ms
+2025-11-13 00:19:57,115 [INFO] OPTIONS /auth/me - 200 - 2.84ms
+2025-11-13 00:19:57,281 [INFO] GET /auth/me - 200 - 164.02ms
+2025-11-13 00:19:57,299 [INFO] GET /auth/me - 200 - 167.04ms
+2025-11-13 00:19:57,301 [INFO] GET /auth/me - 200 - 183.23ms
+2025-11-13 00:19:57,332 [INFO] GET /auth/me - 200 - 203.15ms
+2025-11-13 00:19:57,350 [INFO] GET /conversations/chats/teacher/student - 200 - 56.65ms
+2025-11-13 00:19:57,366 [INFO] GET /conversations/chats/teacher/student - 200 - 53.15ms
+2025-11-13 00:19:57,407 [INFO] GET /conversations/chats/teacher/student - 200 - 52.77ms
+2025-11-13 00:19:57,445 [INFO] GET /students/690860e3489b114c676d005d - 200 - 147.55ms
+2025-11-13 00:19:57,456 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 160.81ms
+2025-11-13 00:19:57,477 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 163.04ms
+2025-11-13 00:19:57,485 [INFO] GET /students/690860e3489b114c676d005d - 200 - 152.57ms
+2025-11-13 00:19:57,501 [INFO] GET /conversations/chats/teacher/student - 200 - 54.01ms
+2025-11-13 00:19:57,541 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 173.9ms
+2025-11-13 00:19:57,546 [INFO] GET /students/690860e3489b114c676d005d - 200 - 137.95ms
+2025-11-13 00:19:57,643 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 185.39ms
+2025-11-13 00:19:57,650 [INFO] GET /students/690860e3489b114c676d005d - 200 - 170.94ms
+2025-11-13 00:19:59,362 [INFO] GET /conversations/chat/691177673842d26bbf7a093d - 200 - 684.37ms
+2025-11-13 00:21:09,376 [INFO] OPTIONS /auth/me - 200 - 4.9ms
+2025-11-13 00:21:09,434 [INFO] OPTIONS /auth/me - 200 - 40.9ms
+2025-11-13 00:21:09,437 [INFO] OPTIONS /auth/me - 200 - 1.16ms
+2025-11-13 00:21:09,493 [INFO] GET /conversations/chats/teacher/student - 200 - 99.96ms
+2025-11-13 00:21:09,509 [INFO] GET /conversations/chats/teacher/student - 200 - 68.34ms
+2025-11-13 00:21:09,511 [INFO] OPTIONS /auth/me - 200 - 0.49ms
+2025-11-13 00:21:09,611 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 217.4ms
+2025-11-13 00:21:09,611 [INFO] GET /auth/me - 200 - 185.09ms
+2025-11-13 00:21:09,613 [INFO] GET /students/690860e3489b114c676d005d - 200 - 218.76ms
+2025-11-13 00:21:09,620 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 176.61ms
+2025-11-13 00:21:09,666 [INFO] GET /students/690860e3489b114c676d005d - 200 - 170.49ms
+2025-11-13 00:21:09,669 [INFO] GET /auth/me - 200 - 155.32ms
+2025-11-13 00:21:09,676 [INFO] GET /upload/list/selected - 200 - 61.59ms
+2025-11-13 00:21:09,777 [INFO] GET /auth/me - 200 - 162.27ms
+2025-11-13 00:21:09,782 [INFO] GET /auth/me - 200 - 162.6ms
+2025-11-13 00:21:09,977 [INFO] GET /conversations/chats/teacher/student - 200 - 59.08ms
+2025-11-13 00:21:10,101 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 182.55ms
+2025-11-13 00:21:10,102 [INFO] GET /students/690860e3489b114c676d005d - 200 - 183.29ms
+2025-11-13 00:21:10,170 [INFO] GET /conversations/chats/teacher/student - 200 - 89.1ms
+2025-11-13 00:21:10,174 [INFO] GET /conversations/chats/teacher/student - 200 - 66.37ms
+2025-11-13 00:21:10,242 [INFO] GET /conversations/chats/teacher/student - 200 - 70.42ms
+2025-11-13 00:21:10,280 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 197.84ms
+2025-11-13 00:21:10,280 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 171.66ms
+2025-11-13 00:21:10,300 [INFO] GET /students/690860e3489b114c676d005d - 200 - 191.46ms
+2025-11-13 00:21:10,301 [INFO] GET /students/690860e3489b114c676d005d - 200 - 218.18ms
+2025-11-13 00:21:10,349 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 172.18ms
+2025-11-13 00:21:10,395 [INFO] GET /students/690860e3489b114c676d005d - 200 - 150.78ms
+2025-11-13 00:52:40,857 [INFO] OPTIONS /auth/me - 200 - 8.97ms
+2025-11-13 00:52:40,862 [INFO] OPTIONS /auth/me - 200 - 11.77ms
+2025-11-13 00:52:40,862 [INFO] OPTIONS /auth/me - 200 - 11.41ms
+2025-11-13 00:52:40,866 [INFO] OPTIONS /auth/me - 200 - 11.15ms
+2025-11-13 00:52:41,114 [INFO] GET /auth/me - 200 - 239.26ms
+2025-11-13 00:52:41,115 [INFO] GET /auth/me - 200 - 194.99ms
+2025-11-13 00:52:41,120 [INFO] GET /auth/me - 200 - 244.45ms
+2025-11-13 00:52:41,121 [INFO] GET /auth/me - 200 - 245.83ms
+2025-11-13 00:52:41,193 [INFO] GET /conversations/chats/teacher/student - 200 - 65.01ms
+2025-11-13 00:52:41,206 [INFO] GET /conversations/chats/teacher/student - 200 - 63.73ms
+2025-11-13 00:52:41,257 [INFO] GET /conversations/chats/teacher/student - 200 - 62.99ms
+2025-11-13 00:52:41,326 [INFO] GET /students/690860e3489b114c676d005d - 200 - 196.66ms
+2025-11-13 00:52:41,327 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 183.09ms
+2025-11-13 00:52:41,328 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 198.36ms
+2025-11-13 00:52:41,328 [INFO] GET /students/690860e3489b114c676d005d - 200 - 183.4ms
+2025-11-13 00:52:41,435 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 226.04ms
+2025-11-13 00:52:41,436 [INFO] GET /students/690860e3489b114c676d005d - 200 - 177.08ms
+2025-11-13 00:52:41,437 [INFO] GET /conversations/chats/teacher/student - 200 - 107.93ms
+2025-11-13 00:52:41,555 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 225.43ms
+2025-11-13 00:52:41,560 [INFO] GET /students/690860e3489b114c676d005d - 200 - 229.35ms
+2025-11-13 00:52:43,917 [INFO] GET /conversations/chat/691177673842d26bbf7a093d - 200 - 745.18ms
+2025-11-13 00:52:44,152 [INFO] GET /upload/list/selected - 200 - 90.9ms
+2025-11-13 00:59:02,302 [INFO] OPTIONS /auth/me - 200 - 1.16ms
+2025-11-13 00:59:02,303 [INFO] OPTIONS /auth/me - 200 - 1.84ms
+2025-11-13 00:59:02,303 [INFO] OPTIONS /auth/me - 200 - 2.05ms
+2025-11-13 00:59:02,305 [INFO] OPTIONS /auth/me - 200 - 3.05ms
+2025-11-13 00:59:02,469 [INFO] GET /auth/me - 200 - 155.24ms
+2025-11-13 00:59:02,476 [INFO] GET /auth/me - 200 - 168.65ms
+2025-11-13 00:59:02,480 [INFO] GET /auth/me - 200 - 168.69ms
+2025-11-13 00:59:02,482 [INFO] GET /auth/me - 200 - 168.61ms
+2025-11-13 00:59:02,546 [INFO] GET /conversations/chats/teacher/student - 200 - 60.99ms
+2025-11-13 00:59:02,549 [INFO] GET /conversations/chats/teacher/student - 200 - 46.55ms
+2025-11-13 00:59:02,608 [INFO] GET /conversations/chats/teacher/student - 200 - 60.44ms
+2025-11-13 00:59:02,654 [INFO] GET /students/690860e3489b114c676d005d - 200 - 166.38ms
+2025-11-13 00:59:02,655 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 167.81ms
+2025-11-13 00:59:02,713 [INFO] GET /students/690860e3489b114c676d005d - 200 - 209.24ms
+2025-11-13 00:59:02,716 [INFO] GET /conversations/chats/teacher/student - 200 - 60.06ms
+2025-11-13 00:59:02,718 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 213.98ms
+2025-11-13 00:59:02,718 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 168.47ms
+2025-11-13 00:59:02,771 [INFO] GET /students/690860e3489b114c676d005d - 200 - 162.03ms
+2025-11-13 00:59:02,844 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 186.79ms
+2025-11-13 00:59:02,898 [INFO] GET /students/690860e3489b114c676d005d - 200 - 183.49ms
+2025-11-13 00:59:04,705 [INFO] GET /conversations/chat/691177673842d26bbf7a093d - 200 - 521.88ms
+2025-11-13 00:59:04,899 [INFO] GET /upload/list/selected - 200 - 73.37ms
+2025-11-13 01:16:59,061 [INFO] OPTIONS /auth/me - 200 - 1.24ms
+2025-11-13 01:16:59,062 [INFO] OPTIONS /auth/me - 200 - 1.48ms
+2025-11-13 01:16:59,062 [INFO] OPTIONS /auth/me - 200 - 1.51ms
+2025-11-13 01:16:59,063 [INFO] OPTIONS /auth/me - 200 - 1.29ms
+2025-11-13 01:16:59,384 [INFO] GET /auth/me - 200 - 308.92ms
+2025-11-13 01:16:59,385 [INFO] GET /auth/me - 200 - 318.69ms
+2025-11-13 01:16:59,395 [INFO] GET /auth/me - 200 - 316.95ms
+2025-11-13 01:16:59,403 [INFO] GET /auth/me - 200 - 324.43ms
+2025-11-13 01:16:59,465 [INFO] GET /conversations/chats/teacher/student - 200 - 66.06ms
+2025-11-13 01:16:59,474 [INFO] GET /conversations/chats/teacher/student - 200 - 60.69ms
+2025-11-13 01:16:59,533 [INFO] GET /conversations/chats/teacher/student - 200 - 65.43ms
+2025-11-13 01:16:59,630 [INFO] GET /students/690860e3489b114c676d005d - 200 - 229.53ms
+2025-11-13 01:16:59,631 [INFO] GET /students/690860e3489b114c676d005d - 200 - 215.53ms
+2025-11-13 01:16:59,676 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 275.53ms
+2025-11-13 01:16:59,676 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 261.56ms
+2025-11-13 01:16:59,771 [INFO] GET /conversations/chats/teacher/student - 200 - 137.79ms
+2025-11-13 01:16:59,807 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 331.91ms
+2025-11-13 01:16:59,873 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 239.89ms
+2025-11-13 01:16:59,877 [INFO] GET /students/690860e3489b114c676d005d - 200 - 342.73ms
+2025-11-13 01:16:59,933 [INFO] GET /students/690860e3489b114c676d005d - 200 - 253.64ms
+2025-11-13 01:17:01,669 [INFO] GET /conversations/chat/691177673842d26bbf7a093d - 200 - 624.68ms
+2025-11-13 01:17:01,860 [INFO] GET /upload/list/selected - 200 - 71.87ms
+2025-11-13 01:22:22,525 [INFO] OPTIONS /auth/me - 200 - 2.96ms
+2025-11-13 01:22:22,550 [INFO] OPTIONS /auth/me - 200 - 11.13ms
+2025-11-13 01:22:22,555 [INFO] OPTIONS /auth/me - 200 - 7.09ms
+2025-11-13 01:22:22,617 [INFO] GET /conversations/chats/teacher/student - 200 - 81.71ms
+2025-11-13 01:22:22,638 [INFO] GET /conversations/chats/teacher/student - 200 - 75.34ms
+2025-11-13 01:22:22,645 [INFO] OPTIONS /auth/me - 200 - 0.67ms
+2025-11-13 01:22:22,816 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 268.88ms
+2025-11-13 01:22:22,830 [INFO] GET /auth/me - 200 - 274.84ms
+2025-11-13 01:22:22,833 [INFO] GET /students/690860e3489b114c676d005d - 200 - 285.82ms
+2025-11-13 01:22:22,834 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 270.53ms
+2025-11-13 01:22:22,883 [INFO] GET /auth/me - 200 - 235.09ms
+2025-11-13 01:22:22,899 [INFO] GET /students/690860e3489b114c676d005d - 200 - 278.5ms
+2025-11-13 01:22:22,899 [INFO] GET /upload/list/selected - 200 - 64.0ms
+2025-11-13 01:22:23,024 [INFO] GET /conversations/chats/teacher/student - 200 - 100.87ms
+2025-11-13 01:22:23,066 [INFO] GET /auth/me - 200 - 246.81ms
+2025-11-13 01:22:23,071 [INFO] GET /auth/me - 200 - 233.87ms
+2025-11-13 01:22:23,137 [INFO] GET /students/690860e3489b114c676d005d - 200 - 212.01ms
+2025-11-13 01:22:23,160 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 235.65ms
+2025-11-13 01:22:23,169 [INFO] GET /conversations/chats/teacher/student - 200 - 70.85ms
+2025-11-13 01:22:23,338 [INFO] GET /conversations/chats/teacher/student - 200 - 151.56ms
+2025-11-13 01:22:23,346 [INFO] GET /conversations/chats/teacher/student - 200 - 144.52ms
+2025-11-13 01:22:23,384 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 286.64ms
+2025-11-13 01:22:23,391 [INFO] GET /students/690860e3489b114c676d005d - 200 - 292.15ms
+2025-11-13 01:22:23,455 [INFO] GET /students/690860e3489b114c676d005d - 200 - 267.66ms
+2025-11-13 01:22:23,470 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 284.29ms
+2025-11-13 01:22:23,532 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 192.6ms
+2025-11-13 01:22:23,541 [INFO] GET /students/690860e3489b114c676d005d - 200 - 193.96ms
+2025-11-13 12:53:25,591 [INFO] Use pytorch device_name: mps
+2025-11-13 12:53:25,591 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-13 12:53:30,471 [INFO] Loading faiss.
+2025-11-13 12:53:30,637 [INFO] Successfully loaded faiss.
+2025-11-13 12:53:30,645 [INFO] Use pytorch device_name: mps
+2025-11-13 12:53:30,645 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-13 12:53:38,172 [INFO] 🧠 Using device: MPS

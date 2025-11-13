@@ -186,8 +186,8 @@ export const TeacherChatPage: React.FC = () => {
                   {conv.query && (
                     <div className="flex justify-end gap-2">
                       {conv.attached_media && (
-                        <div className="bg-baigeLight rounded-xl" onClick={() => window.open(conv.attached_media, '_blank')}>
-                          <img src={conv.attached_media} alt="Attached media" className="rounded-xl h-20 w-20" />
+                        <div className="bg-baigeLight rounded-xl w-16" onClick={() => window.open(conv.attached_media, '_blank')}>
+                          <img src={conv.attached_media} alt="Attached media" className="rounded-xl object-fit" />
                         </div>
                       )}
                       <div className={`bg-${conv?.user_id === user?._id ? "baigeLight" : "greenLight"} p-4 rounded-xl max-w-xl`}>
@@ -204,7 +204,7 @@ export const TeacherChatPage: React.FC = () => {
                             }
                         </h4>
                         {/* {conv.query} */}
-                        <EnhancedTextDisplay className="text-gray-800 text-sm whitespace-pre-line" content={conv.query} />
+                        <EnhancedTextDisplay className="text-gray-800 text-xs whitespace-pre-line" content={conv.query} />
                       </div>
                     </div>
                   )}
@@ -217,7 +217,7 @@ export const TeacherChatPage: React.FC = () => {
                           <h4 className="text-xs font-semibold text-gray-700 capitalize">{teacher_details?.name}</h4>
                           <i className="fi fi-rr-microchip-ai flex items-center text-xs"></i>
                         </div>
-                        <EnhancedTextDisplay className="text-gray-800 text-sm whitespace-pre-line" content={conv.answer} />
+                        <EnhancedTextDisplay className="text-gray-800 text-xs whitespace-pre-line" content={conv.answer} />
                       </div>
                       <div className="p-2">
                         <p className="text-gray-800 text-xs whitespace-pre-line">{conv.sources_used && conv.sources_used?.length} sources referenced</p>

@@ -20,6 +20,10 @@ module.exports = {
         "200": '50rem',
       },
       width: {
+        "84": "21rem",
+        "88": "22rem",
+        "92": "23rem",
+        "96": "24rem",
         "100": '25rem',
         "120": '30rem',
         "160": '40rem',
@@ -30,14 +34,10 @@ module.exports = {
         primary: 'var(--primary)',
         background: 'var(--background)',
         backgroundAlt: 'var(--background-alt)',
-        text: 'var(--text)',
-        primaryText: 'var(--primary-text)',
-        special: 'var(--text-special)',
+        bgDarkGreen: 'var(--background-dark-green)',
         violet: 'var(--violet)',
         card: 'var(--card)',
         textAlt: 'var(--text-muted)',
-        lightAccent: 'var(--accent)',
-        darkAccent: 'var(--accent)',
         error: 'var(--error)',
         sun: 'var(--sun)',
         moon: 'var(--moon)',
@@ -51,7 +51,25 @@ module.exports = {
         greenLight: 'var(--green-light)',
         redLight: 'var(--red-light)'
       },
-  
+      borderRadius: {
+        '4xl': '2rem',
+        '6xl': '3rem',
+        '8xl': '4rem'
+      },
+      rotate: {
+        '10': '10deg',
+        '15': '15deg',
+        '20': '20deg',
+        '25': '25deg',
+        '30': '30deg',
+        '45': '45deg',
+        '60': '60deg',
+        '90': '90deg',
+        '120': '120deg',
+        '135': '135deg',
+        '180': '180deg',
+        '270': '270deg',
+      },
       animation: {
         marquee: 'marquee 5s linear infinite',
         'float-particle': 'float-particle 20s infinite',
@@ -60,6 +78,12 @@ module.exports = {
         'blink': 'blink 1s step-end infinite',
         'scale-in': 'scale-in 0.3s ease-out forwards',
         pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        pulse1: 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        pulse2: 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'float': 'float 4s ease-in-out infinite',
+        'float2': 'float 5s ease-in-out infinite',
+        'float3': 'float 3s ease-in-out infinite',
+
       },
       keyframes: {
         marquee: {
@@ -90,12 +114,36 @@ module.exports = {
         },
         pulse: {
           '0%, 100%': { 
-            opacity: '0.3',
+            opacity: '0.5',
             transform: 'scale(1)',
           },
           '50%': { 
-            opacity: '0.8',
+            opacity: '0.9',
             transform: 'scale(1.5)',
+          },
+        },
+        float: {
+          '0%, 100%': { 
+            transform: 'translateY(0)' 
+          },
+          '50%': { 
+            transform: 'translateY(-20px)' 
+          },
+        },
+          float2: {
+          '0%, 100%': { 
+            transform: 'translateY(0)' 
+          },
+          '50%': { 
+            transform: 'translateY(-16px)' 
+          },
+        },
+          float3: {
+          '0%, 100%': { 
+            transform: 'translateY(0)' 
+          },
+          '50%': { 
+            transform: 'translateY(-24px)' 
           },
         },
       }

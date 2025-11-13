@@ -111,7 +111,8 @@ export const askQuery = createAsyncThunk<
   { rejectValue: string }
 >("assistant/askQuery", async ({text, userId, chatId, previousConversation, domain_expertise, teacher_id, student_id, subject, level}, { rejectWithValue }) => {
   try {
-    const response = await axios.post<QueryResponse>(`${BASE_URL}/queryimage/query/`, {
+    // const response = await axios.post<QueryResponse>(`${BASE_URL}/queryimage/query/`, {
+    const response = await axios.post<QueryResponse>(`${BASE_URL}/querylang/query/`, {
       text,
       userId,
       chatId,
@@ -140,7 +141,8 @@ export const askImageQuery = createAsyncThunk<
 >("assistant/askImageQuery", async (payload, { rejectWithValue }) => {
   try {
     const response = await axios.post<QueryResponse>(
-      `${BASE_URL}/queryimage/query-image`,
+      // `${BASE_URL}/queryimage/query-image`,
+      `${BASE_URL}/querylang/query-image/`,
       payload,
     );
     return response.data;
