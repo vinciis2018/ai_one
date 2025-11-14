@@ -96,19 +96,22 @@ export function HomePage() {
   return (
     <NoLayout>
       {/* Page Switcher */}
-      <div className="fixed top-2 right-2 z-20 flex gap-2 bg-white blur-sm backdrop-blur p-1.5 rounded-full border border-green shadow-lg">
+      <div className="fixed top-2 right-2 z-20 flex gap-2 p-1.5 rounded-full">
         <button
           type="button"
-          onClick={() => setActiveTab('teacher')}
-          className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
+          onClick={() => {
+            setActiveTab('teacher');
+            navigate('/login');
+          }}
+          className={`shadow-lg backdrop-blur cursor-pointer px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
             activeTab === 'teacher'
-              ? 'bg-gradient-to-r from-green to-green text-white shadow-md'
+              ? 'bg-gradient-to-r from-green to-green text-white'
               : 'text-green hover:text-violet border border-green'
           }`}
         >
-          👨‍🏫 <span className="hidden sm:inline">Teacher?</span>
+          Login
         </button>
-        <button
+        {/* <button
           type="button"
           onClick={() => setActiveTab('student')}
           className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
@@ -118,7 +121,7 @@ export function HomePage() {
           }`}
         >
           🎓 <span className="hidden sm:inline">Student?</span>
-        </button>
+        </button> */}
       </div>
 
       {/* Page Content */}
@@ -126,76 +129,6 @@ export function HomePage() {
         {activeTab === 'teacher' ? <TeacherSection /> : <StudentSection />}
       </div>
 
-      <style>{`
-        @keyframes twinkle {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 1; }
-        }
-        .twinkle {
-          animation: twinkle 3s infinite;
-        }
-        @keyframes pulse {
-          0%, 100% { 
-            transform: scale(1);
-            opacity: 0.3;
-          }
-          50% { 
-            transform: scale(1.5);
-            opacity: 0.8;
-          }
-        }
-        @keyframes float-particle {
-          0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
-          10% { opacity: 0.5; }
-          90% { opacity: 0.5; }
-          100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
-        }
-        
-        @keyframes twinkle {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 1; }
-        }
-        
-        @keyframes scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        
-        .animate-scroll {
-          animation: scroll 30s linear infinite;
-          width: max-content;
-        }
-        
-        .animate-blink {
-          animation: blink 1s step-end infinite;
-        }
-        
-        @keyframes blink {
-          from, to { opacity: 1; }
-          50% { opacity: 0; }
-        }
-        
-        @keyframes scale-in {
-          from { transform: scale(0.8); opacity: 0; }
-          to { transform: scale(1); opacity: 1; }
-        }
-        
-        .animate-scale-in {
-          animation: scale-in 0.3s ease-out forwards;
-        }
-        
-        /* For Webkit browsers like Chrome, Safari */
-        select {
-          -webkit-appearance: none;
-          -moz-appearance: none;
-          appearance: none;
-          background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
-          background-repeat: no-repeat;
-          background-position: right 1rem center;
-          background-size: 1.5em;
-          padding-right: 2.5rem;
-        }
-      `}</style>
     </NoLayout>
   );
 }
