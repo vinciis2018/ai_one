@@ -88,7 +88,6 @@ async def list_chats(skip: int = 0, limit: int = 20, search: str = Query(None), 
                 {"user_id": user_id},
                 # {"teacher_id": user_id}
             ]
-        print("query", query)
         cursor = (
             collection.find(query)
             .sort("created_at", DESCENDING)
@@ -144,7 +143,6 @@ async def list_teacher_student_chats(
                 {"teacher_id": teacher_id},
                 {"student_id": student_id}
             ]
-        print("query", query)
         cursor = (
             collection.find(query)
             .sort("created_at", DESCENDING)

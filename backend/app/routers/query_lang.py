@@ -71,7 +71,6 @@ async def query(req: QueryRequest):
       chat_id=req.chatId,
       previous_conversation=req.previousConversation
     )
-    print(result)
     return result["data"]
 
 

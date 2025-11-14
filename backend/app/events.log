@@ -29283,3 +29283,660 @@ h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role
 2025-11-13 12:53:30,645 [INFO] Use pytorch device_name: mps
 2025-11-13 12:53:30,645 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
 2025-11-13 12:53:38,172 [INFO] 🧠 Using device: MPS
+2025-11-14 18:14:59,761 [INFO] Use pytorch device_name: mps
+2025-11-14 18:14:59,761 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 18:15:06,803 [INFO] Loading faiss.
+2025-11-14 18:15:06,840 [INFO] Successfully loaded faiss.
+2025-11-14 18:15:06,847 [INFO] Use pytorch device_name: mps
+2025-11-14 18:15:06,848 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 18:15:12,472 [INFO] 🧠 Using device: MPS
+2025-11-14 19:57:23,365 [INFO] OPTIONS /auth/login - 200 - 0.62ms
+2025-11-14 19:57:33,100 [INFO] OPTIONS /auth/login - 200 - 0.19ms
+2025-11-14 19:57:34,884 [INFO] POST /auth/login - 200 - 11516.4ms
+2025-11-14 19:57:35,154 [INFO] POST /auth/login - 200 - 2052.21ms
+2025-11-14 19:57:35,174 [INFO] OPTIONS /auth/me - 200 - 1.04ms
+2025-11-14 19:57:35,174 [INFO] OPTIONS /auth/me - 200 - 1.12ms
+2025-11-14 19:57:35,328 [INFO] OPTIONS /auth/me - 200 - 1.62ms
+2025-11-14 19:57:35,333 [INFO] OPTIONS /auth/me - 200 - 5.73ms
+2025-11-14 19:57:35,608 [INFO] GET /auth/me - 200 - 431.52ms
+2025-11-14 19:57:35,609 [INFO] GET /auth/me - 200 - 429.46ms
+2025-11-14 19:57:36,384 [INFO] GET /auth/me - 200 - 1046.77ms
+2025-11-14 19:57:36,486 [INFO] GET /auth/me - 200 - 1112.27ms
+2025-11-14 19:57:38,775 [INFO] OPTIONS /auth/me - 200 - 0.4ms
+2025-11-14 19:57:38,777 [INFO] OPTIONS /auth/me - 200 - 0.48ms
+2025-11-14 19:57:38,781 [INFO] GET /teachers - 307 - 2.17ms
+2025-11-14 19:57:38,782 [INFO] GET /teachers - 307 - 2.53ms
+2025-11-14 19:57:42,966 [INFO] GET /auth/me - 200 - 4184.97ms
+2025-11-14 19:57:42,968 [INFO] GET /auth/me - 200 - 4187.97ms
+2025-11-14 19:57:42,985 [INFO] GET /teachers - 307 - 0.24ms
+2025-11-14 19:57:42,992 [INFO] GET /teachers - 307 - 0.87ms
+2025-11-14 19:57:44,641 [INFO] GET /teachers/ - 200 - 5854.65ms
+2025-11-14 19:57:44,739 [INFO] GET /teachers/ - 200 - 5953.19ms
+2025-11-14 19:57:44,998 [INFO] GET /teachers/ - 200 - 2004.05ms
+2025-11-14 19:57:44,998 [INFO] GET /teachers/ - 200 - 2006.54ms
+2025-11-14 19:57:46,419 [INFO] OPTIONS /auth/me - 200 - 0.57ms
+2025-11-14 19:57:46,427 [INFO] OPTIONS /auth/me - 200 - 1.5ms
+2025-11-14 19:57:46,516 [INFO] GET /conversations/chats/teacher/student - 200 - 94.57ms
+2025-11-14 19:57:46,641 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 214.08ms
+2025-11-14 19:57:46,697 [INFO] GET /students/690860e3489b114c676d005d - 200 - 271.78ms
+2025-11-14 19:57:46,715 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 293.24ms
+2025-11-14 19:57:46,764 [INFO] GET /auth/me - 200 - 246.23ms
+2025-11-14 19:57:47,438 [INFO] GET /conversations/chats/teacher/student - 200 - 658.19ms
+2025-11-14 19:57:47,557 [INFO] GET /auth/me - 200 - 915.22ms
+2025-11-14 19:57:48,342 [INFO] GET /conversations/chats/teacher/student - 200 - 1915.92ms
+2025-11-14 19:57:48,558 [INFO] GET /students/690860e3489b114c676d005d - 200 - 1776.14ms
+2025-11-14 19:57:48,560 [INFO] GET /conversations/chats/teacher/student - 200 - 213.8ms
+2025-11-14 19:57:48,565 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 1783.37ms
+2025-11-14 19:57:48,735 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 1162.02ms
+2025-11-14 19:57:48,745 [INFO] GET /students/690860e3489b114c676d005d - 200 - 1171.45ms
+2025-11-14 19:57:48,748 [INFO] GET /students/690860e3489b114c676d005d - 200 - 2317.21ms
+2025-11-14 19:58:00,524 [INFO] OPTIONS /querylang/query/ - 200 - 0.76ms
+2025-11-14 19:58:00,527 [INFO] POST /querylang/query/ - 307 - 0.45ms
+2025-11-14 19:58:00,530 [INFO] OPTIONS /querylang/query - 200 - 0.16ms
+2025-11-14 19:58:03,885 [INFO] 🦙 Running Ollama model: mistral
+2025-11-14 19:58:29,488 [ERROR] POST /querylang/query - ERROR - 28956.66ms - [TypeError("'ObjectId' object is not iterable"), TypeError('vars() argument must have __dict__ attribute')]
+2025-11-14 20:17:24,060 [INFO] Use pytorch device_name: mps
+2025-11-14 20:17:24,060 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:17:28,416 [INFO] Use pytorch device_name: mps
+2025-11-14 20:17:28,416 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:17:35,047 [INFO] Use pytorch device_name: mps
+2025-11-14 20:17:35,047 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:17:39,782 [INFO] Use pytorch device_name: mps
+2025-11-14 20:17:39,782 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:17:48,439 [INFO] Use pytorch device_name: mps
+2025-11-14 20:17:48,439 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:18:00,153 [WARNING] '(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: b65e7bae-1346-4353-af98-c5d2ace353da)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+2025-11-14 20:18:00,154 [WARNING] Retrying in 1s [Retry 1/5].
+2025-11-14 20:18:11,962 [INFO] Use pytorch device_name: mps
+2025-11-14 20:18:11,962 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:18:16,261 [INFO] Use pytorch device_name: mps
+2025-11-14 20:18:16,261 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:18:37,985 [WARNING] '(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: 8e8a77dc-342c-4797-9e7d-370bcc5fc7cd)')' thrown while requesting HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json
+2025-11-14 20:18:37,985 [WARNING] Retrying in 1s [Retry 1/5].
+2025-11-14 20:18:56,315 [WARNING] '(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: c428ae56-46c4-4a1f-b5e2-eec0acb59ca2)')' thrown while requesting HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json
+2025-11-14 20:18:56,315 [WARNING] Retrying in 2s [Retry 2/5].
+2025-11-14 20:19:47,384 [WARNING] '(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: 5663bc18-0bd1-4e54-b7c3-f9bc21c5acfb)')' thrown while requesting HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json
+2025-11-14 20:19:47,384 [WARNING] Retrying in 1s [Retry 1/5].
+2025-11-14 20:19:56,749 [INFO] Use pytorch device_name: mps
+2025-11-14 20:19:56,749 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:20:45,501 [INFO] Loading faiss.
+2025-11-14 20:20:45,591 [INFO] Successfully loaded faiss.
+2025-11-14 20:20:45,602 [INFO] Use pytorch device_name: mps
+2025-11-14 20:20:45,602 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 20:21:02,901 [INFO] 🧠 Using device: MPS
+2025-11-14 20:21:33,196 [INFO] OPTIONS /querylang/query/ - 200 - 0.28ms
+2025-11-14 20:21:33,198 [INFO] POST /querylang/query/ - 307 - 0.32ms
+2025-11-14 20:21:33,201 [INFO] OPTIONS /querylang/query - 200 - 0.18ms
+2025-11-14 20:22:11,709 [INFO] 🦙 Running Ollama model: mistral
+2025-11-14 20:22:29,824 [ERROR] POST /querylang/query - ERROR - 56621.98ms - [TypeError("'ObjectId' object is not iterable"), TypeError('vars() argument must have __dict__ attribute')]
+2025-11-14 20:26:06,817 [INFO] Use pytorch device_name: mps
+2025-11-14 20:26:06,817 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:26:16,939 [INFO] Use pytorch device_name: mps
+2025-11-14 20:26:16,939 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:26:43,322 [INFO] Loading faiss.
+2025-11-14 20:26:43,363 [INFO] Successfully loaded faiss.
+2025-11-14 20:26:43,370 [INFO] Use pytorch device_name: mps
+2025-11-14 20:26:43,370 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 20:27:08,152 [INFO] 🧠 Using device: MPS
+2025-11-14 20:27:29,062 [INFO] OPTIONS /querylang/query/ - 200 - 0.23ms
+2025-11-14 20:27:29,064 [INFO] POST /querylang/query/ - 307 - 0.23ms
+2025-11-14 20:27:29,069 [INFO] OPTIONS /querylang/query - 200 - 0.4ms
+2025-11-14 20:27:46,814 [INFO] 🦙 Running Ollama model: mistral
+2025-11-14 20:28:05,257 [INFO] Use pytorch device_name: mps
+2025-11-14 20:28:05,257 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 20:28:13,909 [ERROR] POST /querylang/query - ERROR - 44836.64ms - [TypeError("'ObjectId' object is not iterable"), TypeError('vars() argument must have __dict__ attribute')]
+2025-11-14 20:29:24,807 [INFO] Use pytorch device_name: mps
+2025-11-14 20:29:24,807 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:29:31,633 [INFO] Use pytorch device_name: mps
+2025-11-14 20:29:31,633 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:29:45,564 [WARNING] '(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: 3b9d7053-1060-4e6c-91fc-a0cd6e143f89)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+2025-11-14 20:29:45,564 [WARNING] Retrying in 1s [Retry 1/5].
+2025-11-14 20:30:02,881 [INFO] Use pytorch device_name: mps
+2025-11-14 20:30:02,882 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:30:25,594 [INFO] Loading faiss.
+2025-11-14 20:30:25,632 [INFO] Successfully loaded faiss.
+2025-11-14 20:30:25,639 [INFO] Use pytorch device_name: mps
+2025-11-14 20:30:25,639 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 20:30:44,242 [INFO] 🧠 Using device: MPS
+2025-11-14 20:31:15,023 [INFO] OPTIONS /querylang/query/ - 200 - 0.24ms
+2025-11-14 20:31:15,026 [INFO] POST /querylang/query/ - 307 - 0.24ms
+2025-11-14 20:31:15,029 [INFO] OPTIONS /querylang/query - 200 - 0.25ms
+2025-11-14 20:31:38,108 [INFO] 🦙 Running Ollama model: mistral
+2025-11-14 20:31:47,824 [INFO] Use pytorch device_name: mps
+2025-11-14 20:31:47,824 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 20:32:01,344 [ERROR] POST /querylang/query - ERROR - 46312.55ms - [TypeError("'ObjectId' object is not iterable"), TypeError('vars() argument must have __dict__ attribute')]
+2025-11-14 20:33:37,571 [INFO] Use pytorch device_name: mps
+2025-11-14 20:33:37,571 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:33:51,588 [INFO] Use pytorch device_name: mps
+2025-11-14 20:33:51,588 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:34:14,940 [INFO] Loading faiss.
+2025-11-14 20:34:14,975 [INFO] Successfully loaded faiss.
+2025-11-14 20:34:14,981 [INFO] Use pytorch device_name: mps
+2025-11-14 20:34:14,982 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 20:34:36,626 [INFO] 🧠 Using device: MPS
+2025-11-14 20:34:49,925 [INFO] OPTIONS /querylang/query/ - 200 - 0.3ms
+2025-11-14 20:34:49,928 [INFO] POST /querylang/query/ - 307 - 0.33ms
+2025-11-14 20:34:49,930 [INFO] OPTIONS /querylang/query - 200 - 0.18ms
+2025-11-14 20:34:59,746 [INFO] 🦙 Running Ollama model: mistral
+2025-11-14 20:35:06,669 [ERROR] POST /querylang/query - ERROR - 16736.28ms - [TypeError("'ObjectId' object is not iterable"), TypeError('vars() argument must have __dict__ attribute')]
+2025-11-14 20:35:47,963 [INFO] Use pytorch device_name: mps
+2025-11-14 20:35:47,963 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:35:54,134 [INFO] Use pytorch device_name: mps
+2025-11-14 20:35:54,134 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:36:20,024 [INFO] Loading faiss.
+2025-11-14 20:36:20,081 [INFO] Successfully loaded faiss.
+2025-11-14 20:36:20,089 [INFO] Use pytorch device_name: mps
+2025-11-14 20:36:20,090 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 20:36:48,903 [INFO] 🧠 Using device: MPS
+2025-11-14 20:40:55,880 [INFO] Use pytorch device_name: mps
+2025-11-14 20:40:55,880 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:41:01,219 [INFO] Loading faiss.
+2025-11-14 20:41:01,243 [INFO] Successfully loaded faiss.
+2025-11-14 20:41:01,251 [INFO] Use pytorch device_name: mps
+2025-11-14 20:41:01,251 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 20:41:05,914 [INFO] 🧠 Using device: MPS
+2025-11-14 20:41:16,983 [INFO] Use pytorch device_name: mps
+2025-11-14 20:41:16,983 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:41:22,862 [INFO] Loading faiss.
+2025-11-14 20:41:22,889 [INFO] Successfully loaded faiss.
+2025-11-14 20:41:22,896 [INFO] Use pytorch device_name: mps
+2025-11-14 20:41:22,896 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 20:41:27,573 [INFO] 🧠 Using device: MPS
+2025-11-14 20:41:31,865 [INFO] Use pytorch device_name: mps
+2025-11-14 20:41:31,866 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:41:36,224 [INFO] Loading faiss.
+2025-11-14 20:41:36,247 [INFO] Successfully loaded faiss.
+2025-11-14 20:41:36,253 [INFO] Use pytorch device_name: mps
+2025-11-14 20:41:36,253 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 20:41:41,243 [INFO] Use pytorch device_name: mps
+2025-11-14 20:41:41,243 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:41:46,380 [INFO] Loading faiss.
+2025-11-14 20:41:46,409 [INFO] Successfully loaded faiss.
+2025-11-14 20:41:46,417 [INFO] Use pytorch device_name: mps
+2025-11-14 20:41:46,417 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 20:41:52,002 [INFO] Use pytorch device_name: mps
+2025-11-14 20:41:52,002 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:41:56,819 [INFO] Loading faiss.
+2025-11-14 20:41:56,843 [INFO] Successfully loaded faiss.
+2025-11-14 20:41:56,849 [INFO] Use pytorch device_name: mps
+2025-11-14 20:41:56,849 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 20:42:01,812 [INFO] 🧠 Using device: MPS
+2025-11-14 20:42:09,868 [INFO] OPTIONS /querylang/query/ - 200 - 0.22ms
+2025-11-14 20:42:09,871 [INFO] POST /querylang/query/ - 307 - 0.23ms
+2025-11-14 20:42:09,875 [INFO] OPTIONS /querylang/query - 200 - 0.14ms
+2025-11-14 20:42:12,571 [INFO] 🦙 Running Ollama model: mistral
+2025-11-14 20:42:27,649 [INFO] Use pytorch device_name: mps
+2025-11-14 20:42:27,650 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 20:42:32,484 [ERROR] POST /querylang/query - ERROR - 22608.34ms - [TypeError("'ObjectId' object is not iterable"), TypeError('vars() argument must have __dict__ attribute')]
+2025-11-14 20:44:17,159 [INFO] Use pytorch device_name: mps
+2025-11-14 20:44:17,159 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:44:26,597 [INFO] Use pytorch device_name: mps
+2025-11-14 20:44:26,598 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:44:30,655 [INFO] Use pytorch device_name: mps
+2025-11-14 20:44:30,655 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:44:36,092 [INFO] Use pytorch device_name: mps
+2025-11-14 20:44:36,093 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:44:43,841 [INFO] Loading faiss.
+2025-11-14 20:44:43,884 [INFO] Successfully loaded faiss.
+2025-11-14 20:44:43,892 [INFO] Use pytorch device_name: mps
+2025-11-14 20:44:43,892 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 20:44:50,400 [INFO] 🧠 Using device: MPS
+2025-11-14 20:45:03,920 [INFO] OPTIONS /querylang/query/ - 200 - 0.27ms
+2025-11-14 20:45:03,925 [INFO] POST /querylang/query/ - 307 - 0.29ms
+2025-11-14 20:45:03,928 [INFO] OPTIONS /querylang/query - 200 - 0.19ms
+2025-11-14 20:45:51,876 [INFO] 🦙 Running Ollama model: mistral
+2025-11-14 20:46:04,473 [INFO] Use pytorch device_name: mps
+2025-11-14 20:46:04,473 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 20:46:13,020 [ERROR] POST /querylang/query - ERROR - 69090.85ms - [TypeError("'ObjectId' object is not iterable"), TypeError('vars() argument must have __dict__ attribute')]
+2025-11-14 20:49:23,076 [INFO] OPTIONS /auth/me - 200 - 1.0ms
+2025-11-14 20:49:23,091 [INFO] OPTIONS /auth/me - 200 - 0.3ms
+2025-11-14 20:49:23,091 [INFO] OPTIONS /auth/me - 200 - 0.41ms
+2025-11-14 20:49:23,091 [INFO] OPTIONS /auth/me - 200 - 0.43ms
+2025-11-14 20:49:25,463 [INFO] GET /auth/me - 200 - 2384.39ms
+2025-11-14 20:49:26,042 [INFO] GET /auth/me - 200 - 2946.97ms
+2025-11-14 20:49:26,682 [INFO] GET /conversations/chats/teacher/student - 200 - 1191.08ms
+2025-11-14 20:49:29,578 [INFO] GET /conversations/chats/teacher/student - 200 - 3513.9ms
+2025-11-14 20:49:34,160 [INFO] GET /students/690860e3489b114c676d005d - 200 - 8664.92ms
+2025-11-14 20:49:34,246 [INFO] GET /auth/me - 200 - 11152.58ms
+2025-11-14 20:49:34,967 [INFO] GET /auth/me - 200 - 11872.94ms
+2025-11-14 20:49:35,628 [INFO] GET /conversations/chats/teacher/student - 200 - 1367.73ms
+2025-11-14 20:49:36,296 [INFO] GET /students/690860e3489b114c676d005d - 200 - 6715.31ms
+2025-11-14 20:49:37,415 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 3155.29ms
+2025-11-14 20:49:37,510 [INFO] GET /students/690860e3489b114c676d005d - 200 - 2542.03ms
+2025-11-14 20:49:37,546 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 12052.36ms
+2025-11-14 20:49:37,548 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 1250.74ms
+2025-11-14 20:49:37,747 [INFO] GET /students/690860e3489b114c676d005d - 200 - 329.52ms
+2025-11-14 20:49:37,837 [INFO] GET /conversations/chats/teacher/student - 200 - 2205.06ms
+2025-11-14 20:49:37,980 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 11296.14ms
+2025-11-14 20:49:49,870 [INFO] GET /conversations/chat/691747b2fda1e9095034dff7 - 200 - 358.62ms
+2025-11-14 20:49:50,232 [INFO] GET /upload/list/selected - 200 - 326.55ms
+2025-11-14 20:50:06,959 [INFO] OPTIONS /queryimage/query/ - 200 - 0.18ms
+2025-11-14 20:50:06,961 [INFO] POST /queryimage/query/ - 307 - 0.3ms
+2025-11-14 20:50:06,971 [INFO] OPTIONS /queryimage/query - 200 - 0.21ms
+2025-11-14 20:50:22,279 [INFO] 🦙 Running Ollama model: mistral
+2025-11-14 20:50:33,756 [INFO] [SUCCESS] Query: What is the dimension of charge? | Answer: The dimension of charge is [C] or Coulombs. This can be inferred from its relati
+2025-11-14 20:50:36,207 [INFO] Use pytorch device_name: mps
+2025-11-14 20:50:36,207 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 20:50:49,355 [INFO] POST /queryimage/query - 200 - 42383.11ms
+2025-11-14 20:50:50,154 [INFO] GET /conversations/chat/691748c2fda1e9095034dff9 - 200 - 780.89ms
+2025-11-14 20:50:50,455 [INFO] GET /upload/list/selected - 200 - 269.64ms
+2025-11-14 20:51:31,844 [INFO] Use pytorch device_name: mps
+2025-11-14 20:51:31,844 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:51:44,393 [INFO] Use pytorch device_name: mps
+2025-11-14 20:51:44,393 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:51:48,965 [INFO] Use pytorch device_name: mps
+2025-11-14 20:51:48,965 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:51:56,480 [INFO] Use pytorch device_name: mps
+2025-11-14 20:51:56,480 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:52:08,985 [INFO] Use pytorch device_name: mps
+2025-11-14 20:52:08,985 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:52:20,788 [WARNING] '(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: 09116581-2fcb-4394-b25e-a9cfa58b7dd4)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+2025-11-14 20:52:20,790 [WARNING] Retrying in 1s [Retry 1/5].
+2025-11-14 20:52:33,422 [WARNING] '(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: 84d33a84-55d9-480d-991e-111c229008c6)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+2025-11-14 20:52:33,423 [WARNING] Retrying in 2s [Retry 2/5].
+2025-11-14 20:52:49,405 [WARNING] '(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: 82150e16-1b0a-446d-b809-1c81f3e10e01)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+2025-11-14 20:52:49,406 [WARNING] Retrying in 4s [Retry 3/5].
+2025-11-14 20:53:00,183 [INFO] Loading faiss.
+2025-11-14 20:53:00,241 [INFO] Successfully loaded faiss.
+2025-11-14 20:53:00,249 [INFO] Use pytorch device_name: mps
+2025-11-14 20:53:00,249 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 20:53:05,597 [INFO] 🧠 Using device: MPS
+2025-11-14 20:53:08,741 [INFO] OPTIONS /auth/me - 200 - 0.43ms
+2025-11-14 20:53:08,741 [INFO] OPTIONS /auth/me - 200 - 0.81ms
+2025-11-14 20:53:08,742 [INFO] OPTIONS /auth/me - 200 - 0.89ms
+2025-11-14 20:53:08,742 [INFO] OPTIONS /auth/me - 200 - 0.94ms
+2025-11-14 20:53:36,192 [INFO] OPTIONS /auth/me - 200 - 19.51ms
+2025-11-14 20:53:36,208 [INFO] OPTIONS /auth/me - 200 - 21.21ms
+2025-11-14 20:53:36,284 [INFO] OPTIONS /auth/me - 200 - 55.41ms
+2025-11-14 20:53:36,291 [INFO] OPTIONS /auth/me - 200 - 68.33ms
+2025-11-14 20:53:41,278 [ERROR] Exception in callback H11Protocol.timeout_keep_alive_handler()
+handle: <TimerHandle when=96675.814579458 H11Protocol.timeout_keep_alive_handler()>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 363, in timeout_keep_alive_handler
+    self.conn.send(event)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 538, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 563, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 284, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 291, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 309, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+    ...<3 lines>...
+    ) from None
+h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role=SERVER and state=SEND_RESPONSE
+2025-11-14 20:53:43,846 [INFO] GET /auth/me - 200 - 35090.69ms
+2025-11-14 20:53:44,817 [INFO] GET /auth/me - 200 - 36063.21ms
+2025-11-14 20:53:44,988 [INFO] GET /auth/me - 200 - 8683.82ms
+2025-11-14 20:53:45,181 [INFO] GET /auth/me - 200 - 8845.28ms
+2025-11-14 20:53:45,265 [INFO] GET /auth/me - 200 - 8921.07ms
+2025-11-14 20:53:45,511 [INFO] GET /conversations/chats/teacher/student - 200 - 495.61ms
+2025-11-14 20:53:46,782 [INFO] GET /auth/me - 200 - 10490.28ms
+2025-11-14 20:53:48,013 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 2996.02ms
+2025-11-14 20:53:48,134 [INFO] GET /conversations/chats/teacher/student - 200 - 2937.16ms
+2025-11-14 20:53:48,182 [INFO] GET /conversations/chats/teacher/student - 200 - 1393.39ms
+2025-11-14 20:53:48,377 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 3110.39ms
+2025-11-14 20:53:48,480 [INFO] GET /auth/me - 200 - 39734.79ms
+2025-11-14 20:53:48,840 [INFO] GET /students/690860e3489b114c676d005d - 200 - 705.25ms
+2025-11-14 20:53:48,847 [INFO] GET /students/690860e3489b114c676d005d - 200 - 3333.55ms
+2025-11-14 20:53:48,918 [INFO] GET /auth/me - 200 - 734.32ms
+2025-11-14 20:53:49,223 [INFO] GET /conversations/chats/teacher/student - 200 - 293.0ms
+2025-11-14 20:53:49,525 [INFO] GET /auth/me - 200 - 40769.88ms
+2025-11-14 20:53:49,555 [INFO] GET /students/690860e3489b114c676d005d - 200 - 4537.79ms
+2025-11-14 20:53:49,585 [INFO] GET /students/690860e3489b114c676d005d - 200 - 652.74ms
+2025-11-14 20:53:49,872 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 1856.04ms
+2025-11-14 20:53:49,955 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 1023.73ms
+2025-11-14 20:54:01,362 [INFO] OPTIONS /querylang/query/ - 200 - 0.34ms
+2025-11-14 20:54:01,365 [INFO] POST /querylang/query/ - 307 - 0.38ms
+2025-11-14 20:54:01,367 [INFO] OPTIONS /querylang/query - 200 - 0.22ms
+2025-11-14 20:54:04,575 [INFO] 🦙 Running Ollama model: mistral
+2025-11-14 20:54:18,041 [INFO] Use pytorch device_name: mps
+2025-11-14 20:54:18,042 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 20:54:29,703 [ERROR] POST /querylang/query - ERROR - 28333.84ms - [TypeError("'ObjectId' object is not iterable"), TypeError('vars() argument must have __dict__ attribute')]
+2025-11-14 20:55:44,485 [INFO] Use pytorch device_name: mps
+2025-11-14 20:55:44,485 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 20:55:54,560 [INFO] Loading faiss.
+2025-11-14 20:55:54,594 [INFO] Successfully loaded faiss.
+2025-11-14 20:55:54,601 [INFO] Use pytorch device_name: mps
+2025-11-14 20:55:54,601 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 20:56:06,070 [INFO] 🧠 Using device: MPS
+2025-11-14 20:56:31,254 [INFO] OPTIONS /auth/me - 200 - 3.57ms
+2025-11-14 20:56:31,256 [INFO] OPTIONS /auth/me - 200 - 1.02ms
+2025-11-14 20:56:31,257 [INFO] OPTIONS /auth/me - 200 - 1.01ms
+2025-11-14 20:56:31,257 [INFO] OPTIONS /auth/me - 200 - 1.08ms
+2025-11-14 20:56:36,258 [ERROR] Exception in callback H11Protocol.timeout_keep_alive_handler()
+handle: <TimerHandle when=96850.794196583 H11Protocol.timeout_keep_alive_handler()>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 363, in timeout_keep_alive_handler
+    self.conn.send(event)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 538, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 563, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 284, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 291, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 309, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+    ...<3 lines>...
+    ) from None
+h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role=SERVER and state=SEND_RESPONSE
+2025-11-14 20:56:36,267 [ERROR] Exception in callback H11Protocol.timeout_keep_alive_handler()
+handle: <TimerHandle when=96850.803498541 H11Protocol.timeout_keep_alive_handler()>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 363, in timeout_keep_alive_handler
+    self.conn.send(event)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 538, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 563, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 284, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 291, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 309, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+    ...<3 lines>...
+    ) from None
+h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role=SERVER and state=SEND_RESPONSE
+2025-11-14 20:56:36,268 [ERROR] Exception in callback H11Protocol.timeout_keep_alive_handler()
+handle: <TimerHandle when=96850.803657 H11Protocol.timeout_keep_alive_handler()>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 363, in timeout_keep_alive_handler
+    self.conn.send(event)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 538, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 563, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 284, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 291, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 309, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+    ...<3 lines>...
+    ) from None
+h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role=SERVER and state=SEND_RESPONSE
+2025-11-14 20:56:39,141 [INFO] GET /auth/me - 200 - 7883.46ms
+2025-11-14 20:56:39,308 [INFO] GET /auth/me - 200 - 8041.38ms
+2025-11-14 20:56:39,446 [INFO] GET /auth/me - 200 - 8179.75ms
+2025-11-14 20:56:39,790 [INFO] GET /auth/me - 200 - 641.75ms
+2025-11-14 20:56:39,890 [INFO] GET /conversations/chats/teacher/student - 200 - 421.59ms
+2025-11-14 20:56:40,617 [INFO] GET /conversations/chats/teacher/student - 200 - 809.23ms
+2025-11-14 20:56:41,076 [INFO] GET /auth/me - 200 - 1765.37ms
+2025-11-14 20:56:41,077 [INFO] GET /auth/me - 200 - 9810.49ms
+2025-11-14 20:56:43,643 [INFO] GET /students/690860e3489b114c676d005d - 200 - 3021.58ms
+2025-11-14 20:56:43,754 [INFO] GET /auth/me - 200 - 2675.12ms
+2025-11-14 20:56:43,758 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 3863.83ms
+2025-11-14 20:56:44,361 [INFO] GET /conversations/chats/teacher/student - 200 - 584.93ms
+2025-11-14 20:56:44,725 [INFO] GET /students/690860e3489b114c676d005d - 200 - 968.64ms
+2025-11-14 20:56:44,823 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 3722.67ms
+2025-11-14 20:56:44,893 [INFO] GET /conversations/chats/teacher/student - 200 - 1247.86ms
+2025-11-14 20:56:44,899 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 533.85ms
+2025-11-14 20:56:45,496 [INFO] GET /students/690860e3489b114c676d005d - 200 - 767.98ms
+2025-11-14 20:56:46,196 [INFO] GET /students/690860e3489b114c676d005d - 200 - 6725.22ms
+2025-11-14 20:56:48,959 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 9489.58ms
+2025-11-14 20:57:15,699 [INFO] OPTIONS /queryimage/query/ - 200 - 0.29ms
+2025-11-14 20:57:15,703 [INFO] POST /queryimage/query/ - 307 - 0.23ms
+2025-11-14 20:57:15,710 [INFO] OPTIONS /queryimage/query - 200 - 0.27ms
+2025-11-14 20:57:29,759 [INFO] 🦙 Running Ollama model: mistral
+2025-11-14 20:57:40,760 [INFO] [SUCCESS] Query: What is the dimensions of charge? | Answer: The dimensions of charge are [C] or Coulombs. This can be inferred from its rela
+2025-11-14 20:57:43,957 [INFO] Use pytorch device_name: mps
+2025-11-14 20:57:43,957 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 20:58:06,005 [INFO] POST /queryimage/query - 200 - 50292.43ms
+2025-11-14 20:58:15,791 [INFO] GET /conversations/chat/69174a6df4fb8fffaf6ecbe2 - 200 - 9765.84ms
+2025-11-14 20:58:17,600 [INFO] GET /upload/list/selected - 200 - 1771.49ms
+2025-11-14 21:01:44,863 [INFO] Use pytorch device_name: mps
+2025-11-14 21:01:44,863 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 21:01:52,432 [INFO] Use pytorch device_name: mps
+2025-11-14 21:01:52,433 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 21:02:29,658 [INFO] Loading faiss.
+2025-11-14 21:02:29,700 [INFO] Successfully loaded faiss.
+2025-11-14 21:02:29,708 [INFO] Use pytorch device_name: mps
+2025-11-14 21:02:29,708 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 21:02:50,987 [INFO] 🧠 Using device: MPS
+2025-11-14 21:05:52,441 [INFO] OPTIONS /queryimage/query/ - 200 - 0.36ms
+2025-11-14 21:05:52,444 [INFO] POST /queryimage/query/ - 307 - 0.35ms
+2025-11-14 21:05:52,446 [INFO] OPTIONS /queryimage/query - 200 - 0.29ms
+2025-11-14 21:06:36,721 [INFO] POST /queryimage/query - 500 - 44273.77ms
+2025-11-14 21:07:15,350 [INFO] Use pytorch device_name: mps
+2025-11-14 21:07:15,351 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 21:07:45,519 [WARNING] '(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: c9769a00-cb48-413b-ad11-68e3aa380e25)')' thrown while requesting HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json
+2025-11-14 21:07:45,519 [WARNING] Retrying in 1s [Retry 1/5].
+2025-11-14 21:07:58,146 [WARNING] '(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: 43ccaee4-f5fe-4075-91da-1c8243e288c6)')' thrown while requesting HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json
+2025-11-14 21:07:58,146 [WARNING] Retrying in 2s [Retry 2/5].
+2025-11-14 21:08:10,251 [INFO] Use pytorch device_name: mps
+2025-11-14 21:08:10,251 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 21:08:18,095 [INFO] Loading faiss.
+2025-11-14 21:08:18,129 [INFO] Successfully loaded faiss.
+2025-11-14 21:08:18,135 [INFO] Use pytorch device_name: mps
+2025-11-14 21:08:18,136 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 21:08:33,782 [INFO] 🧠 Using device: MPS
+2025-11-14 21:12:26,663 [INFO] OPTIONS /queryimage/query/ - 200 - 0.26ms
+2025-11-14 21:12:26,665 [INFO] POST /queryimage/query/ - 307 - 0.3ms
+2025-11-14 21:12:26,668 [INFO] OPTIONS /queryimage/query - 200 - 0.25ms
+2025-11-14 21:12:28,868 [INFO] 🦙 Running Ollama model: mistral
+2025-11-14 21:12:41,998 [INFO] [SUCCESS] Query: What is the dimensions of charge? | Answer: The dimensions of charge are [C] or Coulombs. This can be inferred from its rela
+2025-11-14 21:12:42,786 [INFO] POST /queryimage/query - 200 - 16116.54ms
+2025-11-14 21:12:43,055 [INFO] GET /conversations/chat/69174a6df4fb8fffaf6ecbe2 - 200 - 251.54ms
+2025-11-14 21:12:43,152 [INFO] GET /upload/list/selected - 200 - 67.21ms
+2025-11-14 21:13:19,426 [INFO] Use pytorch device_name: mps
+2025-11-14 21:13:19,426 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 21:13:32,686 [WARNING] '(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: bd403759-ebce-48c8-baec-4ddeeafbd6da)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+2025-11-14 21:13:32,686 [WARNING] Retrying in 1s [Retry 1/5].
+2025-11-14 21:14:00,929 [INFO] Loading faiss.
+2025-11-14 21:14:00,982 [INFO] Successfully loaded faiss.
+2025-11-14 21:14:00,990 [INFO] Use pytorch device_name: mps
+2025-11-14 21:14:00,990 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 21:14:19,496 [INFO] 🧠 Using device: MPS
+2025-11-14 21:14:46,190 [INFO] OPTIONS /auth/me - 200 - 0.56ms
+2025-11-14 21:14:46,193 [INFO] OPTIONS /auth/me - 200 - 1.31ms
+2025-11-14 21:14:46,194 [INFO] OPTIONS /auth/me - 200 - 2.04ms
+2025-11-14 21:14:46,194 [INFO] OPTIONS /auth/me - 200 - 2.3ms
+2025-11-14 21:14:51,204 [ERROR] Exception in callback H11Protocol.timeout_keep_alive_handler()
+handle: <TimerHandle when=97945.835476875 H11Protocol.timeout_keep_alive_handler()>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 363, in timeout_keep_alive_handler
+    self.conn.send(event)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 538, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 563, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 284, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 291, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 309, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+    ...<3 lines>...
+    ) from None
+h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role=SERVER and state=SEND_RESPONSE
+2025-11-14 21:14:51,206 [ERROR] Exception in callback H11Protocol.timeout_keep_alive_handler()
+handle: <TimerHandle when=97945.835801291 H11Protocol.timeout_keep_alive_handler()>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 363, in timeout_keep_alive_handler
+    self.conn.send(event)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 538, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 563, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 284, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 291, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 309, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+    ...<3 lines>...
+    ) from None
+h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role=SERVER and state=SEND_RESPONSE
+2025-11-14 21:14:51,207 [ERROR] Exception in callback H11Protocol.timeout_keep_alive_handler()
+handle: <TimerHandle when=97945.836044916 H11Protocol.timeout_keep_alive_handler()>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 363, in timeout_keep_alive_handler
+    self.conn.send(event)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 538, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 563, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 284, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 291, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 309, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+    ...<3 lines>...
+    ) from None
+h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role=SERVER and state=SEND_RESPONSE
+2025-11-14 21:15:01,717 [INFO] OPTIONS /auth/me - 200 - 0.39ms
+2025-11-14 21:15:01,721 [INFO] OPTIONS /auth/me - 200 - 1.35ms
+2025-11-14 21:15:01,726 [INFO] OPTIONS /auth/me - 200 - 5.2ms
+2025-11-14 21:15:01,728 [INFO] OPTIONS /auth/me - 200 - 2.59ms
+2025-11-14 21:15:06,729 [ERROR] Exception in callback H11Protocol.timeout_keep_alive_handler()
+handle: <TimerHandle when=97961.360937875 H11Protocol.timeout_keep_alive_handler()>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 363, in timeout_keep_alive_handler
+    self.conn.send(event)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 538, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 563, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_connection.py", line 284, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 291, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/kishanvinciis/Documents/myAI/backend/venv/lib/python3.13/site-packages/h11/_state.py", line 309, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+    ...<3 lines>...
+    ) from None
+h11._util.LocalProtocolError: can't handle event type ConnectionClosed when role=SERVER and state=SEND_RESPONSE
+2025-11-14 21:15:21,367 [INFO] GET /auth/me - 200 - 35163.05ms
+2025-11-14 21:15:21,367 [INFO] GET /auth/me - 200 - 35171.12ms
+2025-11-14 21:15:21,423 [INFO] GET /auth/me - 200 - 19693.81ms
+2025-11-14 21:15:21,430 [INFO] GET /auth/me - 200 - 19706.31ms
+2025-11-14 21:15:21,536 [INFO] GET /auth/me - 200 - 19804.99ms
+2025-11-14 21:15:21,617 [INFO] GET /conversations/chats/teacher/student - 200 - 167.87ms
+2025-11-14 21:15:21,619 [INFO] GET /auth/me - 200 - 19887.01ms
+2025-11-14 21:15:21,760 [INFO] GET /conversations/chats/teacher/student - 200 - 215.35ms
+2025-11-14 21:15:21,822 [INFO] GET /auth/me - 200 - 392.12ms
+2025-11-14 21:15:21,833 [INFO] GET /students/690860e3489b114c676d005d - 200 - 378.38ms
+2025-11-14 21:15:21,877 [INFO] GET /auth/me - 200 - 35672.99ms
+2025-11-14 21:15:21,877 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 424.51ms
+2025-11-14 21:15:21,879 [INFO] GET /auth/me - 200 - 35675.22ms
+2025-11-14 21:15:21,964 [INFO] GET /students/690860e3489b114c676d005d - 200 - 342.0ms
+2025-11-14 21:15:21,966 [INFO] GET /conversations/chats/teacher/student - 200 - 88.03ms
+2025-11-14 21:15:22,022 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 197.93ms
+2025-11-14 21:15:22,044 [INFO] GET /students/690860e3489b114c676d005d - 200 - 209.5ms
+2025-11-14 21:15:22,138 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 173.27ms
+2025-11-14 21:15:22,177 [INFO] GET /students/690860e3489b114c676d005d - 200 - 209.03ms
+2025-11-14 21:15:22,276 [INFO] GET /conversations/chats/teacher/student - 200 - 514.2ms
+2025-11-14 21:15:22,388 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 767.29ms
+2025-11-14 21:15:39,536 [INFO] OPTIONS /querylang/query/ - 200 - 0.18ms
+2025-11-14 21:15:39,539 [INFO] POST /querylang/query/ - 307 - 0.23ms
+2025-11-14 21:15:39,543 [INFO] OPTIONS /querylang/query - 200 - 0.2ms
+2025-11-14 21:15:41,120 [INFO] 🦙 Running Ollama model: mistral
+2025-11-14 21:15:53,747 [ERROR] POST /querylang/query - ERROR - 14203.42ms - [TypeError("'ObjectId' object is not iterable"), TypeError('vars() argument must have __dict__ attribute')]
+2025-11-14 21:18:13,188 [INFO] Use pytorch device_name: mps
+2025-11-14 21:18:13,189 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 21:18:20,222 [INFO] Loading faiss.
+2025-11-14 21:18:20,264 [INFO] Successfully loaded faiss.
+2025-11-14 21:18:20,271 [INFO] Use pytorch device_name: mps
+2025-11-14 21:18:20,271 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 21:18:25,200 [INFO] 🧠 Using device: MPS
+2025-11-14 21:20:55,057 [INFO] OPTIONS /querylang/query/ - 200 - 0.57ms
+2025-11-14 21:20:55,061 [INFO] POST /querylang/query/ - 307 - 0.73ms
+2025-11-14 21:20:55,064 [INFO] OPTIONS /querylang/query - 200 - 0.4ms
+2025-11-14 21:20:58,291 [INFO] 🦙 Running Ollama model: mistral
+2025-11-14 21:21:13,366 [ERROR] POST /querylang/query - ERROR - 18299.18ms - [TypeError("'ObjectId' object is not iterable"), TypeError('vars() argument must have __dict__ attribute')]
+2025-11-14 21:23:18,613 [INFO] Use pytorch device_name: mps
+2025-11-14 21:23:18,613 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 21:23:22,650 [INFO] Loading faiss.
+2025-11-14 21:23:22,692 [INFO] Successfully loaded faiss.
+2025-11-14 21:23:22,700 [INFO] Use pytorch device_name: mps
+2025-11-14 21:23:22,700 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 21:23:27,925 [INFO] 🧠 Using device: MPS
+2025-11-14 21:23:33,235 [INFO] OPTIONS /querylang/query/ - 200 - 0.23ms
+2025-11-14 21:23:33,238 [INFO] POST /querylang/query/ - 307 - 0.23ms
+2025-11-14 21:23:33,243 [INFO] OPTIONS /querylang/query - 200 - 0.16ms
+2025-11-14 21:23:35,116 [INFO] 🦙 Running Ollama model: mistral
+2025-11-14 21:23:43,462 [ERROR] POST /querylang/query - ERROR - 10217.62ms - [TypeError("'ObjectId' object is not iterable"), TypeError('vars() argument must have __dict__ attribute')]
+2025-11-14 21:25:43,404 [INFO] Use pytorch device_name: mps
+2025-11-14 21:25:43,404 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 21:25:56,049 [INFO] Use pytorch device_name: mps
+2025-11-14 21:25:56,049 [INFO] Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-14 21:26:00,655 [INFO] Loading faiss.
+2025-11-14 21:26:00,689 [INFO] Successfully loaded faiss.
+2025-11-14 21:26:00,696 [INFO] Use pytorch device_name: mps
+2025-11-14 21:26:00,696 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-14 21:26:05,555 [INFO] 🧠 Using device: MPS
+2025-11-14 21:37:44,162 [INFO] OPTIONS /querylang/query/ - 200 - 0.66ms
+2025-11-14 21:37:44,166 [INFO] POST /querylang/query/ - 307 - 0.38ms
+2025-11-14 21:37:44,168 [INFO] OPTIONS /querylang/query - 200 - 0.3ms
+2025-11-14 21:39:00,077 [INFO] POST /querylang/query - 200 - 75907.58ms
+2025-11-14 21:39:00,091 [INFO] GET /conversations/chat/ - 307 - 0.29ms
+2025-11-14 21:39:00,129 [INFO] GET /conversations/chat - 500 - 7.68ms
+2025-11-14 21:39:47,752 [INFO] OPTIONS /querylang/query/ - 200 - 0.4ms
+2025-11-14 21:39:47,756 [INFO] POST /querylang/query/ - 307 - 0.33ms
+2025-11-14 21:39:47,758 [INFO] OPTIONS /querylang/query - 200 - 0.16ms
+2025-11-14 21:40:26,319 [INFO] 🦙 Running Ollama model: mistral
+2025-11-14 21:41:06,436 [INFO] POST /querylang/query - 200 - 78677.19ms
+2025-11-14 21:41:08,219 [INFO] GET /conversations/chat/691754844644140d46f79554 - 200 - 1767.2ms
+2025-11-14 21:41:11,360 [INFO] GET /upload/list/selected - 200 - 3096.49ms

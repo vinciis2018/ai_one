@@ -6,6 +6,7 @@
 
 from tqdm import tqdm
 from app.routers.upload import save_to_kb_db
+from app.core.retriever_cache import embedder
 from fastapi import APIRouter, HTTPException, Body
 from pydantic import BaseModel
 import os
@@ -564,6 +565,8 @@ async def _save_conversation(
     Returns only the essential IDs, not the full documents.
     """
     try:
+
+        print("herererer", chat_id, teacher_id, user_id, student_id, user_docs, previous_conversation)
         chat_collection = get_collection("chats")
         conversation_collection = get_collection("conversations")
         
@@ -649,9 +652,6 @@ async def _save_conversation(
             )
 
         
-        from sentence_transformers import SentenceTransformer
-        embedder = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
-
         embedding = embedder.encode(f"{query} {answer}").astype("float32").tolist()
         await conversation_collection.update_one(
             {"_id": conversation_result.inserted_id},

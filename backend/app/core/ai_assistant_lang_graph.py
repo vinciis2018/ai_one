@@ -12,8 +12,7 @@ from app.core.retriever import retrieve_similar
 from app.core.conversation_memory import retrieve_from_conversation_memory
 from app.core.llm_manager import call_llm
 from app.config.db import get_collection
-from app.routers.query import _save_conversation, _sanitize_sources
-from app.routers.query_image import analyze_image_with_openai
+from app.routers.query_image import _sanitize_sources, _save_conversation, analyze_image_with_openai
 
 def initial_state(
     query: str,
@@ -66,6 +65,7 @@ async def node_process_image(state: Dict[str, Any]) -> Dict[str, Any]:
         return state
 
 
+
 # knowledge base node
 async def node_retrieve_kb(state: Dict[str, Any]) -> Dict[str, Any]:
     """Retrieve relevant knowledge base context."""
@@ -80,7 +80,7 @@ async def node_retrieve_kb(state: Dict[str, Any]) -> Dict[str, Any]:
 
         context_chunks, user_docs = await retrieve_similar(state["query"], user_ids)
         state["context_chunks"] = context_chunks
-        state["sources"] = user_docs
+        state["sources"] = _sanitize_sources(user_docs)  # Sanitize sources here
     except Exception as e:
         print(f"Error in node_retrieve_kb: {str(e)}")
         state["error"] = f"Error retrieving knowledge base: {str(e)}"
@@ -171,7 +171,7 @@ async def node_save_conversation(state: Dict[str, Any]) -> Dict[str, Any]:
     try:
         # Get the user's text input if this was an image query
         user_text = state.get("user_text") if state.get("is_image_query") else None
-        
+        user_docs = _sanitize_sources(state.get("sources"))
         res = await _save_conversation(
             state["query"],
             state["answer"],
@@ -180,15 +180,26 @@ async def node_save_conversation(state: Dict[str, Any]) -> Dict[str, Any]:
             state.get("user_id"),
             state.get("teacher_id"),
             state.get("student_id"),
-            state.get("sources", []),
+            user_docs,
             state.get("image_url"),  # attached_media
             state.get("image_transcript"),  # media_transcript
             user_text  # user_text from image query
         )
         
         # Update state with the saved conversation IDs
-        state["chat_id"] = res["chat_id"]
-        state["conversation_id"] = res["conversation_id"]
+        state["chat_id"] = str(res["chat_id"])
+        state["conversation_id"] = str(res["conversation_id"])
+        
+        # Prepare response data
+        state["response_data"] = {
+            "chat_id": str(res["chat_id"]),
+            "conversation_id": str(res["conversation_id"]),
+            "previous_conversation": str(state.get("previous_conversation")) if state.get("previous_conversation") else None,
+            "query": state["query"],
+            "answer": state["answer"],
+            "sources_used": len(user_docs),
+            "sources": user_docs
+        }
         
     except Exception as e:
         print(f"Error in node_save_conversation: {str(e)}")
