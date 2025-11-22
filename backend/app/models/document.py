@@ -1,6 +1,6 @@
 from app.models.schemas import PyObjectId
 from pydantic import BaseModel, Field
-from typing import Optional, List
+from typing import Optional, List, Dict
 from bson import ObjectId
 from datetime import datetime
 
@@ -21,6 +21,11 @@ class DocumentModel(BaseModel):
     user_id: str = Field(..., description="User ID of the user who uploaded the document")
     shared_with: List[str] = Field(default_factory=list)
     created_at: datetime = Field(default_factory=datetime.utcnow)
+    notes_description: Optional[List[Dict]] = []
+    quick_notes: Optional[str] = None
+    quick_quiz: Optional[Dict] = None
+    quick_mcq: Optional[Dict] = None
+    
 
     model_config = {
         "json_encoders": {ObjectId: str},

@@ -26,11 +26,12 @@ class ConversationModel(BaseModel):
     attached_media: Optional[str] = None
     media_transcript: Optional[str] = None
     prev_conversation: Optional[str] = None
-    parent_conversation: Optional[str] = None
+    parent_chat: Optional[str] = None
     sources_used: Optional[str] = None
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
     edit_history: Optional[List[Dict[str, Any]]] = None
+    score: float = 1 ## use for relevancy 0 for irrelevant, 1 for relevant, in between relevancy score
 
     model_config = ConfigDict(
         json_encoders={ObjectId: str},
@@ -58,7 +59,7 @@ class PseudoConversationModel(BaseModel):
     id: Optional[PyObjectId] = Field(default=None, alias="_id")
     conversation_id: Optional[str] = None
     prev_conversation: Optional[str] = None
-    parent_conversation: Optional[str] = None
+    parent_chat: Optional[str] = None
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
 
@@ -69,7 +70,7 @@ class PseudoConversationModel(BaseModel):
         json_schema_extra={
             "example": {
                 "prev_conversation": "conversation123",
-                "parent_conversation": "conversation123",
+                "parent_chat": "chat123",
                 "created_at": "2025-11-01T12:00:00Z",
                 "updated_at": "2025-11-01T12:05:00Z",
             }
@@ -82,6 +83,7 @@ class ChatModel(BaseModel):
     user_id: str
     teacher_id: str
     student_id: Optional[str]
+    chat_space: Optional[str]
     conversations: List[PseudoConversationModel] = []
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
@@ -97,7 +99,7 @@ class ChatModel(BaseModel):
                 "conversations": [
                     {
                         "prev_conversation": "conversation123",
-                        "parent_conversation": "conversation123",
+                        "parent_chat": "chat123",
                         "created_at": "2025-11-01T12:00:00Z",
                         "updated_at": "2025-11-01T12:05:00Z"
                     }

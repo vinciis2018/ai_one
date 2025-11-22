@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { NoLayout } from '../../layouts/AppLayout';
+import { SimpleLayout } from '../../layouts/AppLayout';
 import { TeacherSection } from './TeacherSection';
 import { StudentSection } from './StudentSection';
 import { useNavigate } from 'react-router-dom';
@@ -94,41 +94,11 @@ export function HomePage() {
       }
     },[navigate, isAuthenticated])
   return (
-    <NoLayout>
-      {/* Page Switcher */}
-      <div className="fixed top-2 right-2 z-20 flex gap-2 p-1.5 rounded-full">
-        <button
-          type="button"
-          onClick={() => {
-            setActiveTab('teacher');
-            navigate('/login');
-          }}
-          className={`shadow-lg backdrop-blur cursor-pointer px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
-            activeTab === 'teacher'
-              ? 'bg-gradient-to-r from-green to-green text-white'
-              : 'text-green hover:text-violet border border-green'
-          }`}
-        >
-          Login
-        </button>
-        {/* <button
-          type="button"
-          onClick={() => setActiveTab('student')}
-          className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
-            activeTab === 'student'
-              ? 'bg-gradient-to-r from-green to-green text-white shadow-md'
-              : 'text-green hover:text-violet border border-green'
-          }`}
-        >
-          🎓 <span className="hidden sm:inline">Student?</span>
-        </button> */}
-      </div>
-
+    <SimpleLayout>
       {/* Page Content */}
       <div className="relative">
-        {activeTab === 'teacher' ? <TeacherSection /> : <StudentSection />}
+        {activeTab === 'student' ? <TeacherSection /> : <StudentSection />}
       </div>
-
-    </NoLayout>
+    </SimpleLayout>
   );
 }

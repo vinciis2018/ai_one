@@ -11,6 +11,7 @@ import { askQuery, askImageQuery, resetStatus } from "../../store/slices/assista
 import { fetchChatById } from "../../store/slices/conversationsSlice";
 // import { getS3Url } from "../../utilities/awsUtils";
 import { AnimatedTextAreaInput } from "./AnimatedTextAreaInput";
+import { useLocation } from "react-router-dom";
 
 
 export const QueryBoxChat: React.FC<{
@@ -20,7 +21,7 @@ export const QueryBoxChat: React.FC<{
   chatId?: string | null,
   previousConversationId?: string | null
 }> = ({domain, teacher_user_id, student_user_id, chatId, previousConversationId}) => {
-  console.log(previousConversationId, chatId)
+  const { pathname } = useLocation();
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
   const { queryStatus, response, error } = useAppSelector(
@@ -38,13 +39,14 @@ export const QueryBoxChat: React.FC<{
     await dispatch(askQuery({
       text: question,
       userId: user?._id || '',
-      chatId: chatId || response?.chat_id || "",
-      previousConversation: previousConversationId || response?.conversation_id || "",
+      chatId: chatId || response?.chat_id || null,
+      previousConversation: previousConversationId || response?.conversation_id || null,
       domain_expertise: domain,
       teacher_id: teacher_user_id,
       student_id: student_user_id,
       subject: `general ${domain}`, // You can make this dynamic if needed
       level: "intermediate",   // You can make this dynamic if needed
+      chat_space: pathname.split("/").splice(1).join("/")
     }));
   };
 

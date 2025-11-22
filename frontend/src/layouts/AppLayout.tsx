@@ -3,6 +3,8 @@ import { Header } from './Header';
 import { Sidebar } from './Sidebar';
 import { Footer } from './Footer';
 import { useDeviceType } from '../hooks/useDevice';
+import { FloatingChatButton } from '../components/molecules/FloatingChatButton';
+import { ChatSlidePanel } from '../components/molecules/ChatSlidePanel';
 
 interface FullLayoutProps {
   children: React.ReactNode;
@@ -13,6 +15,7 @@ export function FullLayout({ children, footer = null }: FullLayoutProps) {
   const { isMobile } = useDeviceType();
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(prev => !prev);
@@ -22,11 +25,19 @@ export function FullLayout({ children, footer = null }: FullLayoutProps) {
     setIsSidebarOpen(false);
   };
 
+  const toggleChat = () => {
+    setIsChatOpen(prev => !prev);
+  };
+
+  const closeChat = () => {
+    setIsChatOpen(false);
+  };
+
   return (
-    <div className="bg-white text-[var(--text)] flex flex-col">
+    <div className="text-[var(--text)] flex flex-col">
       {/* Fixed Header */}
       <Header onMenuClick={toggleSidebar} isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} isMobile={isMobile} />
-      
+
       <div className="h-full flex flex-1 overflow-hidden py-8">
         {/* Sidebar - Fixed on mobile, sticky on desktop */}
         <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} isMobile={isMobile} setIsOpen={setIsSidebarOpen} />
@@ -45,7 +56,11 @@ export function FullLayout({ children, footer = null }: FullLayoutProps) {
       <Footer className="border-red">
         {footer}
       </Footer>
-  
+
+      {/* Floating Chat Interface */}
+      <FloatingChatButton onClick={toggleChat} isOpen={isChatOpen} />
+      <ChatSlidePanel chatId={""} domain={""} isOpen={isChatOpen} onClose={closeChat} />
+
     </div>
   );
 }
@@ -59,23 +74,16 @@ export function SimpleLayout({ children, footer = null }: SimpleLayoutProps) {
   const { isMobile } = useDeviceType();
 
   return (
-    <div className="min-h-screen bg-[var(--background)] text-[var(--text)]">
+    <div className="min-h-screen text-[var(--text)]">
       {/* Fixed Header */}
-      <Header onMenuClick={() => {}} isSidebarOpen={false} setIsSidebarOpen={() => {}} isMobile={isMobile} />
-      
-      <div className="flex flex-1 overflow-hidden pt-12">
-        {/* Main Content */}
-        <div className={`
-          flex-1 flex flex-col overflow-hidden 
-          transition-all duration-300
-        `}>
-          {/* Scrollable Content */}
-          <main className="flex-1 overflow-y-auto">
-            <div className="min-h-[calc(100vh-6rem)]">
-              {children}
-            </div>
-          </main>
-        </div>
+      <Header bg="bg-transparent" onMenuClick={() => { }} isSidebarOpen={false} setIsSidebarOpen={() => { }} isMobile={isMobile} />
+
+      <div className="flex flex-1 overflow-hidden">
+        <main className="flex-1 overflow-y-auto">
+          <div className="min-h-[calc(100vh-6rem)]">
+            {children}
+          </div>
+        </main>
       </div>
       {/* Footer */}
       <Footer className="bg-white">
@@ -92,9 +100,6 @@ interface NoLayoutProps {
 export function NoLayout({ children }: NoLayoutProps) {
   return (
     <div className="min-h-screen">
-      <div className="z-50 fixed top-4 left-8 right-0 h-8 flex items-center gap-1">
-        <h1 className="text-green text-xl font-semibold">maiind</h1>
-      </div>
       <main className="relative w-full">
         {children}
       </main>

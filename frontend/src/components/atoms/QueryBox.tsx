@@ -11,13 +11,19 @@ import { ResponseCard } from "./ResponseCard";
 import { fetchChatById } from "../../store/slices/conversationsSlice";
 import { getS3Url } from "../../utilities/awsUtils";
 
-export const QueryBox: React.FC = () => {
+import type { DocumentItem } from "../../store/slices/documentsSlice";
+
+interface QueryBoxProps {
+  documentContext?: DocumentItem | null;
+}
+
+export const QueryBox: React.FC<QueryBoxProps> = ({ documentContext }) => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
   const { queryStatus, response, error } = useAppSelector(
     (state) => state.assistant
   );
-  // const { chat: chatConversation } = useAppSelector((state) => state.conversations); 
+  const { chat: chatConversation } = useAppSelector((state) => state.conversations);
 
   const [question, setQuestion] = useState("");
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
@@ -40,7 +46,9 @@ export const QueryBox: React.FC = () => {
       chatId: response?.chat_id || "",
       previousConversation: response?.conversation_id || "",
       domain_expertise: domain,
+      s3_url: documentContext?.s3_url,
     }));
+    setQuestion(""); // Clear input after asking
   };
 
   // Handle image selection
@@ -61,7 +69,7 @@ export const QueryBox: React.FC = () => {
       }
 
       setSelectedImage(file);
-      
+
       // Create preview
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -77,10 +85,10 @@ export const QueryBox: React.FC = () => {
     if (!user?._id) return alert("Please login first!");
 
     setIsUploadingToS3(true);
-    
+
     try {
       console.log('📤 Uploading image to S3...');
-      
+
       // Step 1: Upload to S3
       const s3Url = await getS3Url(selectedImage);
       console.log('✅ Image uploaded to S3:', s3Url);
@@ -108,7 +116,7 @@ export const QueryBox: React.FC = () => {
 
       // Step 3: Send to backend for processing
       const result = await dispatch(askImageQuery(payload));
-      
+
       // If successful, reset image selection
       if (askImageQuery.fulfilled.match(result)) {
         setSelectedImage(null);
@@ -116,9 +124,10 @@ export const QueryBox: React.FC = () => {
         if (fileInputRef.current) {
           fileInputRef.current.value = "";
         }
+        setQuestion("");
         console.log('✅ Image query completed successfully');
       }
-      
+
     } catch (error) {
       console.error('❌ Error in image query process:', error);
       alert("Failed to process image. Please try again.");
@@ -156,27 +165,27 @@ export const QueryBox: React.FC = () => {
     label: "Science",
     value: "science",
     icon: "fi-br-physics",
-  },{
+  }, {
     key: 2,
     label: "Physics",
     value: "physics",
     icon: "fi-br-magnet",
-  },{
+  }, {
     key: 3,
     label: "Chemistry",
     value: "chemistry",
     icon: "fi-br-flask-gear",
-  },{
+  }, {
     key: 4,
     label: "Maths",
     value: "maths",
     icon: "fi-br-square-root",
-  },{
+  }, {
     key: 5,
     label: "Biology",
     value: "biology",
     icon: "fi-br-dna",
-  },{
+  }, {
     key: 6,
     label: "General",
     value: "general",
@@ -196,13 +205,13 @@ export const QueryBox: React.FC = () => {
     "What is the bi-product in redox reaction?",
     "What is the probability of getting 3 sixes on rolling 11 dices?",
     "What is the formula of photosynthesis?",
-    imagePreview ? "Is the solution correct in the uploaded image?" : "Upload and image of your notes and ask your query from it..." 
+    imagePreview ? "Is the solution correct in the uploaded image?" : "Upload and image of your notes and ask your query from it..."
   ], [imagePreview]);
 
   // Update the typing effect
   useEffect(() => {
     const currentText = placeholders[currentIndex % placeholders.length];
-    
+
     if (!isDeleting) {
       // Typing animation
       if (charIndex < currentText.length) {
@@ -237,9 +246,64 @@ export const QueryBox: React.FC = () => {
 
 
   return (
-    <div className="max-w-3xl mx-auto">
-      {/* Image Upload Section */}
-      <div className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-100 rounded-2xl hover:shadow-lg transition-shadow focus:ring-1 focus:ring-green focus:outline p-2">
+    <div className="max-w-3xl mx-auto flex flex-col h-full">
+      {/* Chat History (Visible if documentContext is present or if there's history) */}
+      {(documentContext || (chatConversation && chatConversation.conversations.length > 0)) && (
+        <div className="flex-1 overflow-y-auto mb-4 space-y-4 p-4 bg-gray-50/50 rounded-2xl border border-gray-100 min-h-[200px] max-h-[500px]">
+          {documentContext && (
+            <div className="flex justify-center mb-4">
+              <span className="bg-blue-50 text-blue-600 text-xs font-medium px-3 py-1 rounded-full border border-blue-100 flex items-center gap-2">
+                <i className="fi fi-rr-document"></i>
+                Chatting with {documentContext.filename}
+              </span>
+            </div>
+          )}
+
+          {chatConversation?.conversations.map((conversation) => (
+            <div key={conversation.id} className="space-y-2">
+              {/* User Query */}
+              <div className="flex justify-end">
+                <div className="bg-black text-white px-4 py-2 rounded-2xl rounded-tr-sm max-w-[80%] text-sm">
+                  {conversation.query}
+                </div>
+              </div>
+              {/* AI Answer */}
+              <div className="flex justify-start">
+                <div className="bg-white border border-gray-200 text-gray-800 px-4 py-2 rounded-2xl rounded-tl-sm max-w-[90%] text-sm shadow-sm">
+                  <div className="font-medium mb-1 text-xs text-purple-600 flex items-center gap-1">
+                    <i className="fi fi-rr-sparkles"></i> AI Assistant
+                  </div>
+                  {conversation.answer}
+                </div>
+              </div>
+            </div>
+          ))}
+
+          {response && !chatConversation?.conversations.some(c => c.answer === response.answer) && (
+            <div className="space-y-2 animate-in fade-in slide-in-from-bottom-2">
+              <div className="flex justify-end">
+                <div className="bg-black text-white px-4 py-2 rounded-2xl rounded-tr-sm max-w-[80%] text-sm">
+                  {question || "..."}
+                </div>
+              </div>
+              <div className="flex justify-start">
+                <ResponseCard response={response} />
+              </div>
+            </div>
+          )}
+
+          {isLoading && (
+            <div className="flex justify-start animate-pulse">
+              <div className="bg-gray-100 px-4 py-2 rounded-2xl rounded-tl-sm text-sm text-gray-500">
+                Thinking...
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Input Area */}
+      <div className="bg-white border border-blue-100 rounded-2xl hover:shadow-lg transition-shadow focus-within:ring-1 focus-within:ring-green focus-within:outline-none p-2">
         <div className={`grid ${selectedImage ? "grid-cols-4" : "grid-cols-3"}`}>
           {/* Image Preview */}
           {selectedImage && (
@@ -251,17 +315,16 @@ export const QueryBox: React.FC = () => {
                       type="button"
                       onClick={handleRemoveImage}
                       disabled={isLoading}
-                      className={`absolute -top-2 -right-2 flex items-center px-2 py-1 rounded-full font-medium transition ${
-                        isLoading
-                          ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                          : "bg-red-100 text-red-700 hover:bg-red-200"
-                      }`}
+                      className={`absolute -top-2 -right-2 flex items-center px-2 py-1 rounded-full font-medium transition ${isLoading
+                        ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                        : "bg-red-100 text-red-700 hover:bg-red-200"
+                        }`}
                     >
                       <span>❌</span>
                     </button>
-                    <img 
-                      src={imagePreview} 
-                      alt="Preview" 
+                    <img
+                      src={imagePreview}
+                      alt="Preview"
                       className="max-h-32 rounded-lg border border-gray-300"
                     />
                   </div>
@@ -272,31 +335,37 @@ export const QueryBox: React.FC = () => {
               )}
             </div>
           )}
-    
+
           {/* Text Input */}
           <div className="col-span-3">
             <textarea
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
               placeholder={placeholderText}
-              className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 w-full h-24 rounded-lg p-3 text-gray-700 border-none focus:outline-none focus:ring-0 resize-none"
+              className="w-full h-24 rounded-lg p-3 text-gray-700 border-none focus:outline-none focus:ring-0 resize-none"
               disabled={isLoading}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                  e.preventDefault();
+                  if (selectedImage) handleImageQuery();
+                  else handleAsk();
+                }
+              }}
             />
           </div>
         </div>
-        
-        
+
+
         <div className="flex justify-between items-center">
           <div className="flex gap-2">
             <button
               type="button"
               onClick={handleUploadButtonClick}
               disabled={isLoading}
-              className={`flex items-center gap-2 p-3 rounded-full font-medium transition border border-gray-100 ${
-                isLoading
-                  ? "bg-baigeLight cursor-not-allowed"
-                  : "bg-baigeLight hover:bg-gray-200"
-              }`}
+              className={`flex items-center gap-2 p-3 rounded-full font-medium transition border border-gray-100 ${isLoading
+                ? "bg-baigeLight cursor-not-allowed"
+                : "bg-baigeLight hover:bg-gray-200"
+                }`}
             >
               <i className="fi fi fi-br-camera-viewfinder flex items-center justify-center text-orange2" />
               <input
@@ -314,9 +383,8 @@ export const QueryBox: React.FC = () => {
                 type="button"
                 onClick={() => setShowDomainDropdown((s) => !s)}
                 disabled={isLoading}
-                className={`flex items-center gap-2 p-3 rounded-full font-medium transition border border-gray-100 ${
-                  isLoading ? "bg-baigeLight cursor-not-allowed" : "bg-baigeLight hover:bg-gray-200"
-                }`}
+                className={`flex items-center gap-2 p-3 rounded-full font-medium transition border border-gray-100 ${isLoading ? "bg-baigeLight cursor-not-allowed" : "bg-baigeLight hover:bg-gray-200"
+                  }`}
                 title="Select domain"
                 aria-label="Select domain"
               >
@@ -324,7 +392,7 @@ export const QueryBox: React.FC = () => {
               </button>
 
               {showDomainDropdown && (
-                <div className="absolute z-40 mt-2 w-40 bg-white border rounded shadow-sm">
+                <div className="absolute z-40 mt-2 w-40 bg-white border rounded shadow-sm bottom-full mb-2">
                   {domains.map((d) => (
                     <button
                       key={d.key}
@@ -345,25 +413,23 @@ export const QueryBox: React.FC = () => {
                 onClick={handleImageQuery}
                 disabled={isLoading}
                 type="button"
-                className={`flex-1 px-5 py-2 rounded-full font-medium text-white transition ${
-                  isLoading
-                    ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-green hover:bg-green2"
-                }`}
+                className={`flex-1 px-5 py-2 rounded-full font-medium text-white transition ${isLoading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-green hover:bg-green2"
+                  }`}
               >
-                {isUploadingToS3 ? "Uploading to S3..." : 
-                queryStatus === "loading" ? "analysing..." : "Ask"}
+                {isUploadingToS3 ? "Uploading..." :
+                  queryStatus === "loading" ? "Analysing..." : "Ask"}
               </button>
             ) : (
               <button
                 onClick={handleAsk}
                 disabled={isLoading}
                 type="button"
-                className={`flex-1 px-5 py-2 rounded-full font-medium text-white transition ${
-                  isLoading
-                    ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-green hover:bg-green2"
-                }`}
+                className={`flex-1 px-5 py-2 rounded-full font-medium text-white transition ${isLoading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-green hover:bg-green2"
+                  }`}
               >
                 {queryStatus === "loading" ? "Thinking..." : "Ask"}
               </button>
@@ -372,25 +438,8 @@ export const QueryBox: React.FC = () => {
         </div>
       </div>
 
-      {/* Action Buttons */}
-
-
       {error && (
         <p className="text-red-500 text-sm mt-3 text-center">❌ {error}</p>
-      )}
-
-      {response && (
-        <div>
-          <ResponseCard response={response} />
-          {/* <div className="border-t mt-4 text-sm text-gray-500">
-            {chatConversation && chatConversation.conversations.length > 0 && chatConversation.conversations.map((conversation) => (
-              <div key={conversation.id} className="mt-4">
-                📄 {conversation.query_by}: <span className="font-semibold">{conversation.query}</span><br/>
-                🗂️ {conversation.answer_by}: <span className="font-medium">{conversation.answer}</span>
-              </div>
-            ))}
-          </div> */}
-        </div>
       )}
     </div>
   );

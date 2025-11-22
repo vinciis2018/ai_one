@@ -49,8 +49,8 @@ console.log(selectedId)
               Students
             </h1>
           </div>
-          {loading && <p>Loading students...</p>}
-          {error && <p className="text-red-500">Failed to load students.</p>}
+          {loading && <p className="text-xs">Loading students...</p>}
+          {error && <p className="text-xs text-red-500">No students found.</p>}
           <div className="grid grid-cols-3 gap-2 py-2">
             <input
               type="text"

@@ -1,35 +1,24 @@
 import { angryGif, sadGif1, sadGif, greenBoard, teacher, alarm, worried, expand, surprised, happy, inlove } from "../../assets";
+import CursorAnimation from "../../components/CursorAnimation";
+import NeuronAnimation from "../../components/NeuronAnimation";
+import { FeaturesSection } from "../Landing/FeaturesSection";
 
 export const TeacherSection = () => {
   return (
-    <div className="">
+    <div className="" style={{ cursor: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%234ade80" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 19.5L4 4"/><path d="M4 4l4.5 0.5L19 15l-4 4L4.5 8.5L4 4z"/><path d="M4 4l3 3"/><path d="M14 10l4 4"/></svg>') 0 0, auto` }}>
+      <CursorAnimation />
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-black to-bgDarkGreen overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-black to-bgDarkGreen overflow-hidden">
         {/* Twinkling Stars */}
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(60)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute rounded-full bg-white"
-              style={{
-                width: Math.random() * 4 + 'px',
-                height: Math.random() * 4 + 'px',
-                left: Math.random() * 100 + '%',
-                top: Math.random() * 100 + '%',
-                opacity: Math.random() * 0.8 + 0.4,
-                animation: `twinkle ${Math.random() * 5 + 3}s infinite ${Math.random() * 2}s`,
-              }}
-            />
-          ))}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-950"></div>
-        </div>
-        
+        {/* Neuron Animation */}
+        <NeuronAnimation />
+
         <div className="relative z-10 py-24 text-center lg:text-left">
           <div className="flex flex-col items-center justify-center md:p-12 lg:p-20">
             <div className="flex items-center">
               <h1 className="text-2xl md:text-4xl lg:text-6xl font-black mb-8 leading-tight text-greenLight text-center">
                 still answering the
-                <br/>
+                <br />
                 <span className="text-transparent bg-clip-text text-green text-3xl md:text-6xl lg:text-9xl">
                   SAME QUESTIONS
                 </span>
@@ -50,7 +39,7 @@ export const TeacherSection = () => {
                 sacrificing your evenings, weekends, or sanity.
               </p>
             </div>
-            
+
             <div className="flex flex-col items-center">
               <a
                 href="#teacher-waitlist"
@@ -67,7 +56,7 @@ export const TeacherSection = () => {
                     <img className="absolute left-12 rounded-full h-12 w-12" src="https://st3.depositphotos.com/1177973/14750/i/450/depositphotos_147505411-stock-photo-indian-female-teacher.jpg" alt="sample profile pic" />
                   </div>
                 </div>
-                
+
                 <h3 className="relative text-sm text-white">
                   <span className="font-bold">600+</span> Teachers already joined the waitlist
                 </h3>
@@ -77,12 +66,7 @@ export const TeacherSection = () => {
         </div>
 
         {/* Twinkling animation */}
-        <style>{`
-          @keyframes twinkle {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 1; }
-          }
-        `}</style>
+
       </section>
 
       <section className="relative h-140 md:h-screen lg:h-screen flex items-center justify-center bg-gradient-to-b from-bgDarkGreen via-black to-bgDarkGreen overflow-hidden">
@@ -90,17 +74,17 @@ export const TeacherSection = () => {
           <div className="relative px-4 flex flex-col items-center justify-center">
             <div className="relative flex w-full">
               <div className="w-1/2 overflow-hidden">
-                <img 
-                  src={greenBoard} 
-                  alt="greenboard" 
+                <img
+                  src={greenBoard}
+                  alt="greenboard"
                   className="w-[120%] h-full object-cover"
                   style={{ marginLeft: "30%", clipPath: "polygon(0 0, 83.33% 0, 83.33% 100%, 0 100%)" }}
                 />
               </div>
               <div className="w-1/2 overflow-hidden">
-                <img 
-                  src={greenBoard} 
-                  alt="greenboard" 
+                <img
+                  src={greenBoard}
+                  alt="greenboard"
                   className="w-[120%] h-full object-cover"
                   style={{ marginLeft: "-30%", clipPath: "polygon(16.67% 0, 100% 0, 100% 100%, 16.67% 100%)" }}
                 />
@@ -134,12 +118,12 @@ export const TeacherSection = () => {
             </div>
           </div>
         </div>
-</section>
+      </section>
       {/* Problem Section */}
       <section className="py-20 bg-gradient-to-b from-bgDarkGreen to-black text-gray-800">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl md:text-5xl lg:text-8xl font-black text-center mb-6 text-white">
-            The <span className="text-green">Impossible</span><br/> Math of Teaching
+            The <span className="text-green">Impossible</span><br /> Math of Teaching
           </h2>
           <p className="text-sm md:text-xl lg:text-2xl text-center text-white max-w-3xl mx-auto mb-16">
             Great teaching doesn't scale. Until now.
@@ -195,8 +179,8 @@ export const TeacherSection = () => {
                   Your AI
                 </span>
                 <i className="fi fi-ss-sparkles text-4xl px-2" />
-              </span> <br/>
-              <span className="text-green">Teaching</span><br/>
+              </span> <br />
+              <span className="text-green">Teaching</span><br />
               <span className="flex items-center justify-start gap-4">
                 Twin
                 <span className="border rounded-full flex items-center justify-center w-40 mt-2">
@@ -270,7 +254,11 @@ export const TeacherSection = () => {
             ))}
           </div>
         </div>
+
+        {/* Features Section */}
+        <FeaturesSection />
       </section>
+      
 
       {/* How it works? */}
       <section
@@ -336,13 +324,13 @@ export const TeacherSection = () => {
       >
         <div className="grid grid-cols-2 gap-4 container mx-auto px-6">
           <div className="col-span-1">
-            
+
           </div>
           <div className="col-span-1">
-            
+
           </div>
         </div>
-        
+
         <div className="absolute inset-0 overflow-hidden">
           {[...Array(100)].map((_, i) => (
             <div

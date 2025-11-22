@@ -7,14 +7,16 @@ import torch
 import gc
 
 
-MONGO_URI = os.getenv("MONGO_URI", "mongodb+srv://vinciis2018:212Matpu6na@clusterai.0fzws.mongodb.net/")
+# MONGO_URI = os.getenv("MONGO_URI", "mongodb+srv://vinciis2018:212Matpu6na@clusterai.0fzws.mongodb.net/")
+MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
+
 MONGO_DB = os.getenv("MONGO_DB", "professor")
 
 
 # Create a global client
-client = AsyncIOMotorClient(os.getenv("MONGODB_URI", "mongodb+srv://vinciis2018:212Matpu6na@clusterai.0fzws.mongodb.net/"))
+client = AsyncIOMotorClient(MONGO_URI)
 # Get the database
-db = client.get_database(os.getenv("MONGODB_DB", "professor"))
+db = client.get_database(MONGO_DB)
 
 # Create a sync client for index operations
 sync_client = None

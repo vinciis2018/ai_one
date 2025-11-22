@@ -107,9 +107,9 @@ export const uploadMaterial = createAsyncThunk<
 
 export const askQuery = createAsyncThunk<
   QueryResponse,
-  {text: string; userId: string, chatId: string; previousConversation: string, domain_expertise: string, teacher_id?: string | null, student_id?: string | null, subject?: string, level?: string},
+  { text: string; userId: string, chatId?: string | null; previousConversation?: string | null, domain_expertise: string, teacher_id?: string | null, student_id?: string | null, subject?: string, level?: string, s3_url?: string, chat_space?: string },
   { rejectValue: string }
->("assistant/askQuery", async ({text, userId, chatId, previousConversation, domain_expertise, teacher_id, student_id, subject, level}, { rejectWithValue }) => {
+>("assistant/askQuery", async ({ text, userId, chatId, previousConversation, domain_expertise, teacher_id, student_id, subject, level, s3_url, chat_space }, { rejectWithValue }) => {
   try {
     // const response = await axios.post<QueryResponse>(`${BASE_URL}/queryimage/query/`, {
     const response = await axios.post<QueryResponse>(`${BASE_URL}/querylang/query/`, {
@@ -122,6 +122,8 @@ export const askQuery = createAsyncThunk<
       student_id,
       subject,
       level,
+      s3_url,
+      chat_space,
     });
     return response.data;
   } catch (error: unknown) {

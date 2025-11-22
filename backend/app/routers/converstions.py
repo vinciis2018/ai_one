@@ -177,7 +177,6 @@ async def list_teacher_student_chats(
 async def get_conversation(chat_id: str):
     """Fetch a specific conversation by ID."""
     try:
-        from bson import ObjectId
         collection = get_collection("chats")
         chat = await collection.find_one({"_id": ObjectId(chat_id)})
         conversations = []
@@ -191,11 +190,12 @@ async def get_conversation(chat_id: str):
                 "answer": conversation["answer"],
                 "sources_used": conversation["sources_used"],
                 "prev_conversation": doc["prev_conversation"],
-                "parent_conversation": doc["parent_conversation"],
+                # "parent_chat": doc["parent_chat"],
                 "created_at": conversation["created_at"],
                 "user_id": conversation["user_id"],
                 "attached_media": conversation.get("attached_media", None),
-                "media_transcript": conversation.get("media_transcript", None)
+                "media_transcript": conversation.get("media_transcript", None),
+                "score": conversation.get("score", 1)
             })
 
         if not chat:
@@ -209,6 +209,61 @@ async def get_conversation(chat_id: str):
             "created_at": chat["created_at"]
         }
 
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error retrieving conversation: {str(e)}")
+
+
+# ====================================================
+# Get Chat by Space
+# ====================================================
+
+@router.get("/chat/space/get")
+async def get_chat_by_space(
+    user_id: str = Query(..., description="User ID"),
+    chat_space: str = Query(..., description="Chat Space identifier")
+):
+    """Fetch a specific conversation by chat_space and user_id."""
+    try:
+        collection = get_collection("chats")
+        # Find the most recent chat for this space and user
+        chat = await collection.find_one(
+            {"user_id": user_id, "chat_space": chat_space},
+            sort=[("updated_at", DESCENDING)]
+        )
+
+        if not chat:
+            raise HTTPException(status_code=404, detail="Chat not found for this space")
+
+        conversations = []
+        for doc in chat.get("conversations", []):
+            conversation = await get_collection("conversations").find_one({"_id": ObjectId(doc["conversation_id"])})
+            if conversation:
+                conversations.append({
+                    "id": str(conversation["_id"]),
+                    "query_by": conversation.get("query_by"),
+                    "answer_by": conversation.get("answer_by"),
+                    "query": conversation.get("query"),
+                    "answer": conversation.get("answer"),
+                    "sources_used": conversation.get("sources_used"),
+                    "prev_conversation": doc.get("prev_conversation"),
+                    "created_at": conversation.get("created_at"),
+                    "user_id": conversation.get("user_id"),
+                    "attached_media": conversation.get("attached_media", None),
+                    "media_transcript": conversation.get("media_transcript", None),
+                    "score": conversation.get("score", 1)
+                })
+
+        return {
+            "id": str(chat["_id"]),
+            "title": chat.get("title", ""),
+            "user_id": chat["user_id"],
+            "conversations": conversations,
+            "created_at": chat["created_at"]
+        }
+
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error retrieving conversation: {str(e)}")
 
@@ -221,7 +276,6 @@ async def get_conversation(chat_id: str):
 def get_conversation(conversation_id: str):
     """Fetch a specific conversation by ID."""
     try:
-        from bson import ObjectId
         collection = get_collection("conversations")
         conv = collection.find_one({"_id": ObjectId(conversation_id)})
 
@@ -247,8 +301,7 @@ def get_conversation(conversation_id: str):
 def delete_conversation(conversation_id: str):
     """Delete a conversation by ID."""
     try:
-        from bson import ObjectId
-        collection = _get_collection()
+        collection = get_collection("conversations")
         result = collection.delete_one({"_id": ObjectId(conversation_id)})
 
         if result.deleted_count == 0:
@@ -258,3 +311,21 @@ def delete_conversation(conversation_id: str):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error deleting conversation: {str(e)}")
+
+@router.get("/update/relevance/score")
+async def update_relevance_score(
+    conversation_id: str = Query(..., description="Conversation id to update"),
+    score: int = Query(..., description="Relevance score between 0 and 1")
+):
+    """Update relevance score of a conversation."""
+    try:
+        print("conv: ", conversation_id, "////// score: ", score)
+        collection = get_collection("conversations")
+        result = await collection.update_one({"_id": ObjectId(conversation_id)}, {"$set": {"score": score}})
+        print(result)
+        if result.modified_count == 0:
+            raise HTTPException(status_code=404, detail="Conversation not found")
+
+        return {"status": "updated", "conversation_id": conversation_id}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error updating relevance score: {str(e)}")

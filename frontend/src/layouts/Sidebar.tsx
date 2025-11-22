@@ -21,7 +21,7 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
     if (!isOpen) return 'w-16';
     return isMobile ? 'w-48' : 'w-48';
   };
-  
+
   // Determine if we should show text (always show on desktop, only when open on mobile)
   const shouldShowText = !isMobile || isOpen;
 
@@ -34,11 +34,11 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
       setView(true)
     }
 
-  },[isOpen,isMobile]);
+  }, [isOpen, isMobile]);
 
   return (
     <div className={`
-      fixed lg:sticky top-16 bottom-0 left-0 
+      fixed lg:sticky bottom-0 left-0
       bg-[var(--background-alt)] z-10
       ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
       transition-transform duration-300 ease-in-out
@@ -46,20 +46,19 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
     `}>
       {view && (
         <aside onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)} className="overflow-y-auto h-full">
-          <nav 
+          <nav
             className={`py-2 pl-2 fixed inset-y-0 left-0 ${getWidthClass()} 
             ${theme === "dark" ? "bg-black" : "bg-white"}
-            transition-all duration-300 ease-in-out mt-16 mb-8 z-40 flex flex-col justify-between`}
+            transition-all duration-300 ease-in-out mt-12 mb-8 z-40 flex flex-col justify-between`}
           >
-            <ul className="ml-1 space-y-1">
+            <ul className="ml-1 mt-4 space-y-1 ">
               <li className="">
                 <NavLink
                   to="/"
-                  className={({ isActive }) => 
-                    `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${
-                      isActive 
-                        ? `border-l-2 rounded-l-lg bg-[var(--primary)] text-green hover:text-green font-bold`
-                        : `rounded-l-lg text-gray-500 hover:text-green`
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${isActive
+                      ? `border-l-2 rounded-l-lg bg-[var(--primary)] text-green hover:text-green font-bold`
+                      : `rounded-l-lg text-gray-500 hover:text-green`
                     }`
                   }
                   onClick={onClose}
@@ -71,11 +70,10 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
               <li>
                 <NavLink
                   to="/chats"
-                  className={({ isActive }) => 
-                    `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${
-                      isActive 
-                        ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
-                        : `rounded-l-lg text-gray-500 hover:text-green`
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${isActive
+                      ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
+                      : `rounded-l-lg text-gray-500 hover:text-green`
                     }`
                   }
                   onClick={onClose}
@@ -84,31 +82,15 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
                   {shouldShowText && <span className="truncate">Chats</span>}
                 </NavLink>
               </li>
-              <li>
-                <NavLink
-                  to="/notes"
-                  className={({ isActive }) => 
-                    `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${
-                      isActive 
-                        ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
-                        : `rounded-l-lg text-gray-500 hover:text-green`
-                    }`
-                  }
-                  onClick={onClose}
-                >
-                  <i className="fi fi-sr-journal-alt h-5 w-5 flex items-center justify-center" />
-                  {shouldShowText && <span className="truncate">Notes</span>}
-                </NavLink>
-              </li>
+              {/* Notes moved to bottom as Knowledge */}
               {user && user?.role == "student" && (
                 <li>
                   <NavLink
                     to="/teachers"
-                    className={({ isActive }) => 
-                      `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${
-                        isActive 
-                          ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
-                          : `rounded-l-lg text-gray-500 hover:text-green`
+                    className={({ isActive }) =>
+                      `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${isActive
+                        ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
+                        : `rounded-l-lg text-gray-500 hover:text-green`
                       }`
                     }
                     onClick={onClose}
@@ -122,11 +104,10 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
                 <li>
                   <NavLink
                     to="/students"
-                    className={({ isActive }) => 
-                      `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${
-                        isActive 
-                          ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
-                          : `rounded-l-lg text-gray-500 hover:text-green`
+                    className={({ isActive }) =>
+                      `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${isActive
+                        ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
+                        : `rounded-l-lg text-gray-500 hover:text-green`
                       }`
                     }
                     onClick={onClose}
@@ -136,15 +117,14 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
                   </NavLink>
                 </li>
               )}
-              
+
               <li>
                 <NavLink
                   to="/coachings"
-                  className={({ isActive }) => 
-                    `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${
-                      isActive 
-                        ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
-                        : `rounded-l-lg text-gray-500 hover:text-green`
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${isActive
+                      ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
+                      : `rounded-l-lg text-gray-500 hover:text-green`
                     }`
                   }
                   onClick={onClose}
@@ -153,15 +133,32 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
                   {shouldShowText && <span className="truncate">Coaching</span>}
                 </NavLink>
               </li>
-              
+            </ul>
+
+            {/* Bottom Section */}
+            <ul className="ml-1 space-y-1">
+              <li>
+                <NavLink
+                  to="/notes"
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${isActive
+                      ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
+                      : `rounded-l-lg text-gray-500 hover:text-green`
+                    }`
+                  }
+                  onClick={onClose}
+                >
+                  <i className="fi fi-sr-book-alt h-5 w-5 flex items-center justify-center" />
+                  {shouldShowText && <span className="truncate">Knowledge</span>}
+                </NavLink>
+              </li>
               <li>
                 <NavLink
                   to="/profile"
-                  className={({ isActive }) => 
-                    `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${
-                      isActive 
-                        ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
-                        : `rounded-l-lg text-gray-500 hover:text-green`
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${isActive
+                      ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
+                      : `rounded-l-lg text-gray-500 hover:text-green`
                     }`
                   }
                   onClick={onClose}

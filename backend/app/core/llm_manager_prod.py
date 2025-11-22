@@ -21,7 +21,7 @@ logger = logging.getLogger("assistant-llm")
 # Global configs
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 LLM_MODE = os.getenv("LLM_MODE", "auto").lower()  # auto | huggingface | ollama | openai
-HF_MODEL = os.getenv("HF_MODEL", "TinyLlama/TinyLlama-1.1B-Chat-v1.0")
+HF_MODEL = os.getenv("HF_MODEL", "openai/gpt-oss-120b")
 FALLBACK_MODEL = "distilgpt2"
 # OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "mistral")
 
@@ -116,7 +116,9 @@ def build_domain_prompt(prompt: str, domain: str | None = None) -> str:
         "Explain clearly and concisely, as if teaching a student."
     )
 
-    full_prompt = f"{system_prompt}\n\nUser question:\n{prompt}"
+    full_prompt = f"{system_prompt}\n\n{prompt}"
+
+    
     return full_prompt
 
 

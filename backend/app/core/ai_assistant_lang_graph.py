@@ -3,6 +3,7 @@
 # LangGraph implementation of your AI Assistant
 # ============================================
 
+import stat
 from typing import Dict, Any, Optional
 from langgraph.graph import StateGraph, END
 from datetime import datetime
@@ -13,6 +14,7 @@ from app.core.conversation_memory import retrieve_from_conversation_memory
 from app.core.llm_manager import call_llm
 from app.config.db import get_collection
 from app.routers.query_image import _sanitize_sources, _save_conversation, analyze_image_with_openai
+from app.prompt.prompt_builder import build_prompt
 
 def initial_state(
     query: str,
@@ -22,7 +24,7 @@ def initial_state(
     domain: Optional[str] = None,
     chat_id: Optional[str] = None,
     previous_conversation: Optional[str] = None,
-    image_url: Optional[str] = None
+    image_url: Optional[str] = None,
 ) -> Dict[str, Any]:
     """Initialize the state for the LangGraph workflow."""
     return {
@@ -40,7 +42,7 @@ def initial_state(
         "sources": [],
         "error": None,
         "image_url": image_url,
-        "is_image_query": bool(image_url)
+        "is_image_query": bool(image_url),
     }
 
 
@@ -76,7 +78,7 @@ async def node_retrieve_kb(state: Dict[str, Any]) -> Dict[str, Any]:
                 {"_id": ObjectId(state["teacher_id"])}
             )
             if teacher_doc and "user_id" in teacher_doc:
-                user_ids.append(teacher_doc["user_id"])
+                user_ids.append(str(teacher_doc["user_id"]))
 
         context_chunks, user_docs = await retrieve_similar(state["query"], user_ids)
         state["context_chunks"] = context_chunks
@@ -137,14 +139,22 @@ def node_build_prompt(state: Dict[str, Any]) -> Dict[str, Any]:
     )
     context_text = f"{doc_context}\n\n{conversation_context}"
 
-    state["prompt"] = f"""
-        Use the following **knowledge and previous conversation history** to answer clearly.\n\n
+    state["prompt"] = build_prompt(
+        user_query=state['query'],
+        domain=state['domain'],
+        teacher_style="",
+        knowledge_base=doc_context,
+        conversation_memory=conversation_context,
+    )
+
+    # state["prompt"] = f"""
+    #     Use the following **knowledge and previous conversation history** to answer clearly.\n\n
         
-        If part of the answer relates to something we discussed earlier, mention it naturally 
-        (e.g., "As we talked about before..." or "Building on your earlier question about...").\n\n
-        Context:\n{context_text}\n\n
-        Question: {state['query']}
-    """
+    #     If part of the answer relates to something we discussed earlier, mention it naturally 
+    #     (e.g., "As we talked about before..." or "Building on your earlier question about...").\n\n
+    #     Context:\n{context_text}\n\n
+    #     Question: {state['query']}
+    # """
     return state
 
 

@@ -4,6 +4,7 @@
 # (MongoDB integrated for persistence)
 # ============================================
 
+from app.core.retriever_cache import embedder
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 import os
@@ -31,7 +32,7 @@ with open(CONFIG_FILE, "r") as f:
 
 MODEL_NAME = CONFIG["model"]["name"]
 TEMP = CONFIG["model"]["temperature"]
-MAX_TOKENS = CONFIG["model"]["max_tokens"]
+MAX_TOKENS = CONFIG["model"]["max_completion_tokens"]
 FALLBACK_ANSWER = CONFIG["fallback"]["offline_response"]
 
 router = APIRouter()
@@ -74,7 +75,7 @@ async def query(req: QueryRequest):
         if teacher_id:
             teacher = await db["teachers"].find_one({"_id": ObjectId(teacher_id)})
             if teacher and "user_id" in teacher:
-                teacher_user_id = teacher["user_id"]
+                teacher_user_id = str(teacher["user_id"])
                 user_ids.append(teacher_user_id)
 
         # Step 1: Retrieve from knowledge bases
@@ -207,6 +208,7 @@ async def _save_conversation(
             "query_by": "user",
             "answer_by": "assistant",
             "prev_conversation": previous_conversation,
+            "parent_chat": chat_id,
             "sources_used": [str(doc['_id']) for doc in user_docs],
             "created_at": now,
             "updated_at": now,
@@ -232,7 +234,7 @@ async def _save_conversation(
                 pseudo_conversation = {
                     "conversation_id": conversation_id,
                     "prev_conversation": previous_conversation,
-                    "parent_conversation": chat_id,
+                    "parent_chat": chat_id,
                     "created_at": now,
                     "updated_at": now
                 }
@@ -260,7 +262,7 @@ async def _save_conversation(
                 "conversations": [{
                     "conversation_id": conversation_id,
                     "prev_conversation": previous_conversation,
-                    "parent_conversation": None,  # Will be updated after insert
+                    "parent_chat": None,  # Will be updated after insert
                     "created_at": now,
                     "updated_at": now
                 }],
@@ -272,15 +274,19 @@ async def _save_conversation(
             result = await chat_collection.insert_one(chat_doc)
             chat_id = str(result.inserted_id)
             
-            # Update the parent_conversation reference
+            # Update the parent_chat reference
             await chat_collection.update_one(
                 {"_id": result.inserted_id, "conversations.conversation_id": conversation_id},
-                {"$set": {"conversations.$.parent_conversation": chat_id}}
+                {"$set": {"conversations.$.parent_chat": chat_id}}
             )
 
-        
-        from sentence_transformers import SentenceTransformer
-        embedder = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+            # update chat_id in conversation
+            await conversation_collection.update_one(
+                {"_id": conversation_id},
+                {"$set": {"parent_chat": chat_id}}
+            )
+
+
 
         embedding = embedder.encode(f"{query} {answer}").astype("float32").tolist()
         await conversation_collection.update_one(

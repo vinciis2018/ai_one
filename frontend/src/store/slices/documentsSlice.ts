@@ -19,6 +19,19 @@ export interface DocumentItem {
   subject?: string;
   domain?: string;
   user_id?: string;
+  type?: string;
+  notes_description?: Array<{
+    page: number;
+    transcription: string;
+    notes: string;
+    quiz: { easy: string[], medium: string[], hard: string[] };
+    mcq: {
+      easy: Array<{ question: string, options: string[], answer: string }>;
+      medium: Array<{ question: string, options: string[], answer: string }>;
+      hard: Array<{ question: string, options: string[], answer: string }>;
+    };
+    personal_tricks: string[];
+  }>;
 }
 
 interface DocumentsState {
@@ -40,9 +53,9 @@ const initialState: DocumentsState = {
 // ------------------------------------------------
 // Fetch all documents
 // ------------------------------------------------
-export const fetchDocuments = createAsyncThunk<DocumentItem[], {user_ids: string[]}, { rejectValue: string }>(
+export const fetchDocuments = createAsyncThunk<DocumentItem[], { user_ids: string[] }, { rejectValue: string }>(
   "documents/fetchDocuments",
-  async ({user_ids}, { rejectWithValue }) => {
+  async ({ user_ids }, { rejectWithValue }) => {
     try {
       const userIdsParam = user_ids.join(',');
 
@@ -59,9 +72,9 @@ export const fetchDocuments = createAsyncThunk<DocumentItem[], {user_ids: string
 // ------------------------------------------------
 // Fetch all documents
 // ------------------------------------------------
-export const fetchSelectedDocuments = createAsyncThunk<DocumentItem[], {doc_ids: string[]}, { rejectValue: string }>(
+export const fetchSelectedDocuments = createAsyncThunk<DocumentItem[], { doc_ids: string[] }, { rejectValue: string }>(
   "documents/fetchSelectedDocuments",
-  async ({doc_ids}, { rejectWithValue }) => {
+  async ({ doc_ids }, { rejectWithValue }) => {
     try {
       const documentIdsParams = doc_ids.join(',');
 
@@ -125,7 +138,7 @@ const documentsSlice = createSlice({
         state.error = action.payload || "Failed to fetch documents";
       })
 
-        // ===== Fetch Selected Document =====
+      // ===== Fetch Selected Document =====
       .addCase(fetchSelectedDocuments.pending, (state) => {
         state.status = "loading";
       })

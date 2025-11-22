@@ -4,7 +4,7 @@ import { FullLayout } from "../../layouts/AppLayout";
 import { getTeacherDetails } from "../../store/slices/teachersSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import { QueryBoxChat } from "../../components/atoms/QueryBoxChat";
-import { clearConversations, fetchChatById, fetchTeacherStudentChats, type ChatResponse } from "../../store/slices/conversationsSlice";
+import { clearConversations, fetchChatById, fetchTeacherStudentChats, updateConversationRelevance, type ChatResponse } from "../../store/slices/conversationsSlice";
 import { getStudentDetails } from "../../store/slices/studentsSlice";
 import { EnhancedTextDisplay } from "../../components/atoms/EnhancedTextDisplay";
 import { fetchSelectedDocuments } from "../../store/slices/documentsSlice";
@@ -28,8 +28,7 @@ export const TeacherChatPage: React.FC = () => {
   const {user} = useAppSelector((state) => state.auth);
   const { teacher_details, loading: teacherLoading, error: teacherError } = useAppSelector((state) => state.teachers);
   const { student_details, loading: studentLoading, error: studentError } = useAppSelector((state) => state.students);
-  const { chats } = useAppSelector((state) => state.conversations);
-  const { chat: chatConversation } = useAppSelector((state) => state.conversations); 
+  const { chats, chat: chatConversation, status  } = useAppSelector((state) => state.conversations);
   
   // Auto-scroll to bottom when conversation updates
   useEffect(() => {
@@ -79,7 +78,11 @@ export const TeacherChatPage: React.FC = () => {
     }
   }, [chatConversation, setConversation]);
 
-  console.log(conversation)
+  useEffect(() => {
+    if (status === "succeeded") {
+      clearConversations()
+    }
+  },[status]);
   return (
     <FullLayout>
       <div className="relative w-full h-screen bg-white max-w-4xl mx-auto px-4">
@@ -184,7 +187,7 @@ export const TeacherChatPage: React.FC = () => {
                 <div key={conv?.id} className="space-y-4 p-2 border-b border-gray-100 mx-2">
                   {/* User message - aligned to right */}
                   {conv.query && (
-                    <div className="flex justify-end gap-2">
+                    <div className="flex justify-end gap-2 w-full">
                       {conv.attached_media && (
                         <div className="bg-baigeLight rounded-xl w-16" onClick={() => window.open(conv.attached_media, '_blank')}>
                           <img src={conv.attached_media} alt="Attached media" className="rounded-xl object-fit" />
@@ -211,16 +214,24 @@ export const TeacherChatPage: React.FC = () => {
                   
                   {/* Assistant message - aligned to left */}
                   {conv.answer && (
-                    <div className="flex flex-col">
-                      <div className="bg-gray-50 p-4 rounded-xl max-w-xl">
+                    <div className="flex flex-col max-w-xl">
+                      <div className=" bg-gray-50 p-4 rounded-xl max-w-xl">
                         <div className="flex items-center gap-1 pb-2">
                           <h4 className="text-xs font-semibold text-gray-700 capitalize">{teacher_details?.name}</h4>
                           <i className="fi fi-rr-microchip-ai flex items-center text-xs"></i>
                         </div>
                         <EnhancedTextDisplay className="text-gray-800 text-xs whitespace-pre-line" content={conv.answer} />
                       </div>
-                      <div className="p-2">
+
+                      <div className="p-2 flex items-center justify-between">
                         <p className="text-gray-800 text-xs whitespace-pre-line">{conv.sources_used && conv.sources_used?.length} sources referenced</p>
+                        <i
+                          className={`fi fi-sr-triangle-warning ${conv?.score === 0 ? "text-red-500" : "text-green"} cursor-pointer`}
+                          onClick={()=> {
+                            console.log(conv)
+                            dispatch(updateConversationRelevance({conversation_id: conv.id, score: conv.score == 0 ? 1 : 0}))
+                          }}
+                        />
                       </div>
                     </div>
                   )}
@@ -239,7 +250,6 @@ export const TeacherChatPage: React.FC = () => {
                         <p className="font-semibold">{chat.title}</p>
                         <p className="text-xs text-gray-400">{new Date(chat.created_at).toLocaleString()}</p>
                         <p className="text-xs text-gray-400">{chat.conversations.length} messages</p>
-
                       </div>
                     </div>
                     <button

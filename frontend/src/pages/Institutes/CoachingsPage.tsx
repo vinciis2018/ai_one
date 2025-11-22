@@ -3,7 +3,6 @@ import { useAppDispatch, useAppSelector } from "../../store";
 import { addStudentToInstitute, addTeacherToInstitute, getAllCoachings, resetCoachingState } from "../../store/slices/coachingSlice";
 import { FullLayout } from "../../layouts/AppLayout";
 import { useNavigate } from "react-router-dom";
-import { CoachingDetailsModal } from "../../components/popups/CoachingDetailsModal";
 import type { User } from "../../types";
 import { getMe } from "../../store/slices/authSlice";
 import { allDomains } from "../../constants/helperConstants";
@@ -14,19 +13,18 @@ export const CoachingsPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const {user} = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state) => state.auth);
   const { coachings, loading, error, success } = useAppSelector((state) => state.coachings);
   const [showSubjectPopup, setShowSubjectPopup] = useState(false);
   const [selectedCoachingId, setSelectedCoachingId] = useState<string | null>(null);
   const [isJoiningAsTeacher, setIsJoiningAsTeacher] = useState(false);
   const [selectedSubjects, setSelectedSubjects] = useState<string[]>([]);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDomainFilter, setSelectedDomainFilter] = useState("all");
 
   const availableSubjects = [
-    "maths", "physics", "chemistry", "biology", 
+    "maths", "physics", "chemistry", "biology",
   ];
   useEffect(() => {
     dispatch(getAllCoachings());
@@ -41,7 +39,7 @@ export const CoachingsPage: React.FC = () => {
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
-    
+
   };
 
   const handleDomainChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -88,13 +86,13 @@ export const CoachingsPage: React.FC = () => {
               className={
                 `${selectedSubjects.includes(subject) ? "border-green" : "border-blue-100"} relative p-6 rounded-xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 border hover:shadow-lg transition-shadow hover:border-green`
               }
-             onClick={() => {
-              if (!selectedSubjects.includes(subject)) {
-                setSelectedSubjects([...selectedSubjects, subject]);
-              } else {
-                setSelectedSubjects(selectedSubjects.filter(s => s !== subject));
-              }
-            }}
+              onClick={() => {
+                if (!selectedSubjects.includes(subject)) {
+                  setSelectedSubjects([...selectedSubjects, subject]);
+                } else {
+                  setSelectedSubjects(selectedSubjects.filter(s => s !== subject));
+                }
+              }}
             >
               <h3 className="text-2xl font-semibold text-gray-800 capitalize">{subject}</h3>
               <div className="text-6xl absolute bottom-2 right-2 opacity-10">
@@ -126,11 +124,10 @@ export const CoachingsPage: React.FC = () => {
               setSelectedSubjects([]);
             }}
             disabled={selectedSubjects.length === 0}
-            className={`px-4 py-2 text-sm text-white rounded-md ${
-              selectedSubjects.length === 0
-                ? 'bg-green cursor-not-allowed'
-                : 'bg-green hover:bg-green-2'
-            }`}
+            className={`px-4 py-2 text-sm text-white rounded-md ${selectedSubjects.length === 0
+              ? 'bg-green cursor-not-allowed'
+              : 'bg-green hover:bg-green-2'
+              }`}
           >
             Continue
           </button>
@@ -161,7 +158,7 @@ export const CoachingsPage: React.FC = () => {
               </button>
             )}
           </div>
-          
+
           {loading && <p>Loading coachings...</p>}
           {error && <p className="text-red-500">Failed to load coachings.</p>}
           <div className="grid grid-cols-3 gap-2 py-2">
@@ -192,7 +189,7 @@ export const CoachingsPage: React.FC = () => {
                 <div
                   key={coaching._id}
                   className="border border-gray-100 bg-baigeLight rounded-xl p-4 hover:shadow cursor-pointer flex items-center justify-between"
-                  onDoubleClick={() => setSelectedId(coaching?._id)}
+                  onDoubleClick={() => navigate(`/coachings/${coaching._id}`)}
                 >
                   <div className="flex items-center gap-2">
                     {/* <img src={coaching.avatar} alt={coaching.name} className="h-12 w-12 rounded-full" /> */}
@@ -214,23 +211,22 @@ export const CoachingsPage: React.FC = () => {
                         setIsJoiningAsTeacher(user?.role === "teacher");
                         setShowSubjectPopup(true);
                       } else {
-                        setSelectedId(coaching._id);
+                        navigate(`/coachings/${coaching._id}`);
                       }
-      
+
                     }}
                   >
                     {
-                      user?.role == "student" && !coaching.students.includes(user?.student_id) 
-                        ? "Join" 
+                      user?.role == "student" && !coaching.students.includes(user?.student_id)
+                        ? "Join"
                         : user?.role == "teacher" && !coaching.teachers.includes(user?.teacher_id)
-                        ? "Join" : "View"
+                          ? "Join" : "View"
                     }
                   </button>
                 </div>
               )) : null}
             </div>
           </div>
-          <CoachingDetailsModal coachingId={selectedId} onClose={() => setSelectedId(null)} />
           {showSubjectPopup && <SubjectSelectionPopup />}
         </div>
       </div>

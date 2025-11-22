@@ -1,6 +1,6 @@
-from sentence_transformers import SentenceTransformer
-model = SentenceTransformer('all-MiniLM-L6-v2')
+
+from app.core.retriever_cache import embedder
 
 
 def generate_embeddings(text: str):
-  return model.encode(text).tolist()
+  return embedder.encode(text).tolist()

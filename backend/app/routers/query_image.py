@@ -42,7 +42,7 @@ with open(CONFIG_FILE, "r") as f:
 
 MODEL_NAME = CONFIG["model"]["name"]
 TEMP = CONFIG["model"]["temperature"]
-MAX_TOKENS = CONFIG["model"]["max_tokens"]
+MAX_TOKENS = CONFIG["model"]["max_completion_tokens"]
 FALLBACK_ANSWER = CONFIG["fallback"]["offline_response"]
 
 router = APIRouter()
@@ -275,7 +275,8 @@ async def process_query_common(
     domain_expertise: str,
     attached_media: Optional[str] = None,
     media_transcript: Optional[str] = None,
-    user_text: Optional[str] = None
+    user_text: Optional[str] = None,
+    chat_space: Optional[str] = None
 ):
     """Common processing logic for both text and image queries"""
     try:
@@ -284,7 +285,7 @@ async def process_query_common(
         if teacher_id:
             teacher = await db["teachers"].find_one({"_id": ObjectId(teacher_id)})
             if teacher and "user_id" in teacher:
-                teacher_user_id = teacher["user_id"]
+                teacher_user_id = str(teacher["user_id"])
                 print("teacher", teacher_user_id)
                 user_ids.append(teacher_user_id)
 
@@ -311,7 +312,6 @@ async def process_query_common(
             )
 
             answer = call_llm(augmented_prompt, domain_expertise)
-            print("answer: ", answer)
             log_query_event(user_query, answer, success=False)
             res = await _save_conversation(
                 user_query,
@@ -324,7 +324,8 @@ async def process_query_common(
                 user_docs,
                 attached_media,
                 media_transcript,
-                user_text
+                user_text,
+                chat_space
             )
             
             return {
@@ -363,7 +364,8 @@ async def process_query_common(
             user_docs,
             attached_media,
             media_transcript,
-            user_text
+            user_text,
+            chat_space
         )
         
         return {
@@ -556,7 +558,8 @@ async def _save_conversation(
     user_docs: Optional[list] = None,
     attached_media: Optional[str] = None,
     media_transcript: Optional[str] = None,
-    user_text: Optional[str] = None
+    user_text: Optional[str] = None,
+    chat_space: Optional[str] = None
 ) -> dict:
     """
     Save or update chat and conversation in MongoDB.
@@ -566,7 +569,6 @@ async def _save_conversation(
     """
     try:
 
-        print("herererer", chat_id, teacher_id, user_id, student_id, user_docs, previous_conversation)
         chat_collection = get_collection("chats")
         conversation_collection = get_collection("conversations")
         
@@ -578,7 +580,8 @@ async def _save_conversation(
             "query_by": "user",
             "answer_by": "assistant",
             "prev_conversation": previous_conversation,
-            "sources_used": [str(doc['_id']) for doc in user_docs],
+            "parent_chat": chat_id,
+            "sources_used": [str(doc["_id"]) if "_id" in doc else str(doc["conversation_id"]) for doc in user_docs],
             "created_at": now,
             "updated_at": now,
             "edit_history": [],
@@ -586,6 +589,7 @@ async def _save_conversation(
             "media_transcript": media_transcript
         }
         
+
         # Insert conversation
         conversation_result = await conversation_collection.insert_one(conversation.copy())
         conversation_id = str(conversation_result.inserted_id)
@@ -605,7 +609,7 @@ async def _save_conversation(
                 pseudo_conversation = {
                     "conversation_id": conversation_id,
                     "prev_conversation": previous_conversation,
-                    "parent_conversation": chat_id,
+                    "parent_chat": chat_id,
                     "created_at": now,
                     "updated_at": now
                 }
@@ -613,7 +617,9 @@ async def _save_conversation(
                 await chat_collection.update_one(
                     {"_id": chat_id_obj},
                     {
-                        "$push": {"conversations": pseudo_conversation},
+                        "$push": {
+                            "conversations": pseudo_conversation,
+                        },
                         "$set": {
                             "updated_at": now,
                             # "title": query[:100]  # Update title with latest query (truncated)
@@ -630,10 +636,11 @@ async def _save_conversation(
                 "user_id": user_id,
                 "teacher_id": teacher_id,
                 "student_id": student_id,
+                "chat_space": chat_space,
                 "conversations": [{
                     "conversation_id": conversation_id,
                     "prev_conversation": previous_conversation,
-                    "parent_conversation": None,  # Will be updated after insert
+                    "parent_chat": None,  # Will be updated after insert
                     "created_at": now,
                     "updated_at": now
                 }],
@@ -644,11 +651,22 @@ async def _save_conversation(
             # Insert new chat
             result = await chat_collection.insert_one(chat_doc)
             chat_id = str(result.inserted_id)
+
             
-            # Update the parent_conversation reference
+            # Update the parent_chat reference
             await chat_collection.update_one(
                 {"_id": result.inserted_id, "conversations.conversation_id": conversation_id},
-                {"$set": {"conversations.$.parent_conversation": chat_id}}
+                {"$set": {
+                    "conversations.$.parent_chat": chat_id,
+                    
+
+                }}
+            )
+
+            # update chat_id in conversation
+            await conversation_collection.update_one(
+                {"_id": conversation_id},
+                {"$set": {"parent_chat": chat_id}}
             )
 
         

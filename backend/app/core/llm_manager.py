@@ -5,9 +5,10 @@
 # ============================================
 
 import os
+from app.prompt.system_prompt import SYSTEM_PROMPT as system_prompt
 import torch
 import subprocess
-from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM
+from transformers import AutoTokenizer, AutoModelForCausalLM
 from dotenv import load_dotenv
 from openai import OpenAI
 import logging
@@ -20,13 +21,21 @@ logger = logging.getLogger("assistant-llm")
 
 # Global configs
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-5-nano")
 LLM_MODE = os.getenv("LLM_MODE", "auto").lower()  # auto | huggingface | ollama | openai
-HF_MODEL = os.getenv("HF_MODEL", "TinyLlama/TinyLlama-1.1B-Chat-v1.0")
+HF_MODEL = os.getenv("HF_MODEL", "openai/gpt-oss-120b")
+HF_MODEL_OCR = os.getenv("HF_MODEL_OCR", "deepseek-ai/DeepSeek-OCR") ## not for chat, have to install it and run locally, so not using it
+
+HF_TOKEN = os.getenv("HF_TOKEN")
 FALLBACK_MODEL = "distilgpt2"
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "mistral")
 
 
 open_ai_client = OpenAI(api_key=OPENAI_API_KEY)
+hf_client = OpenAI(
+    base_url="https://router.huggingface.co/v1",
+    api_key=HF_TOKEN
+)
 
 # ------------------------------------------------
 # Device detection
@@ -42,25 +51,6 @@ def detect_device():
 DEVICE = detect_device()
 logger.info(f"🧠 Using device: {DEVICE.upper()}")
 
-# ------------------------------------------------
-# Hugging Face model cache
-# ------------------------------------------------
-_hf_pipeline = None
-
-def get_hf_pipeline():
-    """Load Hugging Face model once."""
-    global _hf_pipeline
-    if _hf_pipeline is None:
-        logger.info(f"⚙️ Loading Hugging Face model: {HF_MODEL}")
-        _hf_pipeline = pipeline(
-            "text-generation",
-            model=HF_MODEL,
-            dtype=torch.float16 if DEVICE != "cpu" else torch.float32,
-            device_map="auto" if DEVICE != "cpu" else None,
-            batch_size=4,
-            max_new_tokens=256,
-        )
-    return _hf_pipeline
 
 # ------------------------------------------------
 # Ollama helpers
@@ -92,39 +82,6 @@ def call_ollama(prompt: str, model: str = OLLAMA_MODEL) -> str:
 
 
 # ------------------------------------------------
-# Domain-aware prompt builder
-# ------------------------------------------------
-def build_domain_prompt(prompt: str, domain: str | None = None) -> str:
-    """
-    Add domain expertise and structured guidance.
-    """
-    domain_map = {
-        "physics": "a Physics expert tutor for competitive exams like IIT JEE and NEET",
-        "chemistry": "a Chemistry instructor specializing in IIT JEE, NEET and CBSE topics",
-        "math": "a Mathematics problem-solving coach for IIT JEE and CBSE topics",
-        "biology": "a Biology mentor with deep conceptual clarity for CBSE and NEET topics",
-        "programming": "a Software Engineering mentor specializing in Python and AI",
-        "general": "an educational AI assistant helping students learn any subject",
-        "science": "a Science tutor for competitive exams",
-    }
-
-    role = domain_map.get(domain.lower() if domain else "general", domain_map["general"])
-
-    system_prompt = (
-        f"You are {role} teacher for competitive exams, having deep knowledge of the subject. "
-        "Answer only using the provided context, ensuring conceptual, mathematical and factual accuracy. Try not to share any external weblinks, untill specifically asked in the prompt by user."
-        "You may reference earlier conversation history if relevant (e.g., 'as discussed before'). "
-        "Ensure factual consistency and maintain continuity of tutoring tone."
-        "Don't add anything extra, that is not being asked in the query."
-        "Explain clearly and concisely, as if teaching a student for competitive exams like IIT JEE, NEET and CBSE."
-        "Check for Maths equations and ensure they are correct and encode them so that they can be identified easily in the texts."
-    )
-
-    full_prompt = f"{system_prompt}\n\nUser question:\n{prompt}"
-    return full_prompt
-
-
-# ------------------------------------------------
 # Core LLM handler
 # ------------------------------------------------
 def call_llm(prompt: str, domain: str) -> str:
@@ -136,23 +93,21 @@ def call_llm(prompt: str, domain: str) -> str:
     4️⃣ Offline Fallback
     """
 
-        # Build domain-conditioned prompt
-    domain_prompt = build_domain_prompt(prompt, domain)
-
-
     # =======================
     # 1️⃣ OpenAI
     # =======================
     if LLM_MODE in ["auto", "openai"] and OPENAI_API_KEY:
         try:
+            logger.info(f"⚙️ Running OpenAI model: {OPENAI_MODEL}")
+
             response = open_ai_client.chat.completions.create(
-                model="gpt-4o-mini",
+                model=OPENAI_MODEL,
                 messages=[
-                    {"role": "system", "content": f"You are {f"{domain} expert" or 'an educational'} AI assistant that answers based on provided context."},
-                    {"role": "user", "content": domain_prompt},
+                    {"role": "system", "content": f"You are a {domain} expert AI assistant that answers based on provided context."},
+                    {"role": "user", "content": prompt},
                 ],
                 temperature=0.5,
-                max_tokens=300,
+                max_completion_tokens=300,
             )
             return response.choices[0].message.content.strip()
         except Exception as e:
@@ -161,20 +116,30 @@ def call_llm(prompt: str, domain: str) -> str:
     # =======================
     # 2️⃣ Hugging Face
     # =======================
-    # if LLM_MODE in ["auto", "huggingface"]:
-    #     try:
-    #         pipe = get_hf_pipeline()
-    #         outputs = pipe(domain_prompt, num_return_sequences=1, do_sample=True)
-    #         return outputs[0]["generated_text"].strip()
-    #     except Exception as e:
-    #         logger.warning(f"⚠️ Hugging Face failed: {e}")
+    if LLM_MODE in ["auto", "huggingface"]:
+        try:
+            logger.info(f"⚙️ Running Hugging Face model: {HF_MODEL}")
+
+            response = hf_client.chat.completions.create(
+                model=HF_MODEL,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": prompt},
+                ],
+                # temperature=0.6,
+                max_completion_tokens=8000,
+            )
+            return response.choices[0].message.content.strip()
+
+        except Exception as e:
+            logger.warning(f"⚠️ Hugging Face failed: {e}")
 
     # =======================
     # 3️⃣ Ollama
     # =======================
     if LLM_MODE in ["auto", "ollama"]:
         try:
-            return call_ollama(domain_prompt)
+            return call_ollama(prompt)
         except Exception as e:
             logger.warning(f"⚠️ Ollama failed: {e}")
 
@@ -185,9 +150,10 @@ def call_llm(prompt: str, domain: str) -> str:
         logger.info("⚙️ Using offline fallback model.")
         tokenizer = AutoTokenizer.from_pretrained(FALLBACK_MODEL)
         model = AutoModelForCausalLM.from_pretrained(FALLBACK_MODEL)
-        inputs = tokenizer(domain_prompt, return_tensors="pt")
+        inputs = tokenizer(prompt, return_tensors="pt")
         outputs = model.generate(**inputs, max_new_tokens=128)
         return tokenizer.decode(outputs[0], skip_special_tokens=True)
     except Exception as e:
         logger.error(f"❌ All backends failed: {e}")
         return "I'm currently unable to answer due to system issues."
+

@@ -3,7 +3,6 @@ import { FullLayout } from "../../layouts/AppLayout";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchDocuments } from "../../store/slices/documentsSlice";
-import { NoteDetailsModal } from "../../components/popups/NoteDetailsModal";
 import { UploadBox } from "../../components/atoms/UploadBox";
 
 export const NotesPage: React.FC = () => {
@@ -11,27 +10,25 @@ export const NotesPage: React.FC = () => {
   const navigate = useNavigate();
 
 
-  const {user} = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state) => state.auth);
   const { documents, status, error } = useAppSelector((state) => state.documents);
-  
-  const [selectedId, setSelectedId] = useState<string | null | undefined>(null);
+
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDomain, setSelectedDomain] = useState("all");
   const [showUploadBox, setShowUploadBox] = useState(false);
-  
-console.log(selectedId)
+
   useEffect(() => {
     if (user) {
       dispatch(fetchDocuments({
         user_ids: [user?._id || ''],
       }));
-      
+
     }
   }, [dispatch, user]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
-    
+
   };
 
   const handleDomainChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -59,7 +56,7 @@ console.log(selectedId)
               <i className="fi fi-br-upload flex items-center justify-center text-violet" />
             </button>
           </div>
-          
+
           {status == "loading" && <p>Loading notes...</p>}
           {error && <p className="text-red-500">Failed to load notes.</p>}
           <div className="grid grid-cols-3 gap-2 py-2">
@@ -90,7 +87,7 @@ console.log(selectedId)
                 <div
                   key={doc.id}
                   className="border border-gray-100 bg-baigeLight rounded-xl p-4 hover:shadow cursor-pointer flex items-center justify-between"
-                  onClick={() => setSelectedId(doc?.id)}
+                  onClick={() => navigate(`/documents/${doc.id}`)}
                 >
                   <div className="flex items-center gap-2">
                     {/* <img src={doc.avatar} alt={doc.name} className="h-12 w-12 rounded-full" /> */}
@@ -105,8 +102,7 @@ console.log(selectedId)
                     className="px-4 py-2 bg-white border border-green text-green font-semibold rounded-full text-xs"
                     onClick={(e) => {
                       e.stopPropagation();
-                      // Handle assign action here
-                      setSelectedId(doc.id);
+                      navigate(`/documents/${doc.id}`);
                     }}
                   >
                     view
@@ -115,7 +111,7 @@ console.log(selectedId)
               )) : null}
             </div>
           </div>
-          <NoteDetailsModal documentId={selectedId as string} onClose={() => setSelectedId(null)} />
+          {/* NoteDetailsModal removed as we navigate to details page now */}
           {/* Upload Box - Show only when showUploadBox is true */}
           {showUploadBox && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 overflow-y-auto py-4">

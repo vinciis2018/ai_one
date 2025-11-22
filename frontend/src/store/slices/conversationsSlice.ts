@@ -19,6 +19,7 @@ export interface Conversation {
   user_id?: string;
   attached_media?: string;
   media_transcript?: string;
+  score?: number;
 }
 
 export interface ChatResponse {
@@ -136,6 +137,47 @@ export const fetchChatById = createAsyncThunk<ChatResponse, string, { rejectValu
   }
 );
 
+
+export const updateConversationRelevance = createAsyncThunk<
+  { status: string, conversation_id: string },
+  { conversation_id: string, score: number },
+  { rejectValue: string }
+>(
+  'conversations/updateConversationRelevance',
+  async ({ conversation_id, score }, { rejectWithValue }) => {
+    try {
+      const response = await axios.get<{ status: string, conversation_id: string }>(`${BASE_URL}/conversations/update/relevance/score`, {
+        params: { conversation_id, score },
+      });
+      return response.data;
+    } catch (error: unknown) {
+      const axiosError = error as unknown as { response?: { data?: { detail?: string } } };
+      return rejectWithValue(axiosError.response?.data?.detail || 'Failed to load conversations');
+    }
+  }
+);
+
+
+export const fetchChatBySpace = createAsyncThunk<
+  ChatResponse,
+  { user_id: string; chat_space: string },
+  { rejectValue: string }
+>(
+  'conversations/fetchChatBySpace',
+  async ({ user_id, chat_space }, { rejectWithValue }) => {
+    try {
+      const response = await axios.get<ChatResponse>(`${BASE_URL}/conversations/chat/space/get`, {
+        params: { user_id, chat_space },
+      });
+      return response.data;
+    } catch (error: unknown) {
+      const axiosError = error as unknown as { response?: { data?: { detail?: string } } };
+      return rejectWithValue(axiosError.response?.data?.detail || 'Failed to load conversation');
+    }
+  }
+);
+
+
 const conversationSlice = createSlice({
   name: 'conversations',
   initialState,
@@ -221,6 +263,31 @@ const conversationSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchChatById.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload || 'Error loading conversation';
+      })
+
+      .addCase(updateConversationRelevance.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(updateConversationRelevance.fulfilled, (state) => {
+        state.status = 'succeeded';
+        state.error = null;
+      })
+      .addCase(updateConversationRelevance.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload || 'Error loading conversation';
+      })
+
+      .addCase(fetchChatBySpace.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchChatBySpace.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.chat = action.payload;
+        state.error = null;
+      })
+      .addCase(fetchChatBySpace.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload || 'Error loading conversation';
       });

@@ -8,7 +8,6 @@ import os
 from app.config.db import db
 import numpy as np
 from sentence_transformers import SentenceTransformer
-from pymongo import MongoClient
 from datetime import datetime
 from dotenv import load_dotenv
 
