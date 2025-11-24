@@ -1,4 +1,3 @@
-import React from "react";
 import { Reorder, useDragControls } from "framer-motion";
 import { InlineMath, BlockMath } from 'react-katex';
 

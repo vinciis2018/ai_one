@@ -121,7 +121,7 @@ export const NotesPage: React.FC = () => {
                   📤 Upload Study Material
                 </h2>
 
-                <UploadBox />
+                <UploadBox isOpen={showUploadBox} onClose={() => setShowUploadBox(false)}/>
               </div>
             </div>
           )}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { clearSelectedDocument, fetchDocumentById } from "../../store/slices/documentsSlice";
-import { createTranscription, saveNotes, generateQuiz, generateNotes, generateMCQ, createPersonalTricks } from "../../store/slices/notesSlice";
+import { createTranscription, saveNotes, generateQuiz, generateNotes, generateMCQ } from "../../store/slices/notesSlice";
 import { useParams, useNavigate } from "react-router-dom";
 import { FullLayout } from "../../layouts/AppLayout";
 import { Document, Page, pdfjs } from 'react-pdf';

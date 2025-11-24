@@ -1,7 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { useTheme } from "../hooks/useTheme";
 import { useNavigate } from "react-router-dom";
-// import Logo from '../assets/logo.svg';
 import { useAppDispatch, useAppSelector, type RootState } from '../store';
 import { getMe, logout } from '../store/slices/authSlice';
 
@@ -17,7 +15,6 @@ export function Header({ onMenuClick, isMobile, setIsSidebarOpen, isSidebarOpen,
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const { theme } = useTheme();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 

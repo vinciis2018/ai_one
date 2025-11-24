@@ -63,7 +63,6 @@ export const LandingPage: React.FC = () => {
         {isQueryOpen && (
           <QueryModal
             setIsQueryOpen={setIsQueryOpen}
-            onClose={() => setIsQueryOpen(false)}
           />
         )}
 

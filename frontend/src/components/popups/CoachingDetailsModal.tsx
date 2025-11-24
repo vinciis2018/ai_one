@@ -165,7 +165,7 @@ export const CoachingDetailsModal: React.FC<Props> = ({ coachingId, onClose }) =
           {showUploadBox && (
             <div className="mb-6">
               <h4 className="text-sm font-medium mb-2">Upload Documents</h4>
-              <UploadBox />
+              <UploadBox isOpen={showUploadBox} onClose={() => setShowUploadBox(false)} />
             </div>
           )}
 

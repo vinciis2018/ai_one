@@ -4,10 +4,9 @@ import { QueryBox } from "../atoms/QueryBox";
 
 interface Props {
   setIsQueryOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  onClose: () => void;
 }
 
-export const QueryModal: React.FC<Props> = ({ setIsQueryOpen, onClose }) => {
+export const QueryModal: React.FC<Props> = ({ setIsQueryOpen }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 overflow-y-auto py-4">
       {/* Main Modal */}

@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SimpleLayout } from '../../layouts/AppLayout';
 import { TeacherSection } from './TeacherSection';
-import { StudentSection } from './StudentSection';
+// import { StudentSection } from './StudentSection';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../store';
 
@@ -14,7 +14,7 @@ export function HomePage() {
   const navigate = useNavigate();
   const {isAuthenticated} = useAppSelector((state) => state.auth);
 
-  const [activeTab, setActiveTab] = useState<'teacher' | 'student'>('teacher');
+  // const [activeTab, setActiveTab] = useState<'teacher' | 'student'>('teacher');
   const neuralNetworkRef = useRef<HTMLDivElement>(null);
 
   // Neural Network Animation
@@ -97,7 +97,8 @@ export function HomePage() {
     <SimpleLayout>
       {/* Page Content */}
       <div className="relative">
-        {activeTab === 'student' ? <TeacherSection /> : <StudentSection />}
+         <TeacherSection /> 
+         {/* <StudentSection /> */}
       </div>
     </SimpleLayout>
   );
