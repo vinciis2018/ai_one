@@ -41,6 +41,18 @@ async def node_save_conversation(state: Dict[str, Any]) -> Dict[str, Any]:
     except Exception as e:
         print(f"Error in node_save_conversation: {str(e)}")
         state["error"] = f"Error saving conversation: {str(e)}"
+    
+    # Fire-and-forget chat_to_concept
+    try:
+        from app.mylanggraph.nodes.chat_to_concept_node import chat_to_concept_node
+        import asyncio
+        # Create a copy of state to avoid mutation issues if any, though chat_to_concept_node mainly reads
+        # We pass the current state. Since it's fire-and-forget, the main graph continues.
+        asyncio.create_task(chat_to_concept_node(state.copy()))
+        print("🚀 Fired chat_to_concept task")
+    except Exception as e:
+        print(f"Error firing chat_to_concept: {str(e)}")
+
     print("save conversation node done!!!")
     return state
 

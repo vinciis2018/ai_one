@@ -51,7 +51,7 @@ export function Header({ onMenuClick, isMobile, setIsSidebarOpen, isSidebarOpen,
   };
 
   return (
-    <header className={`fixed pt-4 top-0 left-0 right-0 z-50 shadow-xs ${bg}`}>
+    <header className={`fixed py-2 top-0 left-0 right-0 z-50 shadow-xs ${bg}`}>
       <div className="h-full mx-auto px-6 flex items-center justify-between">
         {/* Mobile menu button */}
         {isMobile && (
@@ -83,7 +83,7 @@ export function Header({ onMenuClick, isMobile, setIsSidebarOpen, isSidebarOpen,
           )}
         </div>
         
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 py-2">
           {/* Avatar with Dropdown */}
           {user ? (
             <div className="relative" ref={dropdownRef}>

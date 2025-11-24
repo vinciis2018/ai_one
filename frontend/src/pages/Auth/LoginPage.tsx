@@ -42,7 +42,7 @@ const { isAuthenticated } = useAppSelector((state: RootState) => state.auth);
     <SimpleLayout>
       <div className="w-full max-w-sm mx-auto space-y-4 py-16 px-8">
         <div>
-          <h2 className="text-3xl font-bold text-center text-green">
+          <h2 className="text-3xl font-bold text-center text-green2">
             Sign in to your account
           </h2>
         </div>
@@ -104,7 +104,7 @@ const { isAuthenticated } = useAppSelector((state: RootState) => state.auth);
 
             <div className="text-sm">
               {/* <a href="/forgot-password" className="font-medium text-green hover:text-[var(--primary-hover)]"> */}
-              <a className="font-medium text-green hover:text-[var(--primary-hover)]">
+              <a className="font-medium text-green2 hover:text-[var(--primary-hover)]">
                 Forgot your password?
               </a>
             </div>
@@ -113,7 +113,7 @@ const { isAuthenticated } = useAppSelector((state: RootState) => state.auth);
           <div>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green hover:border-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary)]"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green2 hover:border-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary)]"
             >
               Sign in
             </button>

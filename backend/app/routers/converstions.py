@@ -182,6 +182,17 @@ async def get_conversation(chat_id: str):
         conversations = []
         for doc in chat["conversations"]:
             conversation = await get_collection("conversations").find_one({"_id": ObjectId(doc["conversation_id"])})
+            # Fetch Quick Action from Student Knowledge Graph
+            kg_collection = get_collection("student_knowledge_graph")
+            kg_entry = await kg_collection.find_one({
+                "chat_id": str(chat["_id"]),
+                "conversation_id": str(conversation["_id"])
+            })
+            
+            quick_action = {}
+            if kg_entry and "quick_action" in kg_entry:
+                quick_action = kg_entry["quick_action"]
+
             conversations.append({
                 "id": str(conversation["_id"]),
                 "query_by": conversation["query_by"],
@@ -195,7 +206,8 @@ async def get_conversation(chat_id: str):
                 "user_id": conversation["user_id"],
                 "attached_media": conversation.get("attached_media", None),
                 "media_transcript": conversation.get("media_transcript", None),
-                "score": conversation.get("score", 1)
+                "score": conversation.get("score", 1),
+                "quick_action": quick_action,
             })
 
         if not chat:
@@ -238,6 +250,17 @@ async def get_chat_by_space(
         conversations = []
         for doc in chat.get("conversations", []):
             conversation = await get_collection("conversations").find_one({"_id": ObjectId(doc["conversation_id"])})
+            # Fetch Quick Action from Student Knowledge Graph
+            kg_collection = get_collection("student_knowledge_graph")
+            kg_entry = await kg_collection.find_one({
+                "chat_id": str(chat["_id"]),
+                "conversation_id": str(conversation["_id"])
+            })
+            
+            quick_action = {}
+            if kg_entry and "quick_action" in kg_entry:
+                quick_action = kg_entry["quick_action"]
+            
             if conversation:
                 conversations.append({
                     "id": str(conversation["_id"]),
@@ -251,7 +274,8 @@ async def get_chat_by_space(
                     "user_id": conversation.get("user_id"),
                     "attached_media": conversation.get("attached_media", None),
                     "media_transcript": conversation.get("media_transcript", None),
-                    "score": conversation.get("score", 1)
+                    "score": conversation.get("score", 1),
+                    "quick_action": quick_action
                 })
 
         return {

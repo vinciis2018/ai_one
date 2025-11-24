@@ -3,6 +3,7 @@ import { Document, Page } from 'react-pdf';
 import { useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import type { DocumentItem } from '../../../store/slices/documentsSlice';
+import { useAppSelector } from '../../../store';
 
 interface DocumentModalProps {
   doc: DocumentItem;
@@ -20,10 +21,32 @@ const DocumentModal: React.FC<DocumentModalProps> = ({ doc, onClose }) => {
 
   const navigate = useNavigate();
 
+  const { user } = useAppSelector((state) => state.auth);
   if (!doc) return null;
 
   const fileExt = doc.filename?.split('.').pop()?.toLowerCase();
   const isPDF = fileExt === 'pdf';
+
+  // Get valid pages for students (those with transcriptions)
+  const validPages = React.useMemo(() => {
+    if (user?.role !== 'student') return null;
+
+    if (Array.isArray(doc.notes_description) && doc.notes_description.length > 0) {
+      return doc.notes_description
+        .map((n: any) => n.page)
+        .sort((a: number, b: number) => a - b);
+    }
+    return [];
+  }, [doc.notes_description, user?.role]);
+
+  // Initialize or adjust page number if it's not valid for student
+  React.useEffect(() => {
+    if (user?.role === 'student' && validPages && validPages.length > 0) {
+      if (!validPages.includes(pageNumber)) {
+        setPageNumber(validPages[0]);
+      }
+    }
+  }, [validPages, user?.role, pageNumber]);
 
   const minSwipeDistance = 50;
 
@@ -41,16 +64,46 @@ const DocumentModal: React.FC<DocumentModalProps> = ({ doc, onClose }) => {
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
-    if (isLeftSwipe && pageNumber < (numPages || 1)) {
-      setPageNumber((prev) => prev + 1);
+
+    if (isLeftSwipe) {
+      goToNextPage();
     }
-    if (isRightSwipe && pageNumber > 1) {
-      setPageNumber((prev) => prev - 1);
+    if (isRightSwipe) {
+      goToPrevPage();
     }
   };
 
-  const goToPrevPage = () => setPageNumber((prev) => Math.max(1, prev - 1));
-  const goToNextPage = () => setPageNumber((prev) => Math.min(numPages || 1, prev + 1));
+  const goToPrevPage = () => {
+    if (user?.role === 'student' && validPages) {
+      const currentIndex = validPages.indexOf(pageNumber);
+      if (currentIndex > 0) {
+        setPageNumber(validPages[currentIndex - 1]);
+      }
+    } else {
+      setPageNumber((prev) => Math.max(1, prev - 1));
+    }
+  };
+
+  const goToNextPage = () => {
+    if (user?.role === 'student' && validPages && validPages.length > 0) {
+      const currentIndex = validPages.indexOf(pageNumber);
+      if (currentIndex !== -1) {
+        if (currentIndex < validPages.length - 1) {
+          setPageNumber(validPages[currentIndex + 1]);
+        } else {
+          // Loop back to first valid page
+          setPageNumber(validPages[0]);
+        }
+      }
+    } else {
+      setPageNumber((prev) => {
+        if (prev >= (numPages || 1)) {
+          return 1; // Loop back to first page
+        }
+        return prev + 1;
+      });
+    }
+  };
 
   const noteForPage = Array.isArray(doc.notes_description)
     ? doc.notes_description.find((n: any) => n.page === pageNumber)
@@ -67,7 +120,7 @@ const DocumentModal: React.FC<DocumentModalProps> = ({ doc, onClose }) => {
                   <i className="fi fi-rr-magic-wand text-white text-lg"></i>
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900">AI Generated Notes</h2>
+                  <h2 className="text-2xl font-bold text-gray-400">Quick Notes</h2>
                   <p className="text-sm text-gray-500">Page {pageNumber}</p>
                 </div>
               </div>
@@ -424,7 +477,7 @@ const DocumentModal: React.FC<DocumentModalProps> = ({ doc, onClose }) => {
               )}
 
               {/* Floating Action Buttons */}
-              <div className="absolute bottom-4 right-4 flex flex-col gap-3">
+              <div className="absolute top-4 right-4 flex flex-col gap-3">
                 {/* Notes Button */}
                 <button
                   onClick={() => setViewMode('notes')}
@@ -470,16 +523,19 @@ const DocumentModal: React.FC<DocumentModalProps> = ({ doc, onClose }) => {
                   </span>
                 </button>
                 {/* Full View Button */}
-                <button
-                  onClick={() => navigate(`/documents/${doc.id}`)}
-                  className="w-14 h-14 bg-gray-800 hover:bg-black text-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 group relative"
-                  title="Open Full Document"
-                >
-                  <i className="fi fi-rr-expand text-lg flex"></i>
-                  <span className="absolute right-16 bg-black/80 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
-                    Full View
-                  </span>
-                </button>
+                {user?.role === "teacher" && (
+                  <button
+                    onClick={() => navigate(`/documents/${doc.id}`)}
+                    className="w-14 h-14 bg-gray-800 hover:bg-black text-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 group relative"
+                    title="Open Full Document"
+                  >
+                    <i className="fi fi-rr-expand text-lg flex"></i>
+                    <span className="absolute right-16 bg-black/80 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                      Full View
+                    </span>
+                  </button>
+                )}
+
               </div>
             </>
           ) : (

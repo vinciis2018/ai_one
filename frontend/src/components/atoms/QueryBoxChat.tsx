@@ -11,7 +11,7 @@ import { askQuery, askImageQuery, resetStatus } from "../../store/slices/assista
 import { fetchChatById } from "../../store/slices/conversationsSlice";
 // import { getS3Url } from "../../utilities/awsUtils";
 import { AnimatedTextAreaInput } from "./AnimatedTextAreaInput";
-import { useLocation } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 
 export const QueryBoxChat: React.FC<{
@@ -22,6 +22,7 @@ export const QueryBoxChat: React.FC<{
   previousConversationId?: string | null
 }> = ({domain, teacher_user_id, student_user_id, chatId, previousConversationId}) => {
   const { pathname } = useLocation();
+  const [searchParams] = useSearchParams();
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
   const { queryStatus, response, error } = useAppSelector(
@@ -36,6 +37,10 @@ export const QueryBoxChat: React.FC<{
   // Handle text query
   const handleAsk = async () => {
     if (!question.trim()) return alert("Please enter a question!");
+    const document_id = searchParams.get("document");
+    console.log(document_id);
+    const chat_space = document_id ? `${pathname.split("/").splice(1).join("/")}?document=${document_id}` : pathname.split("/").splice(1).join("/");
+  
     await dispatch(askQuery({
       text: question,
       userId: user?._id || '',
@@ -46,7 +51,7 @@ export const QueryBoxChat: React.FC<{
       student_id: student_user_id,
       subject: `general ${domain}`, // You can make this dynamic if needed
       level: "intermediate",   // You can make this dynamic if needed
-      chat_space: pathname.split("/").splice(1).join("/")
+      chat_space: chat_space
     }));
   };
 
@@ -160,15 +165,14 @@ export const QueryBoxChat: React.FC<{
       resetStatus();
     }
 
-  
+
   }, [dispatch, response]);
 
 
- 
   return (
     <div className="max-w-4xl mx-auto">
       {/* Image Upload Section */}
-      <div className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-100 rounded-2xl hover:shadow-lg transition-shadow focus:ring-1 focus:ring-green focus:outline p-2">
+      <div className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-100 rounded-2xl hover:shadow-lg transition-shadow focus:ring-1 focus:ring-green2 focus:outline p-2">
         <div className={`grid ${selectedImage ? "grid-cols-4" : "grid-cols-3"}`}>
           {/* Image Preview */}
           {selectedImage && (
@@ -249,7 +253,7 @@ export const QueryBoxChat: React.FC<{
                 className={`flex-1 px-5 py-2 rounded-full font-medium text-white transition ${
                   isLoading
                     ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-green hover:bg-green2"
+                    : "bg-green2 hover:bg-green2"
                 }`}
               >
                 {isUploadingToS3 ? "Uploading to S3..." : 
@@ -263,7 +267,7 @@ export const QueryBoxChat: React.FC<{
                 className={`flex-1 px-5 py-2 rounded-full font-medium text-white transition ${
                   isLoading
                     ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-green hover:bg-green2"
+                    : "bg-green2 hover:bg-green2"
                 }`}
               >
                 {queryStatus === "loading" ? "Thinking..." : "Ask"}

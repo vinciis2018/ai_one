@@ -9,7 +9,7 @@ export const FloatingChatButton: React.FC<FloatingChatButtonProps> = ({ onClick,
   return (
     <button
       onClick={onClick}
-      className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-lg transition-all duration-300 flex items-center justify-center ${isOpen
+      className={`fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full shadow-lg transition-all duration-300 flex items-center justify-center ${isOpen
           ? 'bg-red-500 hover:bg-red-600'
           : 'bg-gradient-to-br from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600'
         }`}

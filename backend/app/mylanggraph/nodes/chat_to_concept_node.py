@@ -5,8 +5,9 @@ from app.models.student_knowledge import StudentKnowledgeGraph
 from app.config.db import get_collection
 from datetime import datetime
 import json
+from bson import ObjectId
 
-async def node_chat_to_concept(state: Dict[str, Any]) -> Dict[str, Any]:
+async def chat_to_concept_node(state: Dict[str, Any]) -> Dict[str, Any]:
     """
     Intercepts user query and maps it to a specific node in the syllabus tree.
     Updates Student_Knowledge_Graph.
@@ -15,6 +16,7 @@ async def node_chat_to_concept(state: Dict[str, Any]) -> Dict[str, Any]:
     
     query = state.get("query", "")
     user_id = state.get("user_id")
+    answer = state.get("answer", "")
     
     if not query or not user_id:
         print("Skipping tagger: Missing query or user_id")
@@ -33,6 +35,7 @@ async def node_chat_to_concept(state: Dict[str, Any]) -> Dict[str, Any]:
         {syllabus_context}
         
         User Query: "{query}"
+        Assistant Answer: "{answer}"
         
         Classify the query into:
         - Subject
@@ -45,15 +48,23 @@ async def node_chat_to_concept(state: Dict[str, Any]) -> Dict[str, Any]:
         - "Numerical Problem" (Solving equations, finding values)
         - "Strategy Question" (How to study, exam prep)
         - "Casual" (Greetings, non-academic)
+
+        Also generate a Quick Action:
+        - "micro_quiz": 2 short, single-question quiz (one multiple choice with correct option and one short answer question with correct answer) related to the concept to test understanding.
+        - "follow_on_concept": Give a polite suggestion for the next logical concept or topic the student should explore.
         
-        Return ONLY a JSON object with keys: "subject", "chapter", "topic", "micro_concept", "interaction_type".
+        Return ONLY a JSON object with keys: "subject", "chapter", "topic", "micro_concept", "interaction_type", "quick_action".
+        "quick_action" should be an object with keys "micro_quiz" and "follow_on_concept".
+        "micro_quiz" should be an array of objects, first object will have question_type = "multiple_choice" and second object will have question_type = "short_answer".
+        "follow_on_concept" should be a string.
         If a category is not applicable or not found, use null.
         """
         
+        print("userid_query:", user_id, query)
         # 3. Call LLM
         # Using a lower temperature for deterministic classification
         response_text = call_llm(prompt, domain="education")
-        
+        print("response_text:", response_text)
         # Clean response to ensure JSON
         response_text = response_text.replace("```json", "").replace("```", "").strip()
         classification = json.loads(response_text)
@@ -64,14 +75,17 @@ async def node_chat_to_concept(state: Dict[str, Any]) -> Dict[str, Any]:
         knowledge_graph_collection = get_collection("student_knowledge_graph")
         
         entry = StudentKnowledgeGraph(
+            id=ObjectId(),
             student_id=user_id,
-            subject=classification.get("subject") or "Unknown",
+            domain=state.get("domain") or "general",
+            subject=classification.get("subject") or "general",
             chapter=classification.get("chapter"),
             topic=classification.get("topic"),
             micro_concept=classification.get("micro_concept"),
             interaction_type=classification.get("interaction_type") or "Casual",
-            query_id=state.get("conversation_id"), # Link to the saved conversation
-            conversation_id=state.get("conversation_id"),
+            quick_action=classification.get("quick_action"),
+            chat_id=state.get("chat_id"),
+            conversation_id=state.get("response_data").get("conversation_id"),
             timestamp=datetime.utcnow()
         )
         

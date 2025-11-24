@@ -32,6 +32,7 @@ class ConversationModel(BaseModel):
     updated_at: datetime = Field(default_factory=datetime.utcnow)
     edit_history: Optional[List[Dict[str, Any]]] = None
     score: float = 1 ## use for relevancy 0 for irrelevant, 1 for relevant, in between relevancy score
+    quick_action: Optional[Dict[str, Any]] = None
 
     model_config = ConfigDict(
         json_encoders={ObjectId: str},

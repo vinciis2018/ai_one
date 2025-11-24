@@ -363,7 +363,31 @@ export const DocumentDetailsPage: React.FC = () => {
     if (fileExt === "pdf") {
       return (
         <div className="flex flex-col items-center w-full h-full">
-          <div className="flex-1 overflow-auto w-full flex justify-center bg-gray-100 p-4 rounded-xl">
+          {/* Navigation Controls */}
+          {numPages && (
+            <div className="flex items-center gap-4 mb-2 bg-white p-2 rounded-full shadow-sm border border-gray-200">
+              <button
+                type="button"
+                disabled={pageNumber <= 1}
+                onClick={previousPage}
+                className="p-2 hover:bg-gray-100 rounded-full disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              >
+                <i className="fi fi-rr-angle-left text-lg flex"></i>
+              </button>
+              <p className="text-sm font-medium text-gray-700">
+                Page {pageNumber} of {numPages}
+              </p>
+              <button
+                type="button"
+                disabled={pageNumber >= numPages}
+                onClick={nextPage}
+                className="p-2 hover:bg-gray-100 rounded-full disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              >
+                <i className="fi fi-rr-angle-right text-lg flex"></i>
+              </button>
+            </div>
+          )}
+          <div className="w-full flex justify-center bg-gray-100 p-4 rounded-xl">
             <Document
               file={fileUrl}
               onLoadSuccess={onDocumentLoadSuccess}
@@ -388,35 +412,12 @@ export const DocumentDetailsPage: React.FC = () => {
                 renderTextLayer={false}
                 renderAnnotationLayer={false}
                 className="shadow-lg"
-                width={600} // Adjust width as needed or make it responsive
+                // width={600} // Adjust width as needed or make it responsive
               />
             </Document>
           </div>
 
-          {/* Navigation Controls */}
-          {numPages && (
-            <div className="flex items-center gap-4 mt-4 bg-white p-2 rounded-full shadow-sm border border-gray-200">
-              <button
-                type="button"
-                disabled={pageNumber <= 1}
-                onClick={previousPage}
-                className="p-2 hover:bg-gray-100 rounded-full disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              >
-                <i className="fi fi-rr-angle-left text-lg flex"></i>
-              </button>
-              <p className="text-sm font-medium text-gray-700">
-                Page {pageNumber} of {numPages}
-              </p>
-              <button
-                type="button"
-                disabled={pageNumber >= numPages}
-                onClick={nextPage}
-                className="p-2 hover:bg-gray-100 rounded-full disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              >
-                <i className="fi fi-rr-angle-right text-lg flex"></i>
-              </button>
-            </div>
-          )}
+
         </div>
       );
     }
@@ -574,7 +575,7 @@ export const DocumentDetailsPage: React.FC = () => {
               <button
                 onClick={handleSaveNotes}
                 disabled={saveStatus === 'loading' || notesDescription.length === 0}
-                className="px-4 py-2 flex items-center gap-2 rounded-lg bg-green text-white hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium"
+                className="px-4 py-2 flex items-center gap-2 rounded-lg bg-green2 text-white hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium"
                 title="Save Notes"
               >
                 {saveStatus === 'loading' ? (
@@ -593,9 +594,9 @@ export const DocumentDetailsPage: React.FC = () => {
           </div>
 
           {/* Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-[calc(100vh-180px)]">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 min-h-[calc(100vh-180px)]">
             {/* Left Column: Document Viewer */}
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-1 overflow-hidden flex flex-col h-full">
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-1 flex flex-col">
               {selectedStatus === "loading" && (
                 <div className="flex flex-col items-center justify-center h-full text-gray-400">
                   <i className="fi fi-br-circle animate-spin text-3xl mb-3" />
@@ -611,156 +612,158 @@ export const DocumentDetailsPage: React.FC = () => {
               )}
 
               {selectedStatus === "succeeded" && selectedDocument && (
-                <div className="h-full overflow-hidden p-1 flex flex-col">
+                <div className="p-1 flex flex-col">
                   {renderContent()}
                 </div>
               )}
             </div>
 
             {/* Right Column: Tabs & Content */}
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full overflow-hidden">
-              {/* Tab Navigation */}
-              <div className="flex items-center border-b border-gray-100">
-                <button
-                  onClick={() => setActiveTab('transcription')}
-                  className={`flex-1 py-3 flex items-center justify-center gap-2 text-sm font-medium transition-colors relative ${activeTab === 'transcription'
-                    ? 'text-blue-600 bg-blue-50/50'
-                    : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
-                    }`}
-                >
-                  <i className="fi fi-rr-edit"></i>
-                  <span>Transcription</span>
+            <div className="relative">
+              <div className="absolute inset-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col overflow-hidden">
+                {/* Tab Navigation */}
+                <div className="flex items-center border-b border-gray-100">
+                  <button
+                    onClick={() => setActiveTab('transcription')}
+                    className={`flex-1 py-3 flex items-center justify-center gap-2 text-sm font-medium transition-colors relative ${activeTab === 'transcription'
+                      ? 'text-blue-600 bg-blue-50/50'
+                      : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
+                      }`}
+                  >
+                    <i className="fi fi-rr-edit"></i>
+                    <span>Transcription</span>
+                    {activeTab === 'transcription' && (
+                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 rounded-t-full mx-4" />
+                    )}
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('notes')}
+                    className={`flex-1 py-3 flex items-center justify-center gap-2 text-sm font-medium transition-colors relative ${activeTab === 'notes'
+                      ? 'text-orange-600 bg-orange-50/50'
+                      : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
+                      }`}
+                  >
+                    <i className="fi fi-rr-magic-wand"></i>
+                    <span>Notes</span>
+                    {activeTab === 'notes' && (
+                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-orange-600 rounded-t-full mx-4" />
+                    )}
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('quiz')}
+                    className={`flex-1 py-3 flex items-center justify-center gap-2 text-sm font-medium transition-colors relative ${activeTab === 'quiz'
+                      ? 'text-violet-600 bg-violet-50/50'
+                      : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
+                      }`}
+                  >
+                    <i className="fi fi-rr-list-check"></i>
+                    <span>Quiz</span>
+                    {activeTab === 'quiz' && (
+                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-violet-600 rounded-t-full mx-4" />
+                    )}
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('mcq')}
+                    className={`flex-1 py-3 flex items-center justify-center gap-2 text-sm font-medium transition-colors relative ${activeTab === 'mcq'
+                      ? 'text-indigo-600 bg-indigo-50/50'
+                      : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
+                      }`}
+                  >
+                    <i className="fi fi-rr-checkbox"></i>
+                    <span>MCQ</span>
+                    {activeTab === 'mcq' && (
+                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-indigo-600 rounded-t-full mx-4" />
+                    )}
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('personalTricks')}
+                    className={`flex-1 py-3 flex items-center justify-center gap-2 text-sm font-medium transition-colors relative ${activeTab === 'mcq'
+                      ? 'text-indigo-600 bg-indigo-50/50'
+                      : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
+                      }`}
+                  >
+                    <i className="fi fi-rr-lightbulb"></i>
+                    <span>Tricks</span>
+                    {activeTab === 'personalTricks' && (
+                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-indigo-600 rounded-t-full mx-4" />
+                    )}
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('pyq')}
+                    className={`flex-1 py-3 flex items-center justify-center gap-2 text-sm font-medium transition-colors relative ${activeTab === 'pyq'
+                      ? 'text-purple-600 bg-purple-50/50'
+                      : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
+                      }`}
+                  >
+                    <i className="fi fi-rr-calendar"></i>
+                    <span>PYQ</span>
+                    {activeTab === 'pyq' && (
+                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-purple-600 rounded-t-full mx-4" />
+                    )}
+                  </button>
+                </div>
+
+                {/* Tab Content */}
+                <div className="flex-1 overflow-y-auto p-4">
+                  {/* TRANSCRIPTION TAB */}
                   {activeTab === 'transcription' && (
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 rounded-t-full mx-4" />
+                    <TranscriptionTab
+                      pageNumber={pageNumber}
+                      selectedDocument={selectedDocument}
+                      notesDescription={notesDescription}
+                      sentences={sentences}
+                      updateTranscriptionFromSentences={updateTranscriptionFromSentences}
+                      handleTranscribe={handleTranscribe}
+                      transcriptionStatus={transcriptionStatus}
+                    />
                   )}
-                </button>
-                <button
-                  onClick={() => setActiveTab('notes')}
-                  className={`flex-1 py-3 flex items-center justify-center gap-2 text-sm font-medium transition-colors relative ${activeTab === 'notes'
-                    ? 'text-orange-600 bg-orange-50/50'
-                    : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
-                    }`}
-                >
-                  <i className="fi fi-rr-magic-wand"></i>
-                  <span>Notes</span>
+
+                  {/* NOTES TAB */}
                   {activeTab === 'notes' && (
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-orange-600 rounded-t-full mx-4" />
+                    <NotesTab
+                      pageNumber={pageNumber}
+                      notesDescription={notesDescription}
+                      generateNotesData={generateNotesData}
+                      generateNotesStatus={generateNotesStatus}
+                      handleGenerateNotes={handleGenerateNotes}
+                    />
                   )}
-                </button>
-                <button
-                  onClick={() => setActiveTab('quiz')}
-                  className={`flex-1 py-3 flex items-center justify-center gap-2 text-sm font-medium transition-colors relative ${activeTab === 'quiz'
-                    ? 'text-violet-600 bg-violet-50/50'
-                    : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
-                    }`}
-                >
-                  <i className="fi fi-rr-list-check"></i>
-                  <span>Quiz</span>
+
+                  {/* QUIZ TAB - Subjective Questions Only */}
                   {activeTab === 'quiz' && (
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-violet-600 rounded-t-full mx-4" />
+                    <QuizTab
+                      pageNumber={pageNumber}
+                      notesDescription={notesDescription}
+                      quizData={quizData}
+                      quizStatus={quizStatus}
+                      handleGenerateQuiz={handleGenerateQuiz}
+                    />
                   )}
-                </button>
-                <button
-                  onClick={() => setActiveTab('mcq')}
-                  className={`flex-1 py-3 flex items-center justify-center gap-2 text-sm font-medium transition-colors relative ${activeTab === 'mcq'
-                    ? 'text-indigo-600 bg-indigo-50/50'
-                    : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
-                    }`}
-                >
-                  <i className="fi fi-rr-checkbox"></i>
-                  <span>MCQ</span>
+
+                  {/* MCQ TAB - Multiple Choice Questions Only */}
                   {activeTab === 'mcq' && (
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-indigo-600 rounded-t-full mx-4" />
+                    <MCQTab
+                      pageNumber={pageNumber}
+                      notesDescription={notesDescription}
+                      mcqData={mcqData}
+                      mcqStatus={mcqStatus}
+                      handleGenerateMCQ={handleGenerateMCQ}
+                    />
                   )}
-                </button>
-                <button
-                  onClick={() => setActiveTab('personalTricks')}
-                  className={`flex-1 py-3 flex items-center justify-center gap-2 text-sm font-medium transition-colors relative ${activeTab === 'mcq'
-                    ? 'text-indigo-600 bg-indigo-50/50'
-                    : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
-                    }`}
-                >
-                  <i className="fi fi-rr-lightbulb"></i>
-                  <span>Tricks</span>
                   {activeTab === 'personalTricks' && (
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-indigo-600 rounded-t-full mx-4" />
+                    <PersonalTricksTab
+                      pageNumber={pageNumber}
+                      notesDescription={notesDescription}
+                      onUpdateTricks={handleUpdateTricks}
+                    />
                   )}
-                </button>
-                <button
-                  onClick={() => setActiveTab('pyq')}
-                  className={`flex-1 py-3 flex items-center justify-center gap-2 text-sm font-medium transition-colors relative ${activeTab === 'pyq'
-                    ? 'text-purple-600 bg-purple-50/50'
-                    : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
-                    }`}
-                >
-                  <i className="fi fi-rr-calendar"></i>
-                  <span>PYQ</span>
                   {activeTab === 'pyq' && (
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-purple-600 rounded-t-full mx-4" />
+                    <PYQTab
+                      pageNumber={pageNumber}
+                      notesDescription={notesDescription}
+                    />
                   )}
-                </button>
-              </div>
-
-              {/* Tab Content */}
-              <div className="flex-1 overflow-y-auto p-4">
-                {/* TRANSCRIPTION TAB */}
-                {activeTab === 'transcription' && (
-                  <TranscriptionTab
-                    pageNumber={pageNumber}
-                    selectedDocument={selectedDocument}
-                    notesDescription={notesDescription}
-                    sentences={sentences}
-                    updateTranscriptionFromSentences={updateTranscriptionFromSentences}
-                    handleTranscribe={handleTranscribe}
-                    transcriptionStatus={transcriptionStatus}
-                  />
-                )}
-
-                {/* NOTES TAB */}
-                {activeTab === 'notes' && (
-                  <NotesTab
-                    pageNumber={pageNumber}
-                    notesDescription={notesDescription}
-                    generateNotesData={generateNotesData}
-                    generateNotesStatus={generateNotesStatus}
-                    handleGenerateNotes={handleGenerateNotes}
-                  />
-                )}
-
-                {/* QUIZ TAB - Subjective Questions Only */}
-                {activeTab === 'quiz' && (
-                  <QuizTab
-                    pageNumber={pageNumber}
-                    notesDescription={notesDescription}
-                    quizData={quizData}
-                    quizStatus={quizStatus}
-                    handleGenerateQuiz={handleGenerateQuiz}
-                  />
-                )}
-
-                {/* MCQ TAB - Multiple Choice Questions Only */}
-                {activeTab === 'mcq' && (
-                  <MCQTab
-                    pageNumber={pageNumber}
-                    notesDescription={notesDescription}
-                    mcqData={mcqData}
-                    mcqStatus={mcqStatus}
-                    handleGenerateMCQ={handleGenerateMCQ}
-                  />
-                )}
-                {activeTab === 'personalTricks' && (
-                  <PersonalTricksTab
-                    pageNumber={pageNumber}
-                    notesDescription={notesDescription}
-                    onUpdateTricks={handleUpdateTricks}
-                  />
-                )}
-                {activeTab === 'pyq' && (
-                  <PYQTab
-                    pageNumber={pageNumber}
-                    notesDescription={notesDescription}
-                  />
-                )}
+                </div>
               </div>
             </div>
           </div>

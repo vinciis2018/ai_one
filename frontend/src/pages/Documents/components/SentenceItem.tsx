@@ -148,7 +148,7 @@ export const SentenceItem = ({ sentence, index, updateTranscription, sentences }
                 updateTranscription(newSentences);
               }
             }}
-            className="w-full min-h-[40px] p-3 text-sm text-gray-700 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none font-mono leading-relaxed overflow-hidden"
+            className="w-full min-h-[40px] p-3 text-sm text-gray-700 bg-white border border-transparent rounded-lg outline-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none font-mono leading-relaxed overflow-hidden"
             placeholder="Edit sentence..."
             rows={1}
           />

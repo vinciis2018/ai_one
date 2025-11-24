@@ -31,6 +31,10 @@ class TeacherModel(BaseModel):
     students: List[str] = []
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
+    syllabus: Optional[Dict[str, Any]] = None
+    calendar: Optional[Dict[str, Any]] = None  # For class scheduling and Google Calendar integration
+
+
     model_config = {
         "json_encoders": {ObjectId: str},
         "arbitrary_types_allowed": True,
@@ -47,6 +51,24 @@ class TeacherModel(BaseModel):
                         "can_edit": True
                     }
                 ],
+                "calendar": {
+                    "google_calendar_id": "teacher@example.com",
+                    "timezone": "Asia/Kolkata",
+                    "events": [
+                        {
+                            "event_id": "evt_001",
+                            "title": "Physics Class - Grade 10",
+                            "description": "Chapter 5: Motion",
+                            "start_time": "2025-11-24T10:00:00",
+                            "end_time": "2025-11-24T11:00:00",
+                            "students": ["student_id_1", "student_id_2"],
+                            "subject": "Physics",
+                            "location": "Room 101",
+                            "recurrence": "weekly",
+                            "status": "scheduled"
+                        }
+                    ]
+                },
                 "created_at": "2025-11-04T10:00:00Z",
                 "updated_at": "2025-11-04T10:00:00Z"
             }

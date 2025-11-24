@@ -2,13 +2,15 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SimpleLayout } from '../../layouts/AppLayout';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { getTeacherDetails } from '../../store/slices/teachersSlice';
+import { getTeacherDetails, addCalendarEvent } from '../../store/slices/teachersSlice';
 import { getStudentDetails } from '../../store/slices/studentsSlice';
 import { fetchSelectedDocuments, type DocumentItem } from '../../store/slices/documentsSlice';
 import Header from './components/Header';
 import DocumentCard from './components/DocumentCard';
 import StatsGrid from './components/StatsGrid';
 import DocumentModal from './components/DocumentModal';
+
+import { TeacherCalendar, type CalendarEvent } from '../../components/organisms/TeacherCalendar';
 
 interface Tab {
   key: number;
@@ -73,16 +75,25 @@ export function UserProfilePage() {
       value: 'details',
     },
     {
-      key: 3,
+      key: 2,
       label: 'Documents',
       value: 'documents',
     },
-    {
-      key: 2,
-      label: 'Edit',
-      value: 'edit',
-    }
   ];
+
+  if (user?.role === 'teacher') {
+    tabs.splice(2, 0, {
+      key: 3,
+      label: 'Calendar',
+      value: 'calendar',
+    });
+  }
+
+  const handleAddEvent = (event: Omit<CalendarEvent, 'id'>) => {
+    if (user?._id) {
+      dispatch(addCalendarEvent({ teacherId: user._id, event }));
+    }
+  };
 
   return (
     <SimpleLayout>
@@ -127,7 +138,7 @@ export function UserProfilePage() {
                 type="button"
                 onClick={() => setCurrentTab(tab.value)}
                 className={`p-2 w-full focus:outline-none transition-colors ${currentTab === tab.value
-                  ? 'border-b-2 border-green text-green font-semibold'
+                  ? 'border-b-2 border-green2 text-green2 font-semibold'
                   : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded-t-md'
                   }`}
               >
@@ -201,6 +212,10 @@ export function UserProfilePage() {
                 <p className="text-gray-500 text-sm">No documents uploaded yet.</p>
               </div>
             )}
+          </div>
+        ) : currentTab === "calendar" && user?.role === "teacher" ? (
+          <div className="p-4">
+            <TeacherCalendar events={teacher_details?.calendar?.events} onAddEvent={handleAddEvent} />
           </div>
         ) : (
           <div className="p-4">
@@ -276,7 +291,7 @@ export function UserProfilePage() {
                 <div className="text-violet bg-gradient-to-br from-white to-greenLight rounded-2xl p-6 text-white shadow-lg">
                   <h3 className="font-bold text-lg mb-2">Pro Teacher</h3>
                   <p className="text-sm mb-4">Unlock advanced analytics and unlimited document storage.</p>
-                  <button className="w-full py-2 bg-green text-white rounded-lg font-semibold text-sm hover:bg-gray-500 transition-colors">
+                  <button className="w-full py-2 bg-green2 text-white rounded-lg font-semibold text-sm hover:bg-gray-500 transition-colors">
                     Upgrade Plan
                   </button>
                 </div>

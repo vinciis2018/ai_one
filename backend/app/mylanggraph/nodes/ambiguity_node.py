@@ -15,7 +15,7 @@ FOLLOWUP_KEYWORDS = {
     "no", "nope", "nah", "not really", "incorrect", "wrong", "negative",
     
     # Acknowledgments
-    "ok", "okay", "kay", "alright", "fine", "got it", "understood",
+    "k, kk, ok", "okay", "kay", "alright", "fine", "got it", "understood",
     "i see", "makes sense",
     
     # Continuation requests
@@ -305,18 +305,7 @@ async def ambiguity_node(state):
     print(f"Ambiguity Score: {ambiguity_score}")
     print(f"Reasons: {reasons}")
     print("ambiguity check done!!!", state["query"])
-    
-    # if state["directive"] != "NORMAL":
-    #     conversation_cols = get_collection("conversations")
-    #     last_conversation = await conversation_cols.find_one({"_id": ObjectId(state["previous_conversation"])})
-    #     if last_conversation:
-    #         last_conversation_query = last_conversation.get("query", "").strip()
-    #         last_conversation_answer = last_conversation.get("answer", "").strip()
-    #         prev_conversation_prompt = "The student asked this previously, " + "<question>" + last_conversation_query + "</question>\n\n" + "<answer>" + last_conversation_answer + "</answer>\n\n" + ", so now based on above, answer for " +  state["query"]  
-    #         print(prev_conversation_prompt, ":::::::::::: prev conv prompt")
-    #         state["query"] = AMBIGUITY_PROMPT.format(
-    #             ambiguity_prompt=prev_conversation_prompt
-    #         )
+
     return state
 
 

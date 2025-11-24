@@ -106,8 +106,8 @@ def call_llm(prompt: str, domain: str) -> str:
                     {"role": "system", "content": f"You are a {domain} expert AI assistant that answers based on provided context."},
                     {"role": "user", "content": prompt},
                 ],
-                temperature=0.5,
-                max_completion_tokens=300,
+                # temperature=0.5,
+                max_completion_tokens=4000,
             )
             return response.choices[0].message.content.strip()
         except Exception as e:

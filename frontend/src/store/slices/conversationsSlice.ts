@@ -20,6 +20,7 @@ export interface Conversation {
   attached_media?: string;
   media_transcript?: string;
   score?: number;
+  quick_action?: any;
 }
 
 export interface ChatResponse {
@@ -178,6 +179,30 @@ export const fetchChatBySpace = createAsyncThunk<
 );
 
 
+export const submitQuizAnswers = createAsyncThunk<
+  { status: string; message?: string },
+  { conversation_id: string; quick_action: any },
+  { rejectValue: string }
+>(
+  'conversations/submitQuizAnswers',
+  async ({ conversation_id, quick_action }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post<{ status: string; message?: string }>(
+        `${BASE_URL}/knowledgegraph/response`,
+        {
+          conversation_id,
+          quick_action,
+        }
+      );
+      return response.data;
+    } catch (error: unknown) {
+      const axiosError = error as unknown as { response?: { data?: { detail?: string } } };
+      return rejectWithValue(axiosError.response?.data?.detail || 'Failed to submit quiz answers');
+    }
+  }
+);
+
+
 const conversationSlice = createSlice({
   name: 'conversations',
   initialState,
@@ -290,6 +315,18 @@ const conversationSlice = createSlice({
       .addCase(fetchChatBySpace.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload || 'Error loading conversation';
+      })
+
+      .addCase(submitQuizAnswers.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(submitQuizAnswers.fulfilled, (state) => {
+        state.status = 'succeeded';
+        state.error = null;
+      })
+      .addCase(submitQuizAnswers.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload || 'Error submitting quiz answers';
       });
   },
 });

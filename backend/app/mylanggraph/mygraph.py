@@ -3,31 +3,25 @@ from app.mylanggraph.nodes.save_conversation_node import node_save_conversation
 from langgraph.graph import StateGraph, END
 from app.mylanggraph.mystate import AssistantState
 from app.mylanggraph.nodes.ambiguity_node import ambiguity_node
-from app.mylanggraph.nodes.retriever_node import retrieve_node
-from app.mylanggraph.nodes.memory_node import conversation_memory_node
+from app.mylanggraph.nodes.parallel_retrieval_node import parallel_retrieval_node
 from app.mylanggraph.nodes.final_answer_node import final_answer_node
-from app.mylanggraph.nodes.chat_to_concept_node import node_chat_to_concept
+from app.mylanggraph.nodes.final_answer_node import final_answer_node
 
 def build_graph():
     g = StateGraph(AssistantState)
 
 
     g.add_node("ambiguity", ambiguity_node)
-    g.add_node("retrieve", retrieve_node)
-    g.add_node("memory", conversation_memory_node)
-
+    g.add_node("parallel_retrieval", parallel_retrieval_node)
     g.add_node("final", final_answer_node)
     g.add_node("save_conversation", node_save_conversation)
-    g.add_node("chat_to_concept", node_chat_to_concept)
 
     g.set_entry_point("ambiguity")
 
-    g.add_edge("ambiguity", "retrieve")
-    g.add_edge("retrieve", "memory")
-    g.add_edge("memory", "final")
+    g.add_edge("ambiguity", "parallel_retrieval")
+    g.add_edge("parallel_retrieval", "final")
     g.add_edge("final", "save_conversation")
-    g.add_edge("save_conversation", "chat_to_concept")
-    g.add_edge("chat_to_concept", END)
+    g.add_edge("save_conversation", END)
 
     return g.compile()
 

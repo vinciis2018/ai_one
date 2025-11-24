@@ -11,6 +11,19 @@ interface PsuedoCoachingModel {
   name: string,
   type?: string,
 }
+interface CalendarEvent {
+  id: string;
+  title: string;
+  description?: string;
+  start_time: string;
+  end_time: string;
+  students: string[];
+  subject?: string;
+  location?: string;
+  recurrence?: string;
+  status: string;
+}
+
 export interface TeacherModel {
   _id?: string;
   id?: string;
@@ -22,6 +35,7 @@ export interface TeacherModel {
   documents?: string[];
   students?: string[];
   organization?: PsuedoCoachingModel;
+  calendar?: { events: CalendarEvent[] };
   created_at?: string;
   updated_at?: string;
 }
@@ -32,6 +46,7 @@ interface TeacherState {
   loading: boolean;
   error: string | null;
   success: boolean;
+  student_analytics: any | null;
 }
 
 const initialState: TeacherState = {
@@ -40,6 +55,7 @@ const initialState: TeacherState = {
   loading: false,
   error: null,
   success: false,
+  student_analytics: null,
 };
 
 // Teacher-specific thunks
@@ -77,6 +93,36 @@ export const getAllTeachers = createAsyncThunk<
   }
 );
 
+export const getStudentAnalytics = createAsyncThunk<any, string>(
+  'teachers/getStudentAnalytics',
+  async (studentId: string, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`${BASE_URL}/teachers/student-analytics/${studentId}`);
+      return response.data;
+    } catch (error: unknown) {
+      const axiosError = error as unknown as { response?: { data?: { detail?: string } } };
+      return rejectWithValue(axiosError.response?.data?.detail || 'Failed to load student analytics');
+    }
+  }
+);
+
+export const addCalendarEvent = createAsyncThunk<
+  CalendarEvent,
+  { teacherId: string; event: Omit<CalendarEvent, 'id'> },
+  { rejectValue: string }
+>(
+  'teachers/addCalendarEvent',
+  async ({ teacherId, event }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post<CalendarEvent>(`${BASE_URL}/teachers/calendar/event`, { teacher_id: teacherId, event: event });
+      return response.data;
+    } catch (error: unknown) {
+      const axiosError = error as unknown as { response?: { data?: { detail?: string } } };
+      return rejectWithValue(axiosError.response?.data?.detail || 'Failed to add calendar event');
+    }
+  }
+);
+
 const teachersSlice = createSlice({
   name: 'teachers',
   initialState,
@@ -86,6 +132,7 @@ const teachersSlice = createSlice({
       state.error = null;
       state.success = false;
       state.teacher_details = null;
+      state.student_analytics = null;
     },
     clearTeacherError: (state) => {
       state.error = null;
@@ -119,6 +166,37 @@ const teachersSlice = createSlice({
         state.all_teachers = action.payload.teachers;
       })
       .addCase(getAllTeachers.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      })
+      // Get Student Analytics
+      .addCase(getStudentAnalytics.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getStudentAnalytics.fulfilled, (state, action) => {
+        state.loading = false;
+        state.student_analytics = action.payload;
+      })
+      .addCase(getStudentAnalytics.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      })
+      // Add Calendar Event
+      .addCase(addCalendarEvent.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(addCalendarEvent.fulfilled, (state, action) => {
+        state.loading = false;
+        if (state.teacher_details) {
+          if (!state.teacher_details.calendar) {
+            state.teacher_details.calendar = { events: [] };
+          }
+          state.teacher_details.calendar.events.push(action.payload);
+        }
+      })
+      .addCase(addCalendarEvent.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       });

@@ -3,11 +3,14 @@
 # Exposes endpoints for listing and managing conversation history
 # (MongoDB version with search + pagination)
 # ============================================
-
-from fastapi import APIRouter, HTTPException, Query
+from app.helper.analytics_helper import aggregate_student_stats
+from fastapi import APIRouter, HTTPException, Query, Body
 from pymongo import DESCENDING
 from app.config.db import db, get_collection
 from bson import ObjectId
+from pydantic import BaseModel
+from typing import List, Optional, Dict, Any
+from datetime import datetime
 
 router = APIRouter()
 
@@ -93,9 +96,9 @@ async def list_teachers(
 
 
 
-@router.get("/{id}")
+@router.get("/{user_id}")
 async def get_teacher_details(
-    id: str
+    user_id: str
 ):
     """
     Get detailed information about a specific teacher by their ID.
@@ -103,7 +106,7 @@ async def get_teacher_details(
     try:
         # Validate teacher_id format
         try:
-            user_oid = ObjectId(id)
+            user_oid = ObjectId(user_id)
         except:
             raise HTTPException(status_code=400, detail="Invalid teacher ID format")
         # Get user details
@@ -145,7 +148,8 @@ async def get_teacher_details(
             "organization": {
                 "id": str(org["_id"]) if org else None,
                 "name": org.get("name") if org else None
-            } if org else None
+            } if org else None,
+            "calendar": teacher.get("calendar", None)
         }
 
         return response
@@ -158,3 +162,86 @@ async def get_teacher_details(
             status_code=500,
             detail=f"Error fetching teacher details: {str(e)}"
         )
+
+
+@router.get("/student-analytics/{student_id}")
+async def get_student_analytics(
+    student_id: str,
+    days: int = Query(30, description="Number of days to look back")
+):
+    """
+    Get analytics for a specific student based on their knowledge graph.
+    """
+    try:
+        # Validate student_id format (it's a string in the model, but usually comes from ObjectId)
+        # The helper uses it as a string to match the model
+        
+        stats = await aggregate_student_stats(student_id, days)
+        return stats
+        
+    except Exception as e:
+        print(f"Error in get_student_analytics: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error fetching student analytics: {str(e)}"
+        )
+
+class CalendarEvent(BaseModel):
+    title: str
+    description: Optional[str] = None
+    start_time: datetime
+    end_time: datetime
+    students: List[str] = []
+    subject: Optional[str] = None
+    location: Optional[str] = None
+    recurrence: Optional[str] = None
+    status: str = "scheduled"
+
+@router.post("/calendar/event")
+async def add_calendar_event(
+    teacher_id: str = Body(..., embed=True),
+    event: CalendarEvent = Body(..., embed=True)
+):
+    """
+    Add a calendar event (class) to a teacher's profile.
+    """
+    try:
+        # Validate teacher_id format
+        try:
+            teacher_oid = ObjectId(teacher_id)
+        except:
+            raise HTTPException(status_code=400, detail="Invalid teacher ID format")
+
+        collection = get_collection("teachers")
+        teacher = await collection.find_one({"user_id": teacher_oid})
+
+        if not teacher:
+            raise HTTPException(status_code=404, detail="Teacher not found")
+
+        # Prepare event data
+        event_data = event.model_dump()
+        event_data["event_id"] = str(ObjectId()) # Generate a unique ID for the event
+
+        # Initialize calendar if it doesn't exist
+        if not teacher.get("calendar"):
+            await collection.update_one(
+                {"user_id": teacher_oid},
+                {"$set": {"calendar": {"events": []}}}
+            )
+
+        # Add event to calendar
+        result = await collection.update_one(
+            {"user_id": teacher_oid},
+            {"$push": {"calendar.events": event_data}}
+        )
+
+        if result.modified_count == 0:
+            raise HTTPException(status_code=500, detail="Failed to add event to calendar")
+
+        return {"status": "success", "event_id": event_data["event_id"], "message": "Event added successfully"}
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"Error in add_calendar_event: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error adding calendar event: {str(e)}")
