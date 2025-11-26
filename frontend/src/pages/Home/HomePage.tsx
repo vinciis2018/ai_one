@@ -94,11 +94,11 @@ export function HomePage() {
               The Future of Education is Personal
             </div>
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-tight text-slate-900">
-              Give Every Student Your <span className="text-green2">Personal Attention</span>. <br />
-              Without Burning Out.
+              Scale Your <span className="text-green2">Impact</span>, <br />
+              Not Your Workload.
             </h1>
             <p className="text-xl md:text-2xl text-slate-600 mb-10 max-w-3xl mx-auto leading-relaxed">
-              Your AI Twin teaches exactly like you—same style, same passion, same notes. Available 24/7 for every student.
+              Stop trading your evenings for grading. Let your AI Twin handle the doubts while you focus on the inspiration.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <button onClick={() => navigate('/signup')} className="px-8 py-4 bg-green2 hover:bg-green-600 text-white rounded-full font-bold text-lg transition-all transform hover:scale-105 shadow-lg shadow-green2/20">
@@ -245,17 +245,17 @@ export function HomePage() {
                     {
                       title: "Instant Doubt Resolution",
                       desc: "Students ask via WhatsApp/Chat. Your Twin answers instantly in your style.",
-                      icon: "fi-rr-comment-alt"
+                      icon: "fi-rr-comment-alt flex items-center justify-center"
                     },
                     {
                       title: "Deep Student Insights",
                       desc: "Know exactly who is falling behind. Track weak areas and engagement.",
-                      icon: "fi-rr-chart-histogram"
+                      icon: "fi-rr-chart-histogram flex items-center justify-center"
                     },
                     {
                       title: "Instant Content Creation",
                       desc: "Generate quizzes & notes from your material in seconds.",
-                      icon: "fi-rr-magic-wand"
+                      icon: "fi-rr-magic-wand flex items-center justify-center"
                     }
                   ].map((item, i) => (
                     <div key={i} className="flex gap-4">
@@ -292,14 +292,17 @@ export function HomePage() {
                     <div className="flex gap-3 flex-row-reverse">
                       <div className="w-8 h-8 rounded-full bg-green2/20 flex-shrink-0 border-2 border-green2/50"></div>
                       <div className="bg-green2/5 p-3 rounded-2xl rounded-tr-none text-sm text-slate-800 max-w-[80%] shadow-sm border border-green2/20">
-                        <p className="font-bold text-green2 text-xs mb-1">AI Twin</p>
+                        <div className="flex items-center gap-2">
+                          <i className="fi fi-rr-microchip-ai flex items-center text-xs text-green2"></i>
+                          <p className="font-bold text-green2 text-xs">Umesh Sir Twin</p>
+                        </div>
                         Remember the "H-R-T" shortcut I taught? Height, Range, Time. Apply the vertical component first...
                       </div>
                     </div>
                   </div>
                   <div className="mt-6 pt-4 border-t border-slate-100 flex justify-between items-center text-xs text-slate-400">
                     <span>Replied in 0.2s</span>
-                    <span><i className="fi fi-rr-check-double text-green2"></i> Sent via WhatsApp</span>
+                    <span className="flex items-center justify-center gap-2"><i className="fi fi-rr-check-double flex items-center justify-center text-green2"></i> Umesh sir verified</span>
                   </div>
                 </div>
               </div>

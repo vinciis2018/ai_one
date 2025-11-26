@@ -3,7 +3,9 @@
 # Handles text extraction from PDFs and images
 # ============================================
 
-from app.core.llm_manager import OPENAI_API_KEY
+from app.llms.gemini import gemini_transcribe_image
+from app.core.llm_manager import call_llm_multimodal
+from app.prompt.text_extraction_prompt import TEXT_EXTRACTION_PROMPT
 import io
 from PIL import Image
 import fitz  # PyMuPDF
@@ -71,83 +73,15 @@ def extract_text_with_llm(image_bytes: bytes) -> str:
     # Try OpenAI Vision API first (best quality)
     try:
         
-        if not OPENAI_API_KEY:
-            print("⚠️ OPENAI_API_KEY not found, falling back to EasyOCR")
-            raise ValueError("No OpenAI API key")
-        
-        print("🔍 Using OpenAI Vision API for text extraction...")
-        
-        client = OpenAI(api_key=OPENAI_API_KEY)
-        
         # Convert image to base64
         base64_image = base64.b64encode(image_bytes).decode('utf-8')
-        
-        # Call OpenAI Vision API with optimized prompt for OCR and diagram detection
-        response = client.chat.completions.create(
-            model="gpt-5-nano",
-            messages=[
+        messages=[
                 {
                     "role": "user",
                     "content": [
                         {
                             "type": "text",
-                            "text": """Please analyze this image and provide a comprehensive transcription including text and diagrams.
-
-**Instructions:**
-
-1. **Text Transcription:**
-   - Extract every word, number, and symbol exactly as shown
-   - Preserve the layout and structure (headings, paragraphs, lists)
-   - Include handwritten notes and equations
-   - If text is unclear, make your best interpretation
-
-2. **Diagram Detection:**
-   - Identify any diagrams, charts, graphs, or visual elements
-   - For each diagram, provide a detailed description in this format:
-   
-   ```
-   [DIAGRAM: <type>]
-   Title: <diagram title if any>
-   Description: <detailed description of what the diagram shows>
-   Components: <list key components, labels, arrows, relationships>
-   Notes: <any additional important details>
-   [/DIAGRAM]
-   ```
-
-3. **Mathematical Equations:**
-   - Write equations clearly using standard notation
-   - Use LaTeX format for complex equations (e.g., $E = mc^2$)
-
-4. **Output Format:**
-   - Use markdown formatting
-   - Separate sections with headers (## for main sections)
-   - Use bullet points for lists
-   - Keep diagrams in the structured format above so they can be edited
-
-**Example Output:**
-
-## Transcription
-
-[Main text content here...]
-
-## Diagrams
-
-[DIAGRAM: Flowchart]
-Title: Chemical Bonding Process
-Description: Shows the process of ionic bond formation between sodium and chlorine atoms
-Components: 
-- Sodium atom (Na) with 1 valence electron
-- Chlorine atom (Cl) with 7 valence electrons
-- Arrow showing electron transfer
-- Resulting Na+ and Cl- ions
-Notes: Demonstrates electron transfer and electrostatic attraction
-[/DIAGRAM]
-
-## Equations
-
-$NaCl \\rightarrow Na^+ + Cl^-$
-
-Provide the complete transcription below:"""
+                            "text": TEXT_EXTRACTION_PROMPT
                         },
                         {
                             "type": "image_url",
@@ -159,57 +93,27 @@ Provide the complete transcription below:"""
                     ]
                 }
             ],
-            max_completion_tokens=8000  # Increased for GPT-5-nano (reasoning + output tokens)
-        )
+        # Call Gemini API with optimized prompt for OCR and diagram detection
+        # response = call_llm_multimodal(messages)
+        response = gemini_transcribe_image(base64_image)
         
+        print(response, "::::::::::::::::::------- response gemini")
         
         # GPT-5-nano may use reasoning tokens, check for content
-        text = response.choices[0].message.content
+        text = response
         
         if text and text.strip():
-            print(f"✅ OpenAI Vision extracted {len(text)} characters")
+            print(f"✅ Gemini extracted {len(text)} characters")
             return text.strip()
         else:
-            print(f"⚠️ OpenAI Vision returned empty content. Finish reason: {response.choices[0].finish_reason}")
+            print(f"⚠️ Gemini returned empty content. Finish reason: {response.choices[0].finish_reason}")
             print(f"   Reasoning tokens: {response.usage.completion_tokens_details.reasoning_tokens}")
-            print("   Falling back to EasyOCR")
-            raise ValueError("Empty response from OpenAI Vision")
+            raise ValueError("Empty response from Gemini")
             
     except Exception as e:
-        print(f"⚠️ OpenAI Vision failed: {e}")
-        print("Falling back to EasyOCR...")
+        print(f"⚠️ Gemini failed: {e}")
+        print("Please try again after some time")
         
-        # Fallback to EasyOCR
-        try:
-            import easyocr
-            import numpy as np
-            from PIL import Image
-            
-            print("🔍 Using EasyOCR for text extraction...")
-            
-            # Initialize EasyOCR reader
-            reader = easyocr.Reader(['en'], gpu=False)
-            
-            # Open image and convert to numpy array
-            image = Image.open(io.BytesIO(image_bytes))
-            img_np = np.array(image)
-            
-            # Extract text with detail=0 to avoid unpacking errors
-            results = reader.readtext(img_np, detail=0, paragraph=True)
-            
-            # Results is now a simple list of strings
-            if results:
-                full_text = "\n".join(results)
-                print(f"✅ EasyOCR extracted {len(full_text)} characters")
-                return full_text.strip()
-            else:
-                print("⚠️ EasyOCR returned empty, falling back to Tesseract")
-                return extract_text_from_image(image_bytes)
-                
-        except Exception as ocr_error:
-            print(f"❌ EasyOCR also failed: {ocr_error}")
-            print("Final fallback to Tesseract OCR...")
-            return extract_text_from_image(image_bytes)
 
 
 

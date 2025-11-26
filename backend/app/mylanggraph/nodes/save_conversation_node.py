@@ -1,5 +1,5 @@
 from typing import Dict, Any, Optional
-from app.routers.query_image import _sanitize_sources, _save_conversation
+from app.core.save_conversation import _sanitize_sources, _save_conversation
 
 # save conversation node
 async def node_save_conversation(state: Dict[str, Any]) -> Dict[str, Any]:

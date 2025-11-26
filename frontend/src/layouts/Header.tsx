@@ -11,7 +11,7 @@ interface HeaderProps {
   bg?: string
 }
 
-export function Header({ onMenuClick, isMobile, setIsSidebarOpen, isSidebarOpen,  bg="bg-white" }: HeaderProps) {
+export function Header({ onMenuClick, isMobile, setIsSidebarOpen, isSidebarOpen, bg = "bg-white" }: HeaderProps) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -52,7 +52,7 @@ export function Header({ onMenuClick, isMobile, setIsSidebarOpen, isSidebarOpen,
       <div className="h-full mx-auto px-6 flex items-center justify-between">
         {/* Mobile menu button */}
         {isMobile && (
-          <button 
+          <button
             type="button"
             onClick={handleMenuClick}
             className="p-1 rounded-md bg-white text-[var(--text)] hover:bg-[var(--background)] focus:outline-none"
@@ -71,20 +71,27 @@ export function Header({ onMenuClick, isMobile, setIsSidebarOpen, isSidebarOpen,
               {/* <div className="border-2 border-green rounded-full flex items-center">
                 <h1 className="text-green text-xl font-semibold px-1.5 py-0.5">m</h1>
               </div> */}
-              <h1 className="text-green text-xl font-semibold">maiind</h1>
+              <h1 className="text-green text-xl font-semibold flex items-center gap-1">
+                minde
+                <span className="text-xs text-green2 px-1 rounded-full mt-4 -ml-1 border border-green2">{"\u03B2"}</span>
+              </h1>
             </div>
           ) : (
             <div className="h-8 flex items-center gap-1">
-              <h1 className="text-green text-xl font-semibold">maiind</h1>
+              <h1 className="text-green text-xl font-semibold flex items-center gap-1">
+                minde
+                <span className="text-xs text-green2 px-1 rounded-full mt-4 -ml-1 border border-green2">{"\u03B2"}</span>
+              </h1>
             </div>
           )}
         </div>
-        
+
         <div className="flex items-center gap-4 py-2">
+          <p className="text-xs font-semibold">{user?.firstName} {user?.role === "teacher" ? "Sir" : null}</p>
           {/* Avatar with Dropdown */}
           {user ? (
             <div className="relative" ref={dropdownRef}>
-              <button 
+              <button
                 title="User menu"
                 type="button"
                 onClick={toggleDropdown}
@@ -95,7 +102,7 @@ export function Header({ onMenuClick, isMobile, setIsSidebarOpen, isSidebarOpen,
               >
                 <img src={user.avatar} alt={user.firstName} className="p-2 flex items-center justify-center rounded-full" />
               </button>
-              
+
               {/* Dropdown Menu */}
               {isDropdownOpen && (
                 <div className={`absolute right-0 mt-4 w-56 rounded-md shadow-lg bg-white dark:bg-black ring-1 ring-black ring-opacity-5 focus:outline-none z-60`}>
@@ -134,11 +141,11 @@ export function Header({ onMenuClick, isMobile, setIsSidebarOpen, isSidebarOpen,
             </div>
           ) : (
             <div className="relative pr-2" ref={dropdownRef}>
-              <button 
+              <button
                 title="User menu"
                 type="button"
                 onClick={() => navigate('/login')}
-                className="flex items-center justify-center bg-green text-white font-medium text-sm cursor-pointer hover:opacity-90 transition-opacity rounded-full border border-[var(--border)] px-4 py-2 gap-2"
+                className="flex items-center justify-center bg-green2 text-white font-medium text-sm cursor-pointer hover:opacity-90 transition-opacity rounded-full border border-[var(--border)] px-4 py-2 gap-2"
                 aria-haspopup="menu"
                 aria-label="User menu"
               >
@@ -149,7 +156,7 @@ export function Header({ onMenuClick, isMobile, setIsSidebarOpen, isSidebarOpen,
           )}
 
 
-{/* 
+          {/* 
           {!isMobile && !isSidebarOpen && (
             <button
               type="button"
@@ -160,7 +167,7 @@ export function Header({ onMenuClick, isMobile, setIsSidebarOpen, isSidebarOpen,
               {theme === 'dark' ? '🌞' : '🌙'}
             </button>
           )} */}
-          
+
         </div>
       </div>
     </header>

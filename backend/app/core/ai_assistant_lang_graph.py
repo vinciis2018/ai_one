@@ -13,8 +13,9 @@ from app.core.retriever import retrieve_similar
 from app.core.conversation_memory import retrieve_from_conversation_memory
 from app.core.llm_manager import call_llm
 from app.config.db import get_collection
-from app.routers.query_image import _sanitize_sources, _save_conversation, analyze_image_with_openai
+from app.routers.query_image import analyze_image_with_openai
 from app.prompt.prompt_builder import build_prompt
+from app.core.save_conversation import _sanitize_sources, _save_conversation
 
 def initial_state(
     query: str,

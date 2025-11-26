@@ -3,13 +3,11 @@
 # ============================================
 
 from app.models.chunk_document import ChunkDocumentModel
-from app.config.settings import FAISS_INDEX_PATH
 from pymongo import MongoClient
 import os
 from datetime import datetime
 import numpy as np
 from dotenv import load_dotenv
-import faiss
 from bson import ObjectId
 from app.config.db import db, get_collection
 
@@ -55,7 +53,7 @@ def setup_mongo_indexes():
 
 def store_embeddings(chunks, embeddings, source_type="student", metadata: dict | None = None):
     """
-    Stores text chunks + embeddings in MongoDB + FAISS.
+    Stores text chunks + embeddings in MongoDB.
     Handles multiple knowledge bases, S3 URLs, and dynamic vector dimensions.
     """
 
@@ -69,7 +67,7 @@ def store_embeddings(chunks, embeddings, source_type="student", metadata: dict |
         for e in embeddings
     ]
 
-    print("💾 Storing embeddings in MongoDB + FAISS...")
+    print("💾 Storing embeddings in MongoDB...")
 
     # Choose collection dynamically
     collection_name = f"kb_{source_type}"
@@ -100,28 +98,6 @@ def store_embeddings(chunks, embeddings, source_type="student", metadata: dict |
     except Exception as e:
         print(f"❌ MongoDB insert failed: {e}")
         return
-
-    # Update FAISS index
-    try:
-        os.makedirs(os.path.dirname(FAISS_INDEX_PATH), exist_ok=True)
-        dim = len(np_embeddings[0])
-
-        if os.path.exists(FAISS_INDEX_PATH):
-            index = faiss.read_index(FAISS_INDEX_PATH)
-            if index.d != dim:
-                print("⚠️ FAISS dimension mismatch — recreating index.")
-                index = faiss.IndexFlatL2(dim)
-        else:
-            index = faiss.IndexFlatL2(dim)
-
-        # Add vectors and save index
-        stacked = np.vstack(np_embeddings)
-        index.add(stacked)
-        faiss.write_index(index, FAISS_INDEX_PATH)
-        print(f"✅ Added {len(np_embeddings)} vectors to FAISS index at {FAISS_INDEX_PATH}.")
-
-    except Exception as e:
-        print(f"⚠️ FAISS update failed (non-fatal): {e}")
 
     return docs
 

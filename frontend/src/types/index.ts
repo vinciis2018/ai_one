@@ -45,3 +45,28 @@ export interface WebsocketStatusUpdate {
   stack?: unknown;
   state?: string;
 }
+
+
+// notes update
+export interface SelectionBox {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
+
+export type BlockType = 'text' | 'drawing';
+
+export interface BlockSettings {
+  width?: number; // 25, 50, 75, 100 (percentage)
+  align?: 'flex-start' | 'center' | 'flex-end';
+}
+
+export interface ContentBlock {
+  id: string;
+  type: BlockType;
+  content?: string; // Markdown text for text blocks; Caption/Explanation for drawing blocks
+  box_2d?: number[]; // [ymin, xmin, ymax, xmax] for drawings
+  imageUrl?: string; // Cropped base64 image for drawings
+  settings?: BlockSettings;
+}

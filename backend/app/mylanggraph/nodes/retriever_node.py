@@ -2,7 +2,7 @@ from app.core.retriever import retrieve_similar
 from bson import ObjectId
 
 from app.config.db import get_collection
-from app.routers.query_image import _sanitize_sources
+from app.core.save_conversation import _sanitize_sources
 
 async def retrieve_node(state):
     try:

@@ -1,7 +1,7 @@
 # ============================================
 # retriever_cache.py
 # Manages all knowledge base sources in memory
-# Auto-syncs from MongoDB (primary) or FAISS (fallback)
+# Auto-syncs from MongoDB (primary)
 # ============================================
 
 import os
@@ -42,7 +42,7 @@ class KnowledgeBaseCache:
         self.data = []
         self.last_loaded = None
 
-    def load_data(self, force: bool = False):
+    async def load_data(self, force: bool = False):
         """Loads data from MongoDB if not cached or force=True."""
         if self.data and not force:
             return self.data
@@ -50,7 +50,7 @@ class KnowledgeBaseCache:
         try:
             cursor = self.collection.find({}, {"chunk_text": 1, "embedding": 1, "created_at": 1})
             data = []
-            for doc in cursor:
+            async for doc in cursor:
                 embedding = np.array(doc["embedding"], dtype=np.float32)
                 created_at = (
                     datetime.fromisoformat(doc["created_at"])
@@ -71,11 +71,10 @@ class KnowledgeBaseCache:
 
         except Exception as e:
             print(f"⚠️ MongoDB load failed for {self.name}: {e}")
-            print("⚙️ Attempting FAISS fallback (if available)...")
             self.data = []
             return []
 
-    def add_entry(self, chunk_text: str):
+    async def add_entry(self, chunk_text: str):
         """Embed and insert a new chunk to MongoDB and cache."""
         embedding = self.embedder.encode(chunk_text).astype("float32").tolist()
         doc = {
@@ -85,7 +84,7 @@ class KnowledgeBaseCache:
             "source_type": self.name,
         }
         try:
-            self.collection.insert_one(doc)
+            await self.collection.insert_one(doc)
             self.data.append(doc)
             print(f"🧠 Added new chunk to {self.name} KB.")
         except Exception as e:
@@ -109,8 +108,8 @@ print(f"✅ Initialized Knowledge Base Cache with {len(knowledge_bases)} KBs loa
 # Utility: Force reload all KBs
 # ====================================================
 
-def reload_all_kbs():
+async def reload_all_kbs():
     """Force reload all knowledge bases."""
     for kb in knowledge_bases.values():
-        kb.load_data(force=True)
+        await kb.load_data(force=True)
     print("🔁 All knowledge bases reloaded successfully.")

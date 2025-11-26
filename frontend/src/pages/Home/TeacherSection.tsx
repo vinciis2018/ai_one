@@ -292,7 +292,7 @@ export const TeacherSection = () => {
                   </div>
                   <h1 className="text-gray-400 text-lg font-semibold -mt-4 bg-baigeLight  px-1 rounded-full text-center">02</h1>
                 </div>
-                <h3 className="text-sm text-center">Let MAIIND train a personalized AI assistant for you</h3>
+                <h3 className="text-sm text-center">Let MINDE train a personalized AI assistant for you</h3>
               </div>
               <div className="col-span-1">
                 <div className="flex flex-col items-center ">

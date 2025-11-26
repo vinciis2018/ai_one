@@ -1,7 +1,7 @@
 # ============================================
 # upload.py
 # Handles document upload, OCR, text extraction,
-# chunking, embeddings, and MongoDB + FAISS storage
+# chunking, embeddings, and MongoDB storage
 # ============================================
 
 from fastapi import APIRouter, UploadFile, File, HTTPException
@@ -71,13 +71,13 @@ async def save_to_kb_db(
             emb = generate_embeddings(chunk)
             embeddings.append(emb)
 
-        # Step 4: Store embeddings in FAISS
-        print("💾 Storing embeddings in FAISS...")
+        # Step 4: Store embeddings
+        print("💾 Storing embeddings in MongoDB...")
         chunk_docs = store_embeddings(chunks, embeddings, source_type=source_type)
 
         # Step 5: Reload relevant knowledge base
         if source_type in knowledge_bases:
-            knowledge_bases[source_type].load_data(force=True)
+            await knowledge_bases[source_type].load_data(force=True)
             print(f"⚡ {source_type.capitalize()} knowledge base reloaded after upload.")
 
     # Step 6: Save to MongoDB in the background
@@ -177,7 +177,7 @@ async def save_to_kb_db(
 async def upload_file(payload: dict = Body(...)):
     """
     Upload and process a document via its S3 URL.
-    Extracts text, chunks it, embeds it, stores in MongoDB + FAISS.
+    Extracts text, chunks it, embeds it, stores in MongoDB.
     """
     try:
         file_name = payload.get("fileName")

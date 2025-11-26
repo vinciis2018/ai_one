@@ -4,7 +4,6 @@ import ReactMarkdown from 'react-markdown';
 interface NotesTabProps {
   pageNumber: number;
   notesDescription: any[];
-  generateNotesData: any;
   generateNotesStatus: string;
   handleGenerateNotes: () => void;
 }
@@ -12,10 +11,47 @@ interface NotesTabProps {
 export const NotesTab: React.FC<NotesTabProps> = ({
   pageNumber,
   notesDescription,
-  generateNotesData,
   generateNotesStatus,
   handleGenerateNotes,
 }) => {
+  // Get notes from notesDescription for current page
+  const currentPageNotes = notesDescription.find(n => n.page === pageNumber)?.notes;
+
+  // Determine if we have notes to display
+  const hasNotes = currentPageNotes && (
+    (typeof currentPageNotes === 'string' && currentPageNotes.trim().length > 0) ||
+    (Array.isArray(currentPageNotes) && currentPageNotes.length > 0)
+  );
+
+  // Render notes content based on type
+  const renderNotes = () => {
+    if (!currentPageNotes) return null;
+
+    // If notes is an array of strings
+    if (Array.isArray(currentPageNotes)) {
+      return (
+        <ul className="list-disc list-inside space-y-2 text-sm text-gray-700">
+          {currentPageNotes.map((note: any, i: number) => (
+            <li key={i} className="leading-relaxed">{note}</li>
+          ))}
+        </ul>
+      );
+    }
+
+    // If notes is a string (markdown or plain text)
+    if (typeof currentPageNotes === 'string') {
+      return (
+        <div className="prose prose-sm max-w-none text-gray-700">
+          <ReactMarkdown>
+            {currentPageNotes}
+          </ReactMarkdown>
+        </div>
+      );
+    }
+
+    return null;
+  };
+
   return (
     <div className="space-y-4 h-full flex flex-col">
       <div className="flex items-center justify-between mb-2">
@@ -34,21 +70,9 @@ export const NotesTab: React.FC<NotesTabProps> = ({
         </button>
       </div>
 
-      {generateNotesStatus === 'succeeded' && generateNotesData?.notes?.length > 0 ? (
+      {hasNotes ? (
         <div className="flex-1 overflow-y-auto p-4 rounded-xl border bg-orange-50/30 border-orange-100">
-          <ul className="list-disc list-inside space-y-2 text-sm text-gray-700">
-            {generateNotesData.notes.map((note: any, i: number) => (
-              <li key={i} className="leading-relaxed">{note}</li>
-            ))}
-          </ul>
-        </div>
-      ) : notesDescription.find(n => n.page === pageNumber)?.notes ? (
-        <div className="flex-1 overflow-y-auto p-4 rounded-xl border bg-orange-50/30 border-orange-100">
-          <div className="prose prose-sm max-w-none text-gray-700">
-            <ReactMarkdown>
-              {notesDescription.find(n => n.page === pageNumber)?.notes || ''}
-            </ReactMarkdown>
-          </div>
+          {renderNotes()}
         </div>
       ) : (
         <div className="flex-1 flex flex-col items-center justify-center text-gray-400 border-2 border-dashed border-gray-100 rounded-xl p-6">
@@ -56,9 +80,10 @@ export const NotesTab: React.FC<NotesTabProps> = ({
           <p className="text-sm">No notes generated yet.</p>
           <button
             onClick={handleGenerateNotes}
-            className="mt-4 px-4 py-2 bg-orange-50 text-orange-600 rounded-lg text-xs font-medium hover:bg-orange-100 transition-colors"
+            disabled={generateNotesStatus === 'loading'}
+            className="mt-4 px-4 py-2 bg-orange-50 text-orange-600 rounded-lg text-xs font-medium hover:bg-orange-100 transition-colors disabled:opacity-50"
           >
-            Generate Notes
+            {generateNotesStatus === 'loading' ? 'Generating...' : 'Generate Notes'}
           </button>
         </div>
       )}

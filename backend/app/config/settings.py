@@ -21,9 +21,9 @@ DATA_DIR = BASE_DIR / "data"
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 
-GENERAL_FAISS_INDEX_PATH = DATA_DIR / Path(config["paths"]["general"]["faiss_index"]).name
+GENERAL_CHROMA_DB_PATH = DATA_DIR / Path(config["paths"]["general"]["chroma_db"]).name
 GENERAL_SQLITE_DB_PATH = DATA_DIR / Path(config["paths"]["general"]["sqlite_db"]).name
-FAISS_INDEX_PATH = DATA_DIR / Path(config["paths"]["faiss_index"]).name
+CHROMA_DB_PATH = DATA_DIR / Path(config["paths"]["chroma_db"]).name
 SQLITE_DB_PATH = DATA_DIR / Path(config["paths"]["sqlite_db"]).name
 UPLOAD_FOLDER = DATA_DIR / Path(config["paths"]["upload_folder"]).name
 UPLOAD_FOLDER.mkdir(parents=True, exist_ok=True)

@@ -32,6 +32,7 @@ class TeacherModel(BaseModel):
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
     syllabus: Optional[Dict[str, Any]] = None
+    classrooms: List[PyObjectId] = []
     calendar: Optional[Dict[str, Any]] = None  # For class scheduling and Google Calendar integration
 
 
@@ -83,6 +84,7 @@ class StudentModel(BaseModel):
     email: EmailStr
     subjects: List[str] = []
     documents: List[DocumentAccess] = []
+    classrooms: List[PyObjectId] = []
     teachers: List[str] = []
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
@@ -119,6 +121,32 @@ class SubjectDomains(BaseModel):
     id: Optional[PyObjectId] = Field(default=None, alias="_id")
     name: str
     teachers: List[TeacherStudent] = []
+
+class ClassroomModel(BaseModel):
+    id: Optional[PyObjectId] = Field(default=None, alias="_id")
+    name: str
+    description: Optional[str] = None
+    teacher_id: PyObjectId
+    student_ids: List[PyObjectId] = []
+    organisation_id: PyObjectId
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    updated_at: datetime = Field(default_factory=datetime.utcnow)
+
+    model_config = {
+        "json_encoders": {ObjectId: str},
+        "arbitrary_types_allowed": True,
+        "json_schema_extra": {
+            "example": {
+                "name": "Class 10-A",
+                "description": "Grade 10 Section A",
+                "teacher_id": "507f1f77bcf86cd799439011",
+                "student_ids": ["507f1f77bcf86cd799439013"],
+                "organisation_id": "507f1f77bcf86cd799439014",
+                "created_at": "2025-11-04T10:00:00Z",
+                "updated_at": "2025-11-04T10:00:00Z"
+            }
+        }
+    }
 
 class OrganisationModel(BaseModel):
     id: Optional[PyObjectId] = Field(default=None, alias="_id")

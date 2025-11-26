@@ -111,7 +111,7 @@ async def create_transcript_from_image(req: TranscriptRequest):
         
         
         # Extract text using DeepSeek-OCR
-        print(f"🔍 Extracting text from {'PDF page' if file_url_lower.endswith('.pdf') else 'image'} using DeepSeek-OCR...")
+        print(f"🔍 Extracting text from {'PDF page' if file_url_lower.endswith('.pdf') else 'image'} using llm..")
         
         # Run OCR in executor to avoid blocking
         loop = asyncio.get_running_loop()
@@ -185,7 +185,7 @@ async def create_transcript_from_image(req: TranscriptRequest):
                     embeddings.append(emb)
                 
                 # 4. Store new embeddings
-                print("💾 Storing embeddings in FAISS...")
+                print("💾 Storing embeddings in MongoDB...")
                 metadata = {"filename": document.get("filename", "unknown")}
                 new_chunk_docs = store_embeddings(chunks, embeddings, source_type=source_type, metadata=metadata)
                 
@@ -194,7 +194,7 @@ async def create_transcript_from_image(req: TranscriptRequest):
                 
                 # 5. Reload KB
                 if source_type in knowledge_bases:
-                    knowledge_bases[source_type].load_data(force=True)
+                    await knowledge_bases[source_type].load_data(force=True)
                     print(f"⚡ {source_type.capitalize()} knowledge base reloaded.")
             else:
                 new_chunk_ids = []
@@ -357,8 +357,7 @@ async def generate_questions(req: QuestionGenerationRequest):
         response_text = await loop.run_in_executor(
             None, 
             call_llm, 
-            prompt, 
-            document.get("domain", "general")
+            prompt
         )
         
         # Parse JSON response
@@ -490,8 +489,7 @@ async def generate_notes(req: GenerateNotesRequest):
         generated_notes = await loop.run_in_executor(
             None, 
             call_llm, 
-            prompt, 
-            document.get("domain", "general")
+            prompt
         )
         
         # ---------------------------------------------------------
@@ -632,9 +630,7 @@ async def generate_mcq(req: MCQGenerationRequest):
         response_text = await loop.run_in_executor(
             None, 
             call_llm, 
-            prompt, 
-            document.get("domain", "general")
-
+            prompt
         )
 
         # Parse JSON response
@@ -780,6 +776,8 @@ async def add_personal_tricks(req: PersonalTrickRequest):
             detail=f"Failed to add personal_tricks: {str(e)}"
         )
 @router.post("/generate-quick-notes_from_docs", status_code=status.HTTP_200_OK)
+
+
 async def generate_quick_notes_from_docs(req: QuickNotesRequest):
     """
     Generate quick notes from all transcriptions in a document.
@@ -859,8 +857,7 @@ Generate comprehensive quick notes suitable for quick revision and study.
         quick_notes = await loop.run_in_executor(
             None, 
             call_llm, 
-            prompt, 
-            document.get("domain", "general")
+            prompt
         )
         
         # Save quick notes to document
@@ -982,8 +979,7 @@ async def generate_quick_quiz_from_docs(req: QuickQuizRequest):
         response_text = await loop.run_in_executor(
             None, 
             call_llm, 
-            prompt, 
-            document.get("domain", "general")
+            prompt
         )
         
         # Parse JSON response
@@ -1122,7 +1118,8 @@ async def generate_quick_mcq_from_docs(req: QuickMCQRequest):
             ]
         }}
         
-        Do not include any markdown formatting (like ```json) or extra text. Just the raw JSON object.
+        DO NOT include any markdown formatting (like ``` and/or ```json) or extra text.
+        Just the raw JSON object.
         """
         
         # Call LLM
@@ -1130,14 +1127,12 @@ async def generate_quick_mcq_from_docs(req: QuickMCQRequest):
         response_text = await loop.run_in_executor(
             None, 
             call_llm, 
-            prompt, 
-            document.get("domain", "general")
+            prompt
         )
         
         # Parse JSON response
         try:
             cleaned_response = response_text.replace("```json", "").replace("```", "").strip()
-            
             # Check if response appears truncated
             if not cleaned_response.rstrip().endswith('}'):
                 print(f"⚠️ Warning: Response appears truncated. Last 100 chars: {cleaned_response[-100:]}")

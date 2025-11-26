@@ -157,8 +157,8 @@ export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({ isOpen, chatId, 
               <i className="fi fi-rr-sparkles text-sm"></i>
             </div>
             <div>
-              <h2 className="font-bold text-gray-900 dark:text-white">Your Maiind</h2>
-              <p className="text-xs text-gray-500 dark:text-gray-400">Ask anything you want to learn </p>
+              <h2 className="font-bold text-gray-900 dark:text-white">minde</h2>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Ask & rewind </p>
             </div>
           </div>
           <button

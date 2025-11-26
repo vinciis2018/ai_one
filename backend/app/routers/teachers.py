@@ -3,6 +3,7 @@
 # Exposes endpoints for listing and managing conversation history
 # (MongoDB version with search + pagination)
 # ============================================
+from app.models.organisation import ClassroomModel
 from app.helper.analytics_helper import aggregate_student_stats
 from fastapi import APIRouter, HTTPException, Query, Body
 from pymongo import DESCENDING
@@ -245,3 +246,52 @@ async def add_calendar_event(
     except Exception as e:
         print(f"Error in add_calendar_event: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error adding calendar event: {str(e)}")
+
+
+
+@router.post("/classroom/add")
+async def add_class_room(
+    teacher_id: str = Body(..., embed=True),
+    classroom_details: ClassroomModel = Body(..., embed=True)
+):
+    try:
+        # Validate teacher_id format
+        try:
+            teacher_oid = ObjectId(teacher_id)
+        except:
+            raise HTTPException(status_code=400, detail="Invalid teacher ID format")
+
+        collection = get_collection("teachers")
+        
+        teacher = await collection.find_one({"user_id": teacher_oid})
+
+        if not teacher:
+            raise HTTPException(status_code=404, detail="Teacher not found")
+
+        # Prepare classroom data
+        classroom_data = classroom_details.model_dump()
+        classroom_data["classroom_id"] = str(ObjectId()) # Generate a unique ID for the classroom
+
+        # Initialize classrooms if it doesn't exist
+        if not teacher.get("classrooms"):
+            await collection.update_one(
+                {"user_id": teacher_oid},
+                {"$set": {"classrooms": []}}
+            )
+
+        # Add classroom to teacher's profile
+        result = await collection.update_one(
+            {"user_id": teacher_oid},
+            {"$push": {"classrooms": classroom_data}}
+        )
+
+        if result.modified_count == 0:
+            raise HTTPException(status_code=500, detail="Failed to add classroom to teacher's profile")
+
+        return {"status": "success", "classroom_id": classroom_data["classroom_id"], "message": "Classroom added successfully"}
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"Error in add_class_room: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error adding classroom: {str(e)}")

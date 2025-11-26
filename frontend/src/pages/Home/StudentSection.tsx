@@ -112,7 +112,7 @@ export const StudentSection = () => {
         </div>
       </section>
 
-      {/* Introducing Maiind - Solution Section */}
+      {/* Introducing MINDE - Solution Section */}
       <section className="py-24 bg-gradient-to-b from-black via-violet to-black text-[#F8F6F0]">
         <div className="grid lg:grid-cols-9 gap-4 container mx-auto px-6">
           <div className="col-span-4">
@@ -130,7 +130,7 @@ export const StudentSection = () => {
             </h2>
             <div className="flex flex-col justify-start">
               <p className="text-sm lg:text-2xl text-gray-300 lg:w-80 ">
-                Maiind isn't just "another AI tutor." It is YOU, digitized.
+                MINDE isn't just "another AI tutor." It is YOU, digitized.
               </p>
               <a
                 href="/login"
@@ -194,12 +194,12 @@ export const StudentSection = () => {
         </div>
       </section>
 
-      {/* Why Coaching Centers Choose Maiind */}
+      {/* Why Coaching Centers Choose MINDE */}
       <section className="py-24 bg-gradient-to-b from-black via-violet to-black text-[#F8F6F0]">
         <div className="container mx-auto px-10">
           <div className="flex flex-col items-center ">
             <h2 className="text-3xl md:text-5xl lg:text-8xl font-black text-center mb-6 text-white">
-              Why Coaching Centers <span className="text-green">Choose Maiind</span>
+              Why Coaching Centers <span className="text-green">Choose MINDE</span>
             </h2>
             <p className="text-sm md:text-xl lg:text-2xl text-center text-white max-w-3xl mx-auto mb-16">
               NOT A REPLACEMENT. A SUPERPOWER.
@@ -212,7 +212,7 @@ export const StudentSection = () => {
                 <tr>
                   <th className="px-6 py-4 text-left text-sm font-bold text-white">Feature</th>
                   <th className="px-6 py-4 text-left text-sm font-bold text-white">The Old Way</th>
-                  <th className="px-6 py-4 text-left text-sm font-bold text-green">The Maiind Way</th>
+                  <th className="px-6 py-4 text-left text-sm font-bold text-green">The MINDE Way</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/10">
@@ -220,28 +220,28 @@ export const StudentSection = () => {
                   {
                     feature: 'Doubt Resolution',
                     oldWay: 'Students wait days for a 5-min slot.',
-                    maiindWay: 'Instant answers at 2 AM, 100% accurate to your notes.',
+                    mindeWay: 'Instant answers at 2 AM, 100% accurate to your notes.',
                   },
                   {
                     feature: 'Personalization',
                     oldWay: 'One teaching pace for all 100 students.',
-                    maiindWay: 'Every student gets a personalized pace.',
+                    mindeWay: 'Every student gets a personalized pace.',
                   },
                   {
                     feature: 'Scaling',
                     oldWay: 'Hiring more junior teachers who dilute quality.',
-                    maiindWay: 'Scale your "Star Teacher" to infinite batches.',
+                    mindeWay: 'Scale your "Star Teacher" to infinite batches.',
                   },
                   {
                     feature: 'Efficiency',
                     oldWay: 'Teachers are burnt out by repetitive tasks.',
-                    maiindWay: 'Teachers focus on strategy and high-level concepts.',
+                    mindeWay: 'Teachers focus on strategy and high-level concepts.',
                   },
                 ].map((row, i) => (
                   <tr key={i} className="hover:bg-white/5 transition-colors">
                     <td className="px-6 py-4 text-sm font-semibold text-white">{row.feature}</td>
                     <td className="px-6 py-4 text-sm text-gray-300">{row.oldWay}</td>
-                    <td className="px-6 py-4 text-sm text-green font-medium">{row.maiindWay}</td>
+                    <td className="px-6 py-4 text-sm text-green font-medium">{row.mindeWay}</td>
                   </tr>
                 ))}
               </tbody>
