@@ -99,7 +99,6 @@ export function UserProfilePage() {
     <SimpleLayout>
       {selectedDoc && <DocumentModal doc={selectedDoc} onClose={() => setSelectedDoc(null)} />}
       <div className="bg-white max-w-4xl mx-auto p-4">
-        <Header onBack={() => navigate(-1)} />
         {/* Profile Header */}
         <div className="py-4">
           <div className="flex flex-col sm:flex-row items-center">

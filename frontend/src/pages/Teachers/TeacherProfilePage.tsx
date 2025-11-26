@@ -105,7 +105,6 @@ export function TeacherProfilePage() {
     <FullLayout>
       {selectedDoc && <DocumentModal doc={selectedDoc} onClose={handleCloseModal} />}
       <div className="bg-white max-w-4xl mx-auto">
-        <Header onBack={() => navigate(-1)} />
         {/* Profile Header */}
         <div className="py-4">
           <div className="flex flex-col sm:flex-row items-center">

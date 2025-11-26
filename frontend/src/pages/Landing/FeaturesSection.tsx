@@ -90,8 +90,8 @@ export const FeaturesSection: React.FC = () => {
           <button
             onClick={() => setActiveTab('live')}
             className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${activeTab === 'live'
-              ? 'bg-green text-white shadow-md'
-              : 'text-gray-600 hover:text-green hover:bg-white/50'
+              ? 'bg-green2 text-white shadow-md'
+              : 'text-gray-600 hover:text-green2 hover:bg-white/50'
               }`}
           >
             Live Now 🚀
@@ -99,8 +99,8 @@ export const FeaturesSection: React.FC = () => {
           <button
             onClick={() => setActiveTab('coming-soon')}
             className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${activeTab === 'coming-soon'
-              ? 'bg-violet text-white shadow-md'
-              : 'text-gray-600 hover:text-violet hover:bg-white/50'
+              ? 'bg-green2 text-white shadow-md'
+              : 'text-gray-600 hover:text-green2 hover:bg-white/50'
               }`}
           >
             Coming Soon 🔮

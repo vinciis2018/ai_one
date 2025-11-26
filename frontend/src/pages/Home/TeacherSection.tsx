@@ -258,7 +258,7 @@ export const TeacherSection = () => {
         {/* Features Section */}
         <FeaturesSection />
       </section>
-      
+
 
       {/* How it works? */}
       <section

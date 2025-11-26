@@ -111,7 +111,6 @@ export function StudentProfilePage() {
     <FullLayout>
       {selectedDoc && <DocumentModal doc={selectedDoc} onClose={handleCloseModal} />}
       <div className="bg-white max-w-4xl mx-auto">
-        <Header onBack={() => navigate(-1)} />
         {/* Profile Header */}
         <div className="py-4">
           <div className="flex flex-col sm:flex-row items-center">
@@ -446,12 +445,12 @@ export function StudentProfilePage() {
 
               {/* Right Sidebar */}
               <div className="lg:col-span-1">
-                <div className="text-violet bg-gradient-to-br from-white to-greenLight rounded-2xl p-6 text-white shadow-lg">
+                <div className="text-green2 bg-gradient-to-br from-white to-greenLight rounded-2xl p-6 text-white shadow-lg">
                   <h3 className="font-bold text-lg mb-2">Guide Student</h3>
                   <p className="text-sm mb-4">Chat with this student to provide guidance and support.</p>
                   <button
                     onClick={() => navigate(-1)}
-                    className="w-full py-2 bg-green text-white rounded-lg font-semibold text-sm hover:bg-gray-500 transition-colors"
+                    className="w-full py-2 bg-green2 text-white rounded-lg font-semibold text-sm hover:bg-gray-500 transition-colors"
                   >
                     Go to Chat
                   </button>
