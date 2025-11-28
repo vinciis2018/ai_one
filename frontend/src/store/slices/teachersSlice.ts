@@ -47,6 +47,7 @@ interface TeacherState {
   error: string | null;
   success: boolean;
   student_analytics: any | null;
+  teacher_landing_page_analytics: any | null;
 }
 
 const initialState: TeacherState = {
@@ -56,6 +57,7 @@ const initialState: TeacherState = {
   error: null,
   success: false,
   student_analytics: null,
+  teacher_landing_page_analytics: null,
 };
 
 // Teacher-specific thunks
@@ -93,6 +95,19 @@ export const getAllTeachers = createAsyncThunk<
   }
 );
 
+export const getTeacherLandingPageAnalytics = createAsyncThunk<any, string>(
+  'teachers/getTeacherLandingPageAnalytics',
+  async (teacher_user_id: string, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`${BASE_URL}/teachers/${teacher_user_id}/landing-page-analytics`);
+      return response.data;
+    } catch (error: unknown) {
+      const axiosError = error as unknown as { response?: { data?: { detail?: string } } };
+      return rejectWithValue(axiosError.response?.data?.detail || 'Failed to load student analytics');
+    }
+  }
+);
+
 export const getStudentAnalytics = createAsyncThunk<any, string>(
   'teachers/getStudentAnalytics',
   async (studentId: string, { rejectWithValue }) => {
@@ -105,6 +120,7 @@ export const getStudentAnalytics = createAsyncThunk<any, string>(
     }
   }
 );
+
 
 export const addCalendarEvent = createAsyncThunk<
   CalendarEvent,
@@ -133,6 +149,7 @@ const teachersSlice = createSlice({
       state.success = false;
       state.teacher_details = null;
       state.student_analytics = null;
+      state.teacher_landing_page_analytics = null;
     },
     clearTeacherError: (state) => {
       state.error = null;
@@ -166,6 +183,19 @@ const teachersSlice = createSlice({
         state.all_teachers = action.payload.teachers;
       })
       .addCase(getAllTeachers.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      })
+      // Get landing page Analytics
+      .addCase(getTeacherLandingPageAnalytics.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getTeacherLandingPageAnalytics.fulfilled, (state, action) => {
+        state.loading = false;
+        state.teacher_landing_page_analytics = action.payload;
+      })
+      .addCase(getTeacherLandingPageAnalytics.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       })

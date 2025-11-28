@@ -2,6 +2,7 @@ from typing import Dict, List, Any
 from datetime import datetime, timedelta
 from app.config.db import get_collection
 from app.models.student_knowledge import StudentKnowledgeGraph
+from bson import ObjectId
 
 async def aggregate_student_stats(student_id: str, days: int = 30) -> Dict[str, Any]:
     """
@@ -96,13 +97,16 @@ async def aggregate_student_stats(student_id: str, days: int = 30) -> Dict[str, 
                     user_answer = question.get("user_answer")
                     
                     if question_type == "multiple_choice":
-                        correct_option = question.get("correct_option")
-                        if user_answer and correct_option:
-                            # Check if user_answer matches correct_option
+                        correct_answer = question.get("correct_answer")
+                        print("user_answer", user_answer)
+                        print("correct_answer", correct_answer)
+                        if user_answer and correct_answer:
+                            # Check if user_answer matches correct_answer
                             # User answer might be full text like "B. Sharing of..." or just "B"
                             user_ans_clean = user_answer.strip()
-                            correct_opt_clean = correct_option.strip()
-                            
+                            correct_opt_clean = correct_answer.strip()
+                            print("user_answer", user_ans_clean)
+                            print("correct_answer", correct_opt_clean)
                             # Extract letter prefix if present (e.g., "B." from "B. Sharing...")
                             if len(user_ans_clean) > 0 and user_ans_clean[0].isalpha():
                                 user_letter = user_ans_clean[0].upper()
@@ -147,3 +151,132 @@ async def aggregate_student_stats(student_id: str, days: int = 30) -> Dict[str, 
         "quiz_metrics": quiz_metrics
     }
 
+
+async def aggregate_teacher_landing_page_stats(teacher_id: ObjectId, days: int = 30) -> Dict[str, Any]:
+    """
+    Aggregates teacher statistics for landing page analytics.
+    
+    Args:
+        teacher_id: The ObjectId of the teacher's user_id.
+        days: Number of days to look back (default 30).
+        
+    Returns:
+        Dictionary containing:
+        - total_chats: Number of chats as teacher
+        - total_conversations: Number of conversations (messages)
+        - total_documents: Number of documents
+        - total_students: Number of students
+    """
+    # Get teacher document
+    teachers_collection = get_collection("teachers")
+    teacher = await teachers_collection.find_one({"user_id": teacher_id})
+    
+    if not teacher:
+        return {
+            "total_chats": 0,
+            "total_conversations": 0,
+            "total_documents": 0,
+            "total_students": 0
+        }
+    
+    # Calculate start date
+    start_date = datetime.utcnow() - timedelta(days=days)
+    
+    # 1. Get total chats where teacher_id matches
+    chats_collection = get_collection("chats")
+    
+    total_chats = await chats_collection.count_documents({
+        "teacher_id": str(teacher_id),
+        "created_at": {"$gte": start_date}
+    })
+    
+    # 2. Get total conversations from those chats
+    chats_cursor = chats_collection.find({
+        "teacher_id": str(teacher_id),
+        "created_at": {"$gte": start_date}
+    })
+    chats = await chats_cursor.to_list(length=None)
+    
+    total_conversations = 0
+    for chat in chats:
+        total_conversations += len(chat.get("conversations", []))
+    
+    # 3. Get total documents
+    total_documents = len(teacher.get("documents", []))
+    
+    # 4. Get total students
+    total_students = len(teacher.get("students", []))
+    
+    return {
+        "total_chats": total_chats,
+        "total_conversations": total_conversations,
+        "total_documents": total_documents,
+        "total_students": total_students
+    }
+
+
+async def aggregate_student_landing_page_stats(student_id: ObjectId, days: int = 30) -> Dict[str, Any]:
+    """
+    Aggregates student statistics for landing page analytics.
+    
+    Args:
+        student_id: The ObjectId of the student's user_id.
+        days: Number of days to look back (default 30).
+        
+    Returns:
+        Dictionary containing:
+        - total_teachers: Number of teachers
+        - total_quizzes: Number of micro quizzes completed
+        - total_chats: Number of chats
+        - total_documents: Number of documents
+    """
+    # Get student document
+    students_collection = get_collection("students")
+    student = await students_collection.find_one({"user_id": student_id})
+    
+    if not student:
+        return {
+            "total_teachers": 0,
+            "total_quizzes": 0,
+            "total_chats": 0,
+            "total_documents": 0
+        }
+    
+    # Calculate start date
+    start_date = datetime.utcnow() - timedelta(days=days)
+    
+    # 1. Get total teachers
+    total_teachers = len(student.get("teachers", []))
+    
+    # 2. Get total quizzes from student knowledge graph
+    kg_collection = get_collection("student_knowledge_graph")
+    kg_cursor = kg_collection.find({
+        "student_id": str(student_id),
+        "timestamp": {"$gte": start_date}
+    })
+    kg_entries = await kg_cursor.to_list(length=None)
+    
+    total_quizzes = 0
+    for entry in kg_entries:
+        quick_action = entry.get("quick_action")
+        if quick_action and isinstance(quick_action, dict):
+            micro_quiz = quick_action.get("micro_quiz")
+            if micro_quiz and isinstance(micro_quiz, list) and len(micro_quiz) > 0:
+                total_quizzes += 1
+    
+    # 3. Get total chats where student is the user
+    chats_collection = get_collection("chats")
+    total_chats = await chats_collection.count_documents({
+        "user_id": str(student_id),
+        "created_at": {"$gte": start_date}
+    })
+    
+    # 4. Get total documents
+    total_documents = len(student.get("documents", []))
+    
+    return {
+        "total_teachers": total_teachers,
+        "total_quizzes": total_quizzes,
+        "total_chats": total_chats,
+        "total_documents": total_documents
+    }

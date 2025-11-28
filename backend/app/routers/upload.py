@@ -249,7 +249,7 @@ async def list_uploaded_documents(user_ids: str = None):
         # Find documents for all user_ids
         cursor = col.find(
             {"user_id": {"$in": user_id_list}},
-            {"_id": 1, "filename": 1, "source_type": 1, "created_at": 1, "s3_url": 1, "user_id": 1, "type": 1, "notes_description": 1}
+            {"_id": 1, "filename": 1, "source_type": 1, "created_at": 1, "s3_url": 1, "user_id": 1, "type": 1, "notes_description": 1, "domain": 1}
         ).sort("created_at", -1)
         
         # Convert cursor to list and format results
@@ -266,7 +266,9 @@ async def list_uploaded_documents(user_ids: str = None):
                 "type": doc.get("type", ""),
                 "created_at": doc.get("created_at", ""),
                 "s3_url": doc.get("s3_url", ""),
-                "notes_description": doc.get("notes_description", "")
+                "notes_description": doc.get("notes_description", ""),
+                "domain": doc.get("domain", ""),
+                
             }
             documents.append(doc_dict)
         

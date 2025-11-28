@@ -13,9 +13,10 @@ import { getS3Url } from "../../utilities/awsUtils";
 interface UploadBoxProps {
   isOpen: boolean;
   onClose: () => void;
+  onUploadSuccess?: () => void;
 }
 
-export const UploadBox: React.FC<UploadBoxProps> = ({ isOpen, onClose }) => {
+export const UploadBox: React.FC<UploadBoxProps> = ({ isOpen, onClose, onUploadSuccess }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -49,7 +50,7 @@ export const UploadBox: React.FC<UploadBoxProps> = ({ isOpen, onClose }) => {
     const payload: UploadRequestPayload = {
       fileName: file.name,
       s3Url,
-        // : "https://usethisbucketforupload.s3.ap-south-1.amazonaws.com/uploads/ChemicalBondingNotesGautami.pdf",
+      // : "https://usethisbucketforupload.s3.ap-south-1.amazonaws.com/uploads/ChemicalBondingNotesGautami.pdf",
       subject: subject.toLowerCase(),
       domain: domain.toLowerCase(),
       level: level.toLowerCase(),
@@ -76,12 +77,18 @@ export const UploadBox: React.FC<UploadBoxProps> = ({ isOpen, onClose }) => {
       setLevel("");
       setDocType("study_material");
       dispatch(resetStatus());
+
+      // Notify parent about success
+      if (onUploadSuccess) {
+        onUploadSuccess();
+      }
+
       // Close the panel after successful upload
       setTimeout(() => {
         onClose();
       }, 1500);
     }
-  }, [isAuthenticated, dispatch, navigate, uploadStatus, onClose]);
+  }, [isAuthenticated, dispatch, navigate, uploadStatus, onClose, onUploadSuccess]);
 
   return (
     <>

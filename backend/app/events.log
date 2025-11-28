@@ -51322,3 +51322,2244 @@ contents.list[union[Content,str,is-instance[Image],File,Part,list[union[str,is-i
 2025-11-28 19:15:59,461 [INFO] GET /conversations/chat/space/get - 200 - 19.05ms
 2025-11-28 19:16:25,320 [INFO] GET /conversations/chat/space/get - 200 - 15.97ms
 2025-11-28 19:16:47,472 [INFO] GET /conversations/chat/space/get - 200 - 52.47ms
+2025-11-28 19:20:50,138 [INFO] Use pytorch device_name: mps
+2025-11-28 19:20:50,139 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 19:20:56,944 [INFO] 🧠 Using device: MPS
+2025-11-28 19:21:52,779 [INFO] OPTIONS /auth/me - 200 - 3.94ms
+2025-11-28 19:21:52,781 [INFO] OPTIONS /auth/me - 200 - 2.31ms
+2025-11-28 19:21:52,782 [INFO] OPTIONS /auth/me - 200 - 1.33ms
+2025-11-28 19:21:52,783 [INFO] OPTIONS /auth/me - 200 - 1.64ms
+2025-11-28 19:21:52,803 [INFO] GET /auth/me - 200 - 20.62ms
+2025-11-28 19:21:52,805 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 28.44ms
+2025-11-28 19:21:52,812 [INFO] GET /auth/me - 200 - 5.91ms
+2025-11-28 19:21:52,814 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 6.83ms
+2025-11-28 19:21:52,820 [INFO] GET /auth/me - 200 - 4.5ms
+2025-11-28 19:21:52,857 [INFO] GET /upload/list/selected - 200 - 39.14ms
+2025-11-28 19:21:52,860 [INFO] GET /auth/me - 200 - 39.42ms
+2025-11-28 19:21:52,874 [INFO] GET /upload/list/selected - 200 - 14.32ms
+2025-11-28 19:21:53,538 [INFO] OPTIONS /auth/me - 200 - 0.22ms
+2025-11-28 19:21:53,541 [INFO] OPTIONS /auth/me - 200 - 0.22ms
+2025-11-28 19:21:53,546 [INFO] OPTIONS /auth/me - 200 - 4.16ms
+2025-11-28 19:21:53,549 [INFO] OPTIONS /auth/me - 200 - 5.7ms
+2025-11-28 19:21:53,606 [INFO] GET /auth/me - 200 - 59.53ms
+2025-11-28 19:21:53,608 [INFO] GET /auth/me - 200 - 66.16ms
+2025-11-28 19:21:53,625 [INFO] GET /auth/me - 200 - 3.12ms
+2025-11-28 19:21:53,627 [INFO] GET /auth/me - 200 - 4.94ms
+2025-11-28 19:21:54,495 [INFO] OPTIONS /auth/me - 200 - 0.25ms
+2025-11-28 19:21:54,501 [INFO] GET /auth/me - 200 - 4.58ms
+2025-11-28 19:21:54,517 [INFO] OPTIONS /auth/me - 200 - 0.63ms
+2025-11-28 19:21:54,533 [INFO] GET /auth/me - 200 - 11.66ms
+2025-11-28 19:21:54,656 [INFO] OPTIONS /auth/me - 200 - 0.51ms
+2025-11-28 19:21:54,659 [INFO] GET /teachers - 307 - 1.51ms
+2025-11-28 19:21:54,660 [INFO] OPTIONS /auth/me - 200 - 1.49ms
+2025-11-28 19:21:54,661 [INFO] GET /teachers - 307 - 1.59ms
+2025-11-28 19:21:54,665 [INFO] GET /auth/me - 200 - 7.03ms
+2025-11-28 19:21:54,667 [INFO] GET /auth/me - 200 - 3.51ms
+2025-11-28 19:21:54,698 [INFO] GET /teachers - 307 - 0.41ms
+2025-11-28 19:21:54,708 [INFO] GET /teachers/ - 200 - 9.39ms
+2025-11-28 19:21:54,714 [INFO] GET /teachers - 307 - 1.53ms
+2025-11-28 19:21:54,720 [INFO] GET /teachers/ - 200 - 7.5ms
+2025-11-28 19:21:54,928 [INFO] GET /teachers/ - 200 - 11.72ms
+2025-11-28 19:21:54,951 [INFO] GET /teachers/ - 200 - 8.83ms
+2025-11-28 19:22:03,256 [INFO] OPTIONS /auth/login - 200 - 0.55ms
+2025-11-28 19:22:03,561 [INFO] POST /auth/login - 200 - 302.33ms
+2025-11-28 19:22:03,599 [INFO] OPTIONS /auth/me - 200 - 0.4ms
+2025-11-28 19:22:03,607 [INFO] GET /auth/me - 200 - 4.19ms
+2025-11-28 19:22:03,617 [INFO] OPTIONS /auth/me - 200 - 0.3ms
+2025-11-28 19:22:03,658 [INFO] GET /auth/me - 200 - 3.76ms
+2025-11-28 19:22:03,725 [INFO] OPTIONS /auth/me - 200 - 0.19ms
+2025-11-28 19:22:03,728 [INFO] OPTIONS /auth/me - 200 - 0.94ms
+2025-11-28 19:22:03,729 [INFO] GET /students - 307 - 0.65ms
+2025-11-28 19:22:03,730 [INFO] GET /students - 307 - 0.92ms
+2025-11-28 19:22:03,732 [INFO] GET /auth/me - 200 - 3.05ms
+2025-11-28 19:22:03,732 [INFO] GET /auth/me - 200 - 5.66ms
+2025-11-28 19:22:03,763 [INFO] GET /students - 307 - 0.44ms
+2025-11-28 19:22:03,769 [INFO] GET /students/ - 200 - 4.72ms
+2025-11-28 19:22:03,781 [INFO] GET /students - 307 - 2.4ms
+2025-11-28 19:22:03,785 [INFO] GET /students/ - 200 - 4.23ms
+2025-11-28 19:22:03,785 [INFO] GET /students/ - 200 - 4.08ms
+2025-11-28 19:22:03,807 [INFO] GET /students/ - 200 - 3.73ms
+2025-11-28 19:22:07,193 [INFO] OPTIONS /auth/me - 200 - 0.75ms
+2025-11-28 19:22:07,194 [INFO] OPTIONS /auth/me - 200 - 1.63ms
+2025-11-28 19:22:07,225 [INFO] GET /upload/list - 200 - 30.53ms
+2025-11-28 19:22:07,225 [INFO] GET /upload/list - 200 - 30.8ms
+2025-11-28 19:22:07,229 [INFO] GET /auth/me - 200 - 32.39ms
+2025-11-28 19:22:07,229 [INFO] GET /auth/me - 200 - 31.1ms
+2025-11-28 19:22:07,460 [INFO] GET /upload/list - 200 - 11.47ms
+2025-11-28 19:22:07,489 [INFO] GET /upload/list - 200 - 10.73ms
+2025-11-28 19:22:52,932 [INFO] GET /students - 307 - 0.53ms
+2025-11-28 19:22:52,948 [INFO] GET /students/ - 200 - 9.06ms
+2025-11-28 19:22:55,557 [INFO] GET /students - 307 - 0.97ms
+2025-11-28 19:22:55,570 [INFO] GET /students/ - 200 - 6.54ms
+2025-11-28 19:24:34,221 [INFO] OPTIONS /aws/get-s3-upload-url - 200 - 1.43ms
+2025-11-28 19:24:34,367 [INFO] POST /aws/get-s3-upload-url - 200 - 141.63ms
+2025-11-28 19:24:35,296 [INFO] OPTIONS /upload/ - 200 - 0.16ms
+2025-11-28 19:24:35,298 [INFO] ✅ Successfully saved document to MongoDB
+2025-11-28 19:24:35,299 [INFO] POST /upload/ - 200 - 2.15ms
+2025-11-28 19:24:35,304 [INFO] ✅ Added document to teacher's documents
+2025-11-28 19:25:14,527 [INFO] OPTIONS /auth/me - 200 - 4.74ms
+2025-11-28 19:25:14,528 [INFO] OPTIONS /auth/me - 200 - 2.1ms
+2025-11-28 19:25:14,530 [INFO] OPTIONS /auth/me - 200 - 2.83ms
+2025-11-28 19:25:14,531 [INFO] OPTIONS /auth/me - 200 - 3.89ms
+2025-11-28 19:25:14,582 [INFO] GET /auth/me - 200 - 45.76ms
+2025-11-28 19:25:14,583 [INFO] GET /auth/me - 200 - 50.06ms
+2025-11-28 19:25:14,586 [INFO] GET /auth/me - 200 - 36.32ms
+2025-11-28 19:25:14,590 [INFO] GET /auth/me - 200 - 24.17ms
+2025-11-28 19:25:15,468 [INFO] GET /upload/list - 200 - 17.23ms
+2025-11-28 19:25:15,478 [INFO] GET /upload/list - 200 - 10.88ms
+2025-11-28 19:25:15,487 [INFO] GET /upload/list - 200 - 8.32ms
+2025-11-28 19:25:15,495 [INFO] GET /upload/list - 200 - 8.14ms
+2025-11-28 19:25:17,925 [INFO] OPTIONS /auth/me - 200 - 1.77ms
+2025-11-28 19:25:17,928 [INFO] OPTIONS /auth/me - 200 - 1.47ms
+2025-11-28 19:25:17,929 [INFO] GET /upload/6929a99b282700820653ab90 - 200 - 4.93ms
+2025-11-28 19:25:17,930 [INFO] GET /upload/6929a99b282700820653ab90 - 200 - 3.98ms
+2025-11-28 19:25:17,932 [INFO] GET /auth/me - 200 - 3.53ms
+2025-11-28 19:25:17,932 [INFO] GET /auth/me - 200 - 3.44ms
+2025-11-28 19:25:23,851 [INFO] OPTIONS /notes/transcribe - 200 - 0.39ms
+2025-11-28 19:25:24,948 [INFO] AFC is enabled with max remote calls: 10.
+2025-11-28 19:25:30,939 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2025-11-28 19:25:31,614 [INFO] POST /notes/transcribe - 200 - 7759.37ms
+2025-11-28 19:25:37,676 [INFO] OPTIONS /notes/transcribe - 200 - 0.23ms
+2025-11-28 19:25:38,675 [INFO] AFC is enabled with max remote calls: 10.
+2025-11-28 19:25:45,475 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2025-11-28 19:25:45,982 [INFO] POST /notes/transcribe - 200 - 8303.74ms
+2025-11-28 19:26:22,340 [INFO] OPTIONS /notes/transcribe - 200 - 0.48ms
+2025-11-28 19:26:23,243 [INFO] AFC is enabled with max remote calls: 10.
+2025-11-28 19:26:29,991 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2025-11-28 19:26:31,123 [INFO] POST /notes/transcribe - 200 - 8778.92ms
+2025-11-28 19:26:58,540 [INFO] OPTIONS /notes/transcribe - 200 - 0.64ms
+2025-11-28 19:26:59,514 [INFO] AFC is enabled with max remote calls: 10.
+2025-11-28 19:27:06,528 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2025-11-28 19:27:07,187 [INFO] POST /notes/transcribe - 200 - 8644.26ms
+2025-11-28 19:39:24,465 [INFO] OPTIONS /notes/transcribe - 200 - 1.83ms
+2025-11-28 19:39:25,582 [INFO] AFC is enabled with max remote calls: 10.
+2025-11-28 19:39:36,032 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2025-11-28 19:39:37,024 [INFO] POST /notes/transcribe - 200 - 12553.06ms
+2025-11-28 19:47:24,938 [INFO] OPTIONS /auth/me - 200 - 6.22ms
+2025-11-28 19:47:24,952 [INFO] OPTIONS /auth/me - 200 - 16.73ms
+2025-11-28 19:47:24,954 [INFO] GET /students - 307 - 10.8ms
+2025-11-28 19:47:24,955 [INFO] GET /students - 307 - 3.53ms
+2025-11-28 19:47:24,964 [INFO] GET /auth/me - 200 - 6.02ms
+2025-11-28 19:47:24,965 [INFO] GET /auth/me - 200 - 10.2ms
+2025-11-28 19:47:25,247 [INFO] GET /students - 307 - 0.62ms
+2025-11-28 19:47:25,261 [INFO] GET /students/ - 200 - 9.37ms
+2025-11-28 19:47:25,292 [INFO] GET /students - 307 - 1.6ms
+2025-11-28 19:47:25,296 [INFO] GET /students/ - 200 - 5.8ms
+2025-11-28 19:47:25,298 [INFO] GET /students/ - 200 - 6.36ms
+2025-11-28 19:47:25,335 [INFO] GET /students/ - 200 - 19.12ms
+2025-11-28 19:47:26,858 [INFO] OPTIONS /auth/me - 200 - 0.31ms
+2025-11-28 19:47:26,859 [INFO] OPTIONS /auth/me - 200 - 0.28ms
+2025-11-28 19:47:26,867 [INFO] GET /auth/me - 200 - 7.96ms
+2025-11-28 19:47:26,869 [INFO] GET /auth/me - 200 - 8.22ms
+2025-11-28 19:47:26,871 [INFO] GET /students/690860e3489b114c676d005d - 200 - 9.44ms
+2025-11-28 19:47:26,872 [INFO] GET /students/690860e3489b114c676d005d - 200 - 10.65ms
+2025-11-28 19:47:38,129 [INFO] OPTIONS /auth/me - 200 - 0.61ms
+2025-11-28 19:47:38,131 [INFO] GET /teachers - 307 - 1.84ms
+2025-11-28 19:47:38,133 [INFO] OPTIONS /auth/me - 200 - 2.07ms
+2025-11-28 19:47:38,135 [INFO] GET /teachers - 307 - 1.68ms
+2025-11-28 19:47:38,141 [INFO] GET /auth/me - 200 - 9.43ms
+2025-11-28 19:47:38,149 [INFO] GET /auth/me - 200 - 6.46ms
+2025-11-28 19:47:38,153 [INFO] GET /teachers - 307 - 0.35ms
+2025-11-28 19:47:38,163 [INFO] GET /teachers - 307 - 0.66ms
+2025-11-28 19:47:38,173 [INFO] GET /teachers/ - 200 - 32.7ms
+2025-11-28 19:47:38,179 [INFO] GET /teachers/ - 200 - 5.5ms
+2025-11-28 19:47:38,188 [INFO] GET /teachers/ - 200 - 6.32ms
+2025-11-28 19:47:38,194 [INFO] GET /teachers/ - 200 - 4.72ms
+2025-11-28 19:50:02,463 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 17.02ms
+2025-11-28 19:50:02,471 [INFO] GET /upload/list/selected - 200 - 20.01ms
+2025-11-28 19:50:02,474 [INFO] GET /auth/me - 200 - 34.96ms
+2025-11-28 19:50:02,483 [INFO] GET /upload/list/selected - 200 - 9.03ms
+2025-11-28 19:50:02,486 [INFO] GET /auth/me - 200 - 10.08ms
+2025-11-28 19:50:02,486 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 11.5ms
+2025-11-28 19:50:02,492 [INFO] GET /upload/list/selected - 200 - 9.05ms
+2025-11-28 19:50:02,544 [INFO] GET /upload/list/selected - 200 - 7.39ms
+2025-11-28 19:50:04,630 [INFO] GET /coachings - 307 - 1.46ms
+2025-11-28 19:50:04,632 [INFO] GET /coachings - 307 - 0.79ms
+2025-11-28 19:50:04,635 [INFO] GET /auth/me - 200 - 7.97ms
+2025-11-28 19:50:04,654 [INFO] GET /coachings/ - 200 - 16.34ms
+2025-11-28 19:50:04,657 [INFO] GET /auth/me - 200 - 20.74ms
+2025-11-28 19:50:04,658 [INFO] GET /coachings/ - 200 - 1.67ms
+2025-11-28 19:50:06,397 [INFO] GET /teachers - 307 - 0.79ms
+2025-11-28 19:50:06,399 [INFO] GET /teachers - 307 - 0.73ms
+2025-11-28 19:50:06,402 [INFO] GET /auth/me - 200 - 8.12ms
+2025-11-28 19:50:06,412 [INFO] GET /auth/me - 200 - 6.0ms
+2025-11-28 19:50:06,414 [INFO] GET /teachers - 307 - 1.25ms
+2025-11-28 19:50:06,417 [INFO] GET /teachers/ - 200 - 13.32ms
+2025-11-28 19:50:06,422 [INFO] GET /teachers - 307 - 0.54ms
+2025-11-28 19:50:06,425 [INFO] GET /teachers/ - 200 - 6.47ms
+2025-11-28 19:50:06,432 [INFO] GET /teachers/ - 200 - 5.93ms
+2025-11-28 19:50:06,440 [INFO] GET /teachers/ - 200 - 4.82ms
+2025-11-28 19:50:08,093 [INFO] GET /conversations/chats/teacher/student - 200 - 5.03ms
+2025-11-28 19:50:08,098 [INFO] GET /students/690860e3489b114c676d005d - 200 - 7.75ms
+2025-11-28 19:50:08,099 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 11.12ms
+2025-11-28 19:50:08,101 [INFO] GET /auth/me - 200 - 15.15ms
+2025-11-28 19:50:08,104 [INFO] GET /conversations/chats/teacher/student - 200 - 8.84ms
+2025-11-28 19:50:08,108 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 6.82ms
+2025-11-28 19:50:08,109 [INFO] GET /students/690860e3489b114c676d005d - 200 - 7.46ms
+2025-11-28 19:50:08,109 [INFO] GET /auth/me - 200 - 5.69ms
+2025-11-28 19:50:08,144 [INFO] GET /conversations/chats/teacher/student - 200 - 2.7ms
+2025-11-28 19:50:08,146 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 3.05ms
+2025-11-28 19:50:08,146 [INFO] GET /students/690860e3489b114c676d005d - 200 - 3.34ms
+2025-11-28 19:50:08,191 [INFO] GET /conversations/chats/teacher/student - 200 - 2.26ms
+2025-11-28 19:50:08,192 [INFO] GET /teachers/690ae55877962a1c28aded95 - 200 - 2.58ms
+2025-11-28 19:50:08,192 [INFO] GET /students/690860e3489b114c676d005d - 200 - 2.81ms
+2025-11-28 19:50:10,417 [INFO] GET /teachers - 307 - 0.66ms
+2025-11-28 19:50:10,419 [INFO] GET /teachers - 307 - 0.63ms
+2025-11-28 19:50:10,421 [INFO] GET /auth/me - 200 - 5.23ms
+2025-11-28 19:50:10,429 [INFO] GET /auth/me - 200 - 6.35ms
+2025-11-28 19:50:10,442 [INFO] GET /teachers - 307 - 0.69ms
+2025-11-28 19:50:10,445 [INFO] GET /teachers/ - 200 - 11.1ms
+2025-11-28 19:50:10,449 [INFO] GET /teachers - 307 - 0.48ms
+2025-11-28 19:50:10,457 [INFO] GET /teachers/ - 200 - 10.63ms
+2025-11-28 19:50:10,468 [INFO] GET /teachers/ - 200 - 9.18ms
+2025-11-28 19:50:10,482 [INFO] GET /teachers/ - 200 - 6.98ms
+2025-11-28 19:50:12,113 [INFO] GET /conversations/chats/teacher/student - 200 - 5.59ms
+2025-11-28 19:50:12,119 [INFO] GET /students/690860e3489b114c676d005d - 200 - 10.26ms
+2025-11-28 19:50:12,119 [INFO] GET /auth/me - 200 - 14.6ms
+2025-11-28 19:50:12,120 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 12.0ms
+2025-11-28 19:50:12,121 [INFO] GET /conversations/chats/teacher/student - 200 - 5.57ms
+2025-11-28 19:50:12,127 [INFO] GET /auth/me - 200 - 4.95ms
+2025-11-28 19:50:12,128 [INFO] GET /students/690860e3489b114c676d005d - 200 - 5.58ms
+2025-11-28 19:50:12,128 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 4.88ms
+2025-11-28 19:50:12,147 [INFO] GET /conversations/chats/teacher/student - 200 - 2.86ms
+2025-11-28 19:50:12,148 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 4.26ms
+2025-11-28 19:50:12,148 [INFO] GET /students/690860e3489b114c676d005d - 200 - 3.77ms
+2025-11-28 19:50:12,180 [INFO] GET /conversations/chats/teacher/student - 200 - 2.85ms
+2025-11-28 19:50:12,182 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 4.04ms
+2025-11-28 19:50:12,182 [INFO] GET /students/690860e3489b114c676d005d - 200 - 4.17ms
+2025-11-28 19:50:26,109 [INFO] OPTIONS /auth/me - 200 - 0.48ms
+2025-11-28 19:50:26,116 [INFO] GET /students - 307 - 1.29ms
+2025-11-28 19:50:26,123 [INFO] OPTIONS /auth/me - 200 - 4.23ms
+2025-11-28 19:50:26,127 [INFO] GET /students - 307 - 2.0ms
+2025-11-28 19:50:26,136 [INFO] GET /auth/me - 200 - 16.5ms
+2025-11-28 19:50:26,138 [INFO] GET /auth/me - 200 - 8.35ms
+2025-11-28 19:50:26,611 [INFO] GET /students - 307 - 0.45ms
+2025-11-28 19:50:26,627 [INFO] GET /students/ - 200 - 7.09ms
+2025-11-28 19:50:26,631 [INFO] GET /students - 307 - 2.94ms
+2025-11-28 19:50:26,638 [INFO] GET /students/ - 200 - 9.33ms
+2025-11-28 19:50:26,647 [INFO] GET /students/ - 200 - 11.49ms
+2025-11-28 19:50:26,670 [INFO] GET /students/ - 200 - 5.51ms
+2025-11-28 19:50:27,481 [INFO] OPTIONS /auth/me - 200 - 0.39ms
+2025-11-28 19:50:27,493 [INFO] OPTIONS /auth/me - 200 - 7.23ms
+2025-11-28 19:50:27,500 [INFO] GET /conversations/chats/teacher/student - 200 - 14.54ms
+2025-11-28 19:50:27,504 [INFO] GET /conversations/chats/teacher/student - 200 - 8.36ms
+2025-11-28 19:50:27,506 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 19.8ms
+2025-11-28 19:50:27,508 [INFO] GET /auth/me - 200 - 21.95ms
+2025-11-28 19:50:27,508 [INFO] GET /students/690860e3489b114c676d005d - 200 - 14.3ms
+2025-11-28 19:50:27,508 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 10.62ms
+2025-11-28 19:50:27,511 [INFO] GET /students/690860e3489b114c676d005d - 200 - 6.88ms
+2025-11-28 19:50:27,512 [INFO] GET /auth/me - 200 - 4.87ms
+2025-11-28 19:50:27,797 [INFO] GET /conversations/chats/teacher/student - 200 - 5.2ms
+2025-11-28 19:50:27,800 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 6.98ms
+2025-11-28 19:50:27,801 [INFO] GET /students/690860e3489b114c676d005d - 200 - 7.02ms
+2025-11-28 19:50:27,846 [INFO] GET /conversations/chats/teacher/student - 200 - 5.33ms
+2025-11-28 19:50:27,850 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 7.45ms
+2025-11-28 19:50:27,850 [INFO] GET /students/690860e3489b114c676d005d - 200 - 7.87ms
+2025-11-28 19:56:53,497 [INFO] OPTIONS /auth/me - 200 - 5.25ms
+2025-11-28 19:56:53,499 [INFO] OPTIONS /auth/me - 200 - 3.94ms
+2025-11-28 19:56:53,500 [INFO] GET /coachings - 307 - 3.46ms
+2025-11-28 19:56:53,500 [INFO] GET /coachings - 307 - 1.91ms
+2025-11-28 19:56:53,522 [INFO] GET /coachings/ - 200 - 15.73ms
+2025-11-28 19:56:53,524 [INFO] GET /coachings/ - 200 - 17.3ms
+2025-11-28 19:56:53,525 [INFO] GET /auth/me - 200 - 22.71ms
+2025-11-28 19:56:53,525 [INFO] GET /auth/me - 200 - 19.78ms
+2025-11-28 19:56:54,949 [INFO] OPTIONS /auth/me - 200 - 0.28ms
+2025-11-28 19:56:54,954 [INFO] OPTIONS /auth/me - 200 - 1.42ms
+2025-11-28 19:56:54,967 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 10.52ms
+2025-11-28 19:56:54,970 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 13.19ms
+2025-11-28 19:56:54,975 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 17.88ms
+2025-11-28 19:56:54,977 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 19.76ms - 1 validation errors:
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 19:56:54,994 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 33.23ms - 1 validation errors:
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 19:56:55,001 [INFO] GET /auth/me - 200 - 37.78ms
+2025-11-28 19:56:55,001 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 31.62ms
+2025-11-28 19:56:55,002 [INFO] GET /auth/me - 200 - 29.13ms
+2025-11-28 19:56:55,280 [INFO] GET /upload/list - 200 - 1.92ms
+2025-11-28 19:56:55,308 [INFO] GET /upload/list - 200 - 1.17ms
+2025-11-28 19:56:55,325 [INFO] GET /upload/list - 200 - 3.62ms
+2025-11-28 19:56:55,368 [INFO] GET /upload/list - 200 - 3.44ms
+2025-11-28 19:57:02,595 [INFO] OPTIONS /auth/me - 200 - 0.45ms
+2025-11-28 19:57:02,601 [INFO] GET /auth/me - 200 - 3.85ms
+2025-11-28 19:57:02,619 [INFO] OPTIONS /auth/me - 200 - 1.38ms
+2025-11-28 19:57:02,620 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 6.03ms
+2025-11-28 19:57:02,620 [INFO] OPTIONS /auth/me - 200 - 2.01ms
+2025-11-28 19:57:02,626 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 6.86ms
+2025-11-28 19:57:02,627 [INFO] OPTIONS /auth/me - 200 - 1.61ms
+2025-11-28 19:57:02,628 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 11.17ms
+2025-11-28 19:57:02,629 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 13.37ms - 1 validation errors:
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 19:57:02,639 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 13.87ms - 1 validation errors:
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 19:57:02,639 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 14.02ms
+2025-11-28 19:57:02,644 [INFO] GET /auth/me - 200 - 14.82ms
+2025-11-28 19:57:02,645 [INFO] GET /auth/me - 200 - 15.58ms
+2025-11-28 19:57:02,646 [INFO] GET /auth/me - 200 - 8.79ms
+2025-11-28 19:57:03,478 [INFO] OPTIONS /auth/me - 200 - 0.36ms
+2025-11-28 19:57:03,484 [INFO] GET /auth/me - 200 - 4.12ms
+2025-11-28 19:57:03,500 [INFO] OPTIONS /auth/me - 200 - 0.38ms
+2025-11-28 19:57:03,507 [INFO] GET /auth/me - 200 - 5.49ms
+2025-11-28 19:57:03,579 [INFO] OPTIONS /auth/me - 200 - 0.74ms
+2025-11-28 19:57:03,590 [INFO] GET /auth/me - 200 - 7.97ms
+2025-11-28 19:57:03,603 [INFO] OPTIONS /auth/me - 200 - 5.97ms
+2025-11-28 19:57:03,664 [INFO] GET /auth/me - 200 - 50.52ms
+2025-11-28 19:57:04,150 [INFO] OPTIONS /auth/me - 200 - 0.24ms
+2025-11-28 19:57:04,155 [INFO] GET /students - 307 - 1.17ms
+2025-11-28 19:57:04,156 [INFO] OPTIONS /auth/me - 200 - 1.21ms
+2025-11-28 19:57:04,156 [INFO] GET /students - 307 - 1.69ms
+2025-11-28 19:57:04,161 [INFO] GET /auth/me - 200 - 8.06ms
+2025-11-28 19:57:04,163 [INFO] GET /auth/me - 200 - 5.28ms
+2025-11-28 19:57:04,192 [INFO] GET /students - 307 - 0.67ms
+2025-11-28 19:57:04,198 [INFO] GET /students/ - 200 - 5.33ms
+2025-11-28 19:57:04,209 [INFO] GET /students - 307 - 1.73ms
+2025-11-28 19:57:04,218 [INFO] GET /students/ - 200 - 9.4ms
+2025-11-28 19:57:04,222 [INFO] GET /students/ - 200 - 8.25ms
+2025-11-28 19:57:04,240 [INFO] GET /students/ - 200 - 6.76ms
+2025-11-28 19:57:05,807 [INFO] OPTIONS /auth/me - 200 - 0.43ms
+2025-11-28 19:57:05,808 [INFO] GET /coachings - 307 - 1.02ms
+2025-11-28 19:57:05,809 [INFO] OPTIONS /auth/me - 200 - 1.11ms
+2025-11-28 19:57:05,811 [INFO] GET /coachings - 307 - 2.16ms
+2025-11-28 19:57:05,816 [INFO] GET /auth/me - 200 - 6.63ms
+2025-11-28 19:57:05,817 [INFO] GET /auth/me - 200 - 4.74ms
+2025-11-28 19:57:05,846 [INFO] GET /coachings/ - 200 - 3.12ms
+2025-11-28 19:57:05,857 [INFO] GET /coachings/ - 200 - 2.52ms
+2025-11-28 19:57:07,031 [INFO] OPTIONS /auth/me - 200 - 0.22ms
+2025-11-28 19:57:07,063 [INFO] OPTIONS /auth/me - 200 - 0.68ms
+2025-11-28 19:57:07,064 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 32.42ms
+2025-11-28 19:57:07,066 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 3.59ms
+2025-11-28 19:57:07,066 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 34.08ms - 1 validation errors:
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 19:57:07,072 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 12.04ms
+2025-11-28 19:57:07,074 [INFO] GET /auth/me - 200 - 40.54ms
+2025-11-28 19:57:07,075 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 10.13ms - 1 validation errors:
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 19:57:07,076 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 10.73ms
+2025-11-28 19:57:07,081 [INFO] GET /auth/me - 200 - 9.63ms
+2025-11-28 19:57:07,082 [INFO] GET /upload/list - 200 - 0.3ms
+2025-11-28 19:57:07,110 [INFO] GET /upload/list - 200 - 0.58ms
+2025-11-28 19:57:07,140 [INFO] GET /upload/list - 200 - 1.79ms
+2025-11-28 19:57:07,171 [INFO] GET /upload/list - 200 - 1.84ms
+2025-11-28 19:57:25,817 [INFO] GET /coachings - 307 - 0.76ms
+2025-11-28 19:57:25,820 [INFO] GET /coachings - 307 - 1.11ms
+2025-11-28 19:57:25,832 [INFO] GET /auth/me - 200 - 19.15ms
+2025-11-28 19:57:25,835 [INFO] GET /coachings/ - 200 - 6.13ms
+2025-11-28 19:57:25,841 [INFO] GET /coachings/ - 200 - 1.96ms
+2025-11-28 19:57:25,841 [INFO] GET /auth/me - 200 - 6.54ms
+2025-11-28 19:57:27,072 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 7.66ms
+2025-11-28 19:57:27,077 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 2.48ms
+2025-11-28 19:57:27,077 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 10.08ms
+2025-11-28 19:57:27,080 [INFO] GET /auth/me - 200 - 16.85ms
+2025-11-28 19:57:27,080 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 14.73ms - 1 validation errors:
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 19:57:27,088 [INFO] GET /upload/list - 200 - 0.75ms
+2025-11-28 19:57:27,090 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 8.92ms
+2025-11-28 19:57:27,092 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 3.98ms - 1 validation errors:
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 19:57:27,093 [INFO] GET /auth/me - 200 - 7.8ms
+2025-11-28 19:57:27,101 [INFO] GET /upload/list - 200 - 0.43ms
+2025-11-28 19:57:27,112 [INFO] GET /upload/list - 200 - 1.61ms
+2025-11-28 19:57:27,144 [INFO] GET /upload/list - 200 - 1.78ms
+2025-11-28 19:57:35,702 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 9.63ms
+2025-11-28 19:57:35,706 [INFO] GET /auth/me - 200 - 18.95ms
+2025-11-28 19:57:35,716 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 21.64ms
+2025-11-28 19:57:35,716 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 22.39ms - 1 validation errors:
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 19:57:35,737 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 30.51ms
+2025-11-28 19:57:35,743 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 8.87ms
+2025-11-28 19:57:35,744 [INFO] GET /auth/me - 200 - 27.96ms
+2025-11-28 19:57:35,746 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 9.31ms - 1 validation errors:
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 19:57:35,758 [INFO] GET /upload/list - 200 - 1.53ms
+2025-11-28 19:57:35,765 [INFO] GET /auth/me - 200 - 9.92ms
+2025-11-28 19:57:35,774 [INFO] GET /auth/me - 200 - 5.78ms
+2025-11-28 19:57:35,807 [INFO] GET /upload/list - 200 - 1.83ms
+2025-11-28 19:57:35,845 [INFO] GET /upload/list - 200 - 2.11ms
+2025-11-28 19:57:35,859 [INFO] GET /upload/list - 200 - 2.2ms
+2025-11-28 19:57:35,945 [INFO] GET /auth/me - 200 - 6.86ms
+2025-11-28 19:57:35,951 [INFO] GET /auth/me - 200 - 3.7ms
+2025-11-28 19:57:36,002 [INFO] GET /auth/me - 200 - 6.11ms
+2025-11-28 19:57:36,011 [INFO] GET /auth/me - 200 - 6.09ms
+2025-11-28 19:57:36,091 [INFO] GET /teachers - 307 - 1.05ms
+2025-11-28 19:57:36,096 [INFO] GET /teachers - 307 - 1.49ms
+2025-11-28 19:57:36,098 [INFO] GET /auth/me - 200 - 10.39ms
+2025-11-28 19:57:36,103 [INFO] GET /auth/me - 200 - 3.45ms
+2025-11-28 19:57:36,126 [INFO] GET /teachers/ - 200 - 9.05ms
+2025-11-28 19:57:36,135 [INFO] GET /teachers - 307 - 2.03ms
+2025-11-28 19:57:36,142 [INFO] GET /teachers/ - 200 - 12.28ms
+2025-11-28 19:57:36,150 [INFO] GET /teachers - 307 - 1.1ms
+2025-11-28 19:57:36,187 [INFO] GET /teachers/ - 200 - 7.54ms
+2025-11-28 19:57:36,214 [INFO] GET /teachers/ - 200 - 5.92ms
+2025-11-28 19:57:37,889 [INFO] OPTIONS /teachers/classrooms/all - 200 - 0.6ms
+2025-11-28 19:57:37,890 [INFO] OPTIONS /teachers/classrooms/all - 200 - 0.5ms
+2025-11-28 19:57:37,896 [INFO] POST /teachers/classrooms/all - 200 - 4.68ms
+2025-11-28 19:57:37,899 [INFO] GET /auth/me - 200 - 11.71ms
+2025-11-28 19:57:37,899 [INFO] POST /teachers/classrooms/all - 200 - 7.12ms
+2025-11-28 19:57:37,907 [INFO] GET /auth/me - 200 - 6.4ms
+2025-11-28 19:57:39,657 [INFO] OPTIONS /auth/me - 200 - 0.36ms
+2025-11-28 19:57:39,660 [INFO] GET /teachers - 307 - 1.16ms
+2025-11-28 19:57:39,662 [INFO] GET /teachers - 307 - 0.56ms
+2025-11-28 19:57:39,666 [INFO] GET /auth/me - 200 - 6.71ms
+2025-11-28 19:57:39,674 [INFO] GET /auth/me - 200 - 5.22ms
+2025-11-28 19:57:39,691 [INFO] GET /teachers/ - 200 - 8.43ms
+2025-11-28 19:57:39,698 [INFO] GET /teachers - 307 - 1.21ms
+2025-11-28 19:57:39,704 [INFO] GET /teachers/ - 200 - 10.12ms
+2025-11-28 19:57:39,709 [INFO] GET /teachers - 307 - 0.67ms
+2025-11-28 19:57:39,736 [INFO] GET /teachers/ - 200 - 6.19ms
+2025-11-28 19:57:39,754 [INFO] GET /teachers/ - 200 - 7.66ms
+2025-11-28 19:57:41,373 [INFO] GET /coachings - 307 - 0.45ms
+2025-11-28 19:57:41,375 [INFO] GET /coachings - 307 - 0.56ms
+2025-11-28 19:57:41,378 [INFO] GET /auth/me - 200 - 6.59ms
+2025-11-28 19:57:41,384 [INFO] GET /auth/me - 200 - 4.57ms
+2025-11-28 19:57:41,392 [INFO] GET /coachings/ - 200 - 2.99ms
+2025-11-28 19:57:41,398 [INFO] GET /coachings/ - 200 - 3.68ms
+2025-11-28 19:57:42,622 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 5.31ms
+2025-11-28 19:57:42,626 [INFO] GET /auth/me - 200 - 10.84ms
+2025-11-28 19:57:42,628 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 9.6ms - 1 validation errors:
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 19:57:42,633 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 14.35ms
+2025-11-28 19:57:42,636 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 11.7ms
+2025-11-28 19:57:42,647 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 7.49ms - 1 validation errors:
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 19:57:42,647 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 6.92ms
+2025-11-28 19:57:42,652 [INFO] GET /auth/me - 200 - 18.62ms
+2025-11-28 19:57:42,663 [INFO] GET /upload/list - 200 - 0.33ms
+2025-11-28 19:57:42,729 [INFO] GET /upload/list - 200 - 3.21ms
+2025-11-28 19:57:42,747 [INFO] GET /upload/list - 200 - 1.81ms
+2025-11-28 19:57:42,766 [INFO] GET /upload/list - 200 - 2.71ms
+2025-11-28 20:00:13,036 [INFO] Use pytorch device_name: mps
+2025-11-28 20:00:13,036 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:00:18,842 [INFO] 🧠 Using device: MPS
+2025-11-28 20:00:24,215 [INFO] Use pytorch device_name: mps
+2025-11-28 20:00:24,215 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:00:30,009 [INFO] 🧠 Using device: MPS
+2025-11-28 20:00:35,656 [INFO] Use pytorch device_name: mps
+2025-11-28 20:00:35,657 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:00:41,789 [INFO] 🧠 Using device: MPS
+2025-11-28 20:00:46,480 [INFO] Use pytorch device_name: mps
+2025-11-28 20:00:46,481 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:00:52,702 [INFO] 🧠 Using device: MPS
+2025-11-28 20:00:52,968 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 11.63ms
+2025-11-28 20:00:52,969 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 11.75ms - 1 validation errors:
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:00:52,981 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 23.17ms
+2025-11-28 20:00:52,982 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 2.08ms
+2025-11-28 20:00:52,998 [INFO] GET /auth/me - 200 - 52.06ms
+2025-11-28 20:00:53,007 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 5.12ms
+2025-11-28 20:00:53,010 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 9.2ms - 1 validation errors:
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:00:53,028 [INFO] GET /auth/me - 200 - 24.02ms
+2025-11-28 20:00:53,054 [INFO] GET /auth/me - 200 - 11.95ms
+2025-11-28 20:00:53,067 [INFO] GET /auth/me - 200 - 8.13ms
+2025-11-28 20:00:53,077 [INFO] GET /auth/me - 200 - 4.71ms
+2025-11-28 20:00:53,084 [INFO] GET /auth/me - 200 - 2.84ms
+2025-11-28 20:00:53,103 [INFO] GET /auth/me - 200 - 5.54ms
+2025-11-28 20:00:53,125 [INFO] GET /auth/me - 200 - 10.37ms
+2025-11-28 20:00:53,289 [INFO] GET /teachers - 307 - 0.29ms
+2025-11-28 20:00:53,291 [INFO] GET /auth/me - 200 - 5.74ms
+2025-11-28 20:00:53,297 [INFO] GET /teachers - 307 - 2.87ms
+2025-11-28 20:00:53,302 [INFO] GET /auth/me - 200 - 7.53ms
+2025-11-28 20:00:53,324 [INFO] GET /teachers/ - 200 - 10.35ms
+2025-11-28 20:00:53,331 [INFO] GET /teachers - 307 - 1.01ms
+2025-11-28 20:00:53,338 [INFO] GET /teachers/ - 200 - 7.2ms
+2025-11-28 20:00:53,347 [INFO] GET /teachers - 307 - 0.88ms
+2025-11-28 20:00:53,385 [INFO] GET /teachers/ - 200 - 6.92ms
+2025-11-28 20:00:53,417 [INFO] GET /teachers/ - 200 - 5.53ms
+2025-11-28 20:00:57,717 [INFO] GET /coachings - 307 - 0.93ms
+2025-11-28 20:00:57,719 [INFO] GET /coachings - 307 - 0.53ms
+2025-11-28 20:00:57,721 [INFO] GET /auth/me - 200 - 7.21ms
+2025-11-28 20:00:57,732 [INFO] GET /auth/me - 200 - 9.62ms
+2025-11-28 20:00:57,735 [INFO] GET /coachings/ - 200 - 4.78ms
+2025-11-28 20:00:57,742 [INFO] GET /coachings/ - 200 - 3.29ms
+2025-11-28 20:00:59,429 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 15.74ms
+2025-11-28 20:00:59,430 [INFO] GET /upload/list - 200 - 19.12ms
+2025-11-28 20:00:59,434 [INFO] GET /auth/me - 200 - 25.23ms
+2025-11-28 20:00:59,437 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 22.67ms - 1 validation errors:
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:00:59,451 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 18.66ms
+2025-11-28 20:00:59,452 [INFO] GET /upload/list - 200 - 19.67ms
+2025-11-28 20:00:59,453 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 27.79ms
+2025-11-28 20:00:59,458 [INFO] GET /auth/me - 200 - 9.7ms
+2025-11-28 20:00:59,459 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 8.8ms - 1 validation errors:
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:00:59,464 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 7.83ms
+2025-11-28 20:00:59,471 [INFO] GET /upload/list - 200 - 1.42ms
+2025-11-28 20:00:59,539 [INFO] GET /upload/list - 200 - 0.32ms
+2025-11-28 20:00:59,590 [INFO] GET /upload/list - 200 - 1.68ms
+2025-11-28 20:00:59,642 [INFO] GET /upload/list - 200 - 1.91ms
+2025-11-28 20:01:41,113 [INFO] Use pytorch device_name: mps
+2025-11-28 20:01:41,113 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:01:47,315 [INFO] 🧠 Using device: MPS
+2025-11-28 20:02:30,808 [INFO] Use pytorch device_name: mps
+2025-11-28 20:02:30,809 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:02:37,082 [INFO] 🧠 Using device: MPS
+2025-11-28 20:02:44,559 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 33.52ms
+2025-11-28 20:02:44,568 [INFO] GET /auth/me - 200 - 58.68ms
+2025-11-28 20:02:44,576 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 44.83ms
+2025-11-28 20:02:44,596 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 65.65ms - 5 validation errors:
+  {'type': 'string_type', 'loc': ('response', 0, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 1, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 2, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 3, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:02:44,625 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 58.47ms
+2025-11-28 20:02:44,632 [INFO] GET /auth/me - 200 - 56.1ms
+2025-11-28 20:02:44,638 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 40.52ms
+2025-11-28 20:02:44,640 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 10.27ms - 5 validation errors:
+  {'type': 'string_type', 'loc': ('response', 0, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 1, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 2, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 3, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:02:44,658 [INFO] GET /auth/me - 200 - 19.98ms
+2025-11-28 20:02:44,681 [INFO] GET /auth/me - 200 - 8.25ms
+2025-11-28 20:02:44,697 [INFO] GET /auth/me - 200 - 13.68ms
+2025-11-28 20:02:44,709 [INFO] GET /auth/me - 200 - 9.1ms
+2025-11-28 20:02:44,718 [INFO] GET /auth/me - 200 - 3.2ms
+2025-11-28 20:02:44,725 [INFO] GET /auth/me - 200 - 3.61ms
+2025-11-28 20:02:44,823 [INFO] GET /teachers - 307 - 0.8ms
+2025-11-28 20:02:44,826 [INFO] GET /teachers - 307 - 0.94ms
+2025-11-28 20:02:44,830 [INFO] GET /auth/me - 200 - 9.05ms
+2025-11-28 20:02:44,834 [INFO] GET /auth/me - 200 - 2.22ms
+2025-11-28 20:02:44,854 [INFO] GET /teachers/ - 200 - 9.62ms
+2025-11-28 20:02:44,861 [INFO] GET /teachers - 307 - 1.63ms
+2025-11-28 20:02:44,868 [INFO] GET /teachers/ - 200 - 11.17ms
+2025-11-28 20:02:44,879 [INFO] GET /teachers - 307 - 1.52ms
+2025-11-28 20:02:44,910 [INFO] GET /teachers/ - 200 - 6.08ms
+2025-11-28 20:02:44,941 [INFO] GET /teachers/ - 200 - 5.74ms
+2025-11-28 20:02:47,631 [INFO] GET /coachings - 307 - 0.92ms
+2025-11-28 20:02:47,633 [INFO] GET /coachings - 307 - 0.71ms
+2025-11-28 20:02:47,635 [INFO] GET /auth/me - 200 - 6.22ms
+2025-11-28 20:02:47,649 [INFO] GET /auth/me - 200 - 11.6ms
+2025-11-28 20:02:47,658 [INFO] GET /coachings/ - 200 - 11.04ms
+2025-11-28 20:02:47,666 [INFO] GET /coachings/ - 200 - 5.37ms
+2025-11-28 20:02:49,413 [INFO] GET /upload/list - 200 - 19.14ms
+2025-11-28 20:02:49,415 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 19.05ms
+2025-11-28 20:02:49,422 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 24.68ms - 5 validation errors:
+  {'type': 'string_type', 'loc': ('response', 0, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 1, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 2, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 3, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:02:49,434 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 14.31ms
+2025-11-28 20:02:49,436 [INFO] GET /auth/me - 200 - 44.43ms
+2025-11-28 20:02:49,437 [INFO] GET /upload/list - 200 - 19.86ms
+2025-11-28 20:02:49,440 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 41.39ms
+2025-11-28 20:02:49,445 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 10.0ms - 5 validation errors:
+  {'type': 'string_type', 'loc': ('response', 0, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 1, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 2, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 3, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:02:49,450 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 6.92ms
+2025-11-28 20:02:49,451 [INFO] GET /auth/me - 200 - 9.16ms
+2025-11-28 20:02:49,465 [INFO] GET /upload/list - 200 - 0.32ms
+2025-11-28 20:02:49,525 [INFO] GET /upload/list - 200 - 2.2ms
+2025-11-28 20:02:49,586 [INFO] GET /upload/list - 200 - 1.66ms
+2025-11-28 20:02:49,633 [INFO] GET /upload/list - 200 - 1.64ms
+2025-11-28 20:03:21,215 [INFO] Use pytorch device_name: mps
+2025-11-28 20:03:21,215 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:03:27,256 [INFO] 🧠 Using device: MPS
+2025-11-28 20:03:32,220 [INFO] Use pytorch device_name: mps
+2025-11-28 20:03:32,221 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:03:38,318 [INFO] 🧠 Using device: MPS
+2025-11-28 20:03:43,302 [INFO] Use pytorch device_name: mps
+2025-11-28 20:03:43,302 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:03:49,137 [INFO] 🧠 Using device: MPS
+2025-11-28 20:03:54,048 [INFO] Use pytorch device_name: mps
+2025-11-28 20:03:54,048 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:04:00,362 [INFO] 🧠 Using device: MPS
+2025-11-28 20:04:05,222 [INFO] Use pytorch device_name: mps
+2025-11-28 20:04:05,222 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:04:11,713 [INFO] 🧠 Using device: MPS
+2025-11-28 20:04:11,978 [INFO] OPTIONS /auth/login - 200 - 0.15ms
+2025-11-28 20:04:12,285 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 309.24ms
+2025-11-28 20:04:12,290 [INFO] POST /auth/login - 200 - 308.08ms
+2025-11-28 20:04:12,291 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 313.43ms
+2025-11-28 20:04:12,292 [INFO] GET /auth/me - 200 - 322.21ms
+2025-11-28 20:04:12,293 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 315.6ms - 5 validation errors:
+  {'type': 'string_type', 'loc': ('response', 0, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 1, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 2, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 3, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:04:12,309 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 18.76ms
+2025-11-28 20:04:12,323 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 19.92ms
+2025-11-28 20:04:12,327 [INFO] GET /auth/me - 200 - 23.43ms
+2025-11-28 20:04:12,333 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 24.71ms - 5 validation errors:
+  {'type': 'string_type', 'loc': ('response', 0, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 1, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 2, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 3, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:04:12,348 [INFO] GET /auth/me - 200 - 14.13ms
+2025-11-28 20:04:12,382 [INFO] GET /auth/me - 200 - 29.43ms
+2025-11-28 20:04:12,390 [INFO] GET /auth/me - 200 - 3.18ms
+2025-11-28 20:04:12,398 [INFO] GET /auth/me - 200 - 5.97ms
+2025-11-28 20:04:12,405 [INFO] GET /auth/me - 200 - 3.94ms
+2025-11-28 20:04:12,415 [INFO] GET /auth/me - 200 - 7.22ms
+2025-11-28 20:04:12,512 [INFO] GET /teachers - 307 - 0.39ms
+2025-11-28 20:04:12,514 [INFO] GET /teachers - 307 - 0.37ms
+2025-11-28 20:04:12,516 [INFO] GET /auth/me - 200 - 7.19ms
+2025-11-28 20:04:12,523 [INFO] GET /auth/me - 200 - 5.16ms
+2025-11-28 20:04:12,541 [INFO] GET /teachers/ - 200 - 9.5ms
+2025-11-28 20:04:12,552 [INFO] GET /teachers/ - 200 - 8.22ms
+2025-11-28 20:04:12,555 [INFO] GET /teachers - 307 - 0.37ms
+2025-11-28 20:04:12,571 [INFO] GET /teachers - 307 - 1.96ms
+2025-11-28 20:04:12,633 [INFO] GET /teachers/ - 200 - 9.13ms
+2025-11-28 20:04:12,648 [INFO] GET /teachers/ - 200 - 13.5ms
+2025-11-28 20:04:16,044 [INFO] POST /teachers/classrooms/all - 200 - 3.95ms
+2025-11-28 20:04:16,046 [INFO] POST /teachers/classrooms/all - 200 - 4.98ms
+2025-11-28 20:04:16,048 [INFO] GET /auth/me - 200 - 8.55ms
+2025-11-28 20:04:16,055 [INFO] GET /auth/me - 200 - 6.53ms
+2025-11-28 20:04:19,941 [INFO] GET /auth/me - 200 - 8.22ms
+2025-11-28 20:04:19,948 [INFO] GET /auth/me - 200 - 4.34ms
+2025-11-28 20:04:20,069 [INFO] GET /teachers - 307 - 0.51ms
+2025-11-28 20:04:20,071 [INFO] GET /teachers - 307 - 0.52ms
+2025-11-28 20:04:20,073 [INFO] GET /auth/me - 200 - 5.74ms
+2025-11-28 20:04:20,079 [INFO] GET /auth/me - 200 - 5.39ms
+2025-11-28 20:04:20,106 [INFO] GET /teachers/ - 200 - 9.02ms
+2025-11-28 20:04:20,133 [INFO] GET /teachers - 307 - 1.64ms
+2025-11-28 20:04:20,136 [INFO] GET /teachers/ - 200 - 28.52ms
+2025-11-28 20:04:20,149 [INFO] GET /teachers - 307 - 0.53ms
+2025-11-28 20:04:20,193 [INFO] GET /teachers/ - 200 - 9.15ms
+2025-11-28 20:04:20,220 [INFO] GET /teachers/ - 200 - 7.82ms
+2025-11-28 20:04:25,066 [INFO] GET /coachings - 307 - 1.08ms
+2025-11-28 20:04:25,068 [INFO] GET /coachings - 307 - 0.87ms
+2025-11-28 20:04:25,071 [INFO] GET /auth/me - 200 - 6.8ms
+2025-11-28 20:04:25,084 [INFO] GET /auth/me - 200 - 11.2ms
+2025-11-28 20:04:25,085 [INFO] GET /coachings/ - 200 - 3.82ms
+2025-11-28 20:04:25,098 [INFO] GET /coachings/ - 200 - 5.33ms
+2025-11-28 20:04:26,116 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 4.18ms
+2025-11-28 20:04:26,117 [INFO] GET /upload/list - 200 - 17.23ms
+2025-11-28 20:04:26,121 [INFO] GET /auth/me - 200 - 22.39ms
+2025-11-28 20:04:26,127 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 12.6ms
+2025-11-28 20:04:26,128 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 9.32ms
+2025-11-28 20:04:26,132 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 16.99ms - 5 validation errors:
+  {'type': 'string_type', 'loc': ('response', 0, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 1, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 2, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 3, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:04:26,142 [INFO] GET /upload/list - 200 - 21.56ms
+2025-11-28 20:04:26,151 [INFO] GET /upload/list - 200 - 0.81ms
+2025-11-28 20:04:26,155 [INFO] GET /auth/me - 200 - 31.22ms
+2025-11-28 20:04:26,157 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 17.72ms
+2025-11-28 20:04:26,159 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 15.94ms - 5 validation errors:
+  {'type': 'string_type', 'loc': ('response', 0, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 1, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 2, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 3, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:04:26,208 [INFO] GET /upload/list - 200 - 1.82ms
+2025-11-28 20:04:26,240 [INFO] GET /upload/list - 200 - 2.25ms
+2025-11-28 20:04:26,325 [INFO] GET /upload/list - 200 - 1.92ms
+2025-11-28 20:04:54,376 [INFO] Use pytorch device_name: mps
+2025-11-28 20:04:54,377 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:05:00,102 [INFO] 🧠 Using device: MPS
+2025-11-28 20:05:05,022 [INFO] Use pytorch device_name: mps
+2025-11-28 20:05:05,022 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:05:10,942 [INFO] 🧠 Using device: MPS
+2025-11-28 20:05:15,806 [INFO] Use pytorch device_name: mps
+2025-11-28 20:05:15,806 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:05:21,368 [INFO] 🧠 Using device: MPS
+2025-11-28 20:05:25,953 [INFO] Use pytorch device_name: mps
+2025-11-28 20:05:25,953 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:05:31,790 [INFO] 🧠 Using device: MPS
+2025-11-28 20:05:52,725 [INFO] OPTIONS /auth/me - 200 - 1.03ms
+2025-11-28 20:05:52,728 [INFO] OPTIONS /auth/me - 200 - 3.07ms
+2025-11-28 20:05:52,733 [INFO] OPTIONS /auth/me - 200 - 6.55ms
+2025-11-28 20:05:52,848 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 120.93ms
+2025-11-28 20:05:52,855 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 117.21ms
+2025-11-28 20:05:52,872 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 123.38ms - 5 validation errors:
+  {'type': 'string_type', 'loc': ('response', 0, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 1, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 2, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 3, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:05:52,873 [INFO] OPTIONS /auth/me - 200 - 12.75ms
+2025-11-28 20:05:52,891 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 152.65ms - 5 validation errors:
+  {'type': 'string_type', 'loc': ('response', 0, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 1, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 2, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 3, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:05:52,922 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 190.19ms
+2025-11-28 20:05:52,922 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 166.59ms
+2025-11-28 20:05:52,923 [INFO] OPTIONS /auth/me - 200 - 1.39ms
+2025-11-28 20:05:52,925 [INFO] OPTIONS /auth/me - 200 - 2.7ms
+2025-11-28 20:05:52,933 [INFO] GET /auth/me - 200 - 62.36ms
+2025-11-28 20:05:52,941 [INFO] GET /auth/me - 200 - 23.53ms
+2025-11-28 20:05:52,944 [INFO] GET /auth/me - 200 - 17.32ms
+2025-11-28 20:05:52,949 [INFO] GET /auth/me - 200 - 17.86ms
+2025-11-28 20:05:52,950 [INFO] GET /auth/me - 200 - 23.19ms
+2025-11-28 20:05:52,950 [INFO] GET /auth/me - 200 - 17.38ms
+2025-11-28 20:05:53,004 [INFO] OPTIONS /auth/me - 200 - 0.46ms
+2025-11-28 20:05:53,056 [INFO] OPTIONS /auth/me - 200 - 1.04ms
+2025-11-28 20:05:53,073 [INFO] GET /auth/me - 200 - 56.35ms
+2025-11-28 20:05:53,083 [INFO] GET /auth/me - 200 - 19.22ms
+2025-11-28 20:05:53,146 [INFO] OPTIONS /auth/me - 200 - 0.41ms
+2025-11-28 20:05:53,149 [INFO] GET /students - 307 - 1.87ms
+2025-11-28 20:05:53,151 [INFO] OPTIONS /auth/me - 200 - 2.55ms
+2025-11-28 20:05:53,152 [INFO] GET /students - 307 - 3.2ms
+2025-11-28 20:05:53,162 [INFO] GET /auth/me - 200 - 13.6ms
+2025-11-28 20:05:53,250 [INFO] GET /auth/me - 200 - 93.15ms
+2025-11-28 20:05:53,251 [INFO] GET /students - 307 - 1.14ms
+2025-11-28 20:05:53,258 [INFO] GET /students/ - 200 - 16.47ms
+2025-11-28 20:05:53,258 [INFO] GET /students/ - 200 - 16.63ms
+2025-11-28 20:05:53,322 [INFO] GET /students - 307 - 3.14ms
+2025-11-28 20:05:53,326 [INFO] GET /students/ - 200 - 5.47ms
+2025-11-28 20:05:53,373 [INFO] GET /students/ - 200 - 4.14ms
+2025-11-28 20:05:54,547 [INFO] OPTIONS /auth/me - 200 - 0.21ms
+2025-11-28 20:05:54,547 [INFO] OPTIONS /teachers/classrooms/all - 200 - 0.25ms
+2025-11-28 20:05:54,549 [INFO] OPTIONS /auth/me - 200 - 0.78ms
+2025-11-28 20:05:54,568 [INFO] OPTIONS /teachers/classrooms/all - 200 - 18.13ms
+2025-11-28 20:05:54,574 [INFO] POST /teachers/classrooms/all - 200 - 24.23ms
+2025-11-28 20:05:54,575 [INFO] POST /teachers/classrooms/all - 200 - 3.2ms
+2025-11-28 20:05:54,577 [INFO] GET /auth/me - 200 - 29.41ms
+2025-11-28 20:05:54,581 [INFO] GET /auth/me - 200 - 13.13ms
+2025-11-28 20:06:01,534 [INFO] OPTIONS /auth/me - 200 - 0.41ms
+2025-11-28 20:06:01,535 [INFO] OPTIONS /auth/me - 200 - 0.24ms
+2025-11-28 20:06:01,537 [INFO] GET /coachings - 307 - 1.78ms
+2025-11-28 20:06:01,538 [INFO] GET /coachings - 307 - 2.31ms
+2025-11-28 20:06:01,548 [INFO] GET /auth/me - 200 - 11.01ms
+2025-11-28 20:06:01,549 [INFO] GET /auth/me - 200 - 11.68ms
+2025-11-28 20:06:01,564 [INFO] GET /coachings/ - 200 - 5.58ms
+2025-11-28 20:06:01,565 [INFO] GET /coachings/ - 200 - 4.89ms
+2025-11-28 20:06:02,275 [INFO] OPTIONS /auth/me - 200 - 0.24ms
+2025-11-28 20:06:02,286 [INFO] OPTIONS /auth/me - 200 - 1.88ms
+2025-11-28 20:06:02,287 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 11.19ms
+2025-11-28 20:06:02,292 [INFO] GET /upload/list - 200 - 13.35ms
+2025-11-28 20:06:02,300 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 17.26ms
+2025-11-28 20:06:02,301 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 18.41ms - 5 validation errors:
+  {'type': 'string_type', 'loc': ('response', 0, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 1, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 2, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 3, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:06:02,309 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 17.22ms
+2025-11-28 20:06:02,310 [INFO] GET /auth/me - 200 - 29.35ms
+2025-11-28 20:06:02,315 [INFO] GET /upload/list - 200 - 24.3ms
+2025-11-28 20:06:02,318 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 19.17ms - 5 validation errors:
+  {'type': 'string_type', 'loc': ('response', 0, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 1, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 2, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 3, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:06:02,324 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 13.45ms
+2025-11-28 20:06:02,327 [INFO] GET /auth/me - 200 - 11.55ms
+2025-11-28 20:06:02,331 [INFO] GET /upload/list - 200 - 0.48ms
+2025-11-28 20:06:02,369 [INFO] GET /upload/list - 200 - 2.08ms
+2025-11-28 20:06:02,408 [INFO] GET /upload/list - 200 - 1.39ms
+2025-11-28 20:06:02,451 [INFO] GET /upload/list - 200 - 1.79ms
+2025-11-28 20:07:33,780 [INFO] Use pytorch device_name: mps
+2025-11-28 20:07:33,781 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:07:40,323 [INFO] 🧠 Using device: MPS
+2025-11-28 20:07:53,710 [INFO] OPTIONS /auth/me - 200 - 1.61ms
+2025-11-28 20:07:53,734 [INFO] OPTIONS /auth/me - 200 - 2.29ms
+2025-11-28 20:07:53,737 [INFO] OPTIONS /auth/me - 200 - 4.71ms
+2025-11-28 20:07:53,738 [INFO] OPTIONS /auth/me - 200 - 5.21ms
+2025-11-28 20:07:53,790 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 71.5ms
+2025-11-28 20:07:53,792 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 82.82ms
+2025-11-28 20:07:53,793 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 79.74ms - 5 validation errors:
+  {'type': 'string_type', 'loc': ('response', 0, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 1, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 2, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 3, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:07:53,815 [INFO] GET /auth/me - 200 - 72.45ms
+2025-11-28 20:07:53,817 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 23.59ms
+2025-11-28 20:07:53,818 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 9.37ms
+2025-11-28 20:07:53,824 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 13.53ms - 5 validation errors:
+  {'type': 'string_type', 'loc': ('response', 0, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 1, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 2, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 3, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:07:53,835 [INFO] GET /auth/me - 200 - 17.36ms
+2025-11-28 20:07:53,845 [INFO] GET /auth/me - 200 - 6.62ms
+2025-11-28 20:07:53,851 [INFO] GET /auth/me - 200 - 3.33ms
+2025-11-28 20:07:53,879 [INFO] GET /auth/me - 200 - 24.56ms
+2025-11-28 20:07:53,886 [INFO] GET /auth/me - 200 - 4.93ms
+2025-11-28 20:07:53,906 [INFO] GET /auth/me - 200 - 9.66ms
+2025-11-28 20:07:53,915 [INFO] GET /auth/me - 200 - 5.63ms
+2025-11-28 20:07:54,015 [INFO] GET /teachers - 307 - 1.01ms
+2025-11-28 20:07:54,017 [INFO] GET /teachers - 307 - 0.43ms
+2025-11-28 20:07:54,018 [INFO] GET /auth/me - 200 - 5.7ms
+2025-11-28 20:07:54,021 [INFO] GET /auth/me - 200 - 2.56ms
+2025-11-28 20:07:54,043 [INFO] GET /teachers/ - 200 - 8.17ms
+2025-11-28 20:07:54,051 [INFO] GET /teachers - 307 - 0.8ms
+2025-11-28 20:07:54,056 [INFO] GET /teachers/ - 200 - 12.2ms
+2025-11-28 20:07:54,069 [INFO] GET /teachers - 307 - 0.49ms
+2025-11-28 20:07:54,115 [INFO] GET /teachers/ - 200 - 7.22ms
+2025-11-28 20:07:54,144 [INFO] GET /teachers/ - 200 - 6.03ms
+2025-11-28 20:07:54,674 [INFO] GET /coachings - 307 - 0.46ms
+2025-11-28 20:07:54,677 [INFO] GET /coachings - 307 - 0.36ms
+2025-11-28 20:07:54,679 [INFO] GET /auth/me - 200 - 6.8ms
+2025-11-28 20:07:54,688 [INFO] GET /auth/me - 200 - 7.13ms
+2025-11-28 20:07:54,692 [INFO] GET /coachings/ - 200 - 2.96ms
+2025-11-28 20:07:54,698 [INFO] GET /coachings/ - 200 - 2.01ms
+2025-11-28 20:07:55,781 [INFO] GET /upload/list - 200 - 23.07ms
+2025-11-28 20:07:55,782 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 23.08ms
+2025-11-28 20:07:55,787 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 27.02ms - 5 validation errors:
+  {'type': 'string_type', 'loc': ('response', 0, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 1, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 2, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 3, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:07:55,787 [INFO] GET /auth/me - 200 - 32.0ms
+2025-11-28 20:07:55,799 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 13.71ms
+2025-11-28 20:07:55,800 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 38.02ms
+2025-11-28 20:07:55,804 [INFO] GET /upload/list - 200 - 18.66ms
+2025-11-28 20:07:55,810 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 9.71ms - 5 validation errors:
+  {'type': 'string_type', 'loc': ('response', 0, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 1, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 2, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 3, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:07:55,817 [INFO] GET /auth/me - 200 - 17.7ms
+2025-11-28 20:07:55,817 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 12.26ms
+2025-11-28 20:07:55,834 [INFO] GET /upload/list - 200 - 0.33ms
+2025-11-28 20:07:55,901 [INFO] GET /upload/list - 200 - 0.47ms
+2025-11-28 20:07:55,926 [INFO] GET /upload/list - 200 - 1.84ms
+2025-11-28 20:07:55,976 [INFO] GET /upload/list - 200 - 2.11ms
+2025-11-28 20:08:11,823 [INFO] Use pytorch device_name: mps
+2025-11-28 20:08:11,823 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:08:19,010 [INFO] 🧠 Using device: MPS
+2025-11-28 20:08:24,001 [INFO] Use pytorch device_name: mps
+2025-11-28 20:08:24,001 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:08:30,437 [INFO] 🧠 Using device: MPS
+2025-11-28 20:08:35,315 [INFO] Use pytorch device_name: mps
+2025-11-28 20:08:35,315 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:08:40,664 [INFO] 🧠 Using device: MPS
+2025-11-28 20:08:45,538 [INFO] Use pytorch device_name: mps
+2025-11-28 20:08:45,539 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:08:51,052 [INFO] 🧠 Using device: MPS
+2025-11-28 20:08:56,360 [INFO] Use pytorch device_name: mps
+2025-11-28 20:08:56,361 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:09:02,593 [INFO] 🧠 Using device: MPS
+2025-11-28 20:09:02,866 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 10.02ms
+2025-11-28 20:09:02,867 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 9.82ms
+2025-11-28 20:09:02,868 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 11.04ms - 5 validation errors:
+  {'type': 'string_type', 'loc': ('response', 0, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 1, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 2, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 3, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:09:02,880 [INFO] GET /auth/me - 200 - 29.92ms
+2025-11-28 20:09:02,884 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 16.05ms
+2025-11-28 20:09:02,888 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 8.05ms
+2025-11-28 20:09:02,891 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 7.64ms - 5 validation errors:
+  {'type': 'string_type', 'loc': ('response', 0, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 1, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 2, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 3, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:09:02,901 [INFO] GET /auth/me - 200 - 16.27ms
+2025-11-28 20:09:02,909 [INFO] GET /auth/me - 200 - 3.28ms
+2025-11-28 20:09:02,935 [INFO] GET /auth/me - 200 - 9.74ms
+2025-11-28 20:09:02,943 [INFO] GET /auth/me - 200 - 6.37ms
+2025-11-28 20:09:02,951 [INFO] GET /auth/me - 200 - 5.54ms
+2025-11-28 20:09:03,013 [INFO] GET /auth/me - 200 - 4.61ms
+2025-11-28 20:09:03,027 [INFO] GET /auth/me - 200 - 8.61ms
+2025-11-28 20:09:03,149 [INFO] GET /teachers - 307 - 0.23ms
+2025-11-28 20:09:03,150 [INFO] GET /teachers - 307 - 0.26ms
+2025-11-28 20:09:03,152 [INFO] GET /auth/me - 200 - 4.8ms
+2025-11-28 20:09:03,155 [INFO] GET /auth/me - 200 - 2.32ms
+2025-11-28 20:09:03,190 [INFO] GET /teachers/ - 200 - 13.22ms
+2025-11-28 20:09:03,198 [INFO] GET /teachers - 307 - 0.39ms
+2025-11-28 20:09:03,200 [INFO] GET /teachers/ - 200 - 8.23ms
+2025-11-28 20:09:03,215 [INFO] GET /teachers - 307 - 0.63ms
+2025-11-28 20:09:03,255 [INFO] GET /teachers/ - 200 - 6.69ms
+2025-11-28 20:09:03,288 [INFO] GET /teachers/ - 200 - 7.03ms
+2025-11-28 20:09:20,426 [INFO] GET /coachings - 307 - 0.61ms
+2025-11-28 20:09:20,428 [INFO] GET /coachings - 307 - 0.52ms
+2025-11-28 20:09:20,430 [INFO] GET /auth/me - 200 - 5.91ms
+2025-11-28 20:09:20,435 [INFO] GET /auth/me - 200 - 3.43ms
+2025-11-28 20:09:20,453 [INFO] GET /coachings/ - 200 - 8.58ms
+2025-11-28 20:09:20,460 [INFO] GET /coachings/ - 200 - 3.53ms
+2025-11-28 20:09:21,765 [INFO] GET /upload/list - 200 - 17.48ms
+2025-11-28 20:09:21,768 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 19.4ms
+2025-11-28 20:09:21,782 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 31.91ms - 5 validation errors:
+  {'type': 'string_type', 'loc': ('response', 0, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 1, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 2, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 3, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:09:21,783 [INFO] GET /auth/me - 200 - 37.95ms
+2025-11-28 20:09:21,791 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 16.99ms
+2025-11-28 20:09:21,794 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 42.06ms
+2025-11-28 20:09:21,794 [INFO] GET /upload/list - 200 - 23.34ms
+2025-11-28 20:09:21,800 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 4.77ms
+2025-11-28 20:09:21,800 [INFO] GET /auth/me - 200 - 7.99ms
+2025-11-28 20:09:21,802 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 8.16ms - 5 validation errors:
+  {'type': 'string_type', 'loc': ('response', 0, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 1, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 2, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 3, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:09:21,825 [INFO] GET /upload/list - 200 - 0.36ms
+2025-11-28 20:09:21,891 [INFO] GET /upload/list - 200 - 0.41ms
+2025-11-28 20:09:21,915 [INFO] GET /upload/list - 200 - 1.87ms
+2025-11-28 20:09:21,947 [INFO] GET /upload/list - 200 - 2.03ms
+2025-11-28 20:10:43,823 [INFO] Use pytorch device_name: mps
+2025-11-28 20:10:43,823 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:10:49,927 [INFO] 🧠 Using device: MPS
+2025-11-28 20:10:54,899 [INFO] Use pytorch device_name: mps
+2025-11-28 20:10:54,899 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:11:00,682 [INFO] 🧠 Using device: MPS
+2025-11-28 20:11:05,379 [INFO] Use pytorch device_name: mps
+2025-11-28 20:11:05,380 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:11:10,690 [INFO] 🧠 Using device: MPS
+2025-11-28 20:11:21,868 [INFO] Use pytorch device_name: mps
+2025-11-28 20:11:21,869 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:11:28,098 [INFO] 🧠 Using device: MPS
+2025-11-28 20:11:32,436 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 31.69ms
+2025-11-28 20:11:32,445 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 34.83ms - 5 validation errors:
+  {'type': 'string_type', 'loc': ('response', 0, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 1, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 2, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 3, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:11:32,472 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 61.14ms
+2025-11-28 20:11:32,478 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 31.57ms
+2025-11-28 20:11:32,479 [INFO] GET /auth/me - 200 - 86.29ms
+2025-11-28 20:11:32,495 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 18.07ms - 5 validation errors:
+  {'type': 'string_type', 'loc': ('response', 0, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 1, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 2, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'string_type', 'loc': ('response', 3, 'students', 0), 'msg': 'Input should be a valid string', 'input': ObjectId('690f2f3e88ca3fb2e0a4b34f')}
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:11:32,569 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 92.36ms
+2025-11-28 20:11:32,571 [INFO] GET /auth/me - 200 - 90.75ms
+2025-11-28 20:11:32,601 [INFO] GET /auth/me - 200 - 24.06ms
+2025-11-28 20:11:32,605 [INFO] GET /auth/me - 200 - 2.89ms
+2025-11-28 20:11:32,611 [INFO] GET /auth/me - 200 - 2.46ms
+2025-11-28 20:11:32,635 [INFO] GET /auth/me - 200 - 7.97ms
+2025-11-28 20:11:32,643 [INFO] GET /auth/me - 200 - 6.11ms
+2025-11-28 20:11:32,652 [INFO] GET /auth/me - 200 - 7.22ms
+2025-11-28 20:11:32,738 [INFO] GET /teachers - 307 - 0.71ms
+2025-11-28 20:11:32,740 [INFO] GET /teachers - 307 - 0.55ms
+2025-11-28 20:11:32,742 [INFO] GET /auth/me - 200 - 6.51ms
+2025-11-28 20:11:32,746 [INFO] GET /auth/me - 200 - 3.0ms
+2025-11-28 20:11:32,768 [INFO] GET /teachers/ - 200 - 7.07ms
+2025-11-28 20:11:32,775 [INFO] GET /teachers/ - 200 - 5.63ms
+2025-11-28 20:11:32,778 [INFO] GET /teachers - 307 - 0.5ms
+2025-11-28 20:11:32,794 [INFO] GET /teachers - 307 - 0.5ms
+2025-11-28 20:11:32,854 [INFO] GET /teachers/ - 200 - 6.9ms
+2025-11-28 20:11:32,862 [INFO] GET /teachers/ - 200 - 5.61ms
+2025-11-28 20:12:41,547 [INFO] Use pytorch device_name: mps
+2025-11-28 20:12:41,547 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:12:48,159 [INFO] 🧠 Using device: MPS
+2025-11-28 20:12:54,992 [INFO] Use pytorch device_name: mps
+2025-11-28 20:12:54,992 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:13:01,419 [INFO] 🧠 Using device: MPS
+2025-11-28 20:13:07,677 [INFO] Use pytorch device_name: mps
+2025-11-28 20:13:07,677 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:13:12,967 [INFO] 🧠 Using device: MPS
+2025-11-28 20:13:19,478 [INFO] Use pytorch device_name: mps
+2025-11-28 20:13:19,478 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:13:26,182 [INFO] 🧠 Using device: MPS
+2025-11-28 20:13:31,124 [INFO] Use pytorch device_name: mps
+2025-11-28 20:13:31,124 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:13:37,196 [INFO] 🧠 Using device: MPS
+2025-11-28 20:13:42,020 [INFO] Use pytorch device_name: mps
+2025-11-28 20:13:42,020 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:13:48,014 [INFO] 🧠 Using device: MPS
+2025-11-28 20:13:56,007 [INFO] Use pytorch device_name: mps
+2025-11-28 20:13:56,007 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:14:01,993 [INFO] 🧠 Using device: MPS
+2025-11-28 20:14:06,804 [INFO] Use pytorch device_name: mps
+2025-11-28 20:14:06,804 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:14:12,535 [INFO] 🧠 Using device: MPS
+2025-11-28 20:14:14,785 [INFO] GET /coachings - 307 - 1.15ms
+2025-11-28 20:14:14,788 [INFO] GET /coachings - 307 - 0.7ms
+2025-11-28 20:14:14,827 [INFO] GET /auth/me - 200 - 54.3ms
+2025-11-28 20:14:14,843 [INFO] GET /coachings/ - 200 - 52.6ms
+2025-11-28 20:14:14,852 [INFO] GET /coachings/ - 200 - 5.43ms
+2025-11-28 20:14:14,855 [INFO] GET /auth/me - 200 - 9.74ms
+2025-11-28 20:14:15,578 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 7.53ms
+2025-11-28 20:14:15,580 [INFO] GET /upload/list - 200 - 10.61ms
+2025-11-28 20:14:15,586 [INFO] GET /auth/me - 200 - 17.3ms
+2025-11-28 20:14:15,586 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 14.29ms - 1 validation errors:
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:14:15,616 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 42.2ms
+2025-11-28 20:14:15,618 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 38.08ms
+2025-11-28 20:14:15,622 [INFO] GET /upload/list - 200 - 40.1ms
+2025-11-28 20:14:15,626 [INFO] GET /upload/list - 200 - 3.26ms
+2025-11-28 20:14:15,631 [ERROR] GET /coachings/6909ff5877962a1c28aded91/teachers/ - ERROR - 10.49ms - 1 validation errors:
+  {'type': 'value_error', 'loc': ('response', 3, 'classrooms', 0), 'msg': 'Value error, Invalid ObjectId', 'input': {'id': None, 'name': 'IIT JEE Chemistry 11', 'description': '11 standard chemistry for IIT JEE', 'teacher_id': ObjectId('691f6fc41bdaa1c8e059c277'), 'student_ids': [], 'created_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), 'updated_at': datetime.datetime(2025, 11, 27, 13, 40, 12, 174000), '_id': '692854bcc2e1abf80f548452'}, 'ctx': {'error': ValueError('Invalid ObjectId')}}
+
+2025-11-28 20:14:15,638 [INFO] GET /auth/me - 200 - 19.63ms
+2025-11-28 20:14:15,640 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 16.83ms
+2025-11-28 20:14:15,694 [INFO] GET /upload/list - 200 - 1.38ms
+2025-11-28 20:14:15,729 [INFO] GET /upload/list - 200 - 2.08ms
+2025-11-28 20:14:15,798 [INFO] GET /upload/list - 200 - 2.08ms
+2025-11-28 20:14:35,649 [INFO] Use pytorch device_name: mps
+2025-11-28 20:14:35,649 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:14:41,462 [INFO] 🧠 Using device: MPS
+2025-11-28 20:14:46,342 [INFO] Use pytorch device_name: mps
+2025-11-28 20:14:46,342 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:14:52,860 [INFO] 🧠 Using device: MPS
+2025-11-28 20:14:57,737 [INFO] Use pytorch device_name: mps
+2025-11-28 20:14:57,738 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:15:03,874 [INFO] 🧠 Using device: MPS
+2025-11-28 20:16:52,427 [INFO] Use pytorch device_name: mps
+2025-11-28 20:16:52,427 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:16:59,122 [INFO] 🧠 Using device: MPS
+2025-11-28 20:18:07,926 [INFO] OPTIONS /auth/me - 200 - 5.37ms
+2025-11-28 20:18:07,929 [INFO] OPTIONS /auth/me - 200 - 4.41ms
+2025-11-28 20:18:07,939 [INFO] OPTIONS /auth/me - 200 - 13.54ms
+2025-11-28 20:18:08,042 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 113.33ms
+2025-11-28 20:18:08,047 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 83.51ms
+2025-11-28 20:18:08,052 [INFO] GET /coachings/6909ff5877962a1c28aded91/teachers/ - 200 - 113.55ms
+2025-11-28 20:18:08,055 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 108.41ms
+2025-11-28 20:18:08,064 [INFO] GET /coachings/6909ff5877962a1c28aded91/teachers/ - 200 - 99.64ms
+2025-11-28 20:18:08,066 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 97.64ms
+2025-11-28 20:18:08,067 [INFO] OPTIONS /auth/me - 200 - 15.47ms
+2025-11-28 20:18:08,070 [INFO] OPTIONS /auth/me - 200 - 5.89ms
+2025-11-28 20:18:08,087 [INFO] OPTIONS /auth/me - 200 - 18.61ms
+2025-11-28 20:18:08,099 [INFO] GET /auth/me - 200 - 12.41ms
+2025-11-28 20:18:08,100 [INFO] GET /auth/me - 200 - 12.55ms
+2025-11-28 20:18:08,101 [INFO] GET /auth/me - 200 - 31.05ms
+2025-11-28 20:18:08,102 [INFO] GET /auth/me - 200 - 15.64ms
+2025-11-28 20:18:08,107 [INFO] GET /auth/me - 200 - 11.16ms
+2025-11-28 20:18:08,110 [INFO] GET /auth/me - 200 - 16.29ms
+2025-11-28 20:18:08,216 [INFO] OPTIONS /auth/me - 200 - 0.6ms
+2025-11-28 20:18:08,216 [INFO] OPTIONS /auth/me - 200 - 0.86ms
+2025-11-28 20:18:08,246 [INFO] GET /auth/me - 200 - 21.88ms
+2025-11-28 20:18:08,247 [INFO] GET /auth/me - 200 - 22.84ms
+2025-11-28 20:18:08,280 [INFO] OPTIONS /auth/me - 200 - 0.21ms
+2025-11-28 20:18:08,286 [INFO] GET /students - 307 - 3.25ms
+2025-11-28 20:18:08,290 [INFO] OPTIONS /auth/me - 200 - 2.47ms
+2025-11-28 20:18:08,296 [INFO] GET /students - 307 - 7.69ms
+2025-11-28 20:18:08,304 [INFO] GET /auth/me - 200 - 20.76ms
+2025-11-28 20:18:08,359 [INFO] GET /students - 307 - 22.62ms
+2025-11-28 20:18:08,360 [INFO] GET /students - 307 - 1.09ms
+2025-11-28 20:18:08,361 [INFO] GET /auth/me - 200 - 62.53ms
+2025-11-28 20:18:08,549 [INFO] GET /students - 307 - 0.73ms
+2025-11-28 20:18:08,552 [INFO] GET /students/ - 200 - 211.06ms
+2025-11-28 20:18:08,554 [INFO] GET /students/ - 200 - 212.65ms
+2025-11-28 20:18:08,555 [INFO] GET /students/ - 200 - 184.39ms
+2025-11-28 20:18:08,556 [INFO] GET /students/ - 200 - 151.41ms
+2025-11-28 20:18:08,611 [INFO] GET /students/ - 200 - 9.46ms
+2025-11-28 20:18:09,506 [INFO] OPTIONS /auth/me - 200 - 0.69ms
+2025-11-28 20:18:09,508 [INFO] OPTIONS /auth/me - 200 - 2.02ms
+2025-11-28 20:18:09,513 [INFO] GET /coachings - 307 - 5.65ms
+2025-11-28 20:18:09,513 [INFO] GET /coachings - 307 - 5.71ms
+2025-11-28 20:18:09,523 [INFO] GET /auth/me - 200 - 11.91ms
+2025-11-28 20:18:09,525 [INFO] GET /auth/me - 200 - 11.23ms
+2025-11-28 20:18:09,530 [INFO] GET /coachings/ - 200 - 5.12ms
+2025-11-28 20:18:09,533 [INFO] GET /coachings/ - 200 - 7.49ms
+2025-11-28 20:18:10,256 [INFO] OPTIONS /auth/me - 200 - 0.27ms
+2025-11-28 20:18:10,267 [INFO] OPTIONS /auth/me - 200 - 2.9ms
+2025-11-28 20:18:10,270 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 11.77ms
+2025-11-28 20:18:10,283 [INFO] GET /coachings/6909ff5877962a1c28aded91/teachers/ - 200 - 24.24ms
+2025-11-28 20:18:10,287 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 13.54ms
+2025-11-28 20:18:10,298 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 33.63ms
+2025-11-28 20:18:10,299 [INFO] GET /upload/list - 200 - 32.6ms
+2025-11-28 20:18:10,306 [INFO] GET /auth/me - 200 - 45.07ms
+2025-11-28 20:18:10,306 [INFO] GET /upload/list - 200 - 32.82ms
+2025-11-28 20:18:10,314 [INFO] GET /coachings/6909ff5877962a1c28aded91/teachers/ - 200 - 16.23ms
+2025-11-28 20:18:10,315 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 9.28ms
+2025-11-28 20:18:10,316 [INFO] GET /auth/me - 200 - 8.32ms
+2025-11-28 20:18:10,320 [INFO] GET /upload/list - 200 - 0.39ms
+2025-11-28 20:18:10,344 [INFO] GET /upload/list - 200 - 8.13ms
+2025-11-28 20:18:10,367 [INFO] GET /upload/list - 200 - 8.67ms
+2025-11-28 20:18:10,423 [INFO] GET /upload/list - 200 - 10.49ms
+2025-11-28 20:18:10,488 [INFO] GET /upload/list - 200 - 7.77ms
+2025-11-28 20:18:10,533 [INFO] GET /upload/list - 200 - 9.0ms
+2025-11-28 20:18:24,177 [INFO] Use pytorch device_name: mps
+2025-11-28 20:18:24,177 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:18:30,599 [INFO] 🧠 Using device: MPS
+2025-11-28 20:18:35,655 [INFO] Use pytorch device_name: mps
+2025-11-28 20:18:35,655 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:18:42,366 [INFO] 🧠 Using device: MPS
+2025-11-28 20:18:47,474 [INFO] Use pytorch device_name: mps
+2025-11-28 20:18:47,474 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:18:53,458 [INFO] 🧠 Using device: MPS
+2025-11-28 20:20:51,135 [INFO] Use pytorch device_name: mps
+2025-11-28 20:20:51,136 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:20:57,191 [INFO] 🧠 Using device: MPS
+2025-11-28 20:21:21,120 [INFO] Use pytorch device_name: mps
+2025-11-28 20:21:21,120 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:21:26,944 [INFO] 🧠 Using device: MPS
+2025-11-28 20:21:46,070 [INFO] OPTIONS /auth/me - 200 - 1.09ms
+2025-11-28 20:21:46,081 [INFO] OPTIONS /auth/me - 200 - 7.08ms
+2025-11-28 20:21:46,091 [INFO] OPTIONS /auth/me - 200 - 11.09ms
+2025-11-28 20:21:46,187 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 106.46ms
+2025-11-28 20:21:46,188 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 113.29ms
+2025-11-28 20:21:46,195 [INFO] GET /coachings/6909ff5877962a1c28aded91/teachers/ - 200 - 115.18ms
+2025-11-28 20:21:46,201 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 120.4ms
+2025-11-28 20:21:46,202 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 106.69ms
+2025-11-28 20:21:46,202 [INFO] OPTIONS /auth/me - 200 - 7.09ms
+2025-11-28 20:21:46,221 [INFO] GET /coachings/6909ff5877962a1c28aded91/teachers/ - 200 - 128.13ms
+2025-11-28 20:21:46,234 [INFO] OPTIONS /auth/me - 200 - 5.7ms
+2025-11-28 20:21:46,236 [INFO] OPTIONS /auth/me - 200 - 7.36ms
+2025-11-28 20:21:46,287 [INFO] GET /auth/me - 200 - 85.9ms
+2025-11-28 20:21:46,290 [INFO] GET /auth/me - 200 - 67.35ms
+2025-11-28 20:21:46,293 [INFO] GET /auth/me - 200 - 63.45ms
+2025-11-28 20:21:46,294 [INFO] GET /auth/me - 200 - 65.76ms
+2025-11-28 20:21:46,326 [INFO] GET /auth/me - 200 - 86.77ms
+2025-11-28 20:21:46,398 [INFO] GET /auth/me - 200 - 158.69ms
+2025-11-28 20:21:46,447 [INFO] OPTIONS /auth/me - 200 - 49.39ms
+2025-11-28 20:21:46,455 [INFO] OPTIONS /auth/me - 200 - 57.22ms
+2025-11-28 20:21:46,480 [INFO] GET /auth/me - 200 - 14.05ms
+2025-11-28 20:21:46,481 [INFO] GET /auth/me - 200 - 12.51ms
+2025-11-28 20:21:46,576 [INFO] OPTIONS /auth/me - 200 - 0.16ms
+2025-11-28 20:21:46,581 [INFO] OPTIONS /auth/me - 200 - 1.35ms
+2025-11-28 20:21:46,581 [INFO] GET /students - 307 - 1.97ms
+2025-11-28 20:21:46,582 [INFO] GET /students - 307 - 1.58ms
+2025-11-28 20:21:46,586 [INFO] GET /auth/me - 200 - 9.13ms
+2025-11-28 20:21:46,588 [INFO] GET /auth/me - 200 - 3.6ms
+2025-11-28 20:21:46,618 [INFO] GET /students - 307 - 0.32ms
+2025-11-28 20:21:46,623 [INFO] GET /students/ - 200 - 4.03ms
+2025-11-28 20:21:46,639 [INFO] GET /students - 307 - 0.69ms
+2025-11-28 20:21:46,644 [INFO] GET /students/ - 200 - 6.16ms
+2025-11-28 20:21:46,644 [INFO] GET /students/ - 200 - 5.32ms
+2025-11-28 20:21:46,672 [INFO] GET /students/ - 200 - 4.87ms
+2025-11-28 20:21:47,680 [INFO] OPTIONS /auth/me - 200 - 0.22ms
+2025-11-28 20:21:47,681 [INFO] OPTIONS /auth/me - 200 - 0.2ms
+2025-11-28 20:21:47,684 [INFO] GET /coachings - 307 - 1.95ms
+2025-11-28 20:21:47,686 [INFO] GET /coachings - 307 - 2.47ms
+2025-11-28 20:21:47,698 [INFO] GET /auth/me - 200 - 14.62ms
+2025-11-28 20:21:47,700 [INFO] GET /auth/me - 200 - 15.86ms
+2025-11-28 20:21:47,711 [INFO] GET /coachings/ - 200 - 6.64ms
+2025-11-28 20:21:47,714 [INFO] GET /coachings/ - 200 - 7.38ms
+2025-11-28 20:21:48,416 [INFO] OPTIONS /auth/me - 200 - 0.59ms
+2025-11-28 20:21:48,446 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 26.44ms
+2025-11-28 20:21:48,447 [INFO] OPTIONS /auth/me - 200 - 1.88ms
+2025-11-28 20:21:48,458 [INFO] GET /upload/list - 200 - 38.37ms
+2025-11-28 20:21:48,466 [INFO] GET /coachings/6909ff5877962a1c28aded91/teachers/ - 200 - 43.79ms
+2025-11-28 20:21:48,467 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 9.75ms
+2025-11-28 20:21:48,468 [INFO] GET /auth/me - 200 - 24.14ms
+2025-11-28 20:21:48,475 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 30.25ms
+2025-11-28 20:21:48,478 [INFO] GET /upload/list - 200 - 20.96ms
+2025-11-28 20:21:48,483 [INFO] GET /upload/list - 200 - 1.23ms
+2025-11-28 20:21:48,486 [INFO] GET /coachings/6909ff5877962a1c28aded91/teachers/ - 200 - 21.32ms
+2025-11-28 20:21:48,489 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 11.41ms
+2025-11-28 20:21:48,494 [INFO] GET /auth/me - 200 - 12.82ms
+2025-11-28 20:21:48,545 [INFO] GET /upload/list - 200 - 6.97ms
+2025-11-28 20:21:48,586 [INFO] GET /upload/list - 200 - 7.66ms
+2025-11-28 20:21:48,632 [INFO] GET /upload/list - 200 - 10.18ms
+2025-11-28 20:21:48,684 [INFO] GET /upload/list - 200 - 7.14ms
+2025-11-28 20:21:48,715 [INFO] GET /upload/list - 200 - 8.7ms
+2025-11-28 20:22:21,511 [INFO] Use pytorch device_name: mps
+2025-11-28 20:22:21,511 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:22:27,865 [INFO] 🧠 Using device: MPS
+2025-11-28 20:22:31,651 [INFO] OPTIONS /auth/me - 200 - 2.35ms
+2025-11-28 20:22:31,664 [INFO] OPTIONS /auth/me - 200 - 2.39ms
+2025-11-28 20:22:31,681 [INFO] OPTIONS /auth/me - 200 - 17.05ms
+2025-11-28 20:22:31,688 [INFO] OPTIONS /auth/me - 200 - 23.62ms
+2025-11-28 20:22:31,738 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 87.02ms
+2025-11-28 20:22:31,745 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 87.88ms
+2025-11-28 20:22:31,745 [INFO] GET /coachings/6909ff5877962a1c28aded91/teachers/ - 200 - 91.42ms
+2025-11-28 20:22:31,748 [INFO] GET /auth/me - 200 - 43.82ms
+2025-11-28 20:22:31,755 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 10.09ms
+2025-11-28 20:22:31,793 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 40.62ms
+2025-11-28 20:22:31,796 [INFO] GET /coachings/6909ff5877962a1c28aded91/teachers/ - 200 - 43.55ms
+2025-11-28 20:22:31,796 [INFO] GET /auth/me - 200 - 41.88ms
+2025-11-28 20:22:31,811 [INFO] GET /auth/me - 200 - 9.24ms
+2025-11-28 20:22:31,828 [INFO] GET /auth/me - 200 - 13.96ms
+2025-11-28 20:22:31,837 [INFO] GET /auth/me - 200 - 6.51ms
+2025-11-28 20:22:31,846 [INFO] GET /auth/me - 200 - 6.28ms
+2025-11-28 20:22:31,852 [INFO] GET /auth/me - 200 - 4.32ms
+2025-11-28 20:22:31,862 [INFO] GET /auth/me - 200 - 7.92ms
+2025-11-28 20:22:31,993 [INFO] GET /teachers - 307 - 0.89ms
+2025-11-28 20:22:31,995 [INFO] GET /teachers - 307 - 0.64ms
+2025-11-28 20:22:31,996 [INFO] GET /auth/me - 200 - 4.84ms
+2025-11-28 20:22:32,003 [INFO] GET /auth/me - 200 - 5.16ms
+2025-11-28 20:22:32,019 [INFO] GET /teachers/ - 200 - 6.55ms
+2025-11-28 20:22:32,030 [INFO] GET /teachers - 307 - 0.72ms
+2025-11-28 20:22:32,035 [INFO] GET /teachers/ - 200 - 14.32ms
+2025-11-28 20:22:32,047 [INFO] GET /teachers - 307 - 0.6ms
+2025-11-28 20:22:32,083 [INFO] GET /teachers/ - 200 - 7.62ms
+2025-11-28 20:22:32,112 [INFO] GET /teachers/ - 200 - 6.99ms
+2025-11-28 20:22:33,545 [INFO] GET /coachings - 307 - 0.51ms
+2025-11-28 20:22:33,547 [INFO] GET /coachings - 307 - 0.52ms
+2025-11-28 20:22:33,549 [INFO] GET /auth/me - 200 - 5.66ms
+2025-11-28 20:22:33,555 [INFO] GET /auth/me - 200 - 5.06ms
+2025-11-28 20:22:33,569 [INFO] GET /coachings/ - 200 - 6.36ms
+2025-11-28 20:22:33,577 [INFO] GET /coachings/ - 200 - 5.09ms
+2025-11-28 20:22:34,438 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 16.29ms
+2025-11-28 20:22:34,444 [INFO] GET /upload/list - 200 - 24.1ms
+2025-11-28 20:22:34,445 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 21.5ms
+2025-11-28 20:22:34,454 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 10.2ms
+2025-11-28 20:22:34,456 [INFO] GET /auth/me - 200 - 37.0ms
+2025-11-28 20:22:34,459 [INFO] GET /coachings/6909ff5877962a1c28aded91/teachers/ - 200 - 35.86ms
+2025-11-28 20:22:34,471 [INFO] GET /upload/list - 200 - 20.47ms
+2025-11-28 20:22:34,473 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 24.22ms
+2025-11-28 20:22:34,479 [INFO] GET /coachings/6909ff5877962a1c28aded91/teachers/ - 200 - 15.7ms
+2025-11-28 20:22:34,479 [INFO] GET /upload/list - 200 - 0.83ms
+2025-11-28 20:22:34,480 [INFO] GET /auth/me - 200 - 18.42ms
+2025-11-28 20:22:34,544 [INFO] GET /upload/list - 200 - 2.68ms
+2025-11-28 20:22:34,640 [INFO] GET /upload/list - 200 - 2.22ms
+2025-11-28 20:22:34,711 [INFO] GET /upload/list - 200 - 10.8ms
+2025-11-28 20:22:34,764 [INFO] GET /upload/list - 200 - 9.45ms
+2025-11-28 20:22:34,831 [INFO] GET /upload/list - 200 - 13.34ms
+2025-11-28 20:26:21,070 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 30.02ms
+2025-11-28 20:26:21,073 [INFO] GET /auth/me - 200 - 42.5ms
+2025-11-28 20:26:21,094 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 17.49ms
+2025-11-28 20:26:21,099 [INFO] GET /auth/me - 200 - 20.4ms
+2025-11-28 20:26:25,306 [INFO] OPTIONS /teachers/classrooms/all - 200 - 0.37ms
+2025-11-28 20:26:25,309 [INFO] OPTIONS /teachers/classrooms/all - 200 - 1.28ms
+2025-11-28 20:26:25,315 [INFO] GET /auth/me - 200 - 10.61ms
+2025-11-28 20:26:25,317 [INFO] POST /teachers/classrooms/all - 200 - 8.85ms
+2025-11-28 20:26:25,323 [INFO] POST /teachers/classrooms/all - 200 - 10.48ms
+2025-11-28 20:26:25,342 [INFO] GET /auth/me - 200 - 22.94ms
+2025-11-28 20:26:37,741 [INFO] OPTIONS /auth/me - 200 - 0.43ms
+2025-11-28 20:26:37,756 [INFO] GET /auth/me - 200 - 10.24ms
+2025-11-28 20:26:37,764 [INFO] OPTIONS /auth/me - 200 - 0.27ms
+2025-11-28 20:26:37,769 [INFO] OPTIONS /auth/me - 200 - 0.25ms
+2025-11-28 20:26:37,885 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 99.88ms
+2025-11-28 20:26:37,957 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 172.13ms
+2025-11-28 20:26:37,963 [INFO] OPTIONS /auth/me - 200 - 8.77ms
+2025-11-28 20:26:37,979 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 186.0ms
+2025-11-28 20:26:37,981 [INFO] GET /coachings/6909ff5877962a1c28aded91/teachers/ - 200 - 188.84ms
+2025-11-28 20:26:37,984 [INFO] GET /coachings/6909ff5877962a1c28aded91/teachers/ - 200 - 190.64ms
+2025-11-28 20:26:37,996 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 202.88ms
+2025-11-28 20:26:37,998 [INFO] OPTIONS /auth/me - 200 - 3.56ms
+2025-11-28 20:26:38,001 [INFO] OPTIONS /auth/me - 200 - 5.62ms
+2025-11-28 20:26:38,009 [INFO] GET /auth/me - 200 - 30.69ms
+2025-11-28 20:26:38,010 [INFO] GET /auth/me - 200 - 31.49ms
+2025-11-28 20:26:38,013 [INFO] GET /auth/me - 200 - 17.14ms
+2025-11-28 20:26:38,014 [INFO] GET /auth/me - 200 - 10.34ms
+2025-11-28 20:26:38,018 [INFO] GET /auth/me - 200 - 12.67ms
+2025-11-28 20:26:38,020 [INFO] OPTIONS /auth/me - 200 - 1.19ms
+2025-11-28 20:26:38,044 [INFO] OPTIONS /auth/me - 200 - 3.03ms
+2025-11-28 20:26:38,046 [INFO] GET /auth/me - 200 - 13.34ms
+2025-11-28 20:26:38,063 [INFO] GET /auth/me - 200 - 14.67ms
+2025-11-28 20:26:38,231 [INFO] OPTIONS /auth/me - 200 - 0.15ms
+2025-11-28 20:26:38,235 [INFO] OPTIONS /auth/me - 200 - 0.59ms
+2025-11-28 20:26:38,236 [INFO] GET /students - 307 - 1.0ms
+2025-11-28 20:26:38,236 [INFO] GET /students - 307 - 1.04ms
+2025-11-28 20:26:38,241 [INFO] GET /auth/me - 200 - 8.32ms
+2025-11-28 20:26:38,243 [INFO] GET /auth/me - 200 - 4.5ms
+2025-11-28 20:26:38,275 [INFO] GET /students - 307 - 0.95ms
+2025-11-28 20:26:38,282 [INFO] GET /students/ - 200 - 5.95ms
+2025-11-28 20:26:38,298 [INFO] GET /students - 307 - 1.19ms
+2025-11-28 20:26:38,303 [INFO] GET /students/ - 200 - 5.56ms
+2025-11-28 20:26:38,304 [INFO] GET /students/ - 200 - 7.09ms
+2025-11-28 20:26:38,330 [INFO] GET /students/ - 200 - 4.04ms
+2025-11-28 20:26:39,552 [INFO] OPTIONS /auth/me - 200 - 0.27ms
+2025-11-28 20:26:39,553 [INFO] OPTIONS /auth/me - 200 - 0.29ms
+2025-11-28 20:26:39,555 [INFO] GET /coachings - 307 - 0.67ms
+2025-11-28 20:26:39,564 [INFO] GET /coachings - 307 - 7.34ms
+2025-11-28 20:26:39,580 [INFO] GET /coachings/ - 200 - 11.03ms
+2025-11-28 20:26:39,582 [INFO] GET /coachings/ - 200 - 8.15ms
+2025-11-28 20:26:39,586 [INFO] GET /auth/me - 200 - 28.38ms
+2025-11-28 20:26:39,586 [INFO] GET /auth/me - 200 - 28.85ms
+2025-11-28 20:26:40,762 [INFO] OPTIONS /auth/me - 200 - 1.38ms
+2025-11-28 20:26:40,775 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 11.61ms
+2025-11-28 20:26:40,777 [INFO] OPTIONS /auth/me - 200 - 5.02ms
+2025-11-28 20:26:40,793 [INFO] GET /upload/list - 200 - 28.93ms
+2025-11-28 20:26:40,798 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 16.56ms
+2025-11-28 20:26:40,798 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 32.23ms
+2025-11-28 20:26:40,809 [INFO] GET /upload/list - 200 - 27.79ms
+2025-11-28 20:26:40,810 [INFO] GET /coachings/6909ff5877962a1c28aded91/teachers/ - 200 - 44.82ms
+2025-11-28 20:26:40,811 [INFO] GET /auth/me - 200 - 37.49ms
+2025-11-28 20:26:40,816 [INFO] GET /coachings/6909ff5877962a1c28aded91/teachers/ - 200 - 17.62ms
+2025-11-28 20:26:40,819 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 10.79ms
+2025-11-28 20:26:40,822 [INFO] GET /upload/list - 200 - 1.81ms
+2025-11-28 20:26:40,823 [INFO] GET /auth/me - 200 - 10.37ms
+2025-11-28 20:26:40,876 [INFO] GET /upload/list - 200 - 0.45ms
+2025-11-28 20:26:40,922 [INFO] GET /upload/list - 200 - 1.6ms
+2025-11-28 20:26:40,970 [INFO] GET /upload/list - 200 - 7.21ms
+2025-11-28 20:26:41,029 [INFO] GET /upload/list - 200 - 7.8ms
+2025-11-28 20:26:41,049 [INFO] GET /upload/list - 200 - 6.99ms
+2025-11-28 20:26:52,454 [INFO] OPTIONS /auth/me - 200 - 1.09ms
+2025-11-28 20:26:52,462 [INFO] OPTIONS /auth/me - 200 - 3.32ms
+2025-11-28 20:26:52,463 [INFO] GET /students - 307 - 1.52ms
+2025-11-28 20:26:52,465 [INFO] GET /students - 307 - 2.27ms
+2025-11-28 20:26:52,478 [INFO] GET /auth/me - 200 - 14.74ms
+2025-11-28 20:26:52,479 [INFO] GET /auth/me - 200 - 13.6ms
+2025-11-28 20:26:52,485 [INFO] GET /students/ - 200 - 15.02ms
+2025-11-28 20:26:52,487 [INFO] GET /students/ - 200 - 16.71ms
+2025-11-28 20:26:52,499 [INFO] GET /students - 307 - 0.96ms
+2025-11-28 20:26:52,514 [INFO] GET /students - 307 - 0.59ms
+2025-11-28 20:26:52,560 [INFO] GET /students/ - 200 - 11.15ms
+2025-11-28 20:26:52,561 [INFO] GET /students/ - 200 - 12.17ms
+2025-11-28 20:26:55,428 [INFO] OPTIONS /auth/me - 200 - 0.24ms
+2025-11-28 20:26:55,431 [INFO] OPTIONS /auth/me - 200 - 0.41ms
+2025-11-28 20:26:55,440 [INFO] GET /conversations/chats - 200 - 7.11ms
+2025-11-28 20:26:55,441 [INFO] GET /conversations/chats - 200 - 9.28ms
+2025-11-28 20:26:55,448 [INFO] GET /auth/me - 200 - 14.95ms
+2025-11-28 20:26:55,450 [INFO] GET /auth/me - 200 - 15.22ms
+2025-11-28 20:26:55,482 [INFO] GET /conversations/chats - 200 - 1.93ms
+2025-11-28 20:26:55,503 [INFO] GET /conversations/chats - 200 - 2.59ms
+2025-11-28 20:27:05,121 [INFO] OPTIONS /auth/me - 200 - 0.26ms
+2025-11-28 20:27:05,132 [INFO] GET /auth/me - 200 - 7.69ms
+2025-11-28 20:27:05,158 [INFO] OPTIONS /auth/me - 200 - 9.49ms
+2025-11-28 20:27:05,172 [INFO] GET /auth/me - 200 - 8.2ms
+2025-11-28 20:27:05,257 [INFO] OPTIONS /auth/me - 200 - 0.15ms
+2025-11-28 20:27:05,266 [INFO] OPTIONS /auth/me - 200 - 1.06ms
+2025-11-28 20:27:05,271 [INFO] GET /students - 307 - 4.04ms
+2025-11-28 20:27:05,272 [INFO] GET /students - 307 - 3.22ms
+2025-11-28 20:27:05,276 [INFO] GET /auth/me - 200 - 14.9ms
+2025-11-28 20:27:05,280 [INFO] GET /auth/me - 200 - 7.09ms
+2025-11-28 20:27:05,320 [INFO] GET /students - 307 - 1.05ms
+2025-11-28 20:27:05,430 [INFO] GET /students - 307 - 65.53ms
+2025-11-28 20:27:05,598 [INFO] GET /students/ - 200 - 234.48ms
+2025-11-28 20:27:05,607 [INFO] GET /students/ - 200 - 251.14ms
+2025-11-28 20:27:05,611 [INFO] GET /students/ - 200 - 247.85ms
+2025-11-28 20:27:05,613 [INFO] GET /students/ - 200 - 80.49ms
+2025-11-28 20:27:08,496 [INFO] OPTIONS /auth/me - 200 - 0.62ms
+2025-11-28 20:27:08,499 [INFO] OPTIONS /auth/me - 200 - 2.55ms
+2025-11-28 20:27:08,518 [INFO] GET /students/690860e3489b114c676d005d - 200 - 20.22ms
+2025-11-28 20:27:08,522 [INFO] GET /students/690860e3489b114c676d005d - 200 - 24.61ms
+2025-11-28 20:27:08,523 [INFO] GET /auth/me - 200 - 21.52ms
+2025-11-28 20:27:08,530 [INFO] GET /auth/me - 200 - 29.98ms
+2025-11-28 20:27:09,723 [INFO] GET /teachers/student-analytics/690860e3489b114c676d005d - 200 - 3.25ms
+2025-11-28 20:27:41,604 [INFO] GET /teachers/student-analytics/690860e3489b114c676d005d - 200 - 3.12ms
+2025-11-28 20:27:44,459 [INFO] GET /conversations/chat/space/get - 404 - 3.71ms
+2025-11-28 20:27:44,464 [INFO] GET /conversations/chats/teacher/student - 200 - 3.07ms
+2025-11-28 20:27:44,465 [INFO] GET /conversations/chat/space/get - 404 - 2.87ms
+2025-11-28 20:27:46,098 [INFO] GET /conversations/chat/6929a0b5f5769bc17a0754c5 - 200 - 7.19ms
+2025-11-28 20:28:01,238 [INFO] GET /conversations/chat/692996e639a57932a088a095 - 200 - 5.45ms
+2025-11-28 20:28:07,337 [INFO] GET /conversations/chat/692993e739a57932a088a092 - 200 - 5.57ms
+2025-11-28 20:29:55,247 [INFO] OPTIONS /auth/me - 200 - 1.63ms
+2025-11-28 20:29:55,254 [INFO] OPTIONS /auth/me - 200 - 7.59ms
+2025-11-28 20:29:55,258 [INFO] OPTIONS /auth/me - 200 - 5.43ms
+2025-11-28 20:29:55,278 [INFO] OPTIONS /auth/me - 200 - 21.89ms
+2025-11-28 20:29:55,447 [INFO] GET /students/690860e3489b114c676d005d - 200 - 200.06ms
+2025-11-28 20:29:55,459 [INFO] GET /students/690860e3489b114c676d005d - 200 - 203.0ms
+2025-11-28 20:29:55,483 [INFO] GET /auth/me - 200 - 221.47ms
+2025-11-28 20:29:55,498 [INFO] GET /auth/me - 200 - 210.11ms
+2025-11-28 20:29:55,500 [INFO] GET /auth/me - 200 - 204.82ms
+2025-11-28 20:29:55,503 [INFO] GET /auth/me - 200 - 229.6ms
+2025-11-28 20:29:59,441 [INFO] GET /teachers/student-analytics/690860e3489b114c676d005d - 200 - 5.19ms
+2025-11-28 20:31:45,241 [INFO] Use pytorch device_name: mps
+2025-11-28 20:31:45,241 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:31:52,485 [INFO] 🧠 Using device: MPS
+2025-11-28 20:32:34,882 [INFO] GET /teachers/student-analytics/690860e3489b114c676d005d - 200 - 10.58ms
+2025-11-28 20:32:52,211 [INFO] Use pytorch device_name: mps
+2025-11-28 20:32:52,211 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:32:58,229 [INFO] 🧠 Using device: MPS
+2025-11-28 20:33:03,185 [INFO] Use pytorch device_name: mps
+2025-11-28 20:33:03,185 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:33:09,243 [INFO] 🧠 Using device: MPS
+2025-11-28 20:33:14,125 [INFO] Use pytorch device_name: mps
+2025-11-28 20:33:14,125 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:33:20,128 [INFO] 🧠 Using device: MPS
+2025-11-28 20:33:31,894 [INFO] GET /teachers/student-analytics/690860e3489b114c676d005d - 200 - 7.17ms
+2025-11-28 20:34:04,741 [INFO] Use pytorch device_name: mps
+2025-11-28 20:34:04,741 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:34:10,583 [INFO] 🧠 Using device: MPS
+2025-11-28 20:34:15,343 [INFO] Use pytorch device_name: mps
+2025-11-28 20:34:15,343 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:34:21,498 [INFO] 🧠 Using device: MPS
+2025-11-28 20:34:26,379 [INFO] Use pytorch device_name: mps
+2025-11-28 20:34:26,379 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:34:32,823 [INFO] 🧠 Using device: MPS
+2025-11-28 20:34:33,072 [INFO] GET /teachers/student-analytics/690860e3489b114c676d005d - 200 - 4.87ms
+2025-11-28 20:35:06,596 [INFO] Use pytorch device_name: mps
+2025-11-28 20:35:06,596 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:35:16,339 [INFO] 🧠 Using device: MPS
+2025-11-28 20:35:19,754 [INFO] GET /teachers/student-analytics/690860e3489b114c676d005d - 200 - 9.87ms
+2025-11-28 20:37:40,339 [INFO] OPTIONS /auth/me - 200 - 5.1ms
+2025-11-28 20:37:40,827 [INFO] OPTIONS /auth/me - 200 - 0.27ms
+2025-11-28 20:37:40,832 [INFO] GET /auth/me - 200 - 481.85ms
+2025-11-28 20:37:40,836 [INFO] GET /auth/me - 200 - 5.97ms
+2025-11-28 20:37:40,883 [INFO] OPTIONS /auth/me - 200 - 0.22ms
+2025-11-28 20:37:40,900 [INFO] OPTIONS /auth/me - 200 - 4.43ms
+2025-11-28 20:37:40,901 [INFO] GET /students - 307 - 4.42ms
+2025-11-28 20:37:40,902 [INFO] GET /students - 307 - 3.25ms
+2025-11-28 20:37:40,913 [INFO] GET /auth/me - 200 - 22.6ms
+2025-11-28 20:37:40,968 [INFO] GET /students - 307 - 7.92ms
+2025-11-28 20:37:40,977 [INFO] GET /auth/me - 200 - 68.86ms
+2025-11-28 20:37:40,999 [INFO] GET /students - 307 - 4.76ms
+2025-11-28 20:37:41,000 [INFO] GET /students - 307 - 5.97ms
+2025-11-28 20:37:41,017 [INFO] GET /students/ - 200 - 21.19ms
+2025-11-28 20:37:41,018 [INFO] GET /students/ - 200 - 19.17ms
+2025-11-28 20:37:41,033 [INFO] GET /students/ - 200 - 37.8ms
+2025-11-28 20:37:41,034 [INFO] GET /students - 307 - 5.32ms
+2025-11-28 20:37:41,044 [INFO] GET /students/ - 200 - 13.56ms
+2025-11-28 20:37:41,044 [INFO] GET /students/ - 200 - 14.41ms
+2025-11-28 20:37:41,101 [INFO] GET /students/ - 200 - 4.06ms
+2025-11-28 20:39:09,221 [INFO] Use pytorch device_name: mps
+2025-11-28 20:39:09,222 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:39:15,134 [INFO] 🧠 Using device: MPS
+2025-11-28 20:39:19,997 [INFO] Use pytorch device_name: mps
+2025-11-28 20:39:19,997 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:39:26,378 [INFO] 🧠 Using device: MPS
+2025-11-28 20:39:31,349 [INFO] Use pytorch device_name: mps
+2025-11-28 20:39:31,349 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:39:36,800 [INFO] 🧠 Using device: MPS
+2025-11-28 20:39:41,492 [INFO] Use pytorch device_name: mps
+2025-11-28 20:39:41,492 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:39:47,285 [INFO] 🧠 Using device: MPS
+2025-11-28 20:39:52,182 [INFO] Use pytorch device_name: mps
+2025-11-28 20:39:52,182 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:39:58,338 [INFO] 🧠 Using device: MPS
+2025-11-28 20:40:03,403 [INFO] Use pytorch device_name: mps
+2025-11-28 20:40:03,403 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:40:12,321 [INFO] 🧠 Using device: MPS
+2025-11-28 20:40:17,185 [INFO] Use pytorch device_name: mps
+2025-11-28 20:40:17,185 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:40:23,526 [INFO] 🧠 Using device: MPS
+2025-11-28 20:40:28,352 [INFO] Use pytorch device_name: mps
+2025-11-28 20:40:28,352 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:40:34,679 [INFO] 🧠 Using device: MPS
+2025-11-28 20:40:39,655 [INFO] Use pytorch device_name: mps
+2025-11-28 20:40:39,655 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:40:45,372 [INFO] 🧠 Using device: MPS
+2025-11-28 20:41:20,320 [INFO] OPTIONS /auth/me - 200 - 6.11ms
+2025-11-28 20:41:20,327 [INFO] OPTIONS /auth/me - 200 - 11.32ms
+2025-11-28 20:41:20,504 [INFO] GET /students/690860e3489b114c676d005d - 200 - 177.82ms
+2025-11-28 20:41:20,504 [INFO] GET /students/690860e3489b114c676d005d - 200 - 185.26ms
+2025-11-28 20:41:20,507 [INFO] GET /auth/me - 200 - 174.8ms
+2025-11-28 20:41:20,522 [INFO] GET /auth/me - 200 - 70.23ms
+2025-11-28 20:41:22,387 [INFO] OPTIONS /auth/me - 200 - 0.26ms
+2025-11-28 20:41:22,406 [INFO] GET /auth/me - 200 - 17.07ms
+2025-11-28 20:41:22,462 [INFO] OPTIONS /auth/me - 200 - 0.3ms
+2025-11-28 20:41:22,539 [INFO] GET /auth/me - 200 - 56.91ms
+2025-11-28 20:41:22,863 [INFO] OPTIONS /auth/me - 200 - 0.34ms
+2025-11-28 20:41:22,873 [INFO] GET /students - 307 - 4.81ms
+2025-11-28 20:41:22,878 [INFO] OPTIONS /auth/me - 200 - 2.15ms
+2025-11-28 20:41:22,879 [INFO] GET /students - 307 - 2.53ms
+2025-11-28 20:41:22,888 [INFO] GET /auth/me - 200 - 17.11ms
+2025-11-28 20:41:22,901 [INFO] GET /auth/me - 200 - 19.78ms
+2025-11-28 20:41:22,906 [INFO] GET /students/ - 200 - 15.54ms
+2025-11-28 20:41:22,911 [INFO] GET /students/ - 200 - 16.41ms
+2025-11-28 20:41:22,914 [INFO] GET /students - 307 - 1.01ms
+2025-11-28 20:41:23,002 [INFO] GET /students - 307 - 3.16ms
+2025-11-28 20:41:23,008 [INFO] GET /students/ - 200 - 8.3ms
+2025-11-28 20:41:23,013 [INFO] GET /students/ - 200 - 8.07ms
+2025-11-28 20:41:49,808 [INFO] OPTIONS /auth/me - 200 - 0.75ms
+2025-11-28 20:41:49,820 [INFO] GET /auth/me - 200 - 8.14ms
+2025-11-28 20:41:49,836 [INFO] GET /auth/me - 200 - 12.55ms
+2025-11-28 20:41:49,973 [INFO] GET /teachers - 307 - 1.35ms
+2025-11-28 20:41:49,977 [INFO] GET /teachers - 307 - 1.15ms
+2025-11-28 20:41:49,978 [INFO] GET /auth/me - 200 - 7.42ms
+2025-11-28 20:41:49,981 [INFO] GET /auth/me - 200 - 2.56ms
+2025-11-28 20:41:50,122 [INFO] GET /teachers/ - 200 - 119.18ms
+2025-11-28 20:41:50,206 [INFO] GET /teachers - 307 - 31.49ms
+2025-11-28 20:41:50,214 [INFO] GET /teachers - 307 - 2.49ms
+2025-11-28 20:41:50,232 [INFO] GET /teachers/ - 200 - 26.28ms
+2025-11-28 20:41:50,279 [INFO] GET /teachers/ - 200 - 13.79ms
+2025-11-28 20:41:50,304 [INFO] GET /teachers/ - 200 - 17.87ms
+2025-11-28 20:42:13,560 [INFO] Use pytorch device_name: mps
+2025-11-28 20:42:13,560 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:42:20,653 [INFO] 🧠 Using device: MPS
+2025-11-28 20:42:30,362 [INFO] Use pytorch device_name: mps
+2025-11-28 20:42:30,362 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:42:37,791 [INFO] 🧠 Using device: MPS
+2025-11-28 20:42:43,686 [INFO] Use pytorch device_name: mps
+2025-11-28 20:42:43,687 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:42:49,818 [INFO] 🧠 Using device: MPS
+2025-11-28 20:43:18,911 [INFO] Use pytorch device_name: mps
+2025-11-28 20:43:18,911 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:43:25,636 [INFO] 🧠 Using device: MPS
+2025-11-28 20:43:33,067 [INFO] Use pytorch device_name: mps
+2025-11-28 20:43:33,067 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:43:39,604 [INFO] 🧠 Using device: MPS
+2025-11-28 20:43:46,681 [INFO] Use pytorch device_name: mps
+2025-11-28 20:43:46,681 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:43:52,495 [INFO] 🧠 Using device: MPS
+2025-11-28 20:43:59,537 [INFO] Use pytorch device_name: mps
+2025-11-28 20:43:59,537 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:44:05,983 [INFO] 🧠 Using device: MPS
+2025-11-28 20:44:13,027 [INFO] Use pytorch device_name: mps
+2025-11-28 20:44:13,027 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:44:19,438 [INFO] 🧠 Using device: MPS
+2025-11-28 20:46:04,272 [INFO] Use pytorch device_name: mps
+2025-11-28 20:46:04,272 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:46:10,319 [INFO] 🧠 Using device: MPS
+2025-11-28 20:46:10,622 [INFO] OPTIONS /auth/me - 200 - 0.63ms
+2025-11-28 20:46:10,622 [INFO] OPTIONS /auth/me - 200 - 0.86ms
+2025-11-28 20:46:10,623 [INFO] OPTIONS /auth/me - 200 - 0.93ms
+2025-11-28 20:46:10,623 [INFO] OPTIONS /auth/me - 200 - 0.62ms
+2025-11-28 20:46:10,623 [INFO] OPTIONS /auth/me - 200 - 0.31ms
+2025-11-28 20:46:10,624 [INFO] OPTIONS /auth/me - 200 - 0.28ms
+2025-11-28 20:46:10,641 [INFO] OPTIONS /auth/me - 200 - 1.72ms
+2025-11-28 20:46:10,642 [INFO] OPTIONS /auth/me - 200 - 2.59ms
+2025-11-28 20:46:10,642 [INFO] OPTIONS /auth/me - 200 - 2.81ms
+2025-11-28 20:46:10,642 [INFO] OPTIONS /auth/me - 200 - 3.19ms
+2025-11-28 20:46:10,643 [INFO] OPTIONS /auth/me - 200 - 3.31ms
+2025-11-28 20:46:10,643 [INFO] OPTIONS /auth/me - 200 - 3.61ms
+2025-11-28 20:46:10,650 [INFO] OPTIONS /auth/me - 200 - 0.93ms
+2025-11-28 20:46:10,651 [INFO] OPTIONS /auth/me - 200 - 1.44ms
+2025-11-28 20:46:10,651 [INFO] OPTIONS /auth/me - 200 - 1.51ms
+2025-11-28 20:46:10,651 [INFO] OPTIONS /auth/me - 200 - 1.75ms
+2025-11-28 20:46:10,652 [INFO] OPTIONS /auth/me - 200 - 2.31ms
+2025-11-28 20:46:10,652 [INFO] OPTIONS /auth/me - 200 - 2.53ms
+2025-11-28 20:46:10,662 [INFO] GET /auth/me - 200 - 21.58ms
+2025-11-28 20:46:10,664 [INFO] OPTIONS /auth/me - 200 - 6.86ms
+2025-11-28 20:46:10,666 [INFO] OPTIONS /auth/me - 200 - 6.25ms
+2025-11-28 20:46:10,667 [INFO] OPTIONS /auth/me - 200 - 6.54ms
+2025-11-28 20:46:10,667 [INFO] OPTIONS /auth/me - 200 - 6.54ms
+2025-11-28 20:46:10,667 [INFO] OPTIONS /auth/me - 200 - 6.7ms
+2025-11-28 20:46:10,667 [INFO] OPTIONS /auth/me - 200 - 6.81ms
+2025-11-28 20:46:10,668 [INFO] GET /auth/me - 200 - 28.34ms
+2025-11-28 20:46:10,672 [INFO] GET /auth/me - 200 - 27.28ms
+2025-11-28 20:46:10,672 [INFO] GET /auth/me - 200 - 26.84ms
+2025-11-28 20:46:10,673 [INFO] OPTIONS /auth/me - 200 - 1.95ms
+2025-11-28 20:46:10,674 [INFO] OPTIONS /auth/me - 200 - 1.23ms
+2025-11-28 20:46:10,674 [INFO] OPTIONS /auth/me - 200 - 1.69ms
+2025-11-28 20:46:10,674 [INFO] OPTIONS /auth/me - 200 - 1.9ms
+2025-11-28 20:46:10,675 [INFO] GET /auth/me - 200 - 35.22ms
+2025-11-28 20:46:10,676 [INFO] GET /auth/me - 200 - 51.71ms
+2025-11-28 20:46:10,677 [INFO] GET /auth/me - 200 - 39.39ms
+2025-11-28 20:46:10,681 [INFO] GET /auth/me - 200 - 3.35ms
+2025-11-28 20:46:10,682 [INFO] GET /auth/me - 200 - 5.55ms
+2025-11-28 20:46:10,684 [INFO] GET /auth/me - 200 - 7.66ms
+2025-11-28 20:46:10,686 [INFO] GET /auth/me - 200 - 8.46ms
+2025-11-28 20:46:10,740 [INFO] GET /teachers - 307 - 1.25ms
+2025-11-28 20:46:10,804 [INFO] GET /students - 307 - 1.8ms
+2025-11-28 20:46:10,828 [INFO] GET /teachers - 307 - 3.88ms
+2025-11-28 20:46:10,843 [INFO] GET /teachers - 307 - 1.05ms
+2025-11-28 20:46:10,863 [INFO] GET /students - 307 - 3.28ms
+2025-11-28 20:46:10,864 [INFO] GET /teachers - 307 - 3.25ms
+2025-11-28 20:46:10,877 [INFO] GET /students - 307 - 1.13ms
+2025-11-28 20:46:10,971 [INFO] GET /students - 307 - 40.5ms
+2025-11-28 20:46:10,981 [INFO] GET /teachers/ - 200 - 119.74ms
+2025-11-28 20:46:11,006 [INFO] GET /students/ - 200 - 74.21ms
+2025-11-28 20:46:11,012 [INFO] GET /students/ - 200 - 80.52ms
+2025-11-28 20:46:11,013 [INFO] GET /students/ - 200 - 81.46ms
+2025-11-28 20:46:11,046 [INFO] GET /students/ - 200 - 69.56ms
+2025-11-28 20:46:11,064 [INFO] GET /teachers/ - 200 - 76.26ms
+2025-11-28 20:46:11,139 [INFO] GET /teachers/ - 200 - 70.37ms
+2025-11-28 20:46:11,176 [INFO] GET /teachers/ - 200 - 27.43ms
+2025-11-28 20:46:50,685 [INFO] GET /auth/me - 200 - 77.45ms
+2025-11-28 20:46:50,701 [INFO] GET /auth/me - 200 - 9.41ms
+2025-11-28 20:46:50,718 [INFO] GET /auth/me - 200 - 7.13ms
+2025-11-28 20:46:50,722 [INFO] GET /teachers - 307 - 2.73ms
+2025-11-28 20:46:50,725 [INFO] GET /auth/me - 200 - 3.57ms
+2025-11-28 20:46:50,782 [INFO] GET /teachers - 307 - 0.7ms
+2025-11-28 20:46:50,798 [INFO] GET /teachers - 307 - 7.6ms
+2025-11-28 20:46:50,812 [INFO] GET /teachers - 307 - 1.87ms
+2025-11-28 20:46:50,819 [INFO] GET /teachers/ - 200 - 28.33ms
+2025-11-28 20:46:50,844 [INFO] GET /teachers/ - 200 - 20.47ms
+2025-11-28 20:46:50,874 [INFO] GET /teachers/ - 200 - 21.36ms
+2025-11-28 20:46:50,888 [INFO] GET /teachers/ - 200 - 12.31ms
+2025-11-28 20:46:51,828 [INFO] OPTIONS /auth/me - 200 - 41.26ms
+2025-11-28 20:46:51,851 [INFO] OPTIONS /auth/me - 200 - 57.62ms
+2025-11-28 20:46:51,852 [INFO] OPTIONS /auth/me - 200 - 30.48ms
+2025-11-28 20:46:51,858 [INFO] OPTIONS /auth/me - 200 - 8.56ms
+2025-11-28 20:46:52,251 [INFO] GET /auth/me - 200 - 266.28ms
+2025-11-28 20:46:52,252 [INFO] GET /auth/me - 200 - 244.03ms
+2025-11-28 20:46:52,254 [INFO] GET /auth/me - 200 - 269.66ms
+2025-11-28 20:46:52,258 [INFO] GET /auth/me - 200 - 274.26ms
+2025-11-28 20:46:52,289 [INFO] GET /students - 307 - 0.68ms
+2025-11-28 20:46:52,317 [INFO] GET /students - 307 - 0.57ms
+2025-11-28 20:46:52,333 [INFO] GET /students - 307 - 0.74ms
+2025-11-28 20:46:52,360 [INFO] GET /students - 307 - 1.24ms
+2025-11-28 20:46:52,370 [INFO] GET /students/ - 200 - 5.1ms
+2025-11-28 20:46:52,372 [INFO] GET /students/ - 200 - 8.23ms
+2025-11-28 20:46:52,376 [INFO] GET /students/ - 200 - 11.56ms
+2025-11-28 20:46:52,377 [INFO] GET /students/ - 200 - 17.62ms
+2025-11-28 20:47:23,576 [INFO] OPTIONS /auth/me - 200 - 2.35ms
+2025-11-28 20:47:23,590 [INFO] GET /students - 307 - 14.17ms
+2025-11-28 20:47:23,594 [INFO] GET /teachers - 307 - 5.32ms
+2025-11-28 20:47:23,634 [INFO] GET /auth/me - 200 - 54.28ms
+2025-11-28 20:47:23,641 [INFO] GET /auth/me - 200 - 47.02ms
+2025-11-28 20:47:23,665 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 73.07ms
+2025-11-28 20:47:23,673 [INFO] GET /students/ - 200 - 35.46ms
+2025-11-28 20:47:23,681 [INFO] GET /teachers - 307 - 1.91ms
+2025-11-28 20:47:23,688 [INFO] GET /teachers/ - 200 - 40.38ms
+2025-11-28 20:47:23,698 [INFO] GET /students - 307 - 1.82ms
+2025-11-28 20:47:23,711 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 14.81ms
+2025-11-28 20:47:23,743 [INFO] GET /teachers/ - 200 - 53.04ms
+2025-11-28 20:47:23,817 [INFO] GET /students/ - 200 - 53.33ms
+2025-11-28 20:47:53,889 [INFO] OPTIONS /auth/me - 200 - 2.42ms
+2025-11-28 20:47:53,913 [INFO] GET /students - 307 - 25.23ms
+2025-11-28 20:47:53,944 [INFO] GET /teachers - 307 - 19.74ms
+2025-11-28 20:47:53,998 [INFO] GET /auth/me - 200 - 83.57ms
+2025-11-28 20:47:54,007 [INFO] GET /auth/me - 200 - 76.8ms
+2025-11-28 20:47:54,017 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 122.99ms
+2025-11-28 20:47:54,030 [INFO] GET /students/ - 200 - 79.05ms
+2025-11-28 20:47:54,035 [INFO] GET /teachers/ - 200 - 67.3ms
+2025-11-28 20:47:54,041 [INFO] GET /teachers - 307 - 0.94ms
+2025-11-28 20:47:54,046 [INFO] GET /students - 307 - 2.17ms
+2025-11-28 20:47:54,057 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 12.7ms
+2025-11-28 20:47:54,080 [INFO] GET /teachers/ - 200 - 11.29ms
+2025-11-28 20:47:54,095 [INFO] GET /students/ - 200 - 5.49ms
+2025-11-28 20:48:03,405 [INFO] OPTIONS /auth/me - 200 - 6.78ms
+2025-11-28 20:48:03,423 [INFO] GET /students - 307 - 23.11ms
+2025-11-28 20:48:03,468 [INFO] GET /teachers - 307 - 40.97ms
+2025-11-28 20:48:03,533 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 129.37ms
+2025-11-28 20:48:03,545 [INFO] GET /auth/me - 200 - 124.58ms
+2025-11-28 20:48:03,551 [INFO] GET /auth/me - 200 - 88.54ms
+2025-11-28 20:48:03,556 [INFO] GET /students/ - 200 - 93.62ms
+2025-11-28 20:48:03,572 [INFO] GET /teachers/ - 200 - 52.93ms
+2025-11-28 20:48:03,587 [INFO] GET /teachers - 307 - 3.07ms
+2025-11-28 20:48:03,590 [INFO] GET /students - 307 - 1.48ms
+2025-11-28 20:48:03,597 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 8.35ms
+2025-11-28 20:48:03,634 [INFO] GET /teachers/ - 200 - 19.72ms
+2025-11-28 20:48:03,649 [INFO] GET /students/ - 200 - 12.18ms
+2025-11-28 20:48:03,865 [INFO] OPTIONS /auth/me - 200 - 0.46ms
+2025-11-28 20:48:03,873 [INFO] GET /students - 307 - 4.36ms
+2025-11-28 20:48:03,882 [INFO] GET /teachers - 307 - 4.13ms
+2025-11-28 20:48:03,899 [INFO] GET /auth/me - 200 - 29.31ms
+2025-11-28 20:48:03,899 [INFO] GET /auth/me - 200 - 21.75ms
+2025-11-28 20:48:03,903 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 31.86ms
+2025-11-28 20:48:03,918 [INFO] GET /students/ - 200 - 11.89ms
+2025-11-28 20:48:03,947 [INFO] GET /students - 307 - 1.91ms
+2025-11-28 20:48:03,964 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 16.61ms
+2025-11-28 20:48:03,967 [INFO] GET /teachers - 307 - 1.48ms
+2025-11-28 20:48:03,980 [INFO] GET /teachers/ - 200 - 44.59ms
+2025-11-28 20:48:04,010 [INFO] GET /students/ - 200 - 14.65ms
+2025-11-28 20:48:04,020 [INFO] GET /teachers/ - 200 - 38.4ms
+2025-11-28 20:48:38,912 [INFO] OPTIONS /auth/me - 200 - 5.16ms
+2025-11-28 20:48:38,917 [INFO] OPTIONS /auth/me - 200 - 5.08ms
+2025-11-28 20:48:38,925 [INFO] GET /students - 307 - 9.93ms
+2025-11-28 20:48:38,929 [INFO] OPTIONS /auth/me - 200 - 8.6ms
+2025-11-28 20:48:38,935 [INFO] GET /students - 307 - 9.21ms
+2025-11-28 20:48:38,944 [INFO] OPTIONS /auth/me - 200 - 10.3ms
+2025-11-28 20:48:38,958 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 41.28ms
+2025-11-28 20:48:39,027 [INFO] GET /auth/me - 200 - 93.3ms
+2025-11-28 20:48:39,029 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 103.29ms
+2025-11-28 20:48:39,123 [INFO] GET /auth/me - 200 - 173.11ms
+2025-11-28 20:48:39,128 [INFO] GET /auth/me - 200 - 183.46ms
+2025-11-28 20:48:39,132 [INFO] GET /auth/me - 200 - 187.27ms
+2025-11-28 20:48:39,421 [INFO] GET /students - 307 - 81.76ms
+2025-11-28 20:48:39,443 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 98.18ms
+2025-11-28 20:48:39,586 [INFO] GET /students/ - 200 - 228.02ms
+2025-11-28 20:48:39,587 [INFO] GET /students/ - 200 - 126.83ms
+2025-11-28 20:48:39,752 [INFO] GET /students - 307 - 1.56ms
+2025-11-28 20:48:39,758 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 7.87ms
+2025-11-28 20:48:39,793 [INFO] GET /students - 307 - 1.21ms
+2025-11-28 20:48:39,801 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 9.08ms
+2025-11-28 20:48:39,825 [INFO] GET /students - 307 - 1.13ms
+2025-11-28 20:48:39,836 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 8.21ms
+2025-11-28 20:48:39,843 [INFO] GET /students/ - 200 - 13.79ms
+2025-11-28 20:48:39,901 [INFO] GET /students/ - 200 - 7.02ms
+2025-11-28 20:48:39,922 [INFO] GET /students/ - 200 - 5.66ms
+2025-11-28 20:48:39,943 [INFO] GET /students/ - 200 - 5.07ms
+2025-11-28 20:49:41,706 [INFO] OPTIONS /auth/me - 200 - 9.32ms
+2025-11-28 20:49:41,739 [INFO] OPTIONS /auth/me - 200 - 35.17ms
+2025-11-28 20:49:41,823 [INFO] GET /auth/me - 200 - 38.08ms
+2025-11-28 20:49:41,824 [INFO] GET /auth/me - 200 - 20.41ms
+2025-11-28 20:49:41,825 [INFO] GET /students/690860e3489b114c676d005d - 200 - 112.17ms
+2025-11-28 20:49:41,827 [INFO] GET /students/690860e3489b114c676d005d - 200 - 121.54ms
+2025-11-28 20:49:44,803 [INFO] OPTIONS /auth/me - 200 - 1.07ms
+2025-11-28 20:49:44,820 [INFO] GET /auth/me - 200 - 12.78ms
+2025-11-28 20:49:44,838 [INFO] OPTIONS /auth/me - 200 - 2.84ms
+2025-11-28 20:49:44,848 [INFO] GET /auth/me - 200 - 4.13ms
+2025-11-28 20:49:44,932 [INFO] OPTIONS /auth/me - 200 - 0.47ms
+2025-11-28 20:49:44,935 [INFO] OPTIONS /auth/me - 200 - 0.46ms
+2025-11-28 20:49:44,937 [INFO] GET /students - 307 - 1.52ms
+2025-11-28 20:49:44,943 [INFO] GET /students - 307 - 5.52ms
+2025-11-28 20:49:44,948 [INFO] GET /auth/me - 200 - 10.56ms
+2025-11-28 20:49:44,952 [INFO] GET /auth/me - 200 - 10.8ms
+2025-11-28 20:49:44,955 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 17.41ms
+2025-11-28 20:49:44,956 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 18.27ms
+2025-11-28 20:49:44,973 [INFO] GET /students/ - 200 - 10.33ms
+2025-11-28 20:49:44,974 [INFO] GET /students/ - 200 - 12.17ms
+2025-11-28 20:49:44,994 [INFO] GET /students - 307 - 1.41ms
+2025-11-28 20:49:44,996 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 3.39ms
+2025-11-28 20:49:45,015 [INFO] GET /students - 307 - 2.09ms
+2025-11-28 20:49:45,019 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 4.98ms
+2025-11-28 20:49:45,103 [INFO] GET /students/ - 200 - 9.42ms
+2025-11-28 20:49:45,123 [INFO] GET /students/ - 200 - 7.86ms
+2025-11-28 20:50:54,360 [INFO] Use pytorch device_name: mps
+2025-11-28 20:50:54,360 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:51:00,977 [INFO] 🧠 Using device: MPS
+2025-11-28 20:51:06,715 [INFO] Use pytorch device_name: mps
+2025-11-28 20:51:06,715 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:51:12,693 [INFO] 🧠 Using device: MPS
+2025-11-28 20:51:18,102 [INFO] Use pytorch device_name: mps
+2025-11-28 20:51:18,102 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:51:24,227 [INFO] 🧠 Using device: MPS
+2025-11-28 20:51:32,730 [INFO] Use pytorch device_name: mps
+2025-11-28 20:51:32,731 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:51:38,845 [INFO] 🧠 Using device: MPS
+2025-11-28 20:51:44,109 [INFO] Use pytorch device_name: mps
+2025-11-28 20:51:44,109 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:51:50,193 [INFO] 🧠 Using device: MPS
+2025-11-28 20:52:25,287 [INFO] Use pytorch device_name: mps
+2025-11-28 20:52:25,287 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:52:31,331 [INFO] 🧠 Using device: MPS
+2025-11-28 20:52:36,613 [INFO] Use pytorch device_name: mps
+2025-11-28 20:52:36,613 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:52:42,677 [INFO] 🧠 Using device: MPS
+2025-11-28 20:53:50,774 [INFO] Use pytorch device_name: mps
+2025-11-28 20:53:50,774 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:53:57,049 [INFO] 🧠 Using device: MPS
+2025-11-28 20:54:37,660 [INFO] OPTIONS /auth/me - 200 - 21.08ms
+2025-11-28 20:54:37,667 [INFO] OPTIONS /auth/me - 200 - 9.23ms
+2025-11-28 20:54:37,670 [INFO] OPTIONS /auth/me - 200 - 11.41ms
+2025-11-28 20:54:37,672 [INFO] OPTIONS /auth/me - 200 - 6.88ms
+2025-11-28 20:54:37,812 [INFO] GET /auth/me - 200 - 11.79ms
+2025-11-28 20:54:37,812 [INFO] GET /auth/me - 200 - 11.77ms
+2025-11-28 20:54:37,813 [INFO] GET /auth/me - 200 - 136.31ms
+2025-11-28 20:54:37,814 [INFO] GET /auth/me - 200 - 137.49ms
+2025-11-28 20:54:37,838 [INFO] GET /students - 307 - 0.53ms
+2025-11-28 20:54:37,845 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 6.38ms
+2025-11-28 20:54:37,869 [INFO] GET /students - 307 - 1.0ms
+2025-11-28 20:54:37,872 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 3.06ms
+2025-11-28 20:54:37,903 [INFO] GET /students - 307 - 0.93ms
+2025-11-28 20:54:37,906 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 3.63ms
+2025-11-28 20:54:37,920 [INFO] GET /students - 307 - 0.95ms
+2025-11-28 20:54:37,923 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 3.23ms
+2025-11-28 20:54:37,929 [INFO] GET /students/ - 200 - 4.99ms
+2025-11-28 20:54:37,949 [INFO] GET /students/ - 200 - 5.24ms
+2025-11-28 20:54:37,967 [INFO] GET /students/ - 200 - 7.95ms
+2025-11-28 20:54:37,980 [INFO] GET /students/ - 200 - 6.27ms
+2025-11-28 20:55:03,148 [INFO] Use pytorch device_name: mps
+2025-11-28 20:55:03,148 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:55:10,121 [INFO] 🧠 Using device: MPS
+2025-11-28 20:55:17,242 [INFO] Use pytorch device_name: mps
+2025-11-28 20:55:17,242 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:55:23,529 [INFO] 🧠 Using device: MPS
+2025-11-28 20:55:28,436 [INFO] Use pytorch device_name: mps
+2025-11-28 20:55:28,436 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:55:34,147 [INFO] 🧠 Using device: MPS
+2025-11-28 20:55:39,054 [INFO] Use pytorch device_name: mps
+2025-11-28 20:55:39,055 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:55:44,966 [INFO] 🧠 Using device: MPS
+2025-11-28 20:55:49,871 [INFO] Use pytorch device_name: mps
+2025-11-28 20:55:49,871 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:55:56,377 [INFO] 🧠 Using device: MPS
+2025-11-28 20:55:58,434 [INFO] OPTIONS /auth/me - 200 - 4.71ms
+2025-11-28 20:55:58,438 [INFO] OPTIONS /auth/me - 200 - 4.78ms
+2025-11-28 20:55:58,537 [INFO] GET /students/690860e3489b114c676d005d - 200 - 102.88ms
+2025-11-28 20:55:58,542 [INFO] GET /auth/me - 200 - 66.35ms
+2025-11-28 20:55:58,544 [INFO] GET /students/690860e3489b114c676d005d - 200 - 107.88ms
+2025-11-28 20:55:58,546 [INFO] GET /auth/me - 200 - 15.1ms
+2025-11-28 20:55:59,814 [INFO] OPTIONS /auth/me - 200 - 0.35ms
+2025-11-28 20:55:59,828 [INFO] GET /auth/me - 200 - 9.94ms
+2025-11-28 20:55:59,843 [INFO] OPTIONS /auth/me - 200 - 3.95ms
+2025-11-28 20:55:59,857 [INFO] GET /auth/me - 200 - 8.96ms
+2025-11-28 20:55:59,925 [INFO] OPTIONS /auth/me - 200 - 0.16ms
+2025-11-28 20:55:59,930 [INFO] OPTIONS /auth/me - 200 - 1.34ms
+2025-11-28 20:55:59,932 [INFO] GET /students - 307 - 2.14ms
+2025-11-28 20:55:59,935 [INFO] GET /students - 307 - 3.61ms
+2025-11-28 20:55:59,940 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 500 - 10.45ms
+2025-11-28 20:55:59,941 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 500 - 8.08ms
+2025-11-28 20:55:59,944 [INFO] GET /auth/me - 200 - 16.92ms
+2025-11-28 20:55:59,947 [INFO] GET /auth/me - 200 - 8.49ms
+2025-11-28 20:55:59,973 [INFO] GET /students - 307 - 0.64ms
+2025-11-28 20:55:59,974 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 500 - 1.32ms
+2025-11-28 20:55:59,991 [INFO] GET /students/ - 200 - 8.43ms
+2025-11-28 20:56:00,024 [INFO] GET /students - 307 - 0.34ms
+2025-11-28 20:56:00,026 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 500 - 2.12ms
+2025-11-28 20:56:00,049 [INFO] GET /students/ - 200 - 5.54ms
+2025-11-28 20:56:00,079 [INFO] GET /students/ - 200 - 6.73ms
+2025-11-28 20:56:00,097 [INFO] GET /students/ - 200 - 5.73ms
+2025-11-28 20:56:45,242 [INFO] Use pytorch device_name: mps
+2025-11-28 20:56:45,242 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:56:51,326 [INFO] 🧠 Using device: MPS
+2025-11-28 20:56:56,297 [INFO] Use pytorch device_name: mps
+2025-11-28 20:56:56,297 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:57:02,952 [INFO] 🧠 Using device: MPS
+2025-11-28 20:57:08,162 [INFO] Use pytorch device_name: mps
+2025-11-28 20:57:08,163 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:57:14,649 [INFO] 🧠 Using device: MPS
+2025-11-28 20:57:31,942 [INFO] OPTIONS /auth/me - 200 - 4.47ms
+2025-11-28 20:57:31,950 [INFO] OPTIONS /auth/me - 200 - 4.7ms
+2025-11-28 20:57:32,032 [INFO] GET /students/690860e3489b114c676d005d - 200 - 85.34ms
+2025-11-28 20:57:32,057 [INFO] GET /students/690860e3489b114c676d005d - 200 - 114.83ms
+2025-11-28 20:57:32,109 [INFO] GET /auth/me - 200 - 157.7ms
+2025-11-28 20:57:32,169 [INFO] GET /auth/me - 200 - 153.46ms
+2025-11-28 20:57:33,111 [INFO] OPTIONS /auth/me - 200 - 0.87ms
+2025-11-28 20:57:33,122 [INFO] GET /auth/me - 200 - 7.22ms
+2025-11-28 20:57:33,143 [INFO] OPTIONS /auth/me - 200 - 0.81ms
+2025-11-28 20:57:33,152 [INFO] GET /auth/me - 200 - 4.5ms
+2025-11-28 20:57:33,268 [INFO] OPTIONS /auth/me - 200 - 0.46ms
+2025-11-28 20:57:33,274 [INFO] GET /students - 307 - 3.95ms
+2025-11-28 20:57:33,276 [INFO] OPTIONS /auth/me - 200 - 2.43ms
+2025-11-28 20:57:33,278 [INFO] GET /students - 307 - 2.87ms
+2025-11-28 20:57:33,282 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 500 - 9.27ms
+2025-11-28 20:57:33,284 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 500 - 8.61ms
+2025-11-28 20:57:33,290 [INFO] GET /auth/me - 200 - 16.23ms
+2025-11-28 20:57:33,291 [INFO] GET /auth/me - 200 - 9.67ms
+2025-11-28 20:57:33,318 [INFO] GET /students - 307 - 1.53ms
+2025-11-28 20:57:33,320 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 500 - 2.91ms
+2025-11-28 20:57:33,334 [INFO] GET /students/ - 200 - 7.04ms
+2025-11-28 20:57:33,363 [INFO] GET /students - 307 - 1.36ms
+2025-11-28 20:57:33,364 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 500 - 2.1ms
+2025-11-28 20:57:33,385 [INFO] GET /students/ - 200 - 4.51ms
+2025-11-28 20:57:33,411 [INFO] GET /students/ - 200 - 5.06ms
+2025-11-28 20:57:33,435 [INFO] GET /students/ - 200 - 4.41ms
+2025-11-28 20:57:53,370 [INFO] Use pytorch device_name: mps
+2025-11-28 20:57:53,370 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:58:00,484 [INFO] 🧠 Using device: MPS
+2025-11-28 20:58:06,814 [INFO] Use pytorch device_name: mps
+2025-11-28 20:58:06,814 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:58:13,517 [INFO] 🧠 Using device: MPS
+2025-11-28 20:58:13,766 [INFO] OPTIONS /auth/me - 200 - 0.88ms
+2025-11-28 20:58:13,767 [INFO] OPTIONS /auth/me - 200 - 0.63ms
+2025-11-28 20:58:13,767 [INFO] OPTIONS /auth/me - 200 - 0.65ms
+2025-11-28 20:58:13,767 [INFO] OPTIONS /auth/me - 200 - 0.53ms
+2025-11-28 20:58:13,799 [INFO] GET /auth/me - 200 - 14.67ms
+2025-11-28 20:58:13,802 [INFO] GET /auth/me - 200 - 16.41ms
+2025-11-28 20:58:13,803 [INFO] GET /auth/me - 200 - 17.96ms
+2025-11-28 20:58:13,804 [INFO] GET /auth/me - 200 - 25.83ms
+2025-11-28 20:58:13,831 [INFO] GET /students - 307 - 0.95ms
+2025-11-28 20:58:13,837 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 6.47ms
+2025-11-28 20:58:13,865 [INFO] GET /students - 307 - 0.66ms
+2025-11-28 20:58:13,870 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 5.28ms
+2025-11-28 20:58:13,885 [INFO] GET /students - 307 - 0.41ms
+2025-11-28 20:58:13,889 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 3.78ms
+2025-11-28 20:58:13,930 [INFO] GET /students - 307 - 2.09ms
+2025-11-28 20:58:14,006 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 77.98ms
+2025-11-28 20:58:14,009 [INFO] GET /students/ - 200 - 80.81ms
+2025-11-28 20:58:14,011 [INFO] GET /students/ - 200 - 52.14ms
+2025-11-28 20:58:14,011 [INFO] GET /students/ - 200 - 8.77ms
+2025-11-28 20:58:14,013 [INFO] GET /students/ - 200 - 11.42ms
+2025-11-28 20:58:51,860 [INFO] Use pytorch device_name: mps
+2025-11-28 20:58:51,860 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:58:57,586 [INFO] 🧠 Using device: MPS
+2025-11-28 20:59:02,652 [INFO] Use pytorch device_name: mps
+2025-11-28 20:59:02,652 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:59:09,397 [INFO] 🧠 Using device: MPS
+2025-11-28 20:59:14,354 [INFO] Use pytorch device_name: mps
+2025-11-28 20:59:14,354 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:59:20,100 [INFO] 🧠 Using device: MPS
+2025-11-28 20:59:25,123 [INFO] Use pytorch device_name: mps
+2025-11-28 20:59:25,123 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 20:59:31,495 [INFO] 🧠 Using device: MPS
+2025-11-28 20:59:31,801 [INFO] OPTIONS /auth/me - 200 - 1.1ms
+2025-11-28 20:59:31,802 [INFO] OPTIONS /auth/me - 200 - 1.84ms
+2025-11-28 20:59:31,804 [INFO] OPTIONS /auth/me - 200 - 0.5ms
+2025-11-28 20:59:31,804 [INFO] GET /students - 307 - 0.53ms
+2025-11-28 20:59:31,805 [INFO] OPTIONS /auth/me - 200 - 0.11ms
+2025-11-28 20:59:31,807 [INFO] GET /students - 307 - 2.02ms
+2025-11-28 20:59:31,811 [INFO] OPTIONS /auth/me - 200 - 0.84ms
+2025-11-28 20:59:31,813 [INFO] OPTIONS /auth/me - 200 - 1.87ms
+2025-11-28 20:59:31,815 [INFO] OPTIONS /auth/me - 200 - 0.47ms
+2025-11-28 20:59:31,816 [INFO] GET /students - 307 - 0.95ms
+2025-11-28 20:59:31,816 [INFO] GET /conversations/chats - 200 - 15.6ms
+2025-11-28 20:59:31,819 [INFO] GET /conversations/chats - 200 - 16.98ms
+2025-11-28 20:59:31,822 [INFO] OPTIONS /auth/me - 200 - 1.84ms
+2025-11-28 20:59:31,826 [INFO] GET /students - 307 - 2.52ms
+2025-11-28 20:59:31,842 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 23.28ms
+2025-11-28 20:59:31,843 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 36.33ms
+2025-11-28 20:59:31,851 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 44.34ms
+2025-11-28 20:59:31,851 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 28.26ms
+2025-11-28 20:59:31,867 [INFO] GET /auth/me - 200 - 40.51ms
+2025-11-28 20:59:31,871 [INFO] GET /auth/me - 200 - 32.4ms
+2025-11-28 20:59:31,873 [INFO] GET /auth/me - 200 - 24.65ms
+2025-11-28 20:59:31,880 [INFO] GET /auth/me - 200 - 9.77ms
+2025-11-28 20:59:31,883 [INFO] GET /auth/me - 200 - 10.02ms
+2025-11-28 20:59:31,893 [INFO] GET /auth/me - 200 - 17.44ms
+2025-11-28 20:59:31,896 [INFO] GET /auth/me - 200 - 48.53ms
+2025-11-28 20:59:31,928 [INFO] GET /auth/me - 200 - 35.59ms
+2025-11-28 20:59:31,931 [INFO] GET /students/ - 200 - 74.63ms
+2025-11-28 20:59:31,935 [INFO] GET /students/ - 200 - 82.91ms
+2025-11-28 20:59:31,960 [INFO] GET /students/ - 200 - 74.16ms
+2025-11-28 20:59:32,045 [INFO] GET /students - 307 - 53.43ms
+2025-11-28 20:59:32,048 [INFO] GET /students - 307 - 11.04ms
+2025-11-28 20:59:32,048 [INFO] GET /students/ - 200 - 141.66ms
+2025-11-28 20:59:32,049 [INFO] GET /students - 307 - 2.45ms
+2025-11-28 20:59:32,053 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 61.32ms
+2025-11-28 20:59:32,053 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 8.63ms
+2025-11-28 20:59:32,054 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 5.72ms
+2025-11-28 20:59:32,061 [INFO] GET /students - 307 - 0.66ms
+2025-11-28 20:59:32,066 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 4.81ms
+2025-11-28 20:59:32,079 [INFO] GET /students - 307 - 0.58ms
+2025-11-28 20:59:32,086 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 5.8ms
+2025-11-28 20:59:32,099 [INFO] GET /students - 307 - 2.0ms
+2025-11-28 20:59:32,105 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 6.22ms
+2025-11-28 20:59:32,118 [INFO] GET /students - 307 - 0.53ms
+2025-11-28 20:59:32,124 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 2.96ms
+2025-11-28 20:59:32,141 [INFO] GET /students - 307 - 0.96ms
+2025-11-28 20:59:32,145 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 4.49ms
+2025-11-28 20:59:32,195 [INFO] GET /students/ - 200 - 3.81ms
+2025-11-28 20:59:32,227 [INFO] GET /students/ - 200 - 4.07ms
+2025-11-28 20:59:32,245 [INFO] GET /students/ - 200 - 3.55ms
+2025-11-28 20:59:32,263 [INFO] GET /students/ - 200 - 4.97ms
+2025-11-28 20:59:32,277 [INFO] GET /students/ - 200 - 3.74ms
+2025-11-28 20:59:32,293 [INFO] GET /students/ - 200 - 4.88ms
+2025-11-28 20:59:32,314 [INFO] GET /students/ - 200 - 8.22ms
+2025-11-28 20:59:32,319 [INFO] GET /students/ - 200 - 9.42ms
+2025-11-28 21:00:22,671 [INFO] Use pytorch device_name: mps
+2025-11-28 21:00:22,671 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 21:00:29,044 [INFO] 🧠 Using device: MPS
+2025-11-28 21:00:34,209 [INFO] Use pytorch device_name: mps
+2025-11-28 21:00:34,209 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 21:00:40,232 [INFO] 🧠 Using device: MPS
+2025-11-28 21:01:04,803 [INFO] OPTIONS /auth/me - 200 - 2.71ms
+2025-11-28 21:01:04,813 [INFO] OPTIONS /auth/me - 200 - 9.51ms
+2025-11-28 21:01:04,956 [INFO] GET /students/690860e3489b114c676d005d - 200 - 151.1ms
+2025-11-28 21:01:04,957 [INFO] GET /students/690860e3489b114c676d005d - 200 - 144.39ms
+2025-11-28 21:01:04,960 [INFO] GET /auth/me - 200 - 120.44ms
+2025-11-28 21:01:04,961 [INFO] GET /auth/me - 200 - 13.4ms
+2025-11-28 21:01:06,131 [INFO] OPTIONS /auth/me - 200 - 0.36ms
+2025-11-28 21:01:06,139 [INFO] GET /auth/me - 200 - 4.36ms
+2025-11-28 21:01:06,160 [INFO] OPTIONS /auth/me - 200 - 0.73ms
+2025-11-28 21:01:06,172 [INFO] GET /auth/me - 200 - 5.92ms
+2025-11-28 21:01:06,251 [INFO] OPTIONS /auth/me - 200 - 0.34ms
+2025-11-28 21:01:06,258 [INFO] GET /students - 307 - 4.43ms
+2025-11-28 21:01:06,261 [INFO] OPTIONS /auth/me - 200 - 2.89ms
+2025-11-28 21:01:06,261 [INFO] GET /students - 307 - 3.03ms
+2025-11-28 21:01:06,270 [INFO] GET /auth/me - 200 - 15.46ms
+2025-11-28 21:01:06,272 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 16.58ms
+2025-11-28 21:01:06,274 [INFO] GET /auth/me - 200 - 9.92ms
+2025-11-28 21:01:06,275 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 14.31ms
+2025-11-28 21:01:06,297 [INFO] GET /students - 307 - 0.84ms
+2025-11-28 21:01:06,303 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 6.88ms
+2025-11-28 21:01:06,311 [INFO] GET /students/ - 200 - 6.13ms
+2025-11-28 21:01:06,329 [INFO] GET /students/ - 200 - 7.17ms
+2025-11-28 21:01:06,345 [INFO] GET /students - 307 - 1.3ms
+2025-11-28 21:01:06,347 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 3.6ms
+2025-11-28 21:01:06,396 [INFO] GET /students/ - 200 - 3.88ms
+2025-11-28 21:01:06,447 [INFO] GET /students/ - 200 - 3.45ms
+2025-11-28 21:02:07,274 [INFO] Use pytorch device_name: mps
+2025-11-28 21:02:07,274 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 21:02:14,733 [INFO] 🧠 Using device: MPS
+2025-11-28 21:02:27,362 [INFO] Use pytorch device_name: mps
+2025-11-28 21:02:27,362 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 21:02:33,698 [INFO] 🧠 Using device: MPS
+2025-11-28 21:06:18,910 [INFO] OPTIONS /auth/me - 200 - 4.39ms
+2025-11-28 21:06:18,913 [INFO] OPTIONS /auth/me - 200 - 3.14ms
+2025-11-28 21:06:18,914 [INFO] OPTIONS /auth/me - 200 - 4.47ms
+2025-11-28 21:06:18,915 [INFO] OPTIONS /auth/me - 200 - 2.9ms
+2025-11-28 21:06:18,942 [INFO] GET /auth/me - 200 - 26.41ms
+2025-11-28 21:06:18,946 [INFO] GET /auth/me - 200 - 3.37ms
+2025-11-28 21:06:18,951 [INFO] GET /auth/me - 200 - 2.96ms
+2025-11-28 21:06:18,963 [INFO] GET /auth/me - 200 - 9.05ms
+2025-11-28 21:06:18,967 [INFO] GET /teachers - 307 - 0.38ms
+2025-11-28 21:06:18,999 [INFO] GET /teachers - 307 - 0.49ms
+2025-11-28 21:06:19,025 [INFO] GET /teachers - 307 - 0.47ms
+2025-11-28 21:06:19,046 [INFO] GET /teachers - 307 - 2.6ms
+2025-11-28 21:06:19,053 [INFO] GET /teachers/ - 200 - 10.22ms
+2025-11-28 21:06:19,068 [INFO] GET /teachers/ - 200 - 12.85ms
+2025-11-28 21:06:19,082 [INFO] GET /teachers/ - 200 - 11.98ms
+2025-11-28 21:06:19,119 [INFO] OPTIONS /auth/me - 200 - 18.03ms
+2025-11-28 21:06:19,129 [INFO] OPTIONS /auth/me - 200 - 10.33ms
+2025-11-28 21:06:19,132 [INFO] OPTIONS /auth/me - 200 - 8.85ms
+2025-11-28 21:06:19,135 [INFO] OPTIONS /auth/me - 200 - 9.86ms
+2025-11-28 21:06:19,152 [INFO] GET /teachers/ - 200 - 68.07ms
+2025-11-28 21:06:19,161 [INFO] GET /auth/me - 200 - 10.26ms
+2025-11-28 21:06:19,164 [INFO] GET /auth/me - 200 - 18.79ms
+2025-11-28 21:06:19,165 [INFO] GET /auth/me - 200 - 30.97ms
+2025-11-28 21:06:19,173 [INFO] GET /auth/me - 200 - 28.05ms
+2025-11-28 21:06:19,371 [INFO] GET /students - 307 - 107.22ms
+2025-11-28 21:06:19,375 [INFO] GET /students - 307 - 4.65ms
+2025-11-28 21:06:19,375 [INFO] GET /students - 307 - 4.85ms
+2025-11-28 21:06:19,381 [INFO] GET /students - 307 - 4.13ms
+2025-11-28 21:06:19,390 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 16.45ms
+2025-11-28 21:06:19,392 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 21.62ms
+2025-11-28 21:06:19,393 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 13.26ms
+2025-11-28 21:06:19,393 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 128.44ms
+2025-11-28 21:06:19,403 [INFO] GET /students/ - 200 - 19.09ms
+2025-11-28 21:06:19,410 [INFO] GET /students/ - 200 - 26.53ms
+2025-11-28 21:06:19,417 [INFO] GET /students/ - 200 - 23.59ms
+2025-11-28 21:06:19,418 [INFO] GET /students/ - 200 - 18.98ms
+2025-11-28 21:06:44,396 [INFO] GET /auth/me - 200 - 39.5ms
+2025-11-28 21:06:44,410 [INFO] GET /auth/me - 200 - 8.22ms
+2025-11-28 21:06:44,424 [INFO] GET /auth/me - 200 - 8.04ms
+2025-11-28 21:06:44,496 [INFO] GET /teachers - 307 - 65.27ms
+2025-11-28 21:06:44,510 [INFO] GET /teachers - 307 - 3.76ms
+2025-11-28 21:06:44,517 [INFO] GET /teachers - 307 - 2.72ms
+2025-11-28 21:06:44,518 [INFO] GET /auth/me - 200 - 92.07ms
+2025-11-28 21:06:44,540 [INFO] GET /teachers/ - 200 - 33.22ms
+2025-11-28 21:06:44,552 [INFO] GET /teachers - 307 - 2.49ms
+2025-11-28 21:06:44,572 [INFO] GET /teachers/ - 200 - 21.44ms
+2025-11-28 21:06:44,583 [INFO] GET /teachers/ - 200 - 8.38ms
+2025-11-28 21:06:44,602 [INFO] GET /teachers/ - 200 - 14.26ms
+2025-11-28 21:06:45,091 [INFO] OPTIONS /auth/me - 200 - 1.11ms
+2025-11-28 21:06:45,091 [INFO] OPTIONS /auth/me - 200 - 0.87ms
+2025-11-28 21:06:45,092 [INFO] OPTIONS /auth/me - 200 - 1.12ms
+2025-11-28 21:06:45,092 [INFO] OPTIONS /auth/me - 200 - 0.66ms
+2025-11-28 21:06:45,135 [INFO] GET /auth/me - 200 - 39.45ms
+2025-11-28 21:06:45,137 [INFO] GET /auth/me - 200 - 39.75ms
+2025-11-28 21:06:45,138 [INFO] GET /auth/me - 200 - 38.32ms
+2025-11-28 21:06:45,138 [INFO] GET /auth/me - 200 - 39.03ms
+2025-11-28 21:06:45,209 [INFO] GET /students - 307 - 2.42ms
+2025-11-28 21:06:45,215 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 8.07ms
+2025-11-28 21:06:45,272 [INFO] GET /students - 307 - 2.16ms
+2025-11-28 21:06:45,392 [INFO] GET /students - 307 - 37.64ms
+2025-11-28 21:06:45,394 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 117.97ms
+2025-11-28 21:06:45,394 [INFO] GET /students - 307 - 28.13ms
+2025-11-28 21:06:45,525 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 170.69ms
+2025-11-28 21:06:45,530 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 136.2ms
+2025-11-28 21:06:45,600 [INFO] GET /students/ - 200 - 205.6ms
+2025-11-28 21:06:45,626 [INFO] GET /students/ - 200 - 231.02ms
+2025-11-28 21:06:45,633 [INFO] GET /students/ - 200 - 114.94ms
+2025-11-28 21:06:45,639 [INFO] GET /students/ - 200 - 121.72ms
+2025-11-28 21:06:59,013 [INFO] GET /auth/me - 200 - 86.05ms
+2025-11-28 21:06:59,044 [INFO] GET /auth/me - 200 - 22.88ms
+2025-11-28 21:06:59,052 [INFO] GET /teachers - 307 - 1.54ms
+2025-11-28 21:06:59,056 [INFO] GET /auth/me - 200 - 7.9ms
+2025-11-28 21:06:59,061 [INFO] GET /auth/me - 200 - 3.09ms
+2025-11-28 21:06:59,122 [INFO] GET /teachers - 307 - 4.45ms
+2025-11-28 21:06:59,130 [INFO] GET /teachers - 307 - 6.06ms
+2025-11-28 21:06:59,149 [INFO] GET /teachers - 307 - 5.93ms
+2025-11-28 21:06:59,164 [INFO] GET /teachers/ - 200 - 46.05ms
+2025-11-28 21:06:59,187 [INFO] GET /teachers/ - 200 - 20.26ms
+2025-11-28 21:06:59,221 [INFO] GET /teachers/ - 200 - 31.62ms
+2025-11-28 21:06:59,241 [INFO] GET /teachers/ - 200 - 18.22ms
+2025-11-28 21:06:59,664 [INFO] OPTIONS /auth/me - 200 - 8.75ms
+2025-11-28 21:06:59,689 [INFO] OPTIONS /auth/me - 200 - 31.6ms
+2025-11-28 21:06:59,692 [INFO] OPTIONS /auth/me - 200 - 32.96ms
+2025-11-28 21:06:59,698 [INFO] OPTIONS /auth/me - 200 - 26.96ms
+2025-11-28 21:06:59,779 [INFO] GET /auth/me - 200 - 74.93ms
+2025-11-28 21:06:59,783 [INFO] GET /auth/me - 200 - 57.97ms
+2025-11-28 21:06:59,784 [INFO] GET /auth/me - 200 - 78.33ms
+2025-11-28 21:06:59,786 [INFO] GET /auth/me - 200 - 70.45ms
+2025-11-28 21:06:59,865 [INFO] GET /students - 307 - 5.56ms
+2025-11-28 21:06:59,872 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 11.53ms
+2025-11-28 21:06:59,901 [INFO] GET /students - 307 - 1.18ms
+2025-11-28 21:07:00,058 [INFO] GET /students - 307 - 53.22ms
+2025-11-28 21:07:00,089 [INFO] GET /students - 307 - 76.99ms
+2025-11-28 21:07:00,137 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 237.33ms
+2025-11-28 21:07:00,317 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 314.51ms
+2025-11-28 21:07:00,396 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 342.86ms
+2025-11-28 21:07:00,426 [INFO] GET /students/ - 200 - 279.21ms
+2025-11-28 21:07:00,427 [INFO] GET /students/ - 200 - 342.48ms
+2025-11-28 21:07:00,443 [INFO] GET /students/ - 200 - 294.52ms
+2025-11-28 21:07:00,445 [INFO] GET /students/ - 200 - 267.7ms
+2025-11-28 21:07:04,303 [INFO] GET /auth/me - 200 - 41.91ms
+2025-11-28 21:07:04,326 [INFO] GET /auth/me - 200 - 16.04ms
+2025-11-28 21:07:04,338 [INFO] GET /auth/me - 200 - 8.33ms
+2025-11-28 21:07:04,341 [INFO] GET /teachers - 307 - 1.79ms
+2025-11-28 21:07:04,344 [INFO] GET /auth/me - 200 - 3.28ms
+2025-11-28 21:07:04,388 [INFO] GET /teachers - 307 - 0.56ms
+2025-11-28 21:07:04,443 [INFO] GET /teachers - 307 - 30.62ms
+2025-11-28 21:07:04,449 [INFO] OPTIONS /auth/me - 200 - 7.28ms
+2025-11-28 21:07:04,451 [INFO] OPTIONS /auth/me - 200 - 9.08ms
+2025-11-28 21:07:04,454 [INFO] OPTIONS /auth/me - 200 - 11.04ms
+2025-11-28 21:07:04,465 [INFO] OPTIONS /auth/me - 200 - 21.77ms
+2025-11-28 21:07:04,488 [INFO] GET /teachers - 307 - 21.95ms
+2025-11-28 21:07:04,563 [INFO] GET /auth/me - 200 - 48.0ms
+2025-11-28 21:07:04,570 [INFO] GET /auth/me - 200 - 82.63ms
+2025-11-28 21:07:04,573 [INFO] GET /auth/me - 200 - 87.43ms
+2025-11-28 21:07:04,575 [INFO] GET /auth/me - 200 - 60.12ms
+2025-11-28 21:07:04,591 [INFO] GET /teachers/ - 200 - 177.82ms
+2025-11-28 21:07:04,608 [INFO] GET /teachers/ - 200 - 11.89ms
+2025-11-28 21:07:04,616 [INFO] GET /students - 307 - 0.81ms
+2025-11-28 21:07:04,619 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 3.21ms
+2025-11-28 21:07:04,622 [INFO] GET /teachers/ - 200 - 11.86ms
+2025-11-28 21:07:04,638 [INFO] GET /teachers/ - 200 - 13.19ms
+2025-11-28 21:07:04,651 [INFO] GET /students - 307 - 0.88ms
+2025-11-28 21:07:04,658 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 7.96ms
+2025-11-28 21:07:04,673 [INFO] GET /students - 307 - 1.53ms
+2025-11-28 21:07:04,680 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 8.14ms
+2025-11-28 21:07:04,716 [INFO] GET /students - 307 - 6.49ms
+2025-11-28 21:07:04,723 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 9.78ms
+2025-11-28 21:07:04,749 [INFO] GET /students/ - 200 - 13.36ms
+2025-11-28 21:07:04,856 [INFO] GET /students/ - 200 - 28.79ms
+2025-11-28 21:07:04,856 [INFO] GET /students/ - 200 - 15.72ms
+2025-11-28 21:07:04,858 [INFO] GET /students/ - 200 - 18.02ms
+2025-11-28 21:07:42,717 [INFO] GET /auth/me - 200 - 99.62ms
+2025-11-28 21:07:42,724 [INFO] GET /auth/me - 200 - 3.08ms
+2025-11-28 21:07:42,734 [INFO] GET /auth/me - 200 - 7.3ms
+2025-11-28 21:07:42,740 [INFO] GET /auth/me - 200 - 2.69ms
+2025-11-28 21:07:42,743 [INFO] GET /teachers - 307 - 0.58ms
+2025-11-28 21:07:42,778 [INFO] GET /teachers - 307 - 0.63ms
+2025-11-28 21:07:42,807 [INFO] GET /teachers - 307 - 0.51ms
+2025-11-28 21:07:42,829 [INFO] GET /teachers - 307 - 1.33ms
+2025-11-28 21:07:42,838 [INFO] GET /teachers/ - 200 - 9.51ms
+2025-11-28 21:07:42,850 [INFO] GET /teachers/ - 200 - 9.76ms
+2025-11-28 21:07:42,861 [INFO] GET /teachers/ - 200 - 9.29ms
+2025-11-28 21:07:42,876 [INFO] GET /teachers/ - 200 - 11.97ms
+2025-11-28 21:07:43,422 [INFO] OPTIONS /auth/me - 200 - 0.29ms
+2025-11-28 21:07:43,423 [INFO] OPTIONS /auth/me - 200 - 0.29ms
+2025-11-28 21:07:43,441 [INFO] OPTIONS /auth/me - 200 - 4.78ms
+2025-11-28 21:07:43,442 [INFO] OPTIONS /auth/me - 200 - 1.93ms
+2025-11-28 21:07:43,450 [INFO] GET /auth/me - 200 - 25.13ms
+2025-11-28 21:07:43,451 [INFO] GET /auth/me - 200 - 17.28ms
+2025-11-28 21:07:43,452 [INFO] GET /auth/me - 200 - 8.73ms
+2025-11-28 21:07:43,453 [INFO] GET /auth/me - 200 - 4.19ms
+2025-11-28 21:07:43,534 [INFO] GET /students - 307 - 1.24ms
+2025-11-28 21:07:43,541 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 7.74ms
+2025-11-28 21:07:43,614 [INFO] GET /students - 307 - 11.59ms
+2025-11-28 21:07:43,672 [INFO] GET /students - 307 - 39.77ms
+2025-11-28 21:07:43,673 [INFO] GET /students - 307 - 11.71ms
+2025-11-28 21:07:43,797 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 206.31ms
+2025-11-28 21:07:43,798 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 144.75ms
+2025-11-28 21:07:43,837 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 166.66ms
+2025-11-28 21:07:43,863 [INFO] GET /students/ - 200 - 190.06ms
+2025-11-28 21:07:43,865 [INFO] GET /students/ - 200 - 146.58ms
+2025-11-28 21:07:43,867 [INFO] GET /students/ - 200 - 163.03ms
+2025-11-28 21:07:43,917 [INFO] GET /students/ - 200 - 80.33ms
+2025-11-28 21:19:54,144 [INFO] OPTIONS /auth/me - 200 - 1.9ms
+2025-11-28 21:19:54,153 [INFO] OPTIONS /auth/me - 200 - 8.92ms
+2025-11-28 21:19:54,157 [INFO] OPTIONS /auth/me - 200 - 13.02ms
+2025-11-28 21:19:54,158 [INFO] OPTIONS /auth/me - 200 - 9.47ms
+2025-11-28 21:19:54,268 [INFO] GET /auth/me - 200 - 109.62ms
+2025-11-28 21:19:54,276 [INFO] GET /auth/me - 200 - 6.32ms
+2025-11-28 21:19:54,291 [INFO] GET /auth/me - 200 - 11.18ms
+2025-11-28 21:19:54,302 [INFO] GET /teachers - 307 - 7.33ms
+2025-11-28 21:19:54,308 [INFO] GET /auth/me - 200 - 8.06ms
+2025-11-28 21:19:54,337 [INFO] GET /teachers - 307 - 0.58ms
+2025-11-28 21:19:54,357 [INFO] GET /teachers - 307 - 1.46ms
+2025-11-28 21:19:54,365 [INFO] GET /teachers/ - 200 - 8.81ms
+2025-11-28 21:19:54,375 [INFO] GET /teachers - 307 - 2.07ms
+2025-11-28 21:19:54,382 [INFO] GET /teachers/ - 200 - 7.88ms
+2025-11-28 21:19:54,425 [INFO] GET /teachers/ - 200 - 40.22ms
+2025-11-28 21:19:54,443 [INFO] GET /teachers/ - 200 - 15.87ms
+2025-11-28 21:20:21,684 [INFO] OPTIONS /auth/me - 200 - 8.98ms
+2025-11-28 21:20:21,689 [INFO] OPTIONS /auth/me - 200 - 6.05ms
+2025-11-28 21:20:21,717 [INFO] GET /students/690860e3489b114c676d005d - 200 - 31.75ms
+2025-11-28 21:20:21,717 [INFO] GET /students/690860e3489b114c676d005d - 200 - 41.32ms
+2025-11-28 21:20:21,725 [INFO] GET /auth/me - 200 - 33.75ms
+2025-11-28 21:20:21,728 [INFO] GET /auth/me - 200 - 33.53ms
+2025-11-28 21:20:23,041 [INFO] OPTIONS /auth/me - 200 - 0.16ms
+2025-11-28 21:20:23,054 [INFO] GET /auth/me - 200 - 10.55ms
+2025-11-28 21:20:23,094 [INFO] OPTIONS /auth/me - 200 - 11.81ms
+2025-11-28 21:20:23,107 [INFO] GET /auth/me - 200 - 6.51ms
+2025-11-28 21:20:23,190 [INFO] OPTIONS /auth/me - 200 - 0.87ms
+2025-11-28 21:20:23,194 [INFO] OPTIONS /auth/me - 200 - 1.03ms
+2025-11-28 21:20:23,195 [INFO] GET /students - 307 - 2.31ms
+2025-11-28 21:20:23,199 [INFO] GET /students - 307 - 4.37ms
+2025-11-28 21:20:23,208 [INFO] GET /auth/me - 200 - 7.93ms
+2025-11-28 21:20:23,209 [INFO] GET /auth/me - 200 - 14.7ms
+2025-11-28 21:20:23,210 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 16.57ms
+2025-11-28 21:20:23,210 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 11.79ms
+2025-11-28 21:20:23,238 [INFO] GET /students - 307 - 1.36ms
+2025-11-28 21:20:23,244 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 6.21ms
+2025-11-28 21:20:23,245 [INFO] GET /students/ - 200 - 4.65ms
+2025-11-28 21:20:23,275 [INFO] GET /students - 307 - 0.82ms
+2025-11-28 21:20:23,278 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 3.3ms
+2025-11-28 21:20:23,299 [INFO] GET /students/ - 200 - 5.71ms
+2025-11-28 21:20:23,328 [INFO] GET /students/ - 200 - 6.81ms
+2025-11-28 21:20:23,360 [INFO] GET /students/ - 200 - 4.32ms
+2025-11-28 21:20:36,835 [INFO] GET /auth/me - 200 - 7.41ms
+2025-11-28 21:20:36,844 [INFO] GET /auth/me - 200 - 6.54ms
+2025-11-28 21:20:36,853 [INFO] GET /auth/me - 200 - 7.39ms
+2025-11-28 21:20:36,877 [INFO] GET /auth/me - 200 - 16.6ms
+2025-11-28 21:20:36,894 [INFO] GET /teachers - 307 - 2.97ms
+2025-11-28 21:20:36,964 [INFO] GET /teachers - 307 - 1.97ms
+2025-11-28 21:20:36,995 [INFO] GET /teachers - 307 - 0.44ms
+2025-11-28 21:20:37,020 [INFO] GET /teachers - 307 - 1.84ms
+2025-11-28 21:20:37,050 [INFO] GET /teachers/ - 200 - 29.99ms
+2025-11-28 21:20:37,063 [INFO] GET /teachers/ - 200 - 9.81ms
+2025-11-28 21:20:37,078 [INFO] GET /teachers/ - 200 - 11.63ms
+2025-11-28 21:20:37,121 [INFO] GET /teachers/ - 200 - 38.98ms
+2025-11-28 21:21:17,608 [INFO] OPTIONS /auth/me - 200 - 3.81ms
+2025-11-28 21:21:17,635 [INFO] GET /students - 307 - 27.76ms
+2025-11-28 21:21:17,677 [INFO] GET /teachers - 307 - 2.53ms
+2025-11-28 21:21:17,857 [INFO] GET /students/690860e3489b114c676d005d/landing-page-analytics - 200 - 181.34ms
+2025-11-28 21:21:17,886 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 278.19ms
+2025-11-28 21:21:17,923 [INFO] GET /auth/me - 200 - 264.14ms
+2025-11-28 21:21:17,925 [INFO] GET /auth/me - 200 - 248.16ms
+2025-11-28 21:21:18,055 [INFO] GET /teachers - 307 - 2.95ms
+2025-11-28 21:21:18,269 [INFO] GET /students/ - 200 - 431.83ms
+2025-11-28 21:21:18,270 [INFO] GET /students - 307 - 0.67ms
+2025-11-28 21:21:18,308 [INFO] GET /teachers/ - 200 - 616.89ms
+2025-11-28 21:21:18,324 [INFO] GET /students/690860e3489b114c676d005d/landing-page-analytics - 200 - 270.12ms
+2025-11-28 21:21:18,338 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 44.29ms
+2025-11-28 21:21:18,422 [INFO] GET /teachers/ - 200 - 108.28ms
+2025-11-28 21:21:18,622 [INFO] GET /students/ - 200 - 46.6ms
+2025-11-28 21:22:16,228 [INFO] GET /auth/me - 200 - 13.33ms
+2025-11-28 21:22:16,246 [INFO] GET /auth/me - 200 - 13.56ms
+2025-11-28 21:22:16,269 [INFO] GET /auth/me - 200 - 16.07ms
+2025-11-28 21:22:16,285 [INFO] GET /auth/me - 200 - 7.73ms
+2025-11-28 21:22:48,963 [INFO] GET /teachers - 307 - 16.18ms
+2025-11-28 21:22:48,970 [INFO] GET /teachers - 307 - 0.84ms
+2025-11-28 21:22:48,975 [INFO] GET /auth/me - 200 - 40.8ms
+2025-11-28 21:22:48,992 [INFO] GET /students/690860e3489b114c676d005d/landing-page-analytics - 200 - 38.54ms
+2025-11-28 21:22:49,085 [INFO] GET /auth/me - 200 - 93.05ms
+2025-11-28 21:22:49,162 [INFO] GET /students/690860e3489b114c676d005d/landing-page-analytics - 200 - 166.3ms
+2025-11-28 21:22:49,378 [INFO] GET /teachers - 307 - 26.54ms
+2025-11-28 21:22:49,412 [INFO] GET /teachers/ - 200 - 418.49ms
+2025-11-28 21:22:49,500 [INFO] GET /auth/me - 200 - 402.51ms
+2025-11-28 21:22:49,563 [INFO] GET /students/690860e3489b114c676d005d/landing-page-analytics - 200 - 212.15ms
+2025-11-28 21:22:49,591 [INFO] GET /auth/me - 200 - 29.3ms
+2025-11-28 21:22:49,620 [INFO] GET /teachers - 307 - 1.4ms
+2025-11-28 21:22:49,683 [INFO] GET /teachers/ - 200 - 198.42ms
+2025-11-28 21:22:49,692 [INFO] GET /students/690860e3489b114c676d005d/landing-page-analytics - 200 - 57.37ms
+2025-11-28 21:22:49,801 [INFO] GET /teachers/ - 200 - 15.47ms
+2025-11-28 21:22:49,857 [INFO] GET /teachers - 307 - 2.56ms
+2025-11-28 21:22:49,861 [INFO] GET /students/690860e3489b114c676d005d/landing-page-analytics - 200 - 6.03ms
+2025-11-28 21:22:49,945 [INFO] GET /teachers - 307 - 0.58ms
+2025-11-28 21:22:49,950 [INFO] GET /students/690860e3489b114c676d005d/landing-page-analytics - 200 - 4.76ms
+2025-11-28 21:22:49,994 [INFO] GET /teachers/ - 200 - 8.82ms
+2025-11-28 21:22:50,090 [INFO] GET /teachers/ - 200 - 9.02ms
+2025-11-28 21:22:50,118 [INFO] GET /teachers/ - 200 - 7.68ms
+2025-11-28 21:23:54,644 [INFO] Use pytorch device_name: mps
+2025-11-28 21:23:54,644 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 21:24:01,585 [INFO] 🧠 Using device: MPS
+2025-11-28 21:24:07,176 [INFO] Use pytorch device_name: mps
+2025-11-28 21:24:07,176 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 21:24:12,801 [INFO] 🧠 Using device: MPS
+2025-11-28 21:24:13,081 [INFO] GET /auth/me - 200 - 13.93ms
+2025-11-28 21:24:13,097 [INFO] GET /auth/me - 200 - 5.41ms
+2025-11-28 21:24:13,107 [INFO] GET /auth/me - 200 - 5.19ms
+2025-11-28 21:24:13,114 [INFO] GET /auth/me - 200 - 5.66ms
+2025-11-28 21:24:13,148 [INFO] GET /teachers - 307 - 0.85ms
+2025-11-28 21:24:13,171 [INFO] GET /students/690860e3489b114c676d005d/landing-page-analytics - 200 - 24.56ms
+2025-11-28 21:24:13,243 [INFO] GET /teachers - 307 - 9.33ms
+2025-11-28 21:24:13,279 [INFO] GET /teachers - 307 - 4.01ms
+2025-11-28 21:24:13,289 [INFO] GET /teachers - 307 - 0.77ms
+2025-11-28 21:24:13,291 [INFO] GET /students/690860e3489b114c676d005d/landing-page-analytics - 200 - 56.23ms
+2025-11-28 21:24:13,311 [INFO] GET /students/690860e3489b114c676d005d/landing-page-analytics - 200 - 18.3ms
+2025-11-28 21:24:13,321 [INFO] GET /teachers/ - 200 - 31.91ms
+2025-11-28 21:24:13,325 [INFO] GET /students/690860e3489b114c676d005d/landing-page-analytics - 200 - 9.46ms
+2025-11-28 21:24:13,339 [INFO] GET /teachers/ - 200 - 16.27ms
+2025-11-28 21:24:13,350 [INFO] GET /teachers/ - 200 - 8.31ms
+2025-11-28 21:24:13,361 [INFO] GET /teachers/ - 200 - 7.95ms
+2025-11-28 21:24:48,853 [INFO] OPTIONS /auth/me - 200 - 2.26ms
+2025-11-28 21:24:49,198 [INFO] GET /students - 307 - 345.55ms
+2025-11-28 21:24:49,226 [INFO] GET /teachers - 307 - 9.86ms
+2025-11-28 21:24:49,264 [INFO] GET /auth/me - 200 - 63.79ms
+2025-11-28 21:24:49,265 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 412.15ms
+2025-11-28 21:24:49,270 [INFO] GET /students/690860e3489b114c676d005d/landing-page-analytics - 200 - 46.43ms
+2025-11-28 21:24:49,275 [INFO] GET /auth/me - 200 - 59.17ms
+2025-11-28 21:24:49,280 [INFO] GET /students/ - 200 - 56.97ms
+2025-11-28 21:24:49,295 [INFO] GET /teachers/ - 200 - 61.8ms
+2025-11-28 21:24:49,304 [INFO] GET /teachers - 307 - 0.37ms
+2025-11-28 21:24:49,322 [INFO] GET /students/690860e3489b114c676d005d/landing-page-analytics - 200 - 13.97ms
+2025-11-28 21:24:49,329 [INFO] GET /students - 307 - 1.27ms
+2025-11-28 21:24:49,333 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277/landing-page-analytics - 200 - 4.39ms
+2025-11-28 21:24:49,368 [INFO] GET /teachers/ - 200 - 6.83ms
+2025-11-28 21:24:49,394 [INFO] GET /students/ - 200 - 6.74ms
+2025-11-28 21:25:28,427 [INFO] OPTIONS /auth/me - 200 - 2.88ms
+2025-11-28 21:25:28,440 [INFO] OPTIONS /auth/me - 200 - 3.81ms
+2025-11-28 21:25:28,477 [INFO] GET /students/690860e3489b114c676d005d - 200 - 39.72ms
+2025-11-28 21:25:28,481 [INFO] GET /auth/me - 200 - 22.04ms
+2025-11-28 21:25:28,484 [INFO] GET /auth/me - 200 - 40.7ms
+2025-11-28 21:25:28,486 [INFO] GET /students/690860e3489b114c676d005d - 200 - 58.47ms
+2025-11-28 21:25:31,084 [INFO] GET /teachers/student-analytics/690860e3489b114c676d005d - 200 - 4.64ms
+2025-11-28 21:25:37,178 [INFO] OPTIONS /auth/me - 200 - 12.15ms
+2025-11-28 21:25:37,214 [INFO] OPTIONS /auth/me - 200 - 36.84ms
+2025-11-28 21:25:37,238 [INFO] GET /coachings - 307 - 59.73ms
+2025-11-28 21:25:37,262 [INFO] GET /coachings - 307 - 57.06ms
+2025-11-28 21:25:37,347 [INFO] GET /coachings/ - 200 - 22.31ms
+2025-11-28 21:25:37,351 [INFO] GET /coachings/ - 200 - 29.63ms
+2025-11-28 21:25:37,352 [INFO] GET /auth/me - 200 - 98.83ms
+2025-11-28 21:25:37,352 [INFO] GET /auth/me - 200 - 67.65ms
+2025-11-28 21:25:38,669 [INFO] OPTIONS /auth/me - 200 - 0.53ms
+2025-11-28 21:25:38,671 [INFO] OPTIONS /auth/me - 200 - 0.57ms
+2025-11-28 21:25:38,674 [INFO] GET /students - 307 - 1.55ms
+2025-11-28 21:25:38,674 [INFO] GET /students - 307 - 1.7ms
+2025-11-28 21:25:38,677 [INFO] GET /auth/me - 200 - 4.02ms
+2025-11-28 21:25:38,677 [INFO] GET /auth/me - 200 - 5.08ms
+2025-11-28 21:25:38,701 [INFO] GET /students - 307 - 1.09ms
+2025-11-28 21:25:38,708 [INFO] GET /students/ - 200 - 4.14ms
+2025-11-28 21:25:38,718 [INFO] GET /students - 307 - 3.18ms
+2025-11-28 21:25:38,725 [INFO] GET /students/ - 200 - 8.94ms
+2025-11-28 21:25:38,726 [INFO] GET /students/ - 200 - 6.14ms
+2025-11-28 21:25:38,737 [INFO] GET /students/ - 200 - 6.63ms

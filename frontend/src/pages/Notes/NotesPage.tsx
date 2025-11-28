@@ -215,31 +215,19 @@ export const NotesPage: React.FC = () => {
 
           {/* Upload Modal */}
           {showUploadBox && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fadeIn">
-              <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[85vh] flex flex-col overflow-hidden animate-scaleIn">
-                <button
-                  onClick={() => setShowUploadBox(false)}
-                  className="absolute top-6 right-6 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-all duration-300 hover:rotate-90"
-                >
-                  <i className="fi fi-br-cross text-gray-600" />
-                </button>
 
-                <div className="p-8 text-center border-b border-gray-100">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-violet-100 to-blue-100 flex items-center justify-center mx-auto mb-4">
-                    <i className="fi fi-br-upload text-violet text-2xl" />
-                  </div>
-                  <h2 className="text-2xl font-bold text-gray-800">
-                    Upload Study Material
-                  </h2>
-                  <p className="text-gray-500 mt-2">
-                    Add your notes, PDFs, or documents
-                  </p>
-                </div>
-
-                <div className="flex-1 overflow-y-auto p-8">
-                  <UploadBox isOpen={showUploadBox} onClose={() => setShowUploadBox(false)} />
-                </div>
-              </div>
+            <div className="flex-1 overflow-y-auto p-8">
+              <UploadBox
+                isOpen={showUploadBox}
+                onClose={() => setShowUploadBox(false)}
+                onUploadSuccess={() => {
+                  if (user) {
+                    dispatch(fetchDocuments({
+                      user_ids: [user?._id || ''],
+                    }));
+                  }
+                }}
+              />
             </div>
           )}
         </div>

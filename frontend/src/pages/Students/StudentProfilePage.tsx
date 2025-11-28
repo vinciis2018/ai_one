@@ -207,7 +207,7 @@ export function StudentProfilePage() {
                       </div>
                       <h3 className="font-semibold text-gray-700">Quizzes</h3>
                     </div>
-                    <p className="text-3xl font-bold text-gray-900">{student_analytics.quiz_metrics?.total_micro_quizes || 0}</p>
+                    <p className="text-3xl font-bold text-gray-900">{student_analytics.quiz_metrics?.total_micro_quizzes || 0}</p>
                     <p className="text-sm text-gray-500 mt-1">Micro quizzes</p>
                   </div>
 

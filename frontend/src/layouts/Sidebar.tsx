@@ -45,11 +45,11 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
       ${!isMobile && "w-16"} flex-shrink-0
     `}>
       {view && (
-        <aside onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)} className="overflow-y-auto h-full">
+        <aside onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)} className="overflow-y-auto h-full ">
           <nav
-            className={`py-2 pl-2 fixed inset-y-0 left-0 ${getWidthClass()} 
+            className={`pt-2 pl-2 fixed inset-y-0 left-0 ${getWidthClass()} 
             ${theme === "dark" ? "bg-black" : "bg-white"}
-            transition-all duration-300 ease-in-out mt-12 mb-8 z-40 flex flex-col justify-between`}
+            transition-all duration-300 ease-in-out mt-12 z-40 flex flex-col justify-between`}
           >
             <ul className="ml-1 mt-4 space-y-1 ">
               <li className="">
@@ -151,7 +151,7 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
             </ul>
 
             {/* Bottom Section */}
-            <ul className="ml-1 space-y-1">
+            <ul className="ml-1 space-y-1 mb-8">
               <li>
                 <NavLink
                   to="/notes"

@@ -38,7 +38,7 @@ export function FullLayout({ children, footer = null }: FullLayoutProps) {
       {/* Fixed Header */}
       <Header onMenuClick={toggleSidebar} isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} isMobile={isMobile} />
 
-      <div className="h-full flex flex-1 overflow-hidden py-8">
+      <div className="h-full flex flex-1 overflow-hidden pt-8">
         {/* Sidebar - Fixed on mobile, sticky on desktop */}
         <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} isMobile={isMobile} setIsOpen={setIsSidebarOpen} />
         {/* Main Content */}
@@ -53,7 +53,7 @@ export function FullLayout({ children, footer = null }: FullLayoutProps) {
         </div>
       </div>
       {/* Footer */}
-      <Footer className="border-red">
+      <Footer className="">
         {footer}
       </Footer>
 

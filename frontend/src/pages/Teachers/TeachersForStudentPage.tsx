@@ -190,32 +190,48 @@ export const TeachersForStudentPage: React.FC = () => {
                       </div>
 
                       {/* Action Button */}
-                      <button
-                        className={`w-full py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 ${teacher.students?.includes(user?.student_id as string)
-                            ? 'bg-green2 text-white hover:bg-green-600 shadow-md hover:shadow-lg'
-                            : 'bg-white border-2 border-green2 text-green2 hover:bg-green2 hover:text-white'
-                          }`}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (teacher.students?.includes(user?.student_id as string)) {
-                            navigate(`/teacher/chats/${teacher?.user_id}/${user?._id}`);
-                          } else {
-                            handleAddSelfAsStudentToTeacher(teacher?.id as string);
-                          }
-                        }}
-                      >
-                        {teacher.students?.includes(user?.student_id as string) ? (
-                          <span className="flex items-center justify-center gap-2">
-                            <i className="fi fi-rr-comment-alt"></i>
-                            Chat Now
-                          </span>
-                        ) : (
-                          <span className="flex items-center justify-center gap-2">
-                            <i className="fi fi-rr-plus"></i>
-                            Join Class
-                          </span>
+                      
+                      {/* Action Buttons */}
+                      <div className="flex gap-2">
+                        <button
+                          className={`w-full py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 ${teacher.students?.includes(user?.student_id as string)
+                              ? 'bg-green2 text-white hover:bg-green-600 shadow-md hover:shadow-lg'
+                              : 'bg-white border-2 border-green2 text-green2 hover:bg-green2 hover:text-white'
+                            }`}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (teacher.students?.includes(user?.student_id as string)) {
+                              navigate(`/teacher/chats/${teacher?.user_id}/${user?._id}`);
+                            } else {
+                              handleAddSelfAsStudentToTeacher(teacher?.id as string);
+                            }
+                          }}
+                        >
+                          {teacher.students?.includes(user?.student_id as string) ? (
+                            <span className="flex items-center justify-center gap-2">
+                              <i className="fi fi-rr-comment-alt"></i>
+                              Chat Now
+                            </span>
+                          ) : (
+                            <span className="flex items-center justify-center gap-2">
+                              <i className="fi fi-rr-plus"></i>
+                              Join Class
+                            </span>
+                          )}
+                        </button>
+                        {teacher.students?.includes(user?.student_id as string) && (
+                          <button
+                            className="px-4 py-2.5 bg-white border-2 border-slate-200 text-slate-700 rounded-xl font-semibold text-sm transition-all duration-300 hover:border-green2 hover:text-green2 flex items-center justify-center"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(`/teacher/profile/${teacher?.user_id}`);
+                            }}
+                          >
+                            <i className="fi fi-rr-user"></i>
+                          </button>
                         )}
-                      </button>
+                        
+                      </div>
                     </div>
                   ))}
                 </div>

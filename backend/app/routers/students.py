@@ -8,6 +8,7 @@ from fastapi import APIRouter, HTTPException, Query
 from pymongo import DESCENDING
 from app.config.db import db, get_collection
 from bson import ObjectId
+from app.helper.analytics_helper import aggregate_student_landing_page_stats
 
 router = APIRouter()
 
@@ -157,4 +158,32 @@ async def get_student_details(
         raise HTTPException(
             status_code=500,
             detail=f"Error fetching student details: {str(e)}"
+        )
+
+
+
+@router.get("/{student_id}/landing-page-analytics")
+async def get_landing_page_analytics(
+    student_id: str,
+    days: int = Query(30, description="Number of days to look back")
+):
+    """
+    Get analytics for a specific student based on their knowledge graph.
+    """
+    try:
+        # Validate student_id format
+        try:
+            student_oid = ObjectId(student_id)
+        except:
+            raise HTTPException(status_code=400, detail="Invalid student ID format")
+        
+        stats = await aggregate_student_landing_page_stats(student_oid, days)
+        return stats
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"Error in get_landing_page_analytics: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error fetching student analytics: {str(e)}"
         )

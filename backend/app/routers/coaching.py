@@ -77,6 +77,7 @@ async def list_institute_teachers(
     try:
         # Verify institute exists
         coaching = await db["organisations"].find_one({"_id": ObjectId(coaching_id)})
+
         if not coaching:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
@@ -85,8 +86,11 @@ async def list_institute_teachers(
         
         # Get all teachers for this coaching
         teacher_ids = [ObjectId(tid) for tid in coaching.get("teachers", [])]
+
         cursor = db["teachers"].find({"_id": {"$in": teacher_ids}})
+
         teachers = await cursor.to_list(None)
+        print("teachers", teachers)
         
         # Convert ObjectId to string for response
         for teacher in teachers:
@@ -99,6 +103,13 @@ async def list_institute_teachers(
                 teacher["subjects"] = []
             if "documents" in teacher and not teacher["documents"]:
                 teacher["documents"] = []
+            # Handle classrooms - they are stored as embedded documents, not ObjectId references
+            # Convert them to a list of classroom IDs for the response model
+            if "classrooms" in teacher and teacher["classrooms"]:
+                # Extract just the _id from each classroom object
+                teacher["classrooms"] = [classroom.get("_id") for classroom in teacher["classrooms"] if classroom.get("_id")]
+            else:
+                teacher["classrooms"] = []
         
         return teachers
 
@@ -142,7 +153,13 @@ async def list_institute_students(
                 student["subjects"] = []
             if "documents" in student and not student["documents"]:
                 student["documents"] = []
-
+            # Handle classrooms - they are stored as embedded documents, not ObjectId references
+            # Convert them to a list of classroom IDs for the response model
+            if "classrooms" in student and student["classrooms"]:
+                # Extract just the _id from each classroom object
+                student["classrooms"] = [classroom.get("_id") for classroom in student["classrooms"] if classroom.get("_id")]
+            else:
+                student["classrooms"] = []
         return students
 
     except Exception as e:

@@ -32,7 +32,7 @@ class TeacherModel(BaseModel):
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
     syllabus: Optional[Dict[str, Any]] = None
-    classrooms: List[PyObjectId] = []
+    classrooms: Optional[List[PyObjectId]] = None
     calendar: Optional[Dict[str, Any]] = None  # For class scheduling and Google Calendar integration
 
 
@@ -84,7 +84,7 @@ class StudentModel(BaseModel):
     email: EmailStr
     subjects: List[str] = []
     documents: List[DocumentAccess] = []
-    classrooms: List[PyObjectId] = []
+    classrooms: Optional[List[PyObjectId]] = None
     teachers: List[str] = []
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)

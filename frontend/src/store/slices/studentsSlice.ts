@@ -33,6 +33,7 @@ interface StudentState {
   loading: boolean;
   error: string | null;
   success: boolean;
+  student_landing_page_analytics: any | null;
 }
 
 const initialState: StudentState = {
@@ -41,6 +42,7 @@ const initialState: StudentState = {
   loading: false,
   error: null,
   success: false,
+  student_landing_page_analytics: null
 };
 
 // Student-specific thunks
@@ -77,6 +79,21 @@ export const getAllStudents = createAsyncThunk<
     }
   }
 );
+
+
+export const getStudentLandingPageAnalytics = createAsyncThunk<any, string>(
+  'students/getStudentLandingPageAnalytics',
+  async (student_user_id: string, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`${BASE_URL}/students/${student_user_id}/landing-page-analytics`);
+      return response.data;
+    } catch (error: unknown) {
+      const axiosError = error as unknown as { response?: { data?: { detail?: string } } };
+      return rejectWithValue(axiosError.response?.data?.detail || 'Failed to load student analytics');
+    }
+  }
+);
+
 
 const studentsSlice = createSlice({
   name: 'students',
@@ -120,6 +137,20 @@ const studentsSlice = createSlice({
         state.all_students = action.payload.students;
       })
       .addCase(getAllStudents.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      })
+
+      // Get landing page Analytics
+      .addCase(getStudentLandingPageAnalytics.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getStudentLandingPageAnalytics.fulfilled, (state, action) => {
+        state.loading = false;
+        state.student_landing_page_analytics = action.payload;
+      })
+      .addCase(getStudentLandingPageAnalytics.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       });

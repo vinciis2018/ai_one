@@ -9,8 +9,8 @@ import NeuronAnimation from "../../components/NeuronAnimation";
 import { FeaturesSection } from "./FeaturesSection";
 import { QueryModal } from "../../components/popups/QueryModal";
 import { useAppDispatch, useAppSelector } from "../../store";
-import { getAllTeachers, type TeacherModel } from "../../store/slices/teachersSlice";
-import { getAllStudents, type StudentModel } from "../../store/slices/studentsSlice";
+import { getAllTeachers, getTeacherLandingPageAnalytics, type TeacherModel } from "../../store/slices/teachersSlice";
+import { getAllStudents, getStudentLandingPageAnalytics, type StudentModel } from "../../store/slices/studentsSlice";
 import { useNavigate } from "react-router-dom";
 
 export const LandingPage: React.FC = () => {
@@ -18,9 +18,8 @@ export const LandingPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.auth);
-  const { all_teachers } = useAppSelector((state) => state.teachers);
-  const { all_students } = useAppSelector((state) => state.students);
-  const { documents } = useAppSelector((state) => state.documents);
+  const { all_teachers, teacher_landing_page_analytics } = useAppSelector((state) => state.teachers);
+  const { all_students, student_landing_page_analytics } = useAppSelector((state) => state.students);
 
   useEffect(() => {
     if (user?.student_id) {
@@ -30,6 +29,7 @@ export const LandingPage: React.FC = () => {
         limit: 1000,
         search: ''
       }));
+      dispatch(getStudentLandingPageAnalytics(user._id as string));
     }
     if (user?.teacher_id) {
       dispatch(getAllStudents({
@@ -38,6 +38,7 @@ export const LandingPage: React.FC = () => {
         limit: 1000,
         search: ''
       }));
+      dispatch(getTeacherLandingPageAnalytics(user._id as string));
     }
   }, [dispatch, user]);
 
@@ -115,7 +116,7 @@ export const LandingPage: React.FC = () => {
                         <i className="fi fi-rr-users-alt text-blue-600 text-xl"></i>
                       </div>
                       <div>
-                        <p className="text-2xl font-bold text-slate-900">{myStudents.length}</p>
+                        <p className="text-2xl font-bold text-slate-900">{teacher_landing_page_analytics?.total_students}</p>
                         <p className="text-sm text-slate-500">Students</p>
                       </div>
                     </div>
@@ -126,7 +127,7 @@ export const LandingPage: React.FC = () => {
                         <i className="fi fi-rr-document text-green-600 text-xl"></i>
                       </div>
                       <div>
-                        <p className="text-2xl font-bold text-slate-900">{documents.length}</p>
+                        <p className="text-2xl font-bold text-slate-900">{teacher_landing_page_analytics?.total_documents}</p>
                         <p className="text-sm text-slate-500">Documents</p>
                       </div>
                     </div>
@@ -137,8 +138,8 @@ export const LandingPage: React.FC = () => {
                         <i className="fi fi-rr-comment-alt text-purple-600 text-xl"></i>
                       </div>
                       <div>
-                        <p className="text-2xl font-bold text-slate-900">-</p>
-                        <p className="text-sm text-slate-500">Active Chats</p>
+                        <p className="text-2xl font-bold text-slate-900">{teacher_landing_page_analytics?.total_chats}</p>
+                        <p className="text-sm text-slate-500">Chats</p>
                       </div>
                     </div>
                   </div>
@@ -148,8 +149,8 @@ export const LandingPage: React.FC = () => {
                         <i className="fi fi-rr-sparkles text-orange-600 text-xl"></i>
                       </div>
                       <div>
-                        <p className="text-2xl font-bold text-slate-900">-</p>
-                        <p className="text-sm text-slate-500">AI Responses</p>
+                        <p className="text-2xl font-bold text-slate-900">{teacher_landing_page_analytics?.total_conversations}</p>
+                        <p className="text-sm text-slate-500">AI Response</p>
                       </div>
                     </div>
                   </div>
@@ -271,7 +272,7 @@ export const LandingPage: React.FC = () => {
                         <i className="fi fi-rr-graduation-cap text-blue-600 text-xl"></i>
                       </div>
                       <div>
-                        <p className="text-2xl font-bold text-slate-900">{joinedTeachers.length}</p>
+                        <p className="text-2xl font-bold text-slate-900">{student_landing_page_analytics?.total_teachers}</p>
                         <p className="text-sm text-slate-500">Teachers</p>
                       </div>
                     </div>
@@ -282,7 +283,7 @@ export const LandingPage: React.FC = () => {
                         <i className="fi fi-rr-document text-green-600 text-xl"></i>
                       </div>
                       <div>
-                        <p className="text-2xl font-bold text-slate-900">{documents.length}</p>
+                        <p className="text-2xl font-bold text-slate-900">{student_landing_page_analytics?.total_documents}</p>
                         <p className="text-sm text-slate-500">Documents</p>
                       </div>
                     </div>
@@ -293,8 +294,8 @@ export const LandingPage: React.FC = () => {
                         <i className="fi fi-rr-quiz-alt text-purple-600 text-xl"></i>
                       </div>
                       <div>
-                        <p className="text-2xl font-bold text-slate-900">-</p>
-                        <p className="text-sm text-slate-500">Quizzes Taken</p>
+                        <p className="text-2xl font-bold text-slate-900">{student_landing_page_analytics?.total_quizzes}</p>
+                        <p className="text-sm text-slate-500">Quizzes</p>
                       </div>
                     </div>
                   </div>
@@ -304,8 +305,8 @@ export const LandingPage: React.FC = () => {
                         <i className="fi fi-rr-flame text-orange-600 text-xl"></i>
                       </div>
                       <div>
-                        <p className="text-2xl font-bold text-slate-900">-</p>
-                        <p className="text-sm text-slate-500">Day Streak</p>
+                        <p className="text-2xl font-bold text-slate-900">{student_landing_page_analytics?.total_chats}</p>
+                        <p className="text-sm text-slate-500">Chats</p>
                       </div>
                     </div>
                   </div>

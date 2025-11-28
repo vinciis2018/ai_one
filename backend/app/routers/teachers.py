@@ -4,7 +4,7 @@
 # (MongoDB version with search + pagination)
 # ============================================
 from app.models.organisation import ClassroomModel
-from app.helper.analytics_helper import aggregate_student_stats
+from app.helper.analytics_helper import aggregate_student_stats, aggregate_teacher_landing_page_stats
 from fastapi import APIRouter, HTTPException, Query, Body
 from pymongo import DESCENDING
 from app.config.db import db, get_collection
@@ -162,6 +162,34 @@ async def get_teacher_details(
         raise HTTPException(
             status_code=500,
             detail=f"Error fetching teacher details: {str(e)}"
+        )
+
+
+
+@router.get("/{teacher_id}/landing-page-analytics")
+async def get_landing_page_analytics(
+    teacher_id: str,
+    days: int = Query(30, description="Number of days to look back")
+):
+    """
+    Get analytics for a specific teacher based on their knowledge graph.
+    """
+    try:
+        # Validate teacher_id format
+        try:
+            teacher_oid = ObjectId(teacher_id)
+        except:
+            raise HTTPException(status_code=400, detail="Invalid teacher ID format")
+        
+        stats = await aggregate_teacher_landing_page_stats(teacher_oid, days)
+        return stats
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"Error in get_landing_page_analytics: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error fetching teacher analytics: {str(e)}"
         )
 
 

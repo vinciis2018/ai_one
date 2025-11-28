@@ -375,9 +375,7 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
               return (
                 <div
                   key={block.id}
-                  draggable
-                  onDragStart={(e) => handleDragStart(e, index, block.id)}
-                  onDragOver={(e) => handleDragOver(e, index)}
+
                   onDrop={handleDrop}
                   className={`
                       group relative transition-all duration-200 rounded-lg
@@ -387,7 +385,12 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
                     `}
                 >
                   {/* Hover Controls */}
-                  <div className="absolute -left-8 top-2 bottom-0 w-8 flex flex-col items-end opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div 
+                    className="absolute -left-8 top-2 bottom-0 w-8 flex flex-col items-end opacity-0 group-hover:opacity-100 transition-opacity"
+                    draggable
+                    onDragStart={(e) => handleDragStart(e, index, block.id)}
+                    onDragOver={(e) => handleDragOver(e, index)}
+                  >
                     <div className="cursor-move p-1 text-slate-300 hover:text-slate-600" title="Drag to move">
                       <i className="fi fi-rr-menu-dots-vertical flex text-lg"></i>
                     </div>
@@ -424,7 +427,7 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
                           onBlur={() => setEditingBlockId(null)}
                           autoFocus
                           placeholder="Write something..."
-                          className="w-full text-sm resize-none bg-white outline-none border border-blue-300 p-2 rounded text-slate-800 leading-relaxed font-normal focus:ring-2 focus:ring-blue-400"
+                          className="w-full text-sm resize-none bg-white outline-none border border-blue-300 p-2 rounded text-slate-800 leading-relaxed font-normal focus:ring-0 focus:ring-blue-400"
                           style={{
                             minHeight: '1.5em',
                             height: 'auto',
