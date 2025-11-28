@@ -150,7 +150,8 @@ async def get_teacher_details(
                 "id": str(org["_id"]) if org else None,
                 "name": org.get("name") if org else None
             } if org else None,
-            "calendar": teacher.get("calendar", None)
+            "calendar": teacher.get("calendar", None),
+            "persona": teacher.get("persona", None)
         }
 
         return response
@@ -164,6 +165,42 @@ async def get_teacher_details(
             detail=f"Error fetching teacher details: {str(e)}"
         )
 
+
+class Persona(BaseModel):
+    answer_style: str
+    personality: Optional[str] = None
+
+@router.put("/update-persona/{teacher_id}")
+async def update_teacher_persona(
+    teacher_id: str,
+    persona: Persona = Body(..., embed=True)
+):
+
+    try:
+        # Validate teacher_id format
+        try:
+            teacher_oid = ObjectId(teacher_id)
+        except:
+            raise HTTPException(status_code=400, detail="Invalid teacher ID format")
+        
+        # Update teacher persona
+        result = await db["teachers"].update_one(
+            {"user_id": teacher_oid},
+            {"$set": {"persona": persona.model_dump()}}
+        )
+        
+        if result.modified_count == 0:
+            raise HTTPException(status_code=404, detail="Teacher not found")
+        
+        return {"message": "Teacher persona updated successfully"}
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"Error in update_teacher_persona: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error updating teacher persona: {str(e)}"
+        )
 
 
 @router.get("/{teacher_id}/landing-page-analytics")

@@ -36,6 +36,10 @@ export interface TeacherModel {
   students?: string[];
   organization?: PsuedoCoachingModel;
   calendar?: { events: CalendarEvent[] };
+  persona: {
+    personality?: string;
+    answer_style?: string;
+  }
   created_at?: string;
   updated_at?: string;
 }
@@ -139,6 +143,25 @@ export const addCalendarEvent = createAsyncThunk<
   }
 );
 
+
+export const updateTeacherPersona = createAsyncThunk<
+  TeacherModel,
+  { teacherId: string; persona: { personality?: string; answer_style?: string } },
+  { rejectValue: string }
+>(
+  'teachers/updateTeacherPersona',
+  async ({ teacherId, persona }, { rejectWithValue }) => {
+    try {
+      const response = await axios.put<TeacherModel>(`${BASE_URL}/teachers/update-persona/${teacherId}`, { teacher_id: teacherId, persona: persona });
+      return response.data;
+    } catch (error: unknown) {
+      const axiosError = error as unknown as { response?: { data?: { detail?: string } } };
+      return rejectWithValue(axiosError.response?.data?.detail || 'Failed to update teacher persona');
+    }
+  }
+);
+
+
 const teachersSlice = createSlice({
   name: 'teachers',
   initialState,
@@ -227,6 +250,21 @@ const teachersSlice = createSlice({
         }
       })
       .addCase(addCalendarEvent.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      })
+      // Update Teacher Persona
+      .addCase(updateTeacherPersona.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateTeacherPersona.fulfilled, (state, action) => {
+        state.loading = false;
+        if (state.teacher_details) {
+          state.teacher_details = action.payload;
+        }
+      })
+      .addCase(updateTeacherPersona.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       });

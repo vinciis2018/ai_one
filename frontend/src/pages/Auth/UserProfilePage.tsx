@@ -1,7 +1,8 @@
+
 import { useEffect, useState } from 'react';
 import { SimpleLayout } from '../../layouts/AppLayout';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { getTeacherDetails, addCalendarEvent } from '../../store/slices/teachersSlice';
+import { getTeacherDetails, addCalendarEvent, updateTeacherPersona } from '../../store/slices/teachersSlice';
 import { getStudentDetails } from '../../store/slices/studentsSlice';
 import { fetchSelectedDocuments, type DocumentItem } from '../../store/slices/documentsSlice';
 import DocumentCard from './components/DocumentCard';
@@ -22,7 +23,7 @@ export function UserProfilePage() {
   const dispatch = useAppDispatch();
   const [currentTab, setCurrentTab] = useState<string>('details');
   const { user } = useAppSelector((state) => state.auth);
-  const { teacher_details } = useAppSelector((state) => state.teachers);
+  const { teacher_details, loading, error } = useAppSelector((state) => state.teachers);
   const { student_details } = useAppSelector((state) => state.students);
   const { documents, status: documentStatus } = useAppSelector((state) => state.documents);
 
@@ -34,6 +35,22 @@ export function UserProfilePage() {
     email: user?.email || "",
   });
 
+  const [teacherPersona, setTeacherPersona] = useState({
+    personality: "",
+    answerStyle: ""
+  });
+
+  // Load existing persona from teacher_details
+  useEffect(() => {
+    if (teacher_details) {
+      setTeacherPersona({
+        personality: teacher_details?.persona?.personality || "",
+        answerStyle: teacher_details?.persona?.answer_style || ""
+      });
+    }
+  }, [teacher_details]);
+
+  console.log(teacherPersona)
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -45,6 +62,18 @@ export function UserProfilePage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // In a real app, you would update the user's profile here
+  };
+
+  const handleSavePersona = () => {
+    if (user?._id) {
+      dispatch(updateTeacherPersona({
+        teacherId: user._id,
+        persona: {
+          personality: teacherPersona?.personality,
+          answer_style: teacherPersona?.answerStyle
+        }
+      }));
+    }
   };
 
   useEffect(() => {
@@ -91,6 +120,17 @@ export function UserProfilePage() {
       dispatch(addCalendarEvent({ teacherId: user._id, event }));
     }
   };
+
+  const personalityOptions = [
+    "strict",
+    "friendly",
+    "encouraging",
+    "socratic",
+    "direct",
+    "humorous",
+    "analytical",
+    "patient"
+  ];
 
   return (
     <SimpleLayout>
@@ -282,14 +322,78 @@ export function UserProfilePage() {
 
               </div>
 
-              {/* Right Sidebar (optional, maybe for actions or quick stats) */}
+              {/* Right Sidebar - Teacher Persona */}
               <div className="lg:col-span-1">
-                <div className="text-violet bg-gradient-to-br from-white to-greenLight rounded-2xl p-6 text-white shadow-lg">
-                  <h3 className="font-bold text-lg mb-2">Pro Teacher</h3>
-                  <p className="text-sm mb-4">Unlock advanced analytics and unlimited document storage.</p>
-                  <button className="w-full py-2 bg-green2 text-white rounded-lg font-semibold text-sm hover:bg-gray-500 transition-colors">
-                    Upgrade Plan
-                  </button>
+                <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
+                  <h3 className="font-bold text-lg mb-4 flex items-center gap-2 text-gray-900">
+                    <i className="fi fi-rr-magic-wand text-purple-500"></i>
+                    Teacher Persona
+                  </h3>
+
+                  <div className="space-y-4">
+                    <div>
+                      <label htmlFor="personality" className="block text-sm font-medium text-gray-700 mb-1">
+                        Personality
+                      </label>
+                      <select
+                        id="personality"
+                        value={teacherPersona.personality}
+                        onChange={(e) => setTeacherPersona(prev => ({ ...prev, personality: e.target.value }))}
+                        className="capitalize w-full rounded-lg border-gray-300 shadow-sm focus:border-green2 focus:ring-green2 sm:text-sm"
+                      >
+                        <option value="" disabled>Select a personality</option>
+                        {personalityOptions.map(option => (
+                          <option key={option} value={option}>{option}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div>
+                      <label htmlFor="answerStyle" className="block text-sm font-medium text-gray-700 mb-1">
+                        Answer Style
+                      </label>
+                      <textarea
+                        id="answerStyle"
+                        rows={4}
+                        value={teacherPersona.answerStyle}
+                        onChange={(e) => setTeacherPersona(prev => ({ ...prev, answerStyle: e.target.value }))}
+                        placeholder="e.g. I prefer to answer with analogies and keep the tone encouraging. I always start with a positive reinforcement before correcting mistakes."
+                        className="w-full rounded-lg border-gray-300 shadow-sm focus:border-green2 focus:ring-green2 sm:text-sm resize-none"
+                      />
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                      <button
+                        className={`w-full py-2 text-white rounded-lg font-semibold text-sm transition-colors flex items-center justify-center gap-2 ${loading ? 'bg-green-400 cursor-not-allowed' : 'bg-green2 hover:bg-green-600'
+                          }`}
+                        onClick={handleSavePersona}
+                        disabled={loading}
+                      >
+                        {loading ? (
+                          <>
+                            <i className="fi fi-rr-spinner animate-spin"></i>
+                            Saving...
+                          </>
+                        ) : (
+                          <>
+                            <i className="fi fi-rr-disk"></i>
+                            Save Persona
+                          </>
+                        )}
+                      </button>
+                      {error && (
+                        <p className="text-xs text-red-500 text-center mt-1">
+                          {error}
+                        </p>
+                      )}
+                      {/* We can check for success if needed, but usually a toast is better. 
+                          For now, let's just rely on the button state returning to normal 
+                          and maybe a temporary success message if we had a local success state. 
+                          Since we don't have a specific 'personaSuccess' state in slice, 
+                          we might want to add a local one or just rely on the absence of error after loading.
+                      */}
+                    </div>
+                  </div>
                 </div>
               </div>
 

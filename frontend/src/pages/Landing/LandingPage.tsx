@@ -49,18 +49,18 @@ export const LandingPage: React.FC = () => {
 
   // Quick Actions for Teachers
   const teacherActions = [
-    { icon: "fi-rr-upload", label: "Upload Material", action: () => navigate('/documents'), color: "from-blue-500 to-blue-600" },
-    { icon: "fi-rr-edit", label: "Create Quiz", action: () => navigate('/documents'), color: "from-purple-500 to-purple-600" },
-    { icon: "fi-rr-chart-histogram", label: "View Analytics", action: () => navigate('/students'), color: "from-green-500 to-green-600" },
+    { icon: "fi-rr-upload", label: "Upload Notes", action: () => navigate('/notes'), color: "from-blue-500 to-blue-600" },
+    { icon: "fi-rr-edit", label: "Create Quiz", action: () => {alert("Coming soon...\nStay tuned!!!")}, color: "from-purple-500 to-purple-600" },
+    { icon: "fi-rr-chart-histogram", label: "View Analytics", action: () => {alert("Coming soon...\nStay tuned!!!")}, color: "from-green-500 to-green-600" },
     { icon: "fi-rr-users-alt", label: "My Students", action: () => navigate('/students'), color: "from-orange-500 to-orange-600" },
   ];
 
   // Quick Actions for Students
   const studentActions = [
-    { icon: "fi-rr-sparkles", label: "Ask AI", action: () => setIsQueryOpen(true), color: "from-green-500 to-green-600" },
+    { icon: "fi-rr-sparkles", label: "Ask AI", action: () => {alert("Coming soon...\nStay tuned!!!")}, color: "from-green-500 to-green-600" },
     { icon: "fi-rr-document", label: "My Notes", action: () => navigate('/notes'), color: "from-blue-500 to-blue-600" },
     { icon: "fi-rr-graduation-cap", label: "Find Teachers", action: () => navigate('/teachers'), color: "from-purple-500 to-purple-600" },
-    { icon: "fi-rr-quiz-alt", label: "Take Quiz", action: () => navigate('/documents'), color: "from-orange-500 to-orange-600" },
+    { icon: "fi-rr-quiz-alt", label: "Take Quiz", action: () => {alert("Coming soon...\nStay tuned!!!")}, color: "from-orange-500 to-orange-600" },
   ];
 
   return (
@@ -400,10 +400,6 @@ export const LandingPage: React.FC = () => {
             )}
           </>
         )}
-
-        {/* Features Section */}
-        <FeaturesSection />
-
       </div>
     </FullLayout>
   );

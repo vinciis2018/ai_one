@@ -47,7 +47,7 @@ export const StudentsForTeacherPage: React.FC = () => {
 
   return (
     <FullLayout>
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen">
         <div className="max-w-6xl mx-auto px-4 py-8">
           {/* Header Section */}
           <div className="mb-8">

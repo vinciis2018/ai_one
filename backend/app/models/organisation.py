@@ -34,6 +34,7 @@ class TeacherModel(BaseModel):
     syllabus: Optional[Dict[str, Any]] = None
     classrooms: Optional[List[PyObjectId]] = None
     calendar: Optional[Dict[str, Any]] = None  # For class scheduling and Google Calendar integration
+    persona: Optional[Dict[str, Any]] = None
 
 
     model_config = {
