@@ -42,22 +42,42 @@ async def chat_to_concept_node(state: Dict[str, Any]) -> Dict[str, Any]:
         - Chapter
         - Topic
         - Micro-Concept (if applicable)
-        
-        Also determine the Interaction Type:
-        - "Conceptual Doubt" (Understanding concepts, "What is...", "Explain...")
-        - "Numerical Problem" (Solving equations, finding values)
-        - "Strategy Question" (How to study, exam prep)
-        - "Casual" (Greetings, non-academic)
 
-        Also generate a Quick Action:
-        - "micro_quiz": 2 short, single-question quiz (one multiple choice with correct option and one short answer question with correct answer) related to the concept to test understanding.
-        - "follow_on_concept": Give a polite suggestion for the next logical concept or topic the student should explore.
+        Also determine the Interaction Type:
+        - "Conceptual Doubt"
+        - "Numerical Problem"
+        - "Strategy Question"
+        - "Casual"
+
+        Then generate a "quick_action" object STRICTLY in the format below.
+
+        Your response MUST be ONLY a JSON object with EXACTLY these keys:
+        - "subject"
+        - "chapter"
+        - "topic"
+        - "micro_concept"
+        - "interaction_type"
+        - "quick_action"
+
+        The "quick_action" MUST be an object with EXACTLY:
+        - "micro_quiz": an array of EXACTLY 2 objects
+        - "follow_on_concept": a string > explaining how the follow-on concept will help further
+
+        In the 1st quiz object MUST have:
+        question_type with "multiple_choice" as value.
+        question with str as value.
+        options with A, B, C, D as keys and options' str as value.
+        correct_answer with A, B, C or D as value.
         
-        Return ONLY a JSON object with keys: "subject", "chapter", "topic", "micro_concept", "interaction_type", "quick_action".
-        "quick_action" should be an object with keys "micro_quiz" and "follow_on_concept".
-        "micro_quiz" should be an array of objects, first object will have question_type = "multiple_choice" and second object will have question_type = "short_answer".
-        "follow_on_concept" should be a string.
-        If a category is not applicable or not found, use null.
+        The 2nd quiz object MUST have:
+        question_type with "short_answer" as value.
+        question with str as value.
+        correct_answer with str as value.
+
+        If any category is not applicable, fill it with null (NOT empty string).
+
+        DO NOT add explanations, text outside JSON, or additional fields.
+
         """
         
         print("userid_query:", user_id, query)

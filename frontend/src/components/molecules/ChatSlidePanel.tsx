@@ -4,10 +4,15 @@ import { fetchChatBySpace, fetchChatById, fetchTeacherStudentChats, clearConvers
 import { getAllTeachers, type TeacherModel } from '../../store/slices/teachersSlice';
 import { getAllStudents, type StudentModel } from '../../store/slices/studentsSlice';
 import { QueryBoxChat } from '../atoms/QueryBoxChat';
-import { EnhancedTextDisplay } from '../atoms/EnhancedTextDisplay';
+// import { EnhancedTextDisplay } from '../atoms/EnhancedTextDisplay';
 import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 
 import { QuickActionDisplay } from './QuickActionDisplay';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css';
 
 interface ChatSlidePanelProps {
   isOpen: boolean;
@@ -393,11 +398,13 @@ export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({ isOpen, chatId, 
                   {/* AI Answer */}
                   {conversation.answer && (
                     <div className="flex justify-start">
-                      <div className="bg-gray-100 dark:bg-gray-800 p-3 rounded-2xl rounded-tl-sm max-w-[90%]">
-                        <EnhancedTextDisplay
-                          className="text-sm text-gray-800 dark:text-gray-200 whitespace-pre-line"
-                          content={conversation.answer}
-                        />
+                      <div className="bg-gray-100 dark:bg-gray-800 p-3 rounded-2xl rounded-tl-sm max-w-[90%] text-sm text-gray-800 dark:text-gray-200 whitespace-pre-line">
+                        <ReactMarkdown
+                          remarkPlugins={[remarkGfm, remarkMath]}
+                          rehypePlugins={[rehypeKatex]}
+                        >
+                          {conversation.answer}
+                        </ReactMarkdown>
 
                         {/* Quick Actions */}
                         <div className="flex items-center gap-2 mt-3 pt-2 border-t border-gray-200 dark:border-gray-700">

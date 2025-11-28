@@ -81,6 +81,24 @@ async def _save_conversation(
         conversation_result = await conversation_collection.insert_one(conversation.copy())
         conversation_id = str(conversation_result.inserted_id)
         
+        # If no chat_id provided, try to find existing chat by chat_space
+        if not chat_id and chat_space and user_id:
+            # Build query to find exact match for context
+            chat_query = {
+                "chat_space": chat_space
+            }
+            
+            # If specific teacher or student context is provided, ensure we match that
+            if teacher_id == user_id:
+                chat_query["teacher_id"] = user_id
+            if student_id == user_id:
+                chat_query["student_id"] = user_id
+                
+            existing_chat = await chat_collection.find_one(chat_query)
+            
+            if existing_chat:
+                chat_id = str(existing_chat["_id"])
+
         if chat_id:
             # For existing chat, just add the new conversation reference
             chat_id_obj = ObjectId(chat_id)

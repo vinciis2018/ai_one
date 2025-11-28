@@ -180,7 +180,7 @@ export const fetchChatBySpace = createAsyncThunk<
 
 
 export const submitQuizAnswers = createAsyncThunk<
-  { status: string; message?: string },
+  { status: string; message?: string; conversation_id: string; quick_action: any },
   { conversation_id: string; quick_action: any },
   { rejectValue: string }
 >(
@@ -194,7 +194,7 @@ export const submitQuizAnswers = createAsyncThunk<
           quick_action,
         }
       );
-      return response.data;
+      return { ...response.data, conversation_id, quick_action };
     } catch (error: unknown) {
       const axiosError = error as unknown as { response?: { data?: { detail?: string } } };
       return rejectWithValue(axiosError.response?.data?.detail || 'Failed to submit quiz answers');
@@ -253,7 +253,6 @@ const conversationSlice = createSlice({
         }
         state.hasMore = newChats.length >= state.limit;
         state.error = null;
-
       })
       .addCase(fetchChats.rejected, (state, action) => {
         state.status = 'failed';
@@ -320,9 +319,20 @@ const conversationSlice = createSlice({
       .addCase(submitQuizAnswers.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(submitQuizAnswers.fulfilled, (state) => {
+      .addCase(submitQuizAnswers.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.error = null;
+
+        // Update the conversation in the chat state with the new quick_action data
+        if (state.chat && state.chat.conversations) {
+          const conversationIndex = state.chat.conversations.findIndex(
+            (c) => c.id === action.payload.conversation_id
+          );
+
+          if (conversationIndex !== -1) {
+            state.chat.conversations[conversationIndex].quick_action = action.payload.quick_action;
+          }
+        }
       })
       .addCase(submitQuizAnswers.rejected, (state, action) => {
         state.status = 'failed';
