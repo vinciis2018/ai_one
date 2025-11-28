@@ -36,7 +36,7 @@ export interface TeacherModel {
   students?: string[];
   organization?: PsuedoCoachingModel;
   calendar?: { events: CalendarEvent[] };
-  persona: {
+  persona?: {
     personality?: string;
     answer_style?: string;
   }

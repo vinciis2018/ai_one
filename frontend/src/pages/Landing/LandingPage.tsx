@@ -6,7 +6,6 @@
 import React, { useState, useEffect } from "react";
 import { FullLayout } from "../../layouts/AppLayout";
 import NeuronAnimation from "../../components/NeuronAnimation";
-import { FeaturesSection } from "./FeaturesSection";
 import { QueryModal } from "../../components/popups/QueryModal";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { getAllTeachers, getTeacherLandingPageAnalytics, type TeacherModel } from "../../store/slices/teachersSlice";
