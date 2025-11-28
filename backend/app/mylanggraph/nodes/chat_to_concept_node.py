@@ -63,7 +63,7 @@ async def chat_to_concept_node(state: Dict[str, Any]) -> Dict[str, Any]:
         print("userid_query:", user_id, query)
         # 3. Call LLM
         # Using a lower temperature for deterministic classification
-        response_text = call_llm(prompt, domain="education")
+        response_text = call_llm(prompt)
         print("response_text:", response_text)
         # Clean response to ensure JSON
         response_text = response_text.replace("```json", "").replace("```", "").strip()

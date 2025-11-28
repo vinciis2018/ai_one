@@ -63,7 +63,7 @@ def final_answer_node(state):
         file.write(prompt)
 
     if state["directive"] == "NORMAL":
-        state["answer"] = call_llm(prompt, state["domain"])
+        state["answer"] = call_llm(prompt)
     else:
         state["answer"] = generate_clarification_prompt(state)
 

@@ -50653,3 +50653,43 @@ contents.list[union[Content,str,is-instance[Image],File,Part,list[union[str,is-i
 2025-11-28 16:37:05,871 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 23.57ms
 2025-11-28 16:37:05,874 [INFO] GET /auth/me - 200 - 25.28ms
 2025-11-28 16:37:05,881 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 7.44ms
+2025-11-28 17:21:39,263 [INFO] OPTIONS /auth/me - 200 - 65.34ms
+2025-11-28 17:21:39,273 [INFO] OPTIONS /auth/me - 200 - 25.72ms
+2025-11-28 17:21:39,274 [INFO] OPTIONS /auth/me - 200 - 2.45ms
+2025-11-28 17:21:39,274 [INFO] OPTIONS /auth/me - 200 - 1.67ms
+2025-11-28 17:21:39,334 [INFO] GET /auth/me - 200 - 59.44ms
+2025-11-28 17:21:39,370 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 164.78ms
+2025-11-28 17:21:39,372 [INFO] GET /auth/me - 200 - 37.45ms
+2025-11-28 17:21:39,400 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 27.8ms
+2025-11-28 17:21:39,401 [INFO] GET /auth/me - 200 - 28.29ms
+2025-11-28 17:21:39,407 [INFO] GET /auth/me - 200 - 3.77ms
+2025-11-28 17:26:00,250 [INFO] GET /students - 307 - 4.48ms
+2025-11-28 17:26:00,303 [INFO] GET /students/ - 200 - 48.0ms
+2025-11-28 17:26:01,632 [INFO] GET /conversations/chats/teacher/student - 200 - 21.02ms
+2025-11-28 17:26:28,484 [INFO] OPTIONS /querylang/query/ - 200 - 0.33ms
+2025-11-28 17:26:28,488 [INFO] POST /querylang/query/ - 307 - 1.79ms
+2025-11-28 17:26:28,492 [INFO] OPTIONS /querylang/query - 200 - 0.21ms
+2025-11-28 17:26:30,581 [INFO] POST /querylang/query - 200 - 2088.09ms
+2025-11-28 17:28:43,333 [INFO] Use pytorch device_name: mps
+2025-11-28 17:28:43,334 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 17:28:51,063 [INFO] 🧠 Using device: MPS
+2025-11-28 17:33:05,233 [INFO] POST /querylang/query/ - 307 - 3.09ms
+2025-11-28 17:33:05,864 [INFO] ⚙️ Running Gemini model: gemini-2.5-flash-lite
+2025-11-28 17:33:05,980 [INFO] AFC is enabled with max remote calls: 10.
+2025-11-28 17:33:09,011 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2025-11-28 17:33:09,190 [INFO] POST /querylang/query - 200 - 3952.62ms
+2025-11-28 17:33:09,229 [INFO] GET /conversations/chat/69298f7d030119d95835255e - 200 - 5.62ms
+2025-11-28 17:37:40,554 [INFO] Use pytorch device_name: mps
+2025-11-28 17:37:40,554 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 17:37:47,021 [INFO] 🧠 Using device: MPS
+2025-11-28 17:38:41,246 [INFO] OPTIONS /querylang/query/ - 200 - 1.64ms
+2025-11-28 17:38:41,252 [INFO] POST /querylang/query/ - 307 - 1.12ms
+2025-11-28 17:38:41,255 [INFO] OPTIONS /querylang/query - 200 - 0.2ms
+2025-11-28 17:38:41,956 [INFO] ⚙️ Running Gemini model: gemini-2.5-flash-lite
+2025-11-28 17:38:41,960 [INFO] AFC is enabled with max remote calls: 10.
+2025-11-28 17:38:44,261 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2025-11-28 17:38:44,409 [INFO] ⚙️ Running Gemini model: gemini-2.5-flash-lite
+2025-11-28 17:38:44,410 [INFO] AFC is enabled with max remote calls: 10.
+2025-11-28 17:38:46,104 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2025-11-28 17:38:46,120 [INFO] POST /querylang/query - 200 - 4863.59ms
+2025-11-28 17:38:46,146 [INFO] GET /conversations/chat/69298f7d030119d95835255e - 200 - 4.65ms
