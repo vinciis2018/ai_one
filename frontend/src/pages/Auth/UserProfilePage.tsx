@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { SimpleLayout } from '../../layouts/AppLayout';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { getTeacherDetails, addCalendarEvent } from '../../store/slices/teachersSlice';
 import { getStudentDetails } from '../../store/slices/studentsSlice';
 import { fetchSelectedDocuments, type DocumentItem } from '../../store/slices/documentsSlice';
-import Header from './components/Header';
 import DocumentCard from './components/DocumentCard';
 import StatsGrid from './components/StatsGrid';
 import DocumentModal from './components/DocumentModal';
@@ -21,7 +19,6 @@ interface Tab {
 
 
 export function UserProfilePage() {
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [currentTab, setCurrentTab] = useState<string>('details');
   const { user } = useAppSelector((state) => state.auth);

@@ -1,5 +1,9 @@
 import React from "react";
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css';
 
 interface NotesTabProps {
   pageNumber: number;
@@ -42,7 +46,10 @@ export const NotesTab: React.FC<NotesTabProps> = ({
     if (typeof currentPageNotes === 'string') {
       return (
         <div className="prose prose-sm max-w-none text-gray-700">
-          <ReactMarkdown>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm, remarkMath]}
+            rehypePlugins={[rehypeKatex]}
+          >
             {currentPageNotes}
           </ReactMarkdown>
         </div>
@@ -51,6 +58,8 @@ export const NotesTab: React.FC<NotesTabProps> = ({
 
     return null;
   };
+
+
 
   return (
     <div className="space-y-4 h-full flex flex-col">

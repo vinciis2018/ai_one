@@ -133,6 +133,21 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
                   {shouldShowText && <span className="truncate">Coaching</span>}
                 </NavLink>
               </li>
+              <li>
+                <NavLink
+                  to="/classrooms"
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${isActive
+                      ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
+                      : `rounded-l-lg text-gray-500 hover:text-green`
+                    }`
+                  }
+                  onClick={onClose}
+                >
+                  <i className="fi fi-sr-chalkboard-user h-5 w-5 flex items-center justify-center" />
+                  {shouldShowText && <span className="truncate">Classrooms</span>}
+                </NavLink>
+              </li>
             </ul>
 
             {/* Bottom Section */}

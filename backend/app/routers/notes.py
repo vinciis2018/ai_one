@@ -1,3 +1,7 @@
+from app.prompt.generate_mcq_prompt import GENERATE_MCQ_PROMPT
+from app.prompt.generate_quiz_prompt import GENERATE_QUIZ_PROMPT
+from app.prompt.system_prompt import SYSTEM_PROMPT
+from app.prompt.generate_notes_prompt import GENERATE_NOTES_PROMPT
 from fastapi import APIRouter, HTTPException, status, Body
 from pydantic import BaseModel
 import requests
@@ -26,18 +30,6 @@ class TranscriptRequest(BaseModel):
     document_id: str
     page_number: int
     file_url: str
-
-
-class SaveNoteRequest(BaseModel):
-    document_id: str
-    notes: List[Dict]
-
-
-class QuestionGenerationRequest(BaseModel):
-    transcription: str
-    num_questions: int
-    domain: str = "general"
-
 
 @router.post("/transcribe", status_code=status.HTTP_200_OK)
 async def create_transcript_from_image(req: TranscriptRequest):
@@ -230,11 +222,17 @@ async def create_transcript_from_image(req: TranscriptRequest):
         )
 
 
-@router.post("/save", status_code=status.HTTP_200_OK)
-async def save_note_description(req: SaveNoteRequest):
+class GenerateNotesRequest(BaseModel):
+    document_id: str
+    page_number: int
+    domain: str = "general"
+
+@router.post("/generate-notes", status_code=status.HTTP_200_OK)
+async def generate_notes(req: GenerateNotesRequest):
     """
-    Save transcription to a document's notes_description field.
-    Creates or updates the transcription for a specific page.
+    Generate educational notes from transcription using LLM.
+    Fetches transcription from document's notes_description and generates structured notes.
+    Automatically saves the notes to the document's notes_description.
     """
     try:
         # Validate document_id
@@ -246,43 +244,94 @@ async def save_note_description(req: SaveNoteRequest):
         
         document_id = ObjectId(req.document_id)
         
-        # Check if document exists
+        # Fetch document
         document = await db.documents.find_one({"_id": document_id})
         if not document:
             raise HTTPException(
                 status_code=404,
                 detail="Document not found"
             )
+            
+        # Get transcription for the specified page
+        notes_description = document.get("notes_description", [])
+        transcription = ""
         
-       
-        # Update the document
-        result = await db.documents.update_one(
-            {"_id": document_id},
-            {"$set": {"notes_description": req.notes}}
+        for note in notes_description:
+            if note.get("page") == req.page_number:
+                transcription = note.get("transcription", "")
+                break
+        
+        if not transcription:
+            raise HTTPException(
+                status_code=404,
+                detail=f"No transcription found for page {req.page_number}"
+            )
+            
+        # Construct prompt for LLM
+        prompt = f"""   
+        {SYSTEM_PROMPT} \n
+        {GENERATE_NOTES_PROMPT} \n
+        Transcription: \n
+        {transcription}
+        """
+        
+        # Call LLM
+        # Run in executor to avoid blocking
+        loop = asyncio.get_running_loop()
+        generated_notes = await loop.run_in_executor(
+            None, 
+            call_llm, 
+            prompt
         )
         
-        if result.modified_count == 0:
-            raise HTTPException(
-                status_code=500,
-                detail="Failed to save transcription"
-            )
+        # ---------------------------------------------------------
+        # Save notes to Document
+        # ---------------------------------------------------------
+        # We need to re-fetch or use the existing list, but since we're in async, let's be safe and update
+        # Update the specific page's notes in the list we already have (notes_description)
         
-        print(f"✅ Saved notes for document {req.document_id}")
+        page_updated = False
+        for i, note in enumerate(notes_description):
+            if note.get("page") == req.page_number:
+                notes_description[i]["notes"] = generated_notes
+                page_updated = True
+                break
+        
+        if page_updated:
+            await db.documents.update_one(
+                {"_id": document_id},
+                {"$set": {"notes_description": notes_description}}
+            )
+            print(f"✅ Auto-saved notes for page {req.page_number} to document {req.document_id}")
+        else:
+            # Page entry does not exist, create a new one with notes (transcription may be empty)
+            notes_description.append({
+                "page": req.page_number,
+                "transcription": "",
+                "quiz": {},
+                "notes": generated_notes
+            })
+            await db.documents.update_one(
+                {"_id": document_id},
+                {"$set": {"notes_description": notes_description}}
+            )
+            print(f"✅ Created notes entry for page {req.page_number} in document {req.document_id}")
         
         return {
             "status": "success",
-            "message": f"Notes saved for document {req.document_id}",
             "document_id": req.document_id,
-            "action": "updated"
+            "page_number": req.page_number,
+            "generated_notes": generated_notes,
+            "saved": True
         }
-        
+            
     except HTTPException:
         raise
     except Exception as e:
-        print(f"❌ Error saving transcription: {str(e)}")
+        print(f"❌ Error generating notes: {str(e)}")
         raise HTTPException(
             status_code=500,
-            detail=f"Failed to save transcription: {str(e)}"
+            detail=f"Note generation failed: {str(e)}"
         )
 
 
@@ -292,7 +341,6 @@ class QuestionGenerationRequest(BaseModel):
     transcription: str
     num_questions: int
     domain: str = "general"
-
 
 @router.post("/generate-questions", status_code=status.HTTP_200_OK)
 async def generate_questions(req: QuestionGenerationRequest):
@@ -316,37 +364,11 @@ async def generate_questions(req: QuestionGenerationRequest):
             )
             
         # Construct prompt for LLM
-        prompt = f"""Based on the following text, generate exactly {req.num_questions * 3} questions.
-        
-        Text:
-        {req.transcription[:2000]}... (truncated if too long)
-        
-        Instructions:
-        1. Generate a mix of questions suitable for testing understanding of the text.
-        2. Categorize them into 'easy', 'medium', and 'hard'.
-        3. There should be {req.num_questions} questions for EACH category (total {req.num_questions * 3}).
-        4. Each question should be a string.
-        
-        CRITICAL: Return ONLY a valid JSON object with ALL THREE categories.
-        
-        Example of correct format:
-        {{
-            "easy": [
-                "What is the capital of France?",
-                "What language is spoken in Paris?"
-            ],
-            "medium": [
-                "Which river flows through Paris?",
-                "What is the main airport in Paris?"
-            ],
-            "hard": [
-                "In what year was the Eiffel Tower completed?",
-                "Who designed the Eiffel Tower?"
-            ]
-        }}
-        
-        Do not include any markdown formatting (like ```json) or extra text. Just the raw JSON object.
-        Make sure to include all three categories: easy, medium, and hard.
+        prompt = f"""
+        {SYSTEM_PROMPT} \n
+        {GENERATE_QUIZ_PROMPT.format(num_questions=req.num_questions)} \n
+        Transcription: \n
+        {req.transcription}
         """
         document_id = ObjectId(req.document_id)
         document = await db.documents.find_one({"_id": document_id})
@@ -421,135 +443,12 @@ async def generate_questions(req: QuestionGenerationRequest):
         )
 
 
-class GenerateNotesRequest(BaseModel):
-    document_id: str
-    page_number: int
-    domain: str = "general"
-
-
-@router.post("/generate-notes", status_code=status.HTTP_200_OK)
-async def generate_notes(req: GenerateNotesRequest):
-    """
-    Generate educational notes from transcription using LLM.
-    Fetches transcription from document's notes_description and generates structured notes.
-    Automatically saves the notes to the document's notes_description.
-    """
-    try:
-        # Validate document_id
-        if not ObjectId.is_valid(req.document_id):
-            raise HTTPException(
-                status_code=400,
-                detail="Invalid document ID format"
-            )
-        
-        document_id = ObjectId(req.document_id)
-        
-        # Fetch document
-        document = await db.documents.find_one({"_id": document_id})
-        if not document:
-            raise HTTPException(
-                status_code=404,
-                detail="Document not found"
-            )
-            
-        # Get transcription for the specified page
-        notes_description = document.get("notes_description", [])
-        transcription = ""
-        
-        for note in notes_description:
-            if note.get("page") == req.page_number:
-                transcription = note.get("transcription", "")
-                break
-        
-        if not transcription:
-            raise HTTPException(
-                status_code=404,
-                detail=f"No transcription found for page {req.page_number}"
-            )
-            
-        # Construct prompt for LLM
-        prompt = f"""Based on the following transcription, generate comprehensive educational notes.
-        
-        Transcription:
-        {transcription}
-        
-        Instructions:
-        1. Create structured educational notes suitable for a student.
-        2. Use bullet points for key concepts.
-        3. Provide brief explanations for important terms.
-        4. Organize the content logically with headings.
-        5. Highlight any formulas, definitions, or key takeaways.
-        6. Keep the tone educational and clear.
-        7. Output format should be clean markdown.
-        """
-        
-        # Call LLM
-        # Run in executor to avoid blocking
-        loop = asyncio.get_running_loop()
-        generated_notes = await loop.run_in_executor(
-            None, 
-            call_llm, 
-            prompt
-        )
-        
-        # ---------------------------------------------------------
-        # Save notes to Document
-        # ---------------------------------------------------------
-        # We need to re-fetch or use the existing list, but since we're in async, let's be safe and update
-        # Update the specific page's notes in the list we already have (notes_description)
-        
-        page_updated = False
-        for i, note in enumerate(notes_description):
-            if note.get("page") == req.page_number:
-                notes_description[i]["notes"] = generated_notes
-                page_updated = True
-                break
-        
-        if page_updated:
-            await db.documents.update_one(
-                {"_id": document_id},
-                {"$set": {"notes_description": notes_description}}
-            )
-            print(f"✅ Auto-saved notes for page {req.page_number} to document {req.document_id}")
-        else:
-            # Page entry does not exist, create a new one with notes (transcription may be empty)
-            notes_description.append({
-                "page": req.page_number,
-                "transcription": "",
-                "quiz": {},
-                "notes": generated_notes
-            })
-            await db.documents.update_one(
-                {"_id": document_id},
-                {"$set": {"notes_description": notes_description}}
-            )
-            print(f"✅ Created notes entry for page {req.page_number} in document {req.document_id}")
-        
-        return {
-            "status": "success",
-            "document_id": req.document_id,
-            "page_number": req.page_number,
-            "generated_notes": generated_notes,
-            "saved": True
-        }
-            
-    except HTTPException:
-        raise
-    except Exception as e:
-        print(f"❌ Error generating notes: {str(e)}")
-        raise HTTPException(
-            status_code=500,
-            detail=f"Note generation failed: {str(e)}"
-        )
-
-
 class MCQGenerationRequest(BaseModel):
     document_id: str
     page_number: int
     transcription: str
     num_questions: int
     domain: str = "general"
-
 
 @router.post("/generate-mcq", status_code=status.HTTP_200_OK)
 async def generate_mcq(req: MCQGenerationRequest):
@@ -574,51 +473,11 @@ async def generate_mcq(req: MCQGenerationRequest):
             )
             
         # Construct prompt for LLM
-        prompt = f"""Based on the following text, generate exactly {req.num_questions * 3} multiple choice questions.
-        
-        Text:
-        {req.transcription[:2000]}... (truncated if too long)
-        
-        Instructions:
-        1. Generate a mix of multiple choice questions suitable for testing understanding of the text.
-        2. Categorize them into 'easy', 'medium', and 'hard'.
-        3. There should be {req.num_questions} questions for EACH category (total {req.num_questions * 3}).
-        4. Each question MUST be an OBJECT (not a string) with exactly these fields: "question", "options", "answer", and "explanation".
-        5. The "options" field must be an array of exactly 4 strings.
-        6. The "answer" field must be one of the options (exact match).
-        7. The "explanation" field should explain why the answer is correct.
-        
-        CRITICAL: Return ONLY a valid JSON object. Each question must be an object, NOT a string.
-        
-        Example of correct format:
-        {{
-            "easy": [
-                {{
-                    "question": "What is the capital of France?",
-                    "options": ["London", "Paris", "Berlin", "Madrid"],
-                    "answer": "Paris",
-                    "explanation": "Paris is the capital and largest city of France."
-                }}
-            ],
-            "medium": [
-                {{
-                    "question": "Which river flows through Paris?",
-                    "options": ["Thames", "Seine", "Rhine", "Danube"],
-                    "answer": "Seine",
-                    "explanation": "The Seine river flows through the center of Paris."
-                }}
-            ],
-            "hard": [
-                {{
-                    "question": "In what year was the Eiffel Tower completed?",
-                    "options": ["1887", "1889", "1891", "1893"],
-                    "answer": "1889",
-                    "explanation": "The Eiffel Tower was completed in 1889 for the World's Fair."
-                }}
-            ]
-        }}
-        
-        Do not include any markdown formatting (like ```json) or extra text. Just the raw JSON object.
+        prompt = f"""
+        {SYSTEM_PROMPT} \n
+        {GENERATE_MCQ_PROMPT.format(num_questions=req.num_questions)} \n
+        Transcription: \n
+        {req.transcription}
         """
         
         document_id = ObjectId(req.document_id)
@@ -712,7 +571,6 @@ async def generate_mcq(req: MCQGenerationRequest):
 
 
 
-
 class QuickNotesRequest(BaseModel):
     document_id: str
 
@@ -775,9 +633,73 @@ async def add_personal_tricks(req: PersonalTrickRequest):
             status_code=500,
             detail=f"Failed to add personal_tricks: {str(e)}"
         )
+
+
+class SaveNoteRequest(BaseModel):
+    document_id: str
+    notes: List[Dict]
+
+@router.post("/save", status_code=status.HTTP_200_OK)
+async def save_note_description(req: SaveNoteRequest):
+    """
+    Save transcription to a document's notes_description field.
+    Creates or updates the transcription for a specific page.
+    """
+    try:
+        # Validate document_id
+        if not ObjectId.is_valid(req.document_id):
+            raise HTTPException(
+                status_code=400,
+                detail="Invalid document ID format"
+            )
+        
+        document_id = ObjectId(req.document_id)
+        
+        # Check if document exists
+        document = await db.documents.find_one({"_id": document_id})
+        if not document:
+            raise HTTPException(
+                status_code=404,
+                detail="Document not found"
+            )
+        
+       
+        # Update the document
+        result = await db.documents.update_one(
+            {"_id": document_id},
+            {"$set": {"notes_description": req.notes}}
+        )
+        
+        if result.modified_count == 0:
+            raise HTTPException(
+                status_code=500,
+                detail="Failed to save transcription"
+            )
+        
+        print(f"✅ Saved notes for document {req.document_id}")
+        
+        return {
+            "status": "success",
+            "message": f"Notes saved for document {req.document_id}",
+            "document_id": req.document_id,
+            "action": "updated"
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"❌ Error saving transcription: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to save transcription: {str(e)}"
+        )
+
+
+
+########################################
+# for complete doc related 
+########################################
 @router.post("/generate-quick-notes_from_docs", status_code=status.HTTP_200_OK)
-
-
 async def generate_quick_notes_from_docs(req: QuickNotesRequest):
     """
     Generate quick notes from all transcriptions in a document.
@@ -837,20 +759,20 @@ async def generate_quick_notes_from_docs(req: QuickNotesRequest):
         # Construct prompt for LLM
         prompt = f"""Based on the following transcriptions from multiple pages of a document, generate comprehensive quick notes.
 
-Transcriptions:
-{combined_text[:8000]}... (truncated if too long)
+            Transcriptions:
+            {combined_text[:8000]}... (truncated if too long)
 
-Instructions:
-1. Create concise, well-organized quick notes that capture the key concepts from all pages.
-2. Use bullet points and headings to organize the content logically.
-3. Highlight important terms, definitions, formulas, and key takeaways.
-4. Group related concepts together across pages.
-5. Keep the notes clear, educational, and easy to review.
-6. Use markdown formatting for better readability.
-7. Include page references where relevant (e.g., "Page 3: Newton's Laws").
+            Instructions:
+            1. Create concise, well-organized quick notes that capture the key concepts from all pages.
+            2. Use bullet points and headings to organize the content logically.
+            3. Highlight important terms, definitions, formulas, and key takeaways.
+            4. Group related concepts together across pages.
+            5. Keep the notes clear, educational, and easy to review.
+            6. Use markdown formatting for better readability.
+            7. Include page references where relevant (e.g., "Page 3: Newton's Laws").
 
-Generate comprehensive quick notes suitable for quick revision and study.
-"""
+            Generate comprehensive quick notes suitable for quick revision and study.
+        """
         
         # Call LLM
         loop = asyncio.get_running_loop()
@@ -888,7 +810,6 @@ Generate comprehensive quick notes suitable for quick revision and study.
 class QuickQuizRequest(BaseModel):
     document_id: str
     num_questions: int = 5
-
 
 @router.post("/generate-quick-quiz_from_docs", status_code=status.HTTP_200_OK)
 async def generate_quick_quiz_from_docs(req: QuickQuizRequest):
@@ -1021,7 +942,6 @@ async def generate_quick_quiz_from_docs(req: QuickQuizRequest):
 class QuickMCQRequest(BaseModel):
     document_id: str
     num_questions: int = 3
-
 
 @router.post("/generate-quick-mcq_from_docs", status_code=status.HTTP_200_OK)
 async def generate_quick_mcq_from_docs(req: QuickMCQRequest):

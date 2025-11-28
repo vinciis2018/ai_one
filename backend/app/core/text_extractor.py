@@ -4,8 +4,6 @@
 # ============================================
 
 from app.llms.gemini import gemini_transcribe_image
-from app.core.llm_manager import call_llm_multimodal
-from app.prompt.text_extraction_prompt import TEXT_EXTRACTION_PROMPT
 import io
 from PIL import Image
 import fitz  # PyMuPDF
@@ -75,26 +73,7 @@ def extract_text_with_llm(image_bytes: bytes) -> str:
         
         # Convert image to base64
         base64_image = base64.b64encode(image_bytes).decode('utf-8')
-        messages=[
-                {
-                    "role": "user",
-                    "content": [
-                        {
-                            "type": "text",
-                            "text": TEXT_EXTRACTION_PROMPT
-                        },
-                        {
-                            "type": "image_url",
-                            "image_url": {
-                                "url": f"data:image/jpeg;base64,{base64_image}",
-                                "detail": "high"
-                            }
-                        }
-                    ]
-                }
-            ],
-        # Call Gemini API with optimized prompt for OCR and diagram detection
-        # response = call_llm_multimodal(messages)
+      
         response = gemini_transcribe_image(base64_image)
         
         print(response, "::::::::::::::::::------- response gemini")

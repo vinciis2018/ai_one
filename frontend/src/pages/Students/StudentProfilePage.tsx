@@ -5,7 +5,6 @@ import { useAppDispatch, useAppSelector } from '../../store';
 import { getStudentDetails } from '../../store/slices/studentsSlice';
 import { getStudentAnalytics } from '../../store/slices/teachersSlice';
 import { fetchSelectedDocuments, type DocumentItem } from '../../store/slices/documentsSlice';
-import Header from '../Auth/components/Header';
 import DocumentCard from '../Auth/components/DocumentCard';
 import StatsGrid from '../Auth/components/StatsGrid';
 import DocumentModal from '../Auth/components/DocumentModal';

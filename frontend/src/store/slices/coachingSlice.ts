@@ -35,11 +35,30 @@ export interface UploadRequestPayload {
   file_size?: number;
 }
 
+export interface ClassroomModel {
+  classroom_id?: string | null;
+  _id?: string;
+  name: string;
+  description: string;
+  teacher_id: string;
+  teacher_name?: string;
+  teacher_email?: string;
+  student_ids: string[];
+  created_at?: string;
+  updated_at?: string;
+}
+
+interface GetAllClassroomsResponse {
+  classrooms: ClassroomModel[];
+  count: number;
+}
+
 interface CoachingState {
   coachings: OrganisationModel[] | unknown;
   coachingDetails: OrganisationModel | null | unknown;
   teachers: TeacherModel[];       // list for institute
   students: StudentModel[];       // list for institute
+  classrooms: ClassroomModel[];   // list of classrooms
   loading: boolean;
   error: string | null;
   success: boolean;
@@ -51,6 +70,7 @@ const initialState: CoachingState = {
   coachingDetails: null,
   teachers: [],
   students: [],
+  classrooms: [],
   loading: false,
   error: null,
   success: false,
@@ -156,7 +176,7 @@ export const addStudentToInstitute = createAsyncThunk(
   'coaching/addStudentToInstitute',
   async ({ coaching_id, student }: { coaching_id: string; student: StudentModel }, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${BASE_URL}/coachings/${coaching_id}/students/`, {coaching_id, student});
+      const response = await axios.post(`${BASE_URL}/coachings/${coaching_id}/students/`, { coaching_id, student });
       return response.data; // backend returns { message, student_id }
     } catch (error: unknown) {
       const axiosError = error as unknown as { response?: { data?: { message?: string } } };
@@ -181,6 +201,44 @@ export const addStudentToTeacher = createAsyncThunk(
   }
 );
 
+// Create Classroom
+export const createClassroom = createAsyncThunk(
+  'coaching/createClassroom',
+  async ({ name, description, teacher_id }: { name: string; description: string; teacher_id: string }, { rejectWithValue }) => {
+    try {
+      const payload = {
+        classroom_details: {
+          name,
+          description,
+          teacher_id,
+          student_ids: [] // Empty array as specified
+        }
+      };
+      const response = await axios.post<ClassroomModel>(`${BASE_URL}/teachers/classroom/add`, payload);
+      return response.data;
+    } catch (error: unknown) {
+      const axiosError = error as unknown as { response?: { data?: { message?: string } } };
+      return rejectWithValue(axiosError.response?.data?.message || "Failed to create classroom");
+    }
+  }
+);
+
+// Get All Classrooms by Teacher IDs
+export const getAllClassrooms = createAsyncThunk(
+  'coaching/getAllClassrooms',
+  async (teacher_ids: string[], { rejectWithValue }) => {
+    try {
+      const response = await axios.post<GetAllClassroomsResponse>(`${BASE_URL}/teachers/classrooms/all`, {
+        teacher_ids
+      });
+      return response.data.classrooms; // Extract classrooms array from response
+    } catch (error: unknown) {
+      const axiosError = error as unknown as { response?: { data?: { message?: string } } };
+      return rejectWithValue(axiosError.response?.data?.message || "Failed to fetch classrooms");
+    }
+  }
+);
+
 
 // Slice
 const coachingSlice = createSlice({
@@ -194,6 +252,7 @@ const coachingSlice = createSlice({
       state.coachingDetails = null;
       state.teachers = [];
       state.students = [];
+      state.classrooms = [];
     },
   },
   extraReducers: (builder) => {
@@ -317,6 +376,34 @@ const coachingSlice = createSlice({
         state.success = true;
       })
       .addCase(addStudentToTeacher.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      })
+      // Create Classroom
+      .addCase(createClassroom.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.success = false;
+      })
+      .addCase(createClassroom.fulfilled, (state, action) => {
+        state.loading = false;
+        state.success = true;
+        state.classrooms.push(action.payload);
+      })
+      .addCase(createClassroom.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      })
+      // Get All Classrooms
+      .addCase(getAllClassrooms.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getAllClassrooms.fulfilled, (state, action) => {
+        state.loading = false;
+        state.classrooms = action.payload;
+      })
+      .addCase(getAllClassrooms.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       });

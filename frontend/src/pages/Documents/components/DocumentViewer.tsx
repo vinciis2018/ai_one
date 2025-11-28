@@ -201,7 +201,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
   return (
     <div className="w-full h-full bg-slate-900 flex flex-col rounded-xl overflow-hidden border border-slate-700 shadow-sm">
       {/* Toolbar */}
-      <div className="bg-slate-800 p-2 flex items-center justify-center text-white text-xs z-20 shadow-md shrink-0">
+      <div className="p-2 flex items-center justify-center text-white text-xs shadow-md shrink-0">
 
         {/* PDF Controls */}
         {numPages && numPages > 1 && (

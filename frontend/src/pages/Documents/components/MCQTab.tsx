@@ -1,4 +1,10 @@
 import React from "react";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css';
+
 
 interface MCQTabProps {
   pageNumber: number;
@@ -37,7 +43,13 @@ export const MCQTab: React.FC<MCQTabProps> = ({
         <div className="flex-1 overflow-y-auto space-y-3">
           {mcqData.questions.map((q: any, i: number) => (
             <div key={i} className="p-4 rounded-xl border bg-white border-gray-200 shadow-sm">
-              <p className="text-sm text-gray-800 font-medium mb-2">{q.question}</p>
+              {/* <p className="text-sm text-gray-800 font-medium mb-2">{q.question}</p> */}
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm, remarkMath]}
+                  rehypePlugins={[rehypeKatex]}
+                >
+                  {q.question}
+                </ReactMarkdown>
               <ul className="space-y-1 pl-4 list-disc">
                 {q.options?.map((opt: string, optIndex: number) => (
                   <li key={optIndex} className={opt === q.answer ? "text-indigo-700 font-semibold" : "text-gray-600"}>
@@ -75,15 +87,27 @@ export const MCQTab: React.FC<MCQTabProps> = ({
                     <h4 className="text-xs font-bold text-green-600 uppercase tracking-wider mb-2">Easy</h4>
                     <div className="space-y-3">
                       {multipleChoice.easy.map((q: any, i: number) => (
-                        <div key={`mcq-easy-${i}`} className="p-3 rounded-lg border bg-green-50/30 border-green-100 text-sm text-gray-700">
-                          <p className="font-medium mb-2">{q.question}</p>
-                          <ul className="space-y-1 pl-4 list-disc">
-                            {q.options.map((opt: string, optIndex: number) => (
-                              <li key={optIndex} className={opt === q.answer ? "text-green-700 font-semibold" : ""}>
-                                {opt}
-                              </li>
-                            ))}
-                          </ul>
+                        <div key={`mcq-easy-${i}`} className="p-3 rounded-lg border bg-green-50/30 border-green-100 text-sm text-gray-700 space-y-2">
+                          <ReactMarkdown
+                            remarkPlugins={[remarkGfm, remarkMath]}
+                            rehypePlugins={[rehypeKatex]}
+                          >
+                            {q.question}
+                          </ReactMarkdown>
+                          <div>
+                            <ul className="space-y-1 pl-4 list-disc">
+                              {q.options.map((opt: string, optIndex: number) => (
+                                <li key={optIndex} className={opt === q.answer ? "text-green-700 font-semibold" : ""}>
+                                  <ReactMarkdown
+                                    remarkPlugins={[remarkGfm, remarkMath]}
+                                    rehypePlugins={[rehypeKatex]}
+                                  >
+                                    {opt}
+                                  </ReactMarkdown>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                         </div>
                       ))}
                     </div>
@@ -95,15 +119,27 @@ export const MCQTab: React.FC<MCQTabProps> = ({
                     <h4 className="text-xs font-bold text-yellow-600 uppercase tracking-wider mb-2">Medium</h4>
                     <div className="space-y-3">
                       {multipleChoice.medium.map((q: any, i: number) => (
-                        <div key={`mcq-medium-${i}`} className="p-3 rounded-lg border bg-yellow-50/30 border-yellow-100 text-sm text-gray-700">
-                          <p className="font-medium mb-2">{q.question}</p>
-                          <ul className="space-y-1 pl-4 list-disc">
-                            {q.options.map((opt: string, optIndex: number) => (
-                              <li key={optIndex} className={opt === q.answer ? "text-yellow-700 font-semibold" : ""}>
-                                {opt}
-                              </li>
-                            ))}
-                          </ul>
+                        <div key={`mcq-medium-${i}`} className="p-3 rounded-lg border bg-yellow-50/30 border-yellow-100 text-sm text-gray-700 space-y-2">
+                          <ReactMarkdown
+                            remarkPlugins={[remarkGfm, remarkMath]}
+                            rehypePlugins={[rehypeKatex]}
+                          >
+                            {q.question}
+                          </ReactMarkdown>
+                          <div>
+                            <ul className="space-y-1 pl-4 list-disc">
+                              {q.options.map((opt: string, optIndex: number) => (
+                                <li key={optIndex} className={opt === q.answer ? "text-yellow-700 font-semibold" : ""}>
+                                  <ReactMarkdown
+                                    remarkPlugins={[remarkGfm, remarkMath]}
+                                    rehypePlugins={[rehypeKatex]}
+                                  >
+                                    {opt}
+                                  </ReactMarkdown>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                         </div>
                       ))}
                     </div>
@@ -116,7 +152,12 @@ export const MCQTab: React.FC<MCQTabProps> = ({
                     <div className="space-y-3">
                       {multipleChoice.hard.map((q: any, i: number) => (
                         <div key={`mcq-hard-${i}`} className="p-3 rounded-lg border bg-red-50/30 border-red-100 text-sm text-gray-700">
-                          <p className="font-medium mb-2">{q.question}</p>
+                          <ReactMarkdown
+                            remarkPlugins={[remarkGfm, remarkMath]}
+                            rehypePlugins={[rehypeKatex]}
+                          >
+                            {q.question}
+                          </ReactMarkdown>
                           <ul className="space-y-1 pl-4 list-disc">
                             {q.options.map((opt: string, optIndex: number) => (
                               <li key={optIndex} className={opt === q.answer ? "text-red-700 font-semibold" : ""}>

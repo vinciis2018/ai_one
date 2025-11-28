@@ -49254,3 +49254,1402 @@ contents.list[union[Content,str,is-instance[Image],File,Part,list[union[str,is-i
 2025-11-27 01:26:42,713 [INFO] GET /upload/6927152a9053ba6ff4bb4c08 - 200 - 16.24ms
 2025-11-27 01:26:42,719 [INFO] GET /auth/me - 200 - 8.93ms
 2025-11-27 01:26:42,724 [INFO] GET /auth/me - 200 - 13.52ms
+2025-11-27 01:45:06,652 [INFO] OPTIONS /auth/me - 200 - 168.8ms
+2025-11-27 01:45:06,911 [INFO] OPTIONS /auth/me - 200 - 351.87ms
+2025-11-27 01:45:06,976 [INFO] OPTIONS /auth/me - 200 - 110.52ms
+2025-11-27 01:45:07,018 [INFO] OPTIONS /auth/me - 200 - 44.09ms
+2025-11-27 01:45:07,122 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 538.83ms
+2025-11-27 01:45:07,141 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 216.76ms
+2025-11-27 01:45:07,199 [INFO] GET /auth/me - 200 - 181.72ms
+2025-11-27 01:45:07,202 [INFO] GET /auth/me - 200 - 167.19ms
+2025-11-27 01:45:07,206 [INFO] GET /auth/me - 200 - 130.04ms
+2025-11-27 01:45:07,207 [INFO] GET /auth/me - 200 - 227.5ms
+2025-11-27 01:46:28,050 [INFO] OPTIONS /notes/save - 200 - 2.55ms
+2025-11-27 01:46:28,173 [INFO] POST /notes/save - 200 - 118.5ms
+2025-11-27 01:57:32,441 [INFO] OPTIONS /auth/me - 200 - 18.24ms
+2025-11-27 01:57:32,451 [INFO] OPTIONS /auth/me - 200 - 11.58ms
+2025-11-27 01:57:32,454 [INFO] GET /coachings - 307 - 13.45ms
+2025-11-27 01:57:32,456 [INFO] GET /coachings - 307 - 6.05ms
+2025-11-27 01:57:32,505 [INFO] GET /auth/me - 200 - 47.76ms
+2025-11-27 01:57:32,507 [INFO] GET /auth/me - 200 - 30.01ms
+2025-11-27 01:57:32,817 [INFO] GET /coachings/ - 200 - 333.96ms
+2025-11-27 01:57:32,817 [INFO] GET /coachings/ - 200 - 334.44ms
+2025-11-27 01:57:33,780 [INFO] OPTIONS /auth/me - 200 - 0.39ms
+2025-11-27 01:57:33,785 [INFO] OPTIONS /auth/me - 200 - 0.3ms
+2025-11-27 01:57:33,790 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 7.76ms
+2025-11-27 01:57:33,802 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 18.76ms
+2025-11-27 01:57:33,804 [INFO] GET /auth/me - 200 - 19.87ms
+2025-11-27 01:57:33,806 [INFO] GET /auth/me - 200 - 16.06ms
+2025-11-27 01:57:33,812 [INFO] GET /coachings/6909ff5877962a1c28aded91/teachers/ - 200 - 28.63ms
+2025-11-27 01:57:33,819 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 13.65ms
+2025-11-27 01:57:33,823 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 32.12ms
+2025-11-27 01:57:33,828 [INFO] GET /coachings/6909ff5877962a1c28aded91/teachers/ - 200 - 35.01ms
+2025-11-27 01:57:33,850 [INFO] GET /upload/list - 200 - 0.88ms
+2025-11-27 01:57:33,888 [INFO] GET /upload/list - 200 - 8.66ms
+2025-11-27 01:57:33,920 [INFO] GET /upload/list - 200 - 11.16ms
+2025-11-27 01:57:33,931 [INFO] GET /upload/list - 200 - 6.28ms
+2025-11-27 01:57:33,953 [INFO] GET /upload/list - 200 - 7.81ms
+2025-11-27 01:57:33,969 [INFO] GET /upload/list - 200 - 4.66ms
+2025-11-27 01:57:40,383 [INFO] OPTIONS /auth/me - 200 - 1.42ms
+2025-11-27 01:57:40,387 [INFO] OPTIONS /auth/me - 200 - 4.28ms
+2025-11-27 01:57:40,389 [INFO] GET /students - 307 - 5.85ms
+2025-11-27 01:57:40,390 [INFO] GET /students - 307 - 3.5ms
+2025-11-27 01:57:40,408 [INFO] GET /auth/me - 200 - 17.1ms
+2025-11-27 01:57:40,409 [INFO] GET /auth/me - 200 - 17.93ms
+2025-11-27 01:57:40,881 [INFO] GET /students - 307 - 0.58ms
+2025-11-27 01:57:40,902 [INFO] GET /students - 307 - 1.52ms
+2025-11-27 01:57:40,907 [INFO] GET /students/ - 200 - 19.7ms
+2025-11-27 01:57:40,910 [INFO] GET /students/ - 200 - 11.7ms
+2025-11-27 01:57:40,924 [INFO] GET /students/ - 200 - 8.04ms
+2025-11-27 01:57:40,926 [INFO] GET /students/ - 200 - 14.25ms
+2025-11-27 10:25:33,725 [INFO] Use pytorch device_name: mps
+2025-11-27 10:25:33,726 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-27 10:25:33,734 [WARNING] '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x11e1c78c0>: Failed to resolve \'huggingface.co\' ([Errno 8] nodename nor servname provided, or not known)"))'), '(Request ID: ff0f39e4-039f-4d49-b04d-35cfbe92786e)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+2025-11-27 10:25:33,734 [WARNING] Retrying in 1s [Retry 1/5].
+2025-11-27 10:25:34,738 [WARNING] '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x11e2a3390>: Failed to resolve \'huggingface.co\' ([Errno 8] nodename nor servname provided, or not known)"))'), '(Request ID: 0449df84-22c1-463b-a658-6d35f6926cda)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+2025-11-27 10:25:34,738 [WARNING] Retrying in 2s [Retry 2/5].
+2025-11-27 10:25:36,744 [WARNING] '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x11e2a39d0>: Failed to resolve \'huggingface.co\' ([Errno 8] nodename nor servname provided, or not known)"))'), '(Request ID: bfc252ed-cf87-4881-8701-3a92e48415dd)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+2025-11-27 10:25:36,745 [WARNING] Retrying in 4s [Retry 3/5].
+2025-11-27 10:25:40,753 [WARNING] '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x11e2a3d90>: Failed to resolve \'huggingface.co\' ([Errno 8] nodename nor servname provided, or not known)"))'), '(Request ID: 6be774bf-e10c-472d-b0c1-e76e581f10f5)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+2025-11-27 10:25:40,754 [WARNING] Retrying in 8s [Retry 4/5].
+2025-11-27 10:25:49,072 [WARNING] '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x11e364190>: Failed to resolve \'huggingface.co\' ([Errno 8] nodename nor servname provided, or not known)"))'), '(Request ID: 10fa42f4-60a2-47ea-a56a-8e25e5c0b52f)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+2025-11-27 10:25:49,080 [WARNING] Retrying in 8s [Retry 5/5].
+2025-11-27 10:25:57,096 [WARNING] '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x11e364550>: Failed to resolve \'huggingface.co\' ([Errno 8] nodename nor servname provided, or not known)"))'), '(Request ID: 27df2533-6d32-44ad-9903-6e379f493539)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+2025-11-27 10:25:57,147 [WARNING] '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x11e364e10>: Failed to resolve \'huggingface.co\' ([Errno 8] nodename nor servname provided, or not known)"))'), '(Request ID: 462cb821-e73e-4000-9f8f-45186186d065)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./config_sentence_transformers.json
+2025-11-27 10:25:57,147 [WARNING] Retrying in 1s [Retry 1/5].
+2025-11-27 10:25:58,153 [WARNING] '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x11e2a3d90>: Failed to resolve \'huggingface.co\' ([Errno 8] nodename nor servname provided, or not known)"))'), '(Request ID: a68c283d-4bcb-4da5-96b0-604cf0efcd38)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./config_sentence_transformers.json
+2025-11-27 10:25:58,153 [WARNING] Retrying in 2s [Retry 2/5].
+2025-11-27 10:26:00,160 [WARNING] '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x11e2a3890>: Failed to resolve \'huggingface.co\' ([Errno 8] nodename nor servname provided, or not known)"))'), '(Request ID: 1ef510d7-c621-441f-8fbb-9d627103b04f)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./config_sentence_transformers.json
+2025-11-27 10:26:00,160 [WARNING] Retrying in 4s [Retry 3/5].
+2025-11-27 10:26:04,168 [WARNING] '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x11e2a3b10>: Failed to resolve \'huggingface.co\' ([Errno 8] nodename nor servname provided, or not known)"))'), '(Request ID: e90f6bfb-4ddc-4d8d-9c06-3e15a10f9e89)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./config_sentence_transformers.json
+2025-11-27 10:26:04,169 [WARNING] Retrying in 8s [Retry 4/5].
+2025-11-27 10:26:19,498 [INFO] 🧠 Using device: MPS
+2025-11-27 10:26:30,485 [INFO] Use pytorch device_name: mps
+2025-11-27 10:26:30,485 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-27 10:26:44,453 [WARNING] '(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: 8628a5c4-bb1b-49b5-bf07-6dbeea587966)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+2025-11-27 10:26:44,454 [WARNING] Retrying in 1s [Retry 1/5].
+2025-11-27 10:26:58,229 [WARNING] '(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: d2d62988-1f67-498a-88f9-9d31ea9a0cac)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+2025-11-27 10:26:58,230 [WARNING] Retrying in 2s [Retry 2/5].
+2025-11-27 10:27:12,739 [WARNING] '(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: 4453e2a3-1cb0-459c-a403-c19a24257ed3)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+2025-11-27 10:27:12,741 [WARNING] Retrying in 4s [Retry 3/5].
+2025-11-27 10:27:35,585 [INFO] 🧠 Using device: MPS
+2025-11-27 10:28:11,751 [INFO] OPTIONS /auth/login - 200 - 0.91ms
+2025-11-27 10:28:12,193 [INFO] POST /auth/login - 200 - 437.94ms
+2025-11-27 10:28:12,290 [INFO] OPTIONS /auth/me - 200 - 0.42ms
+2025-11-27 10:28:12,335 [INFO] OPTIONS /auth/me - 200 - 0.34ms
+2025-11-27 10:28:12,386 [INFO] GET /auth/me - 200 - 90.63ms
+2025-11-27 10:28:12,391 [INFO] GET /auth/me - 200 - 53.7ms
+2025-11-27 10:28:12,492 [INFO] OPTIONS /auth/me - 200 - 0.24ms
+2025-11-27 10:28:12,499 [INFO] OPTIONS /auth/me - 200 - 1.58ms
+2025-11-27 10:28:12,499 [INFO] GET /students - 307 - 1.92ms
+2025-11-27 10:28:12,501 [INFO] GET /students - 307 - 2.2ms
+2025-11-27 10:28:12,534 [INFO] GET /auth/me - 200 - 39.53ms
+2025-11-27 10:28:12,539 [INFO] GET /auth/me - 200 - 35.64ms
+2025-11-27 10:28:12,809 [INFO] GET /students - 307 - 0.78ms
+2025-11-27 10:28:12,836 [INFO] GET /students - 307 - 1.23ms
+2025-11-27 10:28:12,851 [INFO] GET /students/ - 200 - 10.12ms
+2025-11-27 10:28:12,851 [INFO] GET /students/ - 200 - 17.4ms
+2025-11-27 10:28:12,852 [INFO] GET /students/ - 200 - 41.65ms
+2025-11-27 10:28:12,853 [INFO] GET /students/ - 200 - 17.11ms
+2025-11-27 10:45:50,041 [INFO] OPTIONS /auth/me - 200 - 5.56ms
+2025-11-27 10:45:50,057 [INFO] OPTIONS /auth/me - 200 - 17.55ms
+2025-11-27 10:45:50,111 [INFO] GET /auth/me - 200 - 49.46ms
+2025-11-27 10:45:50,114 [INFO] GET /auth/me - 200 - 52.53ms
+2025-11-27 10:45:54,953 [INFO] OPTIONS /auth/me - 200 - 0.2ms
+2025-11-27 10:45:54,958 [INFO] OPTIONS /auth/me - 200 - 0.81ms
+2025-11-27 10:45:54,959 [INFO] GET /coachings - 307 - 1.5ms
+2025-11-27 10:45:54,960 [INFO] GET /coachings - 307 - 1.32ms
+2025-11-27 10:45:54,964 [INFO] GET /auth/me - 200 - 5.88ms
+2025-11-27 10:45:54,965 [INFO] GET /auth/me - 200 - 4.29ms
+2025-11-27 10:45:55,035 [INFO] GET /coachings/ - 200 - 37.95ms
+2025-11-27 10:45:55,039 [INFO] GET /coachings/ - 200 - 3.97ms
+2025-11-27 10:45:55,922 [INFO] OPTIONS /auth/me - 200 - 0.72ms
+2025-11-27 10:45:55,926 [INFO] OPTIONS /auth/me - 200 - 1.63ms
+2025-11-27 10:45:55,927 [INFO] GET /students - 307 - 1.66ms
+2025-11-27 10:45:55,928 [INFO] GET /students - 307 - 1.84ms
+2025-11-27 10:45:55,935 [INFO] GET /auth/me - 200 - 6.76ms
+2025-11-27 10:45:55,935 [INFO] GET /auth/me - 200 - 3.97ms
+2025-11-27 10:45:56,273 [INFO] GET /students - 307 - 2.59ms
+2025-11-27 10:45:56,278 [INFO] GET /students/ - 200 - 5.75ms
+2025-11-27 10:45:56,284 [INFO] GET /students - 307 - 1.42ms
+2025-11-27 10:45:56,295 [INFO] GET /students/ - 200 - 8.16ms
+2025-11-27 10:45:56,296 [INFO] GET /students/ - 200 - 11.57ms
+2025-11-27 10:45:56,345 [INFO] GET /students/ - 200 - 9.79ms
+2025-11-27 10:45:56,965 [INFO] OPTIONS /auth/me - 200 - 0.47ms
+2025-11-27 10:45:56,967 [INFO] OPTIONS /auth/me - 200 - 0.94ms
+2025-11-27 10:45:56,967 [INFO] GET /coachings - 307 - 1.06ms
+2025-11-27 10:45:56,967 [INFO] GET /coachings - 307 - 1.13ms
+2025-11-27 10:45:56,970 [INFO] GET /auth/me - 200 - 3.74ms
+2025-11-27 10:45:56,972 [INFO] GET /auth/me - 200 - 3.6ms
+2025-11-27 10:45:57,293 [INFO] GET /coachings/ - 200 - 2.04ms
+2025-11-27 10:45:57,306 [INFO] GET /coachings/ - 200 - 3.23ms
+2025-11-27 10:45:59,396 [INFO] OPTIONS /auth/me - 200 - 0.55ms
+2025-11-27 10:45:59,415 [INFO] OPTIONS /auth/me - 200 - 3.13ms
+2025-11-27 10:45:59,418 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 16.98ms
+2025-11-27 10:45:59,424 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 21.42ms
+2025-11-27 10:45:59,462 [INFO] GET /coachings/6909ff5877962a1c28aded91/students/ - 200 - 36.05ms
+2025-11-27 10:45:59,462 [INFO] GET /auth/me - 200 - 3.48ms
+2025-11-27 10:45:59,465 [INFO] GET /upload/list - 200 - 0.76ms
+2025-11-27 10:45:59,490 [INFO] GET /coachings/6909ff5877962a1c28aded91 - 200 - 76.53ms
+2025-11-27 10:45:59,491 [INFO] GET /auth/me - 200 - 81.17ms
+2025-11-27 10:45:59,501 [INFO] GET /coachings/6909ff5877962a1c28aded91/teachers/ - 200 - 98.21ms
+2025-11-27 10:45:59,501 [INFO] GET /coachings/6909ff5877962a1c28aded91/teachers/ - 200 - 82.41ms
+2025-11-27 10:45:59,503 [INFO] GET /upload/list - 200 - 17.11ms
+2025-11-27 10:45:59,514 [INFO] GET /upload/list - 200 - 2.79ms
+2025-11-27 10:45:59,560 [INFO] GET /upload/list - 200 - 2.61ms
+2025-11-27 10:45:59,663 [INFO] GET /upload/list - 200 - 53.8ms
+2025-11-27 10:45:59,664 [INFO] GET /upload/list - 200 - 26.95ms
+2025-11-27 10:46:13,525 [INFO] OPTIONS /auth/me - 200 - 0.86ms
+2025-11-27 10:46:13,526 [INFO] OPTIONS /auth/me - 200 - 1.43ms
+2025-11-27 10:46:13,545 [INFO] GET /auth/me - 200 - 16.95ms
+2025-11-27 10:46:13,545 [INFO] GET /auth/me - 200 - 15.52ms
+2025-11-27 10:51:28,342 [INFO] OPTIONS /auth/me - 200 - 0.9ms
+2025-11-27 10:51:28,344 [INFO] OPTIONS /auth/me - 200 - 2.11ms
+2025-11-27 10:51:28,345 [INFO] OPTIONS /auth/me - 200 - 3.08ms
+2025-11-27 10:51:28,346 [INFO] OPTIONS /auth/me - 200 - 2.24ms
+2025-11-27 10:51:28,370 [INFO] GET /auth/me - 200 - 11.89ms
+2025-11-27 10:51:28,372 [INFO] GET /auth/me - 200 - 24.79ms
+2025-11-27 10:51:28,374 [INFO] GET /auth/me - 200 - 15.78ms
+2025-11-27 10:51:28,375 [INFO] GET /auth/me - 200 - 16.91ms
+2025-11-27 12:57:29,436 [INFO] OPTIONS /auth/me - 200 - 37.89ms
+2025-11-27 12:57:29,446 [INFO] OPTIONS /auth/me - 200 - 20.41ms
+2025-11-27 12:57:29,504 [INFO] OPTIONS /auth/me - 200 - 3.45ms
+2025-11-27 12:57:29,511 [INFO] OPTIONS /auth/me - 200 - 8.8ms
+2025-11-27 12:57:29,602 [INFO] GET /auth/me - 200 - 149.11ms
+2025-11-27 12:57:29,609 [INFO] GET /auth/me - 200 - 156.15ms
+2025-11-27 12:57:29,622 [INFO] GET /auth/me - 200 - 110.21ms
+2025-11-27 12:57:29,628 [INFO] GET /auth/me - 200 - 97.53ms
+2025-11-27 18:40:44,419 [INFO] Use pytorch device_name: mps
+2025-11-27 18:40:44,420 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-27 18:40:49,820 [INFO] 🧠 Using device: MPS
+2025-11-27 18:41:14,015 [INFO] OPTIONS /auth/login - 200 - 1.77ms
+2025-11-27 18:41:14,361 [INFO] POST /auth/login - 200 - 343.77ms
+2025-11-27 18:41:14,424 [INFO] OPTIONS /auth/me - 200 - 0.78ms
+2025-11-27 18:41:14,452 [INFO] OPTIONS /auth/me - 200 - 1.33ms
+2025-11-27 18:41:14,461 [INFO] GET /auth/me - 200 - 32.93ms
+2025-11-27 18:41:14,468 [INFO] GET /auth/me - 200 - 7.48ms
+2025-11-27 18:41:14,579 [INFO] OPTIONS /auth/me - 200 - 0.18ms
+2025-11-27 18:41:14,587 [INFO] OPTIONS /auth/me - 200 - 0.99ms
+2025-11-27 18:41:14,588 [INFO] GET /students - 307 - 1.78ms
+2025-11-27 18:41:14,589 [INFO] GET /students - 307 - 2.49ms
+2025-11-27 18:41:14,595 [INFO] GET /auth/me - 200 - 11.93ms
+2025-11-27 18:41:14,599 [INFO] GET /auth/me - 200 - 6.22ms
+2025-11-27 18:41:14,624 [INFO] GET /students - 307 - 1.38ms
+2025-11-27 18:41:14,644 [INFO] GET /students - 307 - 1.33ms
+2025-11-27 18:41:14,848 [INFO] GET /students/ - 200 - 222.24ms
+2025-11-27 18:41:14,850 [INFO] GET /students/ - 200 - 205.3ms
+2025-11-27 18:41:14,853 [INFO] GET /students/ - 200 - 211.41ms
+2025-11-27 18:41:14,855 [INFO] GET /students/ - 200 - 158.92ms
+2025-11-27 18:41:16,658 [INFO] OPTIONS /auth/me - 200 - 0.7ms
+2025-11-27 18:41:16,659 [INFO] OPTIONS /auth/me - 200 - 1.45ms
+2025-11-27 18:41:16,674 [INFO] GET /auth/me - 200 - 9.78ms
+2025-11-27 18:41:16,677 [INFO] GET /auth/me - 200 - 11.9ms
+2025-11-27 18:42:38,978 [INFO] OPTIONS /teachers/classroom/add - 200 - 1.6ms
+2025-11-27 18:42:39,018 [INFO] POST /teachers/classroom/add - 422 - 34.19ms
+2025-11-27 18:43:20,951 [INFO] Use pytorch device_name: mps
+2025-11-27 18:43:20,952 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-27 18:43:27,256 [INFO] 🧠 Using device: MPS
+2025-11-27 18:43:34,854 [INFO] Use pytorch device_name: mps
+2025-11-27 18:43:34,854 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-27 18:43:41,330 [INFO] 🧠 Using device: MPS
+2025-11-27 18:43:43,406 [INFO] OPTIONS /teachers/classroom/add - 200 - 0.49ms
+2025-11-27 18:43:43,409 [INFO] POST /teachers/classroom/add - 422 - 0.89ms
+2025-11-27 18:45:05,775 [INFO] OPTIONS /auth/me - 200 - 2.07ms
+2025-11-27 18:45:05,778 [INFO] OPTIONS /auth/me - 200 - 2.52ms
+2025-11-27 18:45:05,779 [INFO] OPTIONS /auth/me - 200 - 1.71ms
+2025-11-27 18:45:05,783 [INFO] OPTIONS /auth/me - 200 - 5.04ms
+2025-11-27 18:45:05,944 [INFO] GET /auth/me - 200 - 159.1ms
+2025-11-27 18:45:05,953 [INFO] GET /auth/me - 200 - 127.31ms
+2025-11-27 18:45:05,954 [INFO] GET /auth/me - 200 - 168.81ms
+2025-11-27 18:45:05,958 [INFO] GET /auth/me - 200 - 132.58ms
+2025-11-27 18:45:14,442 [INFO] OPTIONS /auth/me - 200 - 11.64ms
+2025-11-27 18:45:14,447 [INFO] OPTIONS /auth/me - 200 - 14.34ms
+2025-11-27 18:45:14,448 [INFO] OPTIONS /auth/me - 200 - 11.67ms
+2025-11-27 18:45:14,448 [INFO] OPTIONS /auth/me - 200 - 1.01ms
+2025-11-27 18:45:14,475 [INFO] GET /auth/me - 200 - 9.44ms
+2025-11-27 18:45:14,475 [INFO] GET /auth/me - 200 - 10.3ms
+2025-11-27 18:45:14,476 [INFO] GET /auth/me - 200 - 27.02ms
+2025-11-27 18:45:14,478 [INFO] GET /auth/me - 200 - 12.16ms
+2025-11-27 18:45:39,712 [INFO] OPTIONS /teachers/classroom/add - 200 - 1.28ms
+2025-11-27 18:45:39,731 [INFO] POST /teachers/classroom/add - 422 - 12.59ms
+2025-11-27 18:46:20,200 [INFO] Use pytorch device_name: mps
+2025-11-27 18:46:20,200 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-27 18:46:25,519 [INFO] 🧠 Using device: MPS
+2025-11-27 18:46:31,116 [INFO] Use pytorch device_name: mps
+2025-11-27 18:46:31,116 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-27 18:46:36,186 [INFO] 🧠 Using device: MPS
+2025-11-27 18:47:18,944 [INFO] OPTIONS /auth/me - 200 - 1.49ms
+2025-11-27 18:47:18,945 [INFO] OPTIONS /auth/me - 200 - 1.76ms
+2025-11-27 18:47:18,946 [INFO] OPTIONS /auth/me - 200 - 2.25ms
+2025-11-27 18:47:18,948 [INFO] OPTIONS /auth/me - 200 - 2.23ms
+2025-11-27 18:47:19,062 [INFO] GET /auth/me - 200 - 42.98ms
+2025-11-27 18:47:19,066 [INFO] GET /auth/me - 200 - 46.56ms
+2025-11-27 18:47:19,067 [INFO] GET /auth/me - 200 - 53.18ms
+2025-11-27 18:47:19,071 [INFO] GET /auth/me - 200 - 121.32ms
+2025-11-27 18:47:20,649 [INFO] OPTIONS /auth/me - 200 - 0.78ms
+2025-11-27 18:47:20,650 [INFO] OPTIONS /auth/me - 200 - 1.6ms
+2025-11-27 18:47:20,652 [INFO] OPTIONS /auth/me - 200 - 1.56ms
+2025-11-27 18:47:20,653 [INFO] OPTIONS /auth/me - 200 - 1.94ms
+2025-11-27 18:47:20,669 [INFO] GET /auth/me - 200 - 12.92ms
+2025-11-27 18:47:20,670 [INFO] GET /auth/me - 200 - 19.22ms
+2025-11-27 18:47:20,676 [INFO] GET /auth/me - 200 - 23.99ms
+2025-11-27 18:47:20,683 [INFO] GET /auth/me - 200 - 29.14ms
+2025-11-27 18:47:25,146 [INFO] OPTIONS /auth/me - 200 - 3.62ms
+2025-11-27 18:47:25,149 [INFO] OPTIONS /auth/me - 200 - 4.68ms
+2025-11-27 18:47:25,151 [INFO] OPTIONS /auth/me - 200 - 5.41ms
+2025-11-27 18:47:25,151 [INFO] OPTIONS /auth/me - 200 - 2.17ms
+2025-11-27 18:47:25,191 [INFO] GET /auth/me - 200 - 26.49ms
+2025-11-27 18:47:25,192 [INFO] GET /auth/me - 200 - 27.52ms
+2025-11-27 18:47:25,194 [INFO] GET /auth/me - 200 - 41.37ms
+2025-11-27 18:47:25,195 [INFO] GET /auth/me - 200 - 30.62ms
+2025-11-27 18:47:45,172 [INFO] OPTIONS /teachers/classroom/add - 200 - 1.04ms
+2025-11-27 18:47:45,178 [INFO] POST /teachers/classroom/add - 422 - 2.03ms
+2025-11-27 18:48:08,310 [INFO] OPTIONS /auth/me - 200 - 4.4ms
+2025-11-27 18:48:08,316 [INFO] OPTIONS /auth/me - 200 - 6.13ms
+2025-11-27 18:48:08,316 [INFO] OPTIONS /auth/me - 200 - 2.44ms
+2025-11-27 18:48:08,318 [INFO] OPTIONS /auth/me - 200 - 2.74ms
+2025-11-27 18:48:08,354 [INFO] GET /auth/me - 200 - 17.15ms
+2025-11-27 18:48:08,362 [INFO] GET /auth/me - 200 - 44.28ms
+2025-11-27 18:48:08,366 [INFO] GET /auth/me - 200 - 29.45ms
+2025-11-27 18:48:08,367 [INFO] GET /auth/me - 200 - 29.63ms
+2025-11-27 18:48:25,783 [INFO] OPTIONS /teachers/classroom/add - 200 - 0.31ms
+2025-11-27 18:48:25,796 [INFO] POST /teachers/classroom/add - 422 - 9.59ms
+2025-11-27 18:50:28,357 [INFO] OPTIONS /auth/me - 200 - 2.21ms
+2025-11-27 18:50:28,360 [INFO] OPTIONS /auth/me - 200 - 3.55ms
+2025-11-27 18:50:28,360 [INFO] OPTIONS /auth/me - 200 - 3.77ms
+2025-11-27 18:50:28,362 [INFO] OPTIONS /auth/me - 200 - 2.52ms
+2025-11-27 18:50:28,402 [INFO] GET /auth/me - 200 - 35.53ms
+2025-11-27 18:50:28,404 [INFO] GET /auth/me - 200 - 27.84ms
+2025-11-27 18:50:28,416 [INFO] GET /auth/me - 200 - 52.46ms
+2025-11-27 18:50:28,418 [INFO] GET /auth/me - 200 - 53.78ms
+2025-11-27 18:50:55,460 [INFO] OPTIONS /teachers/classroom/add - 200 - 1.41ms
+2025-11-27 18:50:55,468 [INFO] POST /teachers/classroom/add - 422 - 3.86ms
+2025-11-27 18:51:46,498 [INFO] OPTIONS /auth/me - 200 - 2.62ms
+2025-11-27 18:51:46,500 [INFO] OPTIONS /auth/me - 200 - 1.94ms
+2025-11-27 18:51:46,501 [INFO] OPTIONS /auth/me - 200 - 2.36ms
+2025-11-27 18:51:46,501 [INFO] OPTIONS /auth/me - 200 - 1.38ms
+2025-11-27 18:51:46,520 [INFO] GET /auth/me - 200 - 16.79ms
+2025-11-27 18:51:46,521 [INFO] GET /auth/me - 200 - 12.31ms
+2025-11-27 18:51:46,522 [INFO] GET /auth/me - 200 - 15.65ms
+2025-11-27 18:51:46,523 [INFO] GET /auth/me - 200 - 13.65ms
+2025-11-27 18:52:07,716 [INFO] Use pytorch device_name: mps
+2025-11-27 18:52:07,716 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-27 18:52:12,941 [INFO] 🧠 Using device: MPS
+2025-11-27 18:52:18,083 [INFO] OPTIONS /auth/me - 200 - 1.41ms
+2025-11-27 18:52:18,086 [INFO] OPTIONS /auth/me - 200 - 3.11ms
+2025-11-27 18:52:18,086 [INFO] OPTIONS /auth/me - 200 - 1.67ms
+2025-11-27 18:52:18,087 [INFO] OPTIONS /auth/me - 200 - 2.04ms
+2025-11-27 18:52:18,168 [INFO] GET /auth/me - 200 - 10.9ms
+2025-11-27 18:52:18,191 [INFO] GET /auth/me - 200 - 102.79ms
+2025-11-27 18:52:18,192 [INFO] GET /auth/me - 200 - 34.86ms
+2025-11-27 18:52:18,193 [INFO] GET /auth/me - 200 - 35.71ms
+2025-11-27 18:52:53,260 [INFO] OPTIONS /auth/me - 200 - 1.39ms
+2025-11-27 18:52:53,264 [INFO] OPTIONS /auth/me - 200 - 4.53ms
+2025-11-27 18:52:53,266 [INFO] OPTIONS /auth/me - 200 - 5.81ms
+2025-11-27 18:52:53,266 [INFO] OPTIONS /auth/me - 200 - 2.93ms
+2025-11-27 18:52:53,292 [INFO] GET /auth/me - 200 - 7.57ms
+2025-11-27 18:52:53,293 [INFO] GET /auth/me - 200 - 8.71ms
+2025-11-27 18:52:53,294 [INFO] GET /auth/me - 200 - 9.05ms
+2025-11-27 18:52:53,294 [INFO] GET /auth/me - 200 - 26.62ms
+2025-11-27 18:52:59,343 [INFO] Use pytorch device_name: mps
+2025-11-27 18:52:59,343 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-27 18:53:05,875 [INFO] 🧠 Using device: MPS
+2025-11-27 18:53:07,725 [INFO] OPTIONS /auth/me - 200 - 1.65ms
+2025-11-27 18:53:07,726 [INFO] OPTIONS /auth/me - 200 - 1.88ms
+2025-11-27 18:53:07,727 [INFO] OPTIONS /auth/me - 200 - 1.07ms
+2025-11-27 18:53:07,727 [INFO] OPTIONS /auth/me - 200 - 1.34ms
+2025-11-27 18:53:07,801 [INFO] GET /auth/me - 200 - 72.76ms
+2025-11-27 18:53:07,802 [INFO] GET /auth/me - 200 - 43.92ms
+2025-11-27 18:53:07,806 [INFO] GET /auth/me - 200 - 62.82ms
+2025-11-27 18:53:07,815 [INFO] GET /auth/me - 200 - 56.21ms
+2025-11-27 18:53:23,270 [INFO] OPTIONS /teachers/classroom/add - 200 - 1.82ms
+2025-11-27 18:53:23,284 [INFO] POST /teachers/classroom/add - 404 - 9.54ms
+2025-11-27 18:54:00,185 [INFO] OPTIONS /teachers/classroom/add - 200 - 0.92ms
+2025-11-27 18:54:00,225 [INFO] POST /teachers/classroom/add - 200 - 33.07ms
+2025-11-27 18:55:53,246 [INFO] OPTIONS /auth/me - 200 - 1.15ms
+2025-11-27 18:55:53,249 [INFO] OPTIONS /auth/me - 200 - 2.92ms
+2025-11-27 18:55:53,249 [INFO] OPTIONS /auth/me - 200 - 3.33ms
+2025-11-27 18:55:53,250 [INFO] OPTIONS /auth/me - 200 - 1.47ms
+2025-11-27 18:55:53,285 [INFO] GET /auth/me - 200 - 22.52ms
+2025-11-27 18:55:53,296 [INFO] GET /auth/me - 200 - 28.36ms
+2025-11-27 18:55:53,298 [INFO] GET /auth/me - 200 - 35.59ms
+2025-11-27 18:55:53,298 [INFO] GET /auth/me - 200 - 43.14ms
+2025-11-27 18:56:09,849 [INFO] OPTIONS /auth/me - 200 - 10.14ms
+2025-11-27 18:56:09,852 [INFO] OPTIONS /auth/me - 200 - 3.88ms
+2025-11-27 18:56:09,852 [INFO] OPTIONS /auth/me - 200 - 4.13ms
+2025-11-27 18:56:09,853 [INFO] OPTIONS /auth/me - 200 - 1.67ms
+2025-11-27 18:56:09,873 [INFO] GET /auth/me - 200 - 14.13ms
+2025-11-27 18:56:09,873 [INFO] GET /auth/me - 200 - 16.29ms
+2025-11-27 18:56:09,874 [INFO] GET /auth/me - 200 - 16.78ms
+2025-11-27 18:56:09,875 [INFO] GET /auth/me - 200 - 20.64ms
+2025-11-27 18:57:21,809 [INFO] Use pytorch device_name: mps
+2025-11-27 18:57:21,810 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-27 18:57:27,045 [INFO] 🧠 Using device: MPS
+2025-11-27 18:58:44,487 [INFO] Use pytorch device_name: mps
+2025-11-27 18:58:44,488 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-27 18:58:53,065 [INFO] 🧠 Using device: MPS
+2025-11-27 18:58:59,352 [INFO] Use pytorch device_name: mps
+2025-11-27 18:58:59,352 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-27 18:59:04,419 [INFO] 🧠 Using device: MPS
+2025-11-27 18:59:04,973 [INFO] OPTIONS /auth/me - 200 - 0.43ms
+2025-11-27 18:59:04,973 [INFO] OPTIONS /auth/me - 200 - 0.66ms
+2025-11-27 18:59:04,974 [INFO] OPTIONS /auth/me - 200 - 1.54ms
+2025-11-27 18:59:04,975 [INFO] OPTIONS /auth/me - 200 - 1.67ms
+2025-11-27 18:59:04,995 [INFO] GET /auth/me - 200 - 11.22ms
+2025-11-27 18:59:04,995 [INFO] GET /auth/me - 200 - 16.79ms
+2025-11-27 18:59:04,996 [INFO] GET /auth/me - 200 - 10.73ms
+2025-11-27 18:59:04,996 [INFO] GET /auth/me - 200 - 11.21ms
+2025-11-27 19:00:32,622 [INFO] OPTIONS /auth/me - 200 - 1.96ms
+2025-11-27 19:00:32,624 [INFO] OPTIONS /teachers/classrooms/all - 200 - 3.07ms
+2025-11-27 19:00:32,657 [INFO] POST /teachers/classrooms/all - 200 - 29.34ms
+2025-11-27 19:00:32,663 [INFO] GET /auth/me - 200 - 35.1ms
+2025-11-27 19:03:02,598 [INFO] OPTIONS /auth/me - 200 - 0.85ms
+2025-11-27 19:03:02,601 [INFO] OPTIONS /auth/me - 200 - 2.77ms
+2025-11-27 19:03:02,602 [INFO] OPTIONS /auth/me - 200 - 3.68ms
+2025-11-27 19:03:02,602 [INFO] OPTIONS /auth/me - 200 - 1.88ms
+2025-11-27 19:03:02,648 [INFO] GET /auth/me - 200 - 35.21ms
+2025-11-27 19:03:02,649 [INFO] GET /auth/me - 200 - 45.15ms
+2025-11-27 19:03:02,650 [INFO] GET /auth/me - 200 - 36.55ms
+2025-11-27 19:03:02,656 [INFO] GET /auth/me - 200 - 42.57ms
+2025-11-27 19:03:02,685 [INFO] OPTIONS /teachers/classrooms/all - 200 - 0.61ms
+2025-11-27 19:03:02,712 [INFO] POST /teachers/classrooms/all - 200 - 20.22ms
+2025-11-27 19:03:52,573 [INFO] OPTIONS /teachers/classroom/add - 200 - 0.9ms
+2025-11-27 19:03:52,603 [INFO] POST /teachers/classroom/add - 200 - 23.22ms
+2025-11-27 19:06:16,803 [INFO] Use pytorch device_name: mps
+2025-11-27 19:06:16,803 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-27 19:06:22,416 [INFO] 🧠 Using device: MPS
+2025-11-27 19:06:45,951 [INFO] Use pytorch device_name: mps
+2025-11-27 19:06:45,952 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-27 19:06:51,942 [INFO] 🧠 Using device: MPS
+2025-11-27 19:06:53,640 [INFO] OPTIONS /auth/me - 200 - 0.78ms
+2025-11-27 19:06:53,641 [INFO] OPTIONS /auth/me - 200 - 0.94ms
+2025-11-27 19:06:53,642 [INFO] OPTIONS /auth/me - 200 - 1.1ms
+2025-11-27 19:06:53,642 [INFO] OPTIONS /auth/me - 200 - 1.37ms
+2025-11-27 19:06:53,819 [INFO] GET /auth/me - 200 - 175.79ms
+2025-11-27 19:06:53,820 [INFO] GET /auth/me - 200 - 168.77ms
+2025-11-27 19:06:53,821 [INFO] GET /auth/me - 200 - 165.39ms
+2025-11-27 19:06:53,830 [INFO] GET /auth/me - 200 - 174.43ms
+2025-11-27 19:06:53,846 [INFO] OPTIONS /teachers/classrooms/all - 200 - 4.48ms
+2025-11-27 19:06:53,859 [INFO] POST /teachers/classrooms/all - 200 - 11.49ms
+2025-11-27 19:07:11,980 [INFO] OPTIONS /teachers/classroom/add - 200 - 0.3ms
+2025-11-27 19:07:11,989 [INFO] POST /teachers/classroom/add - 500 - 6.23ms
+2025-11-27 19:09:46,963 [INFO] Use pytorch device_name: mps
+2025-11-27 19:09:46,963 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-27 19:09:52,722 [INFO] 🧠 Using device: MPS
+2025-11-27 19:10:12,164 [INFO] OPTIONS /teachers/classroom/add - 200 - 0.9ms
+2025-11-27 19:10:12,228 [INFO] POST /teachers/classroom/add - 200 - 60.24ms
+2025-11-27 19:12:05,186 [INFO] OPTIONS /auth/me - 200 - 3.39ms
+2025-11-27 19:12:05,196 [INFO] OPTIONS /auth/me - 200 - 10.25ms
+2025-11-27 19:12:05,199 [INFO] OPTIONS /auth/me - 200 - 12.69ms
+2025-11-27 19:12:05,200 [INFO] OPTIONS /auth/me - 200 - 4.83ms
+2025-11-27 19:12:05,279 [INFO] GET /auth/me - 200 - 77.73ms
+2025-11-27 19:12:05,283 [INFO] GET /auth/me - 200 - 21.31ms
+2025-11-27 19:12:05,287 [INFO] GET /auth/me - 200 - 24.84ms
+2025-11-27 19:12:05,288 [INFO] GET /auth/me - 200 - 26.53ms
+2025-11-27 19:12:05,301 [INFO] OPTIONS /teachers/classrooms/all - 200 - 0.16ms
+2025-11-27 19:12:05,307 [INFO] POST /teachers/classrooms/all - 200 - 4.71ms
+2025-11-27 19:12:38,664 [INFO] Use pytorch device_name: mps
+2025-11-27 19:12:38,664 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-27 19:12:44,889 [INFO] 🧠 Using device: MPS
+2025-11-27 19:14:45,673 [INFO] OPTIONS /auth/me - 200 - 4.08ms
+2025-11-27 19:14:45,675 [INFO] OPTIONS /auth/me - 200 - 3.09ms
+2025-11-27 19:14:45,676 [INFO] OPTIONS /auth/me - 200 - 3.56ms
+2025-11-27 19:14:45,677 [INFO] OPTIONS /auth/me - 200 - 2.61ms
+2025-11-27 19:14:45,784 [INFO] GET /auth/me - 200 - 104.93ms
+2025-11-27 19:14:45,784 [INFO] GET /auth/me - 200 - 61.85ms
+2025-11-27 19:14:45,784 [INFO] GET /auth/me - 200 - 61.33ms
+2025-11-27 19:14:45,826 [INFO] OPTIONS /teachers/classrooms/all - 200 - 0.32ms
+2025-11-27 19:14:45,827 [INFO] GET /auth/me - 200 - 104.51ms
+2025-11-27 19:14:45,833 [INFO] POST /teachers/classrooms/all - 200 - 4.27ms
+2025-11-27 19:18:52,341 [INFO] OPTIONS /auth/me - 200 - 1.17ms
+2025-11-27 19:18:52,346 [INFO] OPTIONS /auth/me - 200 - 5.63ms
+2025-11-27 19:18:52,347 [INFO] OPTIONS /auth/me - 200 - 1.95ms
+2025-11-27 19:18:52,348 [INFO] OPTIONS /auth/me - 200 - 2.59ms
+2025-11-27 19:18:52,512 [INFO] GET /auth/me - 200 - 163.03ms
+2025-11-27 19:18:52,513 [INFO] GET /auth/me - 200 - 123.48ms
+2025-11-27 19:18:52,514 [INFO] GET /auth/me - 200 - 165.1ms
+2025-11-27 19:18:52,515 [INFO] GET /auth/me - 200 - 108.09ms
+2025-11-27 19:18:52,532 [INFO] OPTIONS /teachers/classrooms/all - 200 - 0.28ms
+2025-11-27 19:18:52,541 [INFO] POST /teachers/classrooms/all - 200 - 5.09ms
+2025-11-27 21:36:36,108 [INFO] OPTIONS /auth/me - 200 - 9.02ms
+2025-11-27 21:36:36,123 [INFO] OPTIONS /auth/me - 200 - 17.8ms
+2025-11-27 21:36:36,124 [INFO] OPTIONS /auth/me - 200 - 17.33ms
+2025-11-27 21:36:36,124 [INFO] OPTIONS /auth/me - 200 - 2.26ms
+2025-11-27 21:36:36,657 [INFO] GET /auth/me - 200 - 528.62ms
+2025-11-27 21:36:36,688 [INFO] GET /auth/me - 200 - 10.17ms
+2025-11-27 21:36:36,695 [INFO] GET /auth/me - 200 - 5.93ms
+2025-11-27 21:36:36,700 [INFO] GET /auth/me - 200 - 2.8ms
+2025-11-27 21:36:36,703 [INFO] OPTIONS /teachers/classrooms/all - 200 - 0.78ms
+2025-11-27 21:36:36,897 [INFO] POST /teachers/classrooms/all - 200 - 191.94ms
+2025-11-27 21:47:50,532 [INFO] OPTIONS /auth/me - 200 - 18.7ms
+2025-11-27 21:47:50,565 [INFO] OPTIONS /auth/me - 200 - 40.31ms
+2025-11-27 21:47:50,572 [INFO] OPTIONS /auth/me - 200 - 45.03ms
+2025-11-27 21:47:50,573 [INFO] OPTIONS /auth/me - 200 - 9.53ms
+2025-11-27 21:47:50,873 [INFO] GET /auth/me - 200 - 299.0ms
+2025-11-27 21:47:50,886 [INFO] GET /auth/me - 200 - 11.94ms
+2025-11-27 21:47:50,893 [INFO] OPTIONS /teachers/classrooms/all - 200 - 3.25ms
+2025-11-27 21:47:50,933 [INFO] GET /auth/me - 200 - 41.29ms
+2025-11-27 21:47:50,941 [INFO] POST /teachers/classrooms/all - 200 - 32.08ms
+2025-11-27 21:47:50,953 [INFO] GET /auth/me - 200 - 17.75ms
+2025-11-27 21:47:52,341 [INFO] GET /auth/me - 200 - 46.13ms
+2025-11-27 21:47:52,356 [INFO] GET /auth/me - 200 - 13.86ms
+2025-11-27 21:47:52,420 [INFO] GET /upload/list - 200 - 116.81ms
+2025-11-27 21:47:52,434 [INFO] GET /upload/list - 200 - 12.09ms
+2025-11-27 21:47:52,454 [INFO] GET /upload/list - 200 - 13.79ms
+2025-11-27 21:47:52,475 [INFO] GET /upload/list - 200 - 18.62ms
+2025-11-27 21:47:56,880 [INFO] GET /auth/me - 200 - 17.83ms
+2025-11-27 21:47:56,931 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 64.24ms
+2025-11-27 21:47:56,975 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 37.88ms
+2025-11-27 21:47:56,979 [INFO] GET /auth/me - 200 - 48.34ms
+2025-11-27 21:51:15,047 [INFO] GET /coachings - 307 - 4.28ms
+2025-11-27 21:51:15,053 [INFO] GET /coachings - 307 - 0.34ms
+2025-11-27 21:51:15,586 [INFO] GET /coachings/ - 200 - 441.63ms
+2025-11-27 21:51:15,620 [INFO] GET /coachings/ - 200 - 29.15ms
+2025-11-27 21:51:16,538 [INFO] OPTIONS /auth/login - 200 - 0.19ms
+2025-11-27 21:51:16,881 [INFO] POST /auth/login - 200 - 339.43ms
+2025-11-27 21:51:16,937 [INFO] OPTIONS /auth/me - 200 - 0.26ms
+2025-11-27 21:51:16,963 [INFO] GET /auth/me - 200 - 24.65ms
+2025-11-27 21:51:16,972 [INFO] GET /auth/me - 200 - 8.39ms
+2025-11-27 21:51:17,101 [INFO] GET /teachers - 307 - 0.58ms
+2025-11-27 21:51:17,104 [INFO] GET /teachers - 307 - 0.23ms
+2025-11-27 21:51:17,105 [INFO] GET /auth/me - 200 - 6.93ms
+2025-11-27 21:51:17,112 [INFO] GET /auth/me - 200 - 3.66ms
+2025-11-27 21:51:17,184 [INFO] GET /teachers - 307 - 0.35ms
+2025-11-27 21:51:17,202 [INFO] GET /teachers - 307 - 2.47ms
+2025-11-27 21:51:17,245 [INFO] GET /teachers/ - 200 - 108.92ms
+2025-11-27 21:51:17,254 [INFO] GET /teachers/ - 200 - 6.85ms
+2025-11-27 21:51:17,267 [INFO] GET /teachers/ - 200 - 12.15ms
+2025-11-27 21:51:17,279 [INFO] GET /teachers/ - 200 - 9.85ms
+2025-11-27 21:51:21,336 [INFO] GET /teachers - 307 - 0.35ms
+2025-11-27 21:51:21,337 [INFO] GET /teachers - 307 - 0.31ms
+2025-11-27 21:51:21,338 [INFO] GET /auth/me - 200 - 3.59ms
+2025-11-27 21:51:21,353 [INFO] GET /teachers - 307 - 1.23ms
+2025-11-27 21:51:21,354 [INFO] GET /auth/me - 200 - 14.35ms
+2025-11-27 21:51:21,362 [INFO] GET /teachers - 307 - 0.27ms
+2025-11-27 21:51:21,389 [INFO] GET /teachers/ - 200 - 49.33ms
+2025-11-27 21:51:21,404 [INFO] GET /teachers/ - 200 - 13.64ms
+2025-11-27 21:51:21,414 [INFO] GET /teachers/ - 200 - 8.31ms
+2025-11-27 21:51:21,437 [INFO] GET /teachers/ - 200 - 19.52ms
+2025-11-27 21:51:24,370 [INFO] GET /auth/me - 200 - 8.08ms
+2025-11-27 21:51:24,371 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 4.22ms
+2025-11-27 21:51:24,379 [INFO] GET /conversations/chats/teacher/student - 200 - 14.83ms
+2025-11-27 21:51:24,387 [INFO] GET /students/690860e3489b114c676d005d - 200 - 19.19ms
+2025-11-27 21:51:24,391 [INFO] GET /auth/me - 200 - 19.54ms
+2025-11-27 21:51:24,393 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 20.51ms
+2025-11-27 21:51:24,395 [INFO] GET /conversations/chats/teacher/student - 200 - 10.02ms
+2025-11-27 21:51:24,398 [INFO] GET /students/690860e3489b114c676d005d - 200 - 9.05ms
+2025-11-27 21:51:24,403 [INFO] GET /conversations/chats/teacher/student - 200 - 5.83ms
+2025-11-27 21:51:24,404 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 8.74ms
+2025-11-27 21:51:24,406 [INFO] GET /students/690860e3489b114c676d005d - 200 - 3.41ms
+2025-11-27 21:51:24,422 [INFO] GET /conversations/chats/teacher/student - 200 - 3.38ms
+2025-11-27 21:51:24,424 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 5.55ms
+2025-11-27 21:51:24,426 [INFO] GET /students/690860e3489b114c676d005d - 200 - 6.24ms
+2025-11-27 21:51:27,124 [INFO] OPTIONS /teachers/classrooms/all - 200 - 0.89ms
+2025-11-27 21:51:27,125 [INFO] OPTIONS /teachers/classrooms/all - 200 - 1.91ms
+2025-11-27 21:51:27,128 [INFO] POST /teachers/classrooms/all - 200 - 1.95ms
+2025-11-27 21:51:27,129 [INFO] POST /teachers/classrooms/all - 200 - 1.75ms
+2025-11-27 21:51:27,129 [INFO] GET /auth/me - 200 - 6.69ms
+2025-11-27 21:51:27,137 [INFO] GET /auth/me - 200 - 6.39ms
+2025-11-27 21:51:28,162 [INFO] GET /teachers - 307 - 0.48ms
+2025-11-27 21:51:28,163 [INFO] GET /teachers - 307 - 0.37ms
+2025-11-27 21:51:28,164 [INFO] GET /auth/me - 200 - 4.9ms
+2025-11-27 21:51:28,170 [INFO] GET /auth/me - 200 - 3.77ms
+2025-11-27 21:51:28,171 [INFO] GET /teachers - 307 - 0.39ms
+2025-11-27 21:51:28,179 [INFO] GET /teachers - 307 - 0.92ms
+2025-11-27 21:51:28,181 [INFO] GET /teachers/ - 200 - 13.14ms
+2025-11-27 21:51:28,193 [INFO] GET /teachers/ - 200 - 8.91ms
+2025-11-27 21:51:28,203 [INFO] GET /teachers/ - 200 - 8.3ms
+2025-11-27 21:51:28,214 [INFO] GET /teachers/ - 200 - 10.11ms
+2025-11-27 21:51:32,130 [INFO] GET /upload/list - 200 - 2.37ms
+2025-11-27 21:51:32,132 [INFO] GET /auth/me - 200 - 4.98ms
+2025-11-27 21:51:32,136 [INFO] GET /upload/list - 200 - 4.12ms
+2025-11-27 21:51:32,144 [INFO] GET /auth/me - 200 - 8.51ms
+2025-11-27 21:51:32,151 [INFO] GET /upload/list - 200 - 8.02ms
+2025-11-27 21:51:32,163 [INFO] GET /upload/list - 200 - 1.53ms
+2025-11-27 21:51:33,364 [INFO] GET /coachings - 307 - 1.82ms
+2025-11-27 21:51:33,369 [INFO] GET /coachings - 307 - 1.07ms
+2025-11-27 21:51:33,377 [INFO] GET /coachings/ - 200 - 8.5ms
+2025-11-27 21:51:33,380 [INFO] GET /auth/me - 200 - 18.25ms
+2025-11-27 21:51:33,386 [INFO] GET /coachings/ - 200 - 6.2ms
+2025-11-27 21:51:33,388 [INFO] GET /auth/me - 200 - 4.12ms
+2025-11-27 21:51:34,326 [INFO] GET /teachers - 307 - 0.37ms
+2025-11-27 21:51:34,327 [INFO] GET /teachers - 307 - 0.24ms
+2025-11-27 21:51:34,328 [INFO] GET /auth/me - 200 - 2.66ms
+2025-11-27 21:51:34,331 [INFO] GET /auth/me - 200 - 2.85ms
+2025-11-27 21:51:34,335 [INFO] GET /teachers - 307 - 0.5ms
+2025-11-27 21:51:34,339 [INFO] GET /teachers/ - 200 - 10.1ms
+2025-11-27 21:51:34,343 [INFO] GET /teachers - 307 - 3.98ms
+2025-11-27 21:51:34,358 [INFO] GET /teachers/ - 200 - 11.73ms
+2025-11-27 21:51:34,366 [INFO] GET /teachers/ - 200 - 7.11ms
+2025-11-27 21:51:34,382 [INFO] GET /teachers/ - 200 - 13.94ms
+2025-11-27 21:51:41,052 [INFO] GET /auth/me - 200 - 6.62ms
+2025-11-27 21:51:41,105 [INFO] GET /auth/me - 200 - 17.57ms
+2025-11-27 21:51:41,189 [INFO] GET /teachers - 307 - 0.63ms
+2025-11-27 21:51:41,191 [INFO] GET /teachers - 307 - 1.19ms
+2025-11-27 21:51:41,193 [INFO] GET /auth/me - 200 - 5.86ms
+2025-11-27 21:51:41,228 [INFO] GET /auth/me - 200 - 32.03ms
+2025-11-27 21:51:41,230 [INFO] GET /teachers - 307 - 1.5ms
+2025-11-27 21:51:41,255 [INFO] GET /teachers - 307 - 3.27ms
+2025-11-27 21:51:41,262 [INFO] GET /teachers/ - 200 - 57.44ms
+2025-11-27 21:51:41,270 [INFO] GET /teachers/ - 200 - 6.71ms
+2025-11-27 21:51:41,288 [INFO] GET /teachers/ - 200 - 16.72ms
+2025-11-27 21:51:41,296 [INFO] GET /teachers/ - 200 - 6.99ms
+2025-11-27 21:51:43,029 [INFO] GET /auth/me - 200 - 5.01ms
+2025-11-27 21:51:43,032 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 6.83ms
+2025-11-27 21:51:43,035 [INFO] GET /auth/me - 200 - 4.88ms
+2025-11-27 21:51:43,052 [INFO] GET /upload/list/selected - 200 - 26.79ms
+2025-11-27 21:51:43,061 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 27.38ms
+2025-11-27 21:51:43,065 [INFO] GET /upload/list/selected - 200 - 10.45ms
+2025-11-27 21:51:43,076 [INFO] GET /upload/list/selected - 200 - 7.53ms
+2025-11-27 21:51:43,093 [INFO] GET /upload/list/selected - 200 - 7.62ms
+2025-11-27 21:52:11,353 [INFO] GET /conversations/chats/teacher/student - 200 - 5.23ms
+2025-11-27 21:52:11,360 [INFO] GET /conversations/chat/space/get - 200 - 25.27ms
+2025-11-27 21:52:11,368 [INFO] GET /conversations/chat/space/get - 200 - 5.33ms
+2025-11-27 21:53:02,741 [INFO] OPTIONS /querylang/query/ - 200 - 7.28ms
+2025-11-27 21:53:02,745 [INFO] POST /querylang/query/ - 307 - 0.98ms
+2025-11-27 21:53:02,749 [INFO] OPTIONS /querylang/query - 200 - 0.36ms
+2025-11-27 21:53:04,809 [INFO] POST /querylang/query - 200 - 2059.0ms
+2025-11-27 21:54:35,518 [INFO] GET /students - 307 - 0.47ms
+2025-11-27 21:54:35,530 [INFO] GET /students - 307 - 4.55ms
+2025-11-27 21:54:35,564 [INFO] GET /auth/me - 200 - 50.51ms
+2025-11-27 21:54:35,571 [INFO] GET /auth/me - 200 - 4.28ms
+2025-11-27 21:54:35,584 [INFO] GET /students - 307 - 0.87ms
+2025-11-27 21:54:35,593 [INFO] GET /students - 307 - 1.79ms
+2025-11-27 21:54:35,630 [INFO] GET /students/ - 200 - 98.26ms
+2025-11-27 21:54:35,641 [INFO] GET /students/ - 200 - 8.04ms
+2025-11-27 21:54:35,649 [INFO] GET /students/ - 200 - 5.88ms
+2025-11-27 21:54:35,666 [INFO] GET /students/ - 200 - 14.75ms
+2025-11-27 21:54:38,616 [INFO] GET /auth/me - 200 - 7.5ms
+2025-11-27 21:54:38,617 [INFO] GET /students/690860e3489b114c676d005d - 200 - 7.19ms
+2025-11-27 21:54:38,625 [INFO] GET /students/690860e3489b114c676d005d - 200 - 6.68ms
+2025-11-27 21:54:38,627 [INFO] GET /auth/me - 200 - 9.07ms
+2025-11-27 21:54:41,535 [INFO] GET /teachers/student-analytics/690860e3489b114c676d005d - 200 - 4.0ms
+2025-11-27 21:56:54,481 [INFO] GET /auth/me - 200 - 88.78ms
+2025-11-27 21:56:54,521 [INFO] GET /auth/me - 200 - 31.55ms
+2025-11-27 21:56:54,544 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 47.13ms
+2025-11-27 21:56:54,595 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 40.21ms
+2025-11-27 21:56:54,613 [INFO] GET /auth/me - 200 - 75.66ms
+2025-11-27 21:56:54,665 [INFO] GET /upload/list/selected - 200 - 79.82ms
+2025-11-27 21:56:54,669 [INFO] GET /auth/me - 200 - 49.2ms
+2025-11-27 21:56:54,691 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 48.43ms
+2025-11-27 21:56:54,694 [INFO] GET /upload/list/selected - 200 - 22.93ms
+2025-11-27 21:56:54,699 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 3.04ms
+2025-11-27 21:56:54,714 [INFO] GET /upload/list/selected - 200 - 10.57ms
+2025-11-27 21:56:54,736 [INFO] GET /upload/list/selected - 200 - 11.86ms
+2025-11-27 21:59:54,383 [INFO] OPTIONS /auth/me - 200 - 3.78ms
+2025-11-27 21:59:54,396 [INFO] OPTIONS /auth/me - 200 - 2.55ms
+2025-11-27 21:59:54,405 [INFO] GET /auth/me - 200 - 10.98ms
+2025-11-27 21:59:54,417 [INFO] GET /auth/me - 200 - 8.29ms
+2025-11-27 21:59:54,528 [INFO] GET /students - 307 - 17.95ms
+2025-11-27 21:59:54,535 [INFO] GET /students - 307 - 1.66ms
+2025-11-27 21:59:54,541 [INFO] GET /auth/me - 200 - 34.53ms
+2025-11-27 21:59:54,553 [INFO] GET /students - 307 - 0.44ms
+2025-11-27 21:59:54,566 [INFO] GET /auth/me - 200 - 22.58ms
+2025-11-27 21:59:54,567 [INFO] GET /students/ - 200 - 28.8ms
+2025-11-27 21:59:54,572 [INFO] GET /students/ - 200 - 4.3ms
+2025-11-27 21:59:54,581 [INFO] GET /students/ - 200 - 5.69ms
+2025-11-27 21:59:54,593 [INFO] GET /students - 307 - 0.3ms
+2025-11-27 21:59:54,631 [INFO] GET /students/ - 200 - 5.08ms
+2025-11-27 21:59:56,559 [INFO] GET /auth/me - 200 - 10.87ms
+2025-11-27 21:59:56,560 [INFO] GET /students/690860e3489b114c676d005d - 200 - 9.9ms
+2025-11-27 21:59:56,563 [INFO] GET /auth/me - 200 - 2.75ms
+2025-11-27 21:59:56,567 [INFO] GET /students/690860e3489b114c676d005d - 200 - 5.64ms
+2025-11-27 21:59:57,968 [INFO] GET /teachers/student-analytics/690860e3489b114c676d005d - 200 - 2.77ms
+2025-11-27 22:00:40,587 [INFO] OPTIONS /teachers/classrooms/all - 200 - 0.42ms
+2025-11-27 22:00:40,589 [INFO] OPTIONS /teachers/classrooms/all - 200 - 2.58ms
+2025-11-27 22:00:40,594 [INFO] GET /auth/me - 200 - 9.08ms
+2025-11-27 22:00:40,594 [INFO] POST /teachers/classrooms/all - 200 - 2.91ms
+2025-11-27 22:00:40,598 [INFO] POST /teachers/classrooms/all - 200 - 5.39ms
+2025-11-27 22:00:40,605 [INFO] GET /auth/me - 200 - 9.57ms
+2025-11-27 22:01:16,745 [INFO] GET /auth/me - 200 - 8.34ms
+2025-11-27 22:01:16,759 [INFO] GET /upload/list - 200 - 17.14ms
+2025-11-27 22:01:16,764 [INFO] GET /auth/me - 200 - 10.65ms
+2025-11-27 22:01:16,773 [INFO] GET /upload/list - 200 - 11.31ms
+2025-11-27 22:01:16,780 [INFO] GET /upload/list - 200 - 4.98ms
+2025-11-27 22:01:16,791 [INFO] GET /upload/list - 200 - 5.27ms
+2025-11-27 22:01:18,059 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 4.71ms
+2025-11-27 22:01:18,061 [INFO] GET /auth/me - 200 - 8.32ms
+2025-11-27 22:01:18,072 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 11.37ms
+2025-11-27 22:01:18,075 [INFO] GET /auth/me - 200 - 3.36ms
+2025-11-27 22:05:02,462 [INFO] GET /auth/me - 200 - 11.71ms
+2025-11-27 22:05:02,481 [INFO] GET /auth/me - 200 - 9.51ms
+2025-11-27 22:05:03,537 [INFO] GET /students - 307 - 66.99ms
+2025-11-27 22:05:03,540 [INFO] GET /students - 307 - 1.04ms
+2025-11-27 22:05:03,544 [INFO] GET /auth/me - 200 - 599.84ms
+2025-11-27 22:05:03,562 [INFO] GET /auth/me - 200 - 13.2ms
+2025-11-27 22:05:03,610 [INFO] GET /students/ - 200 - 38.28ms
+2025-11-27 22:05:03,624 [INFO] GET /students/ - 200 - 10.36ms
+2025-11-27 22:05:03,636 [INFO] GET /students - 307 - 0.33ms
+2025-11-27 22:05:03,723 [INFO] GET /students - 307 - 0.38ms
+2025-11-27 22:05:03,929 [INFO] GET /students/ - 200 - 15.01ms
+2025-11-27 22:05:03,937 [INFO] GET /students/ - 200 - 5.02ms
+2025-11-28 12:29:26,988 [INFO] Use pytorch device_name: mps
+2025-11-28 12:29:26,988 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 12:29:32,892 [INFO] 🧠 Using device: MPS
+2025-11-28 12:29:59,303 [INFO] OPTIONS /auth/login - 200 - 0.86ms
+2025-11-28 12:29:59,648 [INFO] POST /auth/login - 200 - 342.38ms
+2025-11-28 12:29:59,700 [INFO] OPTIONS /auth/me - 200 - 0.19ms
+2025-11-28 12:29:59,711 [INFO] GET /auth/me - 200 - 9.46ms
+2025-11-28 12:29:59,725 [INFO] GET /auth/me - 200 - 5.22ms
+2025-11-28 12:29:59,782 [INFO] GET /students - 307 - 0.61ms
+2025-11-28 12:29:59,782 [INFO] GET /auth/me - 200 - 5.36ms
+2025-11-28 12:29:59,784 [INFO] GET /students - 307 - 1.11ms
+2025-11-28 12:29:59,786 [INFO] GET /auth/me - 200 - 2.36ms
+2025-11-28 12:29:59,957 [INFO] GET /students - 307 - 1.32ms
+2025-11-28 12:30:00,073 [INFO] GET /students - 307 - 0.35ms
+2025-11-28 12:30:00,115 [INFO] GET /students/ - 200 - 143.15ms
+2025-11-28 12:30:00,132 [INFO] GET /students/ - 200 - 13.09ms
+2025-11-28 12:30:00,163 [INFO] GET /students/ - 200 - 28.45ms
+2025-11-28 12:30:00,202 [INFO] GET /students/ - 200 - 36.79ms
+2025-11-28 12:30:03,129 [INFO] GET /upload/list - 200 - 95.14ms
+2025-11-28 12:30:03,138 [INFO] GET /auth/me - 200 - 351.8ms
+2025-11-28 12:30:03,179 [INFO] GET /upload/list - 200 - 31.46ms
+2025-11-28 12:30:03,188 [INFO] GET /auth/me - 200 - 40.4ms
+2025-11-28 12:30:03,360 [INFO] GET /upload/list - 200 - 20.11ms
+2025-11-28 12:30:03,418 [INFO] GET /upload/list - 200 - 5.09ms
+2025-11-28 12:30:04,671 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 17.46ms
+2025-11-28 12:30:04,685 [INFO] GET /auth/me - 200 - 33.15ms
+2025-11-28 12:30:04,693 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 14.66ms
+2025-11-28 12:30:04,704 [INFO] GET /auth/me - 200 - 11.2ms
+2025-11-28 12:31:52,272 [INFO] OPTIONS /notes/save - 200 - 0.86ms
+2025-11-28 12:31:52,301 [INFO] POST /notes/save - 200 - 26.32ms
+2025-11-28 12:37:21,680 [INFO] GET /auth/me - 200 - 123.17ms
+2025-11-28 12:37:21,719 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 132.11ms
+2025-11-28 12:37:21,744 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 18.98ms
+2025-11-28 12:37:21,748 [INFO] GET /auth/me - 200 - 25.47ms
+2025-11-28 12:37:21,763 [INFO] GET /auth/me - 200 - 12.41ms
+2025-11-28 12:37:21,776 [INFO] GET /auth/me - 200 - 10.47ms
+2025-11-28 12:56:53,501 [INFO] OPTIONS /auth/me - 200 - 45.22ms
+2025-11-28 12:56:53,545 [INFO] OPTIONS /auth/me - 200 - 65.05ms
+2025-11-28 12:56:53,546 [INFO] OPTIONS /auth/me - 200 - 62.57ms
+2025-11-28 12:56:53,547 [INFO] OPTIONS /auth/me - 200 - 2.89ms
+2025-11-28 12:56:53,650 [INFO] GET /auth/me - 200 - 70.82ms
+2025-11-28 12:56:53,652 [INFO] GET /auth/me - 200 - 104.58ms
+2025-11-28 12:56:53,660 [INFO] GET /auth/me - 200 - 65.04ms
+2025-11-28 12:56:53,661 [INFO] GET /auth/me - 200 - 43.24ms
+2025-11-28 12:56:53,667 [INFO] OPTIONS /teachers/classrooms/all - 200 - 0.74ms
+2025-11-28 12:56:53,697 [INFO] POST /teachers/classrooms/all - 200 - 28.36ms
+2025-11-28 12:56:54,700 [INFO] OPTIONS /auth/me - 200 - 0.54ms
+2025-11-28 12:56:54,706 [INFO] OPTIONS /auth/me - 200 - 2.88ms
+2025-11-28 12:56:54,709 [INFO] GET /students - 307 - 4.97ms
+2025-11-28 12:56:54,710 [INFO] GET /students - 307 - 3.99ms
+2025-11-28 12:56:54,715 [INFO] GET /auth/me - 200 - 10.53ms
+2025-11-28 12:56:54,717 [INFO] GET /auth/me - 200 - 5.52ms
+2025-11-28 12:56:54,736 [INFO] GET /students - 307 - 0.51ms
+2025-11-28 12:56:54,754 [INFO] GET /students - 307 - 2.18ms
+2025-11-28 12:56:54,764 [INFO] GET /students/ - 200 - 24.79ms
+2025-11-28 12:56:54,771 [INFO] GET /students/ - 200 - 10.44ms
+2025-11-28 12:56:54,778 [INFO] GET /students/ - 200 - 26.66ms
+2025-11-28 12:56:54,779 [INFO] GET /students/ - 200 - 24.49ms
+2025-11-28 12:56:56,914 [INFO] OPTIONS /auth/me - 200 - 4.7ms
+2025-11-28 12:56:56,919 [INFO] OPTIONS /auth/me - 200 - 1.95ms
+2025-11-28 12:56:56,928 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 14.49ms
+2025-11-28 12:56:56,929 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 8.74ms
+2025-11-28 12:56:56,945 [INFO] GET /conversations/chats/teacher/student - 200 - 25.68ms
+2025-11-28 12:56:56,946 [INFO] GET /conversations/chats/teacher/student - 200 - 35.76ms
+2025-11-28 12:56:56,947 [INFO] GET /students/690860e3489b114c676d005d - 200 - 29.68ms
+2025-11-28 12:56:56,949 [INFO] GET /auth/me - 200 - 17.92ms
+2025-11-28 12:56:56,950 [INFO] GET /students/690860e3489b114c676d005d - 200 - 27.49ms
+2025-11-28 12:56:56,952 [INFO] GET /auth/me - 200 - 18.83ms
+2025-11-28 12:56:57,070 [INFO] GET /conversations/chats/teacher/student - 200 - 3.33ms
+2025-11-28 12:56:57,072 [INFO] GET /students/690860e3489b114c676d005d - 200 - 3.56ms
+2025-11-28 12:56:57,072 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 4.36ms
+2025-11-28 12:56:57,125 [INFO] GET /conversations/chats/teacher/student - 200 - 3.04ms
+2025-11-28 12:56:57,127 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 3.55ms
+2025-11-28 12:56:57,127 [INFO] GET /students/690860e3489b114c676d005d - 200 - 3.97ms
+2025-11-28 12:57:06,371 [INFO] GET /conversations/chat/6922ce0d97cb5aaeae08f746 - 200 - 12.7ms
+2025-11-28 12:57:06,495 [INFO] GET /upload/list/selected - 200 - 65.17ms
+2025-11-28 12:57:25,986 [INFO] OPTIONS /auth/me - 200 - 0.83ms
+2025-11-28 12:57:25,989 [INFO] OPTIONS /auth/me - 200 - 0.53ms
+2025-11-28 12:57:25,999 [INFO] GET /students - 307 - 8.9ms
+2025-11-28 12:57:26,000 [INFO] GET /students - 307 - 8.49ms
+2025-11-28 12:57:26,004 [INFO] GET /auth/me - 200 - 10.79ms
+2025-11-28 12:57:26,004 [INFO] GET /auth/me - 200 - 5.86ms
+2025-11-28 12:57:26,042 [INFO] GET /students - 307 - 1.24ms
+2025-11-28 12:57:26,049 [INFO] GET /students/ - 200 - 6.12ms
+2025-11-28 12:57:26,056 [INFO] GET /students - 307 - 2.71ms
+2025-11-28 12:57:26,064 [INFO] GET /students/ - 200 - 10.04ms
+2025-11-28 12:57:26,065 [INFO] GET /students/ - 200 - 8.38ms
+2025-11-28 12:57:26,082 [INFO] GET /students/ - 200 - 4.82ms
+2025-11-28 12:57:27,719 [INFO] OPTIONS /auth/me - 200 - 0.27ms
+2025-11-28 12:57:27,864 [INFO] OPTIONS /auth/me - 200 - 143.0ms
+2025-11-28 12:57:27,869 [INFO] GET /students/690860e3489b114c676d005d - 200 - 147.5ms
+2025-11-28 12:57:27,870 [INFO] GET /students/690860e3489b114c676d005d - 200 - 149.64ms
+2025-11-28 12:57:27,870 [INFO] GET /auth/me - 200 - 6.38ms
+2025-11-28 12:57:27,871 [INFO] GET /auth/me - 200 - 4.57ms
+2025-11-28 12:57:30,447 [INFO] OPTIONS /auth/me - 200 - 0.28ms
+2025-11-28 12:57:30,450 [INFO] GET /students - 307 - 1.85ms
+2025-11-28 12:57:30,451 [INFO] OPTIONS /auth/me - 200 - 1.43ms
+2025-11-28 12:57:30,452 [INFO] GET /students - 307 - 1.44ms
+2025-11-28 12:57:30,456 [INFO] GET /auth/me - 200 - 4.89ms
+2025-11-28 12:57:30,457 [INFO] GET /auth/me - 200 - 3.36ms
+2025-11-28 12:57:30,482 [INFO] GET /students - 307 - 0.79ms
+2025-11-28 12:57:30,488 [INFO] GET /students/ - 200 - 5.8ms
+2025-11-28 12:57:30,496 [INFO] GET /students - 307 - 1.44ms
+2025-11-28 12:57:30,502 [INFO] GET /students/ - 200 - 7.57ms
+2025-11-28 12:57:30,504 [INFO] GET /students/ - 200 - 5.93ms
+2025-11-28 12:57:30,520 [INFO] GET /students/ - 200 - 6.62ms
+2025-11-28 12:57:43,515 [INFO] OPTIONS /auth/me - 200 - 4.97ms
+2025-11-28 12:57:43,519 [INFO] OPTIONS /auth/me - 200 - 4.37ms
+2025-11-28 12:57:43,530 [INFO] GET /conversations/chats/teacher/student - 200 - 12.64ms
+2025-11-28 12:57:43,530 [INFO] GET /conversations/chats/teacher/student - 200 - 11.61ms
+2025-11-28 12:57:43,542 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 21.98ms
+2025-11-28 12:57:43,542 [INFO] GET /students/690860e3489b114c676d005d - 200 - 16.55ms
+2025-11-28 12:57:43,552 [INFO] GET /students/690860e3489b114c676d005d - 200 - 30.2ms
+2025-11-28 12:57:43,552 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 30.75ms
+2025-11-28 12:57:43,567 [INFO] GET /upload/list/selected - 200 - 32.38ms
+2025-11-28 12:57:43,568 [INFO] GET /auth/me - 200 - 30.9ms
+2025-11-28 12:57:43,572 [INFO] GET /auth/me - 200 - 20.65ms
+2025-11-28 12:57:43,665 [INFO] GET /conversations/chats/teacher/student - 200 - 2.81ms
+2025-11-28 12:57:43,667 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 4.12ms
+2025-11-28 12:57:43,667 [INFO] GET /students/690860e3489b114c676d005d - 200 - 4.16ms
+2025-11-28 12:57:43,698 [INFO] GET /conversations/chats/teacher/student - 200 - 3.03ms
+2025-11-28 12:57:43,702 [INFO] GET /students/690860e3489b114c676d005d - 200 - 5.88ms
+2025-11-28 12:57:43,702 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 6.71ms
+2025-11-28 12:57:47,846 [INFO] GET /conversations/chat/6923076450f5e5bfb446a610 - 200 - 3.12ms
+2025-11-28 12:57:47,909 [INFO] GET /upload/list/selected - 200 - 13.77ms
+2025-11-28 13:16:18,479 [INFO] OPTIONS /auth/me - 200 - 4.77ms
+2025-11-28 13:16:18,488 [INFO] OPTIONS /auth/me - 200 - 12.19ms
+2025-11-28 13:16:18,490 [INFO] OPTIONS /auth/me - 200 - 13.73ms
+2025-11-28 13:16:18,491 [INFO] OPTIONS /auth/me - 200 - 6.89ms
+2025-11-28 13:16:18,609 [INFO] GET /auth/me - 200 - 117.63ms
+2025-11-28 13:16:18,610 [INFO] GET /auth/me - 200 - 118.86ms
+2025-11-28 13:16:18,614 [INFO] GET /auth/me - 200 - 84.38ms
+2025-11-28 13:16:18,616 [INFO] GET /auth/me - 200 - 91.56ms
+2025-11-28 13:16:18,698 [INFO] GET /conversations/chats/teacher/student - 200 - 33.08ms
+2025-11-28 13:16:18,701 [INFO] GET /conversations/chats/teacher/student - 200 - 10.51ms
+2025-11-28 13:16:18,705 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 36.76ms
+2025-11-28 13:16:18,706 [INFO] GET /conversations/chats/teacher/student - 200 - 5.36ms
+2025-11-28 13:16:18,707 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 16.68ms
+2025-11-28 13:16:18,712 [INFO] GET /students/690860e3489b114c676d005d - 200 - 43.63ms
+2025-11-28 13:16:18,713 [INFO] GET /students/690860e3489b114c676d005d - 200 - 21.09ms
+2025-11-28 13:16:18,718 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 14.7ms
+2025-11-28 13:16:18,729 [INFO] GET /conversations/chats/teacher/student - 200 - 13.09ms
+2025-11-28 13:16:18,732 [INFO] GET /students/690860e3489b114c676d005d - 200 - 23.07ms
+2025-11-28 13:16:18,733 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 15.7ms
+2025-11-28 13:16:18,733 [INFO] GET /students/690860e3489b114c676d005d - 200 - 16.36ms
+2025-11-28 13:16:21,945 [INFO] GET /conversations/chat/692416b82b11c5c5289d0559 - 200 - 9.05ms
+2025-11-28 13:16:22,009 [INFO] GET /upload/list/selected - 200 - 18.42ms
+2025-11-28 13:19:37,041 [INFO] GET /auth/me - 200 - 124.76ms
+2025-11-28 13:19:37,067 [INFO] GET /auth/me - 200 - 10.94ms
+2025-11-28 13:19:37,120 [INFO] GET /auth/me - 200 - 46.9ms
+2025-11-28 13:19:37,125 [INFO] GET /auth/me - 200 - 3.44ms
+2025-11-28 13:19:37,356 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 391.23ms
+2025-11-28 13:19:37,368 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 10.05ms
+2025-11-28 13:24:00,154 [INFO] OPTIONS /notes/save - 200 - 1.56ms
+2025-11-28 13:24:00,220 [INFO] POST /notes/save - 500 - 63.71ms
+2025-11-28 13:24:14,962 [INFO] OPTIONS /notes/save - 200 - 14.33ms
+2025-11-28 13:24:15,453 [INFO] POST /notes/save - 500 - 440.27ms
+2025-11-28 13:25:37,500 [INFO] Use pytorch device_name: mps
+2025-11-28 13:25:37,500 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 13:25:43,057 [INFO] 🧠 Using device: MPS
+2025-11-28 13:25:49,899 [INFO] Use pytorch device_name: mps
+2025-11-28 13:25:49,899 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 13:25:55,061 [INFO] 🧠 Using device: MPS
+2025-11-28 13:26:00,694 [INFO] Use pytorch device_name: mps
+2025-11-28 13:26:00,694 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 13:26:06,085 [INFO] 🧠 Using device: MPS
+2025-11-28 13:26:11,988 [INFO] Use pytorch device_name: mps
+2025-11-28 13:26:11,989 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 13:26:17,112 [INFO] 🧠 Using device: MPS
+2025-11-28 13:26:35,689 [INFO] Use pytorch device_name: mps
+2025-11-28 13:26:35,689 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 13:26:41,352 [INFO] 🧠 Using device: MPS
+2025-11-28 13:26:47,108 [INFO] Use pytorch device_name: mps
+2025-11-28 13:26:47,108 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 13:26:52,379 [INFO] 🧠 Using device: MPS
+2025-11-28 13:27:27,471 [INFO] GET /conversations/chat/6922ce0d97cb5aaeae08f746 - 200 - 19.54ms
+2025-11-28 13:27:27,578 [INFO] GET /upload/list/selected - 200 - 11.72ms
+2025-11-28 13:34:18,187 [INFO] OPTIONS /auth/me - 200 - 52.2ms
+2025-11-28 13:34:18,261 [INFO] OPTIONS /auth/me - 200 - 90.62ms
+2025-11-28 13:34:18,332 [INFO] OPTIONS /auth/me - 200 - 73.13ms
+2025-11-28 13:34:18,746 [INFO] OPTIONS /auth/me - 200 - 419.98ms
+2025-11-28 13:34:18,928 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 750.23ms
+2025-11-28 13:34:18,929 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 637.56ms
+2025-11-28 13:34:19,175 [INFO] GET /auth/me - 200 - 429.17ms
+2025-11-28 13:34:19,175 [INFO] GET /auth/me - 200 - 425.83ms
+2025-11-28 13:34:19,175 [INFO] GET /auth/me - 200 - 841.73ms
+2025-11-28 13:34:19,179 [INFO] GET /auth/me - 200 - 430.99ms
+2025-11-28 13:44:26,117 [INFO] Use pytorch device_name: mps
+2025-11-28 13:44:26,117 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 13:44:31,907 [INFO] 🧠 Using device: MPS
+2025-11-28 13:44:37,598 [INFO] Use pytorch device_name: mps
+2025-11-28 13:44:37,598 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 13:44:42,734 [INFO] 🧠 Using device: MPS
+2025-11-28 13:45:24,027 [INFO] OPTIONS /notes/transcribe - 200 - 0.82ms
+2025-11-28 13:45:29,200 [INFO] AFC is enabled with max remote calls: 10.
+2025-11-28 13:45:37,165 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2025-11-28 13:45:41,102 [INFO] POST /notes/transcribe - 200 - 17072.5ms
+2025-11-28 13:47:19,021 [INFO] Use pytorch device_name: mps
+2025-11-28 13:47:19,022 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 13:47:24,973 [INFO] 🧠 Using device: MPS
+2025-11-28 13:47:31,083 [INFO] Use pytorch device_name: mps
+2025-11-28 13:47:31,084 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 13:47:36,933 [INFO] 🧠 Using device: MPS
+2025-11-28 13:47:53,070 [INFO] OPTIONS /auth/me - 200 - 7.23ms
+2025-11-28 13:47:53,075 [INFO] OPTIONS /auth/me - 200 - 6.02ms
+2025-11-28 13:47:53,076 [INFO] OPTIONS /auth/me - 200 - 3.14ms
+2025-11-28 13:47:53,079 [INFO] OPTIONS /auth/me - 200 - 4.14ms
+2025-11-28 13:47:53,193 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 128.87ms
+2025-11-28 13:47:53,199 [INFO] GET /auth/me - 200 - 120.21ms
+2025-11-28 13:47:53,213 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 17.74ms
+2025-11-28 13:47:53,219 [INFO] GET /auth/me - 200 - 17.44ms
+2025-11-28 13:47:53,223 [INFO] GET /auth/me - 200 - 2.47ms
+2025-11-28 13:47:53,229 [INFO] GET /auth/me - 200 - 4.09ms
+2025-11-28 13:48:17,947 [INFO] GET /conversations/chat/692416b82b11c5c5289d0559 - 200 - 73.59ms
+2025-11-28 13:48:18,252 [INFO] GET /upload/list/selected - 200 - 62.45ms
+2025-11-28 13:48:19,720 [INFO] GET /auth/me - 200 - 5.26ms
+2025-11-28 13:48:19,726 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 8.79ms
+2025-11-28 13:48:19,743 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 12.93ms
+2025-11-28 13:48:19,749 [INFO] GET /auth/me - 200 - 23.17ms
+2025-11-28 13:48:19,756 [INFO] GET /auth/me - 200 - 5.87ms
+2025-11-28 13:48:19,764 [INFO] GET /auth/me - 200 - 6.13ms
+2025-11-28 13:57:10,438 [INFO] Use pytorch device_name: mps
+2025-11-28 13:57:10,438 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 13:57:16,353 [INFO] 🧠 Using device: MPS
+2025-11-28 13:57:22,122 [INFO] Use pytorch device_name: mps
+2025-11-28 13:57:22,122 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 13:57:28,718 [INFO] 🧠 Using device: MPS
+2025-11-28 13:57:49,286 [INFO] Use pytorch device_name: mps
+2025-11-28 13:57:49,288 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 13:57:55,675 [INFO] 🧠 Using device: MPS
+2025-11-28 13:58:01,856 [INFO] Use pytorch device_name: mps
+2025-11-28 13:58:01,856 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 13:58:08,089 [INFO] 🧠 Using device: MPS
+2025-11-28 13:58:08,698 [INFO] OPTIONS /auth/me - 200 - 0.49ms
+2025-11-28 13:58:08,699 [INFO] OPTIONS /auth/me - 200 - 1.04ms
+2025-11-28 13:58:08,699 [INFO] OPTIONS /auth/me - 200 - 1.15ms
+2025-11-28 13:58:08,699 [INFO] OPTIONS /auth/me - 200 - 0.87ms
+2025-11-28 13:58:08,719 [INFO] GET /auth/me - 200 - 12.76ms
+2025-11-28 13:58:08,719 [INFO] GET /auth/me - 200 - 12.75ms
+2025-11-28 13:58:08,721 [INFO] GET /auth/me - 200 - 31.76ms
+2025-11-28 13:58:08,722 [INFO] GET /auth/me - 200 - 14.21ms
+2025-11-28 13:58:08,724 [INFO] GET /auth/me - 200 - 16.63ms
+2025-11-28 13:58:08,741 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 45.43ms
+2025-11-28 13:58:08,743 [INFO] GET /auth/me - 200 - 18.39ms
+2025-11-28 13:58:08,753 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 9.94ms
+2025-11-28 13:58:08,757 [INFO] GET /auth/me - 200 - 12.81ms
+2025-11-28 13:58:08,763 [INFO] GET /auth/me - 200 - 3.97ms
+2025-11-28 13:58:08,817 [INFO] GET /conversations/chats/teacher/student - 200 - 17.69ms
+2025-11-28 13:58:08,827 [INFO] GET /students/690860e3489b114c676d005d - 200 - 35.85ms
+2025-11-28 13:58:08,828 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 36.47ms
+2025-11-28 13:58:08,831 [INFO] GET /conversations/chats/teacher/student - 200 - 39.28ms
+2025-11-28 13:58:08,833 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 18.07ms
+2025-11-28 13:58:08,834 [INFO] GET /students/690860e3489b114c676d005d - 200 - 17.76ms
+2025-11-28 13:58:08,842 [INFO] GET /conversations/chats/teacher/student - 200 - 7.19ms
+2025-11-28 13:58:08,844 [INFO] GET /students/690860e3489b114c676d005d - 200 - 6.7ms
+2025-11-28 13:58:08,845 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 8.43ms
+2025-11-28 13:58:08,858 [INFO] GET /conversations/chats/teacher/student - 200 - 3.53ms
+2025-11-28 13:58:08,860 [INFO] GET /teachers/691f6fc41bdaa1c8e059c277 - 200 - 3.68ms
+2025-11-28 13:58:08,861 [INFO] GET /students/690860e3489b114c676d005d - 200 - 3.93ms
+2025-11-28 13:58:43,934 [INFO] Use pytorch device_name: mps
+2025-11-28 13:58:43,934 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 13:58:49,991 [INFO] 🧠 Using device: MPS
+2025-11-28 13:58:55,348 [INFO] Use pytorch device_name: mps
+2025-11-28 13:58:55,349 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 13:59:01,877 [INFO] 🧠 Using device: MPS
+2025-11-28 13:59:07,541 [INFO] Use pytorch device_name: mps
+2025-11-28 13:59:07,541 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 13:59:12,814 [INFO] 🧠 Using device: MPS
+2025-11-28 13:59:18,082 [INFO] Use pytorch device_name: mps
+2025-11-28 13:59:18,082 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 13:59:23,422 [INFO] 🧠 Using device: MPS
+2025-11-28 14:00:14,007 [INFO] Use pytorch device_name: mps
+2025-11-28 14:00:14,007 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:00:19,938 [INFO] 🧠 Using device: MPS
+2025-11-28 14:00:33,259 [INFO] Use pytorch device_name: mps
+2025-11-28 14:00:33,259 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:00:39,675 [INFO] 🧠 Using device: MPS
+2025-11-28 14:00:45,930 [INFO] Use pytorch device_name: mps
+2025-11-28 14:00:45,930 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:00:52,255 [INFO] 🧠 Using device: MPS
+2025-11-28 14:00:57,848 [INFO] Use pytorch device_name: mps
+2025-11-28 14:00:57,849 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:01:04,023 [INFO] 🧠 Using device: MPS
+2025-11-28 14:01:11,123 [INFO] Use pytorch device_name: mps
+2025-11-28 14:01:11,124 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:01:16,626 [INFO] 🧠 Using device: MPS
+2025-11-28 14:01:23,375 [INFO] Use pytorch device_name: mps
+2025-11-28 14:01:23,375 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:01:29,218 [INFO] 🧠 Using device: MPS
+2025-11-28 14:01:35,529 [INFO] Use pytorch device_name: mps
+2025-11-28 14:01:35,529 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:01:40,949 [INFO] 🧠 Using device: MPS
+2025-11-28 14:01:47,002 [INFO] Use pytorch device_name: mps
+2025-11-28 14:01:47,003 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:01:52,550 [INFO] 🧠 Using device: MPS
+2025-11-28 14:02:15,536 [INFO] Use pytorch device_name: mps
+2025-11-28 14:02:15,536 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:02:24,630 [INFO] 🧠 Using device: MPS
+2025-11-28 14:02:32,544 [INFO] Use pytorch device_name: mps
+2025-11-28 14:02:32,544 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:02:38,714 [INFO] 🧠 Using device: MPS
+2025-11-28 14:02:44,379 [INFO] Use pytorch device_name: mps
+2025-11-28 14:02:44,379 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:02:50,107 [INFO] 🧠 Using device: MPS
+2025-11-28 14:02:55,904 [INFO] Use pytorch device_name: mps
+2025-11-28 14:02:55,905 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:03:01,401 [INFO] 🧠 Using device: MPS
+2025-11-28 14:03:06,787 [INFO] Use pytorch device_name: mps
+2025-11-28 14:03:06,787 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:03:12,749 [INFO] 🧠 Using device: MPS
+2025-11-28 14:03:18,671 [INFO] Use pytorch device_name: mps
+2025-11-28 14:03:18,671 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:03:24,409 [INFO] 🧠 Using device: MPS
+2025-11-28 14:03:53,468 [INFO] Use pytorch device_name: mps
+2025-11-28 14:03:53,468 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:03:59,356 [INFO] 🧠 Using device: MPS
+2025-11-28 14:04:04,844 [INFO] Use pytorch device_name: mps
+2025-11-28 14:04:04,844 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:04:10,283 [INFO] 🧠 Using device: MPS
+2025-11-28 14:04:15,921 [INFO] Use pytorch device_name: mps
+2025-11-28 14:04:15,922 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:04:21,185 [INFO] 🧠 Using device: MPS
+2025-11-28 14:04:26,692 [INFO] Use pytorch device_name: mps
+2025-11-28 14:04:26,692 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:04:31,828 [INFO] 🧠 Using device: MPS
+2025-11-28 14:04:37,457 [INFO] Use pytorch device_name: mps
+2025-11-28 14:04:37,457 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:04:43,545 [INFO] 🧠 Using device: MPS
+2025-11-28 14:04:48,946 [INFO] Use pytorch device_name: mps
+2025-11-28 14:04:48,946 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:04:54,865 [INFO] 🧠 Using device: MPS
+2025-11-28 14:05:00,470 [INFO] Use pytorch device_name: mps
+2025-11-28 14:05:00,471 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:05:05,841 [INFO] 🧠 Using device: MPS
+2025-11-28 14:05:11,321 [INFO] Use pytorch device_name: mps
+2025-11-28 14:05:11,322 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:05:16,853 [INFO] 🧠 Using device: MPS
+2025-11-28 14:05:22,448 [INFO] Use pytorch device_name: mps
+2025-11-28 14:05:22,448 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:05:27,754 [INFO] 🧠 Using device: MPS
+2025-11-28 14:05:33,342 [INFO] Use pytorch device_name: mps
+2025-11-28 14:05:33,342 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:05:38,758 [INFO] 🧠 Using device: MPS
+2025-11-28 14:05:44,349 [INFO] Use pytorch device_name: mps
+2025-11-28 14:05:44,349 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:05:50,194 [INFO] 🧠 Using device: MPS
+2025-11-28 14:05:56,253 [INFO] Use pytorch device_name: mps
+2025-11-28 14:05:56,254 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:06:01,690 [INFO] 🧠 Using device: MPS
+2025-11-28 14:06:07,744 [INFO] Use pytorch device_name: mps
+2025-11-28 14:06:07,744 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:06:13,223 [INFO] 🧠 Using device: MPS
+2025-11-28 14:06:32,078 [INFO] Use pytorch device_name: mps
+2025-11-28 14:06:32,078 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:06:37,669 [INFO] 🧠 Using device: MPS
+2025-11-28 14:06:43,294 [INFO] Use pytorch device_name: mps
+2025-11-28 14:06:43,294 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:06:48,500 [INFO] 🧠 Using device: MPS
+2025-11-28 14:06:53,998 [INFO] Use pytorch device_name: mps
+2025-11-28 14:06:53,999 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:06:59,508 [INFO] 🧠 Using device: MPS
+2025-11-28 14:07:05,375 [INFO] Use pytorch device_name: mps
+2025-11-28 14:07:05,375 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:07:11,221 [INFO] 🧠 Using device: MPS
+2025-11-28 14:07:17,277 [INFO] Use pytorch device_name: mps
+2025-11-28 14:07:17,277 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:07:22,620 [INFO] 🧠 Using device: MPS
+2025-11-28 14:07:28,388 [INFO] Use pytorch device_name: mps
+2025-11-28 14:07:28,388 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:07:33,640 [INFO] 🧠 Using device: MPS
+2025-11-28 14:07:59,613 [INFO] Use pytorch device_name: mps
+2025-11-28 14:07:59,614 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:08:05,843 [INFO] 🧠 Using device: MPS
+2025-11-28 14:08:11,959 [INFO] Use pytorch device_name: mps
+2025-11-28 14:08:11,959 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:08:17,680 [INFO] 🧠 Using device: MPS
+2025-11-28 14:08:23,078 [INFO] Use pytorch device_name: mps
+2025-11-28 14:08:23,079 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:08:28,161 [INFO] 🧠 Using device: MPS
+2025-11-28 14:10:45,013 [INFO] Use pytorch device_name: mps
+2025-11-28 14:10:45,013 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:10:51,635 [INFO] 🧠 Using device: MPS
+2025-11-28 14:10:57,535 [INFO] Use pytorch device_name: mps
+2025-11-28 14:10:57,536 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:11:02,863 [INFO] 🧠 Using device: MPS
+2025-11-28 14:11:09,101 [INFO] Use pytorch device_name: mps
+2025-11-28 14:11:09,101 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:11:14,801 [INFO] 🧠 Using device: MPS
+2025-11-28 14:11:20,868 [INFO] Use pytorch device_name: mps
+2025-11-28 14:11:20,868 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:11:26,388 [INFO] 🧠 Using device: MPS
+2025-11-28 14:11:34,283 [INFO] Use pytorch device_name: mps
+2025-11-28 14:11:34,284 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:11:39,830 [INFO] 🧠 Using device: MPS
+2025-11-28 14:34:17,370 [INFO] Use pytorch device_name: mps
+2025-11-28 14:34:17,371 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:34:22,714 [INFO] 🧠 Using device: MPS
+2025-11-28 14:34:28,448 [INFO] Use pytorch device_name: mps
+2025-11-28 14:34:28,448 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:34:34,009 [INFO] 🧠 Using device: MPS
+2025-11-28 14:34:40,000 [INFO] Use pytorch device_name: mps
+2025-11-28 14:34:40,000 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:34:45,426 [INFO] 🧠 Using device: MPS
+2025-11-28 14:34:51,869 [INFO] Use pytorch device_name: mps
+2025-11-28 14:34:51,870 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:34:57,059 [INFO] 🧠 Using device: MPS
+2025-11-28 14:35:02,865 [INFO] Use pytorch device_name: mps
+2025-11-28 14:35:02,865 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:35:08,968 [INFO] 🧠 Using device: MPS
+2025-11-28 14:42:13,085 [INFO] Use pytorch device_name: mps
+2025-11-28 14:42:13,085 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:42:18,534 [INFO] 🧠 Using device: MPS
+2025-11-28 14:42:24,219 [INFO] Use pytorch device_name: mps
+2025-11-28 14:42:24,220 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:42:29,536 [INFO] 🧠 Using device: MPS
+2025-11-28 14:43:11,045 [INFO] Use pytorch device_name: mps
+2025-11-28 14:43:11,046 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:43:23,747 [INFO] Use pytorch device_name: mps
+2025-11-28 14:43:23,748 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:43:36,138 [INFO] Use pytorch device_name: mps
+2025-11-28 14:43:36,138 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:43:48,689 [INFO] Use pytorch device_name: mps
+2025-11-28 14:43:48,689 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:44:01,761 [INFO] Use pytorch device_name: mps
+2025-11-28 14:44:01,761 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:44:14,625 [INFO] Use pytorch device_name: mps
+2025-11-28 14:44:14,625 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:44:27,906 [INFO] Use pytorch device_name: mps
+2025-11-28 14:44:27,906 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:44:41,153 [INFO] Use pytorch device_name: mps
+2025-11-28 14:44:41,154 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:44:53,114 [INFO] Use pytorch device_name: mps
+2025-11-28 14:44:53,115 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:45:05,300 [INFO] Use pytorch device_name: mps
+2025-11-28 14:45:05,300 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:45:11,588 [INFO] 🧠 Using device: MPS
+2025-11-28 14:45:17,027 [INFO] Use pytorch device_name: mps
+2025-11-28 14:45:17,028 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:45:22,603 [INFO] 🧠 Using device: MPS
+2025-11-28 14:49:54,697 [INFO] Use pytorch device_name: mps
+2025-11-28 14:49:54,697 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:50:00,799 [INFO] 🧠 Using device: MPS
+2025-11-28 14:50:06,355 [INFO] Use pytorch device_name: mps
+2025-11-28 14:50:06,355 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:50:11,640 [INFO] 🧠 Using device: MPS
+2025-11-28 14:50:17,214 [INFO] Use pytorch device_name: mps
+2025-11-28 14:50:17,214 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:50:22,680 [INFO] 🧠 Using device: MPS
+2025-11-28 14:50:31,787 [INFO] Use pytorch device_name: mps
+2025-11-28 14:50:31,788 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:50:37,535 [INFO] 🧠 Using device: MPS
+2025-11-28 14:50:43,072 [INFO] Use pytorch device_name: mps
+2025-11-28 14:50:43,073 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:50:49,222 [INFO] 🧠 Using device: MPS
+2025-11-28 14:50:54,760 [INFO] Use pytorch device_name: mps
+2025-11-28 14:50:54,760 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:51:01,043 [INFO] 🧠 Using device: MPS
+2025-11-28 14:51:06,902 [INFO] Use pytorch device_name: mps
+2025-11-28 14:51:06,903 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:51:12,837 [INFO] 🧠 Using device: MPS
+2025-11-28 14:51:18,442 [INFO] Use pytorch device_name: mps
+2025-11-28 14:51:18,443 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:51:24,293 [INFO] 🧠 Using device: MPS
+2025-11-28 14:51:30,174 [INFO] Use pytorch device_name: mps
+2025-11-28 14:51:30,174 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:51:35,659 [INFO] 🧠 Using device: MPS
+2025-11-28 14:51:36,264 [INFO] OPTIONS /notes/transcribe - 200 - 0.23ms
+2025-11-28 14:51:41,527 [INFO] AFC is enabled with max remote calls: 10.
+2025-11-28 14:51:49,059 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2025-11-28 14:51:53,337 [INFO] POST /notes/transcribe - 200 - 17065.29ms
+2025-11-28 14:53:17,987 [INFO] Use pytorch device_name: mps
+2025-11-28 14:53:17,987 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:53:24,097 [INFO] 🧠 Using device: MPS
+2025-11-28 14:58:05,713 [INFO] Use pytorch device_name: mps
+2025-11-28 14:58:05,713 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:58:11,888 [INFO] 🧠 Using device: MPS
+2025-11-28 14:58:17,164 [INFO] Use pytorch device_name: mps
+2025-11-28 14:58:17,165 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:58:22,455 [INFO] 🧠 Using device: MPS
+2025-11-28 14:58:27,650 [INFO] Use pytorch device_name: mps
+2025-11-28 14:58:27,650 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:58:33,135 [INFO] 🧠 Using device: MPS
+2025-11-28 14:58:38,417 [INFO] Use pytorch device_name: mps
+2025-11-28 14:58:38,417 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 14:58:43,639 [INFO] 🧠 Using device: MPS
+2025-11-28 15:03:38,508 [INFO] Use pytorch device_name: mps
+2025-11-28 15:03:38,508 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:03:50,744 [INFO] Use pytorch device_name: mps
+2025-11-28 15:03:50,744 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:04:02,231 [INFO] Use pytorch device_name: mps
+2025-11-28 15:04:02,231 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:04:08,226 [INFO] 🧠 Using device: MPS
+2025-11-28 15:04:14,292 [INFO] Use pytorch device_name: mps
+2025-11-28 15:04:14,292 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:04:20,347 [INFO] 🧠 Using device: MPS
+2025-11-28 15:04:26,467 [INFO] Use pytorch device_name: mps
+2025-11-28 15:04:26,467 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:04:32,150 [INFO] 🧠 Using device: MPS
+2025-11-28 15:04:32,773 [INFO] OPTIONS /notes/transcribe - 200 - 0.32ms
+2025-11-28 15:04:37,949 [INFO] AFC is enabled with max remote calls: 10.
+2025-11-28 15:04:47,800 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2025-11-28 15:04:52,113 [INFO] POST /notes/transcribe - 200 - 19336.32ms
+2025-11-28 15:05:28,993 [INFO] Use pytorch device_name: mps
+2025-11-28 15:05:28,993 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:05:34,876 [INFO] 🧠 Using device: MPS
+2025-11-28 15:05:40,826 [INFO] Use pytorch device_name: mps
+2025-11-28 15:05:40,827 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:05:46,306 [INFO] 🧠 Using device: MPS
+2025-11-28 15:05:52,017 [INFO] Use pytorch device_name: mps
+2025-11-28 15:05:52,017 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:05:57,660 [INFO] 🧠 Using device: MPS
+2025-11-28 15:06:11,784 [INFO] Use pytorch device_name: mps
+2025-11-28 15:06:11,784 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:06:17,047 [INFO] 🧠 Using device: MPS
+2025-11-28 15:06:35,468 [INFO] Use pytorch device_name: mps
+2025-11-28 15:06:35,468 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:06:41,463 [INFO] 🧠 Using device: MPS
+2025-11-28 15:06:47,060 [INFO] Use pytorch device_name: mps
+2025-11-28 15:06:47,060 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:06:54,146 [INFO] 🧠 Using device: MPS
+2025-11-28 15:06:59,523 [INFO] Use pytorch device_name: mps
+2025-11-28 15:06:59,523 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:07:05,413 [INFO] 🧠 Using device: MPS
+2025-11-28 15:07:10,817 [INFO] Use pytorch device_name: mps
+2025-11-28 15:07:10,817 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:07:22,169 [INFO] Use pytorch device_name: mps
+2025-11-28 15:07:22,170 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:07:33,162 [INFO] Use pytorch device_name: mps
+2025-11-28 15:07:33,162 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:07:44,368 [INFO] Use pytorch device_name: mps
+2025-11-28 15:07:44,368 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:07:50,155 [INFO] 🧠 Using device: MPS
+2025-11-28 15:07:55,159 [INFO] Use pytorch device_name: mps
+2025-11-28 15:07:55,159 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:08:00,463 [INFO] 🧠 Using device: MPS
+2025-11-28 15:08:05,531 [INFO] Use pytorch device_name: mps
+2025-11-28 15:08:05,531 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:08:11,273 [INFO] 🧠 Using device: MPS
+2025-11-28 15:09:07,758 [INFO] OPTIONS /auth/me - 200 - 1.74ms
+2025-11-28 15:09:07,768 [INFO] OPTIONS /auth/me - 200 - 1.83ms
+2025-11-28 15:09:07,843 [INFO] GET /auth/me - 200 - 73.82ms
+2025-11-28 15:09:07,859 [INFO] GET /upload/list - 200 - 100.52ms
+2025-11-28 15:09:07,863 [INFO] GET /auth/me - 200 - 17.95ms
+2025-11-28 15:09:07,877 [INFO] GET /upload/list - 200 - 15.58ms
+2025-11-28 15:09:07,887 [INFO] GET /upload/list - 200 - 8.21ms
+2025-11-28 15:09:07,897 [INFO] GET /upload/list - 200 - 7.79ms
+2025-11-28 15:09:09,926 [INFO] GET /auth/me - 200 - 4.88ms
+2025-11-28 15:09:09,931 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 8.42ms
+2025-11-28 15:09:09,941 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 7.56ms
+2025-11-28 15:09:09,945 [INFO] GET /auth/me - 200 - 11.7ms
+2025-11-28 15:14:02,118 [INFO] OPTIONS /notes/save - 200 - 0.92ms
+2025-11-28 15:14:02,230 [INFO] POST /notes/save - 200 - 108.73ms
+2025-11-28 15:14:22,230 [INFO] Use pytorch device_name: mps
+2025-11-28 15:14:22,231 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:14:28,222 [INFO] 🧠 Using device: MPS
+2025-11-28 15:14:56,007 [INFO] Use pytorch device_name: mps
+2025-11-28 15:14:56,007 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:15:01,950 [INFO] 🧠 Using device: MPS
+2025-11-28 15:15:07,328 [INFO] Use pytorch device_name: mps
+2025-11-28 15:15:07,328 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:15:13,252 [INFO] 🧠 Using device: MPS
+2025-11-28 15:15:18,598 [INFO] Use pytorch device_name: mps
+2025-11-28 15:15:18,598 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:15:24,618 [INFO] 🧠 Using device: MPS
+2025-11-28 15:15:29,813 [INFO] Use pytorch device_name: mps
+2025-11-28 15:15:29,813 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:15:35,787 [INFO] 🧠 Using device: MPS
+2025-11-28 15:16:10,793 [INFO] Use pytorch device_name: mps
+2025-11-28 15:16:10,793 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:16:17,360 [INFO] 🧠 Using device: MPS
+2025-11-28 15:16:23,291 [INFO] Use pytorch device_name: mps
+2025-11-28 15:16:23,291 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:16:29,004 [INFO] 🧠 Using device: MPS
+2025-11-28 15:16:34,184 [INFO] Use pytorch device_name: mps
+2025-11-28 15:16:34,185 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:16:39,765 [INFO] 🧠 Using device: MPS
+2025-11-28 15:17:00,668 [INFO] Use pytorch device_name: mps
+2025-11-28 15:17:00,668 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:17:07,336 [INFO] 🧠 Using device: MPS
+2025-11-28 15:17:14,871 [INFO] Use pytorch device_name: mps
+2025-11-28 15:17:14,871 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:17:21,071 [INFO] 🧠 Using device: MPS
+2025-11-28 15:17:26,522 [INFO] Use pytorch device_name: mps
+2025-11-28 15:17:26,522 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:17:32,323 [INFO] 🧠 Using device: MPS
+2025-11-28 15:17:37,740 [INFO] Use pytorch device_name: mps
+2025-11-28 15:17:37,741 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:17:43,532 [INFO] 🧠 Using device: MPS
+2025-11-28 15:17:48,650 [INFO] Use pytorch device_name: mps
+2025-11-28 15:17:48,650 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:17:54,886 [INFO] 🧠 Using device: MPS
+2025-11-28 15:18:00,042 [INFO] Use pytorch device_name: mps
+2025-11-28 15:18:00,042 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:18:07,701 [INFO] 🧠 Using device: MPS
+2025-11-28 15:18:21,568 [INFO] Use pytorch device_name: mps
+2025-11-28 15:18:21,568 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:18:29,196 [INFO] 🧠 Using device: MPS
+2025-11-28 15:18:39,977 [INFO] Use pytorch device_name: mps
+2025-11-28 15:18:39,977 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:18:45,807 [INFO] 🧠 Using device: MPS
+2025-11-28 15:18:50,981 [INFO] Use pytorch device_name: mps
+2025-11-28 15:18:50,981 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:18:58,671 [INFO] 🧠 Using device: MPS
+2025-11-28 15:19:03,830 [INFO] Use pytorch device_name: mps
+2025-11-28 15:19:03,830 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:19:09,995 [INFO] 🧠 Using device: MPS
+2025-11-28 15:22:11,987 [INFO] Use pytorch device_name: mps
+2025-11-28 15:22:11,987 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:22:18,118 [INFO] 🧠 Using device: MPS
+2025-11-28 15:22:23,091 [INFO] Use pytorch device_name: mps
+2025-11-28 15:22:23,092 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:22:33,049 [INFO] 🧠 Using device: MPS
+2025-11-28 15:22:39,847 [INFO] Use pytorch device_name: mps
+2025-11-28 15:22:39,847 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:22:46,160 [INFO] 🧠 Using device: MPS
+2025-11-28 15:22:55,544 [INFO] Use pytorch device_name: mps
+2025-11-28 15:22:55,545 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:23:01,269 [INFO] 🧠 Using device: MPS
+2025-11-28 15:23:06,191 [INFO] Use pytorch device_name: mps
+2025-11-28 15:23:06,191 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:23:12,139 [INFO] 🧠 Using device: MPS
+2025-11-28 15:23:17,120 [INFO] Use pytorch device_name: mps
+2025-11-28 15:23:17,121 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:23:22,965 [INFO] 🧠 Using device: MPS
+2025-11-28 15:23:27,842 [INFO] Use pytorch device_name: mps
+2025-11-28 15:23:27,843 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:23:33,554 [INFO] 🧠 Using device: MPS
+2025-11-28 15:23:38,506 [INFO] Use pytorch device_name: mps
+2025-11-28 15:23:38,506 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:23:44,422 [INFO] 🧠 Using device: MPS
+2025-11-28 15:23:49,790 [INFO] Use pytorch device_name: mps
+2025-11-28 15:23:49,790 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:23:56,025 [INFO] 🧠 Using device: MPS
+2025-11-28 15:24:01,185 [INFO] Use pytorch device_name: mps
+2025-11-28 15:24:01,185 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:24:06,972 [INFO] 🧠 Using device: MPS
+2025-11-28 15:24:12,166 [INFO] Use pytorch device_name: mps
+2025-11-28 15:24:12,166 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:24:17,444 [INFO] 🧠 Using device: MPS
+2025-11-28 15:24:22,294 [INFO] Use pytorch device_name: mps
+2025-11-28 15:24:22,294 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:24:27,991 [INFO] 🧠 Using device: MPS
+2025-11-28 15:24:33,024 [INFO] Use pytorch device_name: mps
+2025-11-28 15:24:33,025 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:24:40,047 [INFO] 🧠 Using device: MPS
+2025-11-28 15:24:40,360 [INFO] OPTIONS /notes/generate-notes - 200 - 0.25ms
+2025-11-28 15:24:40,404 [INFO] ⚙️ Running Gemini model: gemini-2.5-flash-lite
+2025-11-28 15:24:40,408 [INFO] AFC is enabled with max remote calls: 10.
+2025-11-28 15:24:51,963 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2025-11-28 15:24:51,984 [INFO] POST /notes/generate-notes - 200 - 11621.92ms
+2025-11-28 15:26:41,268 [INFO] Use pytorch device_name: mps
+2025-11-28 15:26:41,268 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:26:47,458 [INFO] 🧠 Using device: MPS
+2025-11-28 15:26:54,912 [INFO] Use pytorch device_name: mps
+2025-11-28 15:26:54,912 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:27:00,326 [INFO] 🧠 Using device: MPS
+2025-11-28 15:27:05,112 [INFO] Use pytorch device_name: mps
+2025-11-28 15:27:05,112 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:27:10,400 [INFO] 🧠 Using device: MPS
+2025-11-28 15:27:16,217 [INFO] Use pytorch device_name: mps
+2025-11-28 15:27:16,226 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 15:27:23,584 [INFO] 🧠 Using device: MPS
+2025-11-28 15:27:23,873 [INFO] OPTIONS /notes/transcribe - 200 - 0.28ms
+2025-11-28 15:27:29,012 [INFO] AFC is enabled with max remote calls: 10.
+2025-11-28 15:27:33,533 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2025-11-28 15:27:39,958 [INFO] POST /notes/transcribe - 200 - 16082.95ms
+2025-11-28 15:28:40,667 [INFO] AFC is enabled with max remote calls: 10.
+2025-11-28 15:28:46,750 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2025-11-28 15:28:51,962 [INFO] POST /notes/transcribe - 200 - 17166.27ms
+2025-11-28 15:29:23,221 [INFO] AFC is enabled with max remote calls: 10.
+2025-11-28 15:29:28,146 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2025-11-28 15:29:30,824 [INFO] POST /notes/transcribe - 200 - 13449.2ms
+2025-11-28 16:24:51,838 [INFO] OPTIONS /notes/generate-notes - 200 - 23.14ms
+2025-11-28 16:24:51,969 [INFO] ⚙️ Running Gemini model: gemini-2.5-flash-lite
+2025-11-28 16:24:51,987 [INFO] AFC is enabled with max remote calls: 10.
+2025-11-28 16:24:56,617 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2025-11-28 16:24:56,682 [INFO] POST /notes/generate-notes - 200 - 4827.11ms
+2025-11-28 16:27:03,406 [INFO] Use pytorch device_name: mps
+2025-11-28 16:27:03,406 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 16:27:10,627 [INFO] 🧠 Using device: MPS
+2025-11-28 16:27:16,220 [INFO] Use pytorch device_name: mps
+2025-11-28 16:27:16,220 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 16:27:22,436 [INFO] 🧠 Using device: MPS
+2025-11-28 16:27:28,349 [INFO] Use pytorch device_name: mps
+2025-11-28 16:27:28,349 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 16:27:35,224 [INFO] 🧠 Using device: MPS
+2025-11-28 16:27:40,780 [INFO] Use pytorch device_name: mps
+2025-11-28 16:27:40,780 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 16:27:47,873 [INFO] 🧠 Using device: MPS
+2025-11-28 16:27:53,219 [INFO] Use pytorch device_name: mps
+2025-11-28 16:27:53,220 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 16:27:59,337 [INFO] 🧠 Using device: MPS
+2025-11-28 16:28:04,428 [INFO] Use pytorch device_name: mps
+2025-11-28 16:28:04,428 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 16:28:10,432 [INFO] 🧠 Using device: MPS
+2025-11-28 16:28:27,009 [INFO] OPTIONS /notes/generate-questions - 200 - 0.45ms
+2025-11-28 16:28:27,024 [INFO] ⚙️ Running Gemini model: gemini-2.5-flash-lite
+2025-11-28 16:28:27,029 [INFO] AFC is enabled with max remote calls: 10.
+2025-11-28 16:28:30,796 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2025-11-28 16:28:30,811 [INFO] POST /notes/generate-questions - 200 - 3799.9ms
+2025-11-28 16:29:39,653 [INFO] Use pytorch device_name: mps
+2025-11-28 16:29:39,653 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 16:29:46,035 [INFO] 🧠 Using device: MPS
+2025-11-28 16:29:51,532 [INFO] Use pytorch device_name: mps
+2025-11-28 16:29:51,533 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 16:29:57,635 [INFO] 🧠 Using device: MPS
+2025-11-28 16:30:04,214 [INFO] Use pytorch device_name: mps
+2025-11-28 16:30:04,214 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 16:30:10,828 [INFO] 🧠 Using device: MPS
+2025-11-28 16:30:18,913 [INFO] Use pytorch device_name: mps
+2025-11-28 16:30:18,913 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 16:30:25,251 [INFO] 🧠 Using device: MPS
+2025-11-28 16:30:45,675 [INFO] Use pytorch device_name: mps
+2025-11-28 16:30:45,675 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 16:30:51,907 [INFO] 🧠 Using device: MPS
+2025-11-28 16:30:57,512 [INFO] Use pytorch device_name: mps
+2025-11-28 16:30:57,512 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 16:31:04,428 [INFO] 🧠 Using device: MPS
+2025-11-28 16:31:09,614 [INFO] Use pytorch device_name: mps
+2025-11-28 16:31:09,614 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 16:31:15,566 [INFO] 🧠 Using device: MPS
+2025-11-28 16:31:15,828 [INFO] ⚙️ Running Gemini model: gemini-2.5-flash-lite
+2025-11-28 16:31:15,832 [INFO] AFC is enabled with max remote calls: 10.
+2025-11-28 16:31:21,195 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2025-11-28 16:31:21,207 [INFO] POST /notes/generate-questions - 200 - 5388.65ms
+2025-11-28 16:32:13,875 [INFO] Use pytorch device_name: mps
+2025-11-28 16:32:13,875 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 16:32:20,635 [INFO] 🧠 Using device: MPS
+2025-11-28 16:32:26,193 [INFO] Use pytorch device_name: mps
+2025-11-28 16:32:26,193 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 16:32:32,171 [INFO] 🧠 Using device: MPS
+2025-11-28 16:32:37,639 [INFO] Use pytorch device_name: mps
+2025-11-28 16:32:37,639 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 16:32:44,263 [INFO] 🧠 Using device: MPS
+2025-11-28 16:32:49,394 [INFO] Use pytorch device_name: mps
+2025-11-28 16:32:49,394 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 16:32:55,648 [INFO] 🧠 Using device: MPS
+2025-11-28 16:33:00,887 [INFO] Use pytorch device_name: mps
+2025-11-28 16:33:00,887 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 16:33:06,737 [INFO] 🧠 Using device: MPS
+2025-11-28 16:33:07,004 [INFO] OPTIONS /notes/generate-mcq - 200 - 0.21ms
+2025-11-28 16:33:07,007 [INFO] POST /notes/generate-mcq - 500 - 1.12ms
+2025-11-28 16:34:46,556 [INFO] Use pytorch device_name: mps
+2025-11-28 16:34:46,556 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 16:34:54,447 [INFO] 🧠 Using device: MPS
+2025-11-28 16:35:00,194 [INFO] Use pytorch device_name: mps
+2025-11-28 16:35:00,194 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 16:35:06,908 [INFO] 🧠 Using device: MPS
+2025-11-28 16:35:12,626 [INFO] Use pytorch device_name: mps
+2025-11-28 16:35:12,626 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 16:35:18,691 [INFO] 🧠 Using device: MPS
+2025-11-28 16:35:23,700 [INFO] Use pytorch device_name: mps
+2025-11-28 16:35:23,700 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 16:35:29,835 [INFO] 🧠 Using device: MPS
+2025-11-28 16:35:30,116 [INFO] ⚙️ Running Gemini model: gemini-2.5-flash-lite
+2025-11-28 16:35:30,119 [INFO] AFC is enabled with max remote calls: 10.
+2025-11-28 16:35:46,517 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+2025-11-28 16:35:46,544 [INFO] POST /notes/generate-mcq - 200 - 16445.07ms
+2025-11-28 16:37:04,078 [INFO] OPTIONS /auth/me - 200 - 12.06ms
+2025-11-28 16:37:04,091 [INFO] OPTIONS /teachers/classrooms/all - 200 - 17.74ms
+2025-11-28 16:37:04,094 [INFO] OPTIONS /auth/me - 200 - 16.81ms
+2025-11-28 16:37:04,095 [INFO] OPTIONS /teachers/classrooms/all - 200 - 5.64ms
+2025-11-28 16:37:04,161 [INFO] GET /auth/me - 200 - 64.82ms
+2025-11-28 16:37:04,165 [INFO] GET /auth/me - 200 - 3.66ms
+2025-11-28 16:37:04,167 [INFO] POST /teachers/classrooms/all - 200 - 17.73ms
+2025-11-28 16:37:04,167 [INFO] POST /teachers/classrooms/all - 200 - 71.56ms
+2025-11-28 16:37:05,847 [INFO] GET /auth/me - 200 - 3.97ms
+2025-11-28 16:37:05,871 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 23.57ms
+2025-11-28 16:37:05,874 [INFO] GET /auth/me - 200 - 25.28ms
+2025-11-28 16:37:05,881 [INFO] GET /upload/6920a15f6155c967358c526f - 200 - 7.44ms

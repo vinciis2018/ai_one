@@ -251,18 +251,17 @@ async def add_calendar_event(
 
 @router.post("/classroom/add")
 async def add_class_room(
-    teacher_id: str = Body(..., embed=True),
     classroom_details: ClassroomModel = Body(..., embed=True)
 ):
     try:
         # Validate teacher_id format
         try:
-            teacher_oid = ObjectId(teacher_id)
+            teacher_oid = ObjectId(classroom_details.teacher_id)
         except:
             raise HTTPException(status_code=400, detail="Invalid teacher ID format")
 
         collection = get_collection("teachers")
-        
+
         teacher = await collection.find_one({"user_id": teacher_oid})
 
         if not teacher:
@@ -270,7 +269,7 @@ async def add_class_room(
 
         # Prepare classroom data
         classroom_data = classroom_details.model_dump()
-        classroom_data["classroom_id"] = str(ObjectId()) # Generate a unique ID for the classroom
+        classroom_data["_id"] = str(ObjectId()) # Generate a unique ID for the classroom
 
         # Initialize classrooms if it doesn't exist
         if not teacher.get("classrooms"):
@@ -288,10 +287,91 @@ async def add_class_room(
         if result.modified_count == 0:
             raise HTTPException(status_code=500, detail="Failed to add classroom to teacher's profile")
 
-        return {"status": "success", "classroom_id": classroom_data["classroom_id"], "message": "Classroom added successfully"}
+        return {"status": "success", "classroom_id": classroom_data["_id"], "message": "Classroom added successfully"}
 
     except HTTPException:
         raise
     except Exception as e:
         print(f"Error in add_class_room: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error adding classroom: {str(e)}")
+
+
+class TeacherIdsRequest(BaseModel):
+    teacher_ids: List[str]
+
+
+@router.post("/classrooms/all")
+async def get_classrooms_by_teachers(
+    request: TeacherIdsRequest = Body(...)
+):
+    """
+    Fetch all classrooms related to the provided array of teacher IDs.
+    
+    Request body:
+    {
+        "teacher_ids": ["teacher_id_1", "teacher_id_2", ...]
+    }
+    
+    Returns:
+    {
+        "classrooms": [...],
+        "count": int
+    }
+    """
+    try:
+        # Validate and convert teacher_ids to ObjectIds
+        teacher_oids = []
+        for teacher_id in request.teacher_ids:
+            try:
+                teacher_oids.append(ObjectId(teacher_id))
+            except:
+                raise HTTPException(
+                    status_code=400, 
+                    detail=f"Invalid teacher ID format: {teacher_id}"
+                )
+
+        if not teacher_oids:
+            return {"classrooms": [], "count": 0}
+
+        # Fetch teachers with their classrooms
+        collection = get_collection("teachers")
+        cursor = collection.find(
+            {"user_id": {"$in": teacher_oids}},
+            {"classrooms": 1, "user_id": 1, "name": 1, "email": 1}
+        )
+        teachers = await cursor.to_list(length=None)
+
+        # Aggregate all classrooms from all teachers
+        all_classrooms = []
+        for teacher in teachers:
+            classrooms = teacher.get("classrooms", [])
+            
+            # Add teacher info to each classroom
+            for classroom in classrooms:
+                classroom_info = {
+                    "classroom_id": classroom.get("_id"),
+                    "name": classroom.get("name"),
+                    "description": classroom.get("description"),
+                    "teacher_id": str(teacher.get("user_id")),
+                    "teacher_name": teacher.get("name"),
+                    "teacher_email": teacher.get("email"),
+                    "student_ids": [str(sid) for sid in classroom.get("student_ids", [])],
+                    "created_at": str(classroom.get("created_at", "")),
+                    "updated_at": str(classroom.get("updated_at", ""))
+                }
+                all_classrooms.append(classroom_info)
+
+        return {
+            "classrooms": all_classrooms,
+            "count": len(all_classrooms)
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"Error in get_classrooms_by_teachers: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error fetching classrooms: {str(e)}"
+        )
+        

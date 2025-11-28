@@ -1,4 +1,9 @@
 import React from "react";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css';
 
 interface QuizTabProps {
   pageNumber: number;
@@ -41,9 +46,17 @@ export const QuizTab: React.FC<QuizTabProps> = ({
                 <span className="flex-shrink-0 w-6 h-6 rounded-full bg-violet-100 text-violet-600 flex items-center justify-center text-xs font-bold">
                   {i + 1}
                 </span>
-                <p className="text-sm text-gray-800 font-medium pt-0.5">
+                {/* <p className="text-sm text-gray-800 font-medium pt-0.5">
                   {q.question ? q.question : q}
-                </p>
+                </p> */}
+                <div className="prose prose-sm max-w-none text-gray-700">
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm, remarkMath]}
+                    rehypePlugins={[rehypeKatex]}
+                  >
+                    {q.question ? q.question : q}
+                  </ReactMarkdown>
+                </div>
               </div>
             </div>
           ))}
@@ -75,8 +88,13 @@ export const QuizTab: React.FC<QuizTabProps> = ({
                     <h4 className="text-xs font-bold text-green-600 uppercase tracking-wider mb-2">Easy</h4>
                     <div className="space-y-2">
                       {quiz.easy.map((q: string, i: number) => (
-                        <div key={`sub-easy-${i}`} className="p-3 rounded-lg border bg-green-50/30 border-green-100 text-sm text-gray-700">
-                          {q}
+                        <div key={`sub-easy-${i}`} className="prose prose-sm max-w-none text-gray-700 p-3 rounded-lg border bg-green-50/30 border-green-100 text-sm text-gray-700">
+                          <ReactMarkdown
+                            remarkPlugins={[remarkGfm, remarkMath]}
+                            rehypePlugins={[rehypeKatex]}
+                          >
+                            {q}
+                          </ReactMarkdown>
                         </div>
                       ))}
                     </div>
@@ -89,7 +107,12 @@ export const QuizTab: React.FC<QuizTabProps> = ({
                     <div className="space-y-2">
                       {quiz.medium.map((q: string, i: number) => (
                         <div key={`sub-medium-${i}`} className="p-3 rounded-lg border bg-yellow-50/30 border-yellow-100 text-sm text-gray-700">
-                          {q}
+                          <ReactMarkdown
+                            remarkPlugins={[remarkGfm, remarkMath]}
+                            rehypePlugins={[rehypeKatex]}
+                          >
+                            {q}
+                          </ReactMarkdown>
                         </div>
                       ))}
                     </div>
@@ -102,7 +125,12 @@ export const QuizTab: React.FC<QuizTabProps> = ({
                     <div className="space-y-2">
                       {quiz.hard.map((q: string, i: number) => (
                         <div key={`sub-hard-${i}`} className="p-3 rounded-lg border bg-red-50/30 border-red-100 text-sm text-gray-700">
-                          {q}
+                          <ReactMarkdown
+                            remarkPlugins={[remarkGfm, remarkMath]}
+                            rehypePlugins={[rehypeKatex]}
+                          >
+                            {q}
+                          </ReactMarkdown>
                         </div>
                       ))}
                     </div>

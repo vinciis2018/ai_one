@@ -6,7 +6,7 @@
 
 from app.llms.ollama import call_ollama, call_ollama_multimodal
 from app.llms.huggingface import call_huggingface, call_huggingface_multimodal
-from app.llms.gemini import call_gemini, call_gemini_multimodal
+from app.llms.gemini import call_gemini
 from app.llms.openai import call_openai, call_openai_multimodal
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
@@ -110,8 +110,8 @@ def call_llm_multimodal(messages: list) -> str:
     # =======================
     # 1️⃣ Gemini
     # =======================
-    if LLM_MODE in ["auto", "gemini"]:
-       call_gemini_multimodal(messages)
+    # if LLM_MODE in ["auto", "gemini"]:
+    #    call_gemini_multimodal(messages)
     
     # =======================
     # 2️⃣ Hugging Face

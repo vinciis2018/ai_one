@@ -128,7 +128,6 @@ class ClassroomModel(BaseModel):
     description: Optional[str] = None
     teacher_id: PyObjectId
     student_ids: List[PyObjectId] = []
-    organisation_id: PyObjectId
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
 
@@ -141,7 +140,6 @@ class ClassroomModel(BaseModel):
                 "description": "Grade 10 Section A",
                 "teacher_id": "507f1f77bcf86cd799439011",
                 "student_ids": ["507f1f77bcf86cd799439013"],
-                "organisation_id": "507f1f77bcf86cd799439014",
                 "created_at": "2025-11-04T10:00:00Z",
                 "updated_at": "2025-11-04T10:00:00Z"
             }

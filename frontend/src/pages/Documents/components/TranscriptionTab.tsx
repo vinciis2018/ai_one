@@ -2,6 +2,11 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import type { BlockSettings, ContentBlock, SelectionBox } from "../../../types";
 import { cropImage } from "../../../utilities/filesUtils";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css';
 
 interface TranscriptionTabProps {
   pageNumber: number;
@@ -27,7 +32,7 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [draggedIndices, setDraggedIndices] = useState<number[] | null>(null);
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
-  const [isInitializing, setIsInitializing] = useState(false);
+  const [editingBlockId, setEditingBlockId] = useState<string | null>(null);
 
   // Re-crop Modal State
   const [recropBlockId, setRecropBlockId] = useState<string | null>(null);
@@ -41,12 +46,10 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
   // Initialize blocks from transcription data
   useEffect(() => {
     const initializeBlocks = async () => {
-      setIsInitializing(true);
       const currentPageData = notesDescription.find((note: any) => note.page === pageNumber);
 
       if (!currentPageData?.transcription) {
         setBlocks([]);
-        setIsInitializing(false);
         return;
       }
 
@@ -129,8 +132,6 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
       } catch (err) {
         console.error("Error initializing blocks", err);
         setBlocks([]);
-      } finally {
-        setIsInitializing(false);
       }
     };
 
@@ -416,25 +417,47 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
                   {/* Block Content */}
                   <div className="p-1">
                     {block.type === 'text' ? (
-                      <textarea
-                        value={block.content}
-                        onChange={(e) => updateBlockContent(block.id, e.target.value)}
-                        placeholder="Write something..."
-                        className="w-full text-sm resize-none bg-transparent outline-none border-none p-2 rounded text-slate-800 leading-relaxed font-normal focus:bg-white focus:ring-1 focus:ring-blue-200"
-                        style={{
-                          minHeight: '1.5em',
-                          height: 'auto',
-                          fieldSizing: 'content'
-                        } as any}
-                        onInput={(e) => {
-                          const target = e.target as HTMLTextAreaElement;
-                          target.style.height = 'auto';
-                          target.style.height = target.scrollHeight + 'px';
-                        }}
-                      />
+                      editingBlockId === block.id ? (
+                        <textarea
+                          value={block.content}
+                          onChange={(e) => updateBlockContent(block.id, e.target.value)}
+                          onBlur={() => setEditingBlockId(null)}
+                          autoFocus
+                          placeholder="Write something..."
+                          className="w-full text-sm resize-none bg-white outline-none border border-blue-300 p-2 rounded text-slate-800 leading-relaxed font-normal focus:ring-2 focus:ring-blue-400"
+                          style={{
+                            minHeight: '1.5em',
+                            height: 'auto',
+                            fieldSizing: 'content'
+                          } as any}
+                          onInput={(e) => {
+                            const target = e.target as HTMLTextAreaElement;
+                            target.style.height = 'auto';
+                            target.style.height = target.scrollHeight + 'px';
+                          }}
+                        />
+                      ) : (
+                        <div
+                          onClick={() => setEditingBlockId(block.id)}
+                          className="w-full text-sm p-2 rounded text-slate-800 leading-relaxed cursor-text hover:bg-slate-50 transition-colors min-h-[1.5em]"
+                        >
+                          {block.content ? (
+                            <div className="prose prose-sm max-w-none text-gray-700">
+                              <ReactMarkdown
+                                remarkPlugins={[remarkGfm, remarkMath]}
+                                rehypePlugins={[rehypeKatex]}
+                              >
+                                {block.content}
+                              </ReactMarkdown>
+                            </div>
+                          ) : (
+                            <span className="text-slate-400 italic">Click to write something...</span>
+                          )}
+                        </div>
+                      )
                     ) : (
                       <div
-                        className="flex flex-col w-full transition-all duration-300"
+                        className="flex flex-col items-center justify-center w-full transition-all duration-300"
                         style={{ alignItems: block.settings?.align || 'center' }}
                       >
                         {/* Image Toolbar */}
@@ -467,7 +490,7 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
                         </div>
 
                         <div
-                          className="relative group/img cursor-pointer"
+                          className="w-full flex items-center justify-center relative cursor-pointer"
                           title="Double-click to re-crop"
                           onDoubleClick={() => handleInitiateRecrop(block.id)}
                         >
@@ -494,18 +517,40 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
                           </div>
                         </div>
 
-                        <textarea
-                          value={block.content || ''}
-                          onChange={(e) => updateBlockContent(block.id, e.target.value)}
-                          placeholder="Diagram explanation..."
-                          className="w-full mt-3 text-xs bg-transparent text-slate-600 p-3 rounded-lg border border-transparent focus:border-blue-200 outline-none resize-none transition-colors hover:bg-slate-50 text-center"
-                          style={{ fieldSizing: 'content', minHeight: '2em' } as any}
-                          onInput={(e) => {
-                            const target = e.target as HTMLTextAreaElement;
-                            target.style.height = 'auto';
-                            target.style.height = target.scrollHeight + 'px';
-                          }}
-                        />
+                        {editingBlockId === block.id ? (
+                          <textarea
+                            value={block.content || ''}
+                            onChange={(e) => updateBlockContent(block.id, e.target.value)}
+                            onBlur={() => setEditingBlockId(null)}
+                            autoFocus
+                            placeholder="Diagram explanation..."
+                            className="w-full mt-3 text-xs bg-white text-slate-600 p-3 rounded-lg border border-blue-300 outline-none resize-none transition-colors focus:ring-2 focus:ring-blue-400 text-center"
+                            style={{ fieldSizing: 'content', minHeight: '2em' } as any}
+                            onInput={(e) => {
+                              const target = e.target as HTMLTextAreaElement;
+                              target.style.height = 'auto';
+                              target.style.height = target.scrollHeight + 'px';
+                            }}
+                          />
+                        ) : (
+                          <div
+                            onClick={() => setEditingBlockId(block.id)}
+                            className="w-full mt-3 text-xs text-slate-600 p-3 rounded-lg cursor-text hover:bg-slate-50 transition-colors text-center min-h-[2em]"
+                          >
+                            {block.content ? (
+                              <div className="prose prose-sm max-w-none text-gray-700">
+                                <ReactMarkdown
+                                  remarkPlugins={[remarkGfm, remarkMath]}
+                                  rehypePlugins={[rehypeKatex]}
+                                >
+                                  {block.content}
+                                </ReactMarkdown>
+                              </div>
+                            ) : (
+                              <span className="text-slate-400 italic">Click to add diagram explanation...</span>
+                            )}
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>
@@ -534,9 +579,9 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
 
       {/* RE-CROP MODAL */}
       {recropBlockId && pageImage && (
-        <div className="fixed inset-0 z-50 bg-black/80 flex flex-col animate-in fade-in">
+        <div className="fixed inset-0 z-50 bg-black/90 flex flex-col animate-in fade-in overflow-hidden">
           {/* Header */}
-          <div className="bg-slate-900 p-4 flex items-center justify-between text-white border-b border-slate-800">
+          <div className="bg-slate-900 p-4 flex items-center justify-between text-white border-b border-slate-800 shrink-0 z-10 relative shadow-md">
             <div className="flex items-center gap-3">
               <button onClick={() => setRecropBlockId(null)} className="hover:text-slate-300">
                 <i className="fi fi-rr-arrow-small-left text-2xl"></i>
@@ -558,14 +603,14 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
           </div>
 
           {/* Editor Area */}
-          <div className="flex-1 overflow-auto flex items-center justify-center p-8 cursor-crosshair" onMouseDown={() => setSelection(null)}>
-            <div className="relative inline-block shadow-2xl" onMouseDown={(e) => e.stopPropagation()}>
+          <div className="flex-1 overflow-auto flex items-center justify-center p-4 cursor-crosshair relative w-full h-full" onMouseDown={() => setSelection(null)}>
+            <div className="relative inline-block shadow-2xl m-auto" onMouseDown={(e) => e.stopPropagation()}>
               <img
                 ref={recropImageRef}
                 src={pageImage}
                 alt="Original"
                 draggable={false}
-                className="max-h-[85vh] max-w-full object-contain"
+                className="max-h-[calc(100vh-8rem)] max-w-full object-contain block"
                 onMouseDown={handleRecropMouseDown}
                 onMouseMove={handleRecropMouseMove}
                 onMouseUp={handleRecropMouseUp}

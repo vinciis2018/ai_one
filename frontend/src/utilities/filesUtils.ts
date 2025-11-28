@@ -126,7 +126,7 @@ export const cropImage = (base64Image: string, cropRegion: number[]): Promise<st
     };
     
     img.onerror = (err) => {
-        console.error("Image loading failed during crop. Source start:", base64Image.substring(0, 50));
+        console.error("Image loading failed during crop. Source start:", base64Image.substring(0, 50), err);
         reject(new Error('Failed to load image for cropping'));
     };
     

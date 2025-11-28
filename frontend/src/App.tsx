@@ -2,7 +2,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store, useAppDispatch } from './store';
 import { ThemeProvider } from './context/ContextProvider/ThemeProvider';
-import { HomePage, LoginPage, SignupPage, NotFoundPage, UserProfilePage, LandingPage, DocumentsPage, DocumentDetailsPage, ConversationsPage, CoachingsPage, CoachingDetailsPage, TeachersForStudentPage, TeacherProfilePage, StudentProfilePage, NotesPage, ChatsPage, TeacherChatPage, StudentsForTeacherPage } from './pages';
+import { HomePage, LoginPage, SignupPage, NotFoundPage, UserProfilePage, LandingPage, DocumentsPage, DocumentDetailsPage, ConversationsPage, CoachingsPage, CoachingDetailsPage, ClassroomPage, TeachersForStudentPage, TeacherProfilePage, StudentProfilePage, NotesPage, ChatsPage, TeacherChatPage, StudentsForTeacherPage } from './pages';
+
 import { getMe } from './store/slices/authSlice';
 import { useEffect } from 'react';
 import NeuronAnimation from './components/NeuronAnimation';
@@ -34,6 +35,9 @@ function AppContent() {
             <Route path="/conversations" element={<ConversationsPage />} />
             <Route path="/coachings" element={<CoachingsPage />} />
             <Route path="/coachings/:id" element={<CoachingDetailsPage />} />
+            <Route path="/classrooms" element={<ClassroomPage />} />
+            <Route path="/classrooms/:id" element={<ClassroomPage />} />
+
             <Route path="/teachers" element={<TeachersForStudentPage />} />
             <Route path="/students" element={<StudentsForTeacherPage />} />
             <Route path="/notes" element={<NotesPage />} />
