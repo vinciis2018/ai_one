@@ -9,18 +9,18 @@ import { useAppDispatch, useAppSelector } from "../../store";
 import { askQuery, askImageQuery, resetStatus } from "../../store/slices/assistantSlice";
 // import { ResponseCard } from "./ResponseCard";
 import { fetchChatById } from "../../store/slices/conversationsSlice";
-// import { getS3Url } from "../../utilities/awsUtils";
+import { getS3Url } from "../../utilities/awsUtils";
 import { AnimatedTextAreaInput } from "./AnimatedTextAreaInput";
 import { useLocation, useSearchParams } from "react-router-dom";
+import { getTeacherDetails } from "../../store/slices/teachersSlice";
 
 
 export const QueryBoxChat: React.FC<{
-  domain: string,
   teacher_user_id?: string | null,
   student_user_id?: string | null,
   chatId?: string | null,
   previousConversationId?: string | null
-}> = ({domain, teacher_user_id, student_user_id, chatId, previousConversationId}) => {
+}> = ({ teacher_user_id, student_user_id, chatId, previousConversationId}) => {
   const { pathname } = useLocation();
   const [searchParams] = useSearchParams();
   const dispatch = useAppDispatch();
@@ -28,10 +28,12 @@ export const QueryBoxChat: React.FC<{
   const { queryStatus, response, error } = useAppSelector(
     (state) => state.assistant
   );
+  const { teacher_details } = useAppSelector((state) => state.teachers);
   const [question, setQuestion] = useState("");
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null | undefined>(null);
   const [isUploadingToS3, setIsUploadingToS3] = useState(false);
+  const [domain, setDomain] = useState("general");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Handle text query
@@ -94,8 +96,8 @@ export const QueryBoxChat: React.FC<{
       console.log('📤 Uploading image to S3...');
       
       // Step 1: Upload to S3
-      // const s3Url = await getS3Url(selectedImage);
-      const s3Url = "https://usethisbucketforupload.s3.ap-south-1.amazonaws.com/uploads/WhatsAppImage20251106at084945.jpeg"
+      const s3Url = await getS3Url(selectedImage);
+      // const s3Url = "https://usethisbucketforupload.s3.ap-south-1.amazonaws.com/uploads/WhatsAppImage20251106at084945.jpeg"
       console.log('✅ Image uploaded to S3:', s3Url);
 
       // Step 2: Prepare payload for backend
@@ -165,9 +167,16 @@ export const QueryBoxChat: React.FC<{
       resetStatus();
     }
 
+    if (teacher_user_id) {
+      dispatch(getTeacherDetails(teacher_user_id));
+    }
+  }, [dispatch, response, teacher_user_id]);
 
-  }, [dispatch, response]);
-
+  useEffect(() => {
+    if (teacher_details) {
+      setDomain(teacher_details?.subjects?.[0] as string);
+    }
+  }, [teacher_details]);
 
   return (
     <div className="max-w-4xl mx-auto">

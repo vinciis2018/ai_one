@@ -96,7 +96,10 @@ async def node_retrieve_memory(state: Dict[str, Any]) -> Dict[str, Any]:
     """Retrieve conversation history using existing function."""
     try:
         memory_chunks = await retrieve_from_conversation_memory(
-            state["user_id"], state["query"], top_k=3
+            user_id=state["user_id"],
+            query_text=state["query"],
+            top_k=3,
+            domain=state["domain"]
         )
         state["memory_chunks"] = memory_chunks
     except Exception as e:
@@ -194,7 +197,9 @@ async def node_save_conversation(state: Dict[str, Any]) -> Dict[str, Any]:
             user_docs,
             state.get("image_url"),  # attached_media
             state.get("image_transcript"),  # media_transcript
-            user_text  # user_text from image query
+            user_text,  # user_text from image query
+            state.get("chat_space"),
+            state.get("domain")
         )
         
         # Update state with the saved conversation IDs

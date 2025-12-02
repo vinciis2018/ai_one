@@ -3,11 +3,14 @@ from datetime import datetime
 from app.config.db import get_collection
 from app.core.retriever_cache import embedder
 from bson import ObjectId
+from typing import Optional
+
 
 async def retrieve_from_conversation_memory(
     user_id: str,
     query_text: str,
     top_k: int = 3,
+    domain: Optional[str] = None
 ):
     """
     Retrieve top-K relevant past conversations for a user.
@@ -16,7 +19,7 @@ async def retrieve_from_conversation_memory(
     conv_col = get_collection("conversations")
 
     # Fetch recent user conversations
-    recent_convs = await conv_col.find({"user_id": user_id}).sort("created_at", -1).to_list(length=200)
+    recent_convs = await conv_col.find({"user_id": user_id, "domain": domain if domain else {"$exists": False}}).sort("created_at", -1).to_list(length=200)
     if not recent_convs:
         return []
 

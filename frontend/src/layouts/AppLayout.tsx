@@ -59,7 +59,7 @@ export function FullLayout({ children, footer = null }: FullLayoutProps) {
 
       {/* Floating Chat Interface */}
       <FloatingChatButton onClick={toggleChat} isOpen={isChatOpen} />
-      <ChatSlidePanel chatId={""} domain={""} isOpen={isChatOpen} onClose={closeChat} />
+      <ChatSlidePanel chatId={""} isOpen={isChatOpen} onClose={closeChat} />
 
     </div>
   );

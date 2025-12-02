@@ -20,7 +20,7 @@ import os
 load_dotenv()
 logger = logging.getLogger("assistant-llm")
 
-LLM_MODE = os.getenv("LLM_MODE", "auto").lower()  # auto | huggingface | ollama | openai
+LLM_MODE = os.getenv("LLM_MODE", "auto").lower()  # auto | huggingface | ollama | openai | gemini
 FALLBACK_MODEL = "distilgpt2"
 # ------------------------------------------------
 # Device detection

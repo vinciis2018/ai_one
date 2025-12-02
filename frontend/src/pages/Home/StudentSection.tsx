@@ -112,7 +112,7 @@ export const StudentSection = () => {
         </div>
       </section>
 
-      {/* Introducing MINDE - Solution Section */}
+      {/* Introducing maiind - Solution Section */}
       <section className="py-24 bg-gradient-to-b from-black via-violet to-black text-[#F8F6F0]">
         <div className="grid lg:grid-cols-9 gap-4 container mx-auto px-6">
           <div className="col-span-4">
@@ -130,7 +130,7 @@ export const StudentSection = () => {
             </h2>
             <div className="flex flex-col justify-start">
               <p className="text-sm lg:text-2xl text-gray-300 lg:w-80 ">
-                MINDE isn't just "another AI tutor." It is YOU, digitized.
+                maiind isn't just "another AI tutor." It is YOU, digitized.
               </p>
               <a
                 href="/login"
@@ -194,12 +194,12 @@ export const StudentSection = () => {
         </div>
       </section>
 
-      {/* Why Coaching Centers Choose MINDE */}
+      {/* Why Coaching Centers Choose maiind */}
       <section className="py-24 bg-gradient-to-b from-black via-violet to-black text-[#F8F6F0]">
         <div className="container mx-auto px-10">
           <div className="flex flex-col items-center ">
             <h2 className="text-3xl md:text-5xl lg:text-8xl font-black text-center mb-6 text-white">
-              Why Coaching Centers <span className="text-green">Choose MINDE</span>
+              Why Coaching Centers <span className="text-green">Choose maiind</span>
             </h2>
             <p className="text-sm md:text-xl lg:text-2xl text-center text-white max-w-3xl mx-auto mb-16">
               NOT A REPLACEMENT. A SUPERPOWER.
@@ -212,7 +212,7 @@ export const StudentSection = () => {
                 <tr>
                   <th className="px-6 py-4 text-left text-sm font-bold text-white">Feature</th>
                   <th className="px-6 py-4 text-left text-sm font-bold text-white">The Old Way</th>
-                  <th className="px-6 py-4 text-left text-sm font-bold text-green">The MINDE Way</th>
+                  <th className="px-6 py-4 text-left text-sm font-bold text-green">The maiind Way</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/10">

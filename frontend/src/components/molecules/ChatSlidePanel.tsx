@@ -17,11 +17,10 @@ import 'katex/dist/katex.min.css';
 interface ChatSlidePanelProps {
   isOpen: boolean;
   chatId: string;
-  domain: string;
   onClose: () => void;
 }
 
-export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({ isOpen, chatId, domain, onClose }) => {
+export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({ isOpen, chatId, onClose }) => {
   const { pathname } = useLocation();
   const { user_id: user_other_id } = useParams<{ user_id: string }>();
   const [searchParams] = useSearchParams();
@@ -162,7 +161,7 @@ export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({ isOpen, chatId, 
               <i className="fi fi-rr-sparkles text-sm"></i>
             </div>
             <div>
-              <h2 className="font-bold text-gray-900 dark:text-white">minde</h2>
+              <h2 className="font-bold text-gray-900 dark:text-white">maiind</h2>
               <p className="text-xs text-gray-500 dark:text-gray-400">Ask & rewind </p>
             </div>
           </div>
@@ -464,7 +463,6 @@ export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({ isOpen, chatId, 
           <div className="">
             <QueryBoxChat
               chatId={selectedChatId || chatId}
-              domain={domain}
               teacher_user_id={user?.teacher_id ? user?._id : teacherUserId}
               student_user_id={user?.student_id ? user?._id : studentUserId}
             />

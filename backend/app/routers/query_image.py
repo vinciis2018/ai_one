@@ -291,7 +291,12 @@ async def process_query_common(
         context_chunks, user_docs = await retrieve_similar(user_query, user_ids)
 
         # Step 2: Retrieve from user's conversation history
-        memory_chunks = await retrieve_from_conversation_memory(user_id, user_query, top_k=3)
+        memory_chunks = await retrieve_from_conversation_memory(
+            user_id=user_id,
+            query_text=user_query,
+            top_k=3,
+            domain=domain_expertise
+        )
 
         # Combine results
         all_contexts = context_chunks + memory_chunks
@@ -320,7 +325,8 @@ async def process_query_common(
                 attached_media,
                 media_transcript,
                 user_text,
-                chat_space
+                chat_space,
+                domain_expertise
             )
             
             return {
@@ -360,7 +366,8 @@ async def process_query_common(
             attached_media,
             media_transcript,
             user_text,
-            chat_space
+            chat_space,
+            domain_expertise
         )
         
         return {

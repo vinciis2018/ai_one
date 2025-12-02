@@ -72,14 +72,14 @@ export function Header({ onMenuClick, isMobile, setIsSidebarOpen, isSidebarOpen,
                 <h1 className="text-green text-xl font-semibold px-1.5 py-0.5">m</h1>
               </div> */}
               <h1 className="text-green text-xl font-semibold flex items-center gap-1">
-                minde
+                maiind
                 <span className="text-xs text-green2 px-1 rounded-full mt-4 -ml-1 border border-green2">{"\u03B2"}</span>
               </h1>
             </div>
           ) : (
             <div className="h-8 flex items-center gap-1">
               <h1 className="text-green text-xl font-semibold flex items-center gap-1">
-                minde
+                maiind
                 <span className="text-xs text-green2 px-1 rounded-full mt-4 -ml-1 border border-green2">{"\u03B2"}</span>
               </h1>
             </div>

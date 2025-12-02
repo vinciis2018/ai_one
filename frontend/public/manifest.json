@@ -1,6 +1,6 @@
 {
-  "name": "MINDE",
-  "short_name": "MINDE",
+  "name": "maiind",
+  "short_name": "maiind",
   "description": "Customised Augmented Intelligence",
   "start_url": "/",
   "display": "standalone",
@@ -21,7 +21,10 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["productivity", "utilities"],
+  "categories": [
+    "productivity",
+    "utilities"
+  ],
   "screenshots": [
     {
       "src": "/screenshot_1280x720.png",

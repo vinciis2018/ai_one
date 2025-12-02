@@ -46,7 +46,8 @@ async def _save_conversation(
     attached_media: Optional[str] = None,
     media_transcript: Optional[str] = None,
     user_text: Optional[str] = None,
-    chat_space: Optional[str] = None
+    chat_space: Optional[str] = None,
+    domain: Optional[str] = None
 ) -> dict:
     """
     Save or update chat and conversation in MongoDB.
@@ -73,7 +74,9 @@ async def _save_conversation(
             "updated_at": now,
             "edit_history": [],
             "attached_media": attached_media,
-            "media_transcript": media_transcript
+            "media_transcript": media_transcript,
+            "domain": domain,
+
         }
         
 
