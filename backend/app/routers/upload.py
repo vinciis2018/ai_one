@@ -17,7 +17,6 @@ from app.core.embeddings import generate_embeddings
 from app.core.storage import load_all_metadata, store_embeddings
 from app.core.retriever_cache import knowledge_bases
 from app.config.settings import UPLOAD_FOLDER
-from app.core.text_extractor import clean_ocr_text, extract_text_from_pdf, extract_text_from_image
 from fastapi import APIRouter, HTTPException, Body
 import requests
 from datetime import datetime

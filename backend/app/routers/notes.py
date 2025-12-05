@@ -16,10 +16,7 @@ from bson import ObjectId
 from typing import Optional, List, Dict
 from app.core.llm_manager import call_llm
 import json
-from app.core.chunker import chunk_text
-from app.core.embeddings import generate_embeddings
-from app.core.storage import store_embeddings
-from app.core.retriever_cache import knowledge_bases
+
 from tqdm import tqdm
 
 router = APIRouter()

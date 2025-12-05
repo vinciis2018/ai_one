@@ -41,7 +41,8 @@ def initial_state(
     chat_id: Optional[str] = None,
     previous_conversation: Optional[str] = None,
     image_url: Optional[str] = None,
-    chat_space: Optional[str] = None
+    chat_space: Optional[str] = None,
+    image_transcript: Optional[str] = None
 ) -> Dict[str, Any]:
     """Initialize the state for the LangGraph workflow."""
     return {
@@ -54,7 +55,7 @@ def initial_state(
         "chat_id": chat_id,
         "previous_conversation": previous_conversation,
         "image_url": image_url,
-        "image_transcript": "",
+        "image_transcript": image_transcript,
 
         "retrieved_docs": [],
         "student_docs": [],
@@ -80,7 +81,9 @@ async def process_query_with_lang_graph(
     domain: Optional[str] = None,
     chat_id: Optional[str] = None,
     previous_conversation: Optional[str] = None,
-    chat_space: Optional[str] = None
+    chat_space: Optional[str] = None,
+    transcription: Optional[str] = None,
+    s3_url: Optional[str] = None
 ) -> Dict[str, Any]:
     """Process a user query through the LangGraph workflow."""
     try:
@@ -92,7 +95,9 @@ async def process_query_with_lang_graph(
             domain=domain,
             chat_id=chat_id,
             previous_conversation=previous_conversation,
-            chat_space=chat_space
+            image_url=s3_url,
+            chat_space=chat_space,
+            image_transcript=transcription
         )
         
         print("initial_state", state)

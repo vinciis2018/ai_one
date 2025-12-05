@@ -384,7 +384,10 @@ export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({ isOpen, chatId, 
                 <div key={conversation?.id} className="space-y-3">
                   {/* User Query */}
                   {conversation.query && (
-                    <div className="flex justify-end">
+                    <div className="flex justify-end gap-2">
+                      {conversation?.attached_media && (
+                        <img src={conversation?.attached_media} className="w-16 h-16 object-cover rounded-xl border border-slate-100" alt="" onClick={() => window.open(conversation?.attached_media, '_blank')}/>
+                      )}
                       <div className="bg-blue-500 text-white p-3 rounded-2xl rounded-tr-sm max-w-[80%]">
                         <p className="text-sm whitespace-pre-line">{conversation.query}</p>
                         <p className="text-xs opacity-75 mt-1">

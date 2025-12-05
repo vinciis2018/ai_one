@@ -6,7 +6,7 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "../../store";
-import { askQuery, askImageQuery, resetStatus } from "../../store/slices/assistantSlice";
+import { askQuery, resetStatus } from "../../store/slices/assistantSlice";
 // import { ResponseCard } from "./ResponseCard";
 import { fetchChatById } from "../../store/slices/conversationsSlice";
 import { getS3Url } from "../../utilities/awsUtils";
@@ -35,15 +35,13 @@ export const QueryBoxChat: React.FC<{
   const [imagePreview, setImagePreview] = useState<string | null | undefined>(null);
   const [isUploadingToS3, setIsUploadingToS3] = useState(false);
   const [domain, setDomain] = useState("general");
+  const [chat_space, setChatSpace] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Handle text query
   const handleAsk = async () => {
     if (!question.trim()) return alert("Please enter a question!");
-    const document_id = searchParams.get("document");
-    console.log(document_id);
-    const chat_space = document_id ? `${pathname.split("/").splice(1).join("/")}?document=${document_id}` : pathname.split("/").splice(1).join("/");
-  
+
     await dispatch(askQuery({
       text: question,
       userId: user?._id || '',
@@ -54,7 +52,7 @@ export const QueryBoxChat: React.FC<{
       student_id: student_user_id,
       subject: `general ${domain}`, // You can make this dynamic if needed
       level: "intermediate",   // You can make this dynamic if needed
-      chat_space: chat_space
+      chat_space: chat_space as string,
     }));
   };
 
@@ -98,36 +96,25 @@ export const QueryBoxChat: React.FC<{
       
       // Step 1: Upload to S3
       const s3Url = await getS3Url(selectedImage);
-      // const s3Url = "https://usethisbucketforupload.s3.ap-south-1.amazonaws.com/uploads/WhatsAppImage20251106at084945.jpeg"
+      // const s3Url = "https://usethisbucketforupload.s3.ap-south-1.amazonaws.com/uploads/Screenshot20251126at33622PM.png"
       console.log('✅ Image uploaded to S3:', s3Url);
 
-      // Step 2: Prepare payload for backend
-      const payload = {
+      const result = await dispatch(askQuery({
         text: question,
-        fileName: selectedImage.name,
-        s3Url: s3Url,
-        userId: user._id,
+        userId: user?._id || '',
+        chatId: chatId || response?.chat_id || null,
+        previousConversation: previousConversationId || response?.conversation_id || null,
+        domain_expertise: domain,
         teacher_id: teacher_user_id,
         student_id: student_user_id,
-        chatId: chatId || response?.chat_id || "",
-        previousConversation: previousConversationId || response?.conversation_id || "",
-        domain_expertise: domain,
-        file_type: selectedImage.type,
-        file_size: selectedImage.size,
-        source_type: user?.role || 'user',
-        // Add any additional fields your backend expects
-        subject: `general ${domain}`, // You can make this dynamic if needed
-        level: "intermediate",   // You can make this dynamic if needed
-        type: "image_query" // Different from study_material
-      };
+        subject: `general ${domain}`, // make this dynamic if needed
+        level: "intermediate",   // make this dynamic if needed
+        chat_space: chat_space as string,
+        s3_url: s3Url,
+      }));
 
-      console.log('📦 Sending S3 URL to backend:', payload);
-
-      // Step 3: Send to backend for processing
-      const result = await dispatch(askImageQuery(payload));
-      
       // If successful, reset image selection
-      if (askImageQuery.fulfilled.match(result)) {
+      if (askQuery.fulfilled.match(result)) {
         setSelectedImage(null);
         setImagePreview(null);
         if (fileInputRef.current) {
@@ -177,7 +164,11 @@ export const QueryBoxChat: React.FC<{
     if (teacher_details) {
       setDomain(teacher_details?.subjects?.[0] as string);
     }
-  }, [teacher_details]);
+
+    const document_id = searchParams.get("document");
+    const chat_space = document_id ? `${pathname.split("/").splice(1).join("/")}?document=${document_id}` : pathname.split("/").splice(1).join("/");
+    setChatSpace(chat_space);
+  }, [teacher_details, chat_space]);
 
   return (
     <div className="max-w-4xl mx-auto">

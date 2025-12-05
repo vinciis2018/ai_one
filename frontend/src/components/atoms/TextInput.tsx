@@ -64,8 +64,8 @@ const toLatex = (simplified: string, wasWrapped: boolean): string => {
   sortedKeys.forEach(key => {
     text = text.split(key).join(REVERSE_LATEX_MAP[key] + ' '); // Add space to prevent merging
   });
-  // Clean up double spaces
-  text = text.replace(/\s+/g, ' ');
+  // Clean up double spaces - REMOVED to preserve user typing
+  // text = text.replace(/\s+/g, ' ');
 
   // 2. Replace Structures back
   // (a)/(b) -> \frac{a}{b}
@@ -83,10 +83,10 @@ const toLatex = (simplified: string, wasWrapped: boolean): string => {
 
   // 3. Re-wrap
   if (wasWrapped) {
-    text = `$ ${text.trim()} $`;
+    text = `$ ${text} $`;
   }
 
-  return text.trim();
+  return text;
 };
 
 
@@ -272,10 +272,16 @@ export const TextInput: React.FC<TextInputProps> = ({
 
   // Sync local state when prop value changes
   useEffect(() => {
+    // If focused, we trust local state to prevent cursor jumps
+    if (isFocused) return;
+
     const { text, wasWrapped: wrapped } = toSimplified(value);
-    setLocalValue(text);
-    setWasWrapped(wrapped);
-  }, [value]);
+    // Only update if the new value is actually different
+    if (text !== localValue) {
+      setLocalValue(text);
+      setWasWrapped(wrapped);
+    }
+  }, [value, isFocused]);
 
   const adjustHeight = () => {
     const textarea = textareaRef.current;
@@ -336,7 +342,7 @@ export const TextInput: React.FC<TextInputProps> = ({
 
   return (
     <div
-      className="relative group/input"
+      className="relative group/input w-full"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -347,12 +353,12 @@ export const TextInput: React.FC<TextInputProps> = ({
       >
         <button
           onClick={() => setShowToolbar(!showToolbar)}
-          className={`p-1.5 rounded-t-lg text-xs font-medium flex items-center gap-1 ${showToolbar ? 'bg-slate-100 text-blue-600' : 'bg-white/90 text-slate-500 hover:bg-slate-50 shadow-sm border border-slate-200 border-b-0'}`}
-          title="Toggle Math Toolbar"
+          className={`p-1.5 rounded-t-lg text-xs font-medium flex items-center gap-1 ${showToolbar ? 'bg-slate-100 text-blue-600' : 'bg-white text-slate-500 hover:bg-slate-50 shadow-sm border border-slate-200 border-b-0'}`}
+          title="Toggle Special Characters Toolbar"
           type="button"
         >
-          <i className="fi fi-rr-calculator"></i>
-          <span className="hidden sm:inline">Math Tools</span>
+          <i className="fi fi-rr-tools flex items-center justify-center"></i>
+          <span className="hidden sm:inline">Toolbar</span>
         </button>
       </div>
 
@@ -368,7 +374,7 @@ export const TextInput: React.FC<TextInputProps> = ({
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-2 py-0.5 text-[10px] uppercase font-bold rounded-full transition-colors whitespace-nowrap ${activeCategory === cat ? 'bg-blue-100 text-blue-700' : 'text-slate-500 hover:bg-slate-200'
+                className={`px-2 py-0.5 text-xs uppercase font-bold rounded-full transition-colors whitespace-nowrap ${activeCategory === cat ? 'bg-blue-100 text-blue-700' : 'text-slate-500 hover:bg-slate-200'
                   }`}
                 type="button"
               >
@@ -409,7 +415,7 @@ export const TextInput: React.FC<TextInputProps> = ({
           setIsFocused(false);
           onBlur?.(e);
         }}
-        className={`resize-none overflow-hidden ${className}`}
+        className={`w-full resize-none overflow-hidden ${className}`}
         style={{
           minHeight,
           height: 'auto',

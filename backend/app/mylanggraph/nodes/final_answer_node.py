@@ -4,7 +4,7 @@ from app.prompt.domain_prompt import DOMAIN_PROMPT as DP
 from app.prompt.teacher_prompt import TEACHER_PROMPT as TP
 from app.prompt.student_prompt import STUDENT_PROMPT as SP
 from app.prompt.memory_prompt import MEMORY_PROMPT as CP
-from app.prompt.knowledge_prompt import KNOWLEDGE_PROMPT as KP
+from app.prompt.document_prompt import DOCUMENT_PROMPT as DP
 from app.prompt.user_prompt import USER_PROMPT as UP
 
 from app.core.llm_manager import call_llm
@@ -46,16 +46,17 @@ def final_answer_node(state):
         if (str(kb_chunk["source_id"]) in state["teacher_docs"]):
             teacher_chunks.append(kb_chunk)
 
-    student_notes_text = "<notes>\n\n" + "\n\n".join([doc["text"] for doc in student_chunks if len(student_chunks) > 0]) + "\n\n</notes>"
-    teacher_notes_text = "<notes>\n\n" + "\n\n".join([doc["text"] for doc in teacher_chunks if len(teacher_chunks) > 0]) + "\n\n</notes>"
+    student_notes_text = "<student_notes>\n\n" + "\n\n".join([doc["text"] for doc in student_chunks if len(student_chunks) > 0]) + "\n\n</student_notes>"
+    teacher_notes_text = "<teacher_notes>\n\n" + "\n\n".join([doc["text"] for doc in teacher_chunks if len(teacher_chunks) > 0]) + "\n\n</teacher_notes>"
 
     print(state["query"], "::::::::::: query")
+    
     prompt = FINAL_PROMPT.format(
         teacher_prompt=TP.format(domain=state["domain"], teacher_notes=teacher_notes_text),
         student_prompt=SP.format(students_notes=student_notes_text),
         memory_prompt=CP.format(conversation_memory=conversation_text),
         user_prompt=UP.format(user_query=state["query"]),
-        system_prompt=SYS,
+        document_prompt=DP.format(transcription=state["image_transcript"]) if state["image_transcript"] else "",
     )
 
     # print(len(prompt), "::::::::::: prompt")

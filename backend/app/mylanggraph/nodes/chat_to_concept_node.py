@@ -18,7 +18,7 @@ async def chat_to_concept_node(state: Dict[str, Any]) -> Dict[str, Any]:
     user_id = state.get("user_id")
     answer = state.get("answer", "")
     
-    if not query or not user_id:
+    if not query or not user_id or state["directive"] != "NORMAL":
         print("Skipping tagger: Missing query or user_id")
         return state
 

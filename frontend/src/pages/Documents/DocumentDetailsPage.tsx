@@ -111,10 +111,6 @@ export const DocumentDetailsPage: React.FC = () => {
 
   useEffect(() => {
     if (documentId) dispatch(fetchDocumentById(documentId));
-    // Don't clear selected document on unmount to persist page number on reload
-    // return () => {
-    //   dispatch(clearSelectedDocument());
-    // };
   }, [documentId, dispatch]);
 
   // Load existing notes from selectedDocument
@@ -135,6 +131,23 @@ export const DocumentDetailsPage: React.FC = () => {
     }
   }, [selectedDocument?.notes_description]);
 
+
+  const handleSaveNotes = async () => {
+    if (!selectedDocument || notesDescription.length === 0) {
+      alert("No transcriptions to save");
+      return;
+    }
+    try {
+      await dispatch(saveNotes({
+        document_id: selectedDocument.id,
+        notes: notesDescription,
+      })).unwrap();
+      alert(`Successfully saved ${notesDescription.length} transcription(s)!`);
+    } catch (error) {
+      console.error("Save notes error:", error);
+      alert("Failed to save notes.");
+    }
+  };
 
   const handleTranscribe = async () => {
     if (!selectedDocument || !user?._id) {
@@ -176,20 +189,17 @@ export const DocumentDetailsPage: React.FC = () => {
     }
   };
 
-  const handleSaveNotes = async () => {
-    if (!selectedDocument || notesDescription.length === 0) {
-      alert("No transcriptions to save");
-      return;
-    }
+  const handleGenerateNotes = async () => {
+    if (!selectedDocument) return;
     try {
-      await dispatch(saveNotes({
+      await dispatch(generateNotes({
+        page_number: pageNumber,
         document_id: selectedDocument.id,
-        notes: notesDescription,
+        transcription: notesDescription.find(n => n.page === pageNumber)?.transcription,
       })).unwrap();
-      alert(`Successfully saved ${notesDescription.length} transcription(s)!`);
+      setActiveTab('notes');
     } catch (error) {
-      console.error("Save notes error:", error);
-      alert("Failed to save notes.");
+      console.error("Generate notes error:", error);
     }
   };
 
@@ -223,19 +233,27 @@ export const DocumentDetailsPage: React.FC = () => {
     }
   };
 
-  const handleGenerateNotes = async () => {
-    if (!selectedDocument) return;
-    try {
-      await dispatch(generateNotes({
-        page_number: pageNumber,
-        document_id: selectedDocument.id,
-        transcription: notesDescription.find(n => n.page === pageNumber)?.transcription,
-      })).unwrap();
-      setActiveTab('notes');
-    } catch (error) {
-      console.error("Generate notes error:", error);
+  useEffect(() => {
+    if (generateNotesStatus === 'succeeded' && generateNotesData) {
+      const responsePage = generateNotesData.page_number || pageNumber;
+      setNotesDescription(prev => {
+        const newNotes = [...prev];
+        const noteIndex = newNotes.findIndex(n => n.page === responsePage);
+        let notesContent = generateNotesData.generated_notes || generateNotesData.notes || generateNotesData.note || generateNotesData;
+        if (typeof notesContent === 'object' && notesContent.notes) notesContent = notesContent.notes;
+
+        if (noteIndex >= 0) {
+          newNotes[noteIndex] = { ...newNotes[noteIndex], notes: notesContent };
+        } else {
+          newNotes.push({
+            page: responsePage,
+            transcription: '', notes: notesContent, quiz: { easy: [], medium: [], hard: [] }, mcq: { easy: [], medium: [], hard: [] }
+          });
+        }
+        return newNotes.sort((a, b) => a.page - b.page);
+      });
     }
-  };
+  }, [generateNotesStatus, generateNotesData]);
 
   useEffect(() => {
     if (quizStatus === 'succeeded' && quizData) {
@@ -278,28 +296,6 @@ export const DocumentDetailsPage: React.FC = () => {
       });
     }
   }, [mcqStatus, mcqData]);
-
-  useEffect(() => {
-    if (generateNotesStatus === 'succeeded' && generateNotesData) {
-      const responsePage = generateNotesData.page_number || pageNumber;
-      setNotesDescription(prev => {
-        const newNotes = [...prev];
-        const noteIndex = newNotes.findIndex(n => n.page === responsePage);
-        let notesContent = generateNotesData.generated_notes || generateNotesData.notes || generateNotesData.note || generateNotesData;
-        if (typeof notesContent === 'object' && notesContent.notes) notesContent = notesContent.notes;
-
-        if (noteIndex >= 0) {
-          newNotes[noteIndex] = { ...newNotes[noteIndex], notes: notesContent };
-        } else {
-          newNotes.push({
-            page: responsePage,
-            transcription: '', notes: notesContent, quiz: { easy: [], medium: [], hard: [] }, mcq: { easy: [], medium: [], hard: [] }
-          });
-        }
-        return newNotes.sort((a, b) => a.page - b.page);
-      });
-    }
-  }, [generateNotesStatus, generateNotesData]);
 
   const handleUpdateTricks = (page: number, tricks: string[]) => {
     setNotesDescription(prev => {
@@ -485,7 +481,7 @@ export const DocumentDetailsPage: React.FC = () => {
                       className={`flex-1 py-3 px-4 min-w-[100px] flex items-center justify-center gap-2 text-sm font-medium transition-colors relative whitespace-nowrap ${activeTab === tab.id ? `${tab.color} bg-gray-50` : 'text-gray-500 hover:bg-gray-50'
                         }`}
                     >
-                      <i className={`fi ${tab.icon}`}></i>
+                      <i className={`fi ${tab.icon} flex items-center justify-center`}></i>
                       <span>{tab.label}</span>
                       {activeTab === tab.id && <div className={`absolute bottom-0 left-0 right-0 h-0.5 ${tab.bg} rounded-t-full mx-2`} />}
                     </button>

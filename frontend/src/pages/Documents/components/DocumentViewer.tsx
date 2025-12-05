@@ -196,7 +196,6 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
     e.stopPropagation();
     setSelection(null);
   };
-  console.log(selection, isLoading, error);
 
   return (
     <div className="w-full h-full bg-slate-900 flex flex-col rounded-xl overflow-hidden border border-slate-700 shadow-sm">
@@ -270,7 +269,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
             {/* Selection Overlay */}
             {selection && (
               <div
-                className="absolute border-2 border-blue-400 bg-blue-400/20 z-20 pointer-events-none"
+                className="absolute border-2 border-green-400 bg-green-400/20 z-20 pointer-events-none"
                 style={{
                   left: selection.x,
                   top: selection.y,
@@ -281,19 +280,18 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
                 {!isSelecting && (
                   <>
                     <button
-                      className="absolute -top-3 -right-3 bg-red-500 hover:bg-red-600 text-white rounded-full p-1 shadow-md pointer-events-auto transition-transform hover:scale-110 z-40 flex items-center justify-center w-6 h-6"
+                      className="absolute -top-3 -left-3 bg-red-500 hover:bg-red-600 text-white rounded-full p-1 shadow-md pointer-events-auto transition-transform hover:scale-110 z-40 flex items-center justify-center w-6 h-6"
                       onClick={handleClearSelection}
                       title="Cancel Selection"
                     >
-                      <i className="fi fi-rr-cross text-[10px] leading-none"></i>
+                      <i className="fi fi-rr-cross text-xs leading-none flex items-center justify-center"></i>
                     </button>
-
                     <button
-                      className="absolute -bottom-10 right-0 bg-blue-600 hover:bg-blue-500 text-white px-3 py-1.5 rounded-full shadow-lg flex items-center gap-2 text-xs font-bold pointer-events-auto transform hover:scale-105 transition-all z-30 whitespace-nowrap"
+                      className="absolute -top-3 -right-3 bg-green-500 hover:bg-green-600 text-white rounded-full p-1 shadow-md pointer-events-auto transition-transform hover:scale-110 z-40 flex items-center justify-center w-6 h-6"
                       onClick={(e) => { e.stopPropagation(); handleAddSelection(); }}
+                      title="Add Selection"
                     >
-                      <i className="fi fi-rr-plus text-xs"></i>
-                      Add to Board
+                      <i className="fi fi-rr-plus text-xs leading-none flex items-center justify-center"></i>
                     </button>
                   </>
                 )}

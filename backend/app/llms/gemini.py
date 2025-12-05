@@ -127,7 +127,10 @@ def gemini_transcribe_image(base64_image: str) -> str:
                         },
                         "required": ["type", "content"]
                     }
-                }
+                },
+                automatic_function_calling=types.AutomaticFunctionCallingConfig(
+                    disable=True
+                ),
             )
         )
         
@@ -139,7 +142,7 @@ def gemini_transcribe_image(base64_image: str) -> str:
 
 
 # currently not being used anywhere. Use it to analyze snippet of an image and test reponse
-def analyze_snippet(base64_image: str) -> str:
+def gemini_analyze_snippet(base64_image: str) -> str:
     """
     Analyze a specific visual snippet (diagram or text) from an image.
     
@@ -154,7 +157,7 @@ def analyze_snippet(base64_image: str) -> str:
         clean_base64 = strip_base64_prefix(base64_image)
         
         response = gemini_client.models.generate_content(
-            model="gemini-2.5-flash-lite",
+            model="gemini-3-pro-preview",
             contents=[
                 {
                     "parts": [
@@ -164,15 +167,17 @@ def analyze_snippet(base64_image: str) -> str:
                                 "data": clean_base64
                             }
                         },
-                        {
-                            "text": "Explain this specific visual snippet (diagram or text) in 1-2 clear sentences. "
-                                   "If it is text, transcribe and explain it. If it is a diagram, describe what it shows."
-                        }
+                        {"text": "Analyze the image and transcribe the content to answer questions related with the image content."}
                     ]
                 }
             ],
             config=types.GenerateContentConfig(
-                temperature=0.2
+                system_instruction=f"{SYSTEM_PROMPT}",
+                temperature=0.1,
+                response_mime_type="application/json",
+                automatic_function_calling=types.AutomaticFunctionCallingConfig(
+                    disable=True
+                ),
             )
         )
         

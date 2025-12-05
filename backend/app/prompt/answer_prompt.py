@@ -3,4 +3,5 @@ ANSWER_PROMPT = """
 {student_prompt}
 {memory_prompt}
 {user_prompt}
+{document_prompt}
 """

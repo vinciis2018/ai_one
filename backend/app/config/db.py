@@ -7,8 +7,8 @@ import torch
 import gc
 
 
-MONGO_URI = os.getenv("MONGO_URI", "mongodb+srv://vinciis2018:212Matpu6na@clusterai.0fzws.mongodb.net/")
-# MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
+# MONGO_URI = os.getenv("MONGO_URI", "mongodb+srv://vinciis2018:212Matpu6na@clusterai.0fzws.mongodb.net/")
+MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
 
 MONGO_DB = os.getenv("MONGO_DB", "professor")
 

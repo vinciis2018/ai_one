@@ -221,7 +221,7 @@ def matches_followup_pattern(query):
     return False
 
 async def ambiguity_node(state):
-    query = state["query"].strip().lower()
+    query = f"{state['query'].strip().lower()}\n{state['image_transcript'] if state['image_transcript'] else ''}"
     cleaned_query = query.strip(string.punctuation)
 
     words = query.split()

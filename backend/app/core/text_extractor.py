@@ -3,7 +3,7 @@
 # Handles text extraction from PDFs and images
 # ============================================
 
-from app.llms.gemini import gemini_transcribe_image
+from app.llms.gemini import gemini_transcribe_image, gemini_analyze_snippet
 import io
 from PIL import Image
 import fitz  # PyMuPDF
@@ -39,26 +39,40 @@ def extract_text_from_pdf(pdf_bytes: bytes) -> str:
 
 
 # ====================================================
-# Extract text from image
+# Extract text using llm
 # ====================================================
 
-def extract_text_from_image(image_bytes: bytes) -> str:
+def extract_text_from_image_with_llm(image_bytes: bytes) -> str:
     """
     Extracts text from image using Tesseract OCR.
     Supports PNG, JPG, and JPEG.
     """
+   
+    # Try OpenAI Vision API first (best quality)
     try:
-        image = Image.open(io.BytesIO(image_bytes))
-        text = pytesseract.image_to_string(image)
-        return text.strip()
+        
+        # Convert image to base64
+        base64_image = base64.b64encode(image_bytes).decode('utf-8')
+      
+        response = gemini_analyze_snippet(base64_image)
+        
+        print(response, "::::::::::::::::::------- response gemini")
+        
+        # GPT-5-nano may use reasoning tokens, check for content
+        text = response
+        
+        if text and text.strip():
+            print(f"✅ Gemini extracted {len(text)} characters")
+            return text.strip()
+        else:
+            print(f"⚠️ Gemini returned empty content. Finish reason: {response.choices[0].finish_reason}")
+            print(f"   Reasoning tokens: {response.usage.completion_tokens_details.reasoning_tokens}")
+            raise ValueError("Empty response from Gemini")
+            
     except Exception as e:
-        print(f"❌ OCR extraction failed: {e}")
-        return ""
+        print(f"⚠️ Gemini failed: {e}")
+        print("Please try again after some time")
 
-
-# ====================================================
-# Extract text using llm
-# ====================================================
 
 def extract_text_with_llm(image_bytes: bytes) -> str:
     """

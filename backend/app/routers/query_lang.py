@@ -4,13 +4,14 @@
 # (MongoDB integrated for persistence)
 # ============================================
 from typing import Optional
-from app.core.ai_assistant_lang_graph import process_image_query_with_lang_graph
 from app.mylanggraph.mygraph import process_query_with_lang_graph
+from app.core.text_extractor import extract_text_from_image_with_llm
 
 from fastapi import APIRouter, HTTPException, Body
 from pydantic import BaseModel
 from dotenv import load_dotenv
-
+import requests
+import asyncio
 
 # ====================================================
 # Load config and environment
@@ -33,6 +34,10 @@ class QueryRequest(BaseModel):
     previousConversation: Optional[str]
     domain_expertise: Optional[str]
     chat_space: Optional[str] = None
+    s3_url: Optional[str] = None
+    level: Optional[str] = None
+    subject: Optional[str] = None
+
 
 
 class ImageQueryRequest(BaseModel):
@@ -65,8 +70,46 @@ async def query(req: QueryRequest):
     """
     Main endpoint for text queries.
     """
-    print("request", req)
+    print("request received", req)
     try:
+
+        
+        if req.teacher_id == req.userId and req.chatId:
+            print("teacher chat")
+            return {
+                "success": True,
+                "data": "You are not allowed to query yourself"
+            }
+            
+        
+        transcription = None
+        if req.s3_url:
+
+            print("s3 url present")
+            image_response = requests.get(req.s3_url, timeout=30)
+            if image_response.status_code != 200:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"Failed to fetch file from URL. Status: {image_response.status_code}"
+                )
+        
+            contents = image_response.content
+            img_bytes = contents
+
+            # Run OCR in executor to avoid blocking
+            loop = asyncio.get_running_loop()
+            transcription = await loop.run_in_executor(
+                None, 
+                extract_text_from_image_with_llm, 
+                img_bytes
+            )
+            
+            if not transcription or transcription.strip() == "":
+                raise HTTPException(
+                    status_code=400,
+                    detail="Unable to extract text from the image."
+                )
+
         result = await process_query_with_lang_graph(
             query=req.text,
             user_id=req.userId,
@@ -75,7 +118,9 @@ async def query(req: QueryRequest):
             domain=req.domain_expertise,
             chat_id=req.chatId,
             previous_conversation=req.previousConversation,
-            chat_space=req.chat_space
+            s3_url=req.s3_url,
+            chat_space=req.chat_space,
+            transcription=transcription
         )
 
         # print(result, "::::: -> result here")
@@ -95,16 +140,16 @@ async def query(req: QueryRequest):
 async def image_query(req: ImageQueryRequest):
     try:
         
-        result = await process_image_query_with_lang_graph(
-          query=req.text,
-          user_id=req.userId,
-          teacher_id=req.teacher_id,
-          student_id=req.student_id,
-          domain=req.domain_expertise,
-          chat_id=req.chatId,
-          previous_conversation=req.previousConversation,
-          image_url=req.s3Url
-        )
+        # result = await process_image_query_with_lang_graph(
+        #   query=req.text,
+        #   user_id=req.userId,
+        #   teacher_id=req.teacher_id,
+        #   student_id=req.student_id,
+        #   domain=req.domain_expertise,
+        #   chat_id=req.chatId,
+        #   previous_conversation=req.previousConversation,
+        #   image_url=req.s3Url
+        # )
         
         return result["data"]
         

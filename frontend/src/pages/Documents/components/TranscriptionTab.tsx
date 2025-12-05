@@ -241,6 +241,20 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
     syncToParent(newBlocks);
   };
 
+  const addTextBlock = (index: number) => {
+    const newBlock: ContentBlock = {
+      id: `block-${pageNumber}-${Date.now().toString(36)}`,
+      type: 'text',
+      content: '',
+      settings: { width: 100, align: 'flex-start' }
+    };
+    const newBlocks = [...blocks];
+    newBlocks.splice(index + 1, 0, newBlock);
+    setBlocks(newBlocks);
+    syncToParent(newBlocks);
+    setEditingBlockId(newBlock.id);
+  };
+
 
   // --- RE-CROP LOGIC ---
   const handleInitiateRecrop = (blockId: string) => {
@@ -398,25 +412,20 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
                     <button
                       onClick={(e) => { e.stopPropagation(); toggleSelection(block.id, true); }}
                       className={`mt-2 p-1 ${isSelected ? 'text-blue-600' : 'text-slate-300 hover:text-slate-600'}`}
+                      title="Select block"
                     >
-                      {isSelected ? <i className="fi fi-rr-checkbox flex text-lg"></i> : <i className="fi fi-rr-square flex text-lg"></i>}
+                      {isSelected ? <i className="fi fi-rr-checkbox flex items-center justify-center text-lg"></i> : <i className="fi fi-rr-square flex items-center justify-center text-lg"></i>}
+                    </button>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); addTextBlock(index); }}
+                      className="p-1 text-slate-300 hover:text-blue-600 transition-colors"
+                      title="Add text below"
+                    >
+                      <i className="fi fi-rr-plus-small flex items-center justify-center text-xl"></i>
                     </button>
                   </div>
 
-                  {/* Floating Action Bar for Selected Block */}
-                  {isSelected && (
-                    <div className="absolute -bottom-10 right-1 z-50 bg-slate-900 text-white px-3 py-2 rounded-full shadow-xl flex items-center gap-2 lg:gap-4 animate-in fade-in slide-in-from-bottom-2">
-                      <span className="font-medium text-xs">
-                        {selectedIds.size} <span className="hidden lg:inline">selected</span>
-                      </span>
-                      <button onClick={(e) => { e.stopPropagation(); deleteSelected(); }} className="flex items-center gap-1 hover:text-red-400 transition-colors text-xs font-medium">
-                        <i className="fi fi-rr-trash flex items-center"></i> <span className="hidden lg:inline">Delete</span>
-                      </button>
-                      <button onClick={(e) => { e.stopPropagation(); setSelectedIds(new Set()); }} className="text-slate-400 hover:text-white text-xs flex items-center gap-1">
-                        <i className="fi fi-rr-x flex items-center"></i> <span className="hidden lg:inline">Cancel</span>
-                      </button>
-                    </div>
-                  )}
+
 
                   {/* Block Content */}
                   <div className="p-1">
@@ -429,7 +438,7 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
                           autoFocus
                           placeholder="Write something..."
                           className="w-full text-sm bg-white outline-none border border-blue-300 p-2 rounded text-slate-800 leading-relaxed font-normal focus:ring-0 focus:ring-blue-400"
-                          minHeight="1.5em"
+                          minHeight="6em"
                         />
                       ) : (
                         <div
@@ -460,17 +469,6 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
                              mb-2 flex items-center gap-1 border border-slate-200 rounded-lg p-1 scale-90 origin-bottom transition-opacity
                              ${isSelected || isDragging ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}
                           `}>
-                          <div className="flex border-r border-slate-100 pr-1 mr-1">
-                            {['flex-start', 'center', 'flex-end'].map((align) => (
-                              <button
-                                key={align}
-                                onClick={() => updateBlockSettings(block.id, { align: align as any })}
-                                className={`p-1.5 rounded hover:bg-slate-100 ${block.settings?.align === align ? 'text-blue-600 bg-blue-50' : 'text-slate-500'}`}
-                              >
-                                <i className={`fi fi-rr-align-${align === 'flex-start' ? 'left' : align === 'flex-end' ? 'right' : 'center'} flex text-xs`}></i>
-                              </button>
-                            ))}
-                          </div>
                           <div className="flex items-center gap-1 px-1">
                             {[30, 50, 100].map((width) => (
                               <button
@@ -485,7 +483,7 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
                         </div>
 
                         <div
-                          className="w-full flex items-center justify-center relative cursor-pointer"
+                          className="w-full flex items-center justify-center relative cursor-pointer p-2"
                           title="Double-click to re-crop"
                           onDoubleClick={() => handleInitiateRecrop(block.id)}
                         >
@@ -519,7 +517,7 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
                             onBlur={() => setEditingBlockId(null)}
                             autoFocus
                             placeholder="Diagram explanation..."
-                            className="w-full mt-3 text-xs bg-white text-slate-600 p-3 rounded-lg border border-blue-300 outline-none transition-colors focus:ring-2 focus:ring-blue-400 text-center"
+                            className="w-full text-sm bg-white outline-none border border-blue-300 p-2 rounded text-slate-800 leading-relaxed font-normal focus:ring-0 focus:ring-blue-400"
                             minHeight="2em"
                           />
                         ) : (
@@ -566,6 +564,27 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
           </div>
         )}
       </div>
+
+      {/* Floating Action Bar (Global) */}
+      {selectedIds.size > 0 && (
+        <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white px-4 py-2.5 rounded-full shadow-2xl flex items-center gap-4 animate-in fade-in slide-in-from-bottom-4 border border-slate-700">
+          <span className="font-medium text-sm border-r border-slate-700 pr-4">
+            {selectedIds.size} selected
+          </span>
+          <button
+            onClick={(e) => { e.stopPropagation(); deleteSelected(); }}
+            className="flex items-center gap-2 hover:text-red-400 transition-colors text-sm font-medium"
+          >
+            <i className="fi fi-rr-trash flex items-center justify-center"></i> <span>Delete</span>
+          </button>
+          <button
+            onClick={(e) => { e.stopPropagation(); setSelectedIds(new Set()); }}
+            className="text-slate-400 hover:text-white text-sm flex items-center gap-2"
+          >
+            <i className="fi fi-rr-cross-small flex items-center justify-center"></i> <span>Cancel</span>
+          </button>
+        </div>
+      )}
 
       {/* RE-CROP MODAL */}
       {recropBlockId && pageImage && (

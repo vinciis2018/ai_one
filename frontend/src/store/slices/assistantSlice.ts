@@ -36,6 +36,20 @@ export interface QueryResponse {
   conversation_id: string;
 }
 
+export interface QueryPayload {
+  text: string;
+  userId: string;
+  chatId?: string | null;
+  previousConversation?: string | null;
+  domain_expertise: string;
+  teacher_id?: string | null;
+  student_id?: string | null;
+  subject?: string;
+  level?: string;
+  s3_url?: string;
+  chat_space?: string;
+}
+
 export interface ImageQueryPayload {
   fileName: string;
   s3Url: string;
@@ -81,7 +95,6 @@ const initialState: AssistantState = {
 
 export const uploadMaterial = createAsyncThunk<
   UploadResponse,
-  // File,
   UploadRequestPayload,
   { rejectValue: string }
 >("assistant/uploadMaterial", async (file, { rejectWithValue }) => {
@@ -107,11 +120,10 @@ export const uploadMaterial = createAsyncThunk<
 
 export const askQuery = createAsyncThunk<
   QueryResponse,
-  { text: string; userId: string, chatId?: string | null; previousConversation?: string | null, domain_expertise: string, teacher_id?: string | null, student_id?: string | null, subject?: string, level?: string, s3_url?: string, chat_space?: string },
+  QueryPayload,
   { rejectValue: string }
 >("assistant/askQuery", async ({ text, userId, chatId, previousConversation, domain_expertise, teacher_id, student_id, subject, level, s3_url, chat_space }, { rejectWithValue }) => {
   try {
-    // const response = await axios.post<QueryResponse>(`${BASE_URL}/queryimage/query/`, {
     const response = await axios.post<QueryResponse>(`${BASE_URL}/querylang/query/`, {
       text,
       userId,
