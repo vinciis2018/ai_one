@@ -16,6 +16,7 @@ import { getTeacherDetails } from "../../store/slices/teachersSlice";
 
 
 export const QueryBoxChat: React.FC<{
+  domain?: string,
   teacher_user_id?: string | null,
   student_user_id?: string | null,
   chatId?: string | null,
