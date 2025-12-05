@@ -40,6 +40,7 @@ interface DocumentsState {
   status: "idle" | "loading" | "succeeded" | "failed";
   selectedStatus: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
+  viewingPageNumber: number;
 }
 
 const initialState: DocumentsState = {
@@ -48,6 +49,7 @@ const initialState: DocumentsState = {
   status: "idle",
   selectedStatus: "idle",
   error: null,
+  viewingPageNumber: 1,
 };
 
 // ------------------------------------------------
@@ -121,6 +123,9 @@ const documentsSlice = createSlice({
     clearAllDocuments: (state) => {
       state.documents = [];
       state.status = "idle";
+    },
+    setViewingPageNumber: (state, action) => {
+      state.viewingPageNumber = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -152,8 +157,12 @@ const documentsSlice = createSlice({
       })
 
       // ===== Fetch One =====
-      .addCase(fetchDocumentById.pending, (state) => {
+      .addCase(fetchDocumentById.pending, (state, action) => {
         state.selectedStatus = "loading";
+        // If loading a different document, reset page number
+        if (state.selectedDocument?.id !== action.meta.arg) {
+          state.viewingPageNumber = 1;
+        }
       })
       .addCase(fetchDocumentById.fulfilled, (state, action) => {
         state.selectedStatus = "succeeded";
@@ -166,5 +175,5 @@ const documentsSlice = createSlice({
   },
 });
 
-export const { clearSelectedDocument, clearAllDocuments } = documentsSlice.actions;
+export const { clearSelectedDocument, clearAllDocuments, setViewingPageNumber } = documentsSlice.actions;
 export default documentsSlice.reducer;

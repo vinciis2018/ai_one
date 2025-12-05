@@ -7,6 +7,7 @@ import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
+import { TextInput } from "../../../components/atoms/TextInput";
 
 interface TranscriptionTabProps {
   pageNumber: number;
@@ -385,7 +386,7 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
                     `}
                 >
                   {/* Hover Controls */}
-                  <div 
+                  <div
                     className="absolute -left-8 top-2 bottom-0 w-8 flex flex-col items-end opacity-0 group-hover:opacity-100 transition-opacity"
                     draggable
                     onDragStart={(e) => handleDragStart(e, index, block.id)}
@@ -421,23 +422,14 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
                   <div className="p-1">
                     {block.type === 'text' ? (
                       editingBlockId === block.id ? (
-                        <textarea
-                          value={block.content}
+                        <TextInput
+                          value={block.content || ''}
                           onChange={(e) => updateBlockContent(block.id, e.target.value)}
                           onBlur={() => setEditingBlockId(null)}
                           autoFocus
                           placeholder="Write something..."
-                          className="w-full text-sm resize-none bg-white outline-none border border-blue-300 p-2 rounded text-slate-800 leading-relaxed font-normal focus:ring-0 focus:ring-blue-400"
-                          style={{
-                            minHeight: '1.5em',
-                            height: 'auto',
-                            fieldSizing: 'content'
-                          } as any}
-                          onInput={(e) => {
-                            const target = e.target as HTMLTextAreaElement;
-                            target.style.height = 'auto';
-                            target.style.height = target.scrollHeight + 'px';
-                          }}
+                          className="w-full text-sm bg-white outline-none border border-blue-300 p-2 rounded text-slate-800 leading-relaxed font-normal focus:ring-0 focus:ring-blue-400"
+                          minHeight="1.5em"
                         />
                       ) : (
                         <div
@@ -521,19 +513,14 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
                         </div>
 
                         {editingBlockId === block.id ? (
-                          <textarea
+                          <TextInput
                             value={block.content || ''}
                             onChange={(e) => updateBlockContent(block.id, e.target.value)}
                             onBlur={() => setEditingBlockId(null)}
                             autoFocus
                             placeholder="Diagram explanation..."
-                            className="w-full mt-3 text-xs bg-white text-slate-600 p-3 rounded-lg border border-blue-300 outline-none resize-none transition-colors focus:ring-2 focus:ring-blue-400 text-center"
-                            style={{ fieldSizing: 'content', minHeight: '2em' } as any}
-                            onInput={(e) => {
-                              const target = e.target as HTMLTextAreaElement;
-                              target.style.height = 'auto';
-                              target.style.height = target.scrollHeight + 'px';
-                            }}
+                            className="w-full mt-3 text-xs bg-white text-slate-600 p-3 rounded-lg border border-blue-300 outline-none transition-colors focus:ring-2 focus:ring-blue-400 text-center"
+                            minHeight="2em"
                           />
                         ) : (
                           <div

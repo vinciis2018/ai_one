@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useAppDispatch } from '../../store';
 import { submitQuizAnswers } from '../../store/slices/conversationsSlice';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css';
 
 interface QuickActionDisplayProps {
   type: 'quiz' | 'concept' | 'mcq' | 'tricks';
@@ -109,10 +114,15 @@ export const QuickActionDisplay: React.FC<QuickActionDisplayProps> = ({ type, da
               return (
                 <div key={originalIndex} className="bg-white dark:bg-gray-800 rounded-lg p-3 shadow-sm border border-violet-100 dark:border-violet-800/50">
                   <div className="flex items-start justify-between mb-2">
-                    <p className="text-sm font-medium text-gray-800 dark:text-gray-200">
+                    <div className="flex text-sm font-medium text-gray-800 dark:text-gray-200">
                       <span className="text-violet-500 mr-2">{displayIndex + 1}.</span>
-                      {q.question}
-                    </p>
+                      <ReactMarkdown
+                        remarkPlugins={[remarkGfm, remarkMath]}
+                        rehypePlugins={[rehypeKatex]}
+                      >
+                        {q.question}
+                      </ReactMarkdown>
+                    </div>
                     {showResults && (
                       <div className="ml-2">
                         {isCorrect ? (
@@ -219,10 +229,15 @@ export const QuickActionDisplay: React.FC<QuickActionDisplayProps> = ({ type, da
               return (
                 <div key={originalIndex} className="bg-white dark:bg-gray-800 rounded-lg p-3 shadow-sm border border-indigo-100 dark:border-indigo-800/50">
                   <div className="flex items-start justify-between mb-2">
-                    <p className="text-sm font-medium text-gray-800 dark:text-gray-200">
+                    <div className="flex text-sm font-medium text-gray-800 dark:text-gray-200">
                       <span className="text-indigo-500 mr-2">{displayIndex + 1}.</span>
-                      {q.question}
-                    </p>
+                      <ReactMarkdown
+                        remarkPlugins={[remarkGfm, remarkMath]}
+                        rehypePlugins={[rehypeKatex]}
+                      >
+                        {q.question}
+                      </ReactMarkdown>
+                    </div>
                     {hasUserAnswer && (
                       <div className="ml-2">
                         {isCorrect ? (

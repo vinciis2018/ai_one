@@ -26,3 +26,4 @@ class AssistantState(MessagesState):
 
     error: Optional[str] = None
     response_data: Optional[Any] = {}
+

@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store";
-import { clearSelectedDocument, fetchDocumentById } from "../../store/slices/documentsSlice";
+import { clearSelectedDocument, fetchDocumentById, setViewingPageNumber } from "../../store/slices/documentsSlice";
 import { createTranscription, saveNotes, generateQuiz, generateNotes, generateMCQ } from "../../store/slices/notesSlice";
 import { useParams, useNavigate } from "react-router-dom";
 import { FullLayout } from "../../layouts/AppLayout";
@@ -20,13 +20,14 @@ export const DocumentDetailsPage: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const { selectedDocument, selectedStatus } = useAppSelector(
+  const { selectedDocument, selectedStatus, viewingPageNumber } = useAppSelector(
     (state) => state.documents
   );
   const { user } = useAppSelector((state) => state.auth);
   const { transcriptionStatus, saveStatus, quizStatus, quizData, generateNotesStatus, generateNotesData, mcqStatus, mcqData } = useAppSelector((state) => state.notes);
 
-  const [pageNumber, setPageNumber] = useState<number>(1);
+  // const [pageNumber, setPageNumber] = useState<number>(1); // Moved to Redux
+  const pageNumber = viewingPageNumber;
   const [activeTab, setActiveTab] = useState<'transcription' | 'notes' | 'quiz' | 'mcq' | 'personalTricks' | 'pyq'>('transcription');
   const [notesDescription, setNotesDescription] = useState<Array<{
     page: number;
@@ -110,9 +111,10 @@ export const DocumentDetailsPage: React.FC = () => {
 
   useEffect(() => {
     if (documentId) dispatch(fetchDocumentById(documentId));
-    return () => {
-      dispatch(clearSelectedDocument());
-    };
+    // Don't clear selected document on unmount to persist page number on reload
+    // return () => {
+    //   dispatch(clearSelectedDocument());
+    // };
   }, [documentId, dispatch]);
 
   // Load existing notes from selectedDocument
@@ -457,7 +459,7 @@ export const DocumentDetailsPage: React.FC = () => {
                   <DocumentViewer
                     selectedDocument={selectedDocument}
                     pageNumber={pageNumber}
-                    onPageChange={setPageNumber}
+                    onPageChange={(page) => dispatch(setViewingPageNumber(page))}
                     onImageSelection={activeTab === 'transcription' ? handleImageSelection : undefined}
                     onPageRendered={setPageImage}
                   />

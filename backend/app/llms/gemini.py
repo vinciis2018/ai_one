@@ -92,7 +92,7 @@ def gemini_transcribe_image(base64_image: str) -> str:
         clean_base64 = strip_base64_prefix(base64_image)
         
         response = gemini_client.models.generate_content(
-            model="gemini-2.5-flash-lite",
+            model="gemini-3-pro-preview",
             contents=[
                 {
                     "parts": [

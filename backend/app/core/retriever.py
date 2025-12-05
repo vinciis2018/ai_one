@@ -144,15 +144,63 @@ async def retrieve_similar(
                     
             except Exception as e:
                 print(f"⚠️ Search failed for {kb_name}: {str(e)}")
-                # Fallback to simple find
-                cursor = kb_collection.find(
-                    {
-                        "_id": {"$in": kb_ids},
-                        **query_filter
-                    },
-                    {"chunk_text": 1, "filename": 1, "created_at": 1}
-                ).sort("created_at", -1).limit(top_k * 2)
-                docs = await cursor.to_list(length=top_k * 2)
+                print(f"🔄 Falling back to local vector search for {kb_name}...")
+                
+                # Fallback: Local Vector Search using NumPy
+                try:
+                    # Fetch candidate documents with embeddings
+                    cursor = kb_collection.find(
+                        {
+                            "_id": {"$in": kb_ids},
+                            **query_filter
+                        },
+                        {"chunk_text": 1, "filename": 1, "created_at": 1, "embedding": 1}
+                    )
+                    candidate_docs = await cursor.to_list(length=None) # Fetch all candidates
+                    
+                    if not candidate_docs:
+                        print(f"  No candidate documents found for local search in {kb_name}")
+                        docs = []
+                    else:
+                        # Extract embeddings and compute cosine similarity
+                        doc_embeddings = [d.get("embedding") for d in candidate_docs if d.get("embedding")]
+                        valid_docs = [d for d in candidate_docs if d.get("embedding")]
+                        
+                        if not doc_embeddings:
+                            print("  No embeddings found in candidate documents.")
+                            docs = []
+                        else:
+                            doc_embeddings_np = np.array(doc_embeddings)
+                            
+                            # Normalize embeddings for cosine similarity
+                            norm_doc = np.linalg.norm(doc_embeddings_np, axis=1)
+                            norm_query = np.linalg.norm(query_emb)
+                            
+                            # Avoid division by zero
+                            norm_doc[norm_doc == 0] = 1e-10
+                            if norm_query == 0:
+                                norm_query = 1e-10
+                                
+                            # Compute cosine similarity
+                            # query_emb is (dim,), doc_embeddings_np is (n, dim)
+                            dot_products = np.dot(doc_embeddings_np, query_emb)
+                            similarities = dot_products / (norm_doc * norm_query)
+                            
+                            # Attach scores to documents
+                            for i, doc in enumerate(valid_docs):
+                                doc["score"] = float(similarities[i])
+                                
+                            # Sort by score descending
+                            valid_docs.sort(key=lambda x: x["score"], reverse=True)
+                            
+                            # Take top K * 2
+                            docs = valid_docs[:top_k * 2]
+                            print(f"  Found {len(docs)} local vector matches")
+                            
+                except Exception as local_e:
+                    print(f"❌ Local fallback failed: {local_e}")
+                    traceback.print_exc()
+                    docs = []
 
             # Process results
             for doc in docs:
