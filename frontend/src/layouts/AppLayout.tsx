@@ -42,7 +42,7 @@ export function FullLayout({ children, footer = null }: FullLayoutProps) {
   };
 
   useEffect(() => {
-    if(selectedData) {
+    if (selectedData) {
       setIsChatOpen(true);
     }
   }, [selectedData]);

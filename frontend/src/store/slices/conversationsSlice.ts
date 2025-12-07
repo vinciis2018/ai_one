@@ -23,6 +23,7 @@ export interface Conversation {
   quick_action?: any;
   comments?: {user_id: string, comment_text: string, timestamp: string, in_reply_to: string}[];
   in_reply_to?: string;
+  translations?: {to: string, query: string, answer: string}[];
 }
 
 export interface ChatResponse {
@@ -46,6 +47,7 @@ interface ConversationState {
   selectedChat: ChatResponse | null;
   chat: ChatResponse | null;
   chats: ChatResponse[];
+  conversation: Conversation | null;
 }
 
 const initialState: ConversationState = {
@@ -59,6 +61,7 @@ const initialState: ConversationState = {
   selectedChat: null,
   chat: null,
   chats: [],
+  conversation: null,
 };
 
 export const fetchConversations = createAsyncThunk<
@@ -205,6 +208,31 @@ export const submitQuizAnswers = createAsyncThunk<
 );
 
 
+export const translateText = createAsyncThunk<
+  Conversation,
+  { conversation_id: string; language: string, query: boolean },
+  { rejectValue: string }
+>(
+  'conversations/translateText',
+  async ({ conversation_id, language, query }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post<Conversation>(
+        `${BASE_URL}/conversations/translate/conversation?conversation_id=${conversation_id}&language=${language}&query=${query}`,
+        {
+          conversation_id,
+          language,
+          query,
+        }
+      );
+      return { ...response.data };
+    } catch (error: unknown) {
+      const axiosError = error as unknown as { response?: { data?: { detail?: string } } };
+      return rejectWithValue(axiosError.response?.data?.detail || 'Failed to submit quiz answers');
+    }
+  }
+);  
+
+
 const conversationSlice = createSlice({
   name: 'conversations',
   initialState,
@@ -215,6 +243,7 @@ const conversationSlice = createSlice({
     clearConversations: (state) => {
       state.items = [];
       state.chat = null;
+      state.conversation = null;
       state.page = 1;
       state.hasMore = true;
     },
@@ -339,7 +368,21 @@ const conversationSlice = createSlice({
       .addCase(submitQuizAnswers.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload || 'Error submitting quiz answers';
-      });
+      })
+
+      // translate text
+      .addCase(translateText.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(translateText.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.conversation = action.payload;
+        state.error = null;
+      })
+      .addCase(translateText.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload || 'Error translating text';
+      })
   },
 });
 

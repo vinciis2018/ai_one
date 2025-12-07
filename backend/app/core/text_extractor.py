@@ -13,7 +13,6 @@ import numpy as np
 import easyocr
 import os
 import base64
-from openai import OpenAI
 
 # ====================================================
 # Extract text from PDF
@@ -48,7 +47,7 @@ def extract_text_from_image_with_llm(image_bytes: bytes) -> str:
     Supports PNG, JPG, and JPEG.
     """
    
-    # Try OpenAI Vision API first (best quality)
+    # Try llm Vision API first (best quality)
     try:
         
         # Convert image to base64
@@ -76,8 +75,8 @@ def extract_text_from_image_with_llm(image_bytes: bytes) -> str:
 
 def extract_text_with_llm(image_bytes: bytes) -> str:
     """
-    Extracts text from image using OpenAI Vision API (best accuracy).
-    Falls back to EasyOCR if OpenAI is unavailable.
+    Extracts text from image using llm Vision API (best accuracy).
+    Falls back to EasyOCR if llm is unavailable - it is not implemented.
     Better for handwritten notes and complex documents.
     """
 

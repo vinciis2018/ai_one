@@ -187,3 +187,45 @@ def gemini_analyze_snippet(base64_image: str) -> str:
         return "Added from selection"
 
   
+
+
+# currently not being used anywhere. Use it to analyze snippet of an image and test reponse
+def gemini_translate_text(prompt: str) -> str:
+    """
+    Translate text.
+    
+    Args:
+        prompt: Text to translate
+        
+    Returns:
+        String containing translated text
+    """
+    try:
+        
+        response = gemini_client.models.generate_content(
+            model="gemini-3-pro-preview",
+            contents=[
+                {
+                    "parts": [
+                        {"text": prompt}
+                    ]
+                }
+            ],
+            config=types.GenerateContentConfig(
+                system_instruction=f"{SYSTEM_PROMPT}",
+                temperature=0.1,
+                response_mime_type="application/json",
+                automatic_function_calling=types.AutomaticFunctionCallingConfig(
+                    disable=True
+                ),
+            )
+        )
+        
+        return response.text or ""
+    except Exception as e:
+        logger.error(f"Gemini Snippet Analysis Error: {e}")
+        return "Added from selection"
+
+  
+
+  

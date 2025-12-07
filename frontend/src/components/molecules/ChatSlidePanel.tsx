@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { fetchChatBySpace, fetchChatById, fetchTeacherStudentChats, clearConversations, type ChatResponse } from '../../store/slices/conversationsSlice';
+import { fetchChatBySpace, fetchChatById, fetchTeacherStudentChats, clearConversations, type ChatResponse, translateText } from '../../store/slices/conversationsSlice';
 import { getAllTeachers, type TeacherModel } from '../../store/slices/teachersSlice';
 import { getAllStudents, type StudentModel } from '../../store/slices/studentsSlice';
 import { QueryBoxChat } from '../atoms/QueryBoxChat';
@@ -37,14 +37,14 @@ export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({
   const { user_id: user_other_id } = useParams<{ user_id: string }>();
   const [searchParams] = useSearchParams();
   const dispatch = useAppDispatch();
-  const { chat, chats } = useAppSelector((state) => state.conversations);
+  const { chat, chats, conversation } = useAppSelector((state) => state.conversations);
   const { user } = useAppSelector((state) => state.auth);
   const { all_teachers } = useAppSelector((state) => state.teachers);
   const { all_students } = useAppSelector((state) => state.students);
   const [teacherUserId, setTeacherUserId] = useState<string | null>(null);
   const [studentUserId, setStudentUserId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [conversation, setConversation] = useState<ChatResponse | null>(null);
+  const [conversationChat, setConversationChat] = useState<ChatResponse | null>(null);
   const [selectedChatId, setSelectedChatId] = useState<string | null>(null);
   const [replyContext, setReplyContext] = useState<string | null>(null);
 
@@ -88,8 +88,8 @@ export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({
 
   // Update conversation when chat changes
   useEffect(() => {
-    if (chat && setConversation) {
-      setConversation(chat);
+    if (chat && setConversationChat) {
+      setConversationChat(chat);
     }
   }, [chat]);
 
@@ -312,7 +312,7 @@ export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({
               )}
             </div>
           </div>
-        ) : (teacherUserId || studentUserId) && !conversation ? (
+        ) : (teacherUserId || studentUserId) && !conversationChat ? (
           /* Chat List View (for both teachers and students) */
           <div className="flex-1 overflow-y-auto p-4">
             <div className="mb-4 flex items-center justify-between">
@@ -377,11 +377,11 @@ export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({
           /* Conversation History */
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {/* Back button when viewing a conversation */}
-            {conversation && (teacherUserId || studentUserId) && (
+            {conversationChat && (teacherUserId || studentUserId) && (
               <div className="mb-4">
                 <button
                   onClick={() => {
-                    setConversation(null);
+                    setConversationChat(null);
                     setSelectedChatId(null);
                     dispatch(clearConversations());
                   }}
@@ -394,28 +394,47 @@ export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({
             )}
 
             {chat && chat?.conversations.length > 0 ? (
-              chat?.conversations.map((conversation) => (
-                <div key={conversation?.id} className="space-y-3">
+              chat?.conversations.map((conv) => (
+                <div key={conv?.id} className="space-y-3">
                   {/* User Query */}
-                  {conversation.query && (
+                  {conv.query && (
                     <div className="flex justify-end gap-2">
-                      {conversation?.attached_media && (
-                        <img src={conversation?.attached_media} className="w-16 h-16 object-cover rounded-xl border border-slate-100" alt="" onClick={() => window.open(conversation?.attached_media, '_blank')} />
+                      {conv?.attached_media && (
+                        <img src={conv?.attached_media} className="w-16 h-16 object-cover rounded-xl border border-slate-100" alt="" onClick={() => window.open(conv?.attached_media, '_blank')} />
                       )}
                       <div className="bg-blue-500 text-white p-2 rounded-3xl rounded-tr-sm max-w-[80%] text-sm">
                         <div className="flex justify-between flex items-center p-2">
                           <p className="text-xs opacity-75">Student</p>
-                          <i
-                            className="fi fi-br-arrow-small-left text-xs"
-                            onClick={() => {
-                              setReplyContext(conversation.query);
-                            }}
-                          ></i>
+
+                          <div className="flex items-center gap-2">
+                            <i
+                              className="fi fi-br-speaker text-xs"
+                              onClick={() => {
+
+                              }}
+                            ></i>
+                            <i
+                              className="fi fi-br-language text-xs"
+                              onClick={() => {
+                                dispatch(translateText({
+                                  conversation_id: conv.id,
+                                  language: 'hinglish',
+                                  query: true
+                                }));
+                              }}
+                            ></i>
+                            <i
+                              className="fi fi-br-arrow-small-left text-xs"
+                              onClick={() => {
+                                setReplyContext(conv.query);
+                              }}
+                            ></i>
+                          </div>
                         </div>
-                        {conversation?.in_reply_to && (
+                        {conv?.in_reply_to && (
                           <div className="text-xs w-84 bg-blue-600 text-gray-100 p-2 rounded-xl truncate">
                             <p className="text-xs opacity-75">In reply to:</p>
-                            {conversation?.in_reply_to}
+                            {conv?.in_reply_to}
                           </div>
                         )}
                         <div className="p-2">
@@ -423,10 +442,10 @@ export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({
                             remarkPlugins={[remarkGfm, remarkMath]}
                             rehypePlugins={[rehypeKatex]}
                           >
-                            {conversation.query}
+                            {conversation && conversation?.translations?.[0]?.query || conv.query}
                           </ReactMarkdown>
                           <p className="text-xs opacity-75 mt-1">
-                            {new Date(conversation.created_at).toLocaleTimeString()}
+                            {new Date(conv.created_at).toLocaleTimeString()}
                           </p>
                         </div>
                       </div>
@@ -434,23 +453,42 @@ export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({
                   )}
 
                   {/* AI Answer */}
-                  {conversation.answer && (
+                  {conv.answer && (
                     <div className="flex flex-col justify-start gap-2">
                       <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-3xl rounded-tl-sm max-w-[90%] text-sm text-gray-800 dark:text-gray-200 whitespace-pre-line">
                         <div className="flex justify-between flex items-center pb-1 mb-1">
                           <p className="text-xs opacity-75">Assistant</p>
-                          <i
-                            className="fi fi-br-arrow-small-left text-xs"
-                            onClick={() => {
-                              setReplyContext(conversation.answer);
-                            }}
-                          ></i>
+                          <div className="flex items-center gap-2">
+                            <i
+                              className="fi fi-br-speaker text-xs"
+                              onClick={() => {
+
+                              }}
+                            ></i>
+                            <i
+                              className="fi fi-br-language text-xs"
+                              onClick={() => {
+                                // change language
+                                dispatch(translateText({
+                                  conversation_id: conv.id,
+                                  language: 'hinglish',
+                                  query: false
+                                }));
+                              }}
+                            ></i>
+                            <i
+                              className="fi fi-br-arrow-small-left text-xs"
+                              onClick={() => {
+                                setReplyContext(conv.query);
+                              }}
+                            ></i>
+                          </div>
                         </div>
                         <ReactMarkdown
                           remarkPlugins={[remarkGfm, remarkMath]}
                           rehypePlugins={[rehypeKatex]}
                         >
-                          {conversation.answer}
+                          {conversation && conversation?.translations?.[0]?.answer || conv.answer}
                         </ReactMarkdown>
 
                         {/* Quick Actions */}
@@ -483,27 +521,35 @@ export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({
                         {activeQuickAction && (
                           <QuickActionDisplay
                             type={activeQuickAction}
-                            data={conversation.quick_action}
-                            conversationId={conversation.id}
+                            data={conv.quick_action}
+                            conversationId={conv.id}
                           />
                         )}
 
                         <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
-                          {new Date(conversation.created_at).toLocaleTimeString()}
+                          {new Date(conv.created_at).toLocaleTimeString()}
                         </p>
                       </div>
 
                       {/* teacher's comments */}
-                      {conversation?.comments?.map((comment, i) => (
+                      {conv?.comments?.map((comment, i) => (
                         <div key={i} className="bg-gray-100 dark:bg-gray-800 p-2 rounded-3xl rounded-tl-sm max-w-[90%] text-sm text-gray-800 dark:text-gray-200 whitespace-pre-line">
                           <div className="flex justify-between flex items-center p-2 mb-1">
                             <p className="text-xs opacity-75">Teacher</p>
-                            <i
-                              className="fi fi-br-arrow-small-left text-xs"
-                              onClick={() => {
-                                setReplyContext(comment.comment_text);
-                              }}
-                            ></i>
+                            <div className="flex items-center gap-2">
+                              <i
+                                className="fi fi-br-language text-xs"
+                                onClick={() => {
+                                  // change language
+                                }}
+                              ></i>
+                              <i
+                                className="fi fi-br-arrow-small-left text-xs"
+                                onClick={() => {
+                                  setReplyContext(conv.query);
+                                }}
+                              ></i>
+                            </div>
                           </div>
 
                           {comment?.in_reply_to && (

@@ -4,10 +4,12 @@
 # (MongoDB version with search + pagination)
 # ============================================
 
+from app.core.translate import translate_text_with_llm
 from fastapi import APIRouter, HTTPException, Query
 from pymongo import DESCENDING
 from app.config.db import get_collection
 from bson import ObjectId
+import json
 
 router = APIRouter()
 
@@ -358,3 +360,72 @@ async def update_relevance_score(
         return {"status": "updated", "conversation_id": conversation_id}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error updating relevance score: {str(e)}")
+
+
+
+# translate conversation
+@router.post("/translate/conversation")
+async def translate_conversation(conversation_id: str, language: str = "hinglish", query: bool = False):
+    """Translate a conversation."""
+    try:
+        collection = get_collection("conversations")
+        conv = await collection.find_one({"_id": ObjectId(conversation_id)})
+
+        if not conv:
+            raise HTTPException(status_code=404, detail="Conversation not found")
+
+        # Check if translation already exists
+        translations = conv.get("translations", [])
+        translation_entry = next((t for t in translations if t["to"] == language), None)
+        
+        existing_translation = None
+        if translation_entry:
+            if query and translation_entry.get("query"):
+                existing_translation = translation_entry["query"]
+            elif not query and translation_entry.get("answer"):
+                existing_translation = translation_entry["answer"]
+        
+        if existing_translation:
+            print(f"Found existing translation for {language}")
+            return {
+                "id": str(conv["_id"]),
+                "query": conv.get("query", ""),
+                "answer": conv.get("answer", ""),
+                "created_at": conv.get("created_at", None),
+                "translations": translations
+            }
+
+        # If not found, generate with LLM
+        text = f"Translate: {conv['query'] if query else conv['answer']} \n"
+        translated_text_json = json.loads(translate_text_with_llm(text, language))
+        translated_text = translated_text_json["translation"]
+
+        # Update translations in DB
+        if translation_entry:
+            if query:
+                translation_entry["query"] = translated_text
+            else:
+                translation_entry["answer"] = translated_text
+        else:
+            new_translation = {
+                "to": language,
+                "query": translated_text if query else "",
+                "answer": translated_text if not query else ""
+            }
+            translations.append(new_translation)
+
+        await collection.update_one(
+            {"_id": ObjectId(conversation_id)},
+            {"$set": {"translations": translations}}
+        )
+
+        return {
+            "id": str(conv["_id"]),
+            "query": conv.get("query", ""),
+            "answer": conv.get("answer", ""),
+            "created_at": conv.get("created_at", None),
+            "translations": translations
+        }
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error translating conversation: {str(e)}")

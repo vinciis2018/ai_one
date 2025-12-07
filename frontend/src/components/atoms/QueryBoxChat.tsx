@@ -55,7 +55,6 @@ export const QueryBoxChat: React.FC<{
     const [chat_space, setChatSpace] = useState<string | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
-    console.log(previousConversationId)
     // Handle text query
     const handleAsk = async () => {
       if (!question.trim()) return alert("Please enter a question!");
