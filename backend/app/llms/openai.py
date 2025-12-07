@@ -21,7 +21,7 @@ load_dotenv()
 logger = logging.getLogger("openai-llm-caller")
 
 # Global configs
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY") or "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"
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-5-nano")
 
 open_ai_client = OpenAI(api_key=OPENAI_API_KEY)
