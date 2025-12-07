@@ -1,5 +1,5 @@
 AMBIGUITY_PROMPT = """
-## The user has submitted a very short or ambiguous message (e.g., “yes”, “no”, “okay”, 
+## The student has submitted a very short or ambiguous message (e.g., “yes”, “no”, “okay”, 
 “continue”, etc.)
 ## Your task:
 1. Interpret the message ONLY in relation to the previous conversation context shown below.

@@ -47,6 +47,9 @@ async def parallel_retrieval_node(state: Dict[str, Any]) -> Dict[str, Any]:
     if "error" in memory_state and memory_state["error"]:
         # If both have errors, we might overwrite, but usually we just want to know if something failed
         state["error"] = memory_state["error"]
+    
+    if "last_conversation" in memory_state:
+        state["last_conversation"] = memory_state["last_conversation"]
         
     print("---PARALLEL RETRIEVAL DONE---")
     return state

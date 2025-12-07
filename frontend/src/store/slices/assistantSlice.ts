@@ -48,23 +48,8 @@ export interface QueryPayload {
   level?: string;
   s3_url?: string;
   chat_space?: string;
-}
-
-export interface ImageQueryPayload {
-  fileName: string;
-  s3Url: string;
-  userId: string;
-  teacher_id?: string | null;
-  student_id?: string | null;
-  chatId: string;
-  previousConversation: string;
-  domain_expertise: string;
-  file_type: string;
-  file_size?: number;
-  source_type: string;
-  subject?: string;
-  level?: string;
-  type?: string;
+  reply_context?: string;
+  selected_document?: string;
 }
 
 
@@ -118,11 +103,27 @@ export const uploadMaterial = createAsyncThunk<
   }
 });
 
+
+// Ask Query:
 export const askQuery = createAsyncThunk<
   QueryResponse,
   QueryPayload,
   { rejectValue: string }
->("assistant/askQuery", async ({ text, userId, chatId, previousConversation, domain_expertise, teacher_id, student_id, subject, level, s3_url, chat_space }, { rejectWithValue }) => {
+>("assistant/askQuery", async ({
+  text,
+  userId,
+  chatId,
+  previousConversation,
+  domain_expertise,
+  teacher_id,
+  student_id,
+  subject,
+  level,
+  s3_url,
+  chat_space,
+  reply_context,
+  selected_document,
+}, { rejectWithValue }) => {
   try {
     const response = await axios.post<QueryResponse>(`${BASE_URL}/querylang/query/`, {
       text,
@@ -136,6 +137,8 @@ export const askQuery = createAsyncThunk<
       level,
       s3_url,
       chat_space,
+      reply_context,
+      selected_document,
     });
     return response.data;
   } catch (error: unknown) {
@@ -143,27 +146,6 @@ export const askQuery = createAsyncThunk<
 
     return rejectWithValue(
       axiosError.response?.data?.message || "Failed to get assistant response"
-    );
-  }
-});
-
-
-export const askImageQuery = createAsyncThunk<
-  QueryResponse,
-  ImageQueryPayload,
-  { rejectValue: string }
->("assistant/askImageQuery", async (payload, { rejectWithValue }) => {
-  try {
-    const response = await axios.post<QueryResponse>(
-      // `${BASE_URL}/queryimage/query-image`,
-      `${BASE_URL}/querylang/query-image/`,
-      payload,
-    );
-    return response.data;
-  } catch (error: unknown) {
-    const axiosError = error as unknown as { response?: { data?: { message?: string } } };
-    return rejectWithValue(
-      axiosError.response?.data?.message || "Failed to process image query"
     );
   }
 });
@@ -213,18 +195,6 @@ const assistantSlice = createSlice({
         state.error = action.payload || "Query failed";
       })
 
-      // Ask Image Query:
-      .addCase(askImageQuery.pending, (state) => {
-        state.queryStatus = "loading";
-      })
-      .addCase(askImageQuery.fulfilled, (state, action) => {
-        state.queryStatus = "succeeded";
-        state.response = action.payload;
-      })
-      .addCase(askImageQuery.rejected, (state, action) => {
-        state.queryStatus = "failed";
-        state.error = action.payload || "Image query failed";
-      });
   },
 });
 

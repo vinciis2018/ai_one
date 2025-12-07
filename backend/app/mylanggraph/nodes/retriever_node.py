@@ -8,15 +8,14 @@ async def retrieve_node(state):
     try:
         user_ids = [state["user_id"]]
         print(state["teacher_id"], state["student_id"])
-
         student_user = await get_collection("students").find_one(
             {"user_id": ObjectId(state["student_id"])}
         )
-        print("student_user: ", student_user)
+        print("student_user: ", student_user["user_id"])
         teacher_user = await get_collection("teachers").find_one(
             {"user_id": ObjectId(state["teacher_id"])}
         )
-        print("teacher_user: ", teacher_user)
+        print("teacher_user: ", teacher_user["user_id"])
         if state["student_id"] == state["user_id"]:
             if teacher_user and "user_id" in teacher_user:
                 user_ids.append(str(teacher_user["user_id"]))
@@ -34,20 +33,21 @@ async def retrieve_node(state):
         state["retrieved_docs"] = _sanitize_sources(user_docs)  # Sanitize sources here
         # for llm end
         print("kb retrieval done!!!")
+        
         # add retrieved docs to
         sanitize_student_docs = _sanitize_sources([doc for doc in user_docs if doc["user_id"] == state["user_id"]])
         st_arr = []
         for doc in sanitize_student_docs:
             st_arr.append(doc["chunk_docs_ids"])
         state["student_docs"] = list(set(element for sublist in st_arr for element in sublist))
+        print("sanitize_student_docs: ", len(sanitize_student_docs))
 
         sanitize_teacher_docs = _sanitize_sources([doc for doc in user_docs if doc["user_id"] == str(teacher_user["user_id"])])
         tr_arr = []
         for doc in sanitize_teacher_docs:
             tr_arr.append(doc["chunk_docs_ids"])
         state["teacher_docs"] = list(set(element for sublist in tr_arr for element in sublist))
-        
-        print("sanitize_student_docs: ")
+        print("sanitize_teacher_docs: ", len(sanitize_teacher_docs))
 
     except Exception as e:
         print(f"Error in node_retrieve_kb: {str(e)}")

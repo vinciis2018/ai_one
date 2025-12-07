@@ -3,6 +3,8 @@
 # Main RAG endpoint – combines retriever + LLM + logging
 # (MongoDB integrated for persistence)
 # ============================================
+from datetime import datetime
+from app.config.db import get_collection
 from typing import Optional
 from app.mylanggraph.mygraph import process_query_with_lang_graph
 from app.core.text_extractor import extract_text_from_image_with_llm
@@ -12,6 +14,7 @@ from pydantic import BaseModel
 from dotenv import load_dotenv
 import requests
 import asyncio
+from bson import ObjectId
 
 # ====================================================
 # Load config and environment
@@ -37,29 +40,10 @@ class QueryRequest(BaseModel):
     s3_url: Optional[str] = None
     level: Optional[str] = None
     subject: Optional[str] = None
+    reply_context: Optional[str] = None
+    selected_document: Optional[str] = None
 
 
-
-class ImageQueryRequest(BaseModel):
-    text: Optional[str] = None
-    fileName: str
-    s3Url: str
-    userId: str
-    teacher_id: Optional[str] = None
-    student_id: Optional[str] = None
-    chatId: Optional[str]
-    previousConversation: Optional[str]
-    domain_expertise: Optional[str]
-    file_type: str
-    file_size: Optional[int] = None
-    source_type: str
-    subject: Optional[str] = None
-    domain: Optional[str] = None
-    level: Optional[str] = None
-    coaching_id: Optional[str] = None
-    shared_with: Optional[list] = None
-    type: Optional[str] = "image_query"
-    chat_space: Optional[str] = None
 
 # ====================================================
 # Main RAG Query Endpoints
@@ -76,9 +60,33 @@ async def query(req: QueryRequest):
         
         if req.teacher_id == req.userId and req.chatId:
             print("teacher chat")
+            previous_conversation_id = ObjectId(req.previousConversation)
+
+            conversation_col = get_collection("conversations")
+            await conversation_col.update_one({
+                "_id": previous_conversation_id
+                }, {
+                    "$push": {
+                        "comments": {
+                            "user_id": req.userId,
+                            "comment_text": req.text,
+                            "timestamp": datetime.utcnow()
+                        }
+                    }
+                })
+            
+            result = await conversation_col.find_one({
+                "_id": previous_conversation_id
+            }, {
+                "answer": 1,
+                "sources_used": 1,
+            })
+
             return {
-                "success": True,
-                "data": "You are not allowed to query yourself"
+                "answer": result.get("answer", ""),
+                "sources": result.get("sources_used", []),
+                "chat_id": req.chatId,
+                "conversation_id": req.previousConversation
             }
             
         
@@ -120,7 +128,9 @@ async def query(req: QueryRequest):
             previous_conversation=req.previousConversation,
             s3_url=req.s3_url,
             chat_space=req.chat_space,
-            transcription=transcription
+            transcription=transcription,
+            to_reply=req.reply_context,
+            selected_document_transcript=req.selected_document
         )
 
         # print(result, "::::: -> result here")
@@ -135,28 +145,3 @@ async def query(req: QueryRequest):
 
 
 
-
-@router.post("/query-image")
-async def image_query(req: ImageQueryRequest):
-    try:
-        
-        # result = await process_image_query_with_lang_graph(
-        #   query=req.text,
-        #   user_id=req.userId,
-        #   teacher_id=req.teacher_id,
-        #   student_id=req.student_id,
-        #   domain=req.domain_expertise,
-        #   chat_id=req.chatId,
-        #   previous_conversation=req.previousConversation,
-        #   image_url=req.s3Url
-        # )
-        
-        return result["data"]
-        
-    except Exception as e:
-        print(f"Error in image query: {str(e)}")
-        return {
-            "success": False,
-            "data": None,
-            "error": f"Failed to process image query: {str(e)}"
-        }

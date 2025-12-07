@@ -1,3 +1,8 @@
+from app.core.retriever_cache import knowledge_bases
+from app.core.storage import store_embeddings
+from app.core.embeddings import generate_embeddings
+from app.core.chunker import chunk_text
+
 from app.prompt.generate_mcq_prompt import GENERATE_MCQ_PROMPT
 from app.prompt.generate_quiz_prompt import GENERATE_QUIZ_PROMPT
 from app.prompt.system_prompt import SYSTEM_PROMPT
@@ -116,90 +121,90 @@ async def create_transcript_from_image(req: TranscriptRequest):
                 detail="Unable to extract text from the image."
             )
             
-        # # ---------------------------------------------------------
-        # # Save transcription to Document
-        # # ---------------------------------------------------------
-        # document_id = ObjectId(req.document_id)
-        # document = await db.documents.find_one({"_id": document_id})
+        # ---------------------------------------------------------
+        # Save transcription to Document
+        # ---------------------------------------------------------
+        document_id = ObjectId(req.document_id)
+        document = await db.documents.find_one({"_id": document_id})
         
-        # if not document:
-        #      raise HTTPException(
-        #         status_code=404,
-        #         detail="Document not found"
-        #     )
+        if not document:
+             raise HTTPException(
+                status_code=404,
+                detail="Document not found"
+            )
             
-        # notes_description = document.get("notes_description", [])
+        notes_description = document.get("notes_description", [])
         
-        # # Check if page exists
-        # page_exists = False
-        # for i, note in enumerate(notes_description):
-        #     if note.get("page") == req.page_number:
-        #         # Update existing transcription, keep other fields
-        #         notes_description[i]["transcription"] = transcription
-        #         page_exists = True
-        #         break
+        # Check if page exists
+        page_exists = False
+        for i, note in enumerate(notes_description):
+            if note.get("page") == req.page_number:
+                # Update existing transcription, keep other fields
+                notes_description[i]["transcription"] = transcription
+                page_exists = True
+                break
         
-        # if not page_exists:
-        #     # Add new entry
-        #     notes_description.append({
-        #         "page": req.page_number,
-        #         "transcription": transcription
-        #     })
+        if not page_exists:
+            # Add new entry
+            notes_description.append({
+                "page": req.page_number,
+                "transcription": transcription
+            })
             
-        # # Rebuild chunk_text from all transcriptions to ensure consistency
-        # all_transcriptions = [note.get("transcription", "") for note in notes_description if note.get("transcription")]
-        # new_chunk_text = "\n\n".join(all_transcriptions)
+        # Rebuild chunk_text from all transcriptions to ensure consistency
+        all_transcriptions = [note.get("transcription", "") for note in notes_description if note.get("transcription")]
+        new_chunk_text = "\n\n".join(all_transcriptions)
 
-        # # ---------------------------------------------------------
-        # # Update Knowledge Base (Embeddings)
-        # # ---------------------------------------------------------
-        # if new_chunk_text.strip():
-        #     source_type = document.get("source_type", "teacher")
-        #     collection_name = f"kb_{source_type}"
+        # ---------------------------------------------------------
+        # Update Knowledge Base (Embeddings)
+        # ---------------------------------------------------------
+        if new_chunk_text.strip():
+            source_type = document.get("source_type", "teacher")
+            collection_name = f"kb_{source_type}"
             
-        #     # 1. Remove old chunks if they exist
-        #     old_chunk_ids = document.get("chunk_docs_ids", [])
-        #     if old_chunk_ids:
-        #         print(f"🗑️ Removing {len(old_chunk_ids)} old chunks from {collection_name}...")
-        #         await db[collection_name].delete_many({"_id": {"$in": old_chunk_ids}})
+            # 1. Remove old chunks if they exist
+            old_chunk_ids = document.get("chunk_docs_ids", [])
+            if old_chunk_ids:
+                print(f"🗑️ Removing {len(old_chunk_ids)} old chunks from {collection_name}...")
+                await db[collection_name].delete_many({"_id": {"$in": old_chunk_ids}})
             
-        #     # 2. Chunk the new text
-        #     chunks = chunk_text(new_chunk_text)
-        #     if chunks:
-        #         # 3. Generate embeddings
-        #         print(f"⚙️ Generating embeddings for {len(chunks)} chunks...")
-        #         embeddings = []
-        #         for chunk in tqdm(chunks, desc="Embedding Batches"):
-        #             emb = generate_embeddings(chunk)
-        #             embeddings.append(emb)
+            # 2. Chunk the new text
+            chunks = chunk_text(new_chunk_text)
+            if chunks:
+                # 3. Generate embeddings
+                print(f"⚙️ Generating embeddings for {len(chunks)} chunks...")
+                embeddings = []
+                for chunk in tqdm(chunks, desc="Embedding Batches"):
+                    emb = generate_embeddings(chunk)
+                    embeddings.append(emb)
                 
-        #         # 4. Store new embeddings
-        #         print("💾 Storing embeddings in MongoDB...")
-        #         metadata = {"filename": document.get("filename", "unknown")}
-        #         new_chunk_docs = store_embeddings(chunks, embeddings, source_type=source_type, metadata=metadata)
+                # 4. Store new embeddings
+                print("💾 Storing embeddings in MongoDB...")
+                metadata = {"filename": document.get("filename", "unknown")}
+                new_chunk_docs = store_embeddings(chunks, embeddings, source_type=source_type, metadata=metadata)
                 
-        #         # Extract new IDs
-        #         new_chunk_ids = [doc["_id"] for doc in new_chunk_docs]
+                # Extract new IDs
+                new_chunk_ids = [doc["_id"] for doc in new_chunk_docs]
                 
-        #         # 5. Reload KB
-        #         if source_type in knowledge_bases:
-        #             await knowledge_bases[source_type].load_data(force=True)
-        #             print(f"⚡ {source_type.capitalize()} knowledge base reloaded.")
-        #     else:
-        #         new_chunk_ids = []
-        # else:
-        #     new_chunk_ids = []
+                # 5. Reload KB
+                if source_type in knowledge_bases:
+                    await knowledge_bases[source_type].load_data(force=True)
+                    print(f"⚡ {source_type.capitalize()} knowledge base reloaded.")
+            else:
+                new_chunk_ids = []
+        else:
+            new_chunk_ids = []
 
-        # # Update DB with new chunk_text and chunk_docs_ids
-        # await db.documents.update_one(
-        #     {"_id": document_id},
-        #     {"$set": {
-        #         "notes_description": notes_description,
-        #         "chunk_text": new_chunk_text,
-        #         "chunk_docs_ids": new_chunk_ids
-        #     }}
-        # )
-        # print(f"✅ Auto-saved transcription for page {req.page_number} to document {req.document_id}")
+        # Update DB with new chunk_text and chunk_docs_ids
+        await db.documents.update_one(
+            {"_id": document_id},
+            {"$set": {
+                "notes_description": notes_description,
+                "chunk_text": new_chunk_text,
+                "chunk_docs_ids": new_chunk_ids
+            }}
+        )
+        print(f"✅ Auto-saved transcription for page {req.page_number} to document {req.document_id}")
         
         return {
             "status": "success",

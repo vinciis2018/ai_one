@@ -208,6 +208,7 @@ async def get_conversation(chat_id: str):
                 "media_transcript": conversation.get("media_transcript", None),
                 "score": conversation.get("score", 1),
                 "quick_action": quick_action,
+                "comments": conversation.get("comments", [])
             })
 
         if not chat:

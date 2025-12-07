@@ -1,3 +1,4 @@
 DOCUMENT_PROMPT="""
-context: {transcription}
+{selected_document_transcript}\n
+{transcription}\n
 """

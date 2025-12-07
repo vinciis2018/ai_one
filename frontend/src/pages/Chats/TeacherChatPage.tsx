@@ -279,7 +279,17 @@ export const TeacherChatPage: React.FC = () => {
           
           <div className="fixed bottom-0 left-0 right-0 p-2">
             <div className="max-w-4xl mx-auto bg-white">
-              <QueryBoxChat domain={domain} teacher_user_id={teacher_user_id} student_user_id={student_user_id} chatId={chatId} previousConversationId={previousConversationId}/>
+              <QueryBoxChat
+                setReplyContext={() => {}}
+                replyContext={null}
+                setSelectedData={() => {}}
+                selectedData={null}
+                teacher_user_id={teacher_user_id}
+                student_user_id={student_user_id}
+                chatId={chatId}
+                previousConversationId={previousConversationId}
+               
+              />
             </div>
           </div>
  

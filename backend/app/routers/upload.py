@@ -14,7 +14,7 @@ import os
 import asyncio
 from app.core.chunker import chunk_text
 from app.core.embeddings import generate_embeddings
-from app.core.storage import load_all_metadata, store_embeddings
+from app.core.storage import store_embeddings
 from app.core.retriever_cache import knowledge_bases
 from app.config.settings import UPLOAD_FOLDER
 from fastapi import APIRouter, HTTPException, Body

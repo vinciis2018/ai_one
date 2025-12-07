@@ -18,10 +18,10 @@ from google.genai import types
 # Load configuration
 # ------------------------------------------------
 load_dotenv()
-logger = logging.getLogger("assistant-llm")
+logger = logging.getLogger("openai-llm-caller")
 
 # Global configs
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY") or "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"
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-5-nano")
 
 open_ai_client = OpenAI(api_key=OPENAI_API_KEY)
@@ -49,7 +49,7 @@ def call_openai(prompt: str) -> str:
                 {"role": "user", "content": prompt},
             ],
             # temperature=0.5,
-            max_completion_tokens=4000,
+            max_completion_tokens=8000,
         )
         return response.choices[0].message.content.strip()
     except Exception as e:

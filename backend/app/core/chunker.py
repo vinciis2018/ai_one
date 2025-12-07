@@ -87,21 +87,11 @@ def should_merge(prev: str, curr: str, domain: str) -> bool:
 
 
 def chunk_text(
-#   text: str, chunk_size=500, overlap=50
-# ):
-#   words = text.split()
-#   chunks = []
-#   for i in range(0, len(words), chunk_size - overlap):
-#     chunks.append(' '.join(words[i:i+chunk_size]))
-#   return chunks
 
-
-
-# def chunk_text_semantic(
     text: str,
     domain: str = "science",
-    min_size: int = 150,
-    max_size: int = 600
+    min_size: int = 300, #150
+    max_size: int = 1200 #600
 ):
     text = clean_ocr(text)
 

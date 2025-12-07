@@ -18,9 +18,21 @@ interface ChatSlidePanelProps {
   isOpen: boolean;
   chatId: string;
   onClose: () => void;
+  setSelectedData: (data: string | null) => void;
+  selectedData: string | null;
+  setSelectedDocument: (document: string | null) => void;
+  selectedDocument: string | null;
 }
 
-export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({ isOpen, chatId, onClose }) => {
+export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({
+  isOpen,
+  chatId,
+  onClose,
+  setSelectedData,
+  selectedData,
+  setSelectedDocument,
+  selectedDocument
+}) => {
   const { pathname } = useLocation();
   const { user_id: user_other_id } = useParams<{ user_id: string }>();
   const [searchParams] = useSearchParams();
@@ -34,6 +46,8 @@ export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({ isOpen, chatId, 
   const [searchQuery, setSearchQuery] = useState('');
   const [conversation, setConversation] = useState<ChatResponse | null>(null);
   const [selectedChatId, setSelectedChatId] = useState<string | null>(null);
+  const [replyContext, setReplyContext] = useState<string | null>(null);
+
 
   // State for active quick actions: Record<conversationId, type>
   const [activeQuickAction, setActiveQuickAction] = useState<'quiz' | 'concept' | 'mcq' | 'tricks' | null>(null);
@@ -388,8 +402,22 @@ export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({ isOpen, chatId, 
                       {conversation?.attached_media && (
                         <img src={conversation?.attached_media} className="w-16 h-16 object-cover rounded-xl border border-slate-100" alt="" onClick={() => window.open(conversation?.attached_media, '_blank')}/>
                       )}
-                      <div className="bg-blue-500 text-white p-3 rounded-2xl rounded-tr-sm max-w-[80%]">
-                        <p className="text-sm whitespace-pre-line">{conversation.query}</p>
+                      <div className="bg-blue-500 text-white p-4 rounded-3xl rounded-tr-sm max-w-[80%]">
+                        <div className="flex justify-between flex items-center pb-1">
+                          <p className="text-xs opacity-75">Student</p>
+                          <i
+                            className="fi fi-br-arrow-small-left text-xs"
+                            onClick={() => {
+                              setReplyContext(conversation.query);
+                            }}
+                          ></i>
+                        </div>
+                        <ReactMarkdown
+                          remarkPlugins={[remarkGfm, remarkMath]}
+                          rehypePlugins={[rehypeKatex]}
+                        >
+                          {conversation.query}
+                        </ReactMarkdown>
                         <p className="text-xs opacity-75 mt-1">
                           {new Date(conversation.created_at).toLocaleTimeString()}
                         </p>
@@ -399,8 +427,17 @@ export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({ isOpen, chatId, 
 
                   {/* AI Answer */}
                   {conversation.answer && (
-                    <div className="flex justify-start">
-                      <div className="bg-gray-100 dark:bg-gray-800 p-3 rounded-2xl rounded-tl-sm max-w-[90%] text-sm text-gray-800 dark:text-gray-200 whitespace-pre-line">
+                    <div className="flex flex-col justify-start gap-2">
+                      <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-3xl rounded-tl-sm max-w-[90%] text-sm text-gray-800 dark:text-gray-200 whitespace-pre-line">
+                        <div className="flex justify-between flex items-center pb-1 mb-1">
+                          <p className="text-xs opacity-75">Assistant</p>
+                          <i
+                            className="fi fi-br-arrow-small-left text-xs"
+                            onClick={() => {
+                              setReplyContext(conversation.answer);
+                            }}
+                          ></i>
+                        </div>
                         <ReactMarkdown
                           remarkPlugins={[remarkGfm, remarkMath]}
                           rehypePlugins={[rehypeKatex]}
@@ -447,6 +484,30 @@ export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({ isOpen, chatId, 
                           {new Date(conversation.created_at).toLocaleTimeString()}
                         </p>
                       </div>
+
+                      {/* teacher's comments */}
+                      {conversation?.comments?.map((comment, i) => (
+                        <div key={i} className="bg-gray-100 dark:bg-gray-800 p-4 rounded-3xl rounded-tl-sm max-w-[90%] text-sm text-gray-800 dark:text-gray-200 whitespace-pre-line">
+                          <div className="flex justify-between flex items-center pb-1 mb-1">
+                            <p className="text-xs opacity-75">Teacher</p>
+                            <i
+                              className="fi fi-br-arrow-small-left text-xs"
+                              onClick={() => {
+                                setReplyContext(comment.comment_text);
+                              }}
+                            ></i>
+                          </div>
+                          <ReactMarkdown
+                            remarkPlugins={[remarkGfm, remarkMath]}
+                            rehypePlugins={[rehypeKatex]}
+                          >
+                            {comment.comment_text}
+                          </ReactMarkdown>
+                          <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                            {new Date(comment.timestamp).toLocaleTimeString()}
+                          </p>
+                        </div>
+                      ))}
                     </div>
                   )}
                 </div>
@@ -465,9 +526,16 @@ export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({ isOpen, chatId, 
         {(user?.role === "student" && teacherUserId) || (user?.role === "teacher" && studentUserId) ? (
           <div className="">
             <QueryBoxChat
+              selectedDocument={selectedDocument}
+              setSelectedDocument={setSelectedDocument}
+              selectedData={selectedData}
+              setSelectedData={setSelectedData}
+              setReplyContext={setReplyContext}
+              replyContext={replyContext}
               chatId={selectedChatId || chatId}
               teacher_user_id={user?.teacher_id ? user?._id : teacherUserId}
               student_user_id={user?.student_id ? user?._id : studentUserId}
+              previousConversationId={chat?.conversations?.[chat?.conversations?.length - 1]?.id}
             />
           </div>
         ) : null}

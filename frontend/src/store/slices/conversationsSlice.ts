@@ -21,6 +21,7 @@ export interface Conversation {
   media_transcript?: string;
   score?: number;
   quick_action?: any;
+  comments?: {user_id: string, comment_text: string, timestamp: string}[];
 }
 
 export interface ChatResponse {

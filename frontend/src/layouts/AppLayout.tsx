@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Header } from './Header';
 import { Sidebar } from './Sidebar';
 import { Footer } from './Footer';
@@ -7,7 +7,12 @@ import { FloatingChatButton } from '../components/molecules/FloatingChatButton';
 import { ChatSlidePanel } from '../components/molecules/ChatSlidePanel';
 
 interface FullLayoutProps {
-  children: React.ReactNode;
+  children: React.ReactNode | ((props: {
+    selectedData: string | null;
+    setSelectedData: React.Dispatch<React.SetStateAction<string | null>>
+    selectedDocument: string | null;
+    setSelectedDocument: React.Dispatch<React.SetStateAction<string | null>>
+  }) => React.ReactNode);
   footer?: React.ReactNode | null;
 }
 
@@ -16,6 +21,9 @@ export function FullLayout({ children, footer = null }: FullLayoutProps) {
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [selectedData, setSelectedData] = useState<string | null>(null);
+  const [selectedDocument, setSelectedDocument] = useState<string | null>(null);
+
 
   const toggleSidebar = () => {
     setIsSidebarOpen(prev => !prev);
@@ -33,6 +41,11 @@ export function FullLayout({ children, footer = null }: FullLayoutProps) {
     setIsChatOpen(false);
   };
 
+  useEffect(() => {
+    if(selectedData) {
+      setIsChatOpen(true);
+    }
+  }, [selectedData]);
   return (
     <div className="text-[var(--text)] flex flex-col">
       {/* Fixed Header */}
@@ -46,7 +59,7 @@ export function FullLayout({ children, footer = null }: FullLayoutProps) {
           {/* Scrollable Content */}
           <main className="flex-1 overflow-y-auto w-full">
             <div className="relative min-h-* pt-8">
-              {children}
+              {typeof children === 'function' ? children({ selectedData, setSelectedData, selectedDocument, setSelectedDocument }) : children}
             </div>
           </main>
 
@@ -59,7 +72,15 @@ export function FullLayout({ children, footer = null }: FullLayoutProps) {
 
       {/* Floating Chat Interface */}
       <FloatingChatButton onClick={toggleChat} isOpen={isChatOpen} />
-      <ChatSlidePanel chatId={""} isOpen={isChatOpen} onClose={closeChat} />
+      <ChatSlidePanel
+        chatId={""}
+        isOpen={isChatOpen}
+        onClose={closeChat}
+        setSelectedData={setSelectedData}
+        selectedData={selectedData}
+        setSelectedDocument={setSelectedDocument}
+        selectedDocument={selectedDocument}
+      />
 
     </div>
   );

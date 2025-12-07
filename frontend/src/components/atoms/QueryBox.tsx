@@ -6,7 +6,7 @@
 
 import React, { useEffect, useState, useRef, useMemo } from "react";
 import { useAppDispatch, useAppSelector } from "../../store";
-import { askQuery, askImageQuery } from "../../store/slices/assistantSlice";
+import { askQuery } from "../../store/slices/assistantSlice";
 import { ResponseCard } from "./ResponseCard";
 import { fetchChatById } from "../../store/slices/conversationsSlice";
 import { getS3Url } from "../../utilities/awsUtils";
@@ -115,10 +115,21 @@ export const QueryBox: React.FC<QueryBoxProps> = ({ documentContext }) => {
       console.log('📦 Sending S3 URL to backend:', payload);
 
       // Step 3: Send to backend for processing
-      const result = await dispatch(askImageQuery(payload));
-
+      const result = await dispatch(askQuery({
+        text: question,
+        userId: user?._id || '',
+        // chatId: chatId || response?.chat_id || null,
+        // previousConversation: previousConversationId || response?.conversation_id || null,
+        domain_expertise: domain,
+        // teacher_id: teacher_user_id,
+        // student_id: student_user_id,
+        subject: `general ${domain}`, // make this dynamic if needed
+        level: "intermediate",   // make this dynamic if needed
+        // chat_space: chat_space as string,
+        s3_url: s3Url,
+      }));
       // If successful, reset image selection
-      if (askImageQuery.fulfilled.match(result)) {
+      if (askQuery.fulfilled.match(result)) {
         setSelectedImage(null);
         setImagePreview(null);
         if (fileInputRef.current) {

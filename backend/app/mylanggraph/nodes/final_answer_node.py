@@ -36,7 +36,15 @@ def generate_clarification_prompt(state):
 
 def final_answer_node(state):
 
-    conversation_text = "<conversation>\n\n" + "\n\n".join([c["text"] for c in state["memory_chunks"]]) + "\n\n</conversation>" if state["memory_chunks"] else ""
+    # previous conversation
+    last_conversation: str = None
+    if state["last_conversation"]:
+        last_conversation = f"Q: {state['last_conversation']['Q']} \nA: {state['last_conversation']['A']}"
+
+    memory_text = "<conversation>\n\n" + "\n\n".join([c["text"] for c in state["memory_chunks"]]) + "\n\n</conversation>" if state["memory_chunks"] else ""
+    last_conv_text = "\n\n<last_conversation>\n\n" + last_conversation + "\n\n</last_conversation>" if last_conversation else ""
+    conversation_text = memory_text + last_conv_text
+
 
     student_chunks = []
     teacher_chunks = []
@@ -49,14 +57,31 @@ def final_answer_node(state):
     student_notes_text = "<student_notes>\n\n" + "\n\n".join([doc["text"] for doc in student_chunks if len(student_chunks) > 0]) + "\n\n</student_notes>"
     teacher_notes_text = "<teacher_notes>\n\n" + "\n\n".join([doc["text"] for doc in teacher_chunks if len(teacher_chunks) > 0]) + "\n\n</teacher_notes>"
 
+    # document being viewed by user
+    selected_document_transcript = None
+    if state["selected_document_transcript"]:
+        selected_document_transcript = f"The student is currently viewing a document with the following content: \n{state['selected_document_transcript']} \n"
+
+    # document uploaded by the user
+    transcript = None
+    if state["image_transcript"]:
+        transcript = f"The student has uploaded a document with following content and had asked the question below: \n{state['image_transcript']} \n"
+
+    # reply to any text by the user
+    reply_context = None
+    if state["to_reply"]:
+        reply_context = f"The user had sent this ealier reply for some context: {state['to_reply']} \n"
+
+
+    
     print(state["query"], "::::::::::: query")
     
     prompt = FINAL_PROMPT.format(
-        teacher_prompt=TP.format(domain=state["domain"], teacher_notes=teacher_notes_text),
-        student_prompt=SP.format(students_notes=student_notes_text),
-        memory_prompt=CP.format(conversation_memory=conversation_text),
-        user_prompt=UP.format(user_query=state["query"]),
-        document_prompt=DP.format(transcription=state["image_transcript"]) if state["image_transcript"] else "",
+        teacher_prompt=TP.format(domain=state["domain"], teacher_notes=teacher_notes_text) if teacher_notes_text else "",
+        student_prompt=SP.format(students_notes=student_notes_text) if student_notes_text else "",
+        memory_prompt=CP.format(conversation_memory=conversation_text) if conversation_text else "",
+        document_prompt=DP.format(transcription=transcript if transcript else "", selected_document_transcript=selected_document_transcript if selected_document_transcript else ""),
+        user_prompt=UP.format(user_query=state["query"], reply_context=reply_context if reply_context else ""),
     )
 
     # print(len(prompt), "::::::::::: prompt")

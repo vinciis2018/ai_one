@@ -33,6 +33,7 @@ class ConversationModel(BaseModel):
     edit_history: Optional[List[Dict[str, Any]]] = None
     score: float = 1 ## use for relevancy 0 for irrelevant, 1 for relevant, in between relevancy score
     comments: Optional[List[Dict[str, Any]]] = None
+    in_reply: Optional[str] = None
 
     model_config = ConfigDict(
         json_encoders={ObjectId: str},

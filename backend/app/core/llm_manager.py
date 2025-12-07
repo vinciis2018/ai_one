@@ -4,10 +4,10 @@
 # (Auto-selects OpenAI → Hugging Face → Ollama → Fallback)
 # ============================================
 
-from app.llms.ollama import call_ollama, call_ollama_multimodal
-from app.llms.huggingface import call_huggingface, call_huggingface_multimodal
+from app.llms.ollama import call_ollama
+from app.llms.huggingface import call_huggingface
 from app.llms.gemini import call_gemini
-from app.llms.openai import call_openai, call_openai_multimodal
+from app.llms.openai import call_openai
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from dotenv import load_dotenv
@@ -18,9 +18,9 @@ import os
 # Load configuration
 # ------------------------------------------------
 load_dotenv()
-logger = logging.getLogger("assistant-llm")
+logger = logging.getLogger("llm-manager")
 
-LLM_MODE = os.getenv("LLM_MODE", "auto").lower()  # auto | huggingface | ollama | openai | gemini
+LLM_MODE = os.getenv("LLM_MODE", "openai").lower()  # auto | huggingface | ollama | openai | gemini
 FALLBACK_MODEL = "distilgpt2"
 # ------------------------------------------------
 # Device detection
@@ -39,7 +39,7 @@ logger.info(f"🧠 Using device: {DEVICE.upper()}")
 # ------------------------------------------------
 # Core LLM handler
 # ------------------------------------------------
-def call_llm(prompt: str) -> str:
+def call_llm(prompt: str, LLM_MODE: str = LLM_MODE) -> str:
     """
     Unified function to route query based on availability:
     1️⃣ OpenAI (if API key exists)
@@ -57,19 +57,19 @@ def call_llm(prompt: str) -> str:
     # =======================
     # 1️⃣ Gemini
     # =======================
-    if LLM_MODE in ["auto", "gemini"]:
+    if LLM_MODE in ["gemini"]:
        return call_gemini(prompt)
     
     # =======================
     # 2️⃣ Hugging Face
     # =======================
-    if LLM_MODE in ["auto", "huggingface"]:
+    if LLM_MODE in ["huggingface"]:
         return call_huggingface(prompt)
 
     # =======================
     # 3️⃣ Ollama
     # =======================
-    if LLM_MODE in ["auto", "ollama"]:
+    if LLM_MODE in ["ollama"]:
         return call_ollama(prompt)
 
     # =======================
@@ -88,39 +88,3 @@ def call_llm(prompt: str) -> str:
 
 
 
-
-# ------------------------------------------------
-# Core LLM multimodal handler
-# ------------------------------------------------
-def call_llm_multimodal(messages: list) -> str:
-    """
-    Unified function to route query based on availability:
-    1️⃣ OpenAI (if API key exists)
-    2️⃣ Hugging Face Transformers
-    3️⃣ Ollama (local)
-    4️⃣ Offline Fallback
-    """
-
-    # =======================
-    # 1️⃣ OpenAI
-    # =======================
-    if LLM_MODE in ["auto", "openai"]:
-        call_openai_multimodal(messages)
-
-    # =======================
-    # 1️⃣ Gemini
-    # =======================
-    # if LLM_MODE in ["auto", "gemini"]:
-    #    call_gemini_multimodal(messages)
-    
-    # =======================
-    # 2️⃣ Hugging Face
-    # =======================
-    if LLM_MODE in ["auto", "huggingface"]:
-        call_huggingface_multimodal(messages)
-
-    # =======================
-    # 3️⃣ Ollama
-    # =======================
-    if LLM_MODE in ["auto", "ollama"]:
-        call_ollama_multimodal(messages)

@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 
 import 'katex/dist/katex.min.css';
-import type { SelectionBox } from "../../../types";
 import { loadPdf, renderPageToImage } from "../../../utilities/pdfUtils";
+import { useSelectionBox } from "../../../hooks/useSelectionBox";
 
 interface DocumentViewerProps {
   selectedDocument: any; // Using any to match existing flexibility, or strict DocumentItem
@@ -20,15 +20,26 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
   onPageRendered
 }) => {
   const [numPages, setNumPages] = useState<number | null>(null);
-  const [selection, setSelection] = useState<SelectionBox | null>(null);
-  const [isSelecting, setIsSelecting] = useState(false);
   const [pdfDocument, setPdfDocument] = useState<any>(null);
   const [pageImage, setPageImage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const imageRef = useRef<HTMLImageElement>(null);
-  const startPosRef = useRef<{ x: number, y: number } | null>(null);
+
+  const {
+    selection,
+    isSelecting,
+    handleMouseDown,
+    handleMouseMove,
+    handleMouseUp,
+    handleTouchStart,
+    handleTouchMove,
+    handleTouchEnd,
+    getSelectionData,
+    clearSelection,
+    handleResizeStart
+  } = useSelectionBox({ imageRef });
 
   // Load PDF Document
   useEffect(() => {
@@ -94,107 +105,18 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
     }
   }, [pdfDocument, pageNumber]);
 
-  // --- MANUAL IMAGE CROPPING LOGIC ---
-
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (!imageRef.current || !onImageSelection) return;
-    e.preventDefault();
-    const rect = imageRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    startPosRef.current = { x, y };
-    setIsSelecting(true);
-    setSelection({ x, y, w: 0, h: 0 });
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isSelecting || !startPosRef.current || !imageRef.current) return;
-    e.preventDefault();
-
-    const rect = imageRef.current.getBoundingClientRect();
-    const currentX = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
-    const currentY = Math.max(0, Math.min(e.clientY - rect.top, rect.height));
-
-    const startX = startPosRef.current.x;
-    const startY = startPosRef.current.y;
-
-    const width = Math.abs(currentX - startX);
-    const height = Math.abs(currentY - startY);
-    const x = Math.min(currentX, startX);
-    const y = Math.min(currentY, startY);
-
-    setSelection({ x, y, w: width, h: height });
-  };
-
-  const handleMouseUp = () => {
-    setIsSelecting(false);
-    if (selection && (selection.w < 10 || selection.h < 10)) {
-      setSelection(null);
-    }
-  };
-
-  // Touch event handlers for mobile support
-  const handleTouchStart = (e: React.TouchEvent) => {
-    if (!imageRef.current || !onImageSelection) return;
-    e.preventDefault();
-    const touch = e.touches[0];
-    const rect = imageRef.current.getBoundingClientRect();
-    const x = touch.clientX - rect.left;
-    const y = touch.clientY - rect.top;
-
-    startPosRef.current = { x, y };
-    setIsSelecting(true);
-    setSelection({ x, y, w: 0, h: 0 });
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isSelecting || !startPosRef.current || !imageRef.current) return;
-    e.preventDefault();
-
-    const touch = e.touches[0];
-    const rect = imageRef.current.getBoundingClientRect();
-    const currentX = Math.max(0, Math.min(touch.clientX - rect.left, rect.width));
-    const currentY = Math.max(0, Math.min(touch.clientY - rect.top, rect.height));
-
-    const startX = startPosRef.current.x;
-    const startY = startPosRef.current.y;
-
-    const width = Math.abs(currentX - startX);
-    const height = Math.abs(currentY - startY);
-    const x = Math.min(currentX, startX);
-    const y = Math.min(currentY, startY);
-
-    setSelection({ x, y, w: width, h: height });
-  };
-
-  const handleTouchEnd = () => {
-    setIsSelecting(false);
-    if (selection && (selection.w < 10 || selection.h < 10)) {
-      setSelection(null);
-    }
-  };
-
   const handleAddSelection = () => {
-    if (!selection || !imageRef.current || !onImageSelection) return;
+    if (!onImageSelection) return;
+    const data = getSelectionData();
+    if (!data) return;
 
-    const rect = imageRef.current.getBoundingClientRect();
-
-    // Convert to normalized coordinates (0-1000)
-    const ymin = Math.floor((selection.y / rect.height) * 1000);
-    const xmin = Math.floor((selection.x / rect.width) * 1000);
-    const ymax = Math.floor(((selection.y + selection.h) / rect.height) * 1000);
-    const xmax = Math.floor(((selection.x + selection.w) / rect.width) * 1000);
-
-    const box_2d = [ymin, xmin, ymax, xmax];
-
-    onImageSelection({ box_2d, pageNumber });
-    setSelection(null);
+    onImageSelection({ box_2d: data.box_2d, pageNumber });
+    clearSelection();
   };
 
   const handleClearSelection = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setSelection(null);
+    clearSelection();
   };
 
   return (
@@ -250,20 +172,23 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
         )}
 
         {!isLoading && !error && pageImage && (
-          <>
+          <div
+            className="relative"
+            style={{ maxWidth: '100%', maxHeight: '100%', display: 'flex' }}
+            onMouseDown={onImageSelection ? handleMouseDown : undefined}
+            onMouseMove={onImageSelection ? handleMouseMove : undefined}
+            onMouseUp={onImageSelection ? handleMouseUp : undefined}
+            onMouseLeave={onImageSelection ? handleMouseUp : undefined}
+            onTouchStart={onImageSelection ? handleTouchStart : undefined}
+            onTouchMove={onImageSelection ? handleTouchMove : undefined}
+            onTouchEnd={onImageSelection ? handleTouchEnd : undefined}
+          >
             <img
               ref={imageRef}
               src={pageImage}
               alt={`Page ${pageNumber}`}
               className={`max-w-full max-h-full object-contain shadow-2xl transition-opacity duration-300 ${isSelecting ? 'cursor-crosshair' : 'cursor-default'}`}
               draggable={false}
-              onMouseDown={onImageSelection ? handleMouseDown : undefined}
-              onMouseMove={onImageSelection ? handleMouseMove : undefined}
-              onMouseUp={onImageSelection ? handleMouseUp : undefined}
-              onMouseLeave={onImageSelection ? handleMouseUp : undefined}
-              onTouchStart={onImageSelection ? handleTouchStart : undefined}
-              onTouchMove={onImageSelection ? handleTouchMove : undefined}
-              onTouchEnd={onImageSelection ? handleTouchEnd : undefined}
             />
 
             {/* Selection Overlay */}
@@ -277,11 +202,35 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
                   height: selection.h
                 }}
               >
+                {/* Resize Handles */}
+                <div
+                  className="absolute -top-1.5 -left-1.5 w-3 h-3 bg-white border border-green-500 cursor-nw-resize pointer-events-auto z-10"
+                  onMouseDown={(e) => handleResizeStart(e, 'nw')}
+                  onTouchStart={(e) => handleResizeStart(e, 'nw')}
+                />
+                <div
+                  className="absolute -top-1.5 -right-1.5 w-3 h-3 bg-white border border-green-500 cursor-ne-resize pointer-events-auto z-10"
+                  onMouseDown={(e) => handleResizeStart(e, 'ne')}
+                  onTouchStart={(e) => handleResizeStart(e, 'ne')}
+                />
+                <div
+                  className="absolute -bottom-1.5 -left-1.5 w-3 h-3 bg-white border border-green-500 cursor-sw-resize pointer-events-auto z-50"
+                  onMouseDown={(e) => handleResizeStart(e, 'sw')}
+                  onTouchStart={(e) => handleResizeStart(e, 'sw')}
+                />
+                <div
+                  className="absolute -bottom-1.5 -right-1.5 w-3 h-3 bg-white border border-green-500 cursor-se-resize pointer-events-auto z-50"
+                  onMouseDown={(e) => handleResizeStart(e, 'se')}
+                  onTouchStart={(e) => handleResizeStart(e, 'se')}
+                />
+
                 {!isSelecting && (
                   <>
                     <button
                       className="absolute -top-3 -left-3 bg-red-500 hover:bg-red-600 text-white rounded-full p-1 shadow-md pointer-events-auto transition-transform hover:scale-110 z-40 flex items-center justify-center w-6 h-6"
                       onClick={handleClearSelection}
+                      onMouseDown={(e) => e.stopPropagation()}
+                      onTouchStart={(e) => e.stopPropagation()}
                       title="Cancel Selection"
                     >
                       <i className="fi fi-rr-cross text-xs leading-none flex items-center justify-center"></i>
@@ -289,6 +238,8 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
                     <button
                       className="absolute -top-3 -right-3 bg-green-500 hover:bg-green-600 text-white rounded-full p-1 shadow-md pointer-events-auto transition-transform hover:scale-110 z-40 flex items-center justify-center w-6 h-6"
                       onClick={(e) => { e.stopPropagation(); handleAddSelection(); }}
+                      onMouseDown={(e) => e.stopPropagation()}
+                      onTouchStart={(e) => e.stopPropagation()}
                       title="Add Selection"
                     >
                       <i className="fi fi-rr-plus text-xs leading-none flex items-center justify-center"></i>
@@ -297,7 +248,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
                 )}
               </div>
             )}
-          </>
+          </div>
         )}
       </div>
     </div>

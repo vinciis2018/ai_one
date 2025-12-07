@@ -1,27 +1,48 @@
-import React, { useState } from 'react';
-import { Document, Page } from 'react-pdf';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import type { DocumentItem } from '../../../store/slices/documentsSlice';
 import { useAppSelector } from '../../../store';
+import { loadPdf, renderPageToImage } from '../../../utilities/pdfUtils';
+import { useSelectionBox } from '../../../hooks/useSelectionBox';
 
 interface DocumentModalProps {
   doc: DocumentItem;
   onClose: () => void;
+  setSelectedData?: (data: string | null) => void;
+  selectedData?: string | null;
+  setSelectedDocument?: (data: string | null) => void;
+  selectedDocument?: string | null;
+  initialPage?: number;
+  onPageChange?: (page: number) => void;
 }
 
 type ViewMode = 'pdf' | 'notes' | 'quiz' | 'mcq' | 'personalTricks';
 
-const DocumentModal: React.FC<DocumentModalProps> = ({ doc, onClose }) => {
+const DocumentModal: React.FC<DocumentModalProps> = ({
+  doc,
+  onClose,
+  setSelectedData,
+
+  setSelectedDocument,
+  initialPage = 1,
+  onPageChange,
+}) => {
+  const navigate = useNavigate();
+  const imageRef = useRef<HTMLImageElement>(null);
+
   const [numPages, setNumPages] = useState<number | null>(null);
-  const [pageNumber, setPageNumber] = useState<number>(1);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [pageNumber, setPageNumber] = useState<number>(initialPage);
   const [viewMode, setViewMode] = useState<ViewMode>('pdf');
 
-  const navigate = useNavigate();
+  // PDF Rendering & Selection State
+  const [pdfDocument, setPdfDocument] = useState<any>(null);
+  const [pageImage, setPageImage] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const { user } = useAppSelector((state) => state.auth);
+
   if (!doc) return null;
 
   const fileExt = doc.filename?.split('.').pop()?.toLowerCase();
@@ -48,29 +69,107 @@ const DocumentModal: React.FC<DocumentModalProps> = ({ doc, onClose }) => {
     }
   }, [validPages, user?.role, pageNumber]);
 
-  const minSwipeDistance = 50;
+  // Load PDF Document
+  useEffect(() => {
+    const loadDocument = async () => {
+      if (!doc?.s3_url || !isPDF) {
+        setPdfDocument(null);
+        return;
+      }
 
-  const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
+      setIsLoading(true);
+      setError(null);
+
+      try {
+        const response = await fetch(doc.s3_url);
+        const blob = await response.blob();
+        const file = new File([blob], doc.filename, { type: 'application/pdf' });
+
+        const pdf = await loadPdf(file);
+        setPdfDocument(pdf);
+        setNumPages(pdf.numPages);
+      } catch (err) {
+        console.error("Error loading PDF:", err);
+        setError("Failed to load PDF document");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadDocument();
+  }, [doc.s3_url, doc.filename, isPDF]);
+
+  // Sync page number with parent
+  useEffect(() => {
+    if (onPageChange) {
+      onPageChange(pageNumber);
+    }
+  }, [pageNumber, onPageChange]);
+
+  // Render Page to Image
+  useEffect(() => {
+    const renderPage = async () => {
+      if (!pdfDocument || !pageNumber) return;
+
+      setIsLoading(true);
+      try {
+        const imageUrl = await renderPageToImage(pdfDocument, pageNumber);
+        setPageImage(imageUrl);
+        setSelectedDocument?.(doc?.notes_description?.[pageNumber - 1]?.transcription as string);
+      } catch (err) {
+        console.error("Error rendering page:", err);
+        setError(`Failed to render page ${pageNumber}`);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    if (pdfDocument) {
+      renderPage();
+    }
+  }, [pdfDocument, pageNumber]);
+
+
+  const {
+    selection,
+    isSelecting,
+    handleMouseDown,
+    handleMouseMove,
+    handleMouseUp,
+    handleTouchStart,
+    handleTouchMove,
+    handleTouchEnd,
+    getSelectionData,
+    clearSelection,
+    handleResizeStart
+  } = useSelectionBox({ imageRef });
+
+  const handleAddSelection = () => {
+    const data = getSelectionData();
+    if (!data) return;
+
+    const { box_2d, image } = data;
+
+    console.log("Selected Box:", box_2d, "Page:", pageNumber);
+
+    if (setSelectedData) {
+      // Format the selection data as a string or JSON to pass back
+      const selectionData = JSON.stringify({
+        box_2d,
+        page: pageNumber,
+        docId: doc.id,
+        filename: "page" + pageNumber + "selectedarea" + JSON.stringify(box_2d) + "_" + doc.filename?.split(".").join("_"),
+        image
+      });
+      setSelectedData(selectionData);
+    }
+
+    clearSelection();
   };
 
-  const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-
-    if (isLeftSwipe) {
-      goToNextPage();
-    }
-    if (isRightSwipe) {
-      goToPrevPage();
-    }
+  const handleClearSelection = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    clearSelection();
   };
 
   const goToPrevPage = () => {
@@ -417,40 +516,105 @@ const DocumentModal: React.FC<DocumentModalProps> = ({ doc, onClose }) => {
         {/* Content Area */}
         <div
           className="flex-1 bg-gray-900 flex items-center justify-center overflow-hidden relative min-h-0"
-          onTouchStart={viewMode === 'pdf' ? onTouchStart : undefined}
-          onTouchMove={viewMode === 'pdf' ? onTouchMove : undefined}
-          onTouchEnd={viewMode === 'pdf' ? onTouchEnd : undefined}
         >
           {viewMode !== 'pdf' ? (
             renderContentView()
           ) : isPDF ? (
             <>
-              <div className="flex flex-col items-center justify-center h-full w-full p-2 sm:p-4">
-                <Document
-                  file={doc.s3_url}
-                  onLoadSuccess={({ numPages }) => setNumPages(numPages)}
-                  onLoadError={(error) => console.error('Error loading PDF:', error)}
-                  loading={
-                    <div className="flex flex-col items-center justify-center h-64 text-gray-400">
-                      <i className="fi fi-br-circle animate-spin text-3xl mb-3" />
-                      <p className="text-sm">Loading PDF...</p>
-                    </div>
-                  }
-                  error={
-                    <div className="flex flex-col items-center justify-center h-64 text-red-500">
-                      <i className="fi fi-rr-exclamation text-3xl mb-3" />
-                      <p className="text-sm">Failed to load PDF.</p>
-                    </div>
-                  }
-                >
-                  <Page
-                    pageNumber={pageNumber}
-                    renderTextLayer={false}
-                    renderAnnotationLayer={false}
-                    className="shadow-2xl max-h-full"
-                    height={Math.min(window.innerHeight * 0.75, 700)}
-                  />
-                </Document>
+              <div className="flex flex-col items-center justify-center h-full w-full p-2 sm:p-4 relative">
+
+                {isLoading && (
+                  <div className="flex flex-col items-center justify-center h-64 text-gray-400">
+                    <i className="fi fi-br-circle animate-spin text-3xl mb-3" />
+                    <p className="text-sm">Loading PDF...</p>
+                  </div>
+                )}
+
+                {error && (
+                  <div className="flex flex-col items-center justify-center h-64 text-red-500">
+                    <i className="fi fi-rr-exclamation text-3xl mb-3" />
+                    <p className="text-sm">{error}</p>
+                  </div>
+                )}
+
+                {!isLoading && !error && pageImage && (
+                  <div
+                    className="relative"
+                    style={{ maxWidth: '100%', maxHeight: '100%', display: 'flex' }}
+                    onMouseDown={handleMouseDown}
+                    onMouseMove={handleMouseMove}
+                    onMouseUp={handleMouseUp}
+                    onMouseLeave={handleMouseUp}
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
+                    onTouchEnd={handleTouchEnd}
+                  >
+                    <img
+                      ref={imageRef}
+                      src={pageImage}
+                      alt={`Page ${pageNumber}`}
+                      className={`max-w-full max-h-full object-contain shadow-2xl ${isSelecting ? 'cursor-crosshair' : 'cursor-default'}`}
+                      draggable={false}
+                    />
+                    {selection && (
+                      <div
+                        className="absolute border-2 border-green-400 bg-green-400/20 z-20 pointer-events-none"
+                        style={{
+                          left: selection.x,
+                          top: selection.y,
+                          width: selection.w,
+                          height: selection.h
+                        }}
+                      >
+                        {/* Resize Handles */}
+                        <div
+                          className="absolute -top-1.5 -left-1.5 w-3 h-3 bg-white border border-green-500 cursor-nw-resize pointer-events-auto z-10"
+                          onMouseDown={(e) => handleResizeStart(e, 'nw')}
+                          onTouchStart={(e) => handleResizeStart(e, 'nw')}
+                        />
+                        <div
+                          className="absolute -top-1.5 -right-1.5 w-3 h-3 bg-white border border-green-500 cursor-ne-resize pointer-events-auto z-10"
+                          onMouseDown={(e) => handleResizeStart(e, 'ne')}
+                          onTouchStart={(e) => handleResizeStart(e, 'ne')}
+                        />
+                        <div
+                          className="absolute -bottom-1.5 -left-1.5 w-3 h-3 bg-white border border-green-500 cursor-sw-resize pointer-events-auto z-50"
+                          onMouseDown={(e) => handleResizeStart(e, 'sw')}
+                          onTouchStart={(e) => handleResizeStart(e, 'sw')}
+                        />
+                        <div
+                          className="absolute -bottom-1.5 -right-1.5 w-3 h-3 bg-white border border-green-500 cursor-se-resize pointer-events-auto z-50"
+                          onMouseDown={(e) => handleResizeStart(e, 'se')}
+                          onTouchStart={(e) => handleResizeStart(e, 'se')}
+                        />
+
+                        {!isSelecting && (
+                          <>
+                            <button
+                              className="absolute -top-3 -left-3 bg-red-500 hover:bg-red-600 text-white rounded-full p-1 shadow-md pointer-events-auto transition-transform hover:scale-110 z-40 flex items-center justify-center w-6 h-6"
+                              onClick={handleClearSelection}
+                              onMouseDown={(e) => e.stopPropagation()}
+                              onTouchStart={(e) => e.stopPropagation()}
+                              title="Cancel Selection"
+                            >
+                              <i className="fi fi-rr-cross text-xs leading-none flex items-center justify-center"></i>
+                            </button>
+                            <button
+                              className="absolute -top-3 -right-3 bg-green-500 hover:bg-green-600 text-white rounded-full p-1 shadow-md pointer-events-auto transition-transform hover:scale-110 z-40 flex items-center justify-center w-6 h-6"
+                              onClick={(e) => { e.stopPropagation(); handleAddSelection(); }}
+                              onMouseDown={(e) => e.stopPropagation()}
+                              onTouchStart={(e) => e.stopPropagation()}
+                              title="Add Selection"
+                            >
+                              <i className="fi fi-rr-plus text-xs leading-none flex items-center justify-center"></i>
+                            </button>
+                          </>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )}
+
               </div>
 
               {/* Page Navigation Controls */}
@@ -459,25 +623,25 @@ const DocumentModal: React.FC<DocumentModalProps> = ({ doc, onClose }) => {
                   <button
                     onClick={goToPrevPage}
                     disabled={pageNumber <= 1}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center text-gray-700 disabled:opacity-30 disabled:cursor-not-allowed transition-all hover:scale-110"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center text-gray-700 disabled:opacity-30 disabled:cursor-not-allowed transition-all hover:scale-110 z-30"
                   >
                     <i className="fi fi-rr-angle-left text-xl flex"></i>
                   </button>
                   <button
                     onClick={goToNextPage}
                     disabled={pageNumber >= (numPages || 1)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center text-gray-700 disabled:opacity-30 disabled:cursor-not-allowed transition-all hover:scale-110"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center text-gray-700 disabled:opacity-30 disabled:cursor-not-allowed transition-all hover:scale-110 z-30"
                   >
                     <i className="fi fi-rr-angle-right text-xl flex"></i>
                   </button>
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm font-medium backdrop-blur-sm">
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm font-medium backdrop-blur-sm z-30">
                     Page {pageNumber} of {numPages}
                   </div>
                 </>
               )}
 
               {/* Floating Action Buttons */}
-              <div className="absolute top-4 right-4 flex flex-col gap-3">
+              <div className="absolute top-4 right-4 flex flex-col gap-3 z-30">
                 {/* Notes Button */}
                 <button
                   onClick={() => setViewMode('notes')}

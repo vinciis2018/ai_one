@@ -42,7 +42,9 @@ def initial_state(
     previous_conversation: Optional[str] = None,
     image_url: Optional[str] = None,
     chat_space: Optional[str] = None,
-    image_transcript: Optional[str] = None
+    image_transcript: Optional[str] = None,
+    to_reply: Optional[str] = None,
+    selected_document_transcript: Optional[str] = None
 ) -> Dict[str, Any]:
     """Initialize the state for the LangGraph workflow."""
     return {
@@ -56,7 +58,8 @@ def initial_state(
         "previous_conversation": previous_conversation,
         "image_url": image_url,
         "image_transcript": image_transcript,
-
+        "to_reply": to_reply,
+        "selected_document_transcript": selected_document_transcript,
         "retrieved_docs": [],
         "student_docs": [],
         "teacher_docs": [],
@@ -68,7 +71,8 @@ def initial_state(
         "answer": "",
 
         "error": None,
-        "response_data": {}
+        "response_data": {},
+        "last_conversation": None
     }
 
 
@@ -83,7 +87,9 @@ async def process_query_with_lang_graph(
     previous_conversation: Optional[str] = None,
     chat_space: Optional[str] = None,
     transcription: Optional[str] = None,
-    s3_url: Optional[str] = None
+    s3_url: Optional[str] = None,
+    to_reply: Optional[str] = None,
+    selected_document_transcript: Optional[str] = None
 ) -> Dict[str, Any]:
     """Process a user query through the LangGraph workflow."""
     try:
@@ -97,7 +103,9 @@ async def process_query_with_lang_graph(
             previous_conversation=previous_conversation,
             image_url=s3_url,
             chat_space=chat_space,
-            image_transcript=transcription
+            image_transcript=transcription,
+            to_reply=to_reply,
+            selected_document_transcript=selected_document_transcript
         )
         
         print("initial_state", state)

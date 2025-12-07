@@ -19,7 +19,7 @@ async def retrieve_from_conversation_memory(
     conv_col = get_collection("conversations")
 
     # Fetch recent user conversations
-    recent_convs = await conv_col.find({"user_id": user_id, "domain": domain if domain else {"$exists": False}}).sort("created_at", -1).to_list(length=200)
+    recent_convs = await conv_col.find({"user_id": user_id, "answer": {"$ne": ""}, "domain": domain if domain else {"$exists": False}}).sort("created_at", -1).to_list(length=200)
     if not recent_convs:
         return []
 
@@ -33,7 +33,7 @@ async def retrieve_from_conversation_memory(
         else:
             text = f"Q: {c.get('query', '')}\nA: {c.get('answer', '')}"
             corpus_embs.append(embedder.encode(text).astype(np.float32))
-        corpus_texts.append(f"Q: {c.get('query', '')}\nA: {c.get('answer', '')}")
+        corpus_texts.append(f"Q: {c.get('query', '')}\nA: {c.get('answer', '')}\nComments: {c.get('comments', [])}")
 
     # Compute cosine similarity
     scores = [float(np.dot(query_emb, emb) / (np.linalg.norm(query_emb) * np.linalg.norm(emb))) for emb in corpus_embs]
@@ -68,7 +68,7 @@ async def retrieve_from_conversation_memory(
                 conv_doc = await conv_col.find_one({"_id": ObjectId(conv_id)})
                 if not conv_doc:
                     continue
-                text = f"Q: {conv_doc.get('query', '')}\nA: {conv_doc.get('answer', '')}"
+                text = f"Q: {conv_doc.get('query', '')}\nA: {conv_doc.get('answer', '')}\nComments: {conv_doc.get('comments', [])}"
                 extra_items.append({
                     "text": text,
                     "score": 0.0,

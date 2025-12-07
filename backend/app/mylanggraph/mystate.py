@@ -11,6 +11,8 @@ class AssistantState(MessagesState):
     previous_conversation: Optional[str] = None
     image_url: Optional[str] = None
     image_transcript: Optional[str] = None
+    to_reply: Optional[str] = None
+    selected_document_transcript: Optional[str] = None
     chat_space: Optional[str] = None
     domain: str
     
@@ -26,4 +28,5 @@ class AssistantState(MessagesState):
 
     error: Optional[str] = None
     response_data: Optional[Any] = {}
+    last_conversation: Optional[Dict] = None
 
