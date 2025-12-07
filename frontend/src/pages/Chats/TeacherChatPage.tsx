@@ -284,6 +284,8 @@ export const TeacherChatPage: React.FC = () => {
                 replyContext={null}
                 setSelectedData={() => {}}
                 selectedData={null}
+                selectedDocument={null}
+                setSelectedDocument={() => {}}
                 teacher_user_id={teacher_user_id}
                 student_user_id={student_user_id}
                 chatId={chatId}
