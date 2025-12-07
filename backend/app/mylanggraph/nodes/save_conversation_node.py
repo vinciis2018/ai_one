@@ -20,9 +20,9 @@ async def node_save_conversation(state: Dict[str, Any]) -> Dict[str, Any]:
             user_docs,
             state["image_url"],  # attached_media
             state["image_transcript"],  # media_transcript
-            None,
             state["chat_space"],
-            state["domain"]
+            state["domain"],
+            state["to_reply"]
         )
         
         # Update state with the saved conversation IDs

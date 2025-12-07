@@ -70,6 +70,7 @@ async def query(req: QueryRequest):
                         "comments": {
                             "user_id": req.userId,
                             "comment_text": req.text,
+                            "in_reply_to": req.reply_context,
                             "timestamp": datetime.utcnow()
                         }
                     }

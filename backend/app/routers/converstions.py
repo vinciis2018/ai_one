@@ -193,6 +193,7 @@ async def get_conversation(chat_id: str):
             if kg_entry and "quick_action" in kg_entry:
                 quick_action = kg_entry["quick_action"]
 
+            print(conversation.get("in_reply_to", None), "in_reply_to")
             conversations.append({
                 "id": str(conversation["_id"]),
                 "query_by": conversation["query_by"],
@@ -208,7 +209,8 @@ async def get_conversation(chat_id: str):
                 "media_transcript": conversation.get("media_transcript", None),
                 "score": conversation.get("score", 1),
                 "quick_action": quick_action,
-                "comments": conversation.get("comments", [])
+                "comments": conversation.get("comments", []),
+                "in_reply_to": conversation.get("in_reply_to", None),
             })
 
         if not chat:
@@ -276,7 +278,9 @@ async def get_chat_by_space(
                     "attached_media": conversation.get("attached_media", None),
                     "media_transcript": conversation.get("media_transcript", None),
                     "score": conversation.get("score", 1),
-                    "quick_action": quick_action
+                    "quick_action": quick_action,
+                    "comments": conversation.get("comments", []),
+                    "in_reply_to": conversation.get("in_reply_to", None),
                 })
 
         return {

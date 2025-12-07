@@ -45,9 +45,9 @@ async def _save_conversation(
     user_docs: Optional[list] = None,
     attached_media: Optional[str] = None,
     media_transcript: Optional[str] = None,
-    user_text: Optional[str] = None,
     chat_space: Optional[str] = None,
-    domain: Optional[str] = None
+    domain: Optional[str] = None,
+    to_reply: Optional[str] = None,
 ) -> dict:
     """
     Save or update chat and conversation in MongoDB.
@@ -63,7 +63,7 @@ async def _save_conversation(
         # Create conversation document
         now = datetime.utcnow()
         conversation = {
-            "query": user_text if user_text else query,
+            "query": query,
             "answer": answer,
             "query_by": "user",
             "answer_by": "assistant",
@@ -76,6 +76,7 @@ async def _save_conversation(
             "attached_media": attached_media,
             "media_transcript": media_transcript,
             "domain": domain,
+            "in_reply_to": to_reply,
 
         }
         

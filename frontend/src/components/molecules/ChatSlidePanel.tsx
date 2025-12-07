@@ -400,10 +400,10 @@ export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({
                   {conversation.query && (
                     <div className="flex justify-end gap-2">
                       {conversation?.attached_media && (
-                        <img src={conversation?.attached_media} className="w-16 h-16 object-cover rounded-xl border border-slate-100" alt="" onClick={() => window.open(conversation?.attached_media, '_blank')}/>
+                        <img src={conversation?.attached_media} className="w-16 h-16 object-cover rounded-xl border border-slate-100" alt="" onClick={() => window.open(conversation?.attached_media, '_blank')} />
                       )}
-                      <div className="bg-blue-500 text-white p-4 rounded-3xl rounded-tr-sm max-w-[80%]">
-                        <div className="flex justify-between flex items-center pb-1">
+                      <div className="bg-blue-500 text-white p-2 rounded-3xl rounded-tr-sm max-w-[80%] text-sm">
+                        <div className="flex justify-between flex items-center p-2">
                           <p className="text-xs opacity-75">Student</p>
                           <i
                             className="fi fi-br-arrow-small-left text-xs"
@@ -412,15 +412,23 @@ export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({
                             }}
                           ></i>
                         </div>
-                        <ReactMarkdown
-                          remarkPlugins={[remarkGfm, remarkMath]}
-                          rehypePlugins={[rehypeKatex]}
-                        >
-                          {conversation.query}
-                        </ReactMarkdown>
-                        <p className="text-xs opacity-75 mt-1">
-                          {new Date(conversation.created_at).toLocaleTimeString()}
-                        </p>
+                        {conversation?.in_reply_to && (
+                          <div className="text-xs w-84 bg-blue-600 text-gray-100 p-2 rounded-xl truncate">
+                            <p className="text-xs opacity-75">In reply to:</p>
+                            {conversation?.in_reply_to}
+                          </div>
+                        )}
+                        <div className="p-2">
+                          <ReactMarkdown
+                            remarkPlugins={[remarkGfm, remarkMath]}
+                            rehypePlugins={[rehypeKatex]}
+                          >
+                            {conversation.query}
+                          </ReactMarkdown>
+                          <p className="text-xs opacity-75 mt-1">
+                            {new Date(conversation.created_at).toLocaleTimeString()}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   )}
@@ -487,8 +495,8 @@ export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({
 
                       {/* teacher's comments */}
                       {conversation?.comments?.map((comment, i) => (
-                        <div key={i} className="bg-gray-100 dark:bg-gray-800 p-4 rounded-3xl rounded-tl-sm max-w-[90%] text-sm text-gray-800 dark:text-gray-200 whitespace-pre-line">
-                          <div className="flex justify-between flex items-center pb-1 mb-1">
+                        <div key={i} className="bg-gray-100 dark:bg-gray-800 p-2 rounded-3xl rounded-tl-sm max-w-[90%] text-sm text-gray-800 dark:text-gray-200 whitespace-pre-line">
+                          <div className="flex justify-between flex items-center p-2 mb-1">
                             <p className="text-xs opacity-75">Teacher</p>
                             <i
                               className="fi fi-br-arrow-small-left text-xs"
@@ -497,15 +505,24 @@ export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({
                               }}
                             ></i>
                           </div>
-                          <ReactMarkdown
-                            remarkPlugins={[remarkGfm, remarkMath]}
-                            rehypePlugins={[rehypeKatex]}
-                          >
-                            {comment.comment_text}
-                          </ReactMarkdown>
-                          <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
-                            {new Date(comment.timestamp).toLocaleTimeString()}
-                          </p>
+
+                          {comment?.in_reply_to && (
+                            <div className="text-xs w-84 bg-gray-200 text-gray-600 p-2 rounded-xl truncate">
+                              <p className="text-xs opacity-75">In reply to:</p>
+                              {comment?.in_reply_to}
+                            </div>
+                          )}
+                          <div className="p-2">
+                            <ReactMarkdown
+                              remarkPlugins={[remarkGfm, remarkMath]}
+                              rehypePlugins={[rehypeKatex]}
+                            >
+                              {comment.comment_text}
+                            </ReactMarkdown>
+                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                              {new Date(comment.timestamp).toLocaleTimeString()}
+                            </p>
+                          </div>
                         </div>
                       ))}
                     </div>
