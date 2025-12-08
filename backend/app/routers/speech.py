@@ -27,6 +27,7 @@ class OfferRequest(BaseModel):
     sdp: str
     type: str
 
+# @router.post("/connect/google-tts")
 @router.post("/connect")
 async def connect_webrtc(offer: OfferRequest):
 
@@ -98,6 +99,7 @@ async def connect_webrtc(offer: OfferRequest):
     # Supported: Journey voices (e.g. en-US-Journey-F, en-US-Journey-D) or Chirp voices
     # voice_id = "en-US-Journey-F"    
     voice_id = "en-IN-Chirp-HD-D"
+    # voice_id = "hi-IN-Chirp3-HD-Iapetus"
     # voice_id="hi-IN-Chirp3-HD-Achird"
     # Speed: 0.25 to 4.0
     speaking_rate = 1.0
@@ -182,3 +184,134 @@ async def connect_webrtc(offer: OfferRequest):
     asyncio.create_task(run_pipeline())
 
     return answer_data
+
+
+
+
+from pipecat.services.elevenlabs import ElevenLabsHttpTTSService
+from pipecat.frames.frames import InterruptionFrame
+from pipecat.processors.frame_processor import FrameDirection
+import aiohttp
+
+@router.post("/connect/eleven-labs")
+# @router.post("/connect")
+async def connect_webrtc_elevenlabs(offer: OfferRequest):
+
+    connection = SmallWebRTCConnection()
+    
+    # Initialize with SDP offer
+    await connection.initialize(offer.sdp, offer.type)
+
+    transport = SmallWebRTCTransport(
+        webrtc_connection=connection,
+        params=TransportParams(
+            audio_out_enabled=True,
+            audio_in_enabled=False,
+            camera_out_enabled=False,
+            vad_enabled=False
+        )
+    )
+
+    # ElevenLabs TTS Service
+    # Use API Key from .env
+    eleven_labs_api_key = os.getenv("ELEVEN_LABS_API")
+    if not eleven_labs_api_key:
+        logger.error("ELEVEN_LABS_API not found in .env")
+        # You might want to raise an HTTPException here
+    
+    # HTTP Session for ElevenLabs (Create per request for simplicity, or manage globally)
+    # In production, use a global session
+    session = aiohttp.ClientSession()
+
+    # Voice ID
+    # Default: "21m00Tcm4TlvDq8ikWAM" (Rachel)
+    # voice_id = "21m00Tcm4TlvDq8ikWAM" 
+    voice_id = "8sNEbeluclbr4u71MPb0" # Gaurav
+
+    tts = ElevenLabsHttpTTSService(
+        api_key=eleven_labs_api_key,
+        voice_id=voice_id,
+        aiohttp_session=session,
+        model="eleven_flash_v2_5",
+        params=ElevenLabsHttpTTSService.InputParams(
+            language=Language.EN,
+        ),
+    )
+    
+    # Pipeline: Transport Input -> TTS -> Transport Output
+    input_transport = transport.input()
+    
+    # Debug loggers
+    logger_in = FrameLogger("FrameLogIn")
+    logger_out = FrameLogger("FrameLogOut")
+    
+    pipeline = Pipeline([
+        input_transport, 
+        logger_in,   # Log frames entering TTS
+        tts, 
+        logger_out,  # Log frames exiting TTS
+        transport.output()
+    ])
+    
+    async def clear_audio_buffer(transport):
+        try:
+            if hasattr(transport, "_output") and transport._output:
+                # 1. Clear MediaSender queues (High-level buffer)
+                if hasattr(transport._output, "_media_senders"):
+                    for sender in transport._output._media_senders.values():
+                        if hasattr(sender, "_audio_queue") and sender._audio_queue:
+                            q = sender._audio_queue
+                            logger.info(f"Clearing {q.qsize()} frames from MediaSender queue")
+                            while not q.empty():
+                                try:
+                                    q.get_nowait()
+                                    q.task_done()
+                                except asyncio.QueueEmpty:
+                                    break
+                
+                # 2. Clear RawAudioTrack chunk queue (Low-level buffer)
+                client = transport._output._client
+                if hasattr(client, "_audio_output_track") and client._audio_output_track:
+                    track = client._audio_output_track
+                    if hasattr(track, "_chunk_queue") and track._chunk_queue:
+                        q = track._chunk_queue
+                        logger.info(f"Clearing {len(q)} chunks from RawAudioTrack buffer")
+                        while q:
+                            item = q.popleft()
+                            # item is (chunk, future)
+                            if len(item) > 1 and item[1] and not item[1].done():
+                                item[1].set_result(True)
+                        logger.info("Audio buffers cleared")
+        except Exception as e:
+            logger.error(f"Error clearing audio buffer: {e}")
+
+    # Handle incoming data channel messages for TTS
+    @transport.event_handler("on_app_message")
+    async def on_app_message(transport, message, sender=None):
+        logger.info(f"Received message: {message}")
+        if isinstance(message, dict) and "text" in message:
+            # Interrupt previous speech before processing new text
+            # tts.interrupt_current_stream() # HTTP service might not have this method?
+            # Standard interruption
+            await tts.queue_frame(InterruptionFrame(), FrameDirection.DOWNSTREAM) # Or handle interruption logic manually?
+            # Actually, WordTTSService handles interruption if we push InterruptionFrame to it?
+            # No, interruption usually clears downstream.
+            await clear_audio_buffer(transport)
+            await input_transport.push_frame(TextFrame(text=message["text"]))
+
+    task = PipelineTask(pipeline)
+    runner = PipelineRunner()
+
+    async def run_pipeline():
+        await runner.run(task)
+        await session.close() # Clean up session
+
+    # Get Answer from connection
+    answer_data = connection.get_answer()
+    
+    # Start pipeline
+    asyncio.create_task(run_pipeline())
+
+    return answer_data
+
+

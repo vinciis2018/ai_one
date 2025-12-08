@@ -218,6 +218,17 @@ def gemini_translate_text(prompt: str) -> str:
                 automatic_function_calling=types.AutomaticFunctionCallingConfig(
                     disable=True
                 ),
+                response_schema={
+                    "type": "OBJECT",
+                    "properties": {
+                        "type": {
+                            "type": "STRING",
+                            "enum": ["translation"]
+                        },
+                        "translation": {"type": "STRING"},
+                    },
+                    "required": ["type", "translation"]
+                }
             )
         )
         

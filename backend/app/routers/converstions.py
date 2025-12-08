@@ -396,6 +396,7 @@ async def translate_conversation(conversation_id: str, language: str = "hinglish
 
         # If not found, generate with LLM
         text = f"Translate: {conv['query'] if query else conv['answer']} \n"
+
         translated_text_json = json.loads(translate_text_with_llm(text, language))
         translated_text = translated_text_json["translation"]
 

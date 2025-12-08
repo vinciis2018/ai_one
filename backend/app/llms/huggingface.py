@@ -49,6 +49,8 @@ def call_huggingface(prompt: str) -> str:
             # temperature=0.6,
             max_completion_tokens=8000,
         )
+
+        print(response, ":::::::::::::: response")
         return response.choices[0].message.content.strip()
 
     except Exception as e:
