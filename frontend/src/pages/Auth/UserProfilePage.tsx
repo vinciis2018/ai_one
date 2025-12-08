@@ -37,7 +37,8 @@ export function UserProfilePage() {
 
   const [teacherPersona, setTeacherPersona] = useState({
     personality: "",
-    answerStyle: ""
+    answerStyle: "",
+    youtubeVideoUrl: ""
   });
 
   // Load existing persona from teacher_details
@@ -45,7 +46,8 @@ export function UserProfilePage() {
     if (teacher_details) {
       setTeacherPersona({
         personality: teacher_details?.persona?.personality || "",
-        answerStyle: teacher_details?.persona?.answer_style || ""
+        answerStyle: teacher_details?.persona?.answer_style || "",
+        youtubeVideoUrl: teacher_details?.persona?.youtube_video_url || ""
       });
     }
   }, [teacher_details]);
@@ -70,7 +72,8 @@ export function UserProfilePage() {
         teacherId: user._id,
         persona: {
           personality: teacherPersona?.personality,
-          answer_style: teacherPersona?.answerStyle
+          answer_style: teacherPersona?.answerStyle,
+          youtube_video_url: teacherPersona?.youtubeVideoUrl
         }
       }));
     }
@@ -359,6 +362,20 @@ export function UserProfilePage() {
                         onChange={(e) => setTeacherPersona(prev => ({ ...prev, answerStyle: e.target.value }))}
                         placeholder="e.g. I prefer to answer with analogies and keep the tone encouraging. I always start with a positive reinforcement before correcting mistakes."
                         className="w-full rounded-lg border-gray-300 shadow-sm focus:border-green2 focus:ring-green2 sm:text-sm resize-none"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="youtubeVideoUrl" className="block text-sm font-medium text-gray-700 mb-1">
+                        Introduction Video URL
+                      </label>
+                      <input
+                        type="url"
+                        id="youtubeVideoUrl"
+                        value={teacherPersona.youtubeVideoUrl}
+                        onChange={(e) => setTeacherPersona(prev => ({ ...prev, youtubeVideoUrl: e.target.value }))}
+                        placeholder="e.g. https://www.youtube.com/watch?v=..."
+                        className="w-full rounded-lg border-gray-300 shadow-sm focus:border-green2 focus:ring-green2 sm:text-sm"
                       />
                     </div>
 

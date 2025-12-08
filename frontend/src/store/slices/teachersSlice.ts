@@ -39,6 +39,7 @@ export interface TeacherModel {
   persona?: {
     personality?: string;
     answer_style?: string;
+    youtube_video_url?: string;
   }
   created_at?: string;
   updated_at?: string;
@@ -146,7 +147,7 @@ export const addCalendarEvent = createAsyncThunk<
 
 export const updateTeacherPersona = createAsyncThunk<
   TeacherModel,
-  { teacherId: string; persona: { personality?: string; answer_style?: string } },
+  { teacherId: string; persona: { personality?: string; answer_style?: string; youtube_video_url?: string } },
   { rejectValue: string }
 >(
   'teachers/updateTeacherPersona',

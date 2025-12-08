@@ -76,7 +76,7 @@ export const MindMap: React.FC<MindMapProps> = ({ data }) => {
     // Collapse after depth 2 initially to avoid clutter if tree is huge
     root.descendants().forEach((d, i) => {
       // @ts-ignore
-      d.id = i;
+      d.id = i + 1; // Start from 1 to avoid falsy 0 check later
       if (d.depth > 2 && d.children) {
         (d as any)._children = d.children;
         d.children = undefined;
@@ -132,7 +132,7 @@ export const MindMap: React.FC<MindMapProps> = ({ data }) => {
       // Enter any new modes at the parent's previous position.
       const nodeEnter = node.enter().append('g')
         .attr('class', 'node')
-        .attr("transform", d => `translate(${source.y0},${source.x0})`)
+        .attr("transform", () => `translate(${source.y0},${source.x0})`)
         .on('click', click)
         .style("cursor", "pointer");
 
@@ -155,7 +155,7 @@ export const MindMap: React.FC<MindMapProps> = ({ data }) => {
         .style("font-weight", (d: any) => d.depth === 0 ? "bold" : "500")
         .style("fill", "#1f2937")
         .style("text-shadow", "0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff")
-        .each(function (d: any) {
+        .each(function () {
           // Wrap text logic would go here
         });
 
@@ -182,7 +182,7 @@ export const MindMap: React.FC<MindMapProps> = ({ data }) => {
 
       // Remove any exiting nodes
       const nodeExit = node.exit().transition().duration(duration)
-        .attr("transform", (d) => `translate(${source.y},${source.x})`)
+        .attr("transform", () => `translate(${source.y},${source.x})`)
         .remove();
 
       nodeExit.select('circle')
@@ -201,7 +201,7 @@ export const MindMap: React.FC<MindMapProps> = ({ data }) => {
       // Enter any new links at the parent's previous position.
       const linkEnter = link.enter().insert('path', "g")
         .attr("class", "link")
-        .attr('d', (d) => {
+        .attr('d', () => {
           const o = { x: source.x0, y: source.y0 };
           return diagonal({ source: o, target: o });
         })
@@ -218,7 +218,7 @@ export const MindMap: React.FC<MindMapProps> = ({ data }) => {
 
       // Remove any exiting links
       link.exit().transition().duration(duration)
-        .attr('d', (d) => {
+        .attr('d', () => {
           const o = { x: source.x, y: source.y };
           return diagonal({ source: o, target: o });
         })
@@ -233,6 +233,7 @@ export const MindMap: React.FC<MindMapProps> = ({ data }) => {
 
     // Toggle children on click.
     function click(event: any, d: any) {
+      event.stopPropagation();
       if (d.children) {
         d._children = d.children;
         d.children = null;
