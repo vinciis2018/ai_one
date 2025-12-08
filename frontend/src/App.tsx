@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store, useAppDispatch } from './store';
-import { ThemeProvider } from './context/ContextProvider/ThemeProvider';
+import { ThemeProvider } from './contexts/ContextProvider/ThemeProvider';
 import { HomePage, LoginPage, SignupPage, NotFoundPage, UserProfilePage, LandingPage, DocumentsPage, DocumentDetailsPage, ConversationsPage, CoachingsPage, CoachingDetailsPage, ClassroomPage, TeachersForStudentPage, TeacherProfilePage, StudentProfilePage, NotesPage, ChatsPage, TeacherChatPage, StudentsForTeacherPage } from './pages';
 
 import { getMe } from './store/slices/authSlice';

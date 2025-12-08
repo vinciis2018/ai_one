@@ -195,7 +195,6 @@ async def get_conversation(chat_id: str):
             if kg_entry and "quick_action" in kg_entry:
                 quick_action = kg_entry["quick_action"]
 
-            print(conversation.get("in_reply_to", None), "in_reply_to")
             conversations.append({
                 "id": str(conversation["_id"]),
                 "query_by": conversation["query_by"],

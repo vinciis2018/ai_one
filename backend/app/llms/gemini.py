@@ -17,7 +17,7 @@ from google.genai import types
 # Load configuration
 # ------------------------------------------------
 load_dotenv()
-logger = logging.getLogger("assistant-llm")
+logger = logging.getLogger("gemini-llm-call")
 
 # Global configs
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")

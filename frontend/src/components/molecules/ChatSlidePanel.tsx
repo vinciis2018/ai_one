@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { fetchChatBySpace, fetchChatById, fetchTeacherStudentChats, clearConversations, type ChatResponse, translateText } from '../../store/slices/conversationsSlice';
+import { fetchChatBySpace, fetchTeacherStudentChats, type ChatResponse } from '../../store/slices/conversationsSlice';
 import { getAllTeachers, type TeacherModel } from '../../store/slices/teachersSlice';
 import { getAllStudents, type StudentModel } from '../../store/slices/studentsSlice';
 import { QueryBoxChat } from '../atoms/QueryBoxChat';
-// import { EnhancedTextDisplay } from '../atoms/EnhancedTextDisplay';
 import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 
-import { QuickActionDisplay } from './QuickActionDisplay';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import remarkMath from 'remark-math';
-import rehypeKatex from 'rehype-katex';
-import 'katex/dist/katex.min.css';
+import { useVoiceAssistant, VoiceAssistantProvider } from '../../hooks/useVoiceAssistant';
+
+// Sub-components
+import { TeacherListView } from './ChatSlidePanelComponents/TeacherListView';
+import { StudentListView } from './ChatSlidePanelComponents/StudentListView';
+import { ChatListView } from './ChatSlidePanelComponents/ChatListView';
+import { ConversationView } from './ChatSlidePanelComponents/ConversationView';
 
 interface ChatSlidePanelProps {
   isOpen: boolean;
@@ -24,7 +24,7 @@ interface ChatSlidePanelProps {
   selectedDocument: string | null;
 }
 
-export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({
+const ChatSlidePanelContent: React.FC<ChatSlidePanelProps> = ({
   isOpen,
   chatId,
   onClose,
@@ -37,7 +37,7 @@ export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({
   const { user_id: user_other_id } = useParams<{ user_id: string }>();
   const [searchParams] = useSearchParams();
   const dispatch = useAppDispatch();
-  const { chat, chats, conversation } = useAppSelector((state) => state.conversations);
+  const { chat, chats } = useAppSelector((state) => state.conversations);
   const { user } = useAppSelector((state) => state.auth);
   const { all_teachers } = useAppSelector((state) => state.teachers);
   const { all_students } = useAppSelector((state) => state.students);
@@ -48,21 +48,14 @@ export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({
   const [selectedChatId, setSelectedChatId] = useState<string | null>(null);
   const [replyContext, setReplyContext] = useState<string | null>(null);
 
+  const { connect } = useVoiceAssistant();
 
-  // State for active quick actions: Record<conversationId, type>
-  const [activeQuickAction, setActiveQuickAction] = useState<'quiz' | 'concept' | 'mcq' | 'tricks' | null>(null);
-
-  const handleQuickAction = (type: 'quiz' | 'concept' | 'mcq' | 'tricks') => {
-    setActiveQuickAction(prev => {
-      const current = prev;
-      if (current === type) {
-        // Toggle off if clicking the same type
-        return null;
-      }
-      // Set new type for this conversation
-      return type;
-    });
-  };
+  // Connect Voice Assistant on mount
+  useEffect(() => {
+    if (isOpen) {
+      connect();
+    }
+  }, [isOpen, connect]);
 
   // Fetch teacher-student chats when teacherId is set
   useEffect(() => {
@@ -188,401 +181,41 @@ export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({
           </button>
         </div>
 
-        {/* Conditional Content: Teacher/Student List, Chat List, or Conversation History */}
+        {/* Conditional Content */}
         {!teacherUserId && !studentUserId && user?.role === "student" ? (
-          /* Teacher List View (for students) */
-          <div className="flex-1 overflow-y-auto p-4">
-            <div className="mb-4">
-              <input
-                type="text"
-                placeholder="Search teachers..."
-                value={searchQuery}
-                onChange={handleSearch}
-                className="w-full text-sm px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800"
-              />
-            </div>
-
-            <div className="mb-2">
-              <p className="text-xs text-gray-500 dark:text-gray-400">
-                {all_teachers?.length || 0} teachers found
-              </p>
-            </div>
-
-            <div className="space-y-2">
-              {all_teachers && all_teachers.length > 0 ? (
-                all_teachers.map((teacher: TeacherModel) => (
-                  <div
-                    key={teacher.id}
-                    className="border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 rounded-xl p-3 hover:shadow-md transition-shadow cursor-pointer"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3 flex-1">
-                        <img
-                          src={teacher.avatar || "https://cdn-icons-png.flaticon.com/512/3135/3135715.png"}
-                          alt={teacher.name}
-                          className="h-12 w-12 rounded-full object-cover border-2 border-white dark:border-gray-700"
-                        />
-                        <div className="flex-1 min-w-0">
-                          <p className="font-semibold text-gray-900 dark:text-white text-sm truncate">
-                            {teacher.name}
-                          </p>
-                          <p className="text-xs text-gray-500 dark:text-gray-400 capitalize truncate">
-                            {teacher.subjects?.join(", ") || "No subjects"}
-                          </p>
-                          <p className="text-xs text-gray-400 dark:text-gray-500">
-                            {teacher.students?.length || 0} students
-                          </p>
-                        </div>
-                      </div>
-                      <button
-                        className="px-3 py-1.5 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg text-xs transition-colors flex-shrink-0"
-                        onClick={() => handleAddSelfAsStudentToTeacher(teacher)}
-                      >
-                        {teacher.students?.includes(user?.student_id as string) ? "Chat" : "Join"}
-                      </button>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <div className="flex flex-col items-center justify-center py-10 text-gray-400">
-                  <i className="fi fi-rr-users text-4xl mb-2"></i>
-                  <p className="text-sm">No teachers found</p>
-                  <p className="text-xs">Try adjusting your search</p>
-                </div>
-              )}
-            </div>
-          </div>
+          <TeacherListView
+            searchQuery={searchQuery}
+            handleSearch={handleSearch}
+            all_teachers={all_teachers}
+            user={user}
+            handleAddSelfAsStudentToTeacher={handleAddSelfAsStudentToTeacher}
+          />
         ) : !teacherUserId && !studentUserId && user?.role === "teacher" ? (
-          /* Student List View (for teachers) */
-          <div className="flex-1 overflow-y-auto p-4">
-            <div className="mb-4">
-              <input
-                type="text"
-                placeholder="Search students..."
-                value={searchQuery}
-                onChange={handleSearch}
-                className="w-full text-sm px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800"
-              />
-            </div>
-
-            <div className="mb-2">
-              <p className="text-xs text-gray-500 dark:text-gray-400">
-                {all_students?.length || 0} students found
-              </p>
-            </div>
-
-            <div className="space-y-2">
-              {all_students && all_students.length > 0 ? (
-                all_students.map((student: StudentModel) => (
-                  <div
-                    key={student.id}
-                    className="border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 rounded-xl p-3 hover:shadow-md transition-shadow cursor-pointer"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3 flex-1">
-                        <img
-                          src={student.avatar || "https://cdn-icons-png.flaticon.com/512/3135/3135715.png"}
-                          alt={student.name}
-                          className="h-12 w-12 rounded-full object-cover border-2 border-white dark:border-gray-700"
-                        />
-                        <div className="flex-1 min-w-0">
-                          <p className="font-semibold text-gray-900 dark:text-white text-sm truncate">
-                            {student.name}
-                          </p>
-                          <p className="text-xs text-gray-500 dark:text-gray-400 capitalize truncate">
-                            {student.subjects?.join(", ") || "No subjects"}
-                          </p>
-                        </div>
-                      </div>
-                      <button
-                        className="px-3 py-1.5 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg text-xs transition-colors flex-shrink-0"
-                        onClick={() => handleSelectStudent(student)}
-                      >
-                        Chat
-                      </button>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <div className="flex flex-col items-center justify-center py-10 text-gray-400">
-                  <i className="fi fi-rr-users text-4xl mb-2"></i>
-                  <p className="text-sm">No students found</p>
-                  <p className="text-xs">Try adjusting your search</p>
-                </div>
-              )}
-            </div>
-          </div>
+          <StudentListView
+            searchQuery={searchQuery}
+            handleSearch={handleSearch}
+            all_students={all_students}
+            handleSelectStudent={handleSelectStudent}
+          />
         ) : (teacherUserId || studentUserId) && !conversationChat ? (
-          /* Chat List View (for both teachers and students) */
-          <div className="flex-1 overflow-y-auto p-4">
-            <div className="mb-4 flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Your Conversations</h3>
-              <button
-                onClick={() => {
-                  if (teacherUserId) setTeacherUserId(null);
-                  if (studentUserId) setStudentUserId(null);
-                }}
-                className="text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-              >
-                ← Back
-              </button>
-            </div>
-
-            <div className="space-y-2">
-              {chats && chats.length > 0 ? (
-                chats.map((chatItem) => (
-                  <div
-                    key={chatItem.id}
-                    className="border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 rounded-xl p-3 hover:shadow-md transition-shadow cursor-pointer"
-                    onClick={() => {
-                      setSelectedChatId(chatItem.id as string);
-                      dispatch(fetchChatById(chatItem.id as string));
-                    }}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex-1 min-w-0">
-                        <p className="font-semibold text-gray-900 dark:text-white text-sm truncate">
-                          {chatItem.title || "Untitled Chat"}
-                        </p>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">
-                          {new Date(chatItem.created_at).toLocaleDateString()}
-                        </p>
-                        <p className="text-xs text-gray-400 dark:text-gray-500">
-                          {chatItem.conversations.length} messages
-                        </p>
-                      </div>
-                      <button
-                        className="px-3 py-1.5 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg text-xs transition-colors flex-shrink-0"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedChatId(chatItem.id as string);
-                          dispatch(fetchChatById(chatItem.id as string));
-                        }}
-                      >
-                        Open
-                      </button>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <div className="flex flex-col items-center justify-center py-10 text-gray-400">
-                  <i className="fi fi-rr-comment-alt text-4xl mb-2"></i>
-                  <p className="text-sm">No conversations yet</p>
-                  <p className="text-xs">Start a new conversation below</p>
-                </div>
-              )}
-            </div>
-          </div>
+          <ChatListView
+            chats={chats}
+            setSelectedChatId={setSelectedChatId}
+            teacherUserId={teacherUserId}
+            setTeacherUserId={setTeacherUserId}
+            studentUserId={studentUserId}
+            setStudentUserId={setStudentUserId}
+          />
         ) : (
-          /* Conversation History */
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
-            {/* Back button when viewing a conversation */}
-            {conversationChat && (teacherUserId || studentUserId) && (
-              <div className="mb-4">
-                <button
-                  onClick={() => {
-                    setConversationChat(null);
-                    setSelectedChatId(null);
-                    dispatch(clearConversations());
-                  }}
-                  className="text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 flex items-center gap-1"
-                >
-                  <i className="fi fi-rr-arrow-left flex items-center"></i>
-                  Back
-                </button>
-              </div>
-            )}
-
-            {chat && chat?.conversations.length > 0 ? (
-              chat?.conversations.map((conv) => (
-                <div key={conv?.id} className="space-y-3">
-                  {/* User Query */}
-                  {conv.query && (
-                    <div className="flex justify-end gap-2">
-                      {conv?.attached_media && (
-                        <img src={conv?.attached_media} className="w-16 h-16 object-cover rounded-xl border border-slate-100" alt="" onClick={() => window.open(conv?.attached_media, '_blank')} />
-                      )}
-                      <div className="bg-blue-500 text-white p-2 rounded-3xl rounded-tr-sm max-w-[80%] text-sm">
-                        <div className="flex justify-between flex items-center p-2">
-                          <p className="text-xs opacity-75">Student</p>
-
-                          <div className="flex items-center gap-2">
-                            <i
-                              className="fi fi-br-speaker text-xs"
-                              onClick={() => {
-
-                              }}
-                            ></i>
-                            <i
-                              className="fi fi-br-language text-xs"
-                              onClick={() => {
-                                dispatch(translateText({
-                                  conversation_id: conv.id,
-                                  language: 'hinglish',
-                                  query: true
-                                }));
-                              }}
-                            ></i>
-                            <i
-                              className="fi fi-br-arrow-small-left text-xs"
-                              onClick={() => {
-                                setReplyContext(conv.query);
-                              }}
-                            ></i>
-                          </div>
-                        </div>
-                        {conv?.in_reply_to && (
-                          <div className="text-xs w-84 bg-blue-600 text-gray-100 p-2 rounded-xl truncate">
-                            <p className="text-xs opacity-75">In reply to:</p>
-                            {conv?.in_reply_to}
-                          </div>
-                        )}
-                        <div className="p-2">
-                          <ReactMarkdown
-                            remarkPlugins={[remarkGfm, remarkMath]}
-                            rehypePlugins={[rehypeKatex]}
-                          >
-                            {conversation && conversation?.translations?.[0]?.query || conv.query}
-                          </ReactMarkdown>
-                          <p className="text-xs opacity-75 mt-1">
-                            {new Date(conv.created_at).toLocaleTimeString()}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* AI Answer */}
-                  {conv.answer && (
-                    <div className="flex flex-col justify-start gap-2">
-                      <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-3xl rounded-tl-sm max-w-[90%] text-sm text-gray-800 dark:text-gray-200 whitespace-pre-line">
-                        <div className="flex justify-between flex items-center pb-1 mb-1">
-                          <p className="text-xs opacity-75">Assistant</p>
-                          <div className="flex items-center gap-2">
-                            <i
-                              className="fi fi-br-speaker text-xs"
-                              onClick={() => {
-
-                              }}
-                            ></i>
-                            <i
-                              className="fi fi-br-language text-xs"
-                              onClick={() => {
-                                // change language
-                                dispatch(translateText({
-                                  conversation_id: conv.id,
-                                  language: 'hinglish',
-                                  query: false
-                                }));
-                              }}
-                            ></i>
-                            <i
-                              className="fi fi-br-arrow-small-left text-xs"
-                              onClick={() => {
-                                setReplyContext(conv.query);
-                              }}
-                            ></i>
-                          </div>
-                        </div>
-                        <ReactMarkdown
-                          remarkPlugins={[remarkGfm, remarkMath]}
-                          rehypePlugins={[rehypeKatex]}
-                        >
-                          {conversation && conversation?.translations?.[0]?.answer || conv.answer}
-                        </ReactMarkdown>
-
-                        {/* Quick Actions */}
-                        <div className="flex items-center gap-2 mt-3 pt-2 border-t border-gray-200 dark:border-gray-700">
-
-                          <button
-                            onClick={() => handleQuickAction('mcq')}
-                            className={`p-1.5 rounded-lg transition-colors ${activeQuickAction === 'mcq' ? 'bg-teal-100 text-teal-600 dark:bg-teal-900/30' : 'hover:bg-teal-100 dark:hover:bg-teal-900/30 text-gray-500 hover:text-teal-600'}`}
-                            title="Multiple Choice Quiz"
-                          >
-                            <i className="fi fi-rr-list-check text-xs"></i>
-                          </button>
-                          <button
-                            onClick={() => handleQuickAction('quiz')}
-                            className={`p-1.5 rounded-lg transition-colors ${activeQuickAction === 'quiz' ? 'bg-indigo-100 text-indigo-600 dark:bg-indigo-900/30' : 'hover:bg-indigo-100 dark:hover:bg-indigo-900/30 text-gray-500 hover:text-indigo-600'}`}
-                            title="Short Answer Question"
-                          >
-                            <i className="fi fi-rr-text text-xs"></i>
-                          </button>
-                          <button
-                            onClick={() => handleQuickAction('concept')}
-                            className={`p-1.5 rounded-lg transition-colors ${activeQuickAction === 'concept' ? 'bg-cyan-100 text-cyan-600 dark:bg-cyan-900/30' : 'hover:bg-cyan-100 dark:hover:bg-cyan-900/30 text-gray-500 hover:text-cyan-600'}`}
-                            title="Follow On Concept"
-                          >
-                            <i className="fi fi-rr-bulb text-xs"></i>
-                          </button>
-                        </div>
-
-                        {/* Quick Action Display Area */}
-                        {activeQuickAction && (
-                          <QuickActionDisplay
-                            type={activeQuickAction}
-                            data={conv.quick_action}
-                            conversationId={conv.id}
-                          />
-                        )}
-
-                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
-                          {new Date(conv.created_at).toLocaleTimeString()}
-                        </p>
-                      </div>
-
-                      {/* teacher's comments */}
-                      {conv?.comments?.map((comment, i) => (
-                        <div key={i} className="bg-gray-100 dark:bg-gray-800 p-2 rounded-3xl rounded-tl-sm max-w-[90%] text-sm text-gray-800 dark:text-gray-200 whitespace-pre-line">
-                          <div className="flex justify-between flex items-center p-2 mb-1">
-                            <p className="text-xs opacity-75">Teacher</p>
-                            <div className="flex items-center gap-2">
-                              <i
-                                className="fi fi-br-language text-xs"
-                                onClick={() => {
-                                  // change language
-                                }}
-                              ></i>
-                              <i
-                                className="fi fi-br-arrow-small-left text-xs"
-                                onClick={() => {
-                                  setReplyContext(conv.query);
-                                }}
-                              ></i>
-                            </div>
-                          </div>
-
-                          {comment?.in_reply_to && (
-                            <div className="text-xs w-84 bg-gray-200 text-gray-600 p-2 rounded-xl truncate">
-                              <p className="text-xs opacity-75">In reply to:</p>
-                              {comment?.in_reply_to}
-                            </div>
-                          )}
-                          <div className="p-2">
-                            <ReactMarkdown
-                              remarkPlugins={[remarkGfm, remarkMath]}
-                              rehypePlugins={[rehypeKatex]}
-                            >
-                              {comment.comment_text}
-                            </ReactMarkdown>
-                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
-                              {new Date(comment.timestamp).toLocaleTimeString()}
-                            </p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))
-            ) : (
-              <div className="flex flex-col items-center justify-center h-full text-gray-400">
-                <i className="fi fi-rr-comment-alt text-4xl mb-2"></i>
-                <p className="text-sm">No messages yet</p>
-                <p className="text-xs">Start a conversation below</p>
-              </div>
-            )}
-          </div>
+          <ConversationView
+            chat={chat}
+            conversationChat={conversationChat}
+            setConversationChat={setConversationChat}
+            setSelectedChatId={setSelectedChatId}
+            teacherUserId={teacherUserId}
+            studentUserId={studentUserId}
+            setReplyContext={setReplyContext}
+          />
         )}
 
         {/* Query Box */}
@@ -604,5 +237,13 @@ export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = ({
         ) : null}
       </div>
     </>
+  );
+};
+
+export const ChatSlidePanel: React.FC<ChatSlidePanelProps> = (props) => {
+  return (
+    <VoiceAssistantProvider>
+      <ChatSlidePanelContent {...props} />
+    </VoiceAssistantProvider>
   );
 };

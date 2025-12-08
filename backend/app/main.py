@@ -2,7 +2,11 @@ from app.core.logger_middleware import LoggerMiddleware
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routers import auth, aws, status, upload, converstions, coaching, teachers, students, query_lang, notes, knowledge_graph
+from app.routers import auth, aws, status, upload, converstions, coaching, teachers, students, query_lang, notes, knowledge_graph, speech
+
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = FastAPI(title="AI Assistant MVP")
 
@@ -28,6 +32,8 @@ app.include_router(students.router, prefix="/students", tags=["Teachers"])
 app.include_router(query_lang.router, prefix="/querylang", tags=["Query Lang"])
 app.include_router(notes.router, prefix="/notes", tags=["Notes"])
 app.include_router(knowledge_graph.router, prefix="/knowledgegraph", tags=["Knowledge Graph"])
+
+app.include_router(speech.router, prefix="/speech", tags=["Speech"])
 
 
 

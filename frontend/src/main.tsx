@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import '@flaticon/flaticon-uicons/css/all/all.css';
-import { ThemeProvider } from './context/ContextProvider/ThemeProvider';
+import { ThemeProvider } from './contexts/ContextProvider/ThemeProvider';
 import AppWithServiceWorker from './AppWithServiceWorker';
 import { userInfoFromLocalStorage } from './store';
 // import { AppProvider } from './context/ContextProvider/AppProvider';
@@ -13,7 +13,7 @@ root.render(
   <StrictMode>
     <ThemeProvider>
       {/* <AppProvider> */}
-        <AppWithServiceWorker />
+      <AppWithServiceWorker />
       {/* </AppProvider> */}
     </ThemeProvider>
   </StrictMode>
