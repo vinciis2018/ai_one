@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 import logging
 from google import genai
 from google.genai import types
-
+from typing import Optional, Dict
 # ------------------------------------------------
 # Load configuration
 # ------------------------------------------------
@@ -28,7 +28,7 @@ gemini_client = genai.Client(api_key=GEMINI_API_KEY)
 # ------------------------------------------------
 # Core LLM handler
 # ------------------------------------------------
-def call_gemini(prompt: str) -> str:
+def call_gemini(prompt: str, response_format: Optional[Dict] = None) -> str:
     """
     Unified function to route query based on availability:
     1️⃣ Gemini
@@ -40,22 +40,94 @@ def call_gemini(prompt: str) -> str:
     try:
         logger.info(f"⚙️ Running Gemini model: {GEMINI_MODEL}")
 
-        response = gemini_client.models.generate_content(
-            model=GEMINI_MODEL,
-            contents=[
-                {
-                    "parts": [
+        if response_format:
+        
+            response = gemini_client.models.generate_content(
+                    model=GEMINI_MODEL,
+                    contents=[
                         {
-                            "text": prompt
+                            "parts": [
+                                {
+                                    "text": prompt
+                                }
+                            ]
                         }
-                    ]
-                }
-            ],
-            config=types.GenerateContentConfig(
-                system_instruction=SYSTEM_PROMPT,
-                # response_mime_type="application/json",
-            ),
-        )
+                    ],
+                    config=types.GenerateContentConfig(
+                        system_instruction=SYSTEM_PROMPT,
+                        response_mime_type="application/json",
+                        responseSchema={
+                            "type": "OBJECT",
+                            "properties": {
+                                "root": {
+                                    "type": "OBJECT",
+                                    "properties": {
+                                        "name": { "type": "STRING" },
+                                        "details": { "type": "STRING" },
+                                        "children": {
+                                            "type": "ARRAY",
+                                            "items": {
+                                                "type": "OBJECT",
+                                                "properties": {
+                                                    "name": { "type": "STRING" },
+                                                    "details": { "type": "STRING" },
+                                                    "children": {
+                                                        "type": "ARRAY",
+                                                        "items": {
+                                                            "type": "OBJECT",
+                                                            "properties": {
+                                                            "name": { "type": "STRING" },
+                                                            "details": { "type": "STRING" },
+                                                            "children": {
+                                                                "type": "ARRAY",
+                                                                "items": {
+                                                                    "type": "OBJECT",
+                                                                    "properties": {
+                                                                        "name": { "type": "STRING" },
+                                                                        "details": { "type": "STRING" },
+                                                                        "children": {
+                                                                            "type": "ARRAY",
+                                                                            "items": {
+                                                                                "type": "OBJECT",
+                                                                                "properties": {
+                                                                                    "name": { "type": "STRING" },
+                                                                                    "details": { "type": "STRING" }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "required": ["name", "children"]
+                            }
+                        }
+                    }
+                ),
+            )
+        else:
+            response = gemini_client.models.generate_content(
+                    model=GEMINI_MODEL,
+                    contents=[
+                        {
+                            "parts": [
+                                {
+                                "text": prompt
+                            }
+                        ]
+                    }
+                ],
+                config=types.GenerateContentConfig(
+                    system_instruction=SYSTEM_PROMPT,
+                    # response_mime_type="application/json",
+                ),
+            )
         print(response.text, "--------:::::::::::::::: response gemini")
         return response.text.strip()
     except Exception as e:

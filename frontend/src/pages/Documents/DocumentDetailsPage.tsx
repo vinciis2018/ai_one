@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { fetchDocumentById, setViewingPageNumber } from "../../store/slices/documentsSlice";
-import { createTranscription, saveNotes, generateQuiz, generateNotes, generateMCQ } from "../../store/slices/notesSlice";
+import { createTranscription, saveNotes, generateQuiz, generateNotes, generateMCQ, generateMindmap } from "../../store/slices/notesSlice";
 import { useParams, useNavigate } from "react-router-dom";
 import { FullLayout } from "../../layouts/AppLayout";
 import { NotesTab } from "./components/NotesTab";
@@ -11,6 +11,7 @@ import { MCQTab } from "./components/MCQTab";
 import { PersonalTricksTab } from "./components/PersonalTricksTab";
 import { PYQTab } from "./components/PYQTab";
 import { TranscriptionTab } from "./components/TranscriptionTab";
+import { MindmapTab } from "./components/MindmapTab";
 import { cropImage } from "../../utilities/filesUtils";
 import { DocumentViewer } from "./components/DocumentViewer";
 
@@ -28,7 +29,7 @@ export const DocumentDetailsPage: React.FC = () => {
 
   // const [pageNumber, setPageNumber] = useState<number>(1); // Moved to Redux
   const pageNumber = viewingPageNumber;
-  const [activeTab, setActiveTab] = useState<'transcription' | 'notes' | 'quiz' | 'mcq' | 'personalTricks' | 'pyq'>('transcription');
+  const [activeTab, setActiveTab] = useState<'transcription' | 'notes' | 'quiz' | 'mcq' | 'personalTricks' | 'pyq' | 'mindmap'>('transcription');
   const [notesDescription, setNotesDescription] = useState<Array<{
     page: number;
     transcription: string;
@@ -472,6 +473,7 @@ export const DocumentDetailsPage: React.FC = () => {
                     { id: 'notes', label: 'Notes', icon: 'fi-rr-magic-wand', color: 'text-orange-600', bg: 'bg-orange-600' },
                     { id: 'quiz', label: 'Quiz', icon: 'fi-rr-list-check', color: 'text-violet-600', bg: 'bg-violet-600' },
                     { id: 'mcq', label: 'MCQ', icon: 'fi-rr-checkbox', color: 'text-indigo-600', bg: 'bg-indigo-600' },
+                    { id: 'mindmap', label: 'Mindmap', icon: 'fi-rr-network', color: 'text-pink-600', bg: 'bg-pink-600' },
                     { id: 'personalTricks', label: 'Tricks', icon: 'fi-rr-lightbulb', color: 'text-indigo-600', bg: 'bg-indigo-600' },
                     { id: 'pyq', label: 'PYQ', icon: 'fi-rr-calendar', color: 'text-purple-600', bg: 'bg-purple-600' }
                   ].map(tab => (
@@ -504,6 +506,7 @@ export const DocumentDetailsPage: React.FC = () => {
                   {activeTab === 'notes' && <NotesTab pageNumber={pageNumber} notesDescription={notesDescription} generateNotesStatus={generateNotesStatus} handleGenerateNotes={handleGenerateNotes} />}
                   {activeTab === 'quiz' && <QuizTab pageNumber={pageNumber} notesDescription={notesDescription} quizData={quizData} quizStatus={quizStatus} handleGenerateQuiz={handleGenerateQuiz} />}
                   {activeTab === 'mcq' && <MCQTab pageNumber={pageNumber} notesDescription={notesDescription} mcqData={mcqData} mcqStatus={mcqStatus} handleGenerateMCQ={handleGenerateMCQ} />}
+                  {activeTab === 'mindmap' && <MindmapTab pageNumber={pageNumber} notesDescription={notesDescription} />}
                   {activeTab === 'personalTricks' && <PersonalTricksTab pageNumber={pageNumber} notesDescription={notesDescription} onUpdateTricks={handleUpdateTricks} />}
                   {activeTab === 'pyq' && <PYQTab pageNumber={pageNumber} notesDescription={notesDescription} />}
                 </div>

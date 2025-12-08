@@ -698,6 +698,133 @@ async def save_note_description(req: SaveNoteRequest):
 
 
 
+
+
+class GenerateMindMapRequest(BaseModel):
+    document_id: str
+    page_number: int
+    domain: str = "general"
+
+@router.post("/generate-mind-map", status_code=status.HTTP_200_OK)
+async def generate_mind_map(req: GenerateMindMapRequest):
+    """
+    Generate a mind map from transcription using LLM.
+    Returns Mermaid.js code for the mind map.
+    Automatically saves the mind map to the document's notes_description.
+    """
+    try:
+        # Validate document_id
+        if not ObjectId.is_valid(req.document_id):
+            raise HTTPException(
+                status_code=400,
+                detail="Invalid document ID format"
+            )
+        
+        document_id = ObjectId(req.document_id)
+        
+        # Fetch document
+        document = await db.documents.find_one({"_id": document_id})
+        if not document:
+            raise HTTPException(
+                status_code=404,
+                detail="Document not found"
+            )
+            
+        # Get transcription for the specified page
+        notes_description = document.get("notes_description", [])
+        transcription = ""
+        
+        for note in notes_description:
+            if note.get("page") == req.page_number:
+                transcription = note.get("transcription", "")
+                break
+        
+        if not transcription:
+            raise HTTPException(
+                status_code=404,
+                detail=f"No transcription found for page {req.page_number}"
+            )
+            
+        # Construct prompt for LLM
+        prompt = f"""
+        You are teaching assistant who has the following transcription of notes:\n
+        {transcription} \n
+
+        Analyze the provided text and structure it into a hierarchical mind map.
+        The output must be a single JSON object representing the root node only, without any additional text.
+        
+        Rules:
+        1. The root node represents the main topic/title of the text.
+        2. Break down the text into logical subtopics (children).
+        3. Continue nesting to represent details, supporting arguments, or examples.
+        4. Each node must have a "name" (concise label).
+        5. "children" is an array of nodes.
+        6. Optional: "details" property for a short explanation (max 15 words) if context is needed.
+        """
+        
+        # Call LLM
+        loop = asyncio.get_running_loop()
+        generated_mind_map = await loop.run_in_executor(
+            None, 
+            call_llm, 
+            prompt,
+            "gemini"
+        )
+        
+        # Clean response if it contains markdown formatting
+        generated_mind_map = generated_mind_map.replace("```json", "").replace("```", "").strip()
+        
+        # ---------------------------------------------------------
+        # Save mind map to Document
+        # ---------------------------------------------------------
+        
+        page_updated = False
+        for i, note in enumerate(notes_description):
+            if note.get("page") == req.page_number:
+                notes_description[i]["mind_map"] = generated_mind_map
+                page_updated = True
+                break
+        
+        if page_updated:
+            await db.documents.update_one(
+                {"_id": document_id},
+                {"$set": {"notes_description": notes_description}}
+            )
+            print(f"✅ Auto-saved mind map for page {req.page_number} to document {req.document_id}")
+        else:
+            # Page entry does not exist, create a new one
+            notes_description.append({
+                "page": req.page_number,
+                "transcription": "",
+                "mind_map": generated_mind_map
+            })
+            await db.documents.update_one(
+                {"_id": document_id},
+                {"$set": {"notes_description": notes_description}}
+            )
+            print(f"✅ Created mind map entry for page {req.page_number} in document {req.document_id}")
+        
+        return {
+            "status": "success",
+            "document_id": req.document_id,
+            "page_number": req.page_number,
+            "mind_map": generated_mind_map,
+            "saved": True
+        }
+            
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"❌ Error generating mind map: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Mind map generation failed: {str(e)}"
+        )
+        
+        
+        
+
+
 ########################################
 # for complete doc related 
 ########################################

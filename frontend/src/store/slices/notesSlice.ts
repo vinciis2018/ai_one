@@ -32,6 +32,8 @@ interface NotesState {
   generateNotesData: any | null;
   personalTricksStatus: "idle" | "loading" | "succeeded" | "failed";
   personalTricksData: any | null;
+  generateMindmapStatus: "idle" | "loading" | "succeeded" | "failed";
+  generateMindmapData: any | null;
   error: string | null;
 }
 
@@ -49,6 +51,8 @@ const initialState: NotesState = {
   generateNotesData: null,
   personalTricksStatus: "idle",
   personalTricksData: null,
+  generateMindmapStatus: "idle",
+  generateMindmapData: null,
   error: null,
 };
 
@@ -329,6 +333,44 @@ export const createPersonalTricks = createAsyncThunk<
   }
 );
 
+
+
+
+// ------------------------------------------------
+// Generate Mind Map
+// ------------------------------------------------
+interface GenerateMindmapPayload {
+  page_number: number;
+  document_id: string;
+}
+
+interface GenerateMindmapResponse {
+  notes: any[];
+}
+
+export const generateMindmap = createAsyncThunk<
+  GenerateMindmapResponse,
+  GenerateMindmapPayload,
+  { rejectValue: string }
+>(
+  "notes/generateMindmap",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await axios.post<GenerateMindmapResponse>(
+        `${BASE_URL}/notes/generate-mind-map`,
+        payload
+      );
+      return response.data;
+    } catch (error: unknown) {
+      const axiosError = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(
+        axiosError.response?.data?.message || "Failed to generate notes"
+      );
+    }
+  }
+);
+
+
 // ------------------------------------------------
 // Slice
 // ------------------------------------------------
@@ -480,6 +522,21 @@ const notesSlice = createSlice({
       .addCase(createPersonalTricks.rejected, (state, action) => {
         state.personalTricksStatus = "failed";
         state.error = action.payload || "Failed to create personal tricks notes";
+      })
+
+      // Generate Mindmap
+      .addCase(generateMindmap.pending, (state) => {
+        state.generateMindmapStatus = "loading";
+        state.error = null;
+        state.generateMindmapData = null;
+      })
+      .addCase(generateMindmap.fulfilled, (state, action) => {
+        state.generateMindmapStatus = "succeeded";
+        state.generateMindmapData = action.payload;
+      })
+      .addCase(generateMindmap.rejected, (state, action) => {
+        state.generateMindmapStatus = "failed";
+        state.error = action.payload || "Failed to generate mindmap";
       });
   },
 });

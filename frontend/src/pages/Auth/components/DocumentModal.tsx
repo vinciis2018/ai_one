@@ -5,6 +5,7 @@ import type { DocumentItem } from '../../../store/slices/documentsSlice';
 import { useAppSelector } from '../../../store';
 import { loadPdf, renderPageToImage } from '../../../utilities/pdfUtils';
 import { useSelectionBox } from '../../../hooks/useSelectionBox';
+import { MindmapTab } from '../../Documents/components/MindmapTab';
 
 interface DocumentModalProps {
   doc: DocumentItem;
@@ -17,7 +18,7 @@ interface DocumentModalProps {
   onPageChange?: (page: number) => void;
 }
 
-type ViewMode = 'pdf' | 'notes' | 'quiz' | 'mcq' | 'personalTricks';
+type ViewMode = 'pdf' | 'notes' | 'quiz' | 'mcq' | 'personalTricks' | 'mindmap';
 
 const DocumentModal: React.FC<DocumentModalProps> = ({
   doc,
@@ -491,6 +492,41 @@ const DocumentModal: React.FC<DocumentModalProps> = ({
       );
     }
 
+    if (viewMode === 'mindmap') {
+      return (
+        <div className="h-full w-full bg-white overflow-hidden p-6 relative">
+          <div className="max-w-6xl mx-auto h-full flex flex-col">
+            <div className="flex items-center justify-between mb-4 flex-shrink-0">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-pink-100 rounded-lg flex items-center justify-center">
+                  <i className="fi fi-rr-network text-pink-600"></i>
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold text-gray-900">Mindmap</h2>
+                  <p className="text-sm text-gray-500">Page {pageNumber}</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setViewMode('pdf')}
+                className="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium text-gray-700 transition-colors flex items-center gap-2"
+              >
+                <i className="fi fi-rr-arrow-left text-xs"></i>
+                Back to PDF
+              </button>
+            </div>
+
+            <div className="flex-1 min-h-0 bg-white border border-gray-100 rounded-2xl p-1 shadow-sm overflow-hidden">
+              <MindmapTab
+                pageNumber={pageNumber}
+                notesDescription={doc.notes_description || []}
+                documentId={doc.id}
+              />
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     return null;
   };
 
@@ -641,14 +677,14 @@ const DocumentModal: React.FC<DocumentModalProps> = ({
               )}
 
               {/* Floating Action Buttons */}
-              <div className="absolute top-4 right-4 flex flex-col gap-3 z-30">
+              <div className="absolute top-4 right-4 flex flex-col gap-2 z-30">
                 {/* Notes Button */}
                 <button
                   onClick={() => setViewMode('notes')}
-                  className="w-14 h-14 bg-orange-500 hover:bg-orange-600 text-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 group relative"
+                  className="w-10 h-10 bg-orange-500 hover:bg-orange-600 text-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 group relative"
                   title="View Notes"
                 >
-                  <i className="fi fi-rr-magic-wand text-lg flex"></i>
+                  <i className="fi fi-rr-magic-wand text-lg flex items-center justify-center hover:scale-110"></i>
                   <span className="absolute right-16 bg-black/80 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
                     Notes
                   </span>
@@ -656,10 +692,10 @@ const DocumentModal: React.FC<DocumentModalProps> = ({
                 {/* Quiz Button */}
                 <button
                   onClick={() => setViewMode('quiz')}
-                  className="w-14 h-14 bg-violet-500 hover:bg-violet-600 text-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 group relative"
+                  className="w-10 h-10 bg-violet-500 hover:bg-violet-600 text-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 group relative"
                   title="View Quiz"
                 >
-                  <i className="fi fi-rr-list-check text-lg flex"></i>
+                  <i className="fi fi-rr-list-check text-lg flex items-center justify-center hover:scale-110"></i>
                   <span className="absolute right-16 bg-black/80 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
                     Quiz
                   </span>
@@ -667,10 +703,10 @@ const DocumentModal: React.FC<DocumentModalProps> = ({
                 {/* MCQ Button */}
                 <button
                   onClick={() => setViewMode('mcq')}
-                  className="w-14 h-14 bg-indigo-500 hover:bg-indigo-600 text-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 group relative"
+                  className="w-10 h-10 bg-indigo-500 hover:bg-indigo-600 text-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 group relative"
                   title="View MCQ"
                 >
-                  <i className="fi fi-rr-checkbox text-lg flex"></i>
+                  <i className="fi fi-rr-checkbox text-lg flex items-center justify-center hover:scale-110"></i>
                   <span className="absolute right-16 bg-black/80 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
                     MCQ
                   </span>
@@ -678,22 +714,33 @@ const DocumentModal: React.FC<DocumentModalProps> = ({
                 {/* Personal Tricks Button */}
                 <button
                   onClick={() => setViewMode('personalTricks')}
-                  className="w-14 h-14 bg-blue-500 hover:bg-blue-600 text-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 group relative"
+                  className="w-10 h-10 bg-blue-500 hover:bg-blue-600 text-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 group relative"
                   title="View Personal Tricks"
                 >
-                  <i className="fi fi-rr-lightbulb text-lg flex"></i>
+                  <i className="fi fi-rr-bulb text-lg flex items-center justify-center hover:scale-110"></i>
                   <span className="absolute right-16 bg-black/80 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
                     Personal Tricks
+                  </span>
+                </button>
+                {/* Mindmap Button */}
+                <button
+                  onClick={() => setViewMode('mindmap')}
+                  className="w-10 h-10 bg-pink-500 hover:bg-pink-600 text-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 group relative"
+                  title="View Mindmap"
+                >
+                  <i className="fi fi-rr-network text-lg flex items-center justify-center hover:scale-110"></i>
+                  <span className="absolute right-16 bg-black/80 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                    Mindmap
                   </span>
                 </button>
                 {/* Full View Button */}
                 {user?.role === "teacher" && (
                   <button
                     onClick={() => navigate(`/documents/${doc.id}`)}
-                    className="w-14 h-14 bg-gray-800 hover:bg-black text-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 group relative"
+                    className="w-10 h-10 bg-gray-800 hover:bg-black text-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 group relative"
                     title="Open Full Document"
                   >
-                    <i className="fi fi-rr-expand text-lg flex"></i>
+                    <i className="fi fi-rr-expand text-lg flex items-center justify-center hover:scale-110"></i>
                     <span className="absolute right-16 bg-black/80 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
                       Full View
                     </span>

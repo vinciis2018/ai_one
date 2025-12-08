@@ -27,6 +27,7 @@ export const NotesTab: React.FC<NotesTabProps> = ({
     (Array.isArray(currentPageNotes) && currentPageNotes.length > 0)
   );
 
+  
   // Render notes content based on type
   const renderNotes = () => {
     if (!currentPageNotes) return null;
@@ -58,8 +59,6 @@ export const NotesTab: React.FC<NotesTabProps> = ({
 
     return null;
   };
-
-
 
   return (
     <div className="space-y-4 h-full flex flex-col">
