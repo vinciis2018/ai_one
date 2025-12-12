@@ -205,57 +205,63 @@ async def signup(user_data: UserCreate):
 
 
 @router.post("/login", response_model=Token)
-async def login(
-    login_data: LoginRequest
-):
-    email = login_data.email
-    password = login_data.password
-    user = await authenticate_user(email, password)
-    if not user:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect email or password",
-            headers={"WWW-Authenticate": "Bearer"},
+async def login(login_data: LoginRequest):
+    try:
+        email = login_data.email
+        password = login_data.password
+        user = await authenticate_user(email, password)
+        if not user:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Incorrect email or password",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
+        
+        # Update last login time
+        await users_collection.update_one(
+            {"_id": user.id},
+            {"$set": {"last_login": datetime.now()}}
+        )
+        
+        # Create access token
+        access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+        expires_at = datetime.now() + access_token_expires
+        expires_at_timestamp = int(expires_at.timestamp() * 1000) 
+        access_token = create_access_token(
+            data={"sub": user.email}, 
+            expires_delta=access_token_expires
         )
     
-    # Update last login time
-    await users_collection.update_one(
-        {"_id": user.id},
-        {"$set": {"last_login": datetime.now()}}
-    )
-    
-    # Create access token
-    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    expires_at = datetime.now() + access_token_expires
-    expires_at_timestamp = int(expires_at.timestamp() * 1000) 
-    access_token = create_access_token(
-        data={"sub": user.email}, 
-        expires_delta=access_token_expires
-    )
- 
-   # Convert user to dict and handle the ID properly
-    user_dict = user.model_dump() if hasattr(user, 'model_dump') else dict(user)
-     # Prepare user data for response
-    user_data = {
-        "_id": str(user_dict.get("_id") or user_dict.get("id")),
-        "email": user_dict.get("email"),
-        "username": user_dict.get("username"),
-        "firstName": user_dict.get("firstName"),
-        "lastName": user_dict.get("lastName"),
-        "role": user_dict.get("role", "student"),
-        "is_active": user_dict.get("is_active", True),
-        "full_name": user_dict.get("full_name"),
-    }
+        # Convert user to dict and handle the ID properly
+        user_dict = user.model_dump() if hasattr(user, 'model_dump') else dict(user)
+        # Prepare user data for response
+        user_data = {
+            "_id": str(user_dict.get("_id") or user_dict.get("id")),
+            "email": user_dict.get("email"),
+            "username": user_dict.get("username"),
+            "firstName": user_dict.get("firstName"),
+            "lastName": user_dict.get("lastName"),
+            "role": user_dict.get("role", "student"),
+            "is_active": user_dict.get("is_active", True),
+            "full_name": user_dict.get("full_name"),
+        }
 
-    result = {
-         "access_token": access_token,
-        "token_type": "bearer",
-        "expires_at": expires_at_timestamp,
-        "user": user_data
-    }
-    print("tyy", result)
-
-    return result
+        result = {
+            "access_token": access_token,
+            "token_type": "bearer",
+            "expires_at": expires_at_timestamp,
+            "user": user_data
+        }
+        print("tyy", result)
+        return result
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Login error: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(e)
+        )
 
 @router.post("/logout")
 async def logout(response: Response):
