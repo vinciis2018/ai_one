@@ -3,8 +3,12 @@ import { useAppDispatch, useAppSelector } from '../../store';
 import { clearConversations, fetchChats, fetchConversations, setSearch, setSelectedChat } from '../../store/slices/conversationsSlice';
 import { FullLayout } from '../../layouts/AppLayout';
 import { useNavigate } from 'react-router-dom';
-import { EnhancedTextDisplay } from '../../components/atoms/EnhancedTextDisplay';
 
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css';
 
 export const ChatsPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -14,7 +18,6 @@ export const ChatsPage: React.FC = () => {
   const { items, status, search, page, hasMore, selectedChat, chats } = useAppSelector(
     (state) => state.conversations
   );
-
 
   useEffect(() => {
     if (selectedChat) {
@@ -35,132 +38,262 @@ export const ChatsPage: React.FC = () => {
     dispatch(setSearch(e.target.value));
     dispatch(clearConversations());
   };
+
   return (
     <FullLayout>
-      <div className="bg-white max-w-4xl mx-auto py-2 px-4 border">
-        <div className="rounded-lg overflow-hidden">
-          <div className="py-2 flex items-center gap-2 border-b border-gray-100" onClick={() => navigate(-1)}>
-            <i className="fi fi-sr-arrow-small-left flex items-center rounded-full bg-baigeLight p-1" />
-            <h1 className="w-full text-sm font-semibold">
-              Chats
-            </h1>
-          </div>
-          {status == "loading" && <p>Loading chats...</p>}
-          {status == "failed" && <p className="text-red-500">Failed to load chats.</p>}
-          <div className="grid grid-cols-3 gap-2 py-2">
-            <input
-              type="text"
-              placeholder="Search Chats..."
-              value={search}
-              onChange={handleSearch}
-              className="col-span-2 text-sm px-4 py-2 rounded-full border border-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-baigeLight"
-            />
-          </div>
+      <div className="min-h-screen">
+        <div className="max-w-5xl mx-auto px-4 py-4 lg:py-8">
 
-          <div className="py-2 h-full">
-            <h2 className="text-xs">found {chats.length} chats</h2>
-            <div className="py-4 space-y-2">
-              <div className="h-full overflow-y-auto no-scrollbar space-y-2">
-                {Array.isArray(chats) ? chats.map((chat) => (
-                  <div
-                    key={chat.id}
-                    className="border border-gray-100 bg-baigeLight rounded-xl p-4 hover:shadow cursor-pointer flex items-center justify-between"
-
-                    onClick={() => dispatch(setSelectedChat(chat))}
-                  >
-                    <div className="flex items-center gap-2">
-                      <div className="">
-                        <p className="font-semibold">{chat.title}</p>
-                        <p className="text-xs text-gray-400">{new Date(chat.created_at).toLocaleString()}</p>
-                        <p className="text-xs text-gray-400">{chat.conversations.length} messages</p>
-
-                      </div>
-                    </div>
-                    <button
-                      className="px-4 py-2 bg-white border border-green text-green font-semibold rounded-full text-xs"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        dispatch(setSelectedChat(chat));
-                      }}
-                    >
-                      view
-                    </button>
-                  </div>
-                )) : null}
+          {/* Header Section */}
+          <div className=" mb-4 lg:mb-8">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center lg:gap-4 gap-2">
+                <button
+                  onClick={() => navigate(-1)}
+                  className="group flex items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-white shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105"
+                >
+                  <i className="fi fi-rr-arrow-small-left text-slate-700 dark:text-gray-600 group-hover:text-logoBlue transition-colors" />
+                </button>
+                <div>
+                  <h1 className="text-xl lg:text-3xl font-bold bg-gradient-to-r from-logoBlue to-logoViolet bg-clip-text text-transparent">
+                    Chats
+                  </h1>
+                  <p className="text-xs lg:text-sm text-slate-500 dark:text-slate-400 mt-1">
+                    {chats.length} {chats.length === 1 ? 'conversation' : 'conversations'} found
+                  </p>
+                </div>
               </div>
             </div>
+
+            {/* Search Section */}
+            {/* <div className="bg-white dark:bg-black backdrop-blur-xl border border-white shadow-sm rounded-2xl pb-2">
+              <div className="flex flex-row gap-3">
+                <div className="flex-1 relative">
+                  <input
+                    type="text"
+                    placeholder="Search chats by title..."
+                    value={search}
+                    onChange={handleSearch}
+                    className="w-full px-4 py-2.5 rounded-xl border border-slate-100 dark:border-white focus:outline-none focus:border-logoBlue focus:ring-1 focus:ring-logoBlue transition-all duration-300 bg-slate-50 dark:bg-white font-medium text-slate-900 dark:text-slate-900 placeholder:text-slate-400"
+                  />
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">
+                    <i className="fi fi-rr-search"></i>
+                  </div>
+                </div>
+              </div>
+            </div> */}
           </div>
+
+          {/* Loading State */}
+          {status === "loading" && chats.length === 0 && (
+            <div className="flex flex-col items-center justify-center py-20">
+              <div className="w-16 h-16 border-4 border-logoBlue border-t-transparent rounded-full animate-spin mb-4" />
+              <p className="text-slate-600 dark:text-slate-300 font-medium">Loading conversations...</p>
+            </div>
+          )}
+
+          {/* Error State */}
+          {status === "failed" && (
+            <div className="bg-red-50 dark:bg-red-900 border border-red-200 dark:border-red-500 rounded-2xl p-6 flex items-center gap-4">
+              <div className="w-12 h-12 bg-red-100 dark:bg-red-800 rounded-full flex items-center justify-center">
+                <i className="fi fi-rr-cross-circle flex items-center justify-center text-red-500 text-xl" />
+              </div>
+              <div>
+                <p className="text-red-800 dark:text-red-200 font-semibold">Failed to load chats</p>
+                <button
+                  onClick={() => dispatch(fetchChats({ page: 1, limit: 100, search, user_id: user?._id || '' }))}
+                  className="text-red-600 dark:text-red-300 text-sm mt-1 hover:underline"
+                >
+                  Try Again
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Chats Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {Array.isArray(chats) && chats.map((chat, index) => (
+              <div
+                key={chat.id}
+                className="group relative bg-white dark:bg-black backdrop-blur-xl rounded-2xl p-5 hover:shadow-xl transition-all duration-300 cursor-pointer border border-white hover:border-logoBlue dark:hover:border-logoBlue transform hover:-translate-y-1 overflow-hidden"
+                onClick={() => dispatch(setSelectedChat(chat))}
+                style={{
+                  animation: `fadeInUp 0.5s ease-out ${index * 0.05}s both`
+                }}
+              >
+                <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+                <div className="relative flex items-center justify-between gap-4">
+                  <div className="grid grid-cols-12 min-w-0 w-full">
+                    <div className="relative col-span-3 lg:col-span-2 md:col-span-2 w-12 h-12 rounded-2xl bg-gradient-to-br from-logoSky to-logoViolet flex items-center justify-center text-white shadow-lg shadow-logoBlue group-hover:scale-110 transition-transform duration-300">
+                      <i className="fi fi-rr-comment-alt flex items-center justify-center text-xl" />
+                      <span className="absolute -bottom-1 -right-1 px-1 rounded-full bg-slate-100 text-xs text-slate-600 border border-slate-100 group-hover:border-logoBlue group-hover:text-logoBlue group-hover:bg-white transition-colors">
+                        {chat.conversations?.length || 0}
+                      </span>
+                    </div>
+                    <div className="col-span-9 lg:col-span-10 md:col-span-10 min-w-0">
+                      <h3 className="font-semibold text-slate-900 dark:text-white group-hover:text-logoBlue transition-colors truncate text-base">
+                        {chat.title || 'Untitled Chat'}
+                      </h3>
+                      <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400 mt-1.5 font-medium">
+                        <span className="flex items-center gap-1.5">
+                          <i className="fi fi-rr-calendar text-logoPink flex items-center justify-center"></i>
+                          {new Date(chat.created_at).toLocaleDateString()}
+                        </span>
+                        <span className="flex items-center gap-1.5">
+                          <i className="fi fi-rr-clock text-logoPurple flex items-center justify-center"></i>
+                          {new Date(chat.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                        </span>
+                        <span className="px-2.5 py-1 rounded-full bg-slate-100 text-xs font-semibold text-slate-600 border border-slate-100 group-hover:border-logoBlue group-hover:text-logoBlue group-hover:bg-white transition-colors hidden lg:inline-block">
+                          {chat.conversations?.length || 0} msgs
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col items-end gap-2">
+                    <button
+                      className="w-8 h-8 rounded-full bg-slate-50 text-slate-400 flex items-center justify-center group-hover:bg-logoBlue group-hover:text-white transition-all duration-300"
+                    >
+                      <i className="fi fi-rr-angle-small-right text-lg flex items-center justify-center"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            {hasMore && (
+              <div className="col-span-full text-center mt-8">
+                <button
+                  onClick={handleLoadMore}
+                  disabled={status === 'loading'}
+                  className="px-8 py-3 bg-slate-50 border-2 border-slate-100 text-slate-600 rounded-xl font-bold hover:bg-white hover:border-logoBlue hover:text-logoBlue transition-all shadow-sm hover:shadow-md"
+                >
+                  {status === 'loading' ? (
+                    <span className="flex items-center gap-2">
+                      <i className="fi fi-rr-spinner flex items-center justify-center animate-spin"></i> Loading...
+                    </span>
+                  ) : 'Load More Conversations'}
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Empty State */}
+          {!status && chats.length === 0 && (
+            <div className="flex flex-col items-center justify-center py-20 px-4">
+              <div className="w-24 h-24 rounded-3xl bg-slate-50 dark:bg-white border border-slate-100 dark:border-white flex items-center justify-center mb-6 shadow-sm">
+                <i className="fi fi-rr-comments text-slate-300 text-4xl" />
+              </div>
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                No chats found
+              </h3>
+              <p className="text-slate-500 dark:text-slate-400 text-center max-w-md font-medium mb-6">
+                {search ? "Try adjusting your search terms." : "Start a new conversation to see it here."}
+              </p>
+              {search && (
+                <button
+                  onClick={() => {
+                    dispatch(setSearch(''));
+                    dispatch(clearConversations());
+                  }}
+                  className="px-6 py-2 bg-slate-100 text-slate-600 font-bold rounded-xl hover:bg-slate-200 transition-colors"
+                >
+                  Clear Search
+                </button>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
-      <div className="p-6 space-y-4 ">
+      {/* Chat Details Modal */}
+      {selectedChat && (
+        <div className="fixed inset-0 bg-white backdrop-blur-sm flex items-center justify-center z-50 p-1 lg:p-4 animate-in fade-in duration-200">
+          <div className="bg-white dark:bg-slate-900 w-full max-w-4xl h-160 rounded-3xl shadow-2xl flex flex-col border border-white dark:border-slate-800 overflow-hidden transform transition-all scale-100 relative">
 
-        {hasMore && (
-          <div className="text-center mt-4">
-            <button
-              onClick={handleLoadMore}
-              disabled={status === 'loading'}
-              className="px-4 py-2 bg-[var(--primary)] text-white rounded-md hover:bg-[var(--primary-dark)]"
-            >
-              {status === 'loading' ? 'Loading...' : 'Load More'}
-            </button>
-          </div>
-        )}
-
-        {selectedChat && (
-          <div className="h-screen fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 py-4">
-            <div className="h-screen bg-white dark:bg-black border rounded-lg shadow-xl w-full max-w-2xl mx-4 flex flex-col">
-              <div className="flex justify-between items-center border-b border-[var(--border)] p-4">
-                <div className="">
-                  <h4 className="text-xs">Chat Title:</h4>
-                  <p className="text-sm font-semibold">{selectedChat.title}</p>
+            {/* Modal Header */}
+            <div className="grid grid-cols-10 p-5 border-b border-slate-50 dark:border-slate-800 bg-white dark:bg-slate-900 backdrop-blur-md absolute top-0 left-0 right-0 z-10">
+              <div className="col-span-9 flex items-center gap-4">
+                <div className="p-3 rounded-2xl bg-gradient-to-br from-logoBlue to-logoViolet flex items-center justify-center text-white shadow-lg shadow-logoBlue">
+                  <i className="fi fi-rr-sparkles text-xl flex items-center justify-center" />
                 </div>
+                <div className="truncate">
+                  <h3 className="font-bold text-slate-900 dark:text-white text-base lg:text-lg truncate">{selectedChat.title || "Conversation"}</h3>
+                  <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-0.5">
+                    {new Date(selectedChat.created_at).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' })}
+                  </p>
+                </div>
+              </div>
+              <div className="col-span-1 flex items-center justify-end">
                 <button
                   onClick={() => {
                     dispatch(setSelectedChat(null));
                     clearConversations();
                   }}
-                  className="text-gray-500 hover:text-gray-700"
-                >
-                  ✖
-                </button>
+                  className="w-10 h-10 rounded-full bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-red-50 hover:text-red-500 dark:hover:bg-slate-700 transition-colors"
+              >
+                <i className="fi fi-rr-cross-small text-xl flex items-center justify-center" />
+              </button>
               </div>
+            </div>
 
-              <div className="overflow-y-auto max-h-[40vh]">
-                {items.length > 0 && items?.map((conversation) => (
-                  <div key={conversation?.id} className="space-y-4 p-2 border-b border-gray-100 mx-2">
-                    {/* User message - aligned to right */}
-                    {conversation.query && (
-                      <div className="flex justify-end">
-                        <div className="bg-baigeLight p-4 rounded-xl max-w-xl">
-                          <h4 className="text-xs font-semibold text-blue-700">Query</h4>
-                          <p className="text-gray-800 text-sm whitespace-pre-line">{conversation.query}</p>
-                        </div>
+            {/* Messages Area */}
+            <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-slate-50 dark:bg-black pt-24 custom-scrollbar">
+              {items.length > 0 ? items.map((conversation, idx) => (
+                <div key={conversation?.id || idx} className="space-y-6">
+                  {/* User Query */}
+                  {conversation.query && (
+                    <div className="flex justify-end pl-12 group">
+                      <div className="bg-gradient-to-br from-logoSky to-logoPink text-black rounded-2xl rounded-tr-sm p-4 shadow-sm max-w-2xl transform transition-transform duration-300 hover:-translate-y-0.5">
+                        <p className="text-sm font-medium whitespace-pre-line leading-relaxed">{conversation.query}</p>
                       </div>
-                    )}
-                    
-                    {/* Assistant message - aligned to left */}
-                    {conversation.answer && (
-                      <div className="flex">
-                        <div className="bg-gray-50 p-4 rounded-xl max-w-xl">
-                          <h4 className="text-xs font-semibold text-gray-700">Answer</h4>
-                          <EnhancedTextDisplay className="text-gray-800 text-sm whitespace-pre-line" content={conversation.answer}/>
-                        </div>
-                      </div>
-                    )}
-                    
-                    <div className="text-xs text-gray-500 text-center">
-                      {new Date(conversation.created_at || selectedChat.created_at).toLocaleString()}
                     </div>
+                  )}
+
+                  {/* Assistant Answer */}
+                  {conversation.answer && (
+                    <div className="flex justify-start pr-12 group">
+                      <div className="flex items-start gap-3 max-w-3xl">
+                        <div className="w-8 h-8 rounded-2xl bg-gradient-to-br from-logoBlue to-logoViolet flex-shrink-0 flex items-center justify-center text-white shadow-md">
+                          <i className="fi fi-rr-sparkles text-xs flex items-center justify-center"></i>
+                        </div>
+                        <div className="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl rounded-tl-sm p-5 shadow-sm transform transition-transform duration-300 hover:-translate-y-0.5 w-full">
+                          <div className="prose prose-sm max-w-none dark:prose-invert">
+                            <ReactMarkdown
+                              remarkPlugins={[remarkGfm, remarkMath]}
+                              rehypePlugins={[rehypeKatex]}
+                              components={{
+                                code({ node, className, children, ...props }) {
+                                  return (
+                                    <code className={`${className} bg-slate-100 dark:bg-slate-900 rounded px-1 py-0.5`} {...props}>
+                                      {children}
+                                    </code>
+                                  )
+                                }
+                              }}
+                            >
+                              {conversation.answer}
+                            </ReactMarkdown>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )) : (
+                <div className="flex flex-col items-center justify-center h-full text-slate-400">
+                  <div className="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center mb-4">
+                    <i className="fi fi-rr-comment-dots text-2xl opacity-50" />
                   </div>
-                ))}
-              </div>
-      
+                  <p className="text-sm font-medium">No messages in this conversation</p>
+                </div>
+              )}
             </div>
           </div>
-        )}
-      </div>
-    </FullLayout>
+        </div>
+      )}
 
+    </FullLayout>
   );
 };

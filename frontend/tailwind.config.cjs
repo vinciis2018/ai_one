@@ -23,6 +23,8 @@ module.exports = {
         "160": '40rem',
         "180": '45rem',
         "200": '50rem',
+        "220": '55rem',
+        "240": '60rem',
       },
       width: {
         "84": "21rem",
@@ -35,6 +37,8 @@ module.exports = {
         "160": '40rem',
         "180": '45rem',
         "200": '50rem',
+        "220": '55rem',
+        "240": '60rem',
       },
       colors: {
         // Brand colors (keeping existing CSS variables for compatibility)
@@ -55,6 +59,13 @@ module.exports = {
         baigeLight: 'var(--baige-light)',
         greenLight: 'var(--green-light)',
         redLight: 'var(--red-light)',
+
+        logoViolet: 'var(--logo-violet)',
+        logoPurple: 'var(--logo-purple)',
+        logoPink: 'var(--logo-pink)',
+        logoSky: 'var(--logo-sky)',
+        logoBlue: 'var(--logo-blue)',
+
 
         // Comprehensive color palette
         slate: {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { fetchChatBySpace, fetchTeacherStudentChats, type ChatResponse } from '../../store/slices/conversationsSlice';
+import { clearConversations, fetchChatBySpace, fetchTeacherStudentChats, type ChatResponse } from '../../store/slices/conversationsSlice';
 import { getAllTeachers, type TeacherModel } from '../../store/slices/teachersSlice';
 import { getAllStudents, type StudentModel } from '../../store/slices/studentsSlice';
 import { QueryBoxChat } from '../atoms/QueryBoxChat';
@@ -48,6 +48,8 @@ const ChatSlidePanelContent: React.FC<ChatSlidePanelProps> = ({
   const [selectedChatId, setSelectedChatId] = useState<string | null>(null);
   const [replyContext, setReplyContext] = useState<string | null>(null);
 
+  const [width, setWidth] = useState("w-100");
+
   const { connect } = useVoiceAssistant();
 
   // Connect Voice Assistant on mount
@@ -55,7 +57,9 @@ const ChatSlidePanelContent: React.FC<ChatSlidePanelProps> = ({
     if (isOpen) {
       connect();
     }
-  }, [isOpen, connect]);
+  }, [
+    isOpen, connect
+  ]);
 
   // Fetch teacher-student chats when teacherId is set
   useEffect(() => {
@@ -66,7 +70,9 @@ const ChatSlidePanelContent: React.FC<ChatSlidePanelProps> = ({
         teacher_id: teacherUserId
       }));
     }
-  }, [isOpen, user, teacherUserId, dispatch]);
+  }, [
+    isOpen, user, teacherUserId, dispatch
+  ]);
 
   // Fetch teacher-student chats when studentId is set (for teachers)
   useEffect(() => {
@@ -77,18 +83,22 @@ const ChatSlidePanelContent: React.FC<ChatSlidePanelProps> = ({
         teacher_id: user._id
       }));
     }
-  }, [isOpen, user, studentUserId, dispatch]);
+  }, [
+    isOpen, user, studentUserId, dispatch
+  ]);
 
   // Update conversation when chat changes
   useEffect(() => {
-    if (chat && setConversationChat) {
+    if (chat && selectedChatId && chat.id === selectedChatId) {
       setConversationChat(chat);
     }
-  }, [chat]);
+  }, [chat, selectedChatId]);
+
+
 
   // Fetch teachers when no teacher_id is provided (for students)
   useEffect(() => {
-    if (isOpen && user && !user_other_id && pathname.includes('/teacher/chats') && user.role === "student") {
+    if (isOpen && user && !user_other_id && (pathname.includes('chats') || pathname.includes('teachers')) && user.role === "student") {
       dispatch(getAllTeachers({
         user_id: user._id || '',
         page: 1,
@@ -96,7 +106,9 @@ const ChatSlidePanelContent: React.FC<ChatSlidePanelProps> = ({
         search: searchQuery
       }));
     }
-  }, [isOpen, user, user_other_id, searchQuery, pathname, dispatch]);
+  }, [
+    isOpen, user, user_other_id, searchQuery, pathname, dispatch
+  ]);
 
   // Fetch students when no student_id is provided (for teachers)
   useEffect(() => {
@@ -108,7 +120,9 @@ const ChatSlidePanelContent: React.FC<ChatSlidePanelProps> = ({
         search: searchQuery
       }));
     }
-  }, [isOpen, user, user_other_id, searchQuery, dispatch]);
+  }, [
+    isOpen, user, user_other_id, searchQuery, dispatch
+  ]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
@@ -147,80 +161,100 @@ const ChatSlidePanelContent: React.FC<ChatSlidePanelProps> = ({
         dispatch(fetchChatBySpace({ user_id: user._id as string, chat_space: teacher_chat_space }));
       }
     }
-  }, [isOpen, chatId, dispatch, user_other_id, teacherUserId, user, pathname, searchParams, studentUserId]);
+  }, [
+    isOpen, chatId, dispatch, user_other_id, teacherUserId, user, pathname, searchParams, studentUserId
+  ]);
 
+
+  const handleSetWidth = () => {
+    if (width === "w-100") {
+      setWidth("w-full");
+    } else {
+      setWidth("w-100");
+    }
+  }
   return (
     <>
       {/* Backdrop */}
-      <div className={`fixed inset-0 bg-black transition-opacity duration-300 z-40 ${isOpen ? 'opacity-50' : 'opacity-0 pointer-events-none'}`}
+      <div className={`fixed inset-0 bg-black backdrop-blur-sm transition-opacity duration-300 z-40 ${isOpen ? 'opacity-50' : 'opacity-0 pointer-events-none'}`}
         onClick={onClose}
       />
 
       {/* Slide Panel */}
       <div
-        className={`fixed top-0 right-0 h-full w-full sm:w-96 bg-white dark:bg-gray-900 shadow-2xl transform transition-transform duration-300 ease-in-out z-50 flex flex-col ${isOpen ? 'translate-x-0' : 'translate-x-full'
+        className={`fixed top-0 right-0 h-full w-full sm:${width} dark:bg-slate-900 backdrop-blur-2xl shadow-2xl border-l border-white dark:border-slate-800 transform transition-transform duration-300 cubic-bezier(0.16, 1, 0.3, 1) z-50 flex flex-col ${isOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center text-white">
-              <i className="fi fi-rr-sparkles text-sm"></i>
+        <div className="flex items-center justify-between p-5 border-b border-slate-50 dark:border-slate-800 bg-white dark:bg-slate-900 backdrop-blur-md">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-logoBlue to-logoViolet rounded-2xl flex items-center justify-center text-white shadow-lg shadow-logoBlue" onDoubleClick={handleSetWidth}>
+              <i className="fi fi-rr-sparkles text-lg flex items-center justify-center"></i>
             </div>
             <div>
-              <h2 className="font-bold text-gray-900 dark:text-white">maiind</h2>
-              <p className="text-xs text-gray-500 dark:text-gray-400">Ask & rewind </p>
+              <h2 className="font-bold text-lg bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">Maiind</h2>
+              <p className="text-xs font-medium text-slate-500 dark:text-slate-400">Solve your doubts using your maiind...</p>
             </div>
           </div>
           <button
-            onClick={onClose}
-            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
+            onClick={() => {
+              if (conversationChat) {
+                setConversationChat(null);
+                setSelectedChatId(null);
+                dispatch(clearConversations());
+              } else if (teacherUserId) {
+                onClose();
+                setTeacherUserId(null)
+              } else if (studentUserId) {
+                onClose();
+                setStudentUserId(null)
+              } else {
+                onClose();
+              }
+            }}
+            className="w-9 h-9 flex items-center justify-center rounded-full bg-slate-50 dark:bg-slate-800 text-slate-400 hover:text-white dark:hover:text-white hover:bg-red-400 dark:hover:bg-slate-700 transition-all duration-200"
             aria-label="Close chat"
           >
-            <i className="fi fi-rr-cross text-gray-600 dark:text-gray-300 flex"></i>
+            <i className="fi fi-rr-cross-small text-xl flex"></i>
           </button>
         </div>
 
         {/* Conditional Content */}
-        {!teacherUserId && !studentUserId && user?.role === "student" ? (
-          <TeacherListView
-            searchQuery={searchQuery}
-            handleSearch={handleSearch}
-            all_teachers={all_teachers}
-            user={user}
-            handleAddSelfAsStudentToTeacher={handleAddSelfAsStudentToTeacher}
-          />
-        ) : !teacherUserId && !studentUserId && user?.role === "teacher" ? (
-          <StudentListView
-            searchQuery={searchQuery}
-            handleSearch={handleSearch}
-            all_students={all_students}
-            handleSelectStudent={handleSelectStudent}
-          />
-        ) : (teacherUserId || studentUserId) && !conversationChat ? (
-          <ChatListView
-            chats={chats}
-            setSelectedChatId={setSelectedChatId}
-            teacherUserId={teacherUserId}
-            setTeacherUserId={setTeacherUserId}
-            studentUserId={studentUserId}
-            setStudentUserId={setStudentUserId}
-          />
-        ) : (
-          <ConversationView
-            chat={chat}
-            conversationChat={conversationChat}
-            setConversationChat={setConversationChat}
-            setSelectedChatId={setSelectedChatId}
-            teacherUserId={teacherUserId}
-            studentUserId={studentUserId}
-            setReplyContext={setReplyContext}
-          />
-        )}
+        <div className="flex-1 overflow-y-auto bg-white">
+
+          {!teacherUserId && !studentUserId && user?.role === "student" ? (
+            <TeacherListView
+              searchQuery={searchQuery}
+              handleSearch={handleSearch}
+              all_teachers={all_teachers}
+              user={user}
+              handleAddSelfAsStudentToTeacher={handleAddSelfAsStudentToTeacher}
+            />
+          ) : !teacherUserId && !studentUserId && user?.role === "teacher" ? (
+            <StudentListView
+              searchQuery={searchQuery}
+              handleSearch={handleSearch}
+              all_students={all_students}
+              handleSelectStudent={handleSelectStudent}
+            />
+          ) : (teacherUserId || studentUserId) && !conversationChat ? (
+            <ChatListView
+              chats={chats}
+              setSelectedChatId={setSelectedChatId}
+            />
+          ) : (
+            <ConversationView
+              chat={chat}
+              setReplyContext={setReplyContext}
+              teacher={all_teachers.find((teacher) => teacher.user_id === teacherUserId)}
+            />
+          )}
+        </div>
+
 
         {/* Query Box */}
         {(user?.role === "student" && teacherUserId) || (user?.role === "teacher" && studentUserId) ? (
-          <div className="">
+          <div className="bg-gradient-to-b from-white to-sky-50">
             <QueryBoxChat
               selectedDocument={selectedDocument}
               setSelectedDocument={setSelectedDocument}

@@ -280,4 +280,5 @@ async def get_current_user_details(current_user: UserModel = Depends(get_current
         user_data["teacher_id"] = str(teacher["_id"])
         user_data["subjects"] = teacher["subjects"]
 
+    print(user_data)
     return UserModel(**user_data)

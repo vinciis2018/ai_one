@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store, useAppDispatch } from './store';
 import { ThemeProvider } from './contexts/ContextProvider/ThemeProvider';
-import { HomePage, LoginPage, SignupPage, NotFoundPage, UserProfilePage, LandingPage, DocumentsPage, DocumentDetailsPage, ConversationsPage, CoachingsPage, CoachingDetailsPage, ClassroomPage, TeachersForStudentPage, TeacherProfilePage, StudentProfilePage, NotesPage, ChatsPage, TeacherChatPage, StudentsForTeacherPage } from './pages';
+import { HomePage, LoginPage, SignupPage, NotFoundPage, UserProfilePage, LandingPage, DocumentsPage, DocumentDetailsPage, ConversationsPage, CoachingsPage, CoachingDetailsPage, ClassroomPage, TeachersForStudentPage, TeacherProfilePage, StudentProfilePage, ChatsPage, StudentsForTeacherPage } from './pages';
 
 import { getMe } from './store/slices/authSlice';
 import { useEffect } from 'react';
@@ -40,9 +40,8 @@ function AppContent() {
 
             <Route path="/teachers" element={<TeachersForStudentPage />} />
             <Route path="/students" element={<StudentsForTeacherPage />} />
-            <Route path="/notes" element={<NotesPage />} />
+
             <Route path="/chats" element={<ChatsPage />} />
-            <Route path="/teacher/chats/:teacher_user_id/:student_user_id" element={<TeacherChatPage />} />
             <Route path="/teacher/profile/:user_id" element={<TeacherProfilePage />} />
             <Route path="/student/profile/:user_id" element={<StudentProfilePage />} />
 

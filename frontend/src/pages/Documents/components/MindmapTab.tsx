@@ -79,33 +79,58 @@ export const MindmapTab: React.FC<MindmapTabProps> = ({
 
 
   return (
-    <div className="space-y-4 h-full flex flex-col">
-      <div className="flex items-center justify-between mb-2">
+    <div className="flex flex-col h-full">
+      <div className="flex items-center justify-between p-2 bg-white border-b border-gray-200 shrink-0">
         <h3 className="text-sm font-semibold text-gray-700">Mindmap</h3>
-      </div>
-
-      {hasMindMaps && currentPageMindMaps ? (
-        <div className="flex-1 overflow-hidden bg-white rounded-xl border border-gray-100 shadow-sm h-[60vh]">
-          <MindMap data={currentPageMindMaps} />
-        </div>
-      ) : (
-        <div className="flex-1 flex flex-col items-center justify-center text-gray-400 border-2 border-dashed border-gray-100 rounded-xl p-6">
-          <i className="fi fi-rr-network text-4xl mb-2 opacity-20"></i>
-          <p className="text-sm">No mindmap generated yet.</p>
+        <div className="flex items-center gap-2">
           <button
             onClick={handleGenerateMindmap}
             disabled={generateMindmapStatus === 'loading'}
-            className="mt-4 px-4 py-2 bg-pink-50 text-pink-600 rounded-lg text-xs font-medium hover:bg-pink-100 transition-colors disabled:opacity-50"
+            className="px-3 py-2 flex items-center gap-2 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 border border-blue-200 hover:border-blue-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-xs font-medium"
           >
             {generateMindmapStatus === 'loading' ? (
               <>
-                <i className="fi fi-br-circle animate-spin mr-2"></i>
-                Generating...
+                <i className="fi fi-br-circle flex items-center justify-center animate-spin text-xs"></i>
               </>
             ) : (
-              'Generate Mindmap'
+              <>
+                <i className="fi fi-rr-refresh flex items-center justify-center"></i>
+              </>
             )}
           </button>
+        </div>
+      </div>
+
+      {hasMindMaps && currentPageMindMaps ? (
+        <div className="flex-1 overflow-hidden">
+          <MindMap data={currentPageMindMaps} />
+        </div>
+      ) : (
+        <div className="p-4">
+          <div className="flex-1 flex flex-col items-center justify-center text-center text-gray-400 py-12 bg-gradient-to-br from-blue-50 to-sky-50 rounded-xl border-2 border-dashed border-blue-200">
+            <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+              <i className="fi fi-rr-network flex items-center justify-center text-blue-300 text-xl"></i>
+            </div>
+            <p className="text-sm font-medium mb-1">No mindmap generated yet</p>
+            <p className="text-xs text-gray-400 mb-4">Visualize your notes with a mindmap</p>
+            <button
+              onClick={handleGenerateMindmap}
+              disabled={generateMindmapStatus === 'loading'}
+              className="px-4 py-2 bg-gradient-to-br from-blue-300 to-sky-300 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors shadow-sm flex items-center gap-2"
+            >
+              {generateMindmapStatus === 'loading' ? (
+                <>
+                  <i className="fi fi-br-circle flex items-center justify-center animate-spin mr-2"></i>
+                  Generating...
+                </>
+              ) : (
+                <>
+                  <i className="fi fi-sr-network flex items-center justify-center"></i>
+                  Generate Mindmap
+                </>
+              )}
+            </button>
+          </div>
         </div>
       )}
     </div>

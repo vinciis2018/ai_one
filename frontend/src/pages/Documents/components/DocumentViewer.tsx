@@ -120,39 +120,38 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
   };
 
   return (
-    <div className="w-full h-full bg-slate-900 flex flex-col rounded-xl overflow-hidden border border-slate-700 shadow-sm">
+    <div className="w-full h-full bg-white flex flex-col overflow-hidden shadow-sm">
       {/* Toolbar */}
-      <div className="p-2 flex items-center justify-center text-white text-xs shadow-md shrink-0">
+      <div className="p-2 flex items-center justify-center text-white text-xs shrink-0">
 
         {/* PDF Controls */}
         {numPages && numPages > 1 && (
-          <div className="flex items-center gap-3 bg-slate-700 rounded-full px-3 py-1">
+          <div className="flex items-center gap-3 bg-white rounded-full shadow-sm px-3 py-1 text-slate-900">
             <button
               onClick={() => onPageChange(pageNumber - 1)}
               disabled={pageNumber <= 1}
-              className="hover:text-blue-300 disabled:opacity-30 disabled:hover:text-white flex items-center transition-colors"
+              className="hover:text-logoBlue disabled:opacity-30 disabled:hover:text-white flex items-center transition-colors"
             >
-              <i className="fi fi-rr-angle-small-left text-base"></i>
+              <i className="fi fi-rr-angle-small-left text-base flex items-center"></i>
             </button>
-            <span className="font-mono text-xs text-slate-200">
+            <span className="font-mono text-xs text-slate-900">
               {pageNumber} / {numPages}
             </span>
             <button
               onClick={() => onPageChange(pageNumber + 1)}
               disabled={pageNumber >= numPages}
-              className="hover:text-blue-300 disabled:opacity-30 disabled:hover:text-white flex items-center transition-colors"
+              className="hover:text-logoBlue disabled:opacity-30 disabled:hover:text-white flex items-center transition-colors"
             >
-              <i className="fi fi-rr-angle-small-right text-base"></i>
+              <i className="fi fi-rr-angle-small-right text-base flex items-center"></i>
             </button>
           </div>
         )}
 
       </div>
-
       {/* Main Content Area */}
-      <div className="flex-1 relative flex items-center justify-center bg-slate-900 overflow-hidden">
+      <div className="flex-1 relative flex items-center justify-center overflow-hidden rounded-xl">
         {!selection && !isLoading && !error && (
-          <div className="absolute top-4 left-4 z-10 bg-black/50 text-white text-xs px-3 py-1 rounded-full flex items-center gap-2 backdrop-blur-md pointer-events-none transition-opacity hover:opacity-0">
+          <div className="absolute top-2 left-0 z-10 bg-white text-logoBlue text-xs px-3 py-1 rounded-full flex items-center gap-2 backdrop-blur-md pointer-events-none transition-opacity hover:opacity-0">
             <i className="fi fi-rr-crosshairs text-sm"></i> Drag to add snippet
           </div>
         )}
@@ -170,7 +169,6 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
             <p className="text-sm font-medium">{error}</p>
           </div>
         )}
-
         {!isLoading && !error && pageImage && (
           <div
             className="relative"
@@ -194,7 +192,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
             {/* Selection Overlay */}
             {selection && (
               <div
-                className="absolute border-2 border-green-400 bg-green-400/20 z-20 pointer-events-none"
+                className="absolute border-2 border-logoBlue z-20 pointer-events-none"
                 style={{
                   left: selection.x,
                   top: selection.y,

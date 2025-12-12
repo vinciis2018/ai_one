@@ -337,9 +337,9 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
 
 
   return (
-    <div className="flex flex-col h-full " onClick={() => setSelectedIds(new Set())}>
+    <div className="space-y-4" onClick={() => setSelectedIds(new Set())}>
       {/* Toolbar */}
-      <div className="flex items-center justify-between px-4 py-2 bg-white border-b border-gray-200 shrink-0">
+      <div className="flex items-center justify-between p-2 bg-white border-b border-gray-200 shrink-0">
         <div className="flex items-center gap-3">
           <h3 className="text-sm font-semibold text-gray-700">Page {pageNumber}</h3>
           <button
@@ -358,15 +358,15 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
           <button
             onClick={handleTranscribe}
             disabled={transcriptionStatus === 'loading'}
-            className="px-3 py-1.5 flex items-center gap-2 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-xs font-medium"
+            className="px-3 py-2 flex items-center gap-2 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 border border-red-200 hover:border-red-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-xs font-medium"
           >
             {transcriptionStatus === 'loading' ? (
               <>
-                <i className="fi fi-br-circle animate-spin text-xs"></i>
+                <i className="fi fi-br-circle animate-spin flex items-center justify-center text-xs"></i>
               </>
             ) : (
               <>
-                <i className="fi fi-rr-refresh flex"></i>
+                <i className="fi fi-rr-refresh flex items-center justify-center"></i>
               </>
             )}
           </button>
@@ -376,10 +376,10 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
 
 
       {/* Content Area */}
-      <div className="flex-1 overflow-y-auto p-4 md:p-6 scroll-smooth rounded-lg">
+      <div className="flex-1 overflow-y-auto scroll-smooth rounded-lg px-4">
         {blocks.length > 0 ? (
           <div
-            className="mx-auto p-1 space-y-4"
+            className="mx-auto space-y-4 px-2 py-8"
             onClick={(e) => e.stopPropagation()}
           >
             {blocks.map((block, index) => {
@@ -393,8 +393,8 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
 
                   onDrop={handleDrop}
                   className={`
-                      group relative transition-all duration-200 rounded-lg
-                      ${isSelected ? 'ring-2 ring-blue-500 bg-blue-50/30' : 'hover:bg-slate-50 ring-1 ring-transparent hover:ring-slate-200'}
+                      group relative transition-all duration-200 rounded-lg hover:ring-1 hover:ring-blue-300
+                      ${isSelected ? 'ring-1 ring-blue-300' : 'hover:bg-slate-50 ring-1 ring-transparent hover:ring-slate-200'}
                       ${isDragging ? 'opacity-30' : 'opacity-100'}
                       ${isDragOver ? 'border-t-4 border-blue-400 pt-4' : ''}
                     `}
@@ -428,7 +428,7 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
 
 
                   {/* Block Content */}
-                  <div className="p-1">
+                  <div className="p-1 ">
                     {block.type === 'text' ? (
                       editingBlockId === block.id ? (
                         <TextInput
@@ -437,13 +437,13 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
                           onBlur={() => setEditingBlockId(null)}
                           autoFocus
                           placeholder="Write something..."
-                          className="w-full text-sm bg-white outline-none border border-blue-300 p-2 rounded text-slate-800 leading-relaxed font-normal focus:ring-0 focus:ring-blue-400"
+                          className="w-full text-sm bg-white outline-none p-2 rounded text-slate-800 leading-relaxed font-normal focus:ring-0 focus:ring-blue-400"
                           minHeight="6em"
                         />
                       ) : (
                         <div
                           onClick={() => setEditingBlockId(block.id)}
-                          className="w-full text-sm p-2 rounded text-slate-800 leading-relaxed cursor-text hover:bg-slate-50 transition-colors min-h-[1.5em]"
+                          className="w-full text-sm p-2 rounded-lg text-slate-800 leading-relaxed cursor-text border border-transparent hover:border-blue-400 hover:bg-slate-50 transition-colors min-h-[1.5em]"
                         >
                           {block.content ? (
                             <div className="prose prose-sm max-w-none text-gray-700">
@@ -461,13 +461,13 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
                       )
                     ) : (
                       <div
-                        className="flex flex-col items-center justify-center w-full transition-all duration-300"
+                        className="flex flex-col items-center justify-center w-full transition-all duration-300 border border-transparent hover:border-blue-400 hover:bg-slate-50 rounded-lg"
                         style={{ alignItems: block.settings?.align || 'center' }}
                       >
                         {/* Image Toolbar */}
-                        <div className={`
-                             mb-2 flex items-center gap-1 border border-slate-200 rounded-lg p-1 scale-90 origin-bottom transition-opacity
-                             ${isSelected || isDragging ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}
+                        <div className={`mt-1
+                             flex items-center gap-1 border border-slate-200 rounded-lg p-1 scale-90 origin-bottom transition-opacity
+                             ${isSelected || isDragging ? 'opacity-100' : 'opacity-100 group-hover:opacity-100'}
                           `}>
                           <div className="flex items-center gap-1 px-1">
                             {[30, 50, 100].map((width) => (
@@ -523,7 +523,7 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
                         ) : (
                           <div
                             onClick={() => setEditingBlockId(block.id)}
-                            className="w-full mt-3 text-xs text-slate-600 p-3 rounded-lg cursor-text hover:bg-slate-50 transition-colors text-center min-h-[2em]"
+                            className="w-full mt-3 text-xs text-slate-600 p-3 rounded-lg cursor-text hover:bg-slate-50 transition-colors text-start min-h-[2em]"
                           >
                             {block.content ? (
                               <div className="prose prose-sm max-w-none text-gray-700">
@@ -547,21 +547,31 @@ export const TranscriptionTab: React.FC<TranscriptionTabProps> = ({
             })}
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center h-full text-gray-400 border-2 border-dashed border-gray-200 rounded-xl p-8 bg-white/50">
-            <div className="p-4 bg-gray-50 rounded-full mb-4">
-              <i className="fi fi-rr-document-signed text-3xl opacity-30"></i>
+           <div className="flex-1 flex flex-col items-center justify-center text-center text-gray-400 py-12 bg-gradient-to-br from-red-50 to-rose-50 rounded-xl border-2 border-dashed border-red-200">
+              <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <i className="fi fi-rr-magic-wand flex items-center justify-center text-red-300 text-xl"></i>
+              </div>
+              <p className="text-sm font-medium mb-1">No notes generated yet</p>
+              <p className="text-xs text-gray-400 mb-4">Click below to generate comprehensive notes</p>
+              
+              <button
+                onClick={handleTranscribe}
+                disabled={transcriptionStatus === 'loading'}
+                className="px-4 py-2 bg-gradient-to-br from-red-200 to-rose-300 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors shadow-sm flex items-center gap-2"
+              >
+                {transcriptionStatus === 'loading' ? (
+                  <>
+                    <i className="fi fi-br-circle animate-spin mr-2"></i>
+                    Transcribing...
+                  </>
+                ) : (
+                  <>
+                    <i className="fi fi-sr-select flex items-center justify-center"></i> 
+                    Transcribe Page
+                  </>
+                )}
+              </button>
             </div>
-            <p className="text-sm font-medium mb-1">Page Empty</p>
-            <p className="text-xs text-gray-400 mb-6 max-w-xs text-center">
-              No content has been digitized for this page yet.
-            </p>
-            <button
-              onClick={handleTranscribe}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors shadow-sm flex items-center gap-2"
-            >
-              <i className="fi fi-rr-magic-wand"></i> Transcribe Page
-            </button>
-          </div>
         )}
       </div>
 

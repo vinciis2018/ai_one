@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { useTheme } from '../hooks/useTheme';
 import { useEffect, useState } from 'react';
 import { useAppSelector } from '../store';
-// import { useAppSelector } from '../store';
+
 interface SidebarProps {
   isMobile: boolean;
   isOpen: boolean;
@@ -14,89 +14,109 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
   const { theme } = useTheme();
   const [view, setView] = useState(true);
 
+  const [shouldShowText, setShouldShowText] = useState(true);
   const { user } = useAppSelector((state) => state.auth);
 
   // Determine the width class based on isOpen and device type
   const getWidthClass = () => {
-    if (!isOpen) return 'w-16';
-    return isMobile ? 'w-48' : 'w-48';
+    if (!isOpen) return 'w-16'; // Slightly wider for better icon spacing
+    return isMobile ? 'w-64' : 'w-64';
   };
-
-  // Determine if we should show text (always show on desktop, only when open on mobile)
-  const shouldShowText = !isMobile || isOpen;
 
   useEffect(() => {
     if (isOpen && !isMobile) {
       setView(true);
+      setShouldShowText(true);
     } else if (isMobile && !isOpen) {
       setView(false);
+      setShouldShowText(false);
     } else {
       setView(true)
+      setShouldShowText(true);
     }
 
-  }, [isOpen, isMobile]);
+  }, [isOpen, isMobile, shouldShowText]);
+
+  const navLinkClasses = ({ isActive }: { isActive: boolean }) =>
+    `flex items-center gap-4 p-3 mx-2 mb-2 transition-all duration-300 rounded-2xl group relative overflow-hidden ${isActive
+      ? `bg-gradient-to-r from-logoBlue to-logoViolet text-white shadow-lg shadow-logoBlue scale-[1.02]`
+      : `text-slate-500 hover:bg-slate-50 hover:text-logoSky hover:scale-[1.02]`
+    }`;
+
+  const iconClasses = (isActive: boolean, colorClass: string = "text-logoBlue") =>
+    `h-6 w-6 flex items-center justify-center transition-colors duration-300 ${isActive ? 'text-white' : colorClass
+    }`;
 
   return (
     <div className={`
       fixed lg:sticky bottom-0 left-0
-      bg-[var(--background-alt)] z-10
+      z-20 h-screen
       ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
       transition-transform duration-300 ease-in-out
-      ${!isMobile && "w-16"} flex-shrink-0
+      ${!isMobile && "w-20"} flex-shrink-0
     `}>
       {view && (
-        <aside onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)} className="overflow-y-auto h-full ">
+        <aside
+          onMouseEnter={() => setIsOpen(true)}
+          onMouseLeave={() => setIsOpen(false)}
+          className="h-full"
+        >
           <nav
-            className={`pt-2 pl-2 fixed inset-y-0 left-0 ${getWidthClass()} 
-            ${theme === "dark" ? "bg-black" : "bg-white"}
-            transition-all duration-300 ease-in-out mt-12 z-40 flex flex-col justify-between`}
+            className={`
+              fixed inset-y-0 left-0 ${getWidthClass()}
+              bg-white backdrop-blur-xl border-r border-white shadow-xl
+              transition-all duration-300 ease-in-out z-40 flex flex-col justify-between py-6
+              ${theme === 'dark' ? 'bg-slate-900 border-slate-700' : ''}
+            `}
           >
-            <ul className="ml-1 mt-4 space-y-1 ">
-              <li className="">
+            {/* Logo Area / Top Padding */}
+            <div className={`h-16 flex items-center justify-start pt-16 px-6 pb-4 text-slate-600 text-base font-semibold duration-300 ${!isOpen && !isMobile ? 'opacity-0' : 'opacity-100'}`}>
+              👋 Hello, {user?.firstName}
+            </div>
+
+            <ul className="flex-1 space-y-1 overflow-y-auto overflow-x-hidden py-2 scrollbar-hide">
+              <li>
                 <NavLink
                   to="/"
-                  className={({ isActive }) =>
-                    `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${isActive
-                      ? `border-l-2 rounded-l-lg bg-[var(--primary)] text-green hover:text-green font-bold`
-                      : `rounded-l-lg text-gray-500 hover:text-green`
-                    }`
-                  }
+                  className={navLinkClasses}
                   onClick={onClose}
                 >
-                  <i className="fi fi-sr-home h-5 w-5 flex items-center justify-center" />
-                  {shouldShowText && <span className="truncate">Home</span>}
+                  {({ isActive }) => (
+                    <div className="flex items-center gap-4">
+                      <i className={`fi fi-sr-home ${iconClasses(isActive)}`} />
+                      {shouldShowText && <span className="font-bold tracking-wide truncate">Home</span>}
+                    </div>
+                  )}
                 </NavLink>
               </li>
               <li>
                 <NavLink
                   to="/chats"
-                  className={({ isActive }) =>
-                    `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${isActive
-                      ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
-                      : `rounded-l-lg text-gray-500 hover:text-green`
-                    }`
-                  }
+                  className={navLinkClasses}
                   onClick={onClose}
                 >
-                  <i className="fi fi-sr-messages h-5 w-5 flex items-center justify-center" />
-                  {shouldShowText && <span className="truncate">Chats</span>}
+                  {({ isActive }) => (
+                    <div className="flex items-center gap-4">
+                      <i className={`fi fi-sr-messages ${iconClasses(isActive)}`} />
+                      {shouldShowText && <span className="font-bold tracking-wide truncate">Chats</span>}
+                    </div>
+                  )}
                 </NavLink>
               </li>
-              {/* Notes moved to bottom as Knowledge */}
+
               {user && user?.role == "student" && (
                 <li>
                   <NavLink
                     to="/teachers"
-                    className={({ isActive }) =>
-                      `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${isActive
-                        ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
-                        : `rounded-l-lg text-gray-500 hover:text-green`
-                      }`
-                    }
+                    className={navLinkClasses}
                     onClick={onClose}
                   >
-                    <i className="fi fi-sr-chalkboard-user h-5 w-5 flex items-center justify-center" />
-                    {shouldShowText && <span className="truncate">Teachers</span>}
+                    {({ isActive }) => (
+                      <div className="flex items-center gap-4">
+                        <i className={`fi fi-sr-chalkboard-user ${iconClasses(isActive)}`} />
+                        {shouldShowText && <span className="font-bold tracking-wide truncate">Teachers</span>}
+                      </div>
+                    )}
                   </NavLink>
                 </li>
               )}
@@ -104,16 +124,15 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
                 <li>
                   <NavLink
                     to="/students"
-                    className={({ isActive }) =>
-                      `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${isActive
-                        ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
-                        : `rounded-l-lg text-gray-500 hover:text-green`
-                      }`
-                    }
+                    className={navLinkClasses}
                     onClick={onClose}
                   >
-                    <i className="fi fi-sr-student h-5 w-5 flex items-center justify-center" />
-                    {shouldShowText && <span className="truncate">Students</span>}
+                    {({ isActive }) => (
+                      <div className="flex items-center gap-4">
+                        <i className={`fi fi-sr-student ${iconClasses(isActive)}`} />
+                        {shouldShowText && <span className="font-bold tracking-wide truncate">Students</span>}
+                      </div>
+                    )}
                   </NavLink>
                 </li>
               )}
@@ -121,84 +140,69 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
               <li>
                 <NavLink
                   to="/coachings"
-                  className={({ isActive }) =>
-                    `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${isActive
-                      ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
-                      : `rounded-l-lg text-gray-500 hover:text-green`
-                    }`
-                  }
+                  className={navLinkClasses}
                   onClick={onClose}
                 >
-                  <i className="fi fi-sr-graduation-cap h-5 w-5 flex items-center justify-center" />
-                  {shouldShowText && <span className="truncate">Coaching</span>}
+                  {({ isActive }) => (
+                    <div className="flex items-center gap-4">
+                      <i className={`fi fi-sr-graduation-cap ${iconClasses(isActive)}`} />
+                      {shouldShowText && <span className="font-bold tracking-wide truncate">Coaching</span>}
+                    </div>
+                  )}
                 </NavLink>
               </li>
               <li>
                 <NavLink
                   to="/classrooms"
-                  className={({ isActive }) =>
-                    `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${isActive
-                      ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
-                      : `rounded-l-lg text-gray-500 hover:text-green`
-                    }`
-                  }
+                  className={navLinkClasses}
                   onClick={onClose}
                 >
-                  <i className="fi fi-sr-chalkboard-user h-5 w-5 flex items-center justify-center" />
-                  {shouldShowText && <span className="truncate">Classrooms</span>}
+                  {({ isActive }) => (
+                    <div className="flex items-center gap-4">
+                      <i className={`fi fi-sr-lesson ${iconClasses(isActive)}`} />
+                      {shouldShowText && <span className="font-bold tracking-wide truncate">Classrooms</span>}
+                    </div>
+                  )}
                 </NavLink>
               </li>
             </ul>
 
             {/* Bottom Section */}
-            <ul className="ml-1 space-y-1 mb-8">
+            <ul className="space-y-1 mb-8 pt-4 border-t border-slate-100/50">
               <li>
                 <NavLink
-                  to="/notes"
-                  className={({ isActive }) =>
-                    `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${isActive
-                      ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
-                      : `rounded-l-lg text-gray-500 hover:text-green`
-                    }`
-                  }
+                  to="/documents"
+                  className={navLinkClasses}
                   onClick={onClose}
                 >
-                  <i className="fi fi-sr-book-alt h-5 w-5 flex items-center justify-center" />
-                  {shouldShowText && <span className="truncate">Knowledge</span>}
+                  {({ isActive }) => (
+                    <div className="flex items-center gap-4">
+                      <i className={`fi fi-sr-book-alt ${iconClasses(isActive, "text-logoViolet")}`} />
+                      {shouldShowText && <span className="font-bold tracking-wide truncate">Knowledge</span>}
+                    </div>
+                  )}
                 </NavLink>
               </li>
               <li>
                 <NavLink
                   to="/profile"
                   className={({ isActive }) =>
-                    `flex items-center gap-3 p-3 transition-colors hover:bg-gray-100 ${isActive
-                      ? `border-l-2 rounded-l-lg bg-[var(--primary)] font-bold text-green hover:text-green`
-                      : `rounded-l-lg text-gray-500 hover:text-green`
+                    `flex items-center gap-4 p-3 mx-2 mb-2 transition-all duration-300 rounded-2xl group relative overflow-hidden ${isActive
+                      ? `bg-gradient-to-r from-red-400 to-red-600 text-white shadow-lg shadow-red-500/20 scale-[1.02]`
+                      : `text-slate-500 hover:bg-red-50 hover:text-red-500 hover:scale-[1.02]`
                     }`
                   }
                   onClick={onClose}
                 >
-                  <i className="fi fi-sr-settings h-5 w-5 flex items-center justify-center" />
-                  {shouldShowText && <span className="truncate">Profile</span>}
+                  {({ isActive }) => (
+                    <div className="flex items-center gap-4">
+                      <i className={`fi fi-sr-settings ${iconClasses(isActive, "text-red-500")}`} />
+                      {shouldShowText && <span className="font-bold tracking-wide truncate">Profile</span>}
+                    </div>
+                  )}
                 </NavLink>
               </li>
             </ul>
-            {/* {isMobile && (
-              <ul>
-                <li className='p-3 transition-colors'>
-                  <button
-                    type="button"
-                    onClick={toggleTheme}
-                    className="flex justify-start p-2 w-full rounded-lg bg-[var(--primary)] text-[var(--text)] hover:bg-[var(--primary-hover)] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary)]"
-                    aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-                  >
-                    {theme === 'dark' ? '🌞' : '🌙'}
-                    {shouldShowText && <span className="truncate px-2">{theme === 'dark' ? 'Dark' : 'Night'}</span>}
-                  </button>
-                </li>
-              </ul>
-            )} */}
-
           </nav>
         </aside>
       )}

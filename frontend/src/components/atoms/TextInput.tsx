@@ -365,7 +365,7 @@ export const TextInput: React.FC<TextInputProps> = ({
       {/* Toolbar */}
       {showToolbar && (
         <div
-          className="mb-1 p-2 bg-slate-50 border border-slate-200 rounded-lg shadow-sm animate-in slide-in-from-top-2 relative z-50"
+          className="p-2 bg-slate-50 border border-slate-200 rounded-lg shadow-lg animate-in slide-in-from-top-2 relative z-50"
           onMouseDown={(e) => e.preventDefault()} // Prevent focus loss
         >
           {/* Categories */}

@@ -262,16 +262,16 @@ export const MindMap: React.FC<MindMapProps> = ({ data }) => {
   };
 
   return (
-    <div ref={wrapperRef} className="w-full h-full bg-slate-50 relative overflow-hidden rounded-xl border border-slate-200 shadow-inner">
+    <div ref={wrapperRef} className="w-full h-full bg-gray-50 relative overflow-hidden rounded-xl border border-gray-100 shadow-inner">
       <svg ref={svgRef} className="w-full h-full cursor-grab active:cursor-grabbing"></svg>
-      <div className="absolute bottom-4 right-4 flex items-center gap-2">
+      <div className="absolute bottom-2 left-2 right-2 flex items-center gap-2">
         <button
           onClick={handleReset}
-          className="bg-white/90 backdrop-blur p-2 rounded-lg shadow border border-slate-200 text-xs text-slate-700 hover:bg-slate-50 transition-colors flex items-center gap-1"
+          className="bg-white backdrop-blur p-2 rounded-lg shadow border border-slate-200 text-xs text-slate-700 hover:bg-slate-50 transition-colors flex items-center gap-1"
         >
           <i className="fi fi-rr-refresh"></i> Reset View
         </button>
-        <div className="bg-white/90 backdrop-blur p-2 rounded-lg shadow border border-slate-200 text-xs text-slate-500">
+        <div className="bg-white backdrop-blur p-2 rounded-lg shadow border border-slate-200 text-xs text-slate-500">
           Scroll to zoom • Drag to pan • Click nodes to expand
         </div>
       </div>

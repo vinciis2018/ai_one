@@ -31,3 +31,10 @@ export {greenBoard}
 
 import teacher from "./images/teacher.png"
 export {teacher}
+
+
+import maiindlogo from "./maiindlogo.png";
+export {maiindlogo}
+
+import logo from "./logo.svg";
+export {logo}

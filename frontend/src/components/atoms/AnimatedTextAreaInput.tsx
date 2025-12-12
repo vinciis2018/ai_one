@@ -75,7 +75,7 @@ export const AnimatedTextAreaInput: React.FC<{
         value={question}
         onChange={(e) => setQuestion?.(e.target.value)}
         placeholder={placeholderText}
-        className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 w-full h-24 rounded-lg p-3 text-gray-700 border-none focus:outline-none focus:ring-0 resize-none"
+        className="bg-gradient-to-br from-white to-sky-50 w-full h-24 rounded-lg p-3 text-gray-700 border-none focus:outline-none focus:ring-0 resize-none"
         disabled={isLoading}
       />
   );

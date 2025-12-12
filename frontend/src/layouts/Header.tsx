@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector, type RootState } from '../store';
 import { getMe, logout } from '../store/slices/authSlice';
+import { maiindlogo, logo } from '../assets';
 
 interface HeaderProps {
   onMenuClick?: () => void;
@@ -49,19 +50,19 @@ export function Header({ onMenuClick, isMobile, setIsSidebarOpen, isSidebarOpen,
 
   return (
     <header className={`fixed py-2 top-0 left-0 right-0 z-50 shadow-xs ${bg}`}>
-      <div className="h-full mx-auto px-6 flex items-center justify-between">
+      <div className="h-full mx-auto px-3 lg:px-6 flex items-center justify-between">
         {/* Mobile menu button */}
         {isMobile && (
           <button
             type="button"
             onClick={handleMenuClick}
-            className="p-1 rounded-md bg-white text-[var(--text)] hover:bg-[var(--background)] focus:outline-none"
+            className="p-2.5 rounded-md bg-white text-lg hover:bg-[var(--background)] focus:outline-none"
             aria-label="Toggle menu"
           >
             {isSidebarOpen ? (
-              <i className="fi fi-sr-x w-6 h-6 text-[var(--text)] flex items-center justify-center" />
+              <i className="fi fi-sr-x flex items-center justify-center" />
             ) : (
-              <i className="fi fi-br-menu-burger w-6 h-6 text-[var(--text)] flex items-center justify-center" />
+              <i className="fi fi-br-menu-burger flex items-center justify-center" />
             )}
           </button>
         )}
@@ -71,23 +72,19 @@ export function Header({ onMenuClick, isMobile, setIsSidebarOpen, isSidebarOpen,
               {/* <div className="border-2 border-green rounded-full flex items-center">
                 <h1 className="text-green text-xl font-semibold px-1.5 py-0.5">m</h1>
               </div> */}
-              <h1 className="text-green text-xl font-semibold flex items-center gap-1">
-                maiind
-                <span className="text-xs text-green2 px-1 rounded-full mt-4 -ml-1 border border-green2">{"\u03B2"}</span>
-              </h1>
+              <img src={logo} alt="maiind" className="h-12 w-12" />
+              {/* <span className="text-xs text-sky-500 px-1 rounded-full mt-4 -mr-4 border border-sky-500">{"\u03B2"}</span> */}
             </div>
           ) : (
-            <div className="h-8 flex items-center gap-1">
-              <h1 className="text-green text-xl font-semibold flex items-center gap-1">
-                maiind
-                <span className="text-xs text-green2 px-1 rounded-full mt-4 -ml-1 border border-green2">{"\u03B2"}</span>
-              </h1>
+            <div className="h-8 flex items-center">
+              <img src={maiindlogo} alt="maiind" className="h-8 w-16" />
+              {/* <span className="text-xs text-sky-500 px-1 rounded-full mt-12 -ml-1 border border-sky-500">{"\u03B2"}</span> */}
             </div>
           )}
         </div>
 
         <div className="flex items-center gap-4 py-2">
-          <p className="text-xs font-semibold">{user?.firstName} {user?.role === "teacher" ? "Sir" : null}</p>
+          <p className="text-xs font-semibold hidden sm:block">{user?.firstName} {user?.role === "teacher" ? "Sir" : null}</p>
           {/* Avatar with Dropdown */}
           {user ? (
             <div className="relative" ref={dropdownRef}>
@@ -105,52 +102,73 @@ export function Header({ onMenuClick, isMobile, setIsSidebarOpen, isSidebarOpen,
 
               {/* Dropdown Menu */}
               {isDropdownOpen && (
-                <div className={`absolute right-0 mt-4 w-56 rounded-md shadow-lg bg-white dark:bg-black ring-1 ring-black ring-opacity-5 focus:outline-none z-60`}>
-                  <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                    <div className="px-4 py-3 border-b border-[var(--border)]">
-                      <p className="text-sm text-[var(--text)]">Signed in as</p>
-                      <p className="text-sm font-medium text-[var(--text)] truncate">{user.email}</p>
-                    </div>
-                    <a
-                      href=""
-                      onClick={() => navigate('/profile')}
-                      className="flex items-center px-4 py-2 text-sm text-green hover:bg-[var(--background-alt)]"
-                      role="menuitem"
-                    >
-                      <i className="fi fi-sr-user mr-3 h-5 w-5 flex items-center justify-center"></i>
-                      Your Profile
-                    </a>
+                <div className="absolute right-0 mt-4 w-72 transform origin-top-right transition-all duration-200 ease-out z-50">
+                  <div className="bg-white dark:bg-slate-900/90 backdrop-blur-xl border border-white shadow-2xl rounded-3xl overflow-hidden ring-1 ring-logoBlue">
 
-                    <div className="border-t border-[var(--border)] my-1"></div>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        // Add your sign out logic here
-                        dispatch(logout());
-                        setIsDropdownOpen(false);
-                      }}
-                      className="w-full text-left flex items-center px-4 py-2 text-sm text-red-600 hover:bg-[var(--background-alt)]"
-                      role="menuitem"
-                    >
-                      <i className="fi fi-sr-leave mr-3 h-5 w-5 text-[var(--text-muted)] flex items-center justify-center"></i>
-                      Sign out
-                    </button>
+                    {/* Cloud Header Decoration */}
+                    <div className="bg-gradient-to-br from-logoBlue via-logoBlue to-logoViolet relative overflow-hidden p-3 lg:p-6 flex flex-col justify-end">
+                      <div className="absolute top-[-50%] left-[-20%] w-48 h-48 bg-white/10 rounded-full blur-3xl"></div>
+                      <div className="absolute bottom-[-20%] right-[-10%] w-32 h-32 bg-logoViolet/30 rounded-full blur-2xl"></div>
+
+                      <p className="relative z-10 text-xs font-bold text-white uppercase tracking-wider mb-1">Signed in as</p>
+                      <p className="relative z-10 text-white font-bold text-lg truncate drop-shadow-sm">{user.firstName} {user.lastName}</p>
+                      <p className="relative z-10 text-white text-xs truncate">{user.email}</p>
+                    </div>
+
+                    <div className="py-2" role="menu">
+                      <button
+                        onClick={() => {
+                          navigate('/profile');
+                          setIsDropdownOpen(false);
+                        }}
+                        className="w-full flex items-center px-3 lg:px-6 py-2 lg:py-4 text-sm font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors group"
+                        role="menuitem"
+                      >
+                        <div className="w-10 h-10 rounded-xl bg-logoBlue/10 text-logoBlue flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                          <i className="fi fi-rr-user text-lg flex items-center justify-center"></i>
+                        </div>
+                        <div className="flex-1 text-left">
+                          <span className="block text-slate-900 dark:text-white">My Profile</span>
+                          <span className="text-xs text-slate-500 font-medium">Manage your account</span>
+                        </div>
+                        <i className="fi fi-rr-angle-small-right text-slate-400 group-hover:translate-x-1 transition-transform"></i>
+                      </button>
+
+                      <div className="h-px bg-slate-100 dark:bg-white/10 my-1 mx-6"></div>
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          dispatch(logout());
+                          setIsDropdownOpen(false);
+                        }}
+                        className="w-full flex items-center px-3 lg:px-6 py-2 lg:py-4 text-sm font-bold text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10 transition-colors group"
+                        role="menuitem"
+                      >
+                        <div className="w-10 h-10 rounded-xl bg-red-50 dark:bg-red-900/20 text-red-500 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                          <i className="fi fi-rr-sign-out-alt text-lg flex items-center justify-center ml-1"></i>
+                        </div>
+                        <div className="flex-1 text-left">
+                          <span className="block">Sign Out</span>
+                        </div>
+                      </button>
+                    </div>
                   </div>
                 </div>
               )}
             </div>
           ) : (
-            <div className="relative pr-2" ref={dropdownRef}>
+            <div className="relative" ref={dropdownRef}>
               <button
                 title="User menu"
                 type="button"
                 onClick={() => navigate('/login')}
-                className="flex items-center justify-center bg-green2 text-white font-medium text-sm cursor-pointer hover:opacity-90 transition-opacity rounded-full border border-[var(--border)] px-4 py-2 gap-2"
+                className="rounded-full px-2 lg:px-4 py-2 gap-2 flex items-center justify-center text-white font-medium text-sm cursor-pointer bg-gradient-to-r from-logoBlue to-logoViolet hover:shadow-lg hover:shadow-logoBlue/25 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-logoBlue"
                 aria-haspopup="menu"
                 aria-label="User menu"
               >
                 <i className="fi fi-br-sign-in-alt flex items-center justify-center text-white"></i>
-                Get In
+                <span className="hidden sm:block">Get In</span>
               </button>
             </div>
           )}

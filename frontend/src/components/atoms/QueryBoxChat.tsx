@@ -248,8 +248,8 @@ export const QueryBoxChat: React.FC<{
             </div>
           </div>
         )}
-        <div className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-100 rounded-2xl hover:shadow-lg transition-shadow focus:ring-1 focus:ring-green2 focus:outline p-2">
-          <div className={`grid ${selectedImage ? "grid-cols-4" : "grid-cols-3"}`}>
+        <div className="bg-white border border-blue-100 rounded-2xl hover:shadow-lg transition-shadow focus:ring-1 focus:ring-green2 focus:outline p-2">
+          <div className={`grid ${selectedImage ? "grid-cols-6" : "grid-cols-5"}`}>
             {/* Image Preview */}
             {selectedImage && (
               <div className="col-span-1">
@@ -260,12 +260,12 @@ export const QueryBoxChat: React.FC<{
                         type="button"
                         onClick={handleRemoveImage}
                         disabled={isLoading}
-                        className={`absolute -top-2 -right-2 flex items-center justify-center p-1 h-6 w-6 rounded-full font-medium transition ${isLoading
+                        className={`absolute -top-1 -right-1 flex items-center justify-center p-0.5 rounded-full font-medium transition ${isLoading
                           ? "bg-gray-300 text-gray-500 cursor-not-allowed"
                           : "bg-red-100 text-red-700 hover:bg-red-200"
                           }`}
                       >
-                        <i className="fi fi-rr-cross text-xs leading-none flex items-center justify-center"></i>
+                        <i className="fi fi-rr-cross-small text-xs leading-none flex items-center justify-center"></i>
                       </button>
                       <img
                         src={imagePreview}
@@ -282,7 +282,7 @@ export const QueryBoxChat: React.FC<{
             )}
 
             {/* Text Input */}
-            <div className="col-span-3">
+            <div className="col-span-5 bg-white">
               <AnimatedTextAreaInput
                 domain={domain}
                 imagePreview={imagePreview}
@@ -300,12 +300,12 @@ export const QueryBoxChat: React.FC<{
                 type="button"
                 onClick={handleUploadButtonClick}
                 disabled={isLoading}
-                className={`flex items-center gap-2 p-3 rounded-full font-medium transition border border-gray-100 ${isLoading
-                  ? "bg-baigeLight cursor-not-allowed"
-                  : "bg-baigeLight hover:bg-gray-200"
+                className={`flex items-center gap-2 p-3 rounded-full font-medium transition hover:shadow-md ${isLoading
+                  ? "bg-logoPink cursor-not-allowed"
+                  : "bg-logoPink hover:bg-logoPurple"
                   }`}
               >
-                <i className="fi fi fi-br-camera-viewfinder flex items-center justify-center text-orange2" />
+                <i className="fi fi fi-br-camera-viewfinder flex items-center justify-center text-white" />
                 <input
                   title="im"
                   type="file"
@@ -326,7 +326,7 @@ export const QueryBoxChat: React.FC<{
                   type="button"
                   className={`flex-1 px-5 py-2 rounded-full font-medium text-white transition ${isLoading
                     ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-green2 hover:bg-green2"
+                    : "bg-gradient-to-br from-logoBlue to-logoViolet hover:shadow-lg hover:font-bold"
                     }`}
                 >
                   {isUploadingToS3 ? "Uploading to S3..." :
@@ -339,7 +339,7 @@ export const QueryBoxChat: React.FC<{
                   type="button"
                   className={`flex-1 px-5 py-2 rounded-full font-medium text-white transition ${isLoading
                     ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-green2 hover:bg-green2"
+                    : "bg-gradient-to-br from-logoBlue to-logoViolet hover:shadow-lg hover:font-bold"
                     }`}
                 >
                   {queryStatus === "loading" ? "Thinking..." : "Ask"}
@@ -349,26 +349,12 @@ export const QueryBoxChat: React.FC<{
           </div>
         </div>
 
-        {/* Action Buttons */}
-
 
         {error && (
           <p className="text-red-500 text-sm mt-3 text-center">❌ {error}</p>
         )}
 
-        {/* {response && (
-        <div>
-          <ResponseCard response={response} />
-          <div className="border-t mt-4 text-sm text-gray-500">
-            {chatConversation && chatConversation.conversations.length > 0 && chatConversation.conversations.map((conversation) => (
-              <div key={conversation.id} className="mt-4">
-                📄 {conversation.query_by}: <span className="font-semibold">{conversation.query}</span><br/>
-                🗂️ {conversation.answer_by}: <span className="font-medium">{conversation.answer}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      )} */}
+
       </div>
     );
   };

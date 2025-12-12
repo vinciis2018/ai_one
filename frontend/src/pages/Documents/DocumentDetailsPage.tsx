@@ -376,44 +376,46 @@ export const DocumentDetailsPage: React.FC = () => {
     }
   };
 
+
   if (!documentId) return null;
   const hasTranscriptionForCurrentPage = notesDescription.some(note => note.page === pageNumber);
 
   return (
     <FullLayout>
-      <div className="min-h-screen bg-gray-50/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="min-h-screen">
+        <div className="max-w-screen mx-auto px-2 sm:px-4 lg:px-6 py-4 lg:py-8">
           {/* Header */}
-          <div className="flex items-center gap-4 mb-8">
-            <button
-              onClick={() => navigate(-1)}
-              className="p-2 hover:bg-white hover:shadow-sm rounded-full transition-all text-gray-600"
-              aria-label="Go back"
-            >
-              <i className="fi fi-sr-arrow-small-left text-2xl flex"></i>
-            </button>
-            <div className="flex-1">
-              <h1 className="text-2xl font-bold text-gray-900">
-                {selectedDocument?.filename || "Document Viewer"}
-              </h1>
-              {selectedDocument && (
-                <p className="text-sm text-gray-500 mt-1 flex items-center gap-2">
-                  <span className="uppercase tracking-wider font-semibold text-xs bg-gray-100 px-2 py-0.5 rounded text-gray-600">
-                    {selectedDocument.source_type}
-                  </span>
-                  <span>•</span>
-                  <span>Uploaded {new Date(selectedDocument.created_at).toLocaleString()}</span>
-                </p>
-              )}
+          <div className="grid grid-cols-12 bg-white dark:bg-black backdrop-blur-xl border border-gray-50 shadow-sm rounded-3xl py-2 lg:p-6 mb-6 flex flex-col lg:flex-row items-center gap-4 justify-between">
+            <div className="col-span-10 flex items-center gap-1 lg:gap-4 w-full lg:w-auto">
+              <button
+                onClick={() => navigate(-1)}
+                className="group flex items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-white shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105"
+              >
+                <i className="fi fi-rr-arrow-small-left text-slate-700 dark:text-white group-hover:text-logoBlue transition-colors" />
+              </button>
+              <div className="flex-1 min-w-0">
+                <h1 className="text-base lg:text-2xl font-bold text-slate-900 dark:text-white truncate">
+                  {selectedDocument?.filename || "Document Viewer"}
+                </h1>
+                {selectedDocument && (
+                  <p className="text-xs lg:text-sm text-slate-500 font-medium mt-1 flex flex-wrap items-center gap-2">
+                    <span className="hidden lg:block uppercase tracking-wider font-bold text-sm bg-gradient-to-r from-logoSky to-logoPurple text-white px-2.5 py-0.5 rounded-lg">
+                      {selectedDocument.source_type}
+                    </span>
+                    <span className="text-slate-300">•</span>
+                    <span>Uploaded {new Date(selectedDocument.created_at).toLocaleDateString()}</span>
+                  </p>
+                )}
+              </div>
             </div>
 
             {/* Action Buttons */}
-            <div className="flex items-center gap-2">
-              {!hasTranscriptionForCurrentPage ? (
+            <div className="col-span-2 flex flex-wrap items-center justify-end gap-3 w-full lg:w-auto overflow-x-auto p-2 lg:pb-0">
+              {/* {!hasTranscriptionForCurrentPage ? (
                 <button
                   onClick={handleTranscribe}
                   disabled={transcriptionStatus === 'loading'}
-                  className="px-4 py-2 flex items-center gap-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium"
+                  className="px-5 py-2.5 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-logoBlue to-logoViolet text-white hover:shadow-lg hover:shadow-logoBlue hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm font-bold shadow-md whitespace-nowrap flex-1 lg:flex-none"
                 >
                   {transcriptionStatus === 'loading' ? (
                     <>
@@ -429,68 +431,78 @@ export const DocumentDetailsPage: React.FC = () => {
                 </button>
               ) : (
                 <>
-                  <button onClick={handleGenerateNotes} disabled={generateNotesStatus === 'loading'} className="px-4 py-2 flex items-center gap-2 rounded-lg bg-orange2 text-white hover:bg-orange-700 transition-colors disabled:opacity-50 text-sm font-medium">
+                  <button onClick={handleGenerateNotes} disabled={generateNotesStatus === 'loading'} className="px-5 py-2.5 flex items-center gap-2 rounded-xl bg-white dark:bg-white border border-slate-200 dark:border-white text-slate-700 dark:text-white hover:border-logoBlue hover:text-logoBlue shadow-sm hover:shadow-md transition-all disabled:opacity-50 text-sm font-bold">
                     <i className="fi fi-rr-magic-wand"></i> Notes
                   </button>
-                  <button onClick={handleGenerateQuiz} disabled={quizStatus === 'loading'} className="px-4 py-2 flex items-center gap-2 rounded-lg bg-purple-600 text-white hover:bg-purple-700 transition-colors disabled:opacity-50 text-sm font-medium">
+                  <button onClick={handleGenerateQuiz} disabled={quizStatus === 'loading'} className="px-5 py-2.5 flex items-center gap-2 rounded-xl bg-white dark:bg-white border border-slate-200 dark:border-white text-slate-700 dark:text-white hover:border-logoViolet hover:text-logoViolet shadow-sm hover:shadow-md transition-all disabled:opacity-50 text-sm font-bold">
                     <i className="fi fi-rr-list-check"></i> Quiz
                   </button>
-                  <button onClick={handleGenerateMCQ} disabled={mcqStatus === 'loading'} className="px-4 py-2 flex items-center gap-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-colors disabled:opacity-50 text-sm font-medium">
+                  <button onClick={handleGenerateMCQ} disabled={mcqStatus === 'loading'} className="px-5 py-2.5 flex items-center gap-2 rounded-xl bg-white dark:bg-white border border-slate-200 dark:border-white text-slate-700 dark:text-white hover:border-logoPink hover:text-logoPink shadow-sm hover:shadow-md transition-all disabled:opacity-50 text-sm font-bold">
                     <i className="fi fi-rr-checkbox"></i> MCQ
                   </button>
                 </>
-              )}
-              <button onClick={handleSaveNotes} disabled={saveStatus === 'loading' || notesDescription.length === 0} className="px-4 py-2 flex items-center gap-2 rounded-lg bg-green2 text-white hover:bg-green-700 transition-colors disabled:opacity-50 text-sm font-medium">
-                <i className="fi fi-rr-disk"></i> Save
+              )} */}
+              <div className="w-px h-8 bg-slate-200 dark:bg-white mx-1 hidden lg:block"></div>
+              <button
+                onClick={handleSaveNotes}
+                disabled={saveStatus === 'loading' || notesDescription.length === 0}
+                className="p-2 lg:px-5 lg:py-2.5 flex items-center gap-2 rounded-xl bg-gradient-to-r from-logoBlue to-logoViolet dark:bg-white text-white dark:text-slate-900 hover:opacity-90 transition-all disabled:opacity-50 text-sm font-bold shadow-lg"
+              >
+                <i className="fi fi-rr-disk flex items-center justify-center"></i>
+                <span className="hidden lg:block">Save</span>
               </button>
             </div>
           </div>
 
+
           {/* Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 min-h-[calc(100vh-180px)]">
+
+          {/* Content */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:h-220 h-auto">
             {/* Left Column: Document Viewer */}
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-1 flex flex-col min-h-[400px] lg:min-h-0">
-              {selectedStatus === "loading" && <div className="p-12 text-center text-gray-400">Loading...</div>}
+            <div className="bg-white dark:bg-black backdrop-blur-xl rounded-2xl shadow-md border border-white flex flex-col lg:h-full h-140 overflow-hidden shrink-0">
+              {selectedStatus === "loading" && <div className="p-12 text-center text-slate-400 font-medium">Loading document...</div>}
               {selectedStatus === "succeeded" && selectedDocument && (
-                <div className="p-1 flex flex-col h-full">
-                  <DocumentViewer
-                    selectedDocument={selectedDocument}
-                    pageNumber={pageNumber}
-                    onPageChange={(page) => dispatch(setViewingPageNumber(page))}
-                    onImageSelection={activeTab === 'transcription' ? handleImageSelection : undefined}
-                    onPageRendered={setPageImage}
-                  />
+                <div className="flex flex-col h-full overflow-hidden relative">
+                  <div className="absolute inset-0 overflow-hidden">
+                    <DocumentViewer
+                      selectedDocument={selectedDocument}
+                      pageNumber={pageNumber}
+                      onPageChange={(page) => dispatch(setViewingPageNumber(page))}
+                      onImageSelection={activeTab === 'transcription' ? handleImageSelection : undefined}
+                      onPageRendered={setPageImage}
+                    />
+                  </div>
                 </div>
               )}
             </div>
 
             {/* Right Column: Tabs */}
-            <div className="relative min-h-[500px] lg:h-full">
-              <div className="lg:absolute lg:inset-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col overflow-hidden h-full">
-                <div className="flex items-center border-b border-gray-100 overflow-x-auto">
+            <div className="lg:h-full h-[600px] overflow-hidden shrink-0 no-scrollbar">
+              <div className="bg-white dark:bg-black backdrop-blur-xl rounded-xl shadow-md border border-white flex flex-col overflow-hidden h-full">
+                <div className="flex items-center gap-2 p-2 border-b border-slate-100 dark:border-white overflow-x-auto no-scrollbar shrink-0">
                   {[
-                    { id: 'transcription', label: 'Transcription', icon: 'fi-rr-edit', color: 'text-blue-600', bg: 'bg-blue-600' },
-                    { id: 'notes', label: 'Notes', icon: 'fi-rr-magic-wand', color: 'text-orange-600', bg: 'bg-orange-600' },
-                    { id: 'quiz', label: 'Quiz', icon: 'fi-rr-list-check', color: 'text-violet-600', bg: 'bg-violet-600' },
-                    { id: 'mcq', label: 'MCQ', icon: 'fi-rr-checkbox', color: 'text-indigo-600', bg: 'bg-indigo-600' },
-                    { id: 'mindmap', label: 'Mindmap', icon: 'fi-rr-network', color: 'text-pink-600', bg: 'bg-pink-600' },
-                    { id: 'personalTricks', label: 'Tricks', icon: 'fi-rr-lightbulb', color: 'text-indigo-600', bg: 'bg-indigo-600' },
-                    { id: 'pyq', label: 'PYQ', icon: 'fi-rr-calendar', color: 'text-purple-600', bg: 'bg-purple-600' }
+                    { id: 'transcription', label: 'Transcribe', icon: 'fi-sr-select', activeClass: 'bg-gradient-to-r from-logoPink to-logoPurple text-white shadow-lg shadow-logoBlue', inactiveClass: 'text-slate-500 hover:bg-slate-50 dark:hover:bg-white' },
+                    { id: 'notes', label: 'Notes', icon: 'fi-sr-journal-alt', activeClass: 'bg-gradient-to-r from-logoPink to-logoPurple text-white shadow-lg shadow-logoViolet', inactiveClass: 'text-slate-500 hover:bg-slate-50 dark:hover:bg-white' },
+                    { id: 'quiz', label: 'Quiz', icon: 'fi-sr-test', activeClass: 'bg-gradient-to-r from-logoPink to-logoPurple text-white shadow-lg shadow-logoPink', inactiveClass: 'text-slate-500 hover:bg-slate-50 dark:hover:bg-white' },
+                    { id: 'mcq', label: 'MCQ', icon: 'fi-sr-quiz-alt', activeClass: 'bg-gradient-to-r from-logoPink to-logoPurple text-white shadow-lg shadow-indigo-500', inactiveClass: 'text-slate-500 hover:bg-slate-50 dark:hover:bg-white' },
+                    { id: 'mindmap', label: 'Mindmap', icon: 'fi-sr-network', activeClass: 'bg-gradient-to-r from-logoPink to-logoPurple text-white shadow-lg shadow-rose-500', inactiveClass: 'text-slate-500 hover:bg-slate-50 dark:hover:bg-white' },
+                    { id: 'personalTricks', label: 'Tricks', icon: 'fi-sr-guide-alt', activeClass: 'bg-gradient-to-r from-logoPink to-logoPurple text-white shadow-lg shadow-amber-500', inactiveClass: 'text-slate-500 hover:bg-slate-50 dark:hover:bg-white' },
+                    { id: 'pyq', label: 'PYQ', icon: 'fi-sr-lightbulb-question', activeClass: 'bg-gradient-to-r from-logoPink to-logoPurple text-white shadow-lg shadow-amber-500', inactiveClass: 'text-slate-500 hover:bg-slate-50 dark:hover:bg-white' },
                   ].map(tab => (
                     <button
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id as any)}
-                      className={`flex-1 py-3 px-4 min-w-[100px] flex items-center justify-center gap-2 text-sm font-medium transition-colors relative whitespace-nowrap ${activeTab === tab.id ? `${tab.color} bg-gray-50` : 'text-gray-500 hover:bg-gray-50'
-                        }`}
+                      className={`py-2.5 px-4 rounded-xl flex items-center gap-2 text-xs lg:text-sm font-bold transition-all whitespace-nowrap
+                        ${activeTab === tab.id ? tab.activeClass : tab.inactiveClass}`}
                     >
-                      <i className={`fi ${tab.icon} flex items-center justify-center`}></i>
-                      <span>{tab.label}</span>
-                      {activeTab === tab.id && <div className={`absolute bottom-0 left-0 right-0 h-0.5 ${tab.bg} rounded-t-full mx-2`} />}
+                      <i className={`fi ${tab.icon} flex items-center justify-center text-base`}></i>
+                      <span className={`${activeTab === tab.id ? '' : 'hidden lg:inline-block'}`}>{tab.label}</span>
                     </button>
                   ))}
                 </div>
 
-                <div className="flex-1 overflow-y-auto p-2">
+                <div className="flex-1 overflow-y-auto custom-scrollbar bg-gray-50 dark:bg-white">
                   {activeTab === 'transcription' && (
                     <TranscriptionTab
                       pageNumber={pageNumber}

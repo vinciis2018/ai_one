@@ -1,14 +1,13 @@
-
 import { useEffect, useState } from 'react';
 import { SimpleLayout } from '../../layouts/AppLayout';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { getTeacherDetails, addCalendarEvent, updateTeacherPersona } from '../../store/slices/teachersSlice';
 import { getStudentDetails } from '../../store/slices/studentsSlice';
 import { fetchSelectedDocuments, type DocumentItem } from '../../store/slices/documentsSlice';
-import DocumentCard from './components/DocumentCard';
-import StatsGrid from './components/StatsGrid';
-import DocumentModal from './components/DocumentModal';
-
+import DocumentCard from '../../components/docComp/DocumentCard';
+import StatsGrid from '../../components/organisms/StatsGrid';
+import DocumentModal from '../../components/docComp/DocumentModal';
+import EditProfileModal from './components/EditProfileModal';
 import { TeacherCalendar, type CalendarEvent } from '../../components/organisms/TeacherCalendar';
 
 interface Tab {
@@ -17,7 +16,6 @@ interface Tab {
   value: string;
   icon?: string;
 }
-
 
 export function UserProfilePage() {
   const dispatch = useAppDispatch();
@@ -28,8 +26,8 @@ export function UserProfilePage() {
   const { documents, status: documentStatus } = useAppSelector((state) => state.documents);
 
   const [selectedDoc, setSelectedDoc] = useState<DocumentItem | null>(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-  console.log(documents)
   const [formData, setFormData] = useState<{ name: string, email: string }>({
     name: user?.firstName ? `${user.firstName} ${user.lastName || ''}`.trim() : "",
     email: user?.email || "",
@@ -52,7 +50,6 @@ export function UserProfilePage() {
     }
   }, [teacher_details]);
 
-  console.log(teacherPersona)
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -102,11 +99,13 @@ export function UserProfilePage() {
       key: 1,
       label: 'Details',
       value: 'details',
+      icon: 'fi-rr-user'
     },
     {
       key: 2,
       label: 'Documents',
       value: 'documents',
+      icon: 'fi-rr-document'
     },
   ];
 
@@ -115,6 +114,7 @@ export function UserProfilePage() {
       key: 3,
       label: 'Calendar',
       value: 'calendar',
+      icon: 'fi-rr-calendar'
     });
   }
 
@@ -138,287 +138,294 @@ export function UserProfilePage() {
   return (
     <SimpleLayout>
       {selectedDoc && <DocumentModal doc={selectedDoc} onClose={() => setSelectedDoc(null)} />}
-      <div className="bg-white max-w-4xl mx-auto p-4">
-        {/* Profile Header */}
-        <div className="py-4">
-          <div className="flex flex-col sm:flex-row items-center">
-            <div className="flex-shrink-0">
-              <img
-                className="h-24 w-24 rounded-full object-cover border-4 border-white shadow-sm"
-                src={user?.avatar || "https://cdn-icons-png.flaticon.com/512/3135/3135715.png"}
-                alt={user?.full_name}
-              />
-            </div>
-            <div className="mt-4 sm:mt-0 sm:ml-6 text-center sm:text-left">
-              <h1 className="text-2xl text-black dark:text-white font-bold capitalize flex items-center gap-2 justify-center sm:justify-start">
-                {user?.full_name}
-                {user?.role === 'teacher' && (
-                  <span className="px-2 py-0.5 text-xs bg-blue-100 text-blue-700 rounded-full border border-blue-200">
-                    Educator
-                  </span>
-                )}
-              </h1>
-              <p className="text-sm text-gray-500">{user?.email}</p>
-              {user?.role === 'teacher' && (
-                <div className="flex flex-wrap gap-2 mt-2 justify-center sm:justify-start">
-                  <span className="px-2 py-0.5 text-xs bg-orange-50 text-orange-600 rounded border border-orange-100">IIT JEE</span>
-                  <span className="px-2 py-0.5 text-xs bg-green-50 text-green-600 rounded border border-green-100">NEET</span>
-                  <span className="px-2 py-0.5 text-xs bg-purple-50 text-purple-600 rounded border border-purple-100">CBSE</span>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
+      <EditProfileModal isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)} />
 
-        <div className="p-2 max-w-screen grid grid-cols-3 gap-4 border-b border-gray-100 mb-4">
-          {tabs?.map((tab: Tab) => (
-            <div className="col-span-1" key={tab.key}>
-              <button
-                type="button"
-                onClick={() => setCurrentTab(tab.value)}
-                className={`p-2 w-full focus:outline-none transition-colors ${currentTab === tab.value
-                  ? 'border-b-2 border-green2 text-green2 font-semibold'
-                  : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded-t-md'
-                  }`}
-              >
-                {tab.label}
-              </button>
-            </div>
-          ))}
-        </div>
+      <div className="mt-16 relative min-h-screen w-full bg-gradient-to-br from-[#F8FAFC] via-[#F1F5F9] to-logoBlue/10 dark:from-background dark:via-background dark:to-logoBlue/5 p-4 sm:p-8">
 
-        {currentTab === "edit" ? (
-          <div className="p-2">
-            <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[var(--primary)] focus:ring-[var(--primary)] sm:text-sm p-2 border"
+        <div className={`relative z-10 ${user?.role === 'teacher' ? 'max-w-5xl' : 'max-w-3xl'} mx-auto space-y-6`}>
+          {/* Profile Header Card */}
+          <div className="bg-white dark:bg-black backdrop-blur-xl border border-white shadow-md rounded-3xl p-4 lg:p-8 transform transition-all hover:scale-[1.002] duration-500">
+            <div className="flex flex-col sm:flex-row items-center gap-6">
+              <div className="flex-shrink-0 relative group">
+                <div className="absolute -inset-1 bg-gradient-to-r from-logoBlue to-logoViolet rounded-full opacity-70 blur group-hover:opacity-100 transition duration-300"></div>
+                <img
+                  className="relative h-28 w-28 rounded-full object-cover border-4 border-white dark:border-slate-800 shadow-md"
+                  src={user?.avatar || "https://cdn-icons-png.flaticon.com/512/3135/3135715.png"}
+                  alt={user?.full_name}
                 />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[var(--primary)] focus:ring-[var(--primary)] sm:text-sm p-2 border"
-                />
-              </div>
-              <div className="flex justify-end space-x-3 pt-2">
-                <button
-                  type="submit"
-                  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-[var(--primary)] hover:bg-[var(--primary-hover)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary)]"
-                >
-                  Save Changes
+                <button className="absolute bottom-1 right-1 bg-white p-1.5 rounded-full shadow-md text-logoBlue hover:scale-110 transition-transform">
+                  <i className="fi fi-rr-camera text-sm flex items-center justify-center"></i>
                 </button>
               </div>
-            </form>
-          </div>
-        ) : currentTab === "documents" ? (
-          <div className="p-4">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-lg font-semibold text-gray-800">Uploaded Documents</h2>
-              <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
-                {documents?.length || 0} Files
-              </span>
-            </div>
 
-            {documentStatus === 'loading' ? (
-              <div className="flex justify-center py-10">
-                <i className="fi fi-br-circle animate-spin text-2xl text-gray-400"></i>
-              </div>
-            ) : documents && documents.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {documents.map((doc) => (
-                  <DocumentCard key={doc.id} doc={doc} onClick={() => setSelectedDoc(doc)} />
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-10 bg-gray-50 rounded-lg border border-dashed border-gray-300">
-                <i className="fi fi-rr-folder-open text-3xl text-gray-300 mb-2 block"></i>
-                <p className="text-gray-500 text-sm">No documents uploaded yet.</p>
-              </div>
-            )}
-          </div>
-        ) : currentTab === "calendar" && user?.role === "teacher" ? (
-          <div className="p-4">
-            <TeacherCalendar events={teacher_details?.calendar?.events} onAddEvent={handleAddEvent} />
-          </div>
-        ) : (
-          <div className="p-4">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              {/* Profile Information */}
-              <div className="lg:col-span-2 space-y-6">
-
-                {/* Stats Grid */}
-                <StatsGrid teacherDetails={teacher_details} studentDetails={student_details} />
-
-                <div className="space-y-4">
-                  <h3 className="font-bold text-gray-900 flex items-center gap-2">
-                    <i className="fi fi-rr-user text-gray-400"></i>
-                    About
-                  </h3>
-                  <div className="bg-gray-50 rounded-xl p-4 border border-gray-100 text-sm text-gray-600 leading-relaxed">
-                    <p>
-                      Passionate {user?.role} dedicated to excellence in education.
-                      Specializing in {teacher_details?.subjects?.join(", ") || student_details?.subjects?.join(", ") || "General Studies"}.
-                      {user?.role === 'teacher' && " Helping students achieve their dreams in IIT JEE, NEET, and CBSE board exams."}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  <h3 className="font-bold text-gray-900 flex items-center gap-2">
-                    <i className="fi fi-rr-briefcase text-gray-400"></i>
-                    Professional Details
-                  </h3>
-                  <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-                    <div className="p-3 border-b border-gray-100 flex items-center justify-between hover:bg-gray-50 transition-colors">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-500">
-                          <i className="fi fi-sr-graduation-cap text-sm" />
-                        </div>
-                        <div>
-                          <p className="text-xs text-gray-500">Organization</p>
-                          <p className="text-sm font-medium text-gray-900">{teacher_details?.organization?.name || student_details?.organization?.name || "Independent"}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="p-3 border-b border-gray-100 flex items-center justify-between hover:bg-gray-50 transition-colors">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-purple-50 flex items-center justify-center text-purple-500">
-                          <i className="fi fi-sr-book-alt text-sm" />
-                        </div>
-                        <div>
-                          <p className="text-xs text-gray-500">Subjects</p>
-                          <p className="text-sm font-medium text-gray-900">{teacher_details?.subjects?.join(", ") || student_details?.subjects?.join(", ") || "Not specified"}</p>
-                        </div>
-                      </div>
-                    </div>
+              <div className="flex-1 text-center sm:text-left">
+                <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-4">
+                  <div>
+                    <h1 className="text-lg lg:text-3xl font-bold text-slate-900 dark:text-white capitalize flex items-center gap-3 justify-center sm:justify-start">
+                      {user?.full_name}
+                      {user?.role === 'teacher' && (
+                        <span className="flex items-center px-3 py-1 text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-logoSky to-logoPurple text-white rounded-full shadow-lg shadow-logoBlue">
+                          E<span className="hidden lg:block">ducator</span>
+                        </span>
+                      )}
+                    </h1>
+                    <p className="text-sm lg:text-base text-slate-500 dark:text-slate-400 font-medium mt-1">{user?.email}</p>
                     {user?.role === 'teacher' && (
-                      <div className="p-3 flex items-center justify-between hover:bg-gray-50 transition-colors">
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-green-50 flex items-center justify-center text-green-500">
-                            <i className="fi fi-sr-chalkboard-user text-sm" />
-                          </div>
-                          <div>
-                            <p className="text-xs text-gray-500">Target Exams</p>
-                            <p className="text-sm font-medium text-gray-900">IIT JEE, NEET, CBSE</p>
-                          </div>
-                        </div>
+                      <div className="flex flex-wrap gap-2 mt-4 justify-center sm:justify-start">
+                        {['IIT JEE', 'NEET', 'CBSE'].map((tag, i) => (
+                          <span key={i} className="px-3 py-1 text-xs font-bold bg-white dark:bg-white border border-slate-200 dark:border-white text-slate-600 dark:text-slate-300 rounded-lg backdrop-blur-sm">
+                            {tag}
+                          </span>
+                        ))}
                       </div>
                     )}
                   </div>
+                  <button
+                    onClick={() => setIsEditModalOpen(true)}
+                    className="px-6 py-2.5 text-sm lg:text-base rounded-xl border border-slate-200 dark:border-white font-bold text-slate-600 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-white transition-all flex items-center gap-2"
+                  >
+                    <i className="fi fi-rr-edit flex items-center justify-center"></i> Edit Profile
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Navigation Tabs */}
+          <div className="bg-white dark:bg-black backdrop-blur-md p-1.5 rounded-2xl flex gap-1 border border-white shadow-sm overflow-x-auto">
+            {tabs.map((tab) => (
+              <button
+                key={tab.key}
+                onClick={() => setCurrentTab(tab.value)}
+                className={`flex-1 min-w-[120px] py-3 px-6 rounded-xl text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2 ${currentTab === tab.value
+                  ? 'bg-white dark:bg-slate-800 text-logoBlue shadow-md scale-[1.02]'
+                  : 'text-slate-500 hover:text-slate-700 hover:bg-white dark:hover:bg-white'
+                  }`}
+              >
+                {tab.icon && <i className={`fi ${tab.icon} flex items-center justify-center`}></i>}
+                <span className="hidden lg:block">{tab.label}</span>
+              </button>
+            ))}
+          </div>
+
+          {/* Content Area */}
+          <div className="min-h-[400px]">
+            {/* Edit tab removed in favor of modal, but logic preserved for 'documents', 'calendar', etc. */}
+            {currentTab === "documents" ? (
+              <div className="bg-white dark:bg-black backdrop-blur-xl border border-white shadow-xl rounded-3xl p-4 lg:p-8 animate-fade-in-up">
+                <div className="grid grid-cols-12 border-b border-slate-100 pb-4">
+                  <div className="col-span-11 flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-logoPink to-logoPurple flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <i className="fi fi-rr-document text-white flex items-center justify-center"></i>
+                    </div>
+                    <div>
+                      <h2 className="text-lg lg:text-xl font-bold text-slate-900 dark:text-white">Notes</h2>
+                      <p className="text-slate-500 text-xs lg:text-sm">Manage your uploaded materials</p>
+                    </div>
+                  </div>
+
+                  <div className="col-span-1 flex items-center justify-center gap-2 bg-white text-logoBlue font-bold px-4 py-2 rounded-xl lg:text-sm text-xs border border-logoBlue">
+                    <span className="">{documents?.length || 0}</span>
+                    <span className="hidden lg:block">Files</span>
+                  </div>
                 </div>
 
+                {documentStatus === 'loading' ? (
+                  <div className="flex justify-center py-20">
+                    <div className="flex flex-col items-center gap-3">
+                      <i className="fi fi-rr-spinner animate-spin text-3xl text-logoBlue"></i>
+                      <p className="text-slate-500 font-medium">Loading files...</p>
+                    </div>
+                  </div>
+                ) : documents && documents.length > 0 ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 pt-4 lg:grid-cols-3 gap-3 lg:gap-6">
+                    {documents.map((doc) => (
+                      <div key={doc.id} className="">
+                        <DocumentCard doc={doc} onClick={() => setSelectedDoc(doc)} />
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-20 bg-white rounded-2xl border-2 border-dashed border-slate-200">
+                    <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <i className="fi fi-rr-folder-open text-3xl text-slate-400"></i>
+                    </div>
+                    <h3 className="text-base lg:text-xl font-bold text-slate-700">No notes yet</h3>
+                    <p className="text-slate-500 lg:text-sm text-xs mb-6">Upload notes to get started</p>
+                    <button className="px-6 py-2.5 bg-gradient-to-r from-logoBlue to-logoViolet text-white rounded-xl font-bold text-xs lg:text-sm hover:bg-slate-800 transition-colors">
+                      Upload Notes
+                    </button>
+                  </div>
+                )}
               </div>
+            ) : currentTab === "calendar" && user?.role === "teacher" ? (
+              <TeacherCalendar events={teacher_details?.calendar?.events} onAddEvent={handleAddEvent} />
+            ) : (
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8 animate-fade-in-up">
+                {/* Profile Information */}
+                <div className={`${user?.role === "teacher" ? "lg:col-span-2" : "lg:col-span-3"} space-y-8`}>
+                  <div className="bg-white dark:bg-black backdrop-blur-xl border border-white shadow-sm rounded-3xl p-4 lg:p-8">
+                    {/* Stats Grid */}
+                    <StatsGrid teacherDetails={teacher_details} studentDetails={student_details} />
+                  </div>
 
-              {/* Right Sidebar - Teacher Persona */}
-              <div className="lg:col-span-1">
-                <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
-                  <h3 className="font-bold text-lg mb-4 flex items-center gap-2 text-gray-900">
-                    <i className="fi fi-rr-magic-wand text-purple-500"></i>
-                    Teacher Persona
-                  </h3>
-
-                  <div className="space-y-4">
-                    <div>
-                      <label htmlFor="personality" className="block text-sm font-medium text-gray-700 mb-1">
-                        Personality
-                      </label>
-                      <select
-                        id="personality"
-                        value={teacherPersona.personality}
-                        onChange={(e) => setTeacherPersona(prev => ({ ...prev, personality: e.target.value }))}
-                        className="capitalize w-full rounded-lg border-gray-300 shadow-sm focus:border-green2 focus:ring-green2 sm:text-sm"
-                      >
-                        <option value="" disabled>Select a personality</option>
-                        {personalityOptions.map(option => (
-                          <option key={option} value={option}>{option}</option>
-                        ))}
-                      </select>
+                  <div className="bg-white dark:bg-black backdrop-blur-xl border border-white shadow-md rounded-3xl p-4 lg:p-8 space-y-6">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-logoPink to-logoPurple flex items-center justify-center text-white shadow-lg">
+                        <i className="fi fi-rr-user text-base flex items-center justify-center"></i>
+                      </div>
+                      <h3 className="font-bold text-lg lg:text-xl text-slate-900 dark:text-white">About</h3>
                     </div>
 
-                    <div>
-                      <label htmlFor="answerStyle" className="block text-sm font-medium text-gray-700 mb-1">
-                        Answer Style
-                      </label>
-                      <textarea
-                        id="answerStyle"
-                        rows={4}
-                        value={teacherPersona.answerStyle}
-                        onChange={(e) => setTeacherPersona(prev => ({ ...prev, answerStyle: e.target.value }))}
-                        placeholder="e.g. I prefer to answer with analogies and keep the tone encouraging. I always start with a positive reinforcement before correcting mistakes."
-                        className="w-full rounded-lg border-gray-300 shadow-sm focus:border-green2 focus:ring-green2 sm:text-sm resize-none"
-                      />
+                    <div className="text-sm lg:text-base bg-white dark:bg-white rounded-2xl p-2 lg:p-6 border border-slate-100 dark:border-white text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+                      Passionate {user?.role} dedicated to excellence in education.
+                      Specializing in {teacher_details?.subjects?.join(", ") || student_details?.subjects?.join(", ") || "General Studies"}.
+                      {user?.role === 'teacher' && " Helping students achieve their dreams in IIT JEE, NEET, and CBSE board exams."}
+                    </div>
+                  </div>
+
+                  <div className="bg-white dark:bg-black backdrop-blur-xl border border-white shadow-md rounded-3xl p-4 lg:p-8">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-logoPink to-logoPurple flex items-center justify-center text-white shadow-lg shadow-orange-500/20">
+                        <i className="fi fi-rr-briefcase text-base flex items-center justify-center"></i>
+                      </div>
+                      <h3 className="font-bold text-lg lg:text-xl text-slate-900 dark:text-white">Professional Details</h3>
                     </div>
 
-                    <div>
-                      <label htmlFor="youtubeVideoUrl" className="block text-sm font-medium text-gray-700 mb-1">
-                        Introduction Video URL
-                      </label>
-                      <input
-                        type="url"
-                        id="youtubeVideoUrl"
-                        value={teacherPersona.youtubeVideoUrl}
-                        onChange={(e) => setTeacherPersona(prev => ({ ...prev, youtubeVideoUrl: e.target.value }))}
-                        placeholder="e.g. https://www.youtube.com/watch?v=..."
-                        className="w-full rounded-lg border-gray-300 shadow-sm focus:border-green2 focus:ring-green2 sm:text-sm"
-                      />
-                    </div>
+                    <div className="grid sm:grid-cols-2 gap-2 lg:gap-4">
+                      <div className="bg-white dark:bg-white p-2 lg:p-4 rounded-2xl border border-slate-100 dark:border-white hover:border-logoSky transition-colors group">
+                        <div className="flex items-center gap-4">
+                          <div className="w-12 h-12 rounded-2xl bg-logoSky flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i className="fi fi-sr-graduation-cap text-base flex items-center justify-center text-xl text-white" />
+                          </div>
+                          <div>
+                            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Organization</p>
+                            <p className="text-sm lg:text-base font-bold text-slate-900 dark:text-white">{teacher_details?.organization?.name || student_details?.organization?.name || "Independent"}</p>
+                          </div>
+                        </div>
+                      </div>
 
-                    <div className="flex flex-col gap-2">
-                      <button
-                        className={`w-full py-2 text-white rounded-lg font-semibold text-sm transition-colors flex items-center justify-center gap-2 ${loading ? 'bg-green-400 cursor-not-allowed' : 'bg-green2 hover:bg-green-600'
-                          }`}
-                        onClick={handleSavePersona}
-                        disabled={loading}
-                      >
-                        {loading ? (
-                          <>
-                            <i className="fi fi-rr-spinner animate-spin"></i>
-                            Saving...
-                          </>
-                        ) : (
-                          <>
-                            <i className="fi fi-rr-disk"></i>
-                            Save Persona
-                          </>
-                        )}
-                      </button>
-                      {error && (
-                        <p className="text-xs text-red-500 text-center mt-1">
-                          {error}
-                        </p>
+                      <div className="bg-white dark:bg-white p-2 lg:p-4 rounded-2xl border border-slate-100 dark:border-white hover:border-logoSky transition-colors group">
+                        <div className="flex items-center gap-4">
+                          <div className="w-12 h-12 rounded-2xl bg-logoSky flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i className="fi fi-sr-book-alt text-base flex items-center justify-center text-white" />
+                          </div>
+                          <div>
+                            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Subjects</p>
+                            <p className="text-sm lg:text-base font-bold text-slate-900 dark:text-white capitalize">{teacher_details?.subjects?.join(", ") || student_details?.subjects?.join(", ") || "Not specified"}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {user?.role === 'teacher' && (
+                        <div className="bg-white dark:bg-white p-4 rounded-2xl border border-slate-100 dark:border-white hover:border-logoSky transition-colors group sm:col-span-2">
+                          <div className="flex items-center gap-4">
+                            <div className="w-12 h-12 rounded-2xl bg-logoSky flex items-center justify-center group-hover:scale-110 transition-transform">
+                              <i className="fi fi-sr-chalkboard-user text-base flex items-center justify-center text-white" />
+                            </div>
+                            <div>
+                              <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Target Exams</p>
+                              <p className="text-sm lg:text-base font-bold text-slate-900 dark:text-white">IIT JEE, NEET, CBSE</p>
+                            </div>
+                          </div>
+                        </div>
                       )}
-                      {/* We can check for success if needed, but usually a toast is better. 
-                          For now, let's just rely on the button state returning to normal 
-                          and maybe a temporary success message if we had a local success state. 
-                          Since we don't have a specific 'personaSuccess' state in slice, 
-                          we might want to add a local one or just rely on the absence of error after loading.
-                      */}
                     </div>
                   </div>
                 </div>
-              </div>
 
-            </div>
+                {/* Right Sidebar - Teacher Persona */}
+                {user?.role === "teacher" && (
+                  <div className="lg:col-span-1">
+                    <div className="bg-white dark:bg-black backdrop-blur-xl border border-white shadow-md rounded-3xl p-4 lg:p-8 sticky">
+                      <h3 className="font-bold text-xl mb-6 flex items-center gap-3 text-slate-900 dark:text-white">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-logoPink to-logoPurple flex items-center justify-center text-white shadow-lg shadow-logoViolet">
+                          <i className="fi fi-rr-magic-wand text-base flex items-center justify-center text-xl"></i>
+                        </div>
+                        AI Persona
+                      </h3>
+
+                      <div className="space-y-5">
+                        <div>
+                          <label htmlFor="personality" className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">
+                            Personality Style
+                          </label>
+                          <select
+                            id="personality"
+                            value={teacherPersona.personality}
+                            onChange={(e) => setTeacherPersona(prev => ({ ...prev, personality: e.target.value }))}
+                            className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-logoViolet focus:ring-2 focus:ring-logoViolet/20 outline-none transition-all bg-white/50 backdrop-blur-sm capitalize font-medium"
+                          >
+                            <option value="" disabled>Select a personality</option>
+                            {personalityOptions.map(option => (
+                              <option key={option} value={option}>{option}</option>
+                            ))}
+                          </select>
+                        </div>
+
+                        <div>
+                          <label htmlFor="answerStyle" className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">
+                            Teaching Style
+                          </label>
+                          <textarea
+                            id="answerStyle"
+                            rows={4}
+                            value={teacherPersona.answerStyle}
+                            onChange={(e) => setTeacherPersona(prev => ({ ...prev, answerStyle: e.target.value }))}
+                            placeholder="e.g. I prefer to answer with analogies..."
+                            className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-logoViolet focus:ring-2 focus:ring-logoViolet/20 outline-none transition-all bg-white/50 backdrop-blur-sm resize-none font-medium text-sm"
+                          />
+                        </div>
+
+                        <div>
+                          <label htmlFor="youtubeVideoUrl" className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">
+                            Intro Video (URL)
+                          </label>
+                          <input
+                            type="url"
+                            id="youtubeVideoUrl"
+                            value={teacherPersona.youtubeVideoUrl}
+                            onChange={(e) => setTeacherPersona(prev => ({ ...prev, youtubeVideoUrl: e.target.value }))}
+                            placeholder="https://youtube.com/..."
+                            className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-logoViolet focus:ring-2 focus:ring-logoViolet/20 outline-none transition-all bg-white/50 backdrop-blur-sm font-medium text-sm"
+                          />
+                        </div>
+
+                        <div className="pt-2">
+                          <button
+                            className={`w-full py-3.5 text-white rounded-xl font-bold text-sm transition-all shadow-lg hover:shadow-xl hover:scale-[1.02] flex items-center justify-center gap-2 ${loading ? 'bg-slate-400 cursor-not-allowed' : 'bg-gradient-to-r from-logoBlue to-logoViolet shadow-logoBlue/20'
+                              }`}
+                            onClick={handleSavePersona}
+                            disabled={loading}
+                          >
+                            {loading ? (
+                              <>
+                                <i className="fi fi-rr-spinner flex items-center justify-center text-base animate-spin"></i>
+                                Saving...
+                              </>
+                            ) : (
+                              <>
+                                <i className="fi fi-rr-disk flex items-center justify-center text-base"></i>
+                                Save Configuration
+                              </>
+                            )}
+                          </button>
+                          {error && (
+                            <p className="text-xs text-red-500 text-center mt-3 font-bold bg-red-50 py-2 rounded-lg">
+                              <i className="fi fi-rr-exclamation mr-1"></i> {error}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
-    </SimpleLayout >
+    </SimpleLayout>
   );
 }
 

@@ -130,7 +130,7 @@ export const useSelectionBox = ({ imageRef, onSelectionChange }: UseSelectionBox
 
   const handleTouchMove = useCallback((e: React.TouchEvent) => {
     if (!isSelecting || !imageRef?.current) return;
-    e.preventDefault(); // Prevent scrolling while selecting
+    // e.preventDefault(); // Prevent scrolling while selecting
 
     const touch = e.touches[0];
     const rect = imageRef.current.getBoundingClientRect();

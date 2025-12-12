@@ -30,7 +30,7 @@ export default defineConfig({
       manifest: {
         name: 'MAIIND',
         short_name: 'maiind',
-        description: 'pharma logistics',
+        description: 'personal teaching assistant',
         theme_color: '#ffffff',
         icons: [
           {

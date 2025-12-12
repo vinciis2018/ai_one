@@ -30,6 +30,7 @@ class UserModel(BaseModel):
     is_active: Optional[bool] = None
     is_deleted: Optional[bool] = None
     last_login: Optional[datetime] = None
+    subjects: Optional[list] = None
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
 
