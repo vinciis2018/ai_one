@@ -112,8 +112,8 @@ export function HomePage() {
                   onClick={() => navigate('/signup')}
                   className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-logoBlue to-logoViolet text-white rounded-full font-bold text-base md:text-lg transition-all transform hover:scale-105 hover:shadow-lg hover:shadow-logoBlue shadow-md flex items-center justify-center gap-2 group"
                 >
-                  Create Your AI Twin
-                  <i className="fi fi-rr-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                  Start Teaching
+                  <i className="fi fi-rr-arrow-right flex items-center justify-center group-hover:translate-x-1 transition-transform"></i>
                 </button>
                 <button
                   onClick={() => {
@@ -122,7 +122,7 @@ export function HomePage() {
                   }}
                   className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-white border border-slate-200 hover:border-logoBlue hover:text-logoBlue text-slate-600 rounded-full font-bold text-base md:text-lg transition-all backdrop-blur-sm hover:bg-white shadow-sm flex items-center justify-center gap-2"
                 >
-                  <i className="fi fi-rr-play-circle text-lg md:text-xl"></i>
+                  <i className="fi fi-rr-play-circle flex items-center justify-center text-lg md:text-xl"></i>
                   Watch Demo
                 </button>
               </div>
@@ -151,7 +151,7 @@ export function HomePage() {
                 <div className="flex items-center justify-between mb-6 border-b border-slate-200 pb-4">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-logoBlue to-logoViolet flex items-center justify-center text-white shadow-lg">
-                      <i className="fi fi-rr-microchip-ai"></i>
+                      <i className="fi fi-rr-microchip-ai flex items-center justify-center"></i>
                     </div>
                     <div>
                       <div className="h-4 w-32 bg-slate-800 rounded mb-1"></div>
@@ -167,14 +167,14 @@ export function HomePage() {
                 {/* Content Mockup - Chat */}
                 <div className="space-y-4 mb-6">
                   <div className="flex gap-3">
-                    <div className="w-8 h-8 rounded-full bg-orange-100 flex-shrink-0 flex items-center justify-center text-orange-500 text-xs">S</div>
+                    <div className="w-8 h-8 rounded-full bg-logoPink flex-shrink-0 flex items-center justify-center text-white text-xs">S</div>
                     <div className="bg-white p-3 rounded-2xl rounded-tl-none text-sm text-slate-600 shadow-sm border border-slate-100 max-w-[80%]">
                       Help! I don't understand Quantum Numbers. Can you explain with an example?
                     </div>
                   </div>
                   <div className="flex gap-3 flex-row-reverse">
                     <div className="w-8 h-8 rounded-full bg-logoBlue flex-shrink-0 flex items-center justify-center text-white text-xs">AI</div>
-                    <div className="bg-gradient-to-br from-logoBlue to-logoViolet p-4 rounded-2xl rounded-tr-none text-sm text-white shadow-md max-w-[90%]">
+                    <div className="bg-gradient-to-br from-logoSky to-logoPurple p-4 rounded-2xl rounded-tr-none text-sm text-white shadow-md max-w-[90%]">
                       <p className="mb-2">Sure! Think of an electron's address in an atom like your home address:</p>
                       <ul className="list-disc pl-4 space-y-1 text-white text-xs">
                         <li><b>Principal (n)</b>: The City (Shell)</li>
@@ -187,10 +187,10 @@ export function HomePage() {
                 </div>
 
                 {/* Floating Elements */}
-                <div className="absolute -right-8 top-20 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 animate-bounce-slow">
+                <div className="absolute -right-8 top-20 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 animate-float">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-500">
-                      <i className="fi fi-rr-check"></i>
+                      <i className="fi fi-rr-check flex items-center justify-center"></i>
                     </div>
                     <div>
                       <p className="text-xs text-slate-400 font-bold uppercase">Accuracy</p>
@@ -199,10 +199,10 @@ export function HomePage() {
                   </div>
                 </div>
 
-                <div className="absolute -left-8 bottom-20 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 animate-bounce-slow" style={{ animationDelay: '1s' }}>
+                <div className="absolute -left-8 bottom-20 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 animate-float">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-logoBlue">
-                      <i className="fi fi-rr-clock-five"></i>
+                      <i className="fi fi-rr-clock-five flex items-center justify-center"></i>
                     </div>
                     <div>
                       <p className="text-xs text-slate-400 font-bold uppercase">Avg Response</p>
@@ -224,7 +224,7 @@ export function HomePage() {
             <div className="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
               <ul className="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-scroll">
                 {[...Array(2)].map((_, setIndex) => (
-                  ['Viraaz Academy', 'Focus Coaching', 'Quantum classess', 'Maths Classes', 'Physics Classes', 'Chemistry Classes'].map((name, i) => (
+                  ['Viraaz Academy', 'Physics Masters', 'Quantum classess', 'Maths Equations', 'Focus Coaching', 'Chemistry Classes'].map((name, i) => (
                     <li key={`${setIndex}-${i}`} className="flex items-center gap-2 text-lg md:text-xl font-bold text-slate-800/50 whitespace-nowrap mx-8">
                       <div className="w-6 h-6 md:w-8 md:h-8 bg-gradient-to-br from-logoPink to-logoPurple rounded-full"></div>
                       {name}
@@ -269,12 +269,12 @@ export function HomePage() {
               {/* Teacher's Dilemma */}
               <div className="bg-white rounded-3xl p-6 md:p-12 border border-slate-100 shadow-xl relative overflow-hidden group hover:border-logoBlue hover:shadow-2xl hover:shadow-logoBlue transition-all duration-300">
                 <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity transform group-hover:scale-110 duration-500">
-                  <i className="fi fi-rr-clock text-[8rem] md:text-[12rem] text-logoBlue"></i>
+                  <i className="fi fi-rr-clock flex items-center justify-center text-sm md:text-base text-logoBlue"></i>
                 </div>
                 <div className="relative z-10">
                   <div className="flex items-center gap-4 mb-6 md:mb-8">
                     <span className="p-3 md:p-4 bg-red-50 text-red-500 rounded-2xl border border-red-100 shadow-sm">
-                      <i className="fi fi-sr-workshop text-2xl md:text-3xl"></i>
+                      <i className="fi fi-sr-workshop text-2xl md:text-3xl flex items-center justify-center"></i>
                     </span>
                     <h3 className="text-xl md:text-2xl font-bold text-slate-900">The Teacher's Dilemma</h3>
                   </div>
@@ -289,7 +289,7 @@ export function HomePage() {
                       "Lost context on individual student gaps"
                     ].map((item, i) => (
                       <li key={i} className="flex items-start gap-3 text-slate-600 font-medium text-sm md:text-base">
-                        <i className="fi fi-rr-cross-circle text-red-500 mt-1"></i>
+                        <i className="fi fi-rr-cross-circle text-red-500 mt-1 flex items-center justify-center"></i>
                         {item}
                       </li>
                     ))}
@@ -300,12 +300,12 @@ export function HomePage() {
               {/* Student's Struggle */}
               <div className="bg-white rounded-3xl p-6 md:p-12 border border-slate-100 shadow-xl relative overflow-hidden group hover:border-logoViolet hover:shadow-2xl hover:shadow-logoViolet transition-all duration-300">
                 <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity transform group-hover:scale-110 duration-500">
-                  <i className="fi fi-rr-backpack text-[8rem] md:text-[12rem] text-logoViolet"></i>
+                  <i className="fi fi-rr-backpack text-sm md:text-base text-logoViolet flex items-center justify-center"></i>
                 </div>
                 <div className="relative z-10">
                   <div className="flex items-center gap-4 mb-6 md:mb-8">
                     <span className="p-3 md:p-4 bg-orange-50 text-orange-500 rounded-2xl border border-orange-100 shadow-sm">
-                      <i className="fi fi-rr-student text-2xl md:text-3xl"></i>
+                      <i className="fi fi-rr-student text-2xl md:text-3xl flex items-center justify-center"></i>
                     </span>
                     <h3 className="text-xl md:text-2xl font-bold text-slate-900">The Student's Struggle</h3>
                   </div>
@@ -320,7 +320,7 @@ export function HomePage() {
                       "Generic help doesn't match teacher's style"
                     ].map((item, i) => (
                       <li key={i} className="flex items-start gap-3 text-slate-600 font-medium text-sm md:text-base">
-                        <i className="fi fi-rr-cross-circle text-orange-500 mt-1"></i>
+                        <i className="fi fi-rr-cross-circle text-orange-500 mt-1 flex items-center justify-center"></i>
                         {item}
                       </li>
                     ))}
@@ -335,7 +335,7 @@ export function HomePage() {
         <div id="how-it-works" className="py-16 md:py-24 px-4 md:px-6 relative overflow-hidden bg-white">
           <div className="max-w-7xl mx-auto relative z-10">
             <div className="text-center mb-12 md:mb-20">
-              <span className="text-logoBlue font-bold tracking-wider uppercase text-xs md:text-sm bg-logoBlue px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-logoBlue">How It Works</span>
+              <span className="text-logoBlue font-bold tracking-wider uppercase text-xs md:text-sm bg-white px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-logoBlue">How It Works</span>
               <h2 className="text-3xl md:text-5xl font-bold mt-6 md:mt-8 mb-4 md:mb-6 text-slate-900">Meet Your AI Twin</h2>
               <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto">
                 Scale your personality, teaching style, and expertise infinitely in 3 simple steps.
@@ -344,7 +344,7 @@ export function HomePage() {
 
             <div className="grid md:grid-cols-3 gap-8 relative">
               {/* Connecting Line (Desktop) */}
-              <div className="hidden md:block absolute top-12 left-[16%] right-[16%] h-0.5 bg-gradient-to-r from-logoBlue via-logoViolet to-logoBlue border-t-2 border-dashed border-slate-200"></div>
+              <div className="hidden md:block absolute top-40 left-4 right-4 h-0.5 bg-gradient-to-r from-logoBlue via-logoViolet to-logoBlue border-t-2 border-dashed border-slate-200"></div>
 
               {[
                 {
@@ -366,7 +366,7 @@ export function HomePage() {
                 <div key={i} className="relative bg-white p-6 md:p-8 rounded-3xl border border-slate-100 hover:border-logoBlue shadow-lg hover:shadow-xl transition-all group hover:-translate-y-2 text-center z-10">
                   <div className="w-20 h-20 md:w-24 md:h-24 mx-auto bg-white rounded-full flex items-center justify-center mb-4 md:mb-6 relative">
                     <div className="absolute inset-0 bg-gradient-to-br from-logoBlue to-logoViolet opacity-10 rounded-full group-hover:opacity-20 transition-opacity"></div>
-                    <i className={`fi ${feature.icon} text-3xl md:text-4xl text-logoBlue group-hover:scale-110 transition-transform`}></i>
+                    <i className={`fi ${feature.icon} flex items-center justify-center text-3xl md:text-4xl text-logoBlue group-hover:scale-110 transition-transform`}></i>
                     <div className="absolute -top-2 -right-2 w-7 h-7 md:w-8 md:h-8 bg-slate-900 text-white rounded-full flex items-center justify-center font-bold border-4 border-white text-sm">
                       {i + 1}
                     </div>
@@ -393,7 +393,7 @@ export function HomePage() {
                   {[
                     {
                       title: "Instant Doubt Resolution",
-                      desc: "Students ask via WhatsApp/Chat. Your Twin answers instantly in your style.",
+                      desc: "Students can chat with their teacher 24/7. Your Twin answers instantly in your style.",
                       icon: "fi-rr-comment-alt"
                     },
                     {
@@ -402,15 +402,15 @@ export function HomePage() {
                       icon: "fi-rr-chart-histogram"
                     },
                     {
-                      title: "Instant Content Creation",
+                      title: "Quick Content Creation",
                       desc: "Generate quizzes & notes from your material in seconds.",
                       icon: "fi-rr-magic-wand"
                     }
                   ].map((item, i) => (
                     <div key={i} className="flex gap-4 md:gap-6 bg-white p-4 md:p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:border-logoBlue transition-all cursor-default relative overflow-hidden group">
-                      <div className="absolute inset-0 bg-gradient-to-r from-logoBlue to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                      <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity"></div>
                       <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br from-logoBlue to-logoViolet flex items-center justify-center text-white text-xl md:text-2xl shadow-lg relative z-10">
-                        <i className={`fi ${item.icon}`}></i>
+                        <i className={`fi ${item.icon} flex items-center justify-center`}></i>
                       </div>
                       <div className="relative z-10">
                         <h4 className="text-lg md:text-xl font-bold text-slate-900 mb-1 md:mb-2">{item.title}</h4>
@@ -442,7 +442,7 @@ export function HomePage() {
                           <h3 className="text-2xl md:text-3xl font-bold text-slate-800">Top 5%</h3>
                         </div>
                         <div className="text-green-500 font-bold flex items-center gap-1 bg-green-50 px-2 py-1 rounded-lg text-xs md:text-sm">
-                          <i className="fi fi-rr-arrow-trend-up"></i> +12.5%
+                          <i className="fi fi-rr-arrow-trend-up flex items-center justify-center"></i> +12.5%
                         </div>
                       </div>
                       <div className="h-32 md:h-40 flex items-end gap-2">
@@ -464,7 +464,7 @@ export function HomePage() {
                       ].map((to, i) => (
                         <div key={i} className="flex items-center gap-3 md:gap-4 p-2 md:p-3 hover:bg-slate-50 rounded-xl transition-colors">
                           <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-500">
-                            <i className={`fi ${to.icon} text-sm md:text-base`}></i>
+                            <i className={`fi ${to.icon} text-sm md:text-base flex items-center justify-center`}></i>
                           </div>
                           <div className="flex-1">
                             <p className="text-xs md:text-sm font-medium text-slate-700">{to.text}</p>
@@ -475,6 +475,122 @@ export function HomePage() {
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        {/* PRICING SECTION */}
+        <div id="pricing" className="py-16 md:py-24 px-4 md:px-6 bg-slate-50 relative overflow-hidden">
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
+          <div className="max-w-7xl mx-auto relative z-10">
+            <div className="text-center mb-12 md:mb-16">
+              <span className="text-logoBlue font-bold tracking-wider uppercase text-xs md:text-sm bg-white px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-logoBlue">Pricing</span>
+              <h2 className="text-3xl md:text-5xl font-bold mt-6 md:mt-8 mb-4 md:mb-6 text-slate-900">Simple, Transparent Pricing</h2>
+              <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto">
+                Start for free and scale as you grow. No hidden fees.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 items-start">
+              {/* Free Tier */}
+              <div className="relative bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all group hover:-translate-y-1">
+                <div className="mb-6">
+                  <div className="text-xl font-bold text-slate-900 mb-2">Starter</div>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-4xl font-bold text-slate-900">Free</span>
+                    <span className="text-slate-500">/ forever</span>
+                  </div>
+                  <p className="text-sm text-slate-500 mt-2">Perfect for individual teachers just starting out.</p>
+                </div>
+                <div className="space-y-4 mb-8">
+                  {[
+                    "Up to 10 Students",
+                    "Basic AI Assistance Twin",
+                    "Limited Q&A Per Day",
+                    "Web Access"
+                  ].map((feature, i) => (
+                    <div key={i} className="flex items-center gap-3 text-sm text-slate-600">
+                      <i className="fi fi-rr-check-circle text-logoBlue"></i>
+                      {feature}
+                    </div>
+                  ))}
+                </div>
+                <button
+                  onClick={() => navigate('/signup')}
+                  className="w-full py-3 px-6 rounded-xl border border-slate-200 text-slate-700 font-bold hover:border-logoBlue hover:text-logoBlue hover:bg-white transition-all bg-slate-50"
+                >
+                  Get Started
+                </button>
+              </div>
+
+              {/* Pro Tier */}
+              <div className="relative bg-white text-slate-800 p-8 rounded-3xl shadow-2xl transform md:-translate-y-4 border border-logoBlue">
+                <div className="absolute top-0 right-0 p-4">
+                  <span className="bg-gradient-to-r from-logoBlue to-logoViolet text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Popular</span>
+                </div>
+                <div className="mb-6">
+                  <div className="text-xl font-bold mb-2">Growth</div>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-4xl font-bold">₹10k</span>
+                    <span className="">/ month</span>
+                  </div>
+                  <p className="text-sm mt-2">For serious educators scaling their impact.</p>
+                </div>
+                <div className="space-y-4 mb-8">
+                  {[
+                    "Up to 100 Students",
+                    "Advanced AI Assistance Personality",
+                    "Priority Support",
+                    "WhatsApp Integration",
+                    "Analytics Dashboard",
+                    "Custom Branding"
+                  ].map((feature, i) => (
+                    <div key={i} className="flex items-center gap-3 text-sm">
+                      <i className="fi fi-rr-check-circle text-logoBlue flex items-center justify-center"></i>
+                      {feature}
+                    </div>
+                  ))}
+                </div>
+                <button
+                  onClick={() => navigate('/signup')}
+                  className="w-full py-3 px-6 rounded-xl bg-gradient-to-r from-logoBlue to-logoViolet hover:shadow-lg hover:shadow-logoBlue/25 text-white font-bold transition-all transform hover:scale-105"
+                >
+                  Start Free Trial
+                </button>
+              </div>
+
+              {/* Enterprise Tier */}
+              <div className="relative bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all group hover:-translate-y-1">
+                <div className="mb-6">
+                  <div className="text-xl font-bold text-slate-900 mb-2">Enterprise</div>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-3xl font-bold text-slate-900">Custom</span>
+                  </div>
+                  <p className="text-sm text-slate-500 mt-2">For institutes and large coaching centers.</p>
+                </div>
+                <div className="space-y-4 mb-8">
+                  {[
+                    "Unlimited Students",
+                    "Multiple Teacher Accounts",
+                    "API Access",
+                    "White-label Solution",
+                    "Dedicated Success Manager",
+                    "SLA Support"
+                  ].map((feature, i) => (
+                    <div key={i} className="flex items-center gap-3 text-sm text-slate-600">
+                      <i className="fi fi-rr-check-circle text-logoBlue"></i>
+                      {feature}
+                    </div>
+                  ))}
+                </div>
+                <button
+                  onClick={() => window.open('mailto:sales@maiind.ai')}
+                  className="w-full py-3 px-6 rounded-xl border border-slate-200 text-slate-700 font-bold hover:border-logoBlue hover:text-logoBlue hover:bg-white transition-all bg-slate-50"
+                >
+                  Contact Sales
+                </button>
               </div>
             </div>
           </div>
@@ -576,7 +692,7 @@ function FaqItem({ question, answer }: { question: string, answer: string }) {
         className="w-full flex items-center justify-between p-6 text-left"
       >
         <span className="text-lg font-bold text-slate-800">{question}</span>
-        <i className={`fi fi-rr-angle-down transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}></i>
+        <i className={`fi fi-rr-angle-down flex items-center justify-center transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}></i>
       </button>
       <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
         <div className="p-6 pt-0 text-slate-600 leading-relaxed border-t border-slate-100 mt-2">

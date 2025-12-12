@@ -14,6 +14,12 @@ export interface OrganisationModel {
   _id: string;
   name: string;
   description?: string;
+  address?: string;
+  contact_email?: string;
+  phone?: string;
+  website?: string;
+  gst?: string;
+  pan?: string;
   source_type: string;
   admin_id: string;
   teachers?: string[]; // array of teacher IDs

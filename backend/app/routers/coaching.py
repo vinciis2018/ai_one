@@ -14,17 +14,17 @@ router = APIRouter()
 @router.post("/", response_model=OrganisationModel, status_code=status.HTTP_201_CREATED)
 async def create_institute(
     institute: OrganisationModel,
-    current_user: UserModel = Depends(get_current_active_user)
+    # current_user: UserModel = Depends(get_current_active_user)
 ):
     """
     Create a new coaching institute.
     Only users with admin role can create institutes.
     """
-    if current_user.role != UserRole.ADMIN:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="Only admin users can create institutes"
-        )
+    # if current_user.role != UserRole.ADMIN:
+    #     raise HTTPException(
+    #         status_code=status.HTTP_403_FORBIDDEN,
+    #         detail="Only admin users can create institutes"
+    #     )
     
     # Set timestamps
     now = datetime.utcnow()

@@ -340,6 +340,40 @@ export const LandingPage = () => {
                 )}
               </>
             )}
+
+            {(!isTeacher && user?.role === "teacher") || (!isStudent && user?.role === "student") && (
+              <div
+                className="mt-12 max-w-3xl mx-auto relative group cursor-pointer overflow-hidden rounded-3xl p-1 bg-gradient-to-r from-logoBlue via-logoViolet to-logoPink hover:shadow-2xl hover:shadow-logoBlue transition-all duration-500 transform hover:-translate-y-1"
+                onClick={() => navigate('/coachings')}
+              >
+                <div className="relative bg-white dark:bg-black rounded-xl p-8 lg:p-16 flex flex-col md:flex-row items-center justify-between overflow-hidden">
+
+                  {/* Decorative Background */}
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-sky-50 to-pink-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 group-hover:bg-logoBlue transition-colors duration-500"></div>
+
+                  <div className="relative z-10 flex items-center gap-6 mb-6 md:mb-0 w-full md:w-auto">
+                    <div className="p-4 shrink-0 rounded-2xl bg-gradient-to-br from-logoPink to-logoPurple flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-sm">
+                      <i className="fi fi-rr-building text-3xl bg-white bg-clip-text text-transparent"></i>
+                    </div>
+                    <div className="text-left">
+                      <h3 className="text-lg lg:text-2xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
+                        Explore Institutes
+                      </h3>
+                      <p className="text-xs lg:text-sm text-slate-500 font-medium mt-1 group-hover:text-logoBlue transition-colors">
+                        Create your institute or select one from the list you are working with.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="relative z-10 flex items-center gap-3 md:pr-4 group-hover:translate-x-2 transition-transform duration-300 hidden lg:block">
+                    {/* <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-logoBlue to-logoViolet">Browse Coaching</span> */}
+                    <div className="p-4 rounded-full bg-gradient-to-r from-logoBlue to-logoViolet flex items-center justify-center text-white shadow-lg shadow-logoBlue/30">
+                      <i className="fi fi-rr-arrow-small-right text-xl flex items-center justify-center"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}

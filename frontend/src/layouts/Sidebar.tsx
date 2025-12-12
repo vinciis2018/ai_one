@@ -89,20 +89,7 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
                   )}
                 </NavLink>
               </li>
-              <li>
-                <NavLink
-                  to="/chats"
-                  className={navLinkClasses}
-                  onClick={onClose}
-                >
-                  {({ isActive }) => (
-                    <div className="flex items-center gap-4">
-                      <i className={`fi fi-sr-messages ${iconClasses(isActive)}`} />
-                      {shouldShowText && <span className="font-bold tracking-wide truncate">Chats</span>}
-                    </div>
-                  )}
-                </NavLink>
-              </li>
+            
 
               {user && user?.role == "student" && (
                 <li>
@@ -161,6 +148,20 @@ export function Sidebar({ isOpen = false, onClose, isMobile = false, setIsOpen }
                     <div className="flex items-center gap-4">
                       <i className={`fi fi-sr-lesson ${iconClasses(isActive)}`} />
                       {shouldShowText && <span className="font-bold tracking-wide truncate">Classrooms</span>}
+                    </div>
+                  )}
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/chats"
+                  className={navLinkClasses}
+                  onClick={onClose}
+                >
+                  {({ isActive }) => (
+                    <div className="flex items-center gap-4">
+                      <i className={`fi fi-sr-messages ${iconClasses(isActive)}`} />
+                      {shouldShowText && <span className="font-bold tracking-wide truncate">Chats</span>}
                     </div>
                   )}
                 </NavLink>

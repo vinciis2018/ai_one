@@ -7,6 +7,7 @@ import type { User } from "../../types";
 import { getMe } from "../../store/slices/authSlice";
 import { allDomains } from "../../constants/helperConstants";
 import { LoadingComponent } from "../../components/molecules/LoadingComponent";
+import { CreateCoachingModal } from "./CreateCoachingModal";
 
 export const CoachingsPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -15,6 +16,8 @@ export const CoachingsPage: React.FC = () => {
   const { user } = useAppSelector((state) => state.auth);
   const { coachings, loading, error, success } = useAppSelector((state) => state.coachings);
   const [showSubjectPopup, setShowSubjectPopup] = useState(false);
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showAllCoachings, setShowAllCoachings] = useState(false);
   const [selectedCoachingId, setSelectedCoachingId] = useState<string | null>(null);
   const [isJoiningAsTeacher, setIsJoiningAsTeacher] = useState(false);
   const [selectedSubjects, setSelectedSubjects] = useState<string[]>([]);
@@ -86,7 +89,7 @@ export const CoachingsPage: React.FC = () => {
               className={`
                 relative p-4 rounded-xl border transition-all duration-300 cursor-pointer group
                 ${selectedSubjects.includes(subject)
-                  ? "border-logoBlue bg-logoBlue"
+                  ? "border-logoBlue bg-white"
                   : "border-slate-100 dark:border-gray-800 hover:border-logoBlue hover:shadow-md"
                 }
               `}
@@ -172,7 +175,7 @@ export const CoachingsPage: React.FC = () => {
               <button
                 title="Create Coaching"
                 type="button"
-                onClick={() => {}}
+                onClick={() => setShowCreateModal(true)}
                 className="group flex items-center gap-3 px-6 py-2 rounded-xl font-bold transition-all duration-300 bg-gradient-to-r from-logoBlue to-logoViolet text-white shadow-lg shadow-logoBlue hover:shadow-xl hover:shadow-logoBlue hover:scale-105"
               >
                 <i className="fi fi-rr-plus flex items-center justify-center group-hover:scale-110 transition-transform" />
@@ -190,6 +193,7 @@ export const CoachingsPage: React.FC = () => {
                   placeholder="Search coachings..."
                   value={searchQuery}
                   onChange={handleSearch}
+                  disabled={true}
                   className="text-sm w-full px-4 py-2 rounded-xl border border-slate-100 dark:border-white focus:outline-none focus:border-logoBlue focus:ring-1 focus:ring-logoBlue transition-all duration-300 bg-slate-50 dark:bg-white font-medium text-slate-900 dark:text-slate-900 placeholder:text-slate-400"
                 />
               </div>
@@ -198,6 +202,7 @@ export const CoachingsPage: React.FC = () => {
                   title="select domain"
                   value={selectedDomainFilter}
                   onChange={handleDomainChange}
+                  disabled={true}
                   className="text-sm w-full px-4 py-2 rounded-xl border border-slate-100 dark:border-white focus:outline-none focus:border-logoBlue focus:ring-1 focus:ring-logoBlue transition-all duration-300 bg-slate-50 dark:bg-white font-medium text-slate-600 dark:text-slate-900 appearance-none cursor-pointer"
                 >
                   <option value="all">All</option>
@@ -233,118 +238,236 @@ export const CoachingsPage: React.FC = () => {
         {/* Grid */}
         {!loading && !error && (
           <>
-            {Array.isArray(coachings) && coachings.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {coachings.map((coaching, index) => (
-                  <div
-                    key={coaching._id}
-                    className="group bg-white dark:bg-black backdrop-blur-xl rounded-2xl p-6 hover:shadow-xl transition-all duration-300 cursor-pointer border border-white hover:border-logoBlue dark:hover:border-logoBlue transform hover:-translate-y-1 block"
-                    onDoubleClick={() => navigate(`/coachings/${coaching._id}`)}
-                    style={{
-                      animation: `fadeInUp 0.5s ease-out ${index * 0.1}s both`
-                    }}
-                  >
-                    <div className="flex items-start gap-4 mb-4">
-                      <div className="relative p-1 rounded-2xl">
-                        <div className="absolute inset-0 bg-gradient-to-br from-logoSky to-logoPurple rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        <div className="relative z-10 w-14 h-14 bg-slate-50 dark:bg-gray-800 rounded-2xl flex items-center justify-center border border-slate-100 dark:border-gray-700">
-                          <i className="fi fi-rr-building flex items-center justify-center text-2xl text-slate-400 transition-colors" />
-                        </div>
-                      </div>
+            {(() => {
+              const myCoachings = Array.isArray(coachings) ? coachings.filter(c =>
+                (user && c.teachers && c.teachers.includes(user.teacher_id))
+              ) : [];
 
-                      <div className="flex-1 min-w-0 pt-1">
-                        <h3 className="font-bold text-lg text-slate-900 dark:text-white truncate group-hover:text-logoBlue transition-colors">
-                          {coaching.name}
-                        </h3>
-                        <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400 mt-2">
-                          <span className="flex items-center gap-1">
-                            <i className="fi fi-rr-chalkboard-user flex items-center justify-center text-slate-400 transition-colors"></i>
-                            {coaching.teachers?.length || 0} teachers
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <i className="fi fi-rr-users-alt flex items-center justify-center text-slate-400 transition-colors"></i>
-                            {coaching.students?.length || 0} students
-                          </span>
-                        </div>
+              const otherCoachings = Array.isArray(coachings) ? coachings.filter(c =>
+                !(user && c.teachers && c.teachers.includes(user.teacher_id))
+              ) : [];
+
+              return (
+                <>
+                  {/* My Institutes Section */}
+                  {myCoachings.length > 0 && (
+                    <div className="mb-12">
+                      <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                        <i className="fi fi-rr-building text-logoBlue"></i>
+                        My Institutes
+                      </h2>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {myCoachings.map((coaching, index) => (
+                          <div
+                            key={coaching._id}
+                            className="group bg-white dark:bg-black backdrop-blur-xl rounded-2xl p-6 hover:shadow-xl transition-all duration-300 cursor-pointer border border-white hover:border-logoBlue dark:hover:border-logoBlue transform hover:-translate-y-1 block"
+                            onDoubleClick={() => navigate(`/coachings/${coaching._id}`)}
+                            style={{
+                              animation: `fadeInUp 0.5s ease-out ${index * 0.1}s both`
+                            }}
+                          >
+                            <div className="flex items-start gap-4 mb-4">
+                              <div className="relative p-1 rounded-2xl">
+                                <div className="absolute inset-0 bg-gradient-to-br from-logoSky to-logoPurple rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                <div className="relative z-10 w-14 h-14 bg-slate-50 dark:bg-gray-800 rounded-2xl flex items-center justify-center border border-slate-100 dark:border-gray-700">
+                                  <i className="fi fi-rr-building flex items-center justify-center text-2xl text-slate-400 transition-colors" />
+                                </div>
+                              </div>
+
+                              <div className="flex-1 min-w-0 pt-1">
+                                <h3 className="font-bold text-lg text-slate-900 dark:text-white truncate group-hover:text-logoBlue transition-colors">
+                                  {coaching.name}
+                                </h3>
+                                <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400 mt-2">
+                                  <span className="flex items-center gap-1">
+                                    <i className="fi fi-rr-chalkboard-user flex items-center justify-center text-slate-400 transition-colors"></i>
+                                    {coaching.teachers?.length || 0} teachers
+                                  </span>
+                                  <span className="flex items-center gap-1">
+                                    <i className="fi fi-rr-users-alt flex items-center justify-center text-slate-400 transition-colors"></i>
+                                    {coaching.students?.length || 0} students
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Subject Tags */}
+                            <div className="flex flex-wrap gap-2 mb-6 min-h-[2rem]">
+                              {coaching.subjects?.slice(0, 3).map((subject: string, idx: number) => (
+                                <span
+                                  key={idx}
+                                  className={`
+                                    px-2.5 py-1 text-xs font-semibold uppercase tracking-wide rounded-lg 
+                                    bg-gradient-to-br from-logoSky to-logoPurple text-white
+                                  `}
+                                >
+                                  {subject}
+                                </span>
+                              ))}
+                            </div>
+
+                            <div className="pt-4 border-t border-slate-50 dark:border-gray-800">
+                              <button
+                                className="w-full py-2.5 rounded-xl font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 bg-slate-50 text-slate-600 hover:bg-logoBlue hover:text-white"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  navigate(`/coachings/${coaching._id}`);
+                                }}
+                              >
+                                <i className="fi fi-rr-eye flex items-center justify-center"></i>
+                                View Details
+                              </button>
+                            </div>
+                          </div>
+                        ))}
                       </div>
                     </div>
+                  )}
 
-                    {/* Subject Tags */}
-                    <div className="flex flex-wrap gap-2 mb-6 min-h-[2rem]">
-                      {coaching.subjects?.slice(0, 3).map((subject: string, idx: number) => (
-                        <span
-                          key={idx}
-                          className={`
-                            px-2.5 py-1 text-xs font-semibold uppercase tracking-wide rounded-lg 
-                            bg-gradient-to-br from-logoSky to-logoPurple text-white
-                          `}
-                        >
-                          {subject}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div className="pt-4 border-t border-slate-50 dark:border-gray-800">
+                  {/* Toggle Button if My Coachings exist */}
+                  {myCoachings.length > 0 && otherCoachings.length > 0 && (
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="h-px bg-slate-200 dark:bg-gray-800 flex-1"></div>
                       <button
-                        className={`w-full py-2.5 rounded-xl font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2
-                          ${(user?.role === "student" && !coaching.students.includes(user?.student_id)) || (user?.role === "teacher" && !coaching.teachers.includes(user?.teacher_id))
-                            ? 'bg-gradient-to-r from-logoBlue to-logoViolet text-white hover:shadow-lg hover:shadow-logoBlue hover:-translate-y-0.5'
-                            : 'bg-slate-50 text-slate-600 hover:bg-logoBlue hover:text-white'
-                          }`}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if ((user?.role === "student" && !coaching.students.includes(user?.student_id)) || (user?.role === "teacher" && !coaching.teachers.includes(user?.teacher_id))) {
-                            setSelectedCoachingId(coaching._id);
-                            setIsJoiningAsTeacher(user?.role === "teacher");
-                            setShowSubjectPopup(true);
-                          } else {
-                            navigate(`/coachings/${coaching._id}`);
-                          }
-                        }}
+                        onClick={() => setShowAllCoachings(!showAllCoachings)}
+                        className="mx-4 px-4 py-1.5 rounded-full border border-slate-200 dark:border-gray-700 text-sm font-bold text-slate-500 hover:text-logoBlue hover:border-logoBlue transition-all flex items-center gap-2 bg-white dark:bg-black"
                       >
-                        {(user?.role === "student" && !coaching.students.includes(user?.student_id)) || (user?.role === "teacher" && !coaching.teachers.includes(user?.teacher_id)) ? (
-                          <>
-                            <i className="fi fi-rr-sign-in-alt flex items-center justify-center"></i>
-                            Join Institute
-                          </>
-                        ) : (
-                          <>
-                            <i className="fi fi-rr-eye flex items-center justify-center"></i>
-                            View Details
-                          </>
-                        )}
+                        {showAllCoachings ? 'Hide Other Institutes' : 'Explore More Institutes'}
+                        <i className={`fi fi-rr-angle-small-down transition-transform ${showAllCoachings ? 'rotate-180' : ''}`}></i>
                       </button>
+                      <div className="h-px bg-slate-200 dark:bg-gray-800 flex-1"></div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="flex flex-col items-center justify-center py-20 px-4">
-                <div className="w-24 h-24 rounded-3xl bg-slate-50 dark:bg-white border border-slate-100 dark:border-white flex items-center justify-center mb-6">
-                  <i className="fi fi-rr-building text-slate-300 text-4xl" />
-                </div>
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
-                  {searchQuery || selectedDomainFilter !== "all" ? "No coachings found" : "No coachings available"}
-                </h3>
-                <p className="text-slate-500 dark:text-slate-400 text-center max-w-md mb-8 font-medium">
-                  {searchQuery || selectedDomainFilter !== "all"
-                    ? "We couldn't find any institutes matching your filters."
-                    : "Check back later for new institutes."}
-                </p>
-                {(searchQuery || selectedDomainFilter !== "all") && (
-                  <button
-                    onClick={() => { setSearchQuery(''); setSelectedDomainFilter('all') }}
-                    className="px-6 py-2 bg-white border border-slate-200 text-slate-700 font-bold rounded-xl hover:bg-slate-50 hover:shadow-md transition-all"
-                  >
-                    Clear Filters
-                  </button>
-                )}
-              </div>
-            )}
+                  )}
+
+                  {/* Other Institutes Section */}
+                  {(myCoachings.length === 0 || showAllCoachings) && (
+                    <div className={myCoachings.length > 0 ? "animate-fade-in" : ""}>
+                      {myCoachings.length > 0 && (
+                        <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                          <i className="fi fi-rr-search-alt text-slate-400"></i>
+                          More Institutes
+                        </h2>
+                      )}
+                      {otherCoachings.length > 0 ? (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                          {otherCoachings.map((coaching, index) => (
+                            <div
+                              key={coaching._id}
+                              className="group bg-white dark:bg-black backdrop-blur-xl rounded-2xl p-6 hover:shadow-xl transition-all duration-300 cursor-pointer border border-white hover:border-logoBlue dark:hover:border-logoBlue transform hover:-translate-y-1 block"
+                              onDoubleClick={() => navigate(`/coachings/${coaching._id}`)}
+                              style={{
+                                animation: `fadeInUp 0.5s ease-out ${index * 0.1}s both`
+                              }}
+                            >
+                              <div className="flex items-start gap-4 mb-4">
+                                <div className="relative p-1 rounded-2xl">
+                                  <div className="absolute inset-0 bg-gradient-to-br from-logoSky to-logoPurple rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                  <div className="relative z-10 w-14 h-14 bg-slate-50 dark:bg-gray-800 rounded-2xl flex items-center justify-center border border-slate-100 dark:border-gray-700">
+                                    <i className="fi fi-rr-building flex items-center justify-center text-2xl text-slate-400 transition-colors" />
+                                  </div>
+                                </div>
+
+                                <div className="flex-1 min-w-0 pt-1">
+                                  <h3 className="font-bold text-lg text-slate-900 dark:text-white truncate group-hover:text-logoBlue transition-colors">
+                                    {coaching.name}
+                                  </h3>
+                                  <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400 mt-2">
+                                    <span className="flex items-center gap-1">
+                                      <i className="fi fi-rr-chalkboard-user flex items-center justify-center text-slate-400 transition-colors"></i>
+                                      {coaching.teachers?.length || 0} teachers
+                                    </span>
+                                    <span className="flex items-center gap-1">
+                                      <i className="fi fi-rr-users-alt flex items-center justify-center text-slate-400 transition-colors"></i>
+                                      {coaching.students?.length || 0} students
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* Subject Tags */}
+                              <div className="flex flex-wrap gap-2 mb-6 min-h-[2rem]">
+                                {coaching.subjects?.slice(0, 3).map((subject: string, idx: number) => (
+                                  <span
+                                    key={idx}
+                                    className={`
+                                        px-2.5 py-1 text-xs font-semibold uppercase tracking-wide rounded-lg 
+                                        bg-gradient-to-br from-logoSky to-logoPurple text-white
+                                    `}
+                                  >
+                                    {subject}
+                                  </span>
+                                ))}
+                              </div>
+
+                              <div className="pt-4 border-t border-slate-50 dark:border-gray-800">
+                                <button
+                                  className={`w-full py-2.5 rounded-xl font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2
+                                    ${(user?.role === "student" && !coaching.students.includes(user?.student_id)) || (user?.role === "teacher" && !coaching.teachers.includes(user?.teacher_id))
+                                      ? 'bg-gradient-to-r from-logoBlue to-logoViolet text-white hover:shadow-lg hover:shadow-logoBlue hover:-translate-y-0.5'
+                                      : 'bg-slate-50 text-slate-600 hover:bg-logoBlue hover:text-white'
+                                    }`}
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    if ((user?.role === "student" && !coaching.students.includes(user?.student_id)) || (user?.role === "teacher" && !coaching.teachers.includes(user?.teacher_id))) {
+                                      setSelectedCoachingId(coaching._id);
+                                      setIsJoiningAsTeacher(user?.role === "teacher");
+                                      setShowSubjectPopup(true);
+                                    } else {
+                                      navigate(`/coachings/${coaching._id}`);
+                                    }
+                                  }}
+                                >
+                                  {(user?.role === "student" && !coaching.students.includes(user?.student_id)) || (user?.role === "teacher" && !coaching.teachers.includes(user?.teacher_id)) ? (
+                                    <>
+                                      <i className="fi fi-rr-sign-in-alt flex items-center justify-center"></i>
+                                      Join Institute
+                                    </>
+                                  ) : (
+                                    <>
+                                      <i className="fi fi-rr-eye flex items-center justify-center"></i>
+                                      View Details
+                                    </>
+                                  )}
+                                </button>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        // No other coachings found
+                        <div className="flex flex-col items-center justify-center py-20 px-4">
+                          <div className="w-24 h-24 rounded-3xl bg-slate-50 dark:bg-white border border-slate-100 dark:border-white flex items-center justify-center mb-6">
+                            <i className="fi fi-rr-building text-slate-300 text-4xl" />
+                          </div>
+                          <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                            {searchQuery || selectedDomainFilter !== "all" ? "No coachings found" : "No other coachings available"}
+                          </h3>
+                          <p className="text-slate-500 dark:text-slate-400 text-center max-w-md mb-8 font-medium">
+                            {searchQuery || selectedDomainFilter !== "all"
+                              ? "We couldn't find any institutes matching your filters."
+                              : "Check back later for new institutes."}
+                          </p>
+                          {(searchQuery || selectedDomainFilter !== "all") && (
+                            <button
+                              onClick={() => { setSearchQuery(''); setSelectedDomainFilter('all') }}
+                              className="px-6 py-2 bg-white border border-slate-200 text-slate-700 font-bold rounded-xl hover:bg-slate-50 hover:shadow-md transition-all"
+                            >
+                              Clear Filters
+                            </button>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </>
+              );
+            })()}
+            {/* Old Grid Logic Removed */}
           </>
         )}
 
         {showSubjectPopup && <SubjectSelectionPopup />}
+        <CreateCoachingModal isOpen={showCreateModal} onClose={() => setShowCreateModal(false)} />
       </div>
     </FullLayout>
   );

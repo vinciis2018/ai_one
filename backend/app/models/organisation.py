@@ -153,9 +153,11 @@ class OrganisationModel(BaseModel):
     avatar: Optional[str] = None
     description: Optional[str] = None
     address: Optional[str] = None
-    contact_email: EmailStr
+    contact_email: Optional[EmailStr] = None
     phone: Optional[str] = None
     website: Optional[str] = None
+    gst: Optional[str] = None
+    pan: Optional[str] = None
     org_type: Optional[str] = "coaching"
     teachers: List[PyObjectId] = []
     students: List[PyObjectId] = []
