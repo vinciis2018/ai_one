@@ -9,6 +9,7 @@ import StatsGrid from '../../components/organisms/StatsGrid';
 import DocumentModal from '../../components/docComp/DocumentModal';
 
 import { TeacherCalendar } from '../../components/organisms/TeacherCalendar';
+import { LoadingComponent } from '../../components/molecules/LoadingComponent';
 
 interface Tab {
   key: number;
@@ -207,9 +208,7 @@ export function TeacherProfilePage() {
                   </div>
 
                   {documentStatus === 'loading' ? (
-                    <div className="flex justify-center py-20">
-                      <div className="w-12 h-12 border-4 border-logoBlue border-t-transparent rounded-full animate-spin"></div>
-                    </div>
+                    <LoadingComponent size="sm" message="Loading..." />
                   ) : documents && documents.length > 0 ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                       {documents.map((doc) => (

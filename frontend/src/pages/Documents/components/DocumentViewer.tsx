@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import 'katex/dist/katex.min.css';
 import { loadPdf, renderPageToImage } from "../../../utilities/pdfUtils";
 import { useSelectionBox } from "../../../hooks/useSelectionBox";
+import { LoadingComponent } from "../../../components/molecules/LoadingComponent";
 
 interface DocumentViewerProps {
   selectedDocument: any; // Using any to match existing flexibility, or strict DocumentItem
@@ -157,10 +158,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
         )}
 
         {isLoading && (
-          <div className="flex flex-col items-center justify-center text-slate-400">
-            <i className="fi fi-br-circle animate-spin text-2xl mb-3" />
-            <p className="text-sm">Loading document...</p>
-          </div>
+          <LoadingComponent size="sm" message="" />
         )}
 
         {error && (

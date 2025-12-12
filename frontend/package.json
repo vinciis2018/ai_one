@@ -32,6 +32,7 @@
     "html2canvas": "^1.4.1",
     "jspdf": "^3.0.4",
     "katex": "^0.16.25",
+    "lottie-react": "^2.4.1",
     "mermaid": "^11.12.2",
     "pdfjs-dist": "^5.4.296",
     "react": "^19.1.0",

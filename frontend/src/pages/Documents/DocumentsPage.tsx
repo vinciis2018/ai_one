@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchDocuments } from "../../store/slices/documentsSlice";
 import { UploadBox } from "../../components/atoms/UploadBox";
+import { LoadingComponent } from "../../components/molecules/LoadingComponent";
 
 export const DocumentsPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -108,10 +109,7 @@ export const DocumentsPage: React.FC = () => {
 
           {/* Loading State */}
           {status === "loading" && (
-            <div className="flex flex-col items-center justify-center py-20">
-              <div className="w-16 h-16 border-4 border-logoBlue border-t-transparent rounded-full animate-spin mb-4" />
-              <p className="text-slate-600 dark:text-slate-300 font-medium">Loading your notes...</p>
-            </div>
+            <LoadingComponent size="sm" message="Loading your notes..." />
           )}
 
           {/* Error State */}

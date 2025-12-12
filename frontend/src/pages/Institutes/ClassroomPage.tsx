@@ -4,6 +4,7 @@ import { FullLayout } from "../../layouts/AppLayout";
 import { useNavigate } from "react-router-dom";
 import { CreateClassroomModal } from "./CreateClassroomModal";
 import { getAllClassrooms } from "../../store/slices/coachingSlice";
+import { LoadingComponent } from "../../components/molecules/LoadingComponent";
 
 export const ClassroomPage: React.FC = () => {
   const navigate = useNavigate();
@@ -116,10 +117,7 @@ export const ClassroomPage: React.FC = () => {
 
           {/* Loading State */}
           {loading && (
-            <div className="flex flex-col items-center justify-center py-20">
-              <div className="w-16 h-16 border-4 border-logoBlue border-t-transparent rounded-full animate-spin mb-4" />
-              <p className="text-slate-600 dark:text-slate-300 font-medium">Loading classrooms...</p>
-            </div>
+            <LoadingComponent size="sm" message="Loading classrooms..." />
           )}
 
           {/* Grid */}

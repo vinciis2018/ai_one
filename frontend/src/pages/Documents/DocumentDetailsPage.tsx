@@ -14,6 +14,7 @@ import { TranscriptionTab } from "./components/TranscriptionTab";
 import { MindmapTab } from "./components/MindmapTab";
 import { cropImage } from "../../utilities/filesUtils";
 import { DocumentViewer } from "./components/DocumentViewer";
+import { LoadingComponent } from "../../components/molecules/LoadingComponent";
 
 
 export const DocumentDetailsPage: React.FC = () => {
@@ -378,7 +379,6 @@ export const DocumentDetailsPage: React.FC = () => {
 
 
   if (!documentId) return null;
-  const hasTranscriptionForCurrentPage = notesDescription.some(note => note.page === pageNumber);
 
   return (
     <FullLayout>
@@ -461,7 +461,9 @@ export const DocumentDetailsPage: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:h-220 h-auto">
             {/* Left Column: Document Viewer */}
             <div className="bg-white dark:bg-black backdrop-blur-xl rounded-2xl shadow-md border border-white flex flex-col lg:h-full h-140 overflow-hidden shrink-0">
-              {selectedStatus === "loading" && <div className="p-12 text-center text-slate-400 font-medium">Loading document...</div>}
+              {selectedStatus === "loading" && (
+                <LoadingComponent size="sm" message="Loading your notes..." />
+              )}
               {selectedStatus === "succeeded" && selectedDocument && (
                 <div className="flex flex-col h-full overflow-hidden relative">
                   <div className="absolute inset-0 overflow-hidden">

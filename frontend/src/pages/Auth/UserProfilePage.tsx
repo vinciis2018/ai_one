@@ -9,6 +9,7 @@ import StatsGrid from '../../components/organisms/StatsGrid';
 import DocumentModal from '../../components/docComp/DocumentModal';
 import EditProfileModal from './components/EditProfileModal';
 import { TeacherCalendar, type CalendarEvent } from '../../components/organisms/TeacherCalendar';
+import { LoadingComponent } from '../../components/molecules/LoadingComponent';
 
 interface Tab {
   key: number;
@@ -28,11 +29,6 @@ export function UserProfilePage() {
   const [selectedDoc, setSelectedDoc] = useState<DocumentItem | null>(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-  const [formData, setFormData] = useState<{ name: string, email: string }>({
-    name: user?.firstName ? `${user.firstName} ${user.lastName || ''}`.trim() : "",
-    email: user?.email || "",
-  });
-
   const [teacherPersona, setTeacherPersona] = useState({
     personality: "",
     answerStyle: "",
@@ -49,19 +45,6 @@ export function UserProfilePage() {
       });
     }
   }, [teacher_details]);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // In a real app, you would update the user's profile here
-  };
 
   const handleSavePersona = () => {
     if (user?._id) {
@@ -231,12 +214,7 @@ export function UserProfilePage() {
                 </div>
 
                 {documentStatus === 'loading' ? (
-                  <div className="flex justify-center py-20">
-                    <div className="flex flex-col items-center gap-3">
-                      <i className="fi fi-rr-spinner animate-spin text-3xl text-logoBlue"></i>
-                      <p className="text-slate-500 font-medium">Loading files...</p>
-                    </div>
-                  </div>
+                 <LoadingComponent size="sm" message="Loading files" />
                 ) : documents && documents.length > 0 ? (
                   <div className="grid grid-cols-1 sm:grid-cols-2 pt-4 lg:grid-cols-3 gap-3 lg:gap-6">
                     {documents.map((doc) => (

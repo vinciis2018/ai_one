@@ -11,7 +11,7 @@ interface UploadBoxProps {
   onUploadSuccess?: () => void;
 }
 
-export const UploadBox: React.FC<UploadBoxProps> = ({ isOpen, onClose, onUploadSuccess }) => {
+export const UploadBox: React.FC<UploadBoxProps> = ({ onClose, onUploadSuccess }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 

@@ -9,6 +9,7 @@ import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
+import { LoadingComponent } from '../../components/molecules/LoadingComponent';
 
 export const ChatsPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -34,10 +35,10 @@ export const ChatsPage: React.FC = () => {
     }
   };
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setSearch(e.target.value));
-    dispatch(clearConversations());
-  };
+  // const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   dispatch(setSearch(e.target.value));
+  //   dispatch(clearConversations());
+  // };
 
   return (
     <FullLayout>
@@ -86,10 +87,7 @@ export const ChatsPage: React.FC = () => {
 
           {/* Loading State */}
           {status === "loading" && chats.length === 0 && (
-            <div className="flex flex-col items-center justify-center py-20">
-              <div className="w-16 h-16 border-4 border-logoBlue border-t-transparent rounded-full animate-spin mb-4" />
-              <p className="text-slate-600 dark:text-slate-300 font-medium">Loading conversations...</p>
-            </div>
+            <LoadingComponent size="sm" message="Loading your content..." />
           )}
 
           {/* Error State */}
@@ -170,9 +168,7 @@ export const ChatsPage: React.FC = () => {
                   className="px-8 py-3 bg-slate-50 border-2 border-slate-100 text-slate-600 rounded-xl font-bold hover:bg-white hover:border-logoBlue hover:text-logoBlue transition-all shadow-sm hover:shadow-md"
                 >
                   {status === 'loading' ? (
-                    <span className="flex items-center gap-2">
-                      <i className="fi fi-rr-spinner flex items-center justify-center animate-spin"></i> Loading...
-                    </span>
+                    <LoadingComponent size="sm" message="Loading your conversations..." />
                   ) : 'Load More Conversations'}
                 </button>
               </div>

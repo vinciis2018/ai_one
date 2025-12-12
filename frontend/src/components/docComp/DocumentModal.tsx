@@ -10,6 +10,7 @@ import { QuizView } from './views/QuizView';
 import { MCQView } from './views/MCQView';
 import { PersonalTricksView } from './views/PersonalTricksView';
 import { MindmapView } from './views/MindmapView';
+import { LoadingComponent } from '../molecules/LoadingComponent';
 
 interface DocumentModalProps {
   doc: DocumentItem;
@@ -258,10 +259,7 @@ const DocumentModal: React.FC<DocumentModalProps> = ({
               <div className="flex flex-col items-center justify-center h-full w-full p-2 sm:p-4 relative">
 
                 {isLoading && (
-                  <div className="flex flex-col items-center justify-center h-64 text-slate-400">
-                    <div className="w-8 h-8 border-4 border-logoBlue border-t-transparent rounded-full animate-spin mb-3"></div>
-                    <p className="text-sm font-medium">Loading PDF...</p>
-                  </div>
+                  <LoadingComponent size="sm" message="Loading..." />
                 )}
 
                 {error && (

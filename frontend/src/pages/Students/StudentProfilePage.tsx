@@ -8,6 +8,7 @@ import { fetchSelectedDocuments, type DocumentItem } from '../../store/slices/do
 import DocumentCard from '../../components/docComp/DocumentCard';
 import StatsGrid from '../../components/organisms/StatsGrid';
 import DocumentModal from '../../components/docComp/DocumentModal';
+import { LoadingComponent } from '../../components/molecules/LoadingComponent';
 
 interface Tab {
   key: number;
@@ -109,9 +110,7 @@ export function StudentProfilePage() {
   if (studentLoading) {
     return (
       <FullLayout>
-        <div className="flex justify-center items-center min-h-screen">
-          <div className="w-16 h-16 border-4 border-logoBlue border-t-transparent rounded-full animate-spin"></div>
-        </div>
+        <LoadingComponent size="sm" message="Loading student profile..." />
       </FullLayout>
     );
   }

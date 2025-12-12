@@ -5,6 +5,7 @@ import { getAllTeachers, resetTeacherState, type TeacherModel } from "../../stor
 import { useNavigate } from "react-router-dom";
 import type { User } from "../../types";
 import { addStudentToTeacher } from "../../store/slices/coachingSlice";
+import { LoadingComponent } from "../../components/molecules/LoadingComponent";
 
 export const TeachersForStudentPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -134,10 +135,7 @@ export const TeachersForStudentPage: React.FC = () => {
 
               {/* Loading State */}
               {loading && (
-                <div className="flex flex-col items-center justify-center py-20">
-                  <div className="w-16 h-16 border-4 border-logoBlue border-t-transparent rounded-full animate-spin mb-4" />
-                  <p className="text-slate-600 dark:text-slate-300 font-medium">Finding teachers...</p>
-                </div>
+                <LoadingComponent size="sm" message="Finding teachers..." />
               )}
 
               {/* Error State */}

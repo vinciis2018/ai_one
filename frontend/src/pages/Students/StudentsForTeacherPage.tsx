@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../store";
 import { FullLayout } from "../../layouts/AppLayout";
 import { getAllStudents, type StudentModel } from "../../store/slices/studentsSlice";
 import { useNavigate } from "react-router-dom";
+import { LoadingComponent } from "../../components/molecules/LoadingComponent";
 
 export const StudentsForTeacherPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -111,10 +112,7 @@ export const StudentsForTeacherPage: React.FC = () => {
 
             {/* Loading State */}
             {loading && (
-              <div className="flex flex-col items-center justify-center py-20">
-                <div className="w-16 h-16 border-4 border-logoBlue border-t-transparent rounded-full animate-spin mb-4" />
-                <p className="text-slate-600 dark:text-slate-300 font-medium">Loading class roster...</p>
-              </div>
+              <LoadingComponent size="sm" message="Loading class roster..." />
             )}
 
             {/* Error State */}
