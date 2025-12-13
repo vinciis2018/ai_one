@@ -4,7 +4,6 @@ import { addStudentToInstitute, addTeacherToInstitute, getAllCoachings, resetCoa
 import { FullLayout } from "../../layouts/AppLayout";
 import { useNavigate } from "react-router-dom";
 import type { User } from "../../types";
-import { getMe } from "../../store/slices/authSlice";
 import { allDomains } from "../../constants/helperConstants";
 import { LoadingComponent } from "../../components/molecules/LoadingComponent";
 import { CreateCoachingModal } from "./CreateCoachingModal";

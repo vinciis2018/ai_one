@@ -21,10 +21,10 @@ export const AuthPage = () => {
           <div className="text-center mb-8">
             <img
               src={logo}
-              alt="Shipmate Logo"
+              alt="Sheepmate Logo"
               className="h-16 w-16 mx-auto mb-4 bg-white/10 rounded-2xl p-2 shadow-sm"
             />
-            <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Welcome to Shipmate</h1>
+            <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Welcome to Sheepmate</h1>
             <p className="text-slate-500 dark:text-slate-400">Sign in to streamline your shipment data</p>
           </div>
 

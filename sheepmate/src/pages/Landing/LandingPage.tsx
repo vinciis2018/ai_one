@@ -14,7 +14,7 @@ export const LandingPage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { user, isAuthenticated } = useAppSelector((state) => state.auth);
-  const { emails, loading, error } = useAppSelector((state) => state.shipment);
+  const { loading, error } = useAppSelector((state) => state.shipment);
   const [selectedDate, setSelectedDate] = useState("");
 
   if (!isAuthenticated && !user) {
@@ -23,7 +23,7 @@ export const LandingPage = () => {
         <div className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-[#F8FAFC] via-[#F1F5F9] to-logoBlue/10 dark:from-background dark:via-background dark:to-logoBlue/5">
           <div className="flex flex-col items-center justify-center pt-24 pb-12 px-4 text-center z-10 relative">
             <h1 className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">
-              Streamline Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-logoBlue to-logoViolet">Shipmate Data</span>
+              Streamline Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-logoBlue to-logoViolet">Sheepmate Data</span>
             </h1>
             <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto mb-10">
               Automate your logistics workflow. Read email attachments and generate organized Excel sheets instantly.
@@ -59,7 +59,7 @@ export const LandingPage = () => {
 
   return (
     <FullLayout>
-      {({ setIsChatOpen }) => (
+      {({ }) => (
         <div className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-[#F8FAFC] via-[#F1F5F9] to-logoBlue/10 dark:from-background dark:via-background dark:to-logoBlue/5">
           <div className="relative z-10 space-y-8 pb-12">
             {/* LOGGED IN VIEW */}
