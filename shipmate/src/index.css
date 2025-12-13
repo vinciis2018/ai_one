@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 0.5s infinite;
+}
+
+@layer base {
+  :root {
+    /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; */
+    font-family: 'Montserrat', sans-serif;
+    /* font-family: 'Figtree', sans-serif; */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .light {
+    color-scheme: light;
+    --background: #FFFFFF;
+    --background-alt: #F2F1F8;
+    --background-dark-green: #131613;
+    --error: #EF4444;
+    --violet: #7850CD;
+    --card: #D6D6D6;
+    --sun: #FFDC17;
+    --moon: #758ABA;
+    --orange: #FFC400;
+    --orange2: #FF7373;
+    --green: #53905A;
+    --green2: #4B9154;
+    --blue: #C8FAFF;
+    --navy-blue: #253858;
+    --baige-light: #F8F6F0;
+    --green-light: #F1FFE1;
+    --red-light: #ffc4c4;
+
+    --logo-violet: #C5ADED;
+    --logo-purple: #F8ABEB;
+    --logo-pink: #FFC8DD;
+    --logo-sky: #BCE0FF;
+    --logo-blue: #A2D2FF;
+  }
+
+  .dark {
+    color-scheme: dark;
+    --background: black;
+    --background-alt: #2D2D2D;
+    --background-dark-green: #131613;
+    --text: #FFFFFF;
+    --error: #DC2626;
+    --violet: #7850CD;
+    --card: #FFFFFF;
+    --sun: #FFDC17;
+    --moon: #758ABA;
+    --orange: #FFC400;
+    --orange2: #FF7373;
+    --green: #53905A;
+    --green2: #4B9154;
+    --blue: #C8FAFF;
+    --navy-blue: #253858;
+    --baige-light: #F8F6F0;
+    --green-light: #F1FFE1;
+    --red-light: #ffc4c4;
+
+    --logo-violet: #C5ADED;
+    --logo-purple: #F8ABEB;
+    --logo-pink: #FFC8DD;
+    --logo-sky: #BCE0FF;
+    --logo-blue: #A2D2FF;
+
+
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--text);
+  }
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+.dark {
+  --foreground: #FFFFFF;
+  background: black;
+  --primary: #1D4ED8;
+  --primary-hover: #3B82F6;
+}
+
+.light {
+  --foreground: #000000;
+  background: #FFFFFF;
+  --primary: #3B82F6;
+  --primary-hover: #1D4ED8;
+}
+
+
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+/* Minimal-width scrollbar */
+.scrollbar-minimal {
+  scrollbar-width: thin;
+  /* For Firefox */
+  scrollbar-color: #DADADA transparent;
+  /* Thumb and track colors */
+}
+
+.scrollbar-minimal::-webkit-scrollbar {
+  width: 2px;
+  /* Width of the scrollbar for vertical scroll */
+  height: 4px;
+  /* Height of the scrollbar for horizontal scroll */
+}
+
+.scrollbar-minimal::-webkit-scrollbar-thumb {
+  background: #EEEEEE;
+  /* Thumb color */
+  border-radius: 8px;
+  /* Rounded corners for thumb */
+}
+
+.scrollbar-minimal::-webkit-scrollbar-track {
+  background: transparent;
+  /* Transparent track */
+}
+
+
+.blur {
+  filter: blur(4px);
+}
+
+/* White */
+.filter-white {
+  filter: brightness(0) invert(1);
+}
+
+/* #7850CD (Purple) */
+.filter-purple {
+  filter: invert(44%) sepia(36%) saturate(7476%) hue-rotate(243deg) brightness(94%) contrast(92%);
+}

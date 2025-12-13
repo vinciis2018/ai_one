@@ -11,8 +11,19 @@ from app.models.user import UserModel, PyObjectId
 from app.config import settings
 from app.config.db import db, get_collection
 from pydantic import BaseModel, Field, ConfigDict, field_validator, ValidationInfo, EmailStr
+# from google.oauth2 import id_token
+# from google.auth.transport import requests
+import requests
+
+import os
+import logging
+from app.config.db import db, get_collection, get_collection_sheepmate
+
+logger = logging.getLogger(__name__)
+
 # Get the users collection
 users_collection = get_collection("users")
+users_collection_sheepmate = get_collection_sheepmate("users")
 
 router = APIRouter()
 
@@ -288,3 +299,174 @@ async def get_current_user_details(current_user: UserModel = Depends(get_current
 
     print(user_data)
     return UserModel(**user_data)
+
+
+
+
+
+
+
+
+# sheepmate auth
+
+
+
+async def get_user_sheepmate(email: str):
+    user = await users_collection_sheepmate.find_one({"email": email})
+    if user:
+        return UserModel(**user)
+    return None
+
+async def authenticate_user_sheepmate(email: str, password: str):
+    user = await get_user_sheepmate(email)
+    if not user or not verify_password(password, user.password):
+        return False
+    return user
+
+def create_access_token_sheepmate(data: dict, expires_delta: Optional[timedelta] = None):
+    to_encode = data.copy()
+    if expires_delta:
+        expire = datetime.now() + expires_delta
+    else:
+        expire = datetime.now() + timedelta(minutes=15)
+    to_encode.update({"exp": expire})
+    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+
+async def get_current_user_sheepmate(token: str = Depends(oauth2_scheme)):
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        email: str = payload.get("sub")
+        if email is None:
+            raise credentials_exception
+        token_data = TokenData(email=email)
+    except JWTError:
+        raise credentials_exception
+    
+    user = await get_user_sheepmate(email=token_data.email)
+    if user is None:
+        raise credentials_exception
+    return user
+
+class GoogleLoginRequest(BaseModel):
+    token: str
+
+
+@router.post("/sheepmate/google", response_model=Token)
+async def google_login(login_data: GoogleLoginRequest):
+    try:
+        # Verify token by calling Google's userinfo endpoint
+        userinfo_endpoint = "https://www.googleapis.com/oauth2/v3/userinfo"
+        headers = {"Authorization": f"Bearer {login_data.token}"}
+        
+        resp = requests.get(userinfo_endpoint, headers=headers)
+        if resp.status_code != 200:
+             raise HTTPException(
+                 status_code=status.HTTP_401_UNAUTHORIZED, 
+                 detail=f"Invalid Google access token: {resp.text}"
+             )
+        
+        id_info = resp.json()
+
+
+        email = id_info['email']
+        
+        # Check against sheepmate DB
+        users_collection = get_collection_sheepmate("users")
+        user = await users_collection.find_one({"email": email})
+        
+        if not user:
+             # Generate a username from email (remove special chars to satisfy alphanumeric constraint if needed)
+             base_username = email.split("@")[0]
+             username = "".join(c for c in base_username if c.isalnum())
+             if not username:
+                 username = f"user{int(datetime.now().timestamp())}"
+                 
+             # Create new user
+             new_user = {
+                 "email": email,
+                 "username": username,
+                 "firstName": id_info.get("given_name", ""),
+                 "lastName": id_info.get("family_name", ""),
+                 "full_name": id_info.get("name", ""),
+                 "google_id": id_info.get("sub"),
+                 "avatar": id_info.get("picture"),
+                 "role": "user",
+                 "created_at": datetime.now(),
+                 "updated_at": datetime.now(),
+                 "last_login": datetime.now(),
+                 "is_active": True
+             }
+             result = await users_collection.insert_one(new_user)
+             user = await users_collection.find_one({"_id": result.inserted_id})
+        else:
+             # Update last login
+             await users_collection.update_one(
+                {"_id": user["_id"]},
+                {"$set": {"last_login": datetime.now()}}
+             )
+        
+        # Create access token
+        access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+        expires_at = datetime.now() + access_token_expires
+        expires_at_timestamp = int(expires_at.timestamp() * 1000)
+        
+        access_token = create_access_token(
+            data={"sub": user["email"]}, 
+            expires_delta=access_token_expires
+        )
+        
+        # Format response
+        user_dict = user
+        user_data_response = {
+            "_id": str(user_dict.get("_id")),
+            "email": user_dict.get("email"),
+            "username": user_dict.get("username"),
+            "firstName": user_dict.get("firstName"),
+            "lastName": user_dict.get("lastName"),
+            "role": user_dict.get("role", "student"),
+            "is_active": user_dict.get("is_active", True),
+            "full_name": user_dict.get("full_name"),
+            "avatar": user_dict.get("avatar")
+        }
+
+        return {
+            "access_token": access_token,
+            "token_type": "bearer",
+            "expires_at": expires_at_timestamp,
+            "user": user_data_response
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Google login error: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(e)
+        )
+    
+
+
+@router.post("/sheepmate/logout")
+async def logout(response: Response):
+    # In a stateless JWT system, logout is handled client-side by removing the token
+    # We can also implement token blacklisting here if needed
+    response.delete_cookie("access_token")
+    return {"message": "Successfully logged out"}
+
+
+@router.get("/sheepmate/me", response_model=UserModel)
+async def get_current_user_details_sheepmate(current_user: UserModel = Depends(get_current_user_sheepmate)):
+    # Remove sensitive data before returning
+    user_data = current_user.model_dump()
+    user_data.pop("password", None)
+
+    return UserModel(**user_data)
+
+
+

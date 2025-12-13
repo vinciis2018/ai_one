@@ -25,6 +25,7 @@ class DocumentModel(BaseModel):
     quick_notes: Optional[str] = None
     quick_quiz: Optional[Dict] = None
     quick_mcq: Optional[Dict] = None
+    queue_id: Optional[str] = None
     
 
     model_config = {

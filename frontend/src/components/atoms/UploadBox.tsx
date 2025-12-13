@@ -195,14 +195,14 @@ export const UploadBox: React.FC<UploadBoxProps> = ({ onClose, onUploadSuccess }
         {/* Form Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2 col-span-2 md:col-span-1">
-            <label className="text-xs font-bold text-gray-500 uppercase tracking-wider ml-1">Subject</label>
+            <label className="text-xs font-bold text-gray-500 uppercase tracking-wider ml-1">Topic/Chapter</label>
             <div className="relative">
               <i className="fi fi-rr-book-alt absolute left-3 top-1/3 -translate-y-1/3 text-gray-400"></i>
               <input
                 type="text"
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
-                placeholder="Physics, Chemistry..."
+                placeholder="Physics 11 HCV..."
                 className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-logoBlue focus:border-transparent transition-all outline-none"
               />
             </div>
@@ -228,7 +228,7 @@ export const UploadBox: React.FC<UploadBoxProps> = ({ onClose, onUploadSuccess }
           </div>
 
           <div className="space-y-2">
-            <label className="text-xs font-bold text-gray-500 uppercase tracking-wider ml-1">Example Domain</label>
+            <label className="text-xs font-bold text-gray-500 uppercase tracking-wider ml-1">Subject</label>
             <div className="relative">
               <i className="fi fi-rr-graduation-cap absolute left-3 top-1/3 -translate-y-1/3 text-gray-400"></i>
               <select

@@ -35,6 +35,9 @@ interface NotesState {
   generateMindmapStatus: "idle" | "loading" | "succeeded" | "failed";
   generateMindmapData: any | null;
   error: string | null;
+
+  transcriptForAllStatus: "idle" | "loading" | "succeeded" | "failed";
+  transcriptForAllData: any | null;
 }
 
 const initialState: NotesState = {
@@ -54,6 +57,9 @@ const initialState: NotesState = {
   generateMindmapStatus: "idle",
   generateMindmapData: null,
   error: null,
+
+  transcriptForAllStatus: "idle",
+  transcriptForAllData: null,
 };
 
 // ------------------------------------------------
@@ -371,6 +377,42 @@ export const generateMindmap = createAsyncThunk<
 );
 
 
+
+
+// ------------------------------------------------
+// Generate Transcript For All
+// ------------------------------------------------
+interface GenerateTranscriptForAllPayload {
+  document_id: string;
+}
+
+interface GenerateTranscriptForAllResponse {
+  notes: any[];
+}
+
+export const generateTranscriptForAll = createAsyncThunk<
+  GenerateTranscriptForAllResponse,
+  GenerateTranscriptForAllPayload,
+  { rejectValue: string }
+>(
+  "notes/generateTranscriptForAll",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await axios.post<GenerateTranscriptForAllResponse>(
+        `${BASE_URL}/notes/generate-transcript-for-all-pages`,
+        payload
+      );
+      return response.data;
+    } catch (error: unknown) {
+      const axiosError = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(
+        axiosError.response?.data?.message || "Failed to generate transcript for all"
+      );
+    }
+  }
+);
+
+
 // ------------------------------------------------
 // Slice
 // ------------------------------------------------
@@ -537,7 +579,22 @@ const notesSlice = createSlice({
       .addCase(generateMindmap.rejected, (state, action) => {
         state.generateMindmapStatus = "failed";
         state.error = action.payload || "Failed to generate mindmap";
-      });
+      })
+
+      // Generate Transcript For All
+      .addCase(generateTranscriptForAll.pending, (state) => {
+        state.transcriptForAllStatus = "loading";
+        state.error = null;
+        state.transcriptForAllData = null;
+      })
+      .addCase(generateTranscriptForAll.fulfilled, (state, action) => {
+        state.transcriptForAllStatus = "succeeded";
+        state.transcriptForAllData = action.payload;
+      })
+      .addCase(generateTranscriptForAll.rejected, (state, action) => {
+        state.transcriptForAllStatus = "failed";
+        state.error = action.payload || "Failed to generate transcript for all";
+      })
   },
 });
 

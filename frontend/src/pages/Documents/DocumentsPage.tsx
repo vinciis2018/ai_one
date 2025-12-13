@@ -108,7 +108,7 @@ export const DocumentsPage: React.FC = () => {
           </div>
 
           {/* Loading State */}
-          {status === "loading" && (
+          {status === "loading" && filteredDocuments.length === 0 && (
             <LoadingComponent size="sm" message="Loading your notes..." />
           )}
 
@@ -124,94 +124,92 @@ export const DocumentsPage: React.FC = () => {
           )}
 
           {/* Documents Grid */}
-          {status !== "loading" && !error && (
-            <>
-              {filteredDocuments.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {filteredDocuments.map((doc, index) => (
-                    <div
-                      key={doc.id}
-                      className="group bg-white dark:bg-black backdrop-blur-xl rounded-2xl p-6 hover:shadow-xl transition-all duration-300 cursor-pointer border border-white hover:border-logoBlue dark:hover:border-logoBlue transform hover:-translate-y-1"
-                      onClick={() => navigate(`/documents/${doc.id}`)}
-                      style={{
-                        animation: `fadeInUp 0.5s ease-out ${index * 0.1}s both`
-                      }}
-                    >
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-3 mb-4">
-                            <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-logoSky to-logoBlue text-white shadow-lg shadow-logoBlue group-hover:scale-110 transition-transform duration-300">
-                              <i className="fi fi-rr-document flex items-center justify-center text-xl" />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <h3 className="font-semibold text-slate-900 dark:text-white truncate group-hover:font-bold group-hover:text-logoBlue transition-colors">
-                                {doc.filename}
-                              </h3>
-                              {doc.subject && (
-                                <span className="inline-block mt-1 px-2.5 py-0.5 text-xs font-bold rounded-lg bg-logoBlue text-logoBlue dark:bg-logoBlue dark:text-logoBlue">
-                                  {doc.subject}
-                                </span>
-                              )}
-                            </div>
-                          </div>
 
-                          {doc.created_at && (
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center gap-2 text-xs font-medium text-slate-400 mt-2">
-                                <i className="fi fi-rr-calendar text-xs flex items-center" />
-                                <span>
-                                  {new Date(doc.created_at).toLocaleDateString('en-US', {
-                                    month: 'short',
-                                    day: 'numeric',
-                                    year: 'numeric'
-                                  })}
-                                </span>
-                              </div>
-                              <button
-                                className="w-10 h-10 rounded-xl bg-slate-50 dark:bg-white flex items-center justify-center text-slate-400 relative overflow-hidden transition-all duration-300 shadow-sm group-hover:shadow-md group-hover:text-white group-hover:bg-logoBlue"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  navigate(`/documents/${doc.id}`);
-                                }}
-                              >
-                                <i className="fi fi-rr-arrow-small-right text-xl flex items-center justify-center transform group-hover:translate-x-0.5 transition-transform relative z-10" />
-                              </button>
-                            </div>
+          {filteredDocuments.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredDocuments.map((doc, index) => (
+                <div
+                  key={doc.id}
+                  className="group bg-white dark:bg-black backdrop-blur-xl rounded-2xl p-6 hover:shadow-xl transition-all duration-300 cursor-pointer border border-white hover:border-logoBlue dark:hover:border-logoBlue transform hover:-translate-y-1"
+                  onClick={() => navigate(`/documents/${doc.id}`)}
+                  style={{
+                    animation: `fadeInUp 0.5s ease-out ${index * 0.1}s both`
+                  }}
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-logoSky to-logoBlue text-white shadow-lg shadow-logoBlue group-hover:scale-110 transition-transform duration-300">
+                          <i className="fi fi-rr-document flex items-center justify-center text-xl" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-semibold text-slate-900 dark:text-white truncate group-hover:font-bold group-hover:text-logoBlue transition-colors">
+                            {doc.filename}
+                          </h3>
+                          {doc.subject && (
+                            <span className="inline-block mt-1 px-2.5 py-0.5 text-xs font-bold rounded-lg bg-logoBlue text-logoBlue dark:bg-logoBlue dark:text-logoBlue">
+                              {doc.subject}
+                            </span>
                           )}
                         </div>
-
-                        
                       </div>
+
+                      {doc.created_at && (
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2 text-xs font-medium text-slate-400 mt-2">
+                            <i className="fi fi-rr-calendar text-xs flex items-center" />
+                            <span>
+                              {new Date(doc.created_at).toLocaleDateString('en-US', {
+                                month: 'short',
+                                day: 'numeric',
+                                year: 'numeric'
+                              })}
+                            </span>
+                          </div>
+                          <button
+                            className="w-10 h-10 rounded-xl bg-slate-50 dark:bg-white flex items-center justify-center text-slate-400 relative overflow-hidden transition-all duration-300 shadow-sm group-hover:shadow-md group-hover:text-white group-hover:bg-logoBlue"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(`/documents/${doc.id}`);
+                            }}
+                          >
+                            <i className="fi fi-rr-arrow-small-right text-xl flex items-center justify-center transform group-hover:translate-x-0.5 transition-transform relative z-10" />
+                          </button>
+                        </div>
+                      )}
                     </div>
-                  ))}
-                </div>
-              ) : (
-                // Empty State
-                <div className="flex flex-col items-center justify-center py-20 px-4">
-                  <div className="w-24 h-24 rounded-3xl bg-slate-50 dark:bg-white border border-slate-100 dark:border-white flex items-center justify-center mb-6">
-                    <i className="fi fi-rr-document text-slate-300 text-4xl" />
+
+                    
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
-                    {searchQuery || selectedDomain !== "all" ? "No notes found" : "No notes yet"}
-                  </h3>
-                  <p className="text-slate-500 dark:text-slate-400 text-center max-w-md mb-8 font-medium">
-                    {searchQuery || selectedDomain !== "all"
-                      ? "Try adjusting your search or filter criteria"
-                      : "Start by uploading your first study material"}
-                  </p>
-                  {!searchQuery && selectedDomain === "all" && (
-                    <button
-                      onClick={() => setShowUploadBox(true)}
-                      className="px-8 py-3 bg-gradient-to-r from-logoBlue to-logoViolet text-white font-bold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-logoBlue hover:scale-105 flex items-center gap-2"
-                    >
-                      <i className="fi fi-br-upload flex items-center justify-center" />
-                      <span>Upload Your First Note</span>
-                    </button>
-                  )}
                 </div>
+              ))}
+            </div>
+          ) : (
+            // Empty State
+            <div className="flex flex-col items-center justify-center py-20 px-4">
+              <div className="w-24 h-24 rounded-3xl bg-slate-50 dark:bg-white border border-slate-100 dark:border-white flex items-center justify-center mb-6">
+                <i className="fi fi-rr-document text-slate-300 text-4xl" />
+              </div>
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                {searchQuery || selectedDomain !== "all" ? "No notes found" : "No notes yet"}
+              </h3>
+              <p className="text-slate-500 dark:text-slate-400 text-center max-w-md mb-8 font-medium">
+                {searchQuery || selectedDomain !== "all"
+                  ? "Try adjusting your search or filter criteria"
+                  : "Start by uploading your first study material"}
+              </p>
+              {!searchQuery && selectedDomain === "all" && (
+                <button
+                  onClick={() => setShowUploadBox(true)}
+                  className="px-8 py-3 bg-gradient-to-r from-logoBlue to-logoViolet text-white font-bold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-logoBlue hover:scale-105 flex items-center gap-2"
+                >
+                  <i className="fi fi-br-upload flex items-center justify-center" />
+                  <span>Upload Your First Note</span>
+                </button>
               )}
-            </>
+            </div>
           )}
+      
 
           {/* Upload Modal */}
           {showUploadBox && (

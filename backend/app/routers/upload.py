@@ -79,16 +79,19 @@ async def save_to_kb_db(
             await knowledge_bases[source_type].load_data(force=True)
             print(f"⚡ {source_type.capitalize()} knowledge base reloaded after upload.")
 
+    doc_id = ObjectId()  # Generate doc_id here to be available for return
+
     # Step 6: Save to MongoDB in the background
-    async def save_to_mongodb():
+    async def save_to_mongodb(document_id):
         try:
             print("Saving to MongoDB...")
             col = get_collection("documents")
-            doc_id = ObjectId()  # Generate a new ObjectId for the main document
+            # doc_id is passed as argument now
+
 
             # Save document with full text
             doc = {
-                "_id": doc_id,  # Use the generated ObjectId
+                "_id": document_id,  # Use the generated ObjectId
                 "filename": file_name,
                 "subject": subject,
                 "domain": domain,
@@ -117,8 +120,9 @@ async def save_to_kb_db(
                     return
                 
                 user_role = user.get("role")
+                user_role = user.get("role")
                 doc_access = {
-                    "document_id": doc_id,
+                    "document_id": document_id,
                     "access_granted_at": datetime.utcnow(),
                     "can_edit": True  # Users can edit their own documents
                 }
@@ -145,7 +149,7 @@ async def save_to_kb_db(
                 if coaching_id:
                     await db["organisations"].update_one(
                         {"_id": ObjectId(coaching_id)},
-                        {"$addToSet": {"documents": doc_id}},
+                        {"$addToSet": {"documents": document_id}},
                         upsert=True
                     )
                     logger.info(f"✅ Added document to coaching {coaching_id}")
@@ -158,11 +162,12 @@ async def save_to_kb_db(
             # Consider implementing a retry mechanism here
 
     # Start the background task
-    asyncio.create_task(save_to_mongodb())
+    asyncio.create_task(save_to_mongodb(doc_id))
 
-    # Return response
+    # Return response including doc_id
     return {
         "filename": file_name,
+        "document_id": str(doc_id),
         # "text_preview": text[:500],
         # "chunks": len(chunks),
         # "embedding_dim": len(embeddings[0]) if embeddings else 0,
@@ -212,6 +217,23 @@ async def upload_file(payload: dict = Body(...)):
             shared_with,
             coaching_id,
         )
+
+        # Add task to queue
+        from app.core.queue_manager import add_task_to_queue
+        document_id = result.get("document_id")
+        
+        if document_id:
+            schema_val = {
+                "document_id": document_id
+            }
+            queue_id = await add_task_to_queue("generate_transcript", schema_val)
+            
+            # Update document with queue_id
+            await db.documents.update_one(
+                {"_id": ObjectId(document_id)},
+                {"$set": {"queue_id": queue_id}}
+            )
+            print(f"✅ Added task to queue {queue_id} for doc {document_id}")
 
         return result
 

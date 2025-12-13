@@ -21,6 +21,7 @@ class UserModel(BaseModel):
     lastName: Optional[str] = None
     full_name: Optional[str] = None
     email: Optional[str] = None
+    google_id: Optional[str] = None
     password: Optional[str] = None
     role: Optional[str] = None
     organisation_id: Optional[str] = None

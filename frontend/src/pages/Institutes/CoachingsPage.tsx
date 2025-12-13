@@ -35,7 +35,7 @@ export const CoachingsPage: React.FC = () => {
   useEffect(() => {
     if (success) {
       dispatch(resetCoachingState());
-      dispatch(getMe());
+      dispatch(getAllCoachings());
     }
   }, [success, dispatch]);
 

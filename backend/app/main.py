@@ -2,7 +2,7 @@ from app.core.logger_middleware import LoggerMiddleware
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routers import auth, aws, status, upload, converstions, coaching, teachers, students, query_lang, notes, knowledge_graph, speech
+from app.routers import auth, aws, status, upload, converstions, coaching, teachers, students, query_lang, notes, knowledge_graph, speech, sheepmate
 
 from dotenv import load_dotenv
 
@@ -34,6 +34,7 @@ app.include_router(notes.router, prefix="/notes", tags=["Notes"])
 app.include_router(knowledge_graph.router, prefix="/knowledgegraph", tags=["Knowledge Graph"])
 
 app.include_router(speech.router, prefix="/speech", tags=["Speech"])
+app.include_router(sheepmate.router, prefix="/sheepmate", tags=["Sheepmate"])
 
 
 

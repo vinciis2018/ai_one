@@ -1,8 +1,8 @@
 
 import React, { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../store";
+import { useAppDispatch, useAppSelector, type RootState } from "../../store";
 import { fetchDocumentById, setViewingPageNumber } from "../../store/slices/documentsSlice";
-import { createTranscription, saveNotes, generateQuiz, generateNotes, generateMCQ } from "../../store/slices/notesSlice";
+import { createTranscription, saveNotes, generateQuiz, generateNotes, generateMCQ, generateTranscriptForAll } from "../../store/slices/notesSlice";
 import { useParams, useNavigate } from "react-router-dom";
 import { FullLayout } from "../../layouts/AppLayout";
 import { NotesTab } from "./components/NotesTab";
@@ -25,8 +25,8 @@ export const DocumentDetailsPage: React.FC = () => {
   const { selectedDocument, selectedStatus, viewingPageNumber } = useAppSelector(
     (state) => state.documents
   );
-  const { user } = useAppSelector((state) => state.auth);
-  const { transcriptionStatus, saveStatus, quizStatus, quizData, generateNotesStatus, generateNotesData, mcqStatus, mcqData } = useAppSelector((state) => state.notes);
+  const { user } = useAppSelector((state: RootState) => state.auth);
+  const { transcriptForAllStatus, transcriptForAllData, transcriptionStatus, saveStatus, quizStatus, quizData, generateNotesStatus, generateNotesData, mcqStatus, mcqData } = useAppSelector((state) => state.notes);
 
   // const [pageNumber, setPageNumber] = useState<number>(1); // Moved to Redux
   const pageNumber = viewingPageNumber;
@@ -82,6 +82,7 @@ export const DocumentDetailsPage: React.FC = () => {
     }, 100);
   };
 
+
   // Sync sentences when page changes or notes load
   useEffect(() => {
     if (isUserEditing.current) return;
@@ -117,6 +118,12 @@ export const DocumentDetailsPage: React.FC = () => {
 
   // Load existing notes from selectedDocument
   useEffect(() => {
+    // Check if the loaded document matches the current URL param
+    if (selectedDocument?.id !== documentId) {
+      setNotesDescription([]);
+      return;
+    }
+
     if (selectedDocument?.notes_description && selectedDocument.notes_description.length > 0) {
       const transformedNotes = selectedDocument.notes_description.map((note: any) => {
         const quiz = note.quiz;
@@ -130,19 +137,27 @@ export const DocumentDetailsPage: React.FC = () => {
         return { ...note, quiz: quiz || { easy: [], medium: [], hard: [] }, mcq: multipleChoice || { easy: [], medium: [], hard: [] } };
       });
       setNotesDescription(transformedNotes);
+    } else {
+      setNotesDescription([]);
     }
-  }, [selectedDocument?.notes_description]);
+  }, [selectedDocument, documentId]);
 
 
   const handleSaveNotes = async () => {
-    if (!selectedDocument || notesDescription.length === 0) {
-      alert("No transcriptions to save");
-      return;
-    }
+    console.log("alsks")
+
+    // if (!selectedDocument || notesDescription.length === 0) {
+    //   alert("No transcriptions to save");
+    //   return;
+    // }
     try {
-      await dispatch(saveNotes({
-        document_id: selectedDocument.id,
-        notes: notesDescription,
+      // await dispatch(saveNotes({
+      //   document_id: selectedDocument.id,
+      //   notes: notesDescription,
+      // })).unwrap();
+
+      await dispatch(generateTranscriptForAll({
+        document_id: selectedDocument?.id as string,
       })).unwrap();
       alert(`Successfully saved ${notesDescription.length} transcription(s)!`);
     } catch (error) {
@@ -150,6 +165,9 @@ export const DocumentDetailsPage: React.FC = () => {
       alert("Failed to save notes.");
     }
   };
+
+  console.log("transcriptForAllStatus", transcriptForAllStatus);
+  console.log("transcriptForAllData", transcriptForAllData);
 
   const handleTranscribe = async () => {
     if (!selectedDocument || !user?._id) {
@@ -394,7 +412,7 @@ export const DocumentDetailsPage: React.FC = () => {
                 <i className="fi fi-rr-arrow-small-left text-slate-700 dark:text-white group-hover:text-logoBlue transition-colors" />
               </button>
               <div className="flex-1 min-w-0">
-                <h1 className="text-base lg:text-2xl font-bold text-slate-900 dark:text-white truncate">
+                <h1 className="text-base lg:text-xl font-semibold text-slate-900 dark:text-white truncate">
                   {selectedDocument?.filename || "Document Viewer"}
                 </h1>
                 {selectedDocument && (
@@ -445,7 +463,7 @@ export const DocumentDetailsPage: React.FC = () => {
               <div className="w-px h-8 bg-slate-200 dark:bg-white mx-1 hidden lg:block"></div>
               <button
                 onClick={handleSaveNotes}
-                disabled={saveStatus === 'loading' || notesDescription.length === 0}
+                // disabled={saveStatus === 'loading' || notesDescription.length === 0}
                 className="p-2 lg:px-5 lg:py-2.5 flex items-center gap-2 rounded-xl bg-gradient-to-r from-logoBlue to-logoViolet dark:bg-white text-white dark:text-slate-900 hover:opacity-90 transition-all disabled:opacity-50 text-sm font-bold shadow-lg"
               >
                 <i className="fi fi-rr-disk flex items-center justify-center"></i>

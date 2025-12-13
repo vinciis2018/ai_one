@@ -1,3 +1,4 @@
+from app.llms.gemini import call_gemini
 from app.core.retriever_cache import knowledge_bases
 from app.core.storage import store_embeddings
 from app.core.embeddings import generate_embeddings
@@ -9,9 +10,7 @@ from app.prompt.system_prompt import SYSTEM_PROMPT
 from app.prompt.generate_notes_prompt import GENERATE_NOTES_PROMPT
 from fastapi import APIRouter, HTTPException, status, Body
 from pydantic import BaseModel
-import requests
 import asyncio
-import io
 from PIL import Image
 import fitz  # PyMuPDF
 import numpy as np
@@ -23,6 +22,7 @@ from app.core.llm_manager import call_llm
 import json
 
 from tqdm import tqdm
+import os
 
 router = APIRouter()
 
@@ -573,9 +573,6 @@ async def generate_mcq(req: MCQGenerationRequest):
 
 
 
-class QuickNotesRequest(BaseModel):
-    document_id: str
-
 class PersonalTrickRequest(BaseModel):
     document_id: str
     page_number: int
@@ -698,8 +695,6 @@ async def save_note_description(req: SaveNoteRequest):
 
 
 
-
-
 class GenerateMindMapRequest(BaseModel):
     document_id: str
     page_number: int
@@ -762,13 +757,67 @@ async def generate_mind_map(req: GenerateMindMapRequest):
         6. Optional: "details" property for a short explanation (max 15 words) if context is needed.
         """
         
+        response_format = {
+                "type": "OBJECT",
+                "properties": {
+                    "root": {
+                        "type": "OBJECT",
+                        "properties": {
+                            "name": { "type": "STRING" },
+                            "details": { "type": "STRING" },
+                            "children": {
+                                "type": "ARRAY",
+                                "items": {
+                                    "type": "OBJECT",
+                                    "properties": {
+                                        "name": { "type": "STRING" },
+                                        "details": { "type": "STRING" },
+                                        "children": {
+                                            "type": "ARRAY",
+                                            "items": {
+                                                "type": "OBJECT",
+                                                "properties": {
+                                                "name": { "type": "STRING" },
+                                                "details": { "type": "STRING" },
+                                                "children": {
+                                                    "type": "ARRAY",
+                                                    "items": {
+                                                        "type": "OBJECT",
+                                                        "properties": {
+                                                            "name": { "type": "STRING" },
+                                                            "details": { "type": "STRING" },
+                                                            "children": {
+                                                                "type": "ARRAY",
+                                                                "items": {
+                                                                    "type": "OBJECT",
+                                                                    "properties": {
+                                                                        "name": { "type": "STRING" },
+                                                                        "details": { "type": "STRING" }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": ["name", "children"]
+                }
+            }
+        }
+        
         # Call LLM
         loop = asyncio.get_running_loop()
         generated_mind_map = await loop.run_in_executor(
             None, 
-            call_llm, 
+            call_gemini, 
             prompt,
-            "gemini"
+            response_format
         )
         
         # Clean response if it contains markdown formatting
@@ -828,7 +877,105 @@ async def generate_mind_map(req: GenerateMindMapRequest):
 ########################################
 # for complete doc related 
 ########################################
-@router.post("/generate-quick-notes_from_docs", status_code=status.HTTP_200_OK)
+
+class QuickTranscriptRequest(BaseModel):
+    document_id: str
+
+@router.post("/generate-transcript-for-all-pages", status_code=status.HTTP_200_OK)
+async def generate_transcript_for_all_pages(req: QuickTranscriptRequest):
+    """
+    Downloads a PDF from an S3 URL (via document), uploads it to Gemini, and
+    requests a structured page-by-page transcription.
+    Automatically saves the transcriptions to the document's notes_description.
+    """
+    print(f"--- Starting Transcription Process for Document {req.document_id} ---")
+    
+    try:
+        # 1. Validate Document ID
+        if not ObjectId.is_valid(req.document_id):
+            raise HTTPException(
+                status_code=400,
+                detail="Invalid document ID format"
+            )
+        document_id = ObjectId(req.document_id)
+        
+        # 2. Fetch Document
+        document = await db.documents.find_one({"_id": document_id})
+        if not document:
+            raise HTTPException(
+                status_code=404,
+                detail="Document not found"
+            )
+        
+        s3_url = document.get("file_url") or document.get("s3_url") # Handle potential naming differences
+        if not s3_url:
+             raise HTTPException(
+                status_code=400,
+                detail="Document does not have a file URL"
+            )
+
+        # 3. Call Core Transcription Function
+        from app.core.transcription import generate_full_transcript_core
+        
+        try:
+            transcript_data = await generate_full_transcript_core(s3_url, str(document_id))
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=str(e))
+
+        # 4. Save to Database
+        # We need to merge this with existing notes_description
+        notes_description = document.get("notes_description", [])
+        
+        # Create a map of existing pages for easy update
+        existing_pages_map = {note.get("page"): note for note in notes_description}
+        
+        for page_item in transcript_data:
+            p_num = page_item.get("page_number")
+            text = page_item.get("transcript")
+            
+            if p_num is not None:
+                if p_num in existing_pages_map:
+                    existing_pages_map[p_num]["transcription"] = text
+                else:
+                    new_note = {
+                        "page": p_num,
+                        "transcription": text,
+                        # Initialize other fields as empty/default if needed, strict schema not enforced by MongoDB usually
+                    }
+                    notes_description.append(new_note)
+                    existing_pages_map[p_num] = new_note # Add to map to prevent duplicates if list has dups
+
+        # Re-sort notes_description by page number just in case
+        notes_description.sort(key=lambda x: x.get("page", 0))
+
+        # await db.documents.update_one(
+        #     {"_id": document_id},
+        #     {"$set": {"notes_description": notes_description}}
+        # )
+        print(f"✅ Saved transcriptions for {len(transcript_data)} pages to document {document_id}")
+
+        return {
+            "status": "success",
+            "document_id": str(document_id),
+            "pages_processed": len(transcript_data),
+            "saved": True,
+            "transcript_data": transcript_data
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"❌ Error in generate_transcript_for_all_pages: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Process failed: {str(e)}"
+        )
+
+
+class QuickNotesRequest(BaseModel):
+    document_id: str
+
+@router.post("/generate-quick-notes-from-docs", status_code=status.HTTP_200_OK)
 async def generate_quick_notes_from_docs(req: QuickNotesRequest):
     """
     Generate quick notes from all transcriptions in a document.
@@ -940,7 +1087,7 @@ class QuickQuizRequest(BaseModel):
     document_id: str
     num_questions: int = 5
 
-@router.post("/generate-quick-quiz_from_docs", status_code=status.HTTP_200_OK)
+@router.post("/generate-quick-quiz-from-docs", status_code=status.HTTP_200_OK)
 async def generate_quick_quiz_from_docs(req: QuickQuizRequest):
     """
     Generate quick quiz questions from all transcriptions in a document.
@@ -1072,7 +1219,7 @@ class QuickMCQRequest(BaseModel):
     document_id: str
     num_questions: int = 3
 
-@router.post("/generate-quick-mcq_from_docs", status_code=status.HTTP_200_OK)
+@router.post("/generate-quick-mcq-from-docs", status_code=status.HTTP_200_OK)
 async def generate_quick_mcq_from_docs(req: QuickMCQRequest):
     """
     Generate quick MCQ questions from all transcriptions in a document.

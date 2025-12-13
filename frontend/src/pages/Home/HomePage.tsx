@@ -80,12 +80,12 @@ export function HomePage() {
 
   return (
     <SimpleLayout>
-      <div className="relative min-h-screen text-slate-900 font-sans overflow-hidden bg-gradient-to-br from-[#F8FAFC] via-[#F1F5F9] to-logoBlue dark:from-background dark:via-background dark:to-logoBlue">
+      <div className="relative min-h-screen text-slate-900 font-sans overflow-hidden bg-gradient-to-br from-transparent to-transparent dark:from-background dark:via-background dark:to-logoBlue">
 
         <CursorAnimation />
 
         {/* HERO SECTION */}
-        <div className="relative min-h-[90vh] md:min-h-[95vh] flex items-center justify-center overflow-hidden pt-24 pb-16 md:pt-40 md:pb-32 px-4 md:px-6">
+        <div className="relative min-h-[90vh] md:min-h-[95vh] flex items-center justify-center overflow-hidden pt-24 pb-16 md:py-32 px-4 md:px-6">
 
           <div className="relative z-10 max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
             {/* Left Column: Text */}
@@ -154,8 +154,8 @@ export function HomePage() {
                       <i className="fi fi-rr-microchip-ai flex items-center justify-center"></i>
                     </div>
                     <div>
-                      <div className="h-4 w-32 bg-slate-800 rounded mb-1"></div>
-                      <div className="h-3 w-20 bg-slate-800 rounded"></div>
+                      <div className="h-4 w-32 bg-slate-100 rounded mb-1"></div>
+                      <div className="h-3 w-20 bg-slate-100 rounded"></div>
                     </div>
                   </div>
                   <div className="flex gap-2">
@@ -403,7 +403,7 @@ export function HomePage() {
                     },
                     {
                       title: "Quick Content Creation",
-                      desc: "Generate quizzes & notes from your material in seconds.",
+                      desc: "Generate quizzes & notes from your study material in seconds.",
                       icon: "fi-rr-magic-wand"
                     }
                   ].map((item, i) => (

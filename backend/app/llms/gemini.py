@@ -43,81 +43,29 @@ def call_gemini(prompt: str, response_format: Optional[Dict] = None) -> str:
         if response_format:
         
             response = gemini_client.models.generate_content(
-                    model=GEMINI_MODEL,
-                    contents=[
-                        {
-                            "parts": [
-                                {
-                                    "text": prompt
-                                }
-                            ]
-                        }
-                    ],
-                    config=types.GenerateContentConfig(
-                        system_instruction=SYSTEM_PROMPT,
-                        response_mime_type="application/json",
-                        responseSchema={
-                            "type": "OBJECT",
-                            "properties": {
-                                "root": {
-                                    "type": "OBJECT",
-                                    "properties": {
-                                        "name": { "type": "STRING" },
-                                        "details": { "type": "STRING" },
-                                        "children": {
-                                            "type": "ARRAY",
-                                            "items": {
-                                                "type": "OBJECT",
-                                                "properties": {
-                                                    "name": { "type": "STRING" },
-                                                    "details": { "type": "STRING" },
-                                                    "children": {
-                                                        "type": "ARRAY",
-                                                        "items": {
-                                                            "type": "OBJECT",
-                                                            "properties": {
-                                                            "name": { "type": "STRING" },
-                                                            "details": { "type": "STRING" },
-                                                            "children": {
-                                                                "type": "ARRAY",
-                                                                "items": {
-                                                                    "type": "OBJECT",
-                                                                    "properties": {
-                                                                        "name": { "type": "STRING" },
-                                                                        "details": { "type": "STRING" },
-                                                                        "children": {
-                                                                            "type": "ARRAY",
-                                                                            "items": {
-                                                                                "type": "OBJECT",
-                                                                                "properties": {
-                                                                                    "name": { "type": "STRING" },
-                                                                                    "details": { "type": "STRING" }
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                },
-                                "required": ["name", "children"]
+                model=GEMINI_MODEL,
+                contents=[
+                    {
+                        "parts": [
+                            {
+                                "text": prompt
                             }
-                        }
+                        ]
                     }
-                ),
+                ],
+                config=types.GenerateContentConfig(
+                    system_instruction=SYSTEM_PROMPT,
+                    response_mime_type="application/json",
+                    responseSchema=response_format
+                )
             )
         else:
             response = gemini_client.models.generate_content(
-                    model=GEMINI_MODEL,
-                    contents=[
-                        {
-                            "parts": [
-                                {
+                model=GEMINI_MODEL,
+                contents=[
+                    {
+                        "parts": [
+                            {
                                 "text": prompt
                             }
                         ]
