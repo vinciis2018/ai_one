@@ -35,7 +35,7 @@ Pillow>=11.3.0
 PyPDF2>=3.0.0
 PyMuPDF>=1.23.0
 openpyxl>=3.1.2
-
+pandas>=2.3.3
 
 # =============================
 # Logging & Debugging
@@ -44,7 +44,6 @@ rich>=13.7.1
 bcrypt==5.0.0
 passlib==1.7.4
 python-jose[cryptography]>=3.3.0
-
 
 # =============================
 # Database
